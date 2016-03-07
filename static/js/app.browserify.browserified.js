@@ -1,1 +1,0 @@
-../../../static/js/app.browserify.browserified.js
