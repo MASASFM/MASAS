@@ -12,12 +12,15 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from os.path import abspath, basename, dirname, join, normpath
+from socket import gethostname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 SITE_ROOT = dirname(DJANGO_ROOT)
 SITE_NAME = basename(DJANGO_ROOT)
+DEBUG = os.environ.get('DEBUG', False)
+LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
 
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', None)
 LOG_DIR = os.environ.get('OPENSHIFT_LOG_DIR', None)
@@ -34,6 +37,20 @@ if not os.path.exists(SECRET_FILE):
 with open(SECRET_FILE, 'r') as f:
     SECRET_KEY = f.read()
 
+if SECRET_KEY == 'notsecret' and not DEBUG:
+    raise Exception('Please export DJANGO_SECRET_KEY or DEBUG')
+
+ALLOWED_HOSTS = [
+    gethostname(),
+]
+
+DNS = os.environ.get('OPENSHIFT_APP_DNS', None),
+if DNS:
+    ALLOWED_HOSTS += DNS
+
+if 'DJANGO_ALLOWED_HOSTS' in os.environ:
+    ALLOWED_HOSTS += os.environ.get('DJANGO_ALLOWED_HOSTS').split(',')
+
 PUBLIC_DIR = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'wsgi/static')
 
 STATIC_URL = '/static/collected/'
@@ -41,16 +58,6 @@ STATIC_ROOT = os.path.join(PUBLIC_DIR, 'collected')
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y=zi^eo35+vr1+-ti1&#j5gdy0yv*0llr&*b3cn5*bb#!#t)40'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
-LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
 
 ALLOWED_HOSTS = []
 
