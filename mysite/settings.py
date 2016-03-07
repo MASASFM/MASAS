@@ -59,9 +59,6 @@ MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
