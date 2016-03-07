@@ -1,0 +1,75 @@
+$SCItemHeight: 4em
+
+.upload-sc-item--wrapper
+	// border: 5px solid green
+	border-width: 1px
+	border-style: solid
+	border-color: rgba(255,255,255,0.44)
+	height: $SCItemHeight
+	margin: 0.3rem 0rem
+	display: flex
+
+.upload-sc-item--wrapper.synced
+	background-color: rgba(255,255,255,0.16)
+
+.upload-sc-item--wrapper
+	.artwork--wrapper
+		min-width: -webkit-fit-content
+
+	.artwork--wrapper
+		img
+			height: $SCItemHeight
+
+	.song-info--wrapper
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		flex-grow: 1
+		margin: 0 2.5rem 0 0.5rem
+
+	.song-info--wrapper
+		.song-stats
+			display: flex
+			justify-content: space-between
+
+		.song-stats
+			.number-listens
+				display: block
+
+			.number-listens
+				img
+					height: 1rem
+					padding-right: 0.3rem
+
+	.sync--wrapper
+		display: flex
+		align-items: center
+		min-width: 5rem
+		justify-content: center
+
+	.sync--wrapper
+		img
+			height: $SCItemHeight
+			max-height: $SCItemHeight/2
+			cursor: pointer
+
+@media screen and (min-width: $desktop-min-width)
+	.upload-sc-item--wrapper
+		.artwork--wrapper
+
+
+		.artwork--wrapper
+			img
+
+
+		.song-info--wrapper
+			flex-direction: row
+			align-items: center
+
+		.song-info--wrapper
+			.song-stats
+
+
+			.song-stats
+				.number-listens
+					display: none

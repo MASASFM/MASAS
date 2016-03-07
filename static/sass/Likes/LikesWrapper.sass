@@ -1,0 +1,13 @@
+.likes--wrapper
+	display: flex
+	flex: 1
+	flex-direction: column
+	width: 100%
+	flex-wrap: nowrap
+	overflow-y: scroll
+
+@media screen and (min-width: $desktop-min-width)
+	.likes--wrapper
+		flex-direction: row
+		flex-wrap: wrap
+		justify-content: space-between	

@@ -1,0 +1,126 @@
+.sign-up-form--wrapper1
+	display: flex
+	flex: 1
+	flex-direction: column
+	padding: 1.5rem
+	justify-content: space-between
+	max-height: 35rem
+	width: 90%
+	max-width: 60rem
+
+.sign-up-form--wrapper1
+	.logo
+		height: 100%
+		align-self: center
+		// padding-bottom: 1.5rem
+
+	.sign-up--title
+		display: none
+
+	.header
+		display: flex
+		flex-direction: row
+		align-self: center
+		height: 6rem
+
+	.checkboxes
+		align-self: flex-start
+		color: white
+		font-size: 0.7rem
+		width: 100%
+		max-width: -webkit-max-content
+		max-width: max-content
+
+.sign-up-form--wrapper2
+	display: flex
+	flex-direction: column
+	flex-grow: 0
+	justify-content: space-around
+	width: 100%
+	align-self: center
+
+.sign-up-form--wrapper2
+	.vertical-divider
+		display: none
+		margin: 0 2rem
+
+	.horizontal-divider
+		display: block
+
+	$paddingSides: 2rem
+	.fb-login
+		display: none
+		justify-content: center
+		align-self: center
+		width: 100%
+		// padding: 0 $paddingSides
+
+	.divider
+		flex: 0
+		margin: 0
+		padding: 0 $paddingSides
+
+	.sign-up--form
+		display: flex
+		justify-content: center
+		flex-direction: column
+		// padding: 0 $paddingSides
+
+
+@media screen and (min-width: $desktop-min-width)
+	.sign-up-form--wrapper1
+		// padding-top: 1rem
+
+	.sign-up-form--wrapper1
+		.logo
+			// height: 4rem
+			// padding-bottom: 1rem
+			// padding-top: 2rem
+
+		.sign-up--title
+			display: block
+			align-self: center
+			font-family: Anders
+			// padding-bottom: 3rem
+
+		.sign-up--button
+			width: 15rem
+			align-self: center
+
+		.header
+			height: 4rem
+
+		.checkboxes
+			align-self: center
+			width: 50%
+
+	.sign-up-form--wrapper2
+		flex-direction: row-reverse
+		justify-content: center
+
+		// margin: 2rem 0
+
+	.sign-up-form--wrapper2
+		.divider
+			flex: 1
+			max-width: 1px
+			margin: 0 2rem
+			display: flex
+
+		.horizontal-divider
+			display: none
+
+		.vertical-divider
+			display: flex
+			border: 1px solid white
+			box-sizing: border-box
+
+		.fb-login
+			display: flex
+			flex-grow: 1
+			flex-basis: 50%
+
+		.sign-up--form
+			display: flex
+			flex-basis: 50%
+			flex-grow: 1

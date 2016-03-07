@@ -1,0 +1,37 @@
+.MASAS-textbox
+	width: 100%
+
+.MASAS-textbox
+	.wrapper
+		display: flex
+		flex-direction: column
+
+	.MASAS-label
+		color: white
+		font-size: $labelFontSize
+
+	.MASAS-text-input
+		height: $inputHeight
+		background-color: rgba(255,255,255,0.16)
+		color: white
+		font-family: Lato-Semibold
+		border: none
+		margin-top: $inputMarginTop
+		padding-left: 1rem
+
+	.error
+		.MASAS-label
+			color: red
+
+		.MASAS-text-input
+			height: 1.9rem
+			background-color: rgba(255,255,255,0.16)
+			color: white
+			font-family: Lato-Semibold
+			border: 1px solid red
+			margin-top: 0.7rem
+			padding-left: 1rem
+			background-image: url("/static/img/MASAS_error.svg")
+			background-repeat: no-repeat
+			background-position: 95%
+			background-size: 20px

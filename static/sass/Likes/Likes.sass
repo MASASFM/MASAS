@@ -1,0 +1,17 @@
+@import "./LikesWrapper"
+@import "./LikesItem"
+
+.likes--wrapper
+	.likes-searchbar--wrapper
+		display: block
+		flex-direction: column
+		width: 100%
+
+	.likes-searchbar--wrapper
+		.MASAS-text-input		
+			margin: 0.7rem
+
+@media screen and (min-width: $desktop-min-width)
+	.likes--wrapper
+		.likes-searchbar--wrapper
+			display: none

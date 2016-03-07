@@ -1,0 +1,92 @@
+@import "./fonts"
+@import "./vars"
+
+@import "./UI/UI"
+@import "./Home/Home"
+@import "./Login/Login"
+@import "./Login/SignUp"
+@import "./Header/Header"
+@import "./Footer/Footer"
+@import "./UploadSC/UploadSC"
+@import "./NavSidebar/NavSidebar"
+@import "./Profile/Profile"
+@import "./Player/Player"
+@import "./Likes/Likes"
+
+
+html
+	min-height: 100vh
+	max-height: 100vh
+	font-size: 14px
+	color: white
+
+@media screen and (min-width: $desktop-min-width)
+	html
+		font-size: 16px
+
+body
+	background-image: url('/static/img/bg/prairie.jpg')
+	background-size: cover
+	margin: 0
+	font-family: Lato-Light
+
+h1
+	margin: 0.5rem
+	color: white
+
+.app-body
+	// padding-left: 5em
+	// padding-right: 5em
+	flex: 1
+	display: flex
+	position: relative
+	flex-direction: column
+
+.app-body 
+	.row
+		flex: 1
+
+	.page-content
+		flex: 1
+		display: flex
+		justify-content: center
+		flex-direction: column
+		align-items: center
+
+	.page-content--wrapper
+		display: flex
+		padding: 0
+
+	@media screen and (min-width: $desktop-min-width)
+		.page-content--wrapper
+			padding-left: 1rem
+			padding-right: 1rem
+
+		.page-content
+			background-color: rgba(0,0,0,0.7)
+
+		.page-title
+			text-transform: uppercase
+			color: white
+			font-family: Lato-Light
+			padding-left: 1rem
+			margin-top: 0.5rem
+
+.txt-align-center
+	text-align: center
+.no-margin 
+	margin: 0
+
+/* does not display on phones */
+.col-display-none-sm
+	display: none
+
+.row-display-none-sm
+	display: none
+
+@media screen and (min-width: $desktop-min-width)
+	.col-display-none-sm
+		display: block
+
+	.row-display-none-sm
+		display: flex

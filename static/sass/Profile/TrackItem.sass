@@ -1,0 +1,75 @@
+.profile--wrapper
+	.track--wrapper
+		display: flex
+		width: 100%
+		min-height: 5rem
+		height: 5rem
+
+	.track--wrapper:nth-of-type(odd)
+		background-color: rgba(0,0,0, 0.4)
+
+	.track--wrapper
+		.artwork
+			width: 5rem
+			object-fit: cover
+
+		.song-info--wrapper
+			display: flex
+			flex-direction: column
+			flex: 1
+			padding: 0.5rem 0.5rem
+
+		.song-info--wrapper
+			.song-stats-1
+				display: flex
+				flex: 1
+				justify-content: space-between
+
+			.song-stats-1
+				.song-name
+
+				.lives-left
+					img
+						width: 1.2rem
+			.song-stats-2
+				display: flex
+				flex: 1
+				justify-content: space-between
+				align-items: flex-end
+
+			.song-stats-2
+				font-size: 0.9rem
+				color: rgba(255,255,255,1)
+
+				.title
+					font-size: 0.7rem
+					color: rgba(255,255,255,0.5)
+
+@media screen and (min-width: $desktop-min-width)
+	.profile--wrapper
+		.track--wrapper:nth-of-type(odd)
+			background-color: rgba(255,255,255, 0.16)
+
+		.track--wrapper
+			.song-info--wrapper
+				flex-direction: row
+
+			.song-info--wrapper
+				.song-stats-1
+					align-items: center
+					justify-content: space-around
+					flex-direction: row-reverse
+
+				.song-stats-1
+					.lives-left
+						min-width: 5rem
+						display: flex
+						align-items: center
+						justify-content: center
+
+					.song-name
+						flex: 1
+
+				.song-stats-2
+					align-items: center					
+					justify-content: space-around

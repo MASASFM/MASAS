@@ -1,0 +1,80 @@
+@import "./HeaderDropdown"
+
+.header
+	height: 100%
+	color: white
+	margin: 0
+	min-height: -webkit-min-content
+	min-height: min-content
+
+.header
+	$opacity: 1
+	$R: 9
+	$G: 9
+	$B: 26
+
+	.desktop-header
+		display: none
+
+	.phone-header
+		background-color: rgba($R,$G,$B,$opacity)
+		height: 3rem
+		margin: 0
+
+	.phone-header
+		.menu-icon
+			height: 1.2rem
+			margin-left: 1rem
+
+		.title
+			text-align: center
+			text-transform: uppercase
+			font-family: Lato-Light
+
+	.top-decoration
+		height: 0.8rem
+		box-sizing: border-box
+		border: 0.3rem solid black
+		border-color: rgb($R,$G,$B)
+		opacity: $opacity
+
+	.top-decoration--top-border
+		height: 0.3rem
+		background-color: rgba($R,$G,$B,$opacity)
+
+	@media screen and (min-width: $desktop-min-width)
+		$opacity: 0.7
+		$R: 0
+		$G: 0
+		$B: 0
+
+		.desktop-header
+			display: flex
+			background-color: rgba($R, $G, $B, $opacity)
+			height: 3.5rem
+			margin: 0
+
+		.desktop-header
+			.logo
+				height: 3.2rem
+
+			.header-link
+				min-width: 6rem
+				display: flex
+				justify-content: flex-end
+				font-size: 0.75rem
+
+			.search-icon
+				height: 1rem
+
+			.username
+				font-family: Lato-Semibold
+
+		.phone-header
+			display: none
+
+		.top-decoration--top-border
+			display: none
+
+		.top-decoration
+			display: none

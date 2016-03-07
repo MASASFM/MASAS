@@ -1,0 +1,125 @@
+@import "./UploadSCItem"
+@import "./PickTimeUpload"
+
+.connect-sc--wrapper
+	flex: 1
+	align-items: center
+	display: flex
+	width: 90%
+	flex-direction: column
+	justify-content: space-around
+	max-height: 20rem
+	max-width: 20rem
+
+.connect-sc--wrapper
+	.connect-sc--header
+		display: flex
+		width: 100%
+		justify-content: space-around
+		// height: 100%
+		height: -webkit-max-content
+
+	.connect-sc--header
+		.MASAS-logo
+			height: 4rem
+
+		.SC-logo
+			height: 4rem
+
+		.sync-icon
+			width: 4rem
+
+	p
+		font-size: 1.5rem
+
+.upload-sc--wrapper
+	// border: 3px solid red
+	display: flex
+	flex-direction: column
+	flex-grow: 1
+	width: 90%
+	justify-content: flex-end
+	max-height: 50rem
+	padding-top: 2rem
+
+.upload-sc--wrapper
+	.table-head
+		display: none
+
+	.upload-sc-items--wrapper
+		// border: 1px solid white
+		overflow-y: scroll
+		flex: 1
+
+
+	.logout--wrapper
+		// border: 3px solid white
+		display: flex
+		justify-content: center
+		align-self: center
+		margin: 1.7rem 0
+		cursor: pointer
+
+	.logout--wrapper
+		.logout-text
+		font-size: 0.7rem
+
+		.logout-text--username
+			font-weight: bold
+
+	.back-button
+		display: none
+
+@media screen and (min-width: $desktop-min-width)
+	.upload-sc--wrapper
+		padding: 5rem 5rem 3rem 5rem 
+		width: 70%
+		max-height: 40rem
+
+	.upload-sc--wrapper
+		.table-head
+			min-height: 2rem
+			justify-content: space-between
+			padding-bottom: 0.5rem
+
+		
+		.title
+			width: 70%
+			display: flex
+			justify-content: center
+			align-items: center
+
+		.duration
+			width: 20%
+			display: flex
+			justify-content: center
+			align-items: center
+
+		.sync
+			width: 10%
+			display: flex
+			justify-content: center
+			align-items: center
+
+	.upload-sc--wrapper
+		.table-head
+			display: flex
+
+		.logout--wrapper
+			display: none
+
+		.back-button
+			display: flex
+			flex-direction: column
+			justify-content: flex-end
+			align-self: center
+			width: 15rem
+			padding: 2rem 0 0 0
+			min-height: 3rem
+			max-height: 3rem
+
+
+	.connect-sc--wrapper
+		p
+			font-size: 1rem
+

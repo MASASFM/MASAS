@@ -1,0 +1,90 @@
+.likes-item--wrapper
+	display: flex
+	min-height: 8rem
+	max-height: 8rem
+
+
+.likes-item--wrapper
+	.artwork
+		object-fit: cover
+		width: 8rem
+
+	.text--wrapper
+		display: flex
+		flex-direction: column
+		flex: 1
+		justify-content: space-between
+		padding: 0.5rem
+
+	.text--wrapper
+		.song-name--wrapper
+			display: flex
+			flex-direction: column
+
+		.song-name--wrapper
+			.artist
+				font-family: Lato-Semibold
+				font-size: 1.2rem
+				overflow: hidden
+				text-overflow: ellipsis
+
+			.dash
+				display: none
+
+			.title
+				overflow: hidden
+				text-overflow: ellipsis
+
+		.song-stats--wrapper
+			display: flex
+			justify-content: space-between
+
+		.song-stats--wrapper
+			.title
+				opacity: 0.5
+				font-size: 0.7rem
+
+
+
+@media screen and (min-width: $desktop-min-width)
+	.likes-item--wrapper
+		min-height: 15rem
+		width: 12rem
+		flex-direction: column
+		margin: 0.5rem
+
+	.likes-item--wrapper
+		.artwork
+			width: 12rem
+			height: 12rem
+
+		.text--wrapper
+			background-color: black
+
+		.text--wrapper
+			.song-name--wrapper
+				flex-direction: row
+				justify-content: center
+				align-items: center
+
+			.song-name--wrapper
+				.artist
+					font-size: 0.6rem
+					white-space: nowrap
+
+				.dash
+					display: block
+					margin: 0.2rem
+
+				.title
+					font-size: 0.6rem
+					white-space: nowrap
+					max-width: 50%
+
+			.song-stats--wrapper
+				font-size: 0.5rem
+
+			.song-stats--wrapper
+				.title
+
+

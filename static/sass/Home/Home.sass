@@ -1,0 +1,42 @@
+@import "./HomeCountdown"
+
+.home--wrapper
+	width: 100%
+	// max-width: 20rem
+	flex: 1
+	display: flex
+	align-self: center
+	align-items: center
+	justify-content: space-around
+	flex-direction: column
+	margin: 2.5rem
+
+
+.home--wrapper
+	.logo
+		width: 100%
+		display: flex
+		// max-width: 20rem
+		flex: 1
+		padding-bottom: 2.5rem
+		height: 100%
+		justify-content: center
+		min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
+
+	.logo
+		img
+			width: 50%
+
+	.login-container
+		width: 100%
+		max-width: 20rem
+		display: flex
+		flex-direction: column
+		height: 7rem
+		justify-content: space-around
+		align-items: center
+
+	.login-container
+		.signup-text
+			color: white
+			align-self: center

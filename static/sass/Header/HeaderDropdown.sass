@@ -1,0 +1,67 @@
+$footerHeight: 3.5rem
+
+.dropdown--wrapper
+	display: flex
+	align-items: center
+	min-height: $footerHeight
+	position: relative
+
+.dropdown--wrapper
+
+	.username--wrapper
+		display: flex
+
+	.username--wrapper
+		.profile-picture
+			height: 2.2rem
+			margin-right: 0.75rem
+
+		.username
+			font-family: Lato-Semibold
+			font-size: 0.75rem
+			text-transform: capitalize
+			align-self: center
+
+	.dropdown-content
+		display: none
+		position: absolute
+		background-color: rgba(0,0,0,0.7)
+		border: 1px solid black
+		color: white
+		z-index: 1
+		top: $footerHeight
+		left: 0
+		min-width: 9rem
+		border-right: 0.5px solid rgba(255,255,255,0.6)
+		border-left: 0.5px solid rgba(255,255,255,0.6)
+		border-bottom: 0.5px solid rgba(255,255,255,0.6)
+		border-top: 0px solid white
+
+	.dropdown-content
+		hr
+			margin: 0 0.7rem
+			border-color: white
+			opacity: 0.3
+
+	.menu-link
+		display: flex
+		margin: 0.7rem 0rem
+		height: 0.8rem
+		margin-left: 1rem
+
+	.menu-link
+		img
+			height: 0.9rem
+			margin: 0rem 0.3rem
+			align-self: center
+
+		span
+			flex-grow: 1
+			align-self: center
+			padding-left: 0.3rem
+			font-size: 0.6rem
+
+
+.dropdown--wrapper:hover .dropdown-content
+	display: block
+		

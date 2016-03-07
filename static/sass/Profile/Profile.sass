@@ -1,0 +1,232 @@
+@import "./ProfileWrapper"
+@import "./TrackItem"
+
+.profile--wrapper
+	.profile-info--wrapper
+		position: relative
+		width: 100%
+		height: 20rem
+
+	.profile-info--wrapper
+		.user-info-desktop
+			display: none
+
+		.profile-picture
+			width: 100%
+			object-fit: cover
+			height: 100%
+
+		.tab--wrapper
+			position: absolute
+			top: 0
+			width: 100%
+			display: flex
+
+		.tab--wrapper
+			.tab
+				flex: 1
+				justify-content: center
+				display: flex
+				height: 2rem
+				align-content: center
+				flex-direction: column
+				align-items: center
+				text-transform: uppercase
+				box-sizing: border-box
+				background-color: rgba(0,0,0,0.7)
+
+		.social--wrapper
+			display: flex
+			justify-content: space-around
+			position: absolute
+			bottom: 0
+			width: 100%
+			background-color: rgba(0,0,0,0.7)
+			height: 4rem
+			align-items: center
+			flex: 1
+
+		.social--wrapper
+			img
+				width: 1.5rem
+				max-height: 1.5rem
+				// padding-left: 2rem
+
+			.social-links
+				width: 4.5rem
+				display: flex
+				justify-content: space-between
+
+			.occupation--wrapper
+				.occupation
+					padding-bottom: 0.5rem
+
+	.social-stats--wrapper
+		height: 4rem
+		background-color: black
+		display: flex
+		justify-content: space-around
+		align-items: center
+		width: 100%
+
+	.social-stats--wrapper
+		.section
+			display: flex
+			align-items: center
+			flex: 1
+			justify-content: space-around
+
+		.section
+			img
+				width: 1.5rem
+				max-height: 1.5rem
+				padding-right: 0.5rem
+
+			.number
+				display: block
+				height: 100%
+				width: 2.5rem
+				line-height: 2.5rem
+				-moz-border-radius: 60%
+				border-radius: 60%
+				color: white
+				border: 1px solid white
+				text-align: center
+				font-size: 0.7rem
+
+			.section-title
+				display: flex
+				align-items: center
+
+		.total-plays
+			display: none
+
+	.song-list--wrapper
+		display: flex
+		flex: 1
+		background-color: rgb(44,11,53)
+		justify-content: center
+		width: 100%
+		position: relative
+		overflow: none
+
+	.song-list--wrapper
+		.no-songs--wrapper
+			display: flex
+			flex: 1
+			max-width: 13rem
+			flex-direction: column
+			justify-content: center
+
+		.no-songs--wrapper
+			img
+				width: 3rem
+
+			.upload-button
+				align-self: center
+				width: 100%
+				padding-top: 0.5rem
+
+			.image--wrapper
+				display: flex
+				justify-content: space-between
+
+		.track-table--wrapper
+			display: flex
+			flex: 1
+			flex-direction: column
+			overflow-y: scroll
+			position: absolute
+			left: 0
+			height: 100%
+			right: 0
+
+
+
+@media screen and (min-width: $desktop-min-width)
+	.profile--wrapper
+		.profile-info--wrapper
+			max-height: 6rem
+			min-height: 6rem
+			align-items: center
+			display: flex
+			justify-content: center
+			position: inherit
+			flex-direction: column
+
+		.profile-info--wrapper
+			.user-info-desktop
+				display: flex
+				flex-direction: column
+				align-items: center
+				height: 4rem
+				justify-content: space-around
+
+			.user-info-desktop
+				.username
+					font-family: Lato-Semibold
+					height: 3rem
+					padding-bottom: 0.5rem
+
+				.location
+					color: rgba(255,255,255,0.6)
+					font-size: 0.8rem
+					padding-bottom: 0.2rem
+
+				.occupation
+					color: rgba(255,255,255,0.6)
+
+			.profile-picture
+				display: none
+
+			.tab--wrapper
+				display: none
+
+			.occupation--wrapper
+				display: none
+
+			.social--wrapper
+				background-color: rgba(0,0,0,0)
+				max-width: 10rem
+
+			.social--wrapper
+				align-self: center
+				display: flex
+				position: inherit
+				height: 3rem
+
+			.social--wrapper
+				.social-links
+					flex-grow: 1
+					justify-content: space-around
+
+				img
+					width: 1rem
+					max-height: 1rem
+					padding-right: 0.15rem
+
+		.social-stats--wrapper
+			background-color: rgba(0,0,0,0)
+			width: 40rem
+			padding-bottom: 0.5rem
+			min-height: 3rem
+			max-height: 3rem
+
+		.social-stats--wrapper
+			.total-plays
+				display: flex
+
+			.section
+				.section-title
+					display: flex
+					flex-direction: column
+
+		.song-list--wrapper
+			background-color: rgba(0,0,0,0.7)
+			width: 100%
+			overflow-y: scroll
+
+		.song-list--wrapper
+			.track-table--wrapper
+				padding: 1rem
+				overflow: none

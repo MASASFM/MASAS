@@ -1,0 +1,69 @@
+.navSidebar--wrapper
+	width: 15rem
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	height: 100%
+	background: linear-gradient( 0deg, rgb(46,17,54), rgb(22,11,57), rgb(12,16,70), rgb(0,1,57), rgb(0,0,53) )
+
+.navSidebar--wrapper
+	.content
+		flex: 1
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		width: 90%
+		align-self: center
+
+	.content
+		.nav-links
+			display: flex
+			flex-direction: column
+			align-items: center
+			height: 15rem
+			justify-content: space-between
+			text-transform: uppercase
+			width: 10rem
+			align-self: center
+
+		.nav-links
+			.link
+				align-self: flex-start
+
+			.link
+				.MASAS-link
+					display: flex
+					flex-direction: row
+					height: 2rem
+
+				.MASAS-link
+					img
+						width: 2rem
+						padding-right: 0.5rem
+
+					span
+						align-self: center
+
+	.profile-picture--wrapper
+		display: flex
+		flex-direction: column
+		position: relative
+		cursor: pointer
+
+	.profile-picture--wrapper
+		.username
+			position: absolute
+			bottom: 0
+			padding-left: 0.5rem
+			padding-bottom: 0.2rem
+
+		.profile-picture
+			object-fit: cover
+			height: 7rem
+
+	.navSidebar-footer
+		display: flex
+		justify-content: space-between
+		margin-bottom: 0.7rem			// <Textbox> has padding-top: 0.7rem
+		font-size: 0.7rem
+
