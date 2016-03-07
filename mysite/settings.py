@@ -50,6 +50,7 @@ SECRET_KEY = 'y=zi^eo35+vr1+-ti1&#j5gdy0yv*0llr&*b3cn5*bb#!#t)40'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
+LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
 
 ALLOWED_HOSTS = []
 
