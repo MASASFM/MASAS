@@ -21,3 +21,4 @@ requests-oauthlib==0.6.0
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.1.0
+raven
