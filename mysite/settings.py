@@ -53,8 +53,8 @@ if 'DJANGO_ALLOWED_HOSTS' in os.environ:
 
 PUBLIC_DIR = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'wsgi/static')
 
-STATIC_URL = '/static/collected/'
-STATIC_ROOT = os.path.join(PUBLIC_DIR, 'collected')
+STATIC_URL = '/static/'
+STATIC_ROOT = PUBLIC_DIR
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
