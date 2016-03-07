@@ -15,10 +15,32 @@ from os.path import abspath, basename, dirname, join, normpath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))  
-SITE_ROOT = dirname(DJANGO_ROOT)  
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+SITE_ROOT = dirname(DJANGO_ROOT)
 SITE_NAME = basename(DJANGO_ROOT)
 
+DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', None)
+LOG_DIR = os.environ.get('OPENSHIFT_LOG_DIR', None)
+if not DATA_DIR:
+    DATA_DIR = os.path.join(BASE_DIR, 'data')
+SECRET_FILE = os.path.join(DATA_DIR, 'secret.txt')
+
+from django.utils.crypto import get_random_string
+if not os.path.exists(SECRET_FILE):
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    with open(SECRET_FILE, 'w+') as f:
+        f.write(get_random_string(50, chars))
+
+with open(SECRET_FILE, 'r') as f:
+    SECRET_KEY = f.read()
+
+PUBLIC_DIR = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'wsgi/static')
+
+STATIC_URL = '/static/collected/'
+STATIC_ROOT = os.path.join(PUBLIC_DIR, 'collected')
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -27,7 +49,7 @@ SITE_NAME = basename(DJANGO_ROOT)
 SECRET_KEY = 'y=zi^eo35+vr1+-ti1&#j5gdy0yv*0llr&*b3cn5*bb#!#t)40'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+DEBUG = os.environ.get('DEBUG', False)
 
 ALLOWED_HOSTS = []
 
@@ -91,11 +113,29 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.environ.get('DJANGO_DATABASE_NAME', 'db.sqlite3'),
+        'USER': os.environ.get('DJANGO_DATABASE_USER', ''),
+        'PASSWORD': os.environ.get('DJANGO_DATABASE_PASSWORD', ''),
+        'HOST': os.environ.get('DJANGO_DATABASE_HOST', ''),
+        'PORT': os.environ.get('DJANGO_DATABASE_PORT', ''),
+        'ENGINE': os.environ.get('DJANGO_DATABASE_ENGINE',
+                                 'django.db.backends.sqlite3'),
+
     }
 }
 
+if 'OPENSHIFT_DATA_DIR' in os.environ:
+    DATABASES['default']['NAME'] = os.path.join(DATA_DIR, 'db.sqlite')
+
+if 'OPENSHIFT_POSTGRESQL_DB_HOST' in os.environ:
+    DATABASES['default']['NAME'] = os.environ['OPENSHIFT_APP_NAME']
+    DATABASES['default']['USER'] = os.environ[
+        'OPENSHIFT_POSTGRESQL_DB_USERNAME']
+    DATABASES['default']['PASSWORD'] = os.environ[
+        'OPENSHIFT_POSTGRESQL_DB_PASSWORD']
+    DATABASES['default']['HOST'] = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
+    DATABASES['default']['PORT'] = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -120,71 +160,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = normpath(join(SITE_ROOT, 'static'))  
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)  
-
-
-## Django Pipeline (and browserify)
-#if not DEBUG:
-#STATICFILES_STORAGE = 'require.storage.OptimizedStaticFilesStorage'
-
-#
-STATICFILES_FINDERS = (  
+STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-#
-PIPELINEE = {}
-### browserify-specific
-PIPELINEE['COMPILERS'] = (  
-    # 'pipeline_browserify.compiler.BrowserifyCompiler',
-)
-
-PIPELINEE_BROWSERIFY_VARS = '' #'NODE_ENV=production'
-#
-#PIPELINE['CSS_COMPRESSOR'] = 'pipeline.compressors.NoopCompressor'  
-#PIPELINE['JS_COMPRESSOR'] = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
-#
-if DEBUG:  
-    PIPELINEE_BROWSERIFY_ARGUMENTS = '-d'
-    #
-#PIPELINE['STYLESHEETS'] = {  
-#    'mysite_css': {
-#        'source_filenames': (
-#            'css/styles.css',
-#        ),
-#        'output_filename': 'css/mysite_css.css',
-#    },
-#}
-#
-PIPELINEE['JAVASCRIPT'] = {
-    'mysite_js': {
-        'source_filenames': (
-            'js/bower_components/jquery/dist/jquery.min.js',
-##            'js/bower_components/react/react-with-addons.js',
-#            'node_modules/react/dist/react.js',
-#            'node_modules/react-dom/dist/react-dom.js',
-            'js/app.browserify.js',
-        ),
-        'output_filename': 'js/mysite_js.js',
-    }
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -211,9 +195,9 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
 
     # django-rest-framework-social-oauth2
-   'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
 
-   # Django
+    # Django
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -223,3 +207,63 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '09333f2e3964f73fdc0c6a9488122bb8'
 
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['tbinetruy@gmail.com']
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s[%(module)s]: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': LOG_LEVEL,
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },
+    'loggers': {
+        'memopol': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+        },
+        'representatives': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+        },
+        'representatives_votes': {
+            'handlers': ['console'],
+            'level': LOG_LEVEL,
+        }
+    },
+}
+
+if DEBUG:
+    LOGGING['handlers']['debug'] = {
+        'level': 'DEBUG',
+        'class': 'logging.FileHandler',
+        'filename': os.path.join(LOG_DIR, 'debug.log'),
+    }
+
+    for logger in LOGGING['loggers'].values():
+        logger['handlers'].append('debug')
+
+RAVEN_FILE = os.path.join(DATA_DIR, 'sentry')
+if os.path.exists(RAVEN_FILE):
+    INSTALLED_APPS += ('raven.contrib.django.raven_compat',)
+
+    LOGGING['handlers']['sentry'] = {
+        'level': 'INFO',
+        'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+    }
+    LOGGING['loggers']['sentry.errors'] = LOGGING['loggers']['raven'] = {
+        'level': 'INFO',
+        'handlers': ['console'],
+        'propagate': False,
+    }
+
+    with open(RAVEN_FILE, 'r') as f:
+        RAVEN_CONFIG = {
+            'dsn': f.read().strip()
+        }
