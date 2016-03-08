@@ -14,7 +14,7 @@ var Cookie = require('js-cookie')
 
 SC.initialize({
   client_id: 'e5d965905a85b11e108d064bc04430a3',
-  redirect_uri: 'http://localhost:8000/sc-callback'
+  redirect_uri: 'http://dev2-masas.rhcloud.com/sc-callback'
 });
 
 var App = React.createClass({
