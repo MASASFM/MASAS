@@ -52,7 +52,7 @@ urlpatterns = format_suffix_patterns([
 	url(r'^api/user-profiles/$', userprofile_list, name='userprofile-list'),
 	url(r'^api/user-profiles/(?P<pk>[0-9]+)/$', userprofile_detail, name='userprofile-detail'),
 	url(r'^api/check-user/$', example_view, name='user-detail'),
-	url(r'^.*', TemplateView.as_view(template_name='index.html')),
+	url(r'^.*', views.SPAView.as_view()),
 ])
 # 	url(r'^api/songs/$', views.SongList.as_view()),
 # 	url(r'^api/song/(?P<pk>[0-9]+)/$', views.SongDetail.as_view()),

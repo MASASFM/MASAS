@@ -327,7 +327,7 @@ module.exports = loginReducer;
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var defaultState = {
-	songPlaying: null, // currently playing song			
+	songPlaying: null, // currently playing song
 	isPaused: false, // is player paused
 	playerAtTime: 0, // time current song playing is at
 	MASAS_songInfo: null, // song info from MASAS db
@@ -491,8 +491,8 @@ var SC = require('soundcloud');
 var Cookie = require('js-cookie');
 
 SC.initialize({
-	client_id: 'e5d965905a85b11e108d064bc04430a3',
-	redirect_uri: 'http://dev2-masas.rhcloud.com/sc-callback'
+	client_id: document.MASAS.SC.client_id,
+	redirect_uri: document.MASAS.SC.redirect_uri
 });
 
 var App = React.createClass({

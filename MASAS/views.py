@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views import generic
+from django.conf import settings
 
 from django.contrib.auth.models import User, Group
 from models import Song
@@ -61,7 +63,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 	def perform_create(self, serializer):
 		serializer.save(url=self.request.user)
-	
+
 
 
 from rest_framework.decorators import detail_route
@@ -96,3 +98,18 @@ class ExampleView(APIView):
         }
         return Response(content)
 
+
+class SPAView(generic.TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, *args, **kwargs):
+        c = super(SPAView, self).get_context_data(*args, **kwargs)
+
+        c['settings'] = {
+            'SOUNDCLOUD': settings.SOUNDCLOUD,
+            'FB': {
+                'KEY': settings.SOCIAL_AUTH_FACEBOOK_KEY,
+            },
+        }
+
+        return c

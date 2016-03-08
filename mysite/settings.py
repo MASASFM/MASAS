@@ -216,8 +216,25 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Facebook configuration
-SOCIAL_AUTH_FACEBOOK_KEY = '433759926818956'
-SOCIAL_AUTH_FACEBOOK_SECRET = '09333f2e3964f73fdc0c6a9488122bb8'
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get(
+    'FACEBOOK_KEY',
+    '433759926818956'
+)
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
+    'FACEBOOK_SECRET',
+    '09333f2e3964f73fdc0c6a9488122bb8'
+)
+
+SOUNDCLOUD = {
+    'CLIENT_ID': os.environ.get(
+        'SOUNDCLOUD_CLIENT_ID',
+        'e5d965905a85b11e108d064bc04430a3',
+    ),
+    'REDIRECT_URI': os.environ.get(
+        'SOUNDCLOUD_REDIRECT_URI',
+        'http://dev2-masas.rhcloud.com/sc-callback',
+    ),
+}
 
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['tbinetruy@gmail.com']

@@ -1,6 +1,6 @@
 {% load static %}
-<!DOCTYPE html>  
-<html lang="en">  
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
@@ -12,6 +12,18 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}" />
     <link rel="stylesheet" href="{% static 'css/sass.css' %}" />
+
+    <script type="text/javascript">
+document.MASAS = {
+    SC: {
+        client_id: '{{ settings.SOUNDCLOUD.CLIENT_ID }}',
+        redirect_uri: '{{ settings.SOUNDCLOUD.REDIRECT_URI }}',
+    },
+    FB: {
+        appId: '{{ settings.FB.KEY }}',
+    },
+}
+    </script>
 
     <script type="text/javascript" src="{% static "js/facebookSDK.js" %}"></script>
 
@@ -27,4 +39,4 @@
     <script type="text/javascript" src="{% static "js/paper-full.js" %}"></script>
     <script type="text/javascript" src="{% static "js/bundle.js" %}"></script>
   </body>
-</html>  
+</html>
