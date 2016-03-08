@@ -22,10 +22,19 @@ SITE_NAME = basename(DJANGO_ROOT)
 DEBUG = os.environ.get('DEBUG', False)
 LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
 
-DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', None)
-LOG_DIR = os.environ.get('OPENSHIFT_LOG_DIR', None)
-if not DATA_DIR:
-    DATA_DIR = os.path.join(BASE_DIR, 'data')
+LOG_DIR = os.environ.get(
+    'OPENSHIFT_LOG_DIR',
+    os.path.join(BASE_DIR, 'log'),
+)
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+DATA_DIR = os.environ.get(
+    'OPENSHIFT_DATA_DIR',
+    os.path.join(BASE_DIR, 'data')
+)
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
 SECRET_FILE = os.path.join(DATA_DIR, 'secret.txt')
 
 from django.utils.crypto import get_random_string
