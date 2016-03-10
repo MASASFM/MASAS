@@ -14,43 +14,23 @@ var MenuLink = (props) => {
 
 var HeaderDropdown = React.createClass({
 	propTypes: {
-		caps: React.PropTypes.bool,				// should button text be in all caps
-		white: React.PropTypes.bool,				// should button text be in all caps
-	},
-
-	getInitialState: function() {
-		return {
-			username: "",
-		}
+		// MASASuser
+		// userLoggedIn
+		// username
+		// logout()
+		// getUsername()
 	},
 
 	componentWillMount: function() {
+		this.props.getUsername(this.props.MASASuser)
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		this.props.getUsername(this.props.MASASuser)
 	},
 
 	logout: function() {
 		this.props.logout()
-	},
-
-	getUsername: function() {
-		var header = "Bearer " + this.props.MASASuser
-		$.ajax({
-			type: "GET",
-			url: 'api/check-user/',	
-			headers: {
-				"Authorization": header,
-			},
-			success: (data) => {
-				console.log(data)
-				var username = data.user
-				if (username.length > 13)
-					username = username.substr(0,13) + "..."
-
-				document.getElementById('username-header').innerHTML = username
-			},
-			error: (err) => {
-				console.log(err)
-			},
-		})
 	},
 
 	render: function() {
@@ -60,7 +40,7 @@ var HeaderDropdown = React.createClass({
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">
 						<img src="/static/img/menupicture.jpg" alt="profile picture" className="profile-picture"/>
-						<span className="username" id="username-header">{this.getUsername()}</span>
+						<span className="username" id="username-header">{this.props.username}</span>
 					</div>
 					<div className="dropdown-content">
 						<MenuLink src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>
