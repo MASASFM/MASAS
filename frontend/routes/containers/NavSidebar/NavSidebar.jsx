@@ -16,8 +16,8 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
-var NavSidebar = ReactRedux.connect(
+NavSidebar = ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
 )(NavSidebar)
-module.exports = NavSidebar;
+module.exports = NavSidebar

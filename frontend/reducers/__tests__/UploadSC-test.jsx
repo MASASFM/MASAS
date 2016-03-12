@@ -34,4 +34,71 @@ describe('upload SC reducer', () => {
 		})
 	})
 
+	it('should handle UPDATE_SC_USER_TRACKS', () => {
+		const soundcloudUserTracks = {foo: 'bar'}
+
+		expect(
+			reducer(
+				defaultState,
+				{
+					type: 'UPDATE_SC_USER_TRACKS',
+					soundcloudUserTracks
+				}
+			)
+		).toEqual({
+			...defaultState,
+			soundcloudUserTracks
+		})
+	})
+
+	it('should handle UPDATE_MASAS_USER_TRACKS', () => {
+		const masasUserTracks = {foo: 'bar'}
+
+		expect(
+			reducer(
+				defaultState,
+				{
+					type: 'UPDATE_MASAS_USER_TRACKS',
+					masasUserTracks
+				}
+			)
+		).toEqual({
+			...defaultState,
+			masasUserTracks
+		})
+	})
+
+	it('should handle UPDATE_SC_USERNAME', () => {
+		const SCusername = "foo"
+
+		expect(
+			reducer(
+				defaultState,
+				{
+					type: 'UPDATE_SC_USERNAME',
+					SCusername
+				}
+			)
+		).toEqual({
+			...defaultState,
+			SCusername
+		})
+	})
+
+	it('should handle UPDATE_IS_CONNECTED_SC', () => {
+		const isConnectedSoundcloud = true
+
+		expect(
+			reducer(
+				defaultState,
+				{
+					type: 'UPDATE_IS_CONNECTED_SC',
+					isConnectedSoundcloud
+				}
+			)
+		).toEqual({
+			...defaultState,
+			isConnectedSoundcloud
+		})
+	})
 })

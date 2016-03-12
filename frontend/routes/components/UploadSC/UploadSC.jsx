@@ -1,6 +1,6 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
-var {goToURL} = require("../../../MASAS_functions.jsx")
+var { goToURL } = require("../../../MASAS_functions.jsx")
 
 var { Button } = require("../../containers/UI/UI.jsx")
 var Body = require("../../containers/UI/Body.jsx")
@@ -9,48 +9,37 @@ var UploadSCItem = require("../../containers/UploadSC/UploadSCItem.jsx")
 var PickTimeUpload = require("../../containers/UploadSC/PickTimeUpload.jsx")
 
 
+
+
 var UploadSC = React.createClass({
 	propTypes: {
 		// choosingTime: React.PropTypes.object
 	},
 
-	getInitialState: function() {
-		return {
-			// triggerSpinnerStart: 1,
-			isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
-			soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
-			masasUserTracks: null,
-			SCusername: null,
-			// syncingSong: null,					// song currently syncing
-		};
-	},
-
 	componentWillMount: function() {
 		this.props.updateTitle('SC Sync', '0')
-		if(this.state.isConnectedSoundcloud)
+		if(this.props.isConnectedSoundcloud)
 			this.getUserTracks()
 	},
 
 	getUserTracks: function() {
-		$.ajax({
-			type: "GET",
-			url: 'api/users/' + this.props.userPk + '/',	
-
-				 // -u"<client_id>:<client_secret>" 
-			success: (data) => {
+		var success =  (data) => {
 				console.log(data)
-				this.setState({masasUserTracks: data.songs})
+
+				this.props.updateMasasUserTracks(data.songs)
 				this.getUserSCTracks()
-			},
-			error: (err) => {
+			}
+
+		var error = (err) => {
 				console.log(err)
-			},
-		})
+			}
+
+		this.props.getUserTracks(this.props.userPk, success, error)
 	},
 
 	getUserSCTracks: function() {
 		SC.get('me/favorites', {limit: 100}).then( (response) => {  // async call to SC servers
-			this.setState({soundcloudUserTracks: response})
+			this.props.updateSoundcloudUserTracks(response)
 			console.log(this.state.soundcloudUserTracks)
 		})
 		// SC.get('tracks', {limit: 200, genre: 'house', ids: '246013120,246012982', duration: {to: 111111}})
@@ -58,17 +47,18 @@ var UploadSC = React.createClass({
 
 	connectToSC: function() {
 		SC.connect().then( () => {
-			this.setState({isConnectedSoundcloud: true})
+			// this.setState({isConnectedSoundcloud: true})
+			this.props.updateIsConnectedSC(true)
 			SC.get('/me').then((r) => {
-				console.log(r.username)
 				// store suername for mobile
-				this.setState({SCusername: r.username})
+				this.props.updateSCusername(r.username)
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
 				this.getUserTracks()
 			}).catch((err) => {
 				console.log(err)
-				this.setState({SCusername: null})
+				// this.setState({SCusername: null})
+				this.props.updateSCusername(null)
 			})
 			this.getUserTracks()
 		}).catch(function(error){
@@ -77,10 +67,10 @@ var UploadSC = React.createClass({
 	},
 
 	tracksTable: function() {
-		if (this.state.soundcloudUserTracks)
-			return this.state.soundcloudUserTracks.map((track) => { 
+		if (this.props.soundcloudUserTracks)
+			return this.props.soundcloudUserTracks.map((track) => { 
 				var synced = false
-				if(this.state.masasUserTracks.filter(function(song) { return song.SC_ID === track.id }).length)
+				if(this.props.masasUserTracks.filter(function(song) { return song.SC_ID === track.id }).length)
 					synced = true
 
 				return <UploadSCItem key={track.id} track={ track } synced={synced}/>
@@ -95,7 +85,7 @@ var UploadSC = React.createClass({
 		if(this.props.choosingTime)
 			return <Body><PickTimeUpload /></Body>
 
-		if(this.state.isConnectedSoundcloud) 
+		if(this.props.isConnectedSoundcloud) 
 			return (
 				<Body>
 				<div className="upload-sc--wrapper">
@@ -114,9 +104,9 @@ var UploadSC = React.createClass({
 						{ this.tracksTable() }
 					</div>
 					<div className="logout--wrapper">
-						{this.state.SCusername ?
+						{this.props.SCusername ?
 							<span className="logout-text" onClick={this.logoutSC}>
-								Log out from <span className="logout-text--username">{this.state.SCusername}</span>
+								Log out from <span className="logout-text--username">{this.props.SCusername}</span>
 							</span>
 							:
 							""

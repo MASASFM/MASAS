@@ -18,7 +18,8 @@ function mapDispatchToProps(dispatch) {
 		onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
 		onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
 		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
-		logInWithToken: (authToken) => logInWithToken(dispatch, authToken)
+		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
+		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'})
 	}
 }
 

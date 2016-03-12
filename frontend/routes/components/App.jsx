@@ -26,6 +26,8 @@ var App = React.createClass({
 
 		if(userToken)
 			this.props.logInWithToken(userToken, this.props.finishProcessingAuthCookie)
+		else
+			this.props.forceRender()
 	},
 
 	getUserTokenFromCookie: function() {
@@ -34,6 +36,8 @@ var App = React.createClass({
 
 	render: function() {
 		// don't render app until the auth cookie has been processed
+		console.log(typeof(NavSidebar))
+		console.log(<NavSidebar/>)
 		if(!this.props.processingAuthCookie)
 			return (
 				<NavSidebar>
@@ -51,7 +55,7 @@ var App = React.createClass({
 				</NavSidebar>
 			)
 		else{
-			return <div>LOADING</div>
+			return <NavSidebar><div>LOADING</div></NavSidebar>
 		}
 	}
 });

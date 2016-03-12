@@ -27,7 +27,7 @@ describe('Body', () => {
 		)
 
 		const DOMNode = ReactDOM.findDOMNode(body)
-		expect(DOMNode.children[2].textContent).toEqual('foo')
+		expect(DOMNode.children[2].textContent).toEqual('home')
 	})
 
 	it('renders content prop', () => {

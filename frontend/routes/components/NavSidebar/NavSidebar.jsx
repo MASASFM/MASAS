@@ -5,11 +5,8 @@ var ReactDOM = require("react-dom")
 var { Textbox, Link } = require("../../containers/UI/UI.jsx")
 var {goToURL} = require("../../../MASAS_functions.jsx")
 
-var Sidebar = require("react-sidebar")
+import Sidebar from "react-sidebar"
 
-// var Template = (props) => {
-
-// }
 
 var NavSidebar = React.createClass({
 	propTypes: {

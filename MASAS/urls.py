@@ -34,8 +34,8 @@ check_user = views.CheckUserViewSet.as_view()
 
 
 router = DefaultRouter()
-router.register(r'user', views.UserViewSet)
-router.register(r'song', views.SongViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'songs', views.SongViewSet)
 
 
 urlpatterns = format_suffix_patterns([
