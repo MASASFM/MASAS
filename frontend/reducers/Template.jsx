@@ -1,8 +1,9 @@
-var defaultState = {
+let exportVar = {}
 
-}
+exportVar.defaultState = {}
+const { defaultState } = exportVar
 
-function appReducer(state = defaultState, action) {
+exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
 		case 'TYPE':
@@ -17,4 +18,4 @@ function appReducer(state = defaultState, action) {
 }
 
 
-module.exports = appReducer;
+module.exports = exportVar

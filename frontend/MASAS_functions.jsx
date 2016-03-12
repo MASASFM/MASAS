@@ -19,14 +19,21 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 			"Authorization": header,
 		},
 		success: (data) => {
-			console.log(data)
-			var pk = data.userPk
+			if(data.userPk !== "None") {
+				console.log(data)
+				var pk = data.userPk
 
-			dispatch({type: 'UPDATE_USER_PK', pk: pk})
-			dispatch({type: 'LOGIN', token: userToken})
+				dispatch({type: 'UPDATE_USER_PK', pk: pk})
+				dispatch({type: 'LOGIN', token: userToken})
+			}
+
+			// render app
+			dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'})
 		},
 		error: (err) => {
 			console.log(err)
+			// render app
+			dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'})
 		},
 	})
 }

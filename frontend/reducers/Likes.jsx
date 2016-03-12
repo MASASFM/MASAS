@@ -1,9 +1,12 @@
-var defaultState = {
+let exportVar = {}
+
+exportVar.defaultState = {
 	userLikes: null,						// user likes from MASAS API
 	SCinfo: null,						// song info corresponding to these likes from SCinfo
 }
+const { defaultState } = exportVar
 
-function appReducer(state = defaultState, action) {
+exportVar.likesReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
 		case 'UPDATE_LIKES':
@@ -25,4 +28,4 @@ function appReducer(state = defaultState, action) {
 }
 
 
-module.exports = appReducer;
+module.exports = exportVar

@@ -13,9 +13,9 @@ var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
 SC.initialize({
-  client_id: 'e5d965905a85b11e108d064bc04430a3',
-  redirect_uri: 'http://dev2-masas.rhcloud.com/sc-callback'
-});
+  client_id: document.MASAS.SC.client_id,
+  redirect_uri: document.MASAS.SC.redirect_uri 
+})
 
 var App = React.createClass({
 	propTypes: {
@@ -25,32 +25,34 @@ var App = React.createClass({
 		var userToken = this.getUserTokenFromCookie()
 
 		if(userToken)
-			this.props.logInWithToken(userToken)
+			this.props.logInWithToken(userToken, this.props.finishProcessingAuthCookie)
 	},
 
 	getUserTokenFromCookie: function() {
-		console.log(Cookie.get('MASAS_authToken'))
-		
 		return Cookie.get('MASAS_authToken')
 	},	
 
 	render: function() {
-		return (
-			<NavSidebar>
-
-				<div style = { styles.container }>
-					<Header />
-						{this.props.children ? 
-								this.props.children
-							:
-								 <Home />
-						}
-					<Footer />
-								
-				</div>
-				<div id="jquery_jplayer_1"></div>
-			</NavSidebar>
-		);
+		// don't render app until the auth cookie has been processed
+		if(!this.props.processingAuthCookie)
+			return (
+				<NavSidebar>
+					<div style = { styles.container }>
+						<Header />
+							{this.props.children ? 
+									this.props.children
+								:
+									 <Home />
+							}
+						<Footer />
+									
+					</div>
+					<div id="jquery_jplayer_1"></div>
+				</NavSidebar>
+			)
+		else{
+			return <div>LOADING</div>
+		}
 	}
 });
 

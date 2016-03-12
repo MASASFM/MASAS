@@ -19,8 +19,8 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-var Header = ReactRedux.connect(
+Header = ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
 )(Header)
-module.exports = Header;
+module.exports = Header

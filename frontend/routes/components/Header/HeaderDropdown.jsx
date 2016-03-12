@@ -2,6 +2,7 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 
 var { Link } = require("../../containers/UI/UI.jsx")
+// const { getUsername } = require('./ajaxCalls.jsx')
 
 var MenuLink = (props) => {
 	return (
@@ -9,7 +10,7 @@ var MenuLink = (props) => {
 			<img src={props.src} atl="icon"/>
 			<Link to={props.URL}>{props.children}</Link>
 		</div>
-	);
+	)
 }
 
 var HeaderDropdown = React.createClass({
@@ -19,14 +20,15 @@ var HeaderDropdown = React.createClass({
 		// username
 		// logout()
 		// getUsername()
+		// dispatch()
 	},
 
 	componentWillMount: function() {
-		this.props.getUsername(this.props.MASASuser)
+		this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		this.props.getUsername(this.props.MASASuser)
+		this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	logout: function() {
@@ -34,7 +36,6 @@ var HeaderDropdown = React.createClass({
 	},
 
 	render: function() {
-		// this.getUsername()
 		if (this.props.MASASuser) {
 			return (
 				<div className="dropdown--wrapper">
@@ -55,8 +56,8 @@ var HeaderDropdown = React.createClass({
 			)
 		} else
 			return (
-				<div className="dropdown--wrapper">
-					<Link to="/login"><span className="username">Log In</span></Link>
+				<div className="dropdown--wrapper" >
+					<Link to="/login" ref="loginLink"><span className="username">Log In</span></Link>
 				</div>
 				)
 	}

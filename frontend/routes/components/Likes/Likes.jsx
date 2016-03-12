@@ -3,13 +3,7 @@ var ReactDOM = require("react-dom")
 var LikesWrapper = require("../../containers/Likes/LikesWrapper.jsx")
 var LikesItem = require("../../containers/Likes/LikesItem.jsx")
 
-// var {goToURL} = require("../../../MASAS_functions.jsx")
-// var {getCookie} = require("../../../MASAS_functions.jsx")
 var { Textbox } = require("../../containers/UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
 
 var Likes = React.createClass({
 	propTypes: {
@@ -59,6 +53,6 @@ var Likes = React.createClass({
 			</LikesWrapper>
 		)
 	}
-});
+})
 
 module.exports = Likes

@@ -1,4 +1,6 @@
-var defaultState = {
+let exportVar = {}
+
+exportVar.defaultState = {
 	songPlaying: null,				// currently playing song			
 	isPaused: false,			// is player paused
 	playerAtTime: 0,			// time current song playing is at
@@ -7,7 +9,9 @@ var defaultState = {
 	isSongPlayingLiked: false,		// is currently playing song liked
 }
 
-function playerReducer(state = defaultState, action) {
+const { defaultState } = exportVar
+
+exportVar.playerReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
 		case 'PLAY':
@@ -59,4 +63,4 @@ function playerReducer(state = defaultState, action) {
 }
 
 
-module.exports = playerReducer
+module.exports = exportVar

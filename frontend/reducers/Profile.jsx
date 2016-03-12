@@ -1,20 +1,17 @@
-var defaultState = {
+let exportVar = {}
 
-}
+exportVar.defaultState = {}
+const { defaultState } = exportVar
 
-function profileReducer(state = defaultState, action) {
+exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
-		case 'TYPE':
-			return {
-				...state,
-				type: action.type
-			};
 
 		default:
-			return state;
+			return state
 	}
+
 }
 
 
-module.exports = profileReducer;
+module.exports = exportVar

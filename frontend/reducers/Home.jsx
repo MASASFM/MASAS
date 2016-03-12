@@ -1,10 +1,14 @@
-function homeReducer(state = {}, action) {
-  
+let exportVar = {}
+
+exportVar.defaultState = {}
+const{ defaultState } = exportVar
+
+exportVar.homeReducer = function(state = defaultState, action) {
   switch(action.type) {
     default:
-      return state;
+      return state
   }
 }
 
 
-module.exports = homeReducer;
+module.exports = exportVar

@@ -1,6 +1,8 @@
-var ReactRedux = require("react-redux")
-var HeaderDropdown = require('../../components/Header/HeaderDropdown.jsx')
-var {browserHistory} = require('react-router')
+let ReactRedux = require("react-redux")
+let { browserHistory } = require('react-router')
+
+let HeaderDropdown = require('../../components/Header/HeaderDropdown.jsx')
+const { getUsername } = require('./ajaxCalls.jsx')
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -19,38 +21,39 @@ function mapDispatchToProps(dispatch) {
 		dispatch({type: 'LOGOUT'})
 	}
 
-	var getUsername = (MASASuser) => {
-		console.log(MASASuser)
-		var header = "Bearer " + MASASuser
-		$.ajax({
-			type: "GET",
-			url: 'api/check-user/',	
-			headers: {
-				"Authorization": header,
-			},
-			success: (data) => {
-				console.log(data)
-				var username = data.user
-				if (username.length > 13)
-					username = username.substr(0,13) + "..."
+	// var getUsername = (MASASuser) => {
+	// 	console.log(MASASuser)
+	// 	var header = "Bearer " + MASASuser
+	// 	$.ajax({
+	// 		type: "GET",
+	// 		url: 'api/check-user/',	
+	// 		headers: {
+	// 			"Authorization": header,
+	// 		},
+	// 		success: (data) => {
+	// 			console.log(data)
+	// 			var username = data.user
+	// 			if (username.length > 13)
+	// 				username = username.substr(0,13) + "..."
 
-				// document.getElementById('username-header').innerHTML = username
-				dispatch({type:'SET_USERNAME', username: username})
-			},
-			error: (err) => {
-				console.log(err)
-			},
-		})
-	}
+	// 			// document.getElementById('username-header').innerHTML = username
+	// 			dispatch({type:'SET_USERNAME', username: username})
+	// 		},
+	// 		error: (err) => {
+	// 			console.log(err)
+	// 		},
+	// 	})
+	// }
 
 	return {
+		dispatch,
 		logout: logout,
 		getUsername: getUsername
 	}
 }
 
-var HeaderDropdown = ReactRedux.connect(
+HeaderDropdown = ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
 )(HeaderDropdown)
-module.exports = HeaderDropdown;
+module.exports = HeaderDropdown

@@ -7,9 +7,8 @@ var {logInWithToken} = require("../../MASAS_functions.jsx")
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
 	return {
-		value: state.counterReducer.counter,
-		author: state.authorReducer.author,
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
+		processingAuthCookie: state.appReducer.processingAuthCookie
 	}
 }
 
@@ -27,4 +26,4 @@ var App = ReactRedux.connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(App)
-module.exports = App;
+module.exports = App

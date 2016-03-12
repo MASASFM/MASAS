@@ -1,20 +1,24 @@
-var defaultState = {
-	choosingTime: null,							//
-}
+let exportVar = {}
 
-function uploadSCReducer(state = defaultState, action) {
+exportVar.defaultState = {
+	choosingTime: null,							
+}
+const { defaultState } = exportVar
+
+exportVar.uploadSCReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
 		case 'SYNC_SONG':
 			return {
 				...state,
 				choosingTime: action.song
-			};
+			}
 
 		default:
-			return state;
+			return state
 	}
+
 }
 
 
-module.exports = uploadSCReducer;
+module.exports = exportVar

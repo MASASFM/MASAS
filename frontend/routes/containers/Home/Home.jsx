@@ -25,4 +25,4 @@ var Home = ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home)
-module.exports = Home;
+module.exports = Home

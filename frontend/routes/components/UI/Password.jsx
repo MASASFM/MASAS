@@ -14,7 +14,7 @@ var Password = React.createClass({
 	render: function() {
 		return (
 			<div className="MASAS-password">
-				<div className={"wrapper" + (this.props.error ? " error" : "")}>
+				<div className={"wrapper" + (this.props.error ? " error " : "")}>
 					<label className="MASAS-label" htmlFor={this.props.id}>
 						{ this.props.error ?
 							this.props.labelError 

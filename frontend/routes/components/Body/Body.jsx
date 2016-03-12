@@ -1,21 +1,21 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
-var Radium = require("radium")
 
-var Body = require("../../containers/Body/Body.jsx")
-var Home = require("../Home/Home.jsx")
+var Home = require("../../Containers/Home/Home.jsx")
 
-var Body = (props) => {
-	return (
-		<div style={styles.outerDiv} >
-			<h1>{props.title}</h1>
-			<hr />
-			<div style={styles.innerDiv}>
-				{ props.content ? props.content : <Home /> }
+var Body = React.createClass({
+	render: function() {
+		return (
+			<div style={styles.outerDiv}>
+				<h1 ref="titleTest">{this.props.title}</h1>
+				<hr />
+				<div style={styles.innerDiv}>
+					{ this.props.content ? this.props.content : <Home  /> }
+				</div>
 			</div>
-		</div>
-	)
-}
+		)
+	}
+})
 
 var verticalPaddingSize = '5em'
 var horizontalPaddingSize = '15em'
@@ -36,4 +36,4 @@ var styles = {
 	}
 }
 
-module.exports = Radium(Body)
+module.exports = Body

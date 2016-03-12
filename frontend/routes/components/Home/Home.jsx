@@ -17,7 +17,7 @@ var Home = (props) => {
 				<HomeCountdown />
 			</div>
 			<div className="login-container" style={{display: (props.user ? 'none' : 'flex')}}>
-				<Button onClick={goToURL.bind(null, 'login')}>LOG-IN</Button>
+				<Button onClick={goToURL.bind(null, 'login')} caps={true}>log-in</Button>
 				<br />
 				<Link to="/sign-up" className="signup-text">Sign up</Link>
 			</div>

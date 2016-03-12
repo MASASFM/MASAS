@@ -1,10 +1,15 @@
-function bodyReducer(state = {}, action) {
+let exportVar = {}
+
+exportVar.defaultState = {}
+const { defaultState } = exportVar
+
+exportVar.bodyReducer = function(state = defaultState, action) {
   
   switch(action.type) {
     default:
-      return state;
+      return state
   }
 }
 
 
-module.exports = bodyReducer;
+module.exports = exportVar

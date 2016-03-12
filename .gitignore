@@ -2,3 +2,4 @@
 node_modules
 *.pyc
 static/.sass-cache
+mysite/settings.dev.py
