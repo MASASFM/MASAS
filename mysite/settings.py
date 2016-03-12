@@ -98,6 +98,8 @@ MIDDLEWARE_CLASSES = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'MASAS.SiteUser'
+
 # oauth
 CORS_ORIGIN_ALLOW_ALL = True
 
