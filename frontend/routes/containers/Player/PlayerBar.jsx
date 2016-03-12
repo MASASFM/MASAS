@@ -42,7 +42,7 @@ var updateLikeButton = function(dispatch, MASAS_songInfo, SC_songInfo, props) {
 		success: (user) => {
 			console.log(user)
 
-			var isSongLiked = user.userProfile.likes.filter( (like) => {
+			var isSongLiked = user.likes.filter( (like) => {
 				return like.url === MASAS_songInfo.url
 			})
 
@@ -147,14 +147,14 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 				},
 				success: (user) => {
 					console.log(user)
-					var likes = user.userProfile.likes
+					var likes = user.likes
 
-					var isSongLiked = user.userProfile.likes.filter( (like) => {
+					var isSongLiked = user.likes.filter( (like) => {
 						return like.url === songId
 					})
 
 					if(isSongLiked.length === 0) {
-						var likes = [ ...user.userProfile.likes.map((like) => { return like.url}), songId]
+						var likes = [ ...user.likes.map((like) => { return like.url}), songId]
 
 						var songDATA = {
 						    "url": "http://localhost:8000/api/song/13/",
@@ -167,7 +167,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 						console.log(likes)
 						$.ajax({
 							type: "PATCH",
-							url: user.userProfile.url,	
+							url: user.url,	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
@@ -190,7 +190,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 					} else {
 						$.ajax({
 							type: "PATCH",
-							url: user.userProfile.url,	
+							url: user.url,	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,

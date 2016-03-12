@@ -7,12 +7,7 @@ var Header = require("../containers/Header/Header.jsx")
 var Body = require("../containers/UI/Body.jsx")
 var Footer = require("../containers/Footer/Footer.jsx")
 var Home = require("../containers/Home/Home.jsx")
-import NavSidebar from "../containers/NavSidebar/NavSidebar.jsx"
-// import Header from "../containers/Header/Header.jsx"
-// import Body from "../containers/UI/Body.jsx"
-// import Footer from "../containers/Footer/Footer.jsx"
-// import Home from "../containers/Home/Home.jsx"
-// import NavSidebar from "../containers/NavSidebar/NavSidebar.jsx"
+var NavSidebar = require("../containers/NavSidebar/NavSidebar.jsx")
 
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
@@ -57,9 +52,9 @@ var App = React.createClass({
 					<div id="jquery_jplayer_1"></div>
 				</NavSidebar>
 			)
-		else{
+		else
 			return <div>LOADING</div>
-		}
+		
 	}
 })
 

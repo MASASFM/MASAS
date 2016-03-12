@@ -22,6 +22,12 @@ var UploadSC = React.createClass({
 			this.getUserTracks()
 	},
 
+	componentWillReceiveProps: function(nextProps) {
+		// update masas user track prop to have the sync icon updatd in real time
+		if(this.props.choosingTime !== nextProps.choosingTime)
+			this.getUserTracks()
+	},
+
 	getUserTracks: function() {
 		var success =  (data) => {
 				console.log(data)
