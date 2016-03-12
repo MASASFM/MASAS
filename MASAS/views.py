@@ -8,7 +8,7 @@ from permissions import (
     IsOwnerOrReadOnly,
     IsUserOrReadOnly,
     isLikesOwnerOrReadOnly,
-    IsUserProfileOwnerOrReadOnly,
+    IsRequestUserOrReadOnly,
 )
 
 from rest_framework import generics
@@ -33,11 +33,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from serializers import (
+    LikeSerializer,
     SongSerializer,
     UserSerializer,
 )
 
-from models import Song, SiteUser
+from models import Like, Song, User
 
 
 class BaseModelViewSetMixin(object):
@@ -48,12 +49,21 @@ class BaseModelViewSetMixin(object):
     )
 
 
+class LikeViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsRequestUserOrReadOnly
+    )
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+
 class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
-        IsUserProfileOwnerOrReadOnly
+        IsRequestUserOrReadOnly
     )
-    queryset = SiteUser.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 

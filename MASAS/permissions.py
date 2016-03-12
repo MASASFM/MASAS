@@ -2,69 +2,41 @@ from rest_framework import permissions
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
-	"""
-	Custom permission to only allow owners of an object to edit it.
-	"""
+    """
+    Custom permission to only allow owners of an object to edit it.
+    """
 
-	def has_object_permission(self, request, view, obj):
-		# Read permissions are allowed to any request,
-		# so we'll always allow GET, HEAD or OPTIONS requests.
-		if request.method in permissions.SAFE_METHODS:
-			return True
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.trackArtist == request.user
 
-		# import ipdb
-		# ipdb.set_trace()
-		# Write permissions are only allowed to the owner of the snippet.
-		return obj.trackArtist == request.user
+class IsRequestUserOrReadOnly(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an object to edit it.
+    """
 
-class IsUserProfileOwnerOrReadOnly(permissions.BasePermission):
-	"""
-	Custom permission to only allow owners of an object to edit it.
-	"""
-
-	def has_object_permission(self, request, view, obj):
-		# Read permissions are allowed to any request,
-		# so we'll always allow GET, HEAD or OPTIONS requests.
-		
-
-		if request.method in permissions.SAFE_METHODS:
-			return True
-
-		# import ipdb
-		# ipdb.set_trace()
-		# Write permissions are only allowed to the owner of the snippet.
-		return obj.user == request.user
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj == request.user
 
 class IsUserOrReadOnly(permissions.BasePermission):
-	"""
-	Custom permission to only allow owners of an object to edit it.
-	"""
+    """
+    Custom permission to only allow owners of an object to edit it.
+    """
 
-	def has_object_permission(self, request, view, obj):
-		# Read permissions are allowed to any request,
-		# so we'll always allow GET, HEAD or OPTIONS requests.
-		
-
-		if request.method in permissions.SAFE_METHODS:
-			return True
-
-		# import ipdb
-		# ipdb.set_trace()
-		# Write permissions are only allowed to the owner of the snippet.
-		return obj.pk == request.user.pk
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.pk == request.user.pk
 
 class isLikesOwnerOrReadOnly(permissions.BasePermission):
-	"""
-	Custom permission to only allow owners of an object to edit it.
-	"""
+    """
+    Custom permission to only allow owners of an object to edit it.
+    """
 
-	def has_object_permission(self, request, view, obj):
-		# Read permissions are allowed to any request,
-		# so we'll always allow GET, HEAD or OPTIONS requests.
-		
-
-		if request.method in permissions.SAFE_METHODS:
-			return True
-
-		# Write permissions are only allowed to the owner of the snippet.
-		return obj.user == request.user
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.user == request.user

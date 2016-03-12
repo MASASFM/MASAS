@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-from models import Song, SiteUser
-
-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+from models import Song, User
 
+admin.site.register(User)
 admin.site.register(Song)

@@ -13,7 +13,7 @@ class Song(models.Model):
     dateUploaded = models.DateTimeField(auto_now_add=True)
     trackTitle = models.CharField(max_length=100, blank=True, default='')
     trackArtist = models.ForeignKey(
-        'SiteUser',
+        'User',
         null=True,
         related_name='songs',
     )
@@ -21,12 +21,15 @@ class Song(models.Model):
     SC_ID = models.IntegerField()
 
 
-class SiteUserManager(UserManager):
+class UserManager(UserManager):
     pass
 
 
-class SiteUser(AbstractUser):
+class User(AbstractUser):
     likes = models.ManyToManyField(Song, null=True, related_name='likedBy', blank=True)
     dislikes = models.ManyToManyField(Song, null=True, related_name='dislikedBy', blank=True)
 
-    objects = SiteUserManager()
+    objects = UserManager()
+
+
+Like = User.likes.rel.through
