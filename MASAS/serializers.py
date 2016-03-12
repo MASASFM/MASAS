@@ -1,8 +1,24 @@
+import soundcloud
+
+from django.conf import settings
+
 from rest_framework import serializers
+
 from models import Song, SiteUser
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
+    def create(self, data):
+        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+        r = s.get('/tracks/%s' % data['SC_ID'])
+
+        return Song.objects.create(
+            trackArtist=self._context['request'].user,
+            SC_ID=data['SC_ID'],
+            trackTitle=r.title,
+            trackDuration=r.duration,
+        )
+
     class Meta:
     	model = Song
     	fields = (
