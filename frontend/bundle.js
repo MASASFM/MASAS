@@ -1,13 +1,9 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
-
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
+var { browserHistory } = require('react-router');
 
 var MASAS_functions = {};
 
-MASAS_functions.goToURL = function (path) {
+MASAS_functions.goToURL = path => {
 	browserHistory.push(path);
 };
 
@@ -15,7 +11,7 @@ MASAS_functions.goToURL = function (path) {
 	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
 	result: returns nothing. but updates appReducer's auth token and user pk
 */
-MASAS_functions.logInWithToken = function (dispatch, userToken) {
+MASAS_functions.logInWithToken = (dispatch, userToken) => {
 	var header = "Bearer " + userToken;
 	$.ajax({
 		type: "GET",
@@ -23,14 +19,14 @@ MASAS_functions.logInWithToken = function (dispatch, userToken) {
 		headers: {
 			"Authorization": header
 		},
-		success: function success(data) {
+		success: data => {
 			console.log(data);
 			var pk = data.userPk;
 
 			dispatch({ type: 'UPDATE_USER_PK', pk: pk });
 			dispatch({ type: 'LOGIN', token: userToken });
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
@@ -56,23 +52,21 @@ MASAS_functions.getCookie = function (name) {
 module.exports = MASAS_functions;
 
 },{"react-router":152}],2:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 var SoundcloudCallback = React.createClass({
 	displayName: "SoundcloudCallback",
 
-	redirect: function redirect() {
+	redirect: function () {
 		console.log('hey');
 	},
 
-	componentDidMount: function componentDidMount() {
+	componentDidMount: function () {
 		window.setTimeout(opener.SC.connectCallback, 1);
 	},
 
-	render: function render() {
+	render() {
 		return React.createElement(
 			"body",
 			{ onLoad: this.redirect() },
@@ -88,8 +82,6 @@ var SoundcloudCallback = React.createClass({
 module.exports = SoundcloudCallback;
 
 },{"react":340,"react-dom":115}],3:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var ReactRedux = require("react-redux");
@@ -132,8 +124,6 @@ ReactDOM.render(React.createElement(
 ), document.getElementById('content'));
 
 },{"./SoundcloudCallback.jsx":2,"./reducers/reducers.js":13,"./routes/containers/App.jsx":39,"./routes/containers/Likes/Likes.jsx":44,"./routes/containers/Login/LoginForm.jsx":47,"./routes/containers/Login/SignUp.jsx":48,"./routes/containers/Profile/Profile.jsx":51,"./routes/containers/UploadSC/UploadSC.jsx":62,"react":340,"react-dom":115,"react-redux":118,"react-router":152}],4:[function(require,module,exports){
-'use strict';
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var defaultState = {
@@ -144,8 +134,8 @@ var defaultState = {
 	navSiderbarOpen: false
 };
 
-var login = function login(dispatch) {
-	FB.login(function (response) {
+var login = dispatch => {
+	FB.login(response => {
 		if (response.status === 'connected') {
 			// Logged into your app and Facebook.
 			$.ajax({
@@ -158,11 +148,11 @@ var login = function login(dispatch) {
 					backend: "facebook",
 					token: FB.getAccessToken()
 				},
-				success: function success(data) {
+				success: data => {
 					console.log(data);
 					return data.access_token;
 				},
-				error: function error(err) {
+				error: err => {
 					console.log(err);
 					return null;
 				}
@@ -179,9 +169,7 @@ var login = function login(dispatch) {
 	});
 };
 
-function appReducer() {
-	var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
-	var action = arguments[1];
+function appReducer(state = defaultState, action) {
 
 	switch (action.type) {
 		case 'LOGIN':
@@ -214,11 +202,7 @@ function appReducer() {
 module.exports = appReducer;
 
 },{}],5:[function(require,module,exports){
-"use strict";
-
-function bodyReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-  var action = arguments[1];
+function bodyReducer(state = {}, action) {
 
   switch (action.type) {
     default:
@@ -229,11 +213,7 @@ function bodyReducer() {
 module.exports = bodyReducer;
 
 },{}],6:[function(require,module,exports){
-"use strict";
-
-function footerReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-  var action = arguments[1];
+function footerReducer(state = {}, action) {
 
   switch (action.type) {
     default:
@@ -244,11 +224,7 @@ function footerReducer() {
 module.exports = footerReducer;
 
 },{}],7:[function(require,module,exports){
-"use strict";
-
-function headerReducer() {
-	var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	var action = arguments[1];
+function headerReducer(state = {}, action) {
 
 	switch (action.type) {
 		default:
@@ -259,11 +235,7 @@ function headerReducer() {
 module.exports = headerReducer;
 
 },{}],8:[function(require,module,exports){
-"use strict";
-
-function homeReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-  var action = arguments[1];
+function homeReducer(state = {}, action) {
 
   switch (action.type) {
     default:
@@ -274,8 +246,6 @@ function homeReducer() {
 module.exports = homeReducer;
 
 },{}],9:[function(require,module,exports){
-'use strict';
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var defaultState = {
@@ -283,9 +253,7 @@ var defaultState = {
 	SCinfo: null };
 
 // song info corresponding to these likes from SCinfo
-function appReducer() {
-	var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
-	var action = arguments[1];
+function appReducer(state = defaultState, action) {
 
 	switch (action.type) {
 		case 'UPDATE_LIKES':
@@ -307,11 +275,7 @@ function appReducer() {
 module.exports = appReducer;
 
 },{}],10:[function(require,module,exports){
-"use strict";
-
-function loginReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-  var action = arguments[1];
+function loginReducer(state = {}, action) {
 
   switch (action.type) {
     default:
@@ -322,12 +286,10 @@ function loginReducer() {
 module.exports = loginReducer;
 
 },{}],11:[function(require,module,exports){
-'use strict';
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var defaultState = {
-	songPlaying: null, // currently playing song
+	songPlaying: null, // currently playing song			
 	isPaused: false, // is player paused
 	playerAtTime: 0, // time current song playing is at
 	MASAS_songInfo: null, // song info from MASAS db
@@ -335,9 +297,7 @@ var defaultState = {
 	isSongPlayingLiked: false };
 
 // is currently playing song liked
-function playerReducer() {
-	var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
-	var action = arguments[1];
+function playerReducer(state = defaultState, action) {
 
 	switch (action.type) {
 		case 'PLAY':
@@ -383,17 +343,13 @@ function playerReducer() {
 module.exports = playerReducer;
 
 },{}],12:[function(require,module,exports){
-'use strict';
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var defaultState = {
 	choosingTime: null };
 
 //
-function uploadSCReducer() {
-	var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
-	var action = arguments[1];
+function uploadSCReducer(state = defaultState, action) {
 
 	switch (action.type) {
 		case 'SYNC_SONG':
@@ -409,8 +365,6 @@ function uploadSCReducer() {
 module.exports = uploadSCReducer;
 
 },{}],13:[function(require,module,exports){
-"use strict";
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var Redux = require("redux");
@@ -424,10 +378,7 @@ var uploadSCReducer = require("./UploadSC.jsx");
 var playerReducer = require("./Player.jsx");
 var likesReducer = require("./Likes.jsx");
 
-function authorReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? { author: "victor" } : arguments[0];
-  var action = arguments[1];
-
+function authorReducer(state = { author: "victor" }, action) {
   switch (action.type) {
     case 'UPDATE_AUTHOR':
       return _extends({}, state, {
@@ -438,10 +389,7 @@ function authorReducer() {
   }
 }
 
-function counterReducer() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? { counter: 3 } : arguments[0];
-  var action = arguments[1];
-
+function counterReducer(state = { counter: 3 }, action) {
   switch (action.type) {
     case 'INCREMENT_COUNTER':
       return _extends({}, state, {
@@ -456,26 +404,24 @@ function counterReducer() {
   }
 }
 
-var todoReducer = Redux.combineReducers({
-  counterReducer: counterReducer,
-  authorReducer: authorReducer,
-  headerReducer: headerReducer,
-  bodyReducer: bodyReducer,
-  footerReducer: footerReducer,
-  loginReducer: loginReducer,
-  homeReducer: homeReducer,
-  appReducer: appReducer,
-  uploadSCReducer: uploadSCReducer,
-  playerReducer: playerReducer,
-  likesReducer: likesReducer
+const todoReducer = Redux.combineReducers({
+  counterReducer,
+  authorReducer,
+  headerReducer,
+  bodyReducer,
+  footerReducer,
+  loginReducer,
+  homeReducer,
+  appReducer,
+  uploadSCReducer,
+  playerReducer,
+  likesReducer
 });
 
 var store = Redux.createStore(todoReducer);
 module.exports = store;
 
 },{"./App.jsx":4,"./Body.jsx":5,"./Footer.jsx":6,"./Header.jsx":7,"./Home.jsx":8,"./Likes.jsx":9,"./Login.jsx":10,"./Player.jsx":11,"./UploadSC.jsx":12,"redux":346}],14:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var Radium = require("radium");
@@ -491,8 +437,8 @@ var SC = require('soundcloud');
 var Cookie = require('js-cookie');
 
 SC.initialize({
-	client_id: document.MASAS.SC.client_id,
-	redirect_uri: document.MASAS.SC.redirect_uri
+	client_id: 'e5d965905a85b11e108d064bc04430a3',
+	redirect_uri: 'http://dev2-masas.rhcloud.com/sc-callback'
 });
 
 var App = React.createClass({
@@ -500,19 +446,19 @@ var App = React.createClass({
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		var userToken = this.getUserTokenFromCookie();
 
 		if (userToken) this.props.logInWithToken(userToken);
 	},
 
-	getUserTokenFromCookie: function getUserTokenFromCookie() {
+	getUserTokenFromCookie: function () {
 		console.log(Cookie.get('MASAS_authToken'));
 
 		return Cookie.get('MASAS_authToken');
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			NavSidebar,
 			null,
@@ -540,15 +486,13 @@ var styles = {
 module.exports = Radium(App);
 
 },{"../containers/Footer/Footer.jsx":40,"../containers/Header/Header.jsx":41,"../containers/Home/Home.jsx":43,"../containers/NavSidebar/NavSidebar.jsx":49,"../containers/UI/Body.jsx":54,"js-cookie":66,"radium":79,"react":340,"react-dom":115,"soundcloud":350}],15:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var Radium = require("radium");
 
 var Player = require("../../containers/Player/PlayerBar.jsx");
 
-var Footer = function Footer(props) {
+var Footer = props => {
 	return React.createElement(
 		"div",
 		{ className: "footer--wrapper" },
@@ -559,15 +503,11 @@ var Footer = function Footer(props) {
 module.exports = Footer;
 
 },{"../../containers/Player/PlayerBar.jsx":50,"radium":79,"react":340,"react-dom":115}],16:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var Radium = require("radium");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require.goToURL;
+var { goToURL } = require("../../../MASAS_functions.jsx");
 
 var Header = require("../../containers/Header/Header.jsx");
 var HeaderDropdown = require("../../containers/Header/HeaderDropdown.jsx");
@@ -576,7 +516,7 @@ var Link = require("../../containers/UI/Link.jsx");
 var Header = React.createClass({
 	displayName: "Header",
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"nav",
 			{ className: "header" },
@@ -712,16 +652,12 @@ var styles = {
 module.exports = Radium(Header);
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/Header/Header.jsx":41,"../../containers/Header/HeaderDropdown.jsx":42,"../../containers/UI/Link.jsx":57,"radium":79,"react":340,"react-dom":115}],17:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var _require = require("../../containers/UI/UI.jsx");
+var { Link } = require("../../containers/UI/UI.jsx");
 
-var Link = _require.Link;
-
-var MenuLink = function MenuLink(props) {
+var MenuLink = props => {
 	return React.createElement(
 		"div",
 		{ className: "menu-link", onClick: props.onClick },
@@ -738,44 +674,26 @@ var HeaderDropdown = React.createClass({
 	displayName: "HeaderDropdown",
 
 	propTypes: {
-		caps: React.PropTypes.bool, // should button text be in all caps
-		white: React.PropTypes.bool },
-
-	// should button text be in all caps
-	getInitialState: function getInitialState() {
-		return {
-			username: ""
-		};
+		// MASASuser
+		// userLoggedIn
+		// username
+		// logout()
+		// getUsername()
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {
+		this.props.getUsername(this.props.MASASuser);
+	},
 
-	logout: function logout() {
+	componentWillReceiveProps: function (nextProps) {
+		this.props.getUsername(this.props.MASASuser);
+	},
+
+	logout: function () {
 		this.props.logout();
 	},
 
-	getUsername: function getUsername() {
-		var header = "Bearer " + this.props.MASASuser;
-		$.ajax({
-			type: "GET",
-			url: 'api/check-user/',
-			headers: {
-				"Authorization": header
-			},
-			success: function success(data) {
-				console.log(data);
-				var username = data.user;
-				if (username.length > 13) username = username.substr(0, 13) + "...";
-
-				document.getElementById('username-header').innerHTML = username;
-			},
-			error: function error(err) {
-				console.log(err);
-			}
-		});
-	},
-
-	render: function render() {
+	render: function () {
 		// this.getUsername()
 		if (this.props.MASASuser) {
 			return React.createElement(
@@ -788,7 +706,7 @@ var HeaderDropdown = React.createClass({
 					React.createElement(
 						"span",
 						{ className: "username", id: "username-header" },
-						this.getUsername()
+						this.props.username
 					)
 				),
 				React.createElement(
@@ -838,14 +756,10 @@ var HeaderDropdown = React.createClass({
 module.exports = HeaderDropdown;
 
 },{"../../containers/UI/UI.jsx":60,"react":340,"react-dom":115}],18:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require.goToURL;
+var { goToURL } = require("../../../MASAS_functions.jsx");
 
 var Button = require("../../containers/UI/Button.jsx");
 var Link = require("../../containers/UI/Link.jsx");
@@ -854,7 +768,7 @@ var HomeCountdown = require("./HomeCountdown.jsx");
 
 // <img src="/static/img/logo.svg" alt="MASAS" />
 
-var Home = function Home(props) {
+var Home = props => {
 	return React.createElement(
 		"div",
 		{ className: "home--wrapper" },
@@ -884,8 +798,6 @@ var Home = function Home(props) {
 module.exports = Home;
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/UI/Button.jsx":55,"../../containers/UI/Link.jsx":57,"./HomeCountdown.jsx":19,"react":340,"react-dom":115}],19:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var Button = require("../../containers/UI/Button.jsx");
@@ -893,7 +805,7 @@ var Button = require("../../containers/UI/Button.jsx");
 var HomeCountdown = React.createClass({
 	displayName: "HomeCountdown",
 
-	getInitialState: function getInitialState() {
+	getInitialState: function () {
 		// protect against render bug where if this.state.height === 0 the canvas draws dissapear on mouse move
 		var numberOfArtists = 400;
 		var artists = numberOfArtists / 800;
@@ -910,17 +822,17 @@ var HomeCountdown = React.createClass({
 		loginButtonPosition: { x: 0, y: 0 } // absolute position of login button in px
 	},
 
-	componentWillUnmount: function componentWillUnmount() {
+	componentWillUnmount: function () {
 		window.removeEventListener("resize", this.updateDimensions);
 	},
 
-	updateDimensions: function updateDimensions() {
+	updateDimensions: function () {
 		this.setState({ width: window.innerWidth });
 		console.log(this.state.width);
 		this.drawLine();
 	},
 
-	componentDidMount: function componentDidMount() {
+	componentDidMount: function () {
 		window.addEventListener("resize", this.updateDimensions);
 		this.drawLine();
 
@@ -933,7 +845,7 @@ var HomeCountdown = React.createClass({
 		// }, 2.5);
 	},
 
-	drawLine: function drawLine() {
+	drawLine: function () {
 
 		// DEFINE LOGO COLOR
 		var logoColor = 'white';
@@ -1021,7 +933,7 @@ var HomeCountdown = React.createClass({
 			path5.strokeColor.alpha = 0;
 
 			// FUNCTION THAT RETURNS ALL INTERSECTIONS BETWEEN 2 PATHS
-			var showIntersections = function showIntersections(path1, path2) {
+			var showIntersections = function (path1, path2) {
 				var intersections = path1.getIntersections(path2);
 
 				return intersections;
@@ -1035,7 +947,7 @@ var HomeCountdown = React.createClass({
 			}
 
 			// FUNCTION RETURNING RIGHT MOST POINT OF INTERSECTION
-			var getRightMostPoint = function getRightMostPoint(intersections) {
+			var getRightMostPoint = function (intersections) {
 				if (intersections.length > 1) {
 					rightMostPoint = intersections[0]._point;
 					for (var i = 1; i < intersections.length; i++) {
@@ -1109,7 +1021,7 @@ var HomeCountdown = React.createClass({
 		}
 	},
 
-	positionButtons: function positionButtons(textPosition) {
+	positionButtons: function (textPosition) {
 		var yCoord = textPosition.y;
 		var xCoord = textPosition.x;
 
@@ -1117,11 +1029,11 @@ var HomeCountdown = React.createClass({
 		this.setState({ loginButtonPosition: { x: xCoord, y: yCoord } }); // DUMMY STATE USED TO RERENDER
 	},
 
-	signUpButtonClick: function signUpButtonClick() {
+	signUpButtonClick: function () {
 		alert('hey');
 	},
 
-	render: function render() {
+	render: function () {
 
 		var positionLinks = {
 			position: 'absolute',
@@ -1164,8 +1076,6 @@ var HomeCountdown = React.createClass({
 module.exports = HomeCountdown;
 
 },{"../../containers/UI/Button.jsx":55,"react":340,"react-dom":115}],20:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var LikesWrapper = require("../../containers/Likes/LikesWrapper.jsx");
@@ -1173,10 +1083,7 @@ var LikesItem = require("../../containers/Likes/LikesItem.jsx");
 
 // var {goToURL} = require("../../../MASAS_functions.jsx")
 // var {getCookie} = require("../../../MASAS_functions.jsx")
-
-var _require = require("../../containers/UI/UI.jsx");
-
-var Textbox = _require.Textbox;
+var { Textbox } = require("../../containers/UI/UI.jsx");
 
 // var Template = (props) => {
 
@@ -1187,17 +1094,15 @@ var Likes = React.createClass({
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		this.props.updateTitle('Likes', '0'); // 0 = menu icon; 1 = arrow back
 
 		this.props.getLikes(this.props.userPk);
 	},
 
-	componentDidMount: function componentDidMount() {},
+	componentDidMount: function () {},
 
-	renderLikes: function renderLikes() {
-		var _this = this;
-
+	renderLikes: function () {
 		console.log("RENDER LIKES");
 
 		var songs = this.props.SCinfo;
@@ -1207,10 +1112,10 @@ var Likes = React.createClass({
 			null,
 			"NO SONGS"
 		);else {
-			var songList = songs.map(function (song) {
+			var songList = songs.map(song => {
 				console.log("======");
 				console.log(song);
-				var MASAS_songInfo = _this.props.userLikes.filter(function (like) {
+				var MASAS_songInfo = this.props.userLikes.filter(like => {
 					console.log(like);
 					return like.SC_ID === song.id;
 				})[0];
@@ -1224,7 +1129,7 @@ var Likes = React.createClass({
 		}
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			LikesWrapper,
 			null,
@@ -1241,10 +1146,6 @@ var Likes = React.createClass({
 module.exports = Likes;
 
 },{"../../containers/Likes/LikesItem.jsx":45,"../../containers/Likes/LikesWrapper.jsx":46,"../../containers/UI/UI.jsx":60,"react":340,"react-dom":115}],21:[function(require,module,exports){
-"use strict";
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -1264,17 +1165,17 @@ var LikesItem = React.createClass({
 		SCinfo: React.PropTypes.object },
 
 	// related song info from SC
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
-	playTrack: function playTrack() {
+	playTrack: function () {
 		console.log(this.props.MASASinfo);
 		console.log(this.props);
 		this.props.playNewSong(this.props.MASASinfo.url);
 	},
 
-	render: function render() {
+	render: function () {
 		var SCinfo = this.props.SCinfo;
 		console.log('rendering');
 		console.log(SCinfo);
@@ -1285,7 +1186,7 @@ var LikesItem = React.createClass({
 		if (SCinfo.artwork_url !== null) {
 			console.log("hi");
 			console.log(SCinfo.artwork_url);
-			console.log(_typeof(SCinfo.artwork_url));
+			console.log(typeof SCinfo.artwork_url);
 			artworkURL = SCinfo.artwork_url.substring(0, SCinfo.artwork_url.lastIndexOf("-")) + "-t300x300.jpg";
 			console.log(artworkURL);
 		}
@@ -1358,19 +1259,17 @@ var LikesItem = React.createClass({
 module.exports = LikesItem;
 
 },{"react":340,"react-dom":115}],22:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 var LikesWrapper = React.createClass({
 	displayName: "LikesWrapper",
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		// this.props.updateTitle()
 	},
 
-	render: function render() {
+	render: function () {
 		var marginHeight = '3rem';
 		var marginStyle = {
 			minHeight: marginHeight,
@@ -1442,8 +1341,6 @@ var LikesWrapper = React.createClass({
 module.exports = LikesWrapper;
 
 },{"react":340,"react-dom":115}],23:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -1452,19 +1349,16 @@ var Textbox = require("../../containers/UI/Textbox.jsx");
 var Textbox = require("../UI/Textbox.jsx");
 var Password = require("../UI/Password.jsx");
 var Button = require("../UI/Button.jsx");
-
-var _require = require("../../containers/UI/UI.jsx");
-
-var Link = _require.Link;
+var { Link } = require("../../containers/UI/UI.jsx");
 
 var LoginForm = React.createClass({
 	displayName: "LoginForm",
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		this.props.updateTitle('Login', '0');
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			Body,
 			null,
@@ -1541,8 +1435,6 @@ var LoginForm = React.createClass({
 module.exports = LoginForm;
 
 },{"../../containers/UI/Body.jsx":54,"../../containers/UI/Textbox.jsx":59,"../../containers/UI/UI.jsx":60,"../UI/Button.jsx":31,"../UI/Password.jsx":34,"../UI/Textbox.jsx":35,"react":340,"react-dom":115}],24:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -1555,11 +1447,11 @@ var Checkbox = require("../../containers/UI/Checkbox.jsx");
 var SignUpForm = React.createClass({
 	displayName: "SignUpForm",
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		this.props.updateTitle();
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			Body,
 			null,
@@ -1656,27 +1548,14 @@ var SignUpForm = React.createClass({
 module.exports = SignUpForm;
 
 },{"../../containers/UI/Body.jsx":54,"../../containers/UI/Button.jsx":55,"../../containers/UI/Checkbox.jsx":56,"../../containers/UI/Password.jsx":58,"../../containers/UI/Textbox.jsx":59,"react":340,"react-dom":115}],25:[function(require,module,exports){
-"use strict";
-
-var _reactSidebar = require("react-sidebar");
-
-var _reactSidebar2 = _interopRequireDefault(_reactSidebar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 // var {getCookie} = require("../../../MASAS_functions.jsx")
+var { Textbox, Link } = require("../../containers/UI/UI.jsx");
+var { goToURL } = require("../../../MASAS_functions.jsx");
 
-var _require = require("../../containers/UI/UI.jsx");
-
-var Textbox = _require.Textbox;
-var Link = _require.Link;
-
-var _require2 = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require2.goToURL;
+var Sidebar = require("react-sidebar");
 
 // var Template = (props) => {
 
@@ -1687,16 +1566,16 @@ var NavSidebar = React.createClass({
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
-	goToProfile: function goToProfile() {
+	goToProfile: function () {
 		goToURL("/profile");
 		this.props.toogleSidebar();
 	},
 
-	render: function render() {
+	render: function () {
 		var sidebarContent = React.createElement(
 			"div",
 			{ className: "navSidebar--wrapper" },
@@ -1784,7 +1663,7 @@ var NavSidebar = React.createClass({
 			)
 		);
 		return React.createElement(
-			_reactSidebar2.default,
+			Sidebar,
 			{ sidebar: sidebarContent,
 				open: this.props.navSiderbarOpen,
 				onSetOpen: this.props.onSetNavSidebarOpen },
@@ -1796,8 +1675,6 @@ var NavSidebar = React.createClass({
 module.exports = NavSidebar;
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/UI/UI.jsx":60,"react":340,"react-dom":115,"react-sidebar":183}],26:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 var jPlayer = require("jplayer");
@@ -1815,19 +1692,19 @@ var Player = React.createClass({
 
 	propTypes: {},
 
-	getInitialState: function getInitialState() {
+	getInitialState: function () {
 		return {
 			songInPlayer: null };
 	},
 
 	// song currently playing (if any)
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	componentDidMount: function componentDidMount() {
+	componentDidMount: function () {
 		if (this.props.songPlaying !== null && this.props.isPaused === false) this.props.resumePlaying();
 	},
 
-	componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+	componentWillReceiveProps: function (newProps) {
 		if (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused) {
 			if (newProps.songPlaying !== this.props.songPlaying) {
 				// if new song, fetch new song and play it
@@ -1839,11 +1716,11 @@ var Player = React.createClass({
 		}
 	},
 
-	getControlButtons: function getControlButtons() {
+	getControlButtons() {
 		if (this.props.songPlaying !== null && this.props.isPaused === false) return React.createElement("img", { onClick: this.props.pause, src: "/static/img/MASAS_player_pause.svg", alt: "pause button", className: "player-button" });else return React.createElement("img", { onClick: this.props.play, src: "/static/img/MASAS_player_play.svg", alt: "play button", className: "player-button" });
 	},
 
-	renderLikeIcon: function renderLikeIcon() {
+	renderLikeIcon: function () {
 		// var isSongLiked = !!this.props.isSongPlayingLiked.likedBy.filter((user) => {
 		// 			return user.url === "http://localhost:8000/api/users/" + this.props.userPk + "/"
 		// 		})
@@ -1851,7 +1728,7 @@ var Player = React.createClass({
 		if (this.props.isSongPlayingLiked) return React.createElement("img", { src: "/static/img/MASAS_liked.svg", alt: "like icon", className: "like-icon", onClick: this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying) });else return React.createElement("img", { src: "/static/img/MASAS_like_shadow.svg", alt: "like icon", className: "like-icon", onClick: this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying) });
 	},
 
-	render: function render() {
+	render: function () {
 		// this.loadPlayer()
 
 		return React.createElement(
@@ -1884,32 +1761,19 @@ var Player = React.createClass({
 module.exports = Player;
 
 },{"jplayer":64,"react":340,"react-dom":115}],27:[function(require,module,exports){
-"use strict";
-
-var _reactSidebar = require("react-sidebar");
-
-var _reactSidebar2 = _interopRequireDefault(_reactSidebar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 var ProfileWrapper = require("../../containers/Profile/ProfileWrapper.jsx");
-
+var Sidebar = require("react-sidebar");
 var NavSidebar = require("../../containers/NavSidebar/NavSidebar.jsx");
 var Header = require("../../containers/Header/Header.jsx");
 var Footer = require("../../containers/Footer/Footer.jsx");
 var TrackItem = require("../../containers/Profile/TrackItem.jsx");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require.goToURL;
+var { goToURL } = require("../../../MASAS_functions.jsx");
 // var {getCookie} = require("../../../MASAS_functions.jsx")
-
-var _require2 = require("../../containers/UI/UI.jsx");
-
-var Button = _require2.Button;
+var { Button } = require("../../containers/UI/UI.jsx");
 
 // var Template = (props) => {
 
@@ -1920,16 +1784,14 @@ var Profile = React.createClass({
 
 	propTypes: {},
 
-	getInitialState: function getInitialState() {
+	getInitialState: function () {
 		return {
 			userInfo: null, // user entry in REST API
 			userSCSongs: [] };
 	},
 
 	// song info from SC using songs from user entry
-	componentWillMount: function componentWillMount() {
-		var _this = this;
-
+	componentWillMount: function () {
 		this.props.updateTitle('My Profile', '0'); // 0 = menu icon; 1 = arrow back
 
 		$.ajax({
@@ -1937,25 +1799,23 @@ var Profile = React.createClass({
 			url: 'api/users/' + this.props.userPk + '/',
 
 			// -u"<client_id>:<client_secret>"
-			success: function success(data) {
+			success: data => {
 				console.log(data);
-				var idString = data.songs.map(function (song) {
+				var idString = data.songs.map(song => {
 					return song.SC_ID;
 				}).join();
-				SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
+				SC.get('tracks', { limit: 200, ids: idString }).then(response => {
 					console.log(response);
-					_this.setState({ userInfo: data, userSCSongs: response });
+					this.setState({ userInfo: data, userSCSongs: response });
 				});
 			},
-			error: function error(err) {
+			error: err => {
 				console.log(err);
 			}
 		});
 	},
 
-	getSongs: function getSongs() {
-		var _this2 = this;
-
+	getSongs: function () {
 		var songs = this.state.userSCSongs;
 
 		if (!songs) return React.createElement(
@@ -1978,9 +1838,9 @@ var Profile = React.createClass({
 				)
 			)
 		);else {
-			var songList = songs.map(function (song) {
+			var songList = songs.map(song => {
 				// console.log(song)
-				var MASAS_songInfo = _this2.state.userInfo.songs.filter(function (el) {
+				var MASAS_songInfo = this.state.userInfo.songs.filter(el => {
 					console.log(el);
 					return el.SC_ID === song.id;
 				})[0];
@@ -1996,7 +1856,7 @@ var Profile = React.createClass({
 		}
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ style: { display: 'flex', flex: 1 } },
@@ -2156,19 +2016,17 @@ var styles = {
 module.exports = Profile;
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/Footer/Footer.jsx":40,"../../containers/Header/Header.jsx":41,"../../containers/NavSidebar/NavSidebar.jsx":49,"../../containers/Profile/ProfileWrapper.jsx":52,"../../containers/Profile/TrackItem.jsx":53,"../../containers/UI/UI.jsx":60,"react":340,"react-dom":115,"react-sidebar":183}],28:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 var Body = React.createClass({
 	displayName: "Body",
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		// this.props.updateTitle()
 	},
 
-	render: function render() {
+	render: function () {
 		var marginHeight = '3rem';
 		var marginStyle = {
 			minHeight: marginHeight,
@@ -2241,8 +2099,6 @@ var Body = React.createClass({
 module.exports = Body;
 
 },{"react":340,"react-dom":115}],29:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2262,14 +2118,14 @@ var TrackItem = React.createClass({
 		MASAS_songInfo: React.PropTypes.object },
 
 	//track MASAS info
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	playTrack: function playTrack() {
+	playTrack: function () {
 		// console.log("======"+this.props.MASAS_songInfo.url+"======")
 		this.props.playNewSong(this.props.MASAS_songInfo.url);
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ className: "track--wrapper" },
@@ -2338,19 +2194,17 @@ var TrackItem = React.createClass({
 module.exports = TrackItem;
 
 },{"react":340,"react-dom":115}],30:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 var Body = React.createClass({
 	displayName: "Body",
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		// this.props.updateTitle()
 	},
 
-	render: function render() {
+	render: function () {
 		var marginHeight = '3rem';
 		var marginStyle = {
 			minHeight: marginHeight,
@@ -2418,8 +2272,6 @@ var Body = React.createClass({
 module.exports = Body;
 
 },{"react":340,"react-dom":115}],31:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2432,9 +2284,9 @@ var Button = React.createClass({
 		small: React.PropTypes.bool },
 
 	// should button be in small version
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ className: "MASAS-button" + (this.props.white ? " white " : "") + (this.props.small ? "MASAS-small-button " : ""), onClick: this.props.onClick },
@@ -2450,8 +2302,6 @@ var Button = React.createClass({
 module.exports = Button;
 
 },{"react":340,"react-dom":115}],32:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2464,9 +2314,9 @@ var Checkbox = React.createClass({
 		style: React.PropTypes.object
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	render: function render() {
+	render: function () {
 
 		return React.createElement(
 			"div",
@@ -2484,14 +2334,10 @@ var Checkbox = React.createClass({
 module.exports = Checkbox;
 
 },{"react":340,"react-dom":115}],33:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require.goToURL;
+var { goToURL } = require("../../../MASAS_functions.jsx");
 
 var Link = React.createClass({
 	displayName: "Link",
@@ -2502,9 +2348,9 @@ var Link = React.createClass({
 		disabled: React.PropTypes.bool
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"span",
 			{ onClick: this.props.onClick },
@@ -2521,8 +2367,6 @@ var Link = React.createClass({
 module.exports = Link;
 
 },{"../../../MASAS_functions.jsx":1,"react":340,"react-dom":115}],34:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2535,9 +2379,9 @@ var Password = React.createClass({
 		error: React.PropTypes.bool },
 
 	// true = error
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ className: "MASAS-password" },
@@ -2558,8 +2402,6 @@ var Password = React.createClass({
 module.exports = Password;
 
 },{"react":340,"react-dom":115}],35:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2572,9 +2414,9 @@ var Textbox = React.createClass({
 		error: React.PropTypes.bool },
 
 	// true = error
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ className: "MASAS-textbox" },
@@ -2595,21 +2437,12 @@ var Textbox = React.createClass({
 module.exports = Textbox;
 
 },{"react":340,"react-dom":115}],36:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
 // var {goToURL} = require("../../../MASAS_functions.jsx")
-
-var _require = require("../../containers/UI/UI.jsx");
-
-var Button = _require.Button;
-var Checkbox = _require.Checkbox;
-
-var _require2 = require("../../../MASAS_functions.jsx");
-
-var getCookie = _require2.getCookie;
+var { Button, Checkbox } = require("../../containers/UI/UI.jsx");
+var { getCookie } = require("../../../MASAS_functions.jsx");
 
 // var Template = (props) => {
 
@@ -2620,13 +2453,11 @@ var PickTimeUpload = React.createClass({
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		this.props.updateTitle('Upload', '0'); // 0 = menu icon; 1 = arrow back
 	},
 
-	submitSong: function submitSong() {
-		var _this = this;
-
+	submitSong: function () {
 		var csrftoken = getCookie('csrftoken');
 		var header = "Bearer " + this.props.MASASuser;
 		$.ajax({
@@ -2641,17 +2472,17 @@ var PickTimeUpload = React.createClass({
 				trackDuration: this.props.track.duration,
 				SC_ID: this.props.track.id
 			},
-			success: function success(data) {
+			success: data => {
 				console.log(data);
-				_this.props.closeWindow();
+				this.props.closeWindow();
 			},
-			error: function error(err) {
+			error: err => {
 				console.log(err);
 			}
 		});
 	},
 
-	render: function render() {
+	render: function () {
 		return React.createElement(
 			"div",
 			{ className: "pick-time-sc-sync" },
@@ -2720,19 +2551,11 @@ var PickTimeUpload = React.createClass({
 module.exports = PickTimeUpload;
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/UI/UI.jsx":60,"react":340,"react-dom":115}],37:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
+var { goToURL } = require("../../../MASAS_functions.jsx");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var goToURL = _require.goToURL;
-
-var _require2 = require("../../containers/UI/UI.jsx");
-
-var Button = _require2.Button;
-
+var { Button } = require("../../containers/UI/UI.jsx");
 var Body = require("../../containers/UI/Body.jsx");
 
 var UploadSCItem = require("../../containers/UploadSC/UploadSCItem.jsx");
@@ -2745,7 +2568,7 @@ var UploadSC = React.createClass({
 		// choosingTime: React.PropTypes.object
 	},
 
-	getInitialState: function getInitialState() {
+	getInitialState: function () {
 		return {
 			// triggerSpinnerStart: 1,
 			isConnectedSoundcloud: SC.isConnected(), // IS USER CONNECTED TO SOUNDCLOUD
@@ -2756,69 +2579,61 @@ var UploadSC = React.createClass({
 	},
 
 	// syncingSong: null,					// song currently syncing
-	componentWillMount: function componentWillMount() {
+	componentWillMount: function () {
 		this.props.updateTitle('SC Sync', '0');
 		if (this.state.isConnectedSoundcloud) this.getUserTracks();
 	},
 
-	getUserTracks: function getUserTracks() {
-		var _this = this;
-
+	getUserTracks: function () {
 		$.ajax({
 			type: "GET",
 			url: 'api/users/' + this.props.userPk + '/',
 
 			// -u"<client_id>:<client_secret>"
-			success: function success(data) {
+			success: data => {
 				console.log(data);
-				_this.setState({ masasUserTracks: data.songs });
-				_this.getUserSCTracks();
+				this.setState({ masasUserTracks: data.songs });
+				this.getUserSCTracks();
 			},
-			error: function error(err) {
+			error: err => {
 				console.log(err);
 			}
 		});
 	},
 
-	getUserSCTracks: function getUserSCTracks() {
-		var _this2 = this;
-
-		SC.get('me/favorites', { limit: 100 }).then(function (response) {
+	getUserSCTracks: function () {
+		SC.get('me/favorites', { limit: 100 }).then(response => {
 			// async call to SC servers
-			_this2.setState({ soundcloudUserTracks: response });
-			console.log(_this2.state.soundcloudUserTracks);
+			this.setState({ soundcloudUserTracks: response });
+			console.log(this.state.soundcloudUserTracks);
 		});
 		// SC.get('tracks', {limit: 200, genre: 'house', ids: '246013120,246012982', duration: {to: 111111}})
 	},
 
-	connectToSC: function connectToSC() {
-		var _this3 = this;
-
-		SC.connect().then(function () {
-			_this3.setState({ isConnectedSoundcloud: true });
-			SC.get('/me').then(function (r) {
+	connectToSC: function () {
+		SC.connect().then(() => {
+			this.setState({ isConnectedSoundcloud: true });
+			SC.get('/me').then(r => {
 				console.log(r.username);
 				// store suername for mobile
-				_this3.setState({ SCusername: r.username });
+				this.setState({ SCusername: r.username });
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
-				_this3.getUserTracks();
-			}).catch(function (err) {
+				this.getUserTracks();
+			}).catch(err => {
 				console.log(err);
-				_this3.setState({ SCusername: null });
+				this.setState({ SCusername: null });
 			});
-			_this3.getUserTracks();
+			this.getUserTracks();
 		}).catch(function (error) {
 			alert('Error: ' + error.message);
 		});
 	},
 
-	tracksTable: function tracksTable() {
-		var _this4 = this;
-
-		if (this.state.soundcloudUserTracks) return this.state.soundcloudUserTracks.map(function (track) {
+	tracksTable: function () {
+		if (this.state.soundcloudUserTracks) return this.state.soundcloudUserTracks.map(track => {
 			var synced = false;
-			if (_this4.state.masasUserTracks.filter(function (song) {
+			if (this.state.masasUserTracks.filter(function (song) {
 				return song.SC_ID === track.id;
 			}).length) synced = true;
 
@@ -2826,11 +2641,11 @@ var UploadSC = React.createClass({
 		});
 	},
 
-	logoutSC: function logoutSC() {
+	logoutSC: function () {
 		location.reload();
 	},
 
-	render: function render() {
+	render: function () {
 		if (this.props.choosingTime) return React.createElement(
 			Body,
 			null,
@@ -2922,8 +2737,6 @@ var UploadSC = React.createClass({
 module.exports = UploadSC;
 
 },{"../../../MASAS_functions.jsx":1,"../../containers/UI/Body.jsx":54,"../../containers/UI/UI.jsx":60,"../../containers/UploadSC/PickTimeUpload.jsx":61,"../../containers/UploadSC/UploadSCItem.jsx":63,"react":340,"react-dom":115}],38:[function(require,module,exports){
-"use strict";
-
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -2941,14 +2754,14 @@ var UploadSCItem = React.createClass({
 		track: React.PropTypes.object },
 
 	// song info
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function () {},
 
-	showSyncScreen: function showSyncScreen() {
+	showSyncScreen: function () {
 		this.props.chooseTime(this.props.track);
 	},
 
-	render: function render() {
-		var millisToMinutesAndSeconds = function millisToMinutesAndSeconds(millis) {
+	render: function () {
+		const millisToMinutesAndSeconds = function (millis) {
 			var minutes = Math.floor(millis / 60000);
 			var seconds = (millis % 60000 / 1000).toFixed(0);
 			return minutes + ":" + (seconds < 10 ? '0' : '') + seconds; // millisToMinutesAndSeconds(298999) =>  "4:59"
@@ -2998,17 +2811,13 @@ var UploadSCItem = React.createClass({
 module.exports = UploadSCItem;
 
 },{"react":340,"react-dom":115}],39:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var App = require('../components/App.jsx');
 
-var _require = require("../../MASAS_functions.jsx");
-
-var _logInWithToken = _require.logInWithToken;
+var { logInWithToken } = require("../../MASAS_functions.jsx");
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
 	return {
 		value: state.counterReducer.counter,
@@ -3020,18 +2829,10 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		onIncrement: function onIncrement() {
-			return dispatch({ type: 'INCREMENT_COUNTER' });
-		},
-		onDecrement: function onDecrement() {
-			return dispatch({ type: 'DECREMENT_COUNTER' });
-		},
-		onSetNavSidebarOpen: function onSetNavSidebarOpen() {
-			return dispatch({ type: 'TOOGLE_NAV_SIDEBAR' });
-		},
-		logInWithToken: function logInWithToken(authToken) {
-			return _logInWithToken(dispatch, authToken);
-		}
+		onIncrement: () => dispatch({ type: 'INCREMENT_COUNTER' }),
+		onDecrement: () => dispatch({ type: 'DECREMENT_COUNTER' }),
+		onSetNavSidebarOpen: () => dispatch({ type: 'TOOGLE_NAV_SIDEBAR' }),
+		logInWithToken: authToken => logInWithToken(dispatch, authToken)
 	};
 }
 
@@ -3039,7 +2840,6 @@ var App = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
 module.exports = App;
 
 },{"../../MASAS_functions.jsx":1,"../components/App.jsx":14,"react-redux":118}],40:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Footer = require('../../components/Footer/Footer.jsx');
@@ -3058,17 +2858,11 @@ var Footer = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Footer);
 module.exports = Footer;
 
 },{"../../components/Footer/Footer.jsx":15,"react-redux":118}],41:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var Header = require('../../components/Header/Header.jsx');
-
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
+var { browserHistory } = require('react-router');
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
   return {
     pageType: state.appReducer.pageType,
@@ -3080,9 +2874,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
   return {
-    onSetNavSidebarOpen: function onSetNavSidebarOpen() {
-      return dispatch({ type: 'TOOGLE_NAV_SIDEBAR' });
-    }
+    onSetNavSidebarOpen: () => dispatch({ type: 'TOOGLE_NAV_SIDEBAR' })
   };
 }
 
@@ -3090,32 +2882,51 @@ var Header = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);
 module.exports = Header;
 
 },{"../../components/Header/Header.jsx":16,"react-redux":118,"react-router":152}],42:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var HeaderDropdown = require('../../components/Header/HeaderDropdown.jsx');
-
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
+var { browserHistory } = require('react-router');
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
-		userLoggedIn: state.appReducer.userLoggedIn
+		// userLoggedIn: state.appReducer.userLoggedIn,
+		username: state.headerReducer.username
 	};
 }
 
-var logout = function logout(dispatch) {
-	dispatch({ type: 'LOGOUT' });
-};
-
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
+	var logout = () => {
+		dispatch({ type: 'LOGOUT' });
+	};
+
+	var getUsername = MASASuser => {
+		console.log(MASASuser);
+		var header = "Bearer " + MASASuser;
+		$.ajax({
+			type: "GET",
+			url: 'api/check-user/',
+			headers: {
+				"Authorization": header
+			},
+			success: data => {
+				console.log(data);
+				var username = data.user;
+				if (username.length > 13) username = username.substr(0, 13) + "...";
+
+				// document.getElementById('username-header').innerHTML = username
+				dispatch({ type: 'SET_USERNAME', username: username });
+			},
+			error: err => {
+				console.log(err);
+			}
+		});
+	};
+
 	return {
-		logout: logout.bind(null, dispatch)
+		logout: logout,
+		getUsername: getUsername
 	};
 }
 
@@ -3123,17 +2934,12 @@ var HeaderDropdown = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Hea
 module.exports = HeaderDropdown;
 
 },{"../../components/Header/HeaderDropdown.jsx":17,"react-redux":118,"react-router":152}],43:[function(require,module,exports){
-'use strict';
 
 var ReactRedux = require("react-redux");
 var Home = require('../../components/Home/Home.jsx');
-
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
+var { browserHistory } = require('react-router');
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
   return {
     user: state.appReducer.MASASuser
@@ -3143,7 +2949,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
   return {
-    goToLogin: function goToLogin() {
+    goToLogin: () => {
       browserHistory.push('/login');
     }
   };
@@ -3153,8 +2959,6 @@ var Home = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 module.exports = Home;
 
 },{"../../components/Home/Home.jsx":18,"react-redux":118,"react-router":152}],44:[function(require,module,exports){
-"use strict";
-
 var ReactRedux = require("react-redux");
 var Likes = require('../../components/Likes/Likes.jsx');
 
@@ -3167,26 +2971,26 @@ function mapStateToProps(state) {
 	};
 }
 
-var _getLikes = function _getLikes(dispatch, userPk) {
+var getLikes = (dispatch, userPk) => {
 	$.ajax({
 		type: "GET",
 		url: 'api/users/' + userPk + '/',
 
 		// -u"<client_id>:<client_secret>"
-		success: function success(data) {
+		success: data => {
 			console.log(data);
 			// get songs from the likes relationship
-			var idString = data.userProfile.likes.map(function (like) {
+			var idString = data.userProfile.likes.map(like => {
 				return like.SC_ID;
 			}).join();
 
-			SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
+			SC.get('tracks', { limit: 200, ids: idString }).then(response => {
 				console.log(response);
 				// this.setState({userInfo: data, userSCSongs: response})
 				dispatch({ type: 'UPDATE_LIKES', SCinfo: response, userLikes: data.userProfile.likes });
 			});
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
@@ -3195,12 +2999,8 @@ var _getLikes = function _getLikes(dispatch, userPk) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
-		},
-		getLikes: function getLikes(userPk) {
-			return _getLikes(dispatch, userPk);
-		}
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType }),
+		getLikes: userPk => getLikes(dispatch, userPk)
 	};
 }
 
@@ -3208,8 +3008,6 @@ var Likes = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Likes);
 module.exports = Likes;
 
 },{"../../components/Likes/Likes.jsx":20,"react-redux":118}],45:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var LikesItem = require('../../components/Likes/LikesItem.jsx');
 
@@ -3221,9 +3019,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		playNewSong: function playNewSong(songToPlay) {
-			return dispatch({ type: 'PLAY_NEW_SONG', song: songToPlay });
-		}
+		playNewSong: songToPlay => dispatch({ type: 'PLAY_NEW_SONG', song: songToPlay })
 	};
 }
 
@@ -3231,7 +3027,6 @@ var LikesItem = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesIte
 module.exports = LikesItem;
 
 },{"../../components/Likes/LikesItem.jsx":21,"react-redux":118}],46:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var LikesWrapper = require('../../components/Likes/LikesWrapper.jsx');
@@ -3254,28 +3049,24 @@ var LikesWrapper = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Likes
 module.exports = LikesWrapper;
 
 },{"../../components/Likes/LikesWrapper.jsx":22,"react-redux":118}],47:[function(require,module,exports){
-'use strict';
 
 var ReactRedux = require("react-redux");
 var LoginForm = require('../../components/Login/LoginForm.jsx');
 
 var Cookie = require('js-cookie');
 
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
+var { browserHistory } = require('react-router');
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
 	return {};
 }
 
-var updateCookie = function updateCookie(userToken) {
+var updateCookie = userToken => {
 	Cookie.set('MASAS_authToken', userToken);
 };
 
-var getUserPk = function getUserPk(dispatch, userToken) {
+var getUserPk = (dispatch, userToken) => {
 	var header = "Bearer " + userToken;
 	$.ajax({
 		type: "GET",
@@ -3283,23 +3074,23 @@ var getUserPk = function getUserPk(dispatch, userToken) {
 		headers: {
 			"Authorization": header
 		},
-		success: function success(data) {
+		success: data => {
 			console.log(data);
 			var pk = data.userPk;
 
 			dispatch({ type: 'UPDATE_USER_PK', pk: pk });
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
 };
 
-var loginFB = function loginFB(dispatch) {
+var loginFB = dispatch => {
 	if (typeof FB === "undefined") return 0;
 
 	console.log('hey');
-	FB.login(function (response) {
+	FB.login(response => {
 		if (response.status === 'connected') {
 			// Logged into your app and Facebook.
 			console.log(FB.getAccessToken());
@@ -3314,7 +3105,7 @@ var loginFB = function loginFB(dispatch) {
 					backend: "facebook",
 					token: FB.getAccessToken()
 				},
-				success: function success(data) {
+				success: data => {
 					console.log(data);
 					dispatch({ type: 'LOGIN', token: data.access_token });
 					browserHistory.push('/');
@@ -3322,7 +3113,7 @@ var loginFB = function loginFB(dispatch) {
 
 					updateCookie(data.access_token);
 				},
-				error: function error(err) {
+				error: err => {
 					console.log(err);
 					dispatch({ type: 'LOGOUT' });
 				}
@@ -3339,7 +3130,7 @@ var loginFB = function loginFB(dispatch) {
 	});
 };
 
-var login = function login(dispatch) {
+var login = dispatch => {
 	var username = document.getElementById('login-username-input').value;
 	var password = document.getElementById('login-password-input').value;
 
@@ -3354,7 +3145,7 @@ var login = function login(dispatch) {
 			client_secret: "aNXFRxyW20wBDLmTlf4ntmFKYSQ7qvig3PSRLlSxBYfxpmFPnh9JJz876eLMIeZJaoYyM2F6Q7q36QveAWacmiOT14y1z0EwpqO7lQVhXBx037FNGr6mDwYNq1fGfNVl"
 		},
 		// -u"<client_id>:<client_secret>"
-		success: function success(data) {
+		success: data => {
 			console.log(data);
 			dispatch({ type: 'LOGIN', token: data.access_token });
 			browserHistory.push('/');
@@ -3362,7 +3153,7 @@ var login = function login(dispatch) {
 
 			updateCookie(data.access_token);
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 			dispatch({ type: 'LOGOUT' });
 		}
@@ -3372,9 +3163,7 @@ var login = function login(dispatch) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
-		},
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType }),
 		logInFB: loginFB.bind(null, dispatch),
 		login: login.bind(null, dispatch)
 	};
@@ -3384,7 +3173,6 @@ var LoginForm = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginFor
 module.exports = LoginForm;
 
 },{"../../components/Login/LoginForm.jsx":23,"js-cookie":66,"react-redux":118,"react-router":152}],48:[function(require,module,exports){
-'use strict';
 
 var ReactRedux = require("react-redux");
 var SignUpForm = require('../../components/Login/SignUp.jsx');
@@ -3397,9 +3185,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: 'Sign-up', pageType: '0' });
-		}
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: 'Sign-up', pageType: '0' })
 	};
 }
 
@@ -3407,8 +3193,6 @@ var SignUpForm = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SignUpF
 module.exports = SignUpForm;
 
 },{"../../components/Login/SignUp.jsx":24,"react-redux":118}],49:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var NavSidebar = require('../../components/NavSidebar/NavSidebar.jsx');
 
@@ -3422,9 +3206,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		toogleSidebar: function toogleSidebar() {
-			return dispatch({ type: 'TOOGLE_NAV_SIDEBAR' });
-		}
+		toogleSidebar: () => dispatch({ type: 'TOOGLE_NAV_SIDEBAR' })
 	};
 }
 
@@ -3432,19 +3214,11 @@ var NavSidebar = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NavSide
 module.exports = NavSidebar;
 
 },{"../../components/NavSidebar/NavSidebar.jsx":25,"react-redux":118}],50:[function(require,module,exports){
-"use strict";
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var ReactRedux = require("react-redux");
 var Player = require('../../components/Player/PlayerBar.jsx');
-
-var _require = require("../../../MASAS_functions.jsx");
-
-var getCookie = _require.getCookie;
+var { getCookie } = require("../../../MASAS_functions.jsx");
 
 // Which part of the Redux global state does our component want to receive as props?
-
 function mapStateToProps(state) {
 	return {
 		songPlaying: state.playerReducer.songPlaying,
@@ -3458,7 +3232,7 @@ function mapStateToProps(state) {
 	};
 }
 
-var _pause = function _pause(dispatch) {
+var pause = function (dispatch) {
 	console.log('pausing');
 	// pause player
 	$("#jquery_jplayer_1").jPlayer('pause');
@@ -3468,11 +3242,11 @@ var _pause = function _pause(dispatch) {
 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime });
 };
 
-var _resumePlaying = function _resumePlaying(playerAtTime) {
+var resumePlaying = function (playerAtTime) {
 	$("#jquery_jplayer_1").jPlayer("play", playerAtTime);
 };
 
-var updateLikeButton = function updateLikeButton(dispatch, MASAS_songInfo, SC_songInfo, props) {
+var updateLikeButton = function (dispatch, MASAS_songInfo, SC_songInfo, props) {
 	var header = "Bearer " + props.MASASuser;
 	$.ajax({
 		type: "GET",
@@ -3480,10 +3254,10 @@ var updateLikeButton = function updateLikeButton(dispatch, MASAS_songInfo, SC_so
 		headers: {
 			"Authorization": header
 		},
-		success: function success(user) {
+		success: user => {
 			console.log(user);
 
-			var isSongLiked = user.userProfile.likes.filter(function (like) {
+			var isSongLiked = user.userProfile.likes.filter(like => {
 				return like.url === MASAS_songInfo.url;
 			});
 
@@ -3492,13 +3266,13 @@ var updateLikeButton = function updateLikeButton(dispatch, MASAS_songInfo, SC_so
 
 			if (isSongLiked.length === 0) dispatch({ type: 'UNLIKE_SONG' });else dispatch({ type: 'LIKE_SONG' });
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
 };
 
-var _playNewSong = function _playNewSong(dispatch, newProps) {
+var playNewSong = function (dispatch, newProps) {
 	var songId = newProps.songPlaying;
 	console.log(newProps.songPlaying);
 	$.ajax({
@@ -3507,11 +3281,11 @@ var _playNewSong = function _playNewSong(dispatch, newProps) {
 		headers: {
 			// "Authorization": header,
 		},
-		success: function success(data) {
+		success: data => {
 			// check if song is liked
 
 			console.log(data);
-			SC.get('/tracks/' + data.SC_ID).then(function (response) {
+			SC.get('/tracks/' + data.SC_ID).then(response => {
 				console.log(response);
 				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3";
 				// console.log(streamURL)
@@ -3519,7 +3293,7 @@ var _playNewSong = function _playNewSong(dispatch, newProps) {
 				// reinit player with new media url
 				$("#jquery_jplayer_1").jPlayer("destroy");
 				$("#jquery_jplayer_1").jPlayer({
-					ready: function ready() {
+					ready: function () {
 						$(this).jPlayer("setMedia", {
 							m4a: streamURL,
 							oga: streamURL
@@ -3542,18 +3316,18 @@ var _playNewSong = function _playNewSong(dispatch, newProps) {
 
 				// check if song liked
 				updateLikeButton(dispatch, data, response, newProps);
-			}).catch(function (err) {
+			}).catch(err => {
 				console.log(err);
 			});
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
 };
 
 // songId = url to django rest for this song
-var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
+var toggleSongLike = function (dispatch, userToken, songId) {
 	// CHECK IF SONG IS LIKED FROM REST API
 	// fetch user info
 	// compare liked songs with songId
@@ -3572,7 +3346,7 @@ var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
 		headers: {
 			"Authorization": header
 		},
-		success: function success(data) {
+		success: data => {
 			console.log(data);
 			// GET USER LIKES FROM USER.PK
 			$.ajax({
@@ -3581,18 +3355,18 @@ var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
 				headers: {
 					"Authorization": header
 				},
-				success: function success(user) {
+				success: user => {
 					console.log(user);
 					var likes = user.userProfile.likes;
 
-					var isSongLiked = user.userProfile.likes.filter(function (like) {
+					var isSongLiked = user.userProfile.likes.filter(like => {
 						return like.url === songId;
 					});
 
 					if (isSongLiked.length === 0) {
-						var likes = [].concat(_toConsumableArray(user.userProfile.likes.map(function (like) {
+						var likes = [...user.userProfile.likes.map(like => {
 							return like.url;
-						})), [songId]);
+						}), songId];
 
 						var songDATA = {
 							"url": "http://localhost:8000/api/song/13/",
@@ -3617,11 +3391,11 @@ var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
 								"likess": [{ 'url': songId.substring(songId.substring(0, songId.length - 1).lastIndexOf('/') + 1, songId.length - 1) }],
 								"dislikes": [songId]
 							}),
-							success: function success(data) {
+							success: data => {
 								// update UI
 								dispatch({ type: 'LIKE_SONG' });
 							},
-							error: function error(err) {
+							error: err => {
 								console.log(err);
 							}
 						});
@@ -3640,22 +3414,22 @@ var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
 								"url": "http://localhost:8000/api/user-profiles/1/",
 								"dislikes": [songId]
 							}),
-							success: function success(data) {
+							success: data => {
 								// update UI
 								dispatch({ type: 'UNLIKE_SONG' });
 							},
-							error: function error(err) {
+							error: err => {
 								console.log(err);
 							}
 						});
 					}
 				},
-				error: function error(err) {
+				error: err => {
 					console.log(err);
 				}
 			});
 		},
-		error: function error(err) {
+		error: err => {
 			console.log(err);
 		}
 	});
@@ -3668,21 +3442,11 @@ var _toggleSongLike = function _toggleSongLike(dispatch, userToken, songId) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		play: function play() {
-			return dispatch({ type: 'PLAY' });
-		},
-		pause: function pause(pausingAtTime) {
-			return _pause(dispatch, pausingAtTime);
-		}, // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
-		resumePlaying: function resumePlaying(playerAtTime) {
-			return _resumePlaying(playerAtTime);
-		},
-		playNewSong: function playNewSong(newProps) {
-			return _playNewSong(dispatch, newProps);
-		},
-		toggleSongLike: function toggleSongLike(userToken, songId) {
-			return _toggleSongLike(dispatch, userToken, songId);
-		}
+		play: () => dispatch({ type: 'PLAY' }),
+		pause: pausingAtTime => pause(dispatch, pausingAtTime), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		resumePlaying: playerAtTime => resumePlaying(playerAtTime),
+		playNewSong: newProps => playNewSong(dispatch, newProps),
+		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId)
 	};
 }
 
@@ -3690,8 +3454,6 @@ var Player = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Player);
 module.exports = Player;
 
 },{"../../../MASAS_functions.jsx":1,"../../components/Player/PlayerBar.jsx":26,"react-redux":118}],51:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var Profile = require('../../components/Profile/Profile.jsx');
 
@@ -3706,9 +3468,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
-		}
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType })
 	};
 }
 
@@ -3716,7 +3476,6 @@ var Profile = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Profile);
 module.exports = Profile;
 
 },{"../../components/Profile/Profile.jsx":27,"react-redux":118}],52:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var ProfileWrapper = require('../../components/Profile/ProfileWrapper.jsx');
@@ -3739,8 +3498,6 @@ var ProfileWrapper = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Pro
 module.exports = ProfileWrapper;
 
 },{"../../components/Profile/ProfileWrapper.jsx":28,"react-redux":118}],53:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var TrackItem = require('../../components/Profile/TrackItem.jsx');
 
@@ -3752,9 +3509,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		playNewSong: function playNewSong(songToPlay) {
-			return dispatch({ type: 'PLAY_NEW_SONG', song: songToPlay });
-		}
+		playNewSong: songToPlay => dispatch({ type: 'PLAY_NEW_SONG', song: songToPlay })
 	};
 }
 
@@ -3762,7 +3517,6 @@ var TrackItem = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TrackIte
 module.exports = TrackItem;
 
 },{"../../components/Profile/TrackItem.jsx":29,"react-redux":118}],54:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Body = require('../../components/UI/Body.jsx');
@@ -3785,7 +3539,6 @@ var Body = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Body);
 module.exports = Body;
 
 },{"../../components/UI/Body.jsx":30,"react-redux":118}],55:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Button = require('../../components/UI/Button.jsx');
@@ -3804,7 +3557,6 @@ var Button = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Button);
 module.exports = Button;
 
 },{"../../components/UI/Button.jsx":31,"react-redux":118}],56:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Checkbox = require('../../components/UI/Checkbox.jsx');
@@ -3823,8 +3575,6 @@ var Checkbox = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Checkbox)
 module.exports = Checkbox;
 
 },{"../../components/UI/Checkbox.jsx":32,"react-redux":118}],57:[function(require,module,exports){
-"use strict";
-
 var ReactRedux = require("react-redux");
 var Button = require('../../components/UI/Link.jsx');
 
@@ -3842,7 +3592,6 @@ var Button = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Button);
 module.exports = Button;
 
 },{"../../components/UI/Link.jsx":33,"react-redux":118}],58:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Password = require('../../components/UI/Password.jsx');
@@ -3861,7 +3610,6 @@ var Password = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Password)
 module.exports = Password;
 
 },{"../../components/UI/Password.jsx":34,"react-redux":118}],59:[function(require,module,exports){
-"use strict";
 
 var ReactRedux = require("react-redux");
 var Textbox = require('../../components/UI/Textbox.jsx');
@@ -3880,8 +3628,6 @@ var Textbox = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Textbox);
 module.exports = Textbox;
 
 },{"../../components/UI/Textbox.jsx":35,"react-redux":118}],60:[function(require,module,exports){
-'use strict';
-
 var Body = require('./Body.jsx');
 var Button = require('./Button.jsx');
 var Checkbox = require('./Checkbox.jsx');
@@ -3901,8 +3647,6 @@ UI.Textbox = Textbox;
 module.exports = UI;
 
 },{"./Body.jsx":54,"./Button.jsx":55,"./Checkbox.jsx":56,"./Link.jsx":57,"./Password.jsx":58,"./Textbox.jsx":59}],61:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var PickTimeUpload = require('../../components/UploadSC/PickTimeUpload.jsx');
 
@@ -3917,12 +3661,8 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
-		},
-		closeWindow: function closeWindow() {
-			return dispatch({ type: 'SYNC_SONG', song: null });
-		}
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType }),
+		closeWindow: () => dispatch({ type: 'SYNC_SONG', song: null })
 	};
 }
 
@@ -3930,8 +3670,6 @@ var PickTimeUpload = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Pic
 module.exports = PickTimeUpload;
 
 },{"../../components/UploadSC/PickTimeUpload.jsx":36,"react-redux":118}],62:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var UploadSC = require('../../components/UploadSC/UploadSC.jsx');
 
@@ -3948,9 +3686,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
-		}
+		updateTitle: (title, pageType) => dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType })
 	};
 }
 
@@ -3958,8 +3694,6 @@ var UploadSC = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UploadSC)
 module.exports = UploadSC;
 
 },{"../../components/UploadSC/UploadSC.jsx":37,"react-redux":118}],63:[function(require,module,exports){
-'use strict';
-
 var ReactRedux = require("react-redux");
 var UploadSCItem = require('../../components/UploadSC/UploadSCItem.jsx');
 
@@ -3971,9 +3705,7 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		chooseTime: function chooseTime(song) {
-			return dispatch({ type: 'SYNC_SONG', song: song });
-		}
+		chooseTime: song => dispatch({ type: 'SYNC_SONG', song: song })
 	};
 }
 

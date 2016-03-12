@@ -5,7 +5,7 @@ var ReactDOM = require("react-dom")
 var { Textbox, Link } = require("../../containers/UI/UI.jsx")
 var {goToURL} = require("../../../MASAS_functions.jsx")
 
-import Sidebar from "react-sidebar"
+var Sidebar = require("react-sidebar")
 
 // var Template = (props) => {
 

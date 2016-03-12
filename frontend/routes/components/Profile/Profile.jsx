@@ -2,7 +2,7 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 
 var ProfileWrapper = require("../../containers/Profile/ProfileWrapper.jsx")
-import Sidebar from "react-sidebar"
+var Sidebar = require("react-sidebar")
 var NavSidebar = require("../../containers/NavSidebar/NavSidebar.jsx")
 var Header = require("../../containers/Header/Header.jsx")
 var Footer = require("../../containers/Footer/Footer.jsx")
