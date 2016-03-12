@@ -32,7 +32,6 @@ describe('fetch current user', () => {
 		const { getUsername } = require('../ajaxCalls.jsx')
 		const dummyCallback = () => {}
 
-		console.log(getUsername)
 		const userName = await getUsername("4N2zd3Osw3Fo7togfYoFPXtHlt9jGD")
 		expect(userName).toEqual({userPk: "4", user: "thomas", auth: "4N2zd3Osw3Fo7togfYoFPXtHlt9jGD"})
 	})

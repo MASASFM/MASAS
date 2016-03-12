@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
-var App = ReactRedux.connect(
+App = ReactRedux.connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(App)

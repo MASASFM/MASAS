@@ -12,7 +12,6 @@ ajaxCalls.getUsername = (dispatch, MASASuser) => {
 			"Authorization": header,
 		},
 		success: (data) => {
-			console.log(data)
 			var username = data.user
 			if (username.length > 13)
 				username = username.substr(0,13) + "..."

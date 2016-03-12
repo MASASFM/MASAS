@@ -1,7 +1,7 @@
 import React from 'react'
 
 var Home = React.createClass({
-	render() {
+	render: function() {
 		return <div>home</div>
 	}
 })
