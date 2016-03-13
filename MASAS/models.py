@@ -31,5 +31,8 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    @property
+    def like_objects(self):
+        return self.likes.through.objects.all()
 
 Like = User.likes.rel.through

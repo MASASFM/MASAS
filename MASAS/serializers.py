@@ -7,12 +7,6 @@ from rest_framework import serializers
 from models import Like, Song, User
 
 
-class LikeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Like
-        fields = ('user', 'song')
-
-
 class SongSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, data):
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
@@ -36,9 +30,18 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'dateUploaded'
         )
 
+
+class LikeSerializer(serializers.HyperlinkedModelSerializer):
+    song = SongSerializer()
+
+    class Meta:
+        model = Like
+        fields = ('pk', 'url', 'user', 'song')
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     songs = SongSerializer(many=True)
-    likes = SongSerializer(many=True)
+    likes = LikeSerializer(source='like_objects', many=True)
 
     class Meta:
     	model = User
