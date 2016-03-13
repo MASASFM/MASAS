@@ -4,7 +4,7 @@ from django.conf import settings
 
 from rest_framework import serializers
 
-from models import Like, Song, User
+from models import Like, Play, Song, User
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
@@ -29,6 +29,12 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'SC_ID',
             'dateUploaded'
         )
+
+
+class PlaySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Play
+        fields = ('pk', 'url', 'user', 'song')
 
 
 class LikeSerializer(serializers.HyperlinkedModelSerializer):

@@ -14,9 +14,15 @@ router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'songs', views.SongViewSet)
 router.register(r'likes', views.LikeViewSet)
+router.register(r'plays', views.PlayViewSet)
 
 
 urlpatterns = format_suffix_patterns([
+    url(
+        r'^api/next-song/$',
+        views.NextSongView.as_view(),
+        name='next-song'
+    ),
     url(
         r'^api/check-user/$',
         check_user,

@@ -34,6 +34,12 @@ class Like(models.Model):
         unique_together = ('user', 'song'),
 
 
+class Play(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('User')
+    song = models.ForeignKey('Song')
+
+
 class User(AbstractUser):
     likes = models.ManyToManyField(Song, through=Like, null=True, related_name='likedBy', blank=True)
     dislikes = models.ManyToManyField(Song, null=True, related_name='dislikedBy', blank=True)

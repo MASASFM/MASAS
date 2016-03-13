@@ -5,12 +5,12 @@ from django.views import generic
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
 
 from permissions import (
-    IsOwnerOrReadOnly,
     IsUserOrReadOnly,
-    isLikesOwnerOrReadOnly,
-    IsRequestUserOrReadOnly,
+    IsOwnerOrReadOnly,
+    NoDelete,
 )
 
+from rest_framework import decorators
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import serializers
@@ -34,11 +34,12 @@ from rest_framework.views import APIView
 
 from serializers import (
     LikeSerializer,
+    PlaySerializer,
     SongSerializer,
     UserSerializer,
 )
 
-from models import Like, Song, User
+from models import Like, Play, Song, User
 
 
 class BaseModelViewSetMixin(object):
@@ -49,10 +50,20 @@ class BaseModelViewSetMixin(object):
     )
 
 
+class PlayViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly,
+        NoDelete,
+    )
+    queryset = Play.objects.all()
+    serializer_class = PlaySerializer
+
+
 class LikeViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
-        IsRequestUserOrReadOnly
+        IsOwnerOrReadOnly,
     )
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
@@ -61,7 +72,7 @@ class LikeViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
-        IsRequestUserOrReadOnly
+        IsUserOrReadOnly
     )
     queryset = User.objects.prefetch_related('like_set__song', 'songs')
     serializer_class = UserSerializer
@@ -70,6 +81,21 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+
+
+class NextSongView(APIView):
+    serializer_class = SongSerializer
+
+    def get(self, request, format=None):
+        serializer = self.serializer_class(
+            instance=Song.objects.first(),
+            context=dict(
+                request=request,
+                format=format,
+                view=self,
+            ),
+        )
+        return Response(serializer.data)
 
 
 class CheckUserViewSet(BaseModelViewSetMixin, APIView):
