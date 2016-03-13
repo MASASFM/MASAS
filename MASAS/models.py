@@ -18,7 +18,7 @@ class Song(models.Model):
         related_name='songs',
     )
     trackDuration = models.IntegerField(help_text='in ms')
-    SC_ID = models.IntegerField()
+    SC_ID = models.IntegerField(unique=True)
 
 
 class UserManager(UserManager):
