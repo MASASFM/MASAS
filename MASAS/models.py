@@ -30,6 +30,9 @@ class Like(models.Model):
     user = models.ForeignKey('User')
     song = models.ForeignKey('Song')
 
+    class Meta:
+        unique_together = ('user', 'song'),
+
 
 class User(AbstractUser):
     likes = models.ManyToManyField(Song, through=Like, null=True, related_name='likedBy', blank=True)
