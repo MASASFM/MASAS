@@ -40,7 +40,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'trackDuration',
             'timeInterval',
             'SC_ID',
-            'dateUploaded'
+            'dateUploaded',
         )
 
 

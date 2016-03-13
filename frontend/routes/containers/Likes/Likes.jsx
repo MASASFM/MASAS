@@ -20,12 +20,12 @@ var getLikes = (dispatch, userPk) => {
 		success: (data) => {
 			console.log(data)
 			// get songs from the likes relationship
-			var idString = data.userProfile.likes.map((like) => {return like.SC_ID}).join()
+			var idString = data.likes.map((like) => {return like.SC_ID}).join()
 			
 			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
 				console.log(response)
 				// this.setState({userInfo: data, userSCSongs: response})
-				dispatch({type: 'UPDATE_LIKES', SCinfo: response, userLikes: data.userProfile.likes})
+				dispatch({type: 'UPDATE_LIKES', SCinfo: response, userLikes: data.likes})
 			})
 		},
 		error: (err) => {

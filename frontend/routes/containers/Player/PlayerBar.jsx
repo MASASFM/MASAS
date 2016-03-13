@@ -153,32 +153,22 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 						return like.url === songId
 					})
 
+					// song not liked yet
 					if(isSongLiked.length === 0) {
-						var likes = [ ...user.likes.map((like) => { return like.url}), songId]
-
-						var songDATA = {
-						    "url": "http://localhost:8000/api/song/13/",
-						    "trackTitle": "16. Eminem- Rock Bottom",
-						    "trackArtist": "http://localhost:8000/api/users/4/",
-						    "trackDuration": 189588,
-						    "SC_ID": 104864854,
-						    "dateUploaded": "2016-02-11T15:24:23.085216Z"
-						}
-						console.log(likes)
 						$.ajax({
-							type: "PATCH",
-							url: user.url,	
+							type: "POST",
+							url: "/api/likes/",	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
-								"Content-Type": "application/json",
-								dataType: "json",
+								// "Content-Type": "application/json",
+								// dataType: "json",
 							},
-							data: JSON.stringify({
-									"url": "http://localhost:8000/api/user-profiles/1/",
-									"likess": [{'url': songId.substring( songId.substring(0, songId.length - 1).lastIndexOf('/')+1, songId.length-1 )}],
-									"dislikes": [songId]
-							}),
+							data: {
+								// "likes": likes,
+								user: user.url,
+								song: songId
+							},
 							success: (data) => {
 								// update UI
 								dispatch({type: 'LIKE_SONG'})
@@ -188,20 +178,14 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 							},
 						})
 					} else {
+
 						$.ajax({
-							type: "PATCH",
-							url: user.url,	
+							type: "DELETE",
+							url: "/api/likes/" + likeId,	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
-								"Content-Type": "application/json",
-								dataType: "json",
 							},
-							data: JSON.stringify({
-									// "likes": likes,
-									"url": "http://localhost:8000/api/user-profiles/1/",
-									"dislikes": [songId]
-							}),
 							success: (data) => {
 								// update UI
 								dispatch({type: 'UNLIKE_SONG'})
@@ -210,6 +194,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 								console.log(err)
 							},
 						})
+						
 					}
 				},
 				error: (err) => {

@@ -9,8 +9,6 @@ var UploadSCItem = require("../../containers/UploadSC/UploadSCItem.jsx")
 var PickTimeUpload = require("../../containers/UploadSC/PickTimeUpload.jsx")
 
 
-
-
 var UploadSC = React.createClass({
 	propTypes: {
 		// choosingTime: React.PropTypes.object
@@ -24,6 +22,8 @@ var UploadSC = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		// update masas user track prop to have the sync icon updatd in real time
+		console.log(this.props)
+		console.log(nextProps)
 		if(this.props.choosingTime !== nextProps.choosingTime)
 			this.getUserTracks()
 	},
