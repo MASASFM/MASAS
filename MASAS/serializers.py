@@ -1,10 +1,21 @@
 import soundcloud
 
+from django import http
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 
 from rest_framework import serializers
+from rest_framework.response import Response
 
 from models import Like, Play, Song, User
+
+
+class CreateOnlyForMyUserMixin(object):
+    def create(self, data):
+        if self._context['request'].user != data['user']:
+            raise PermissionDenied()
+
+        return super(CreateOnlyForMyUserMixin, self).create(data)
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,7 +48,8 @@ class PlaySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('pk', 'url', 'user', 'song')
 
 
-class LikeSerializer(serializers.HyperlinkedModelSerializer):
+class LikeSerializer(CreateOnlyForMyUserMixin,
+                     serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Like
         fields = ('pk', 'url', 'user', 'song')

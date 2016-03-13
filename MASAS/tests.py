@@ -12,26 +12,40 @@ class LikeTest(test.TestCase):
         for i in range(0, 4):
             self.artist.songs.create(trackDuration=i, SC_ID=i)
 
-        u, c = User.objects.get_or_create(username='test')
-        u.set_password('test')
-        u.save()
+        self.user, c = User.objects.get_or_create(username='test')
+        self.user.set_password('test')
+        self.user.save()
 
         self.client = test.Client()
         self.client.login(username='test', password='test')
 
-    def test_add_liked_to_likes_fails(self):
-        response = self.client.post(
+    def like(self, user, song):
+        return self.client.post(
             reverse('like-list'),
             data={
                 # We're logged in as test user, this should fail
-                'user': reverse('user-detail', args=[self.artist.pk]),
-                'song': reverse('user-detail', args=[1]),
+                'user': reverse('user-detail', args=[user]),
+                'song': reverse('song-detail', args=[song]),
             }
         )
-        self.assertEqual(response.status_code, 400)
 
-    def test_add_liked_to_likes(self):
-        pass
+    def test_add_like_with_wrong_user_fails(self):
+        response = self.like(self.artist.pk, 1)
+        self.assertEqual(response.status_code, 403)
+
+    def test_add_to_likes(self):
+        response = self.like(self.user.pk, 1)
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(
+            list(self.user.likes.values_list('pk', flat=True)),
+            [1]
+        )
+
+    def test_add_liked_to_likes_fails(self):
+        response = self.like(self.user.pk, 1)
+        self.assertEqual(response.status_code, 201)
+        response = self.like(self.user.pk, 1)
+        self.assertEqual(response.status_code, 400)
 
     def test_remove_unliked_from_likes_fails(self):
         pass
@@ -39,7 +53,7 @@ class LikeTest(test.TestCase):
     def test_remove_liked_from_likes(self):
         pass
 
-    def test_add_liked_to_likes_with_wrong_user_fails(self):
+    def test_remove_like_with_wrong_user_fails(self):
         pass
 
     def test_remove_liked_from_likes_with_wrong_user_fails(self):
