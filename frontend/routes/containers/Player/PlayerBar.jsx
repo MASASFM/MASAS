@@ -42,13 +42,14 @@ var updateLikeButton = function(dispatch, MASAS_songInfo, SC_songInfo, props) {
 		success: (user) => {
 			console.log(user)
 
-			var isSongLiked = user.likes.filter( (like) => {
-				return like.url === MASAS_songInfo.url
+			var isSongLiked = user.like_set.filter( (like) => {
+				return like.song.url === MASAS_songInfo.url
 			})
 
 			console.log('isSongLiked')
 			console.log(isSongLiked.length)
 
+			// update player state
 			if (isSongLiked.length === 0)
 				dispatch({type: 'UNLIKE_SONG'})
 			else
@@ -146,12 +147,14 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 					"Authorization": header,
 				},
 				success: (user) => {
-					console.log(user)
-					var likes = user.likes
+					var likes = user.like_set
+					console.log("like ===>", likes)
 
-					var isSongLiked = user.likes.filter( (like) => {
-						return like.url === songId
+					var isSongLiked = user.like_set.filter( (like) => {
+						console.log(like.song.url, songId)
+						return like.song.url === songId
 					})
+					console.log(isSongLiked)
 
 					// song not liked yet
 					if(isSongLiked.length === 0) {
@@ -161,17 +164,15 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
-								// "Content-Type": "application/json",
-								// dataType: "json",
 							},
 							data: {
-								// "likes": likes,
 								user: user.url,
 								song: songId
 							},
 							success: (data) => {
 								// update UI
 								dispatch({type: 'LIKE_SONG'})
+								dispatch({type: 'REFETCH_LIKES'})
 							},
 							error: (err) => {
 								console.log(err)
@@ -179,21 +180,30 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 						})
 					} else {
 
-						$.ajax({
+						// find if song liked
+						console.log()
+						let songLiked = user.like_set.filter( (like) => { return like.song.url === songId } )
+						console.log("song liked ===>", songLiked)
+						if(songLiked.length === 1) {
+							songLiked = isSongLiked[0]
+							$.ajax({
 							type: "DELETE",
-							url: "/api/likes/" + likeId,	
+							url: songLiked.url,	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
 							},
 							success: (data) => {
+								console.log(data)
 								// update UI
 								dispatch({type: 'UNLIKE_SONG'})
+								dispatch({type: 'REFETCH_LIKES'})
 							},
 							error: (err) => {
 								console.log(err)
 							},
 						})
+						}
 						
 					}
 				},

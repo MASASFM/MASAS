@@ -20,15 +20,11 @@ var LikesItem = React.createClass({
 	},
 
 	playTrack: function() {
-		console.log(this.props.MASASinfo)
-		console.log(this.props)
 		this.props.playNewSong(this.props.MASASinfo.url)
 	},
 
 	render: function() {
 		var SCinfo = this.props.SCinfo
-		console.log('rendering')
-		console.log(SCinfo)
 		// if (SCinfo.title.length > 13)
 					// SCinfo.title = SCinfo.title.substr(0,15) + "..."
 
@@ -69,6 +65,6 @@ var LikesItem = React.createClass({
 			</div>
 		)
 	}
-});
+})
 
 module.exports = LikesItem

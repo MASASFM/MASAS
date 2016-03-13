@@ -8,6 +8,7 @@ function mapStateToProps(state) {
 		userLikes: state.likesReducer.userLikes,
 		SCinfo: state.likesReducer.SCinfo,
 		userPk: state.appReducer.MASASuserPk,
+		reFetch: state.likesReducer.reFetch,
 	}
 }
 
@@ -18,15 +19,16 @@ var getLikes = (dispatch, userPk) => {
 
 			 // -u"<client_id>:<client_secret>" 
 		success: (data) => {
-			console.log(data)
-			// get songs from the likes relationship
-			var idString = data.likes.map((like) => {return like.SC_ID}).join()
 			
-			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-				console.log(response)
-				// this.setState({userInfo: data, userSCSongs: response})
-				dispatch({type: 'UPDATE_LIKES', SCinfo: response, userLikes: data.likes})
-			})
+			// get songs from the likes relationship
+			if(data.like_set.length > 0) {
+				var idString = data.like_set.map((like) => {return like.song.SC_ID}).join()
+				SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
+					console.log(response)
+					// this.setState({userInfo: data, userSCSongs: response})
+					dispatch({type: 'UPDATE_LIKES', SCinfo: response, userLikes: data.like_set})
+				})
+			}
 		},
 		error: (err) => {
 			console.log(err)
