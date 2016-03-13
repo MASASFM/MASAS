@@ -16,8 +16,44 @@ var Likes = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		if(nextProps.reFetch !== this.props.reFetch)
-			this.props.getLikes(this.props.userPk)
+		console.log(this.props)
+
+		var isEquivalent = function(a, b) {
+			if(a === null) 
+				a = {}
+
+			if(b === null)
+				b = {}
+			
+			// Create arrays of property names
+			var aProps = Object.getOwnPropertyNames(a)
+			var bProps = Object.getOwnPropertyNames(b)
+
+			// If number of properties is different,
+			// objects are not equivalent
+			if (aProps.length != bProps.length) {
+				return false
+			}
+
+			for (var i = 0; i < aProps.length; i++) {
+				var propName = aProps[i]
+
+				// If values of same property are not equal,
+				// objects are not equivalent
+				if (a[propName] !== b[propName]) 
+				    return false
+			}
+
+			// If we made it this far, objects
+			// are considered equivalent
+			return true
+		}
+		
+		console.log(isEquivalent(nextProps.SCinfo, this.props.SCinfo))
+		if(isEquivalent(nextProps.SCinfo, this.props.SCinfo) && nextProps.reFetch !== this.props.reFetch) {
+				console.log(isEquivalent(nextProps.SCinfo, this.props.SCinfo) && nextProps.reFetch !== this.props.reFetch);
+				console.log("******************"); this.props.getLikes(this.props.userPk); console.log("******************")
+		}
 	},
 
 	componentDidMount: function() {

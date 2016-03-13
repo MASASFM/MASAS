@@ -48,4 +48,4 @@ var Likes = ReactRedux.connect(
   mapStateToProps,
   mapDispatchToProps
 )(Likes)
-module.exports = Likes;
+module.exports = Likes
