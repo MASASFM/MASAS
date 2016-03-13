@@ -41,7 +41,7 @@ class LikeSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     songs = SongSerializer(many=True)
-    likes = LikeSerializer(source='like_objects', many=True)
+    like_set = LikeSerializer(many=True)
 
     class Meta:
     	model = User
@@ -49,13 +49,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'username',
             'email',
-            'groups',
             'songs',
-            'likes',
-            'dislikes'
+            'like_set',
         )
-
-    def update(self, instance, validated_data):
-    	instance.likes.add(validated_data['dislikes'][0])
-    	instance.save()
-    	return instance

@@ -25,14 +25,14 @@ class UserManager(UserManager):
     pass
 
 
+class Like(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('User')
+    song = models.ForeignKey('Song')
+
+
 class User(AbstractUser):
-    likes = models.ManyToManyField(Song, null=True, related_name='likedBy', blank=True)
+    likes = models.ManyToManyField(Song, through=Like, null=True, related_name='likedBy', blank=True)
     dislikes = models.ManyToManyField(Song, null=True, related_name='dislikedBy', blank=True)
 
     objects = UserManager()
-
-    @property
-    def like_objects(self):
-        return self.likes.through.objects.all()
-
-Like = User.likes.rel.through

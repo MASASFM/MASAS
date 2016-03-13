@@ -63,7 +63,7 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
         permissions.IsAuthenticatedOrReadOnly,
         IsRequestUserOrReadOnly
     )
-    queryset = User.objects.all()
+    queryset = User.objects.prefetch_related('like_set__song', 'songs')
     serializer_class = UserSerializer
 
 
