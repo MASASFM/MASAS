@@ -32,16 +32,18 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class LikeSerializer(serializers.HyperlinkedModelSerializer):
-    song = SongSerializer()
-
     class Meta:
         model = Like
         fields = ('pk', 'url', 'user', 'song')
 
 
+class UserLikeSerializer(LikeSerializer):
+    song = SongSerializer()
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     songs = SongSerializer(many=True)
-    like_set = LikeSerializer(many=True)
+    like_set = UserLikeSerializer(many=True)
 
     class Meta:
     	model = User
