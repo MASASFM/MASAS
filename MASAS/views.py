@@ -83,12 +83,19 @@ class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     serializer_class = SongSerializer
 
 
-class NextSongView(APIView):
+class PlayView(APIView):
     serializer_class = SongSerializer
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
+        song = Song.objects.order_by('?').first()
+
+        Play.objects.create(
+            user=request.user,
+            song=song,
+        )
+
         serializer = self.serializer_class(
-            instance=Song.objects.first(),
+            instance=song,
             context=dict(
                 request=request,
                 format=format,

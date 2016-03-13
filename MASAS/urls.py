@@ -19,9 +19,9 @@ router.register(r'plays', views.PlayViewSet)
 
 urlpatterns = format_suffix_patterns([
     url(
-        r'^api/next-song/$',
-        views.NextSongView.as_view(),
-        name='next-song'
+        r'^api/play/$',
+        views.PlayView.as_view(),
+        name='play'
     ),
     url(
         r'^api/check-user/$',

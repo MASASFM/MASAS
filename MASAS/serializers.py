@@ -34,6 +34,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
     	model = Song
     	fields = (
             'url',
+            'pk',
             'trackTitle',
             'trackArtist',
             'trackDuration',
