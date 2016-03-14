@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'social.apps.django_app.default',
     'rest_framework_social_oauth2',
+    'cities_light',
     'MASAS',
 ]
 

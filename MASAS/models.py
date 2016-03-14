@@ -67,7 +67,18 @@ class Play(models.Model):
 
 
 class User(AbstractUser):
+    name = models.CharField(max_length=100, default=None, null=True, blank=True)
+    city = models.ForeignKey('cities_light.City', null=True, blank=True)
+    occupation = models.CharField(max_length=150, null=True, blank=True)
+    avatar_url = models.URLField(null=True, blank=True)
+
     likes = models.ManyToManyField(Song, through=Like, null=True, related_name='likedBy', blank=True)
     dislikes = models.ManyToManyField(Song, null=True, related_name='dislikedBy', blank=True)
 
     objects = UserManager()
+
+
+class UserLink(models.Model):
+    user = models.ForeignKey('User')
+    name = models.CharField(max_length=100, null=True, blank=True)
+    url = models.URLField()

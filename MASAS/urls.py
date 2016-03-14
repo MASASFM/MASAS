@@ -5,6 +5,12 @@ from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
 from rest_framework.urlpatterns import format_suffix_patterns
 
+from cities_light.contrib.restframework3 import (
+    CityModelViewSet,
+    CountryModelViewSet,
+    RegionModelViewSet
+)
+
 from . import views
 
 check_user = views.CheckUserViewSet.as_view()
@@ -17,6 +23,12 @@ router.register(r'likes', views.LikeViewSet)
 router.register(r'plays', views.PlayViewSet)
 router.register(r'time-intervals', views.TimeIntervalViewSet)
 
+router.register(r'cities', CityModelViewSet,
+                base_name='cities-light-api-city')
+router.register(r'countries', CountryModelViewSet,
+                base_name='cities-light-api-country')
+router.register(r'regions', RegionModelViewSet,
+                base_name='cities-light-api-region')
 
 urlpatterns = format_suffix_patterns([
     url(
