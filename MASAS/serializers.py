@@ -28,6 +28,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             SC_ID=data['SC_ID'],
             trackTitle=r.title,
             trackDuration=r.duration,
+            timeInterval=data['timeInterval'],
         )
 
     class Meta:
