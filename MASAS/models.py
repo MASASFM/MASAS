@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
 )
 
 from django.db import models
+from django.db.models import Count
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -23,6 +24,11 @@ class TimeInterval(models.Model):
         return '%s-%s' % (self.start, self.end)
 
 
+class SongManager(models.Manager):
+    def all(self):
+        return self.annotate(play_count=Count('play'))
+
+
 class Song(models.Model):
     dateUploaded = models.DateTimeField(auto_now_add=True)
     trackTitle = models.CharField(max_length=100, blank=True, default='')
@@ -34,6 +40,8 @@ class Song(models.Model):
     trackDuration = models.IntegerField(help_text='in ms')
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
+
+    objects = SongManager()
 
     def __unicode__(self):
         return self.trackTitle
