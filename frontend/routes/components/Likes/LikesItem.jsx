@@ -83,7 +83,7 @@ var LikesItem = React.createClass({
 							<span className="title">Time</span> { this.renderRadioTime() }
 						</div>
 						<div className="plays">
-							<span className="title">Plays</span> 210
+							<span className="title">Plays</span> { this.props.MASASinfo.play_count }
 						</div>
 					</div>
 				</div>

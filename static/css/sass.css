@@ -743,7 +743,8 @@
 .profile--wrapper .track--wrapper:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.4); }
 .profile--wrapper .track--wrapper .artwork--wrapper {
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
 .profile--wrapper .track--wrapper .artwork--wrapper .artwork {
   width: 5rem;
   object-fit: cover;
@@ -1024,7 +1025,8 @@
   max-height: 8rem; }
 
 .likes-item--wrapper .artwork--wrapper {
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
 .likes-item--wrapper .artwork--wrapper .artwork {
   object-fit: cover;
   width: 12rem;
@@ -1040,8 +1042,8 @@
   z-index: 1;
   top: 0; }
 .likes-item--wrapper .artwork--wrapper .artwork-overlay img {
-  height: 7rem;
-  width: 7rem; }
+  height: 5rem;
+  width: 5rem; }
 .likes-item--wrapper .text--wrapper {
   display: flex;
   flex-direction: column;
