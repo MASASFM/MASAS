@@ -9,6 +9,20 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 
+class TimeIntervalManager(models.Manager):
+    pass
+
+
+class TimeInterval(models.Model):
+    start = models.PositiveIntegerField()
+    end = models.PositiveIntegerField()
+
+    objects = TimeIntervalManager()
+
+    def __unicode__(self):
+        return '%s-%s' % (self.start, self.end)
+
+
 class Song(models.Model):
     dateUploaded = models.DateTimeField(auto_now_add=True)
     trackTitle = models.CharField(max_length=100, blank=True, default='')
@@ -19,6 +33,7 @@ class Song(models.Model):
     )
     trackDuration = models.IntegerField(help_text='in ms')
     SC_ID = models.IntegerField(unique=True)
+    timeInterval = models.ForeignKey('TimeInterval')
 
 
 class UserManager(UserManager):

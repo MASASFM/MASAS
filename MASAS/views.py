@@ -37,9 +37,10 @@ from serializers import (
     PlaySerializer,
     SongSerializer,
     UserSerializer,
+    TimeIntervalSerializer,
 )
 
-from models import Like, Play, Song, User
+from models import Like, Play, Song, User, TimeInterval
 
 
 class BaseModelViewSetMixin(object):
@@ -81,6 +82,11 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+
+
+class TimeIntervalViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    queryset = TimeInterval.objects.all()
+    serializer_class = TimeIntervalSerializer
 
 
 class PlayView(APIView):

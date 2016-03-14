@@ -15,6 +15,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'songs', views.SongViewSet)
 router.register(r'likes', views.LikeViewSet)
 router.register(r'plays', views.PlayViewSet)
+router.register(r'time-intervals', views.TimeIntervalViewSet)
 
 
 urlpatterns = format_suffix_patterns([

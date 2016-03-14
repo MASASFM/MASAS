@@ -7,7 +7,7 @@ from django.core.exceptions import PermissionDenied
 from rest_framework import serializers
 from rest_framework.response import Response
 
-from models import Like, Play, Song, User
+from models import Like, Play, Song, User, TimeInterval
 
 
 class CreateOnlyForMyUserMixin(object):
@@ -38,9 +38,16 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'trackTitle',
             'trackArtist',
             'trackDuration',
+            'timeInterval',
             'SC_ID',
             'dateUploaded'
         )
+
+
+class TimeIntervalSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TimeInterval
+        fields = ('pk', 'url', 'start', 'end')
 
 
 class PlaySerializer(serializers.HyperlinkedModelSerializer):
