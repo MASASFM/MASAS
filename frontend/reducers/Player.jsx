@@ -1,7 +1,7 @@
 let exportVar = {}
 
 exportVar.defaultState = {
-	songPlaying: null,				// currently playing song			
+	songPlaying: null,				// currently playing song (song api url)		
 	isPaused: false,			// is player paused
 	playerAtTime: 0,			// time current song playing is at
 	MASAS_songInfo: null,			// song info from MASAS db

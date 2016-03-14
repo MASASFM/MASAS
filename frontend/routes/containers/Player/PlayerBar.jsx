@@ -234,6 +234,7 @@ function mapDispatchToProps(dispatch) {
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
+		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId})
 	}
 }
 
