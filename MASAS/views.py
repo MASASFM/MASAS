@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models import Count
 from django.shortcuts import render
 from django.views import generic
 
@@ -93,7 +94,14 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def post(self, request, format=None):
-        song = Song.objects.order_by('?').first()
+        song = Song.objects.filter(
+            play__user=request.user
+        ).annotate(
+            play_count=Count('play')
+        ).order_by(
+            '-play_count',
+            '?',
+        ).first()
 
         Play.objects.create(
             user=request.user,
