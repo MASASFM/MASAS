@@ -26,7 +26,14 @@ var TrackItem = React.createClass({
 	render: function() {
 		return (
 			<div className="track--wrapper">
-				<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
+				<div className="artwork--wrapper">
+					<div className="artwork-div">
+						<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
+					</div>
+					<div className="artwork-overlay">
+						<img src="/static/img/MASAS_player_play.svg" alt="cover art" className="artwork" onClick={this.playTrack }/>
+					</div>
+				</div>
 				<div className="song-info--wrapper">
 					<div className="song-stats-1">
 						<div className="song-name">

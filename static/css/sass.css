@@ -562,6 +562,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+.pick-time-sc-sync .checkbox--wrapper .column {
+  display: flex;
+  flex-direction: column; }
 
 .connect-sc--wrapper {
   flex: 1;
@@ -739,9 +742,25 @@
   height: 5rem; }
 .profile--wrapper .track--wrapper:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.4); }
-.profile--wrapper .track--wrapper .artwork {
+.profile--wrapper .track--wrapper .artwork--wrapper {
+  position: relative; }
+.profile--wrapper .track--wrapper .artwork--wrapper .artwork {
   width: 5rem;
-  object-fit: cover; }
+  object-fit: cover;
+  z-index: 0; }
+.profile--wrapper .track--wrapper .artwork--wrapper .artwork-overlay {
+  align-items: center;
+  justify-content: center;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  height: 5rem;
+  width: 5rem;
+  z-index: 1;
+  top: 0; }
+.profile--wrapper .track--wrapper .artwork--wrapper .artwork-overlay img {
+  height: 3rem;
+  width: 3rem; }
 .profile--wrapper .track--wrapper .song-info--wrapper {
   display: flex;
   flex-direction: column;
@@ -768,6 +787,8 @@
 @media screen and (min-width: 992px) {
   .profile--wrapper .track--wrapper:nth-of-type(odd) {
     background-color: rgba(255, 255, 255, 0.16); }
+  .profile--wrapper .track--wrapper .artwork--wrapper:hover .artwork-overlay {
+    display: flex; }
   .profile--wrapper .track--wrapper .song-info--wrapper {
     flex-direction: row; }
   .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 {

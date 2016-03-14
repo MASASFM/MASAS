@@ -7,7 +7,8 @@ exportVar.defaultState = {
 	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
 	masasUserTracks: null,
-	SCusername: null,						
+	SCusername: null,	
+	pickTimeUpload: null, 				// (int) 1 to 6, time interval
 }
 const { defaultState } = exportVar
 
@@ -38,6 +39,11 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				isConnectedSoundcloud: action.isConnectedSoundcloud
+			}
+		case 'HANDLE_PICK_TIME_UPLOAD':
+			return {
+				...state,
+				pickTimeUpload: action.time
 			}
 		default:
 			return state

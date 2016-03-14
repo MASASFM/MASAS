@@ -9,9 +9,30 @@
 		background-color: rgba(0,0,0, 0.4)
 
 	.track--wrapper
-		.artwork
-			width: 5rem
-			object-fit: cover
+		.artwork--wrapper
+			position: relative
+
+		.artwork--wrapper
+			.artwork
+				width: 5rem
+				object-fit: cover
+				z-index: 0
+
+			.artwork-overlay
+				align-items: center
+				justify-content: center
+				display: none
+				background-color: rgba(0,0,0,0.5)
+				position: absolute
+				height: 5rem
+				width: 5rem
+				z-index: 1
+				top: 0
+
+			.artwork-overlay
+				img
+					height: 3rem
+					width: 3rem
 
 		.song-info--wrapper
 			display: flex
@@ -51,6 +72,10 @@
 			background-color: rgba(255,255,255, 0.16)
 
 		.track--wrapper
+			.artwork--wrapper:hover
+				.artwork-overlay
+					display: flex
+
 			.song-info--wrapper
 				flex-direction: row
 

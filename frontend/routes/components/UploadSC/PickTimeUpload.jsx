@@ -30,7 +30,8 @@ var PickTimeUpload = React.createClass({
 			data: {
 				trackTitle: this.props.track.title,
 				trackDuration: this.props.track.duration,
-				SC_ID: this.props.track.id
+				SC_ID: this.props.track.id,
+				time: this.props.pickTimeUpload
 			},
 			success: (data) => {
 				console.log(data)
@@ -49,14 +50,38 @@ var PickTimeUpload = React.createClass({
 				<h2 className="song-title">{this.props.track.title}</h2>
 				<div className="checkbox--wrapper">
 					<div className="column">
-						<Checkbox>5-8AM</Checkbox>
-						<Checkbox>5-8AM</Checkbox>
-						<Checkbox>2-5PM</Checkbox>
+						<span><input type="radio" 
+								value = {1}
+								checked={this.props.pickTimeUpload === 1}
+								onChange={this.props.onTimeChanged.bind(this, 1)}
+								/>5-8AM</span>
+						<span><input type="radio" 
+								value = {2}
+								checked={this.props.pickTimeUpload === 2}
+								onChange={this.props.onTimeChanged.bind(this, 2)}
+								/>5-8AM</span>
+						<span><input type="radio" 
+								value = {3}
+								checked={this.props.pickTimeUpload === 3}
+								onChange={this.props.onTimeChanged.bind(this, 3)}
+								/>2-5AM</span>
 					</div>
 					<div className="column">
-						<Checkbox>8-11AM</Checkbox>
-						<Checkbox>9-12PM</Checkbox>
-						<Checkbox>1-3AM</Checkbox>
+						<span><input type="radio" 
+								value = {4}
+								checked={this.props.pickTimeUpload === 4}
+								onChange={this.props.onTimeChanged.bind(this, 4)}
+								/>8-11AM</span>
+						<span><input type="radio" 
+								value = {5}
+								checked={this.props.pickTimeUpload === 5}
+								onChange={this.props.onTimeChanged.bind(this, 5)}
+								/>9-12PM</span>
+						<span><input type="radio" 
+								value = {6}
+								checked={this.props.pickTimeUpload === 6}
+								onChange={this.props.onTimeChanged.bind(this, 6)}
+								/>1-3AM</span>
 					</div>
 				</div>
 				<Button white={true} onClick={this.submitSong}>Submit</Button>
