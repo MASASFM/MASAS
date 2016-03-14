@@ -5,12 +5,16 @@ from rest_framework.reverse import reverse
 from .models import Like, Play, Song, User
 
 
-class LikeTest(test.TestCase):
+class BaseTestMixin(object):
     def setUp(self):
         self.artist = User.objects.create(username='artist')
 
         for i in range(0, 4):
-            self.artist.songs.create(trackDuration=i, SC_ID=i)
+            self.artist.songs.create(
+                trackDuration=i,
+                SC_ID=i,
+                timeInterval_id=1,
+            )
 
         self.user, c = User.objects.get_or_create(username='test')
         self.user.set_password('test')
@@ -19,6 +23,8 @@ class LikeTest(test.TestCase):
         self.client = test.Client()
         self.client.login(username='test', password='test')
 
+
+class LikeTest(BaseTestMixin, test.TestCase):
     def like(self, user, song):
         return self.client.post(
             reverse('like-list'),
@@ -57,25 +63,28 @@ class LikeTest(test.TestCase):
         pass
 
 
-class PlayTest(test.TestCase):
-    def setUp(self):
-        self.artist = User.objects.create(username='artist')
+class PlayTest(BaseTestMixin, test.TestCase):
+    def test_post_play_returns_song(self):
+        for i in range(0, 4):
+            response = self.client.post(
+                reverse('play'),
+            )
+            self.assertEqual(
+                Play.objects.filter(song_id=response.json()['pk']).count(),
+                1,
+                'Plays exceed 1 for %s' % i
+            )
+
 
         for i in range(0, 4):
-            self.artist.songs.create(trackDuration=i, SC_ID=i)
+            response = self.client.post(
+                reverse('play'),
+            )
 
-        self.user, c = User.objects.get_or_create(username='test')
-        self.user.set_password('test')
-        self.user.save()
+            play_count = Play.objects.filter(song_id=response.json()['pk']).count()
 
-        self.client = test.Client()
-        self.client.login(username='test', password='test')
-
-    def test_post_play_returns_song(self):
-        response = self.client.post(
-            reverse('play'),
-        )
-        self.assertEqual(
-            Play.objects.filter(song_id=response.json()['pk']).count(),
-            1
-        )
+            self.assertEqual(
+                play_count,
+                2,
+                'Plays is not 2 for %s, it is %s' % (i, play_count)
+            )

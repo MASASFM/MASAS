@@ -94,28 +94,32 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def post(self, request, format=None):
-        least_plays = Song.objects.filter(
+        unplayed = Song.objects.exclude(
             play__user=request.user
-        ).annotate(
-            play_count=Count('play')
-        ).order_by(
-            'play_count',
-        ).distinct().first()
+        ).order_by('?').first()
 
-        if least_plays:
-            songs = Song.objects.filter(
-                play__user=request.user,
-            ).annotate(
-                play_count=Count('play')
-            ).filter(
-                play_count__lte=least_plays.play_count,
-            ).distinct()
-
-            song = Song.objects.filter(
-                pk__in=songs.values_list('pk')
-            ).order_by('?').first()
+        if unplayed:
+            song = unplayed
         else:
-            song = Song.objects.all().order_by('?').first()
+            song = Song.objects.raw('''
+                select
+                    s.*
+                    , count(p.id) as play_count
+                from
+                    MASAS_song s
+                left join
+                    MASAS_play p on s.id = p.song_id
+                where
+                    p.user_id = %s
+                group by
+                    p.song_id
+                order by
+                    play_count asc
+                    , random()
+                limit 1
+            ''', [
+                request.user.pk
+            ])[0]
 
         Play.objects.create(
             user=request.user,
