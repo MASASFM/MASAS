@@ -19,7 +19,7 @@ class CreateOnlyForMyUserMixin(object):
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
-    play_count = serializers.IntegerField()
+    play_count = serializers.IntegerField(read_only=True)
 
     def create(self, data):
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
