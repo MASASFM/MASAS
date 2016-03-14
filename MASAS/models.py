@@ -35,6 +35,9 @@ class Song(models.Model):
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
 
+    def __unicode__(self):
+        return self.trackTitle
+
 
 class UserManager(UserManager):
     pass
