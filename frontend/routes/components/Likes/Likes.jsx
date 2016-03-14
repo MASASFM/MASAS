@@ -80,6 +80,7 @@ var Likes = React.createClass({
 			}
 
 			songs.sort(compareFn)
+			console.log(songs)
 
 			var songList =  songs.map((song) => { 
 				var MASAS_songInfo = this.props.userLikes.filter((like) => {

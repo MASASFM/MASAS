@@ -24,7 +24,8 @@ var LikesItem = React.createClass({
 	},
 
 	renderRadioTime: function() {
-		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1);
+		var switchVar = this.props.MASASinfo.timeInterval.substr(this.props.MASASinfo.timeInterval.length - 2, 1)
+		
 		switch(switchVar) {
 			case "1":
 				return "12-3 AM"
@@ -46,15 +47,11 @@ var LikesItem = React.createClass({
 	render: function() {
 		var SCinfo = this.props.SCinfo
 		// if (SCinfo.title.length > 13)
-					// SCinfo.title = SCinfo.title.substr(0,15) + "..."
+		// SCinfo.title = SCinfo.title.substr(0,15) + "..."
 
 		var artworkURL = SCinfo.artwork_url
 		 if(SCinfo.artwork_url !== null) {
-		 	console.log("hi")
-		 	console.log(SCinfo.artwork_url)
-		 	console.log(typeof(SCinfo.artwork_url))
 		 	artworkURL = SCinfo.artwork_url.substring(0,SCinfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-		 	console.log(artworkURL)
 		 }
 
 		return (
@@ -72,7 +69,7 @@ var LikesItem = React.createClass({
 					</div>
 					<div className="song-stats--wrapper">
 						<div className="radio">
-							<span className="title">Radio</span> { this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1) }
+							<span className="title">Radio</span> { this.props.MASASinfo.timeInterval.substr(this.props.MASASinfo.timeInterval.length - 2, 1) }
 						</div>
 						<div className="time">
 							<span className="title">Time</span> { this.renderRadioTime() }
