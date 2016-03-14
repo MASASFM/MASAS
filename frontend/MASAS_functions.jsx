@@ -1,6 +1,17 @@
 var {browserHistory} = require('react-router')
+var Cookie = require('js-cookie')
 
 var MASAS_functions = {}
+
+MASAS_functions.logout = (dispatch) => {
+	console.log("logout ===>", dispatch)
+	Cookie.remove('MASAS_authToken');
+	dispatch({type: 'LOGOUT'})
+}
+
+MASAS_functions.updateAuthCookie = (userToken) => {
+	Cookie.set('MASAS_authToken', userToken)
+}
 
 MASAS_functions.goToURL = (path) => {
 	browserHistory.push(path)
@@ -40,19 +51,19 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 
 // using jQuery
 MASAS_functions.getCookie = function(name) {
-	var cookieValue = null;
+	var cookieValue = null
 	if (document.cookie && document.cookie != '') {
-		var cookies = document.cookie.split(';');
+		var cookies = document.cookie.split(';')
 		for (var i = 0; i < cookies.length; i++) {
-			var cookie = jQuery.trim(cookies[i]);
+			var cookie = jQuery.trim(cookies[i])
 			// Does this cookie string begin with the name we want?
 			if (cookie.substring(0, name.length + 1) == (name + '=')) {
-			    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-			    break;
+			    cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+			    break
 			}
 		}
 	}
-	return cookieValue;
+	return cookieValue
 }
 
 // pause player

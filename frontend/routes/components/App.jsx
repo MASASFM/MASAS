@@ -12,6 +12,8 @@ var NavSidebar = require("../containers/NavSidebar/NavSidebar.jsx")
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
 
+
+
 var App = React.createClass({
 	propTypes: {
 	},

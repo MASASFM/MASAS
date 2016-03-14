@@ -6,6 +6,8 @@ var Cookie = require('js-cookie')
 
 var {browserHistory} = require('react-router')
 
+var { updateAuthCookie } = require("../../../MASAS_functions.jsx")
+
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
@@ -64,7 +66,7 @@ var loginFB = (dispatch) => {
 					browserHistory.push('/')
 					getUserPk(dispatch, data.access_token)
 
-					updateCookie(data.access_token)
+					updateAuthCookie(data.access_token)
 				},
 				error: (err) => { 
 					console.log(err) 
@@ -105,7 +107,7 @@ var login = (dispatch) => {
 			browserHistory.push('/')
 			getUserPk(dispatch, data.access_token)
 
-			updateCookie(data.access_token)
+			updateAuthCookie(data.access_token)
 		},
 		error: (err) => {
 			console.log(err)

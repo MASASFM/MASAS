@@ -32,6 +32,7 @@ var HeaderDropdown = React.createClass({
 	},
 
 	logout: function() {
+		console.log('logging out')
 		this.props.logout()
 	},
 
