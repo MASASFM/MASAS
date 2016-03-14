@@ -1,14 +1,6 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
-// var {goToURL} = require("../../../MASAS_functions.jsx")
-// var {getCookie} = require("../../../MASAS_functions.jsx")
-// var { Link } = require("../../containers/UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
-
 var LikesItem = React.createClass({
 	propTypes: {
 		MASASinfo: React.PropTypes.object,			// song info from MASAS database
@@ -44,10 +36,18 @@ var LikesItem = React.createClass({
 		}
 	},
 
+	renderPlayerControlButton: function() {
+		if(this.props.MASASinfo)	// prevent accessing MASAS_songInfo.url before props.MASAS_songInfo is loaded
+		{
+			if (this.props.MASASinfo.url === this.props.songPlaying && this.props.isPaused === false)
+				return <img src="/static/img/MASAS_player_pause.svg" alt="pause" className="artwork" onClick={this.props.pause }/>
+			else
+				return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
+		}
+	},
+
 	render: function() {
 		var SCinfo = this.props.SCinfo
-		// if (SCinfo.title.length > 13)
-		// SCinfo.title = SCinfo.title.substr(0,15) + "..."
 
 		var artworkURL = SCinfo.artwork_url
 		 if(SCinfo.artwork_url !== null) {
@@ -56,7 +56,15 @@ var LikesItem = React.createClass({
 
 		return (
 			<div className="likes-item--wrapper">
-				<img src={ artworkURL } alt="artwork" className="artwork" onClick={this.playTrack } />
+				
+				<div className="artwork--wrapper">
+					<div className="artwork-div">
+						<img src={ artworkURL } alt="artwork" className="artwork" onClick={this.playTrack } />
+					</div>
+					<div className="artwork-overlay">
+						{ this.renderPlayerControlButton() }
+					</div>
+				</div>
 				<div className="text--wrapper">
 					<div className="song-name--wrapper">
 						<div className="title">

@@ -5,9 +5,30 @@
 
 
 .likes-item--wrapper
-	.artwork
-		object-fit: cover
-		width: 8rem
+	.artwork--wrapper
+		position: relative
+
+	.artwork--wrapper
+		.artwork
+			object-fit: cover
+			width: 12rem
+			z-index: 0
+
+		.artwork-overlay
+			align-items: center
+			justify-content: center
+			display: none
+			background-color: rgba(0,0,0,0.5)
+			position: absolute
+			height: 12rem
+			width: 12rem
+			z-index: 1
+			top: 0
+
+		.artwork-overlay
+			img
+				height: 7rem
+				width: 7rem
 
 	.text--wrapper
 		display: flex
@@ -54,6 +75,9 @@
 		margin: 0.5rem
 
 	.likes-item--wrapper
+		.artwork--wrapper:hover
+			.artwork-overlay
+				display: flex
 		.artwork
 			width: 12rem
 			height: 12rem
@@ -62,6 +86,7 @@
 			background-color: black
 
 		.text--wrapper
+
 			.song-name--wrapper
 				flex-direction: row
 				justify-content: center
