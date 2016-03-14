@@ -43,6 +43,13 @@ var TrackItem = React.createClass({
 		}
 	},
 
+	renderPlayerControlButton: function() {
+		if (this.props.MASAS_songInfo.url === this.props.songPlaying && this.props.isPaused === false)
+			return <img src="/static/img/MASAS_player_pause.svg" alt="pause" className="artwork" onClick={this.props.pause }/>
+		else
+			return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
+	},
+
 	render: function() {
 		return (
 			<div className="track--wrapper">
@@ -51,7 +58,7 @@ var TrackItem = React.createClass({
 						<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
 					</div>
 					<div className="artwork-overlay">
-						<img src="/static/img/MASAS_player_play.svg" alt="cover art" className="artwork" onClick={this.playTrack }/>
+						{ this.renderPlayerControlButton() }
 					</div>
 				</div>
 				<div className="song-info--wrapper">

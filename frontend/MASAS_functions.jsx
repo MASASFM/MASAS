@@ -55,4 +55,15 @@ MASAS_functions.getCookie = function(name) {
 	return cookieValue;
 }
 
+// pause player
+MASAS_functions.pausePlayer = function(dispatch) {
+	console.log('pausing')
+	// pause player
+	$("#jquery_jplayer_1").jPlayer('pause')
+	
+	// get time to start playing at this time when unpausing and update app state
+	var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
+	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+}
+
 module.exports = MASAS_functions

@@ -1,6 +1,6 @@
 var ReactRedux = require("react-redux")
 var Player = require('../../components/Player/PlayerBar.jsx')
-var {getCookie} = require("../../../MASAS_functions.jsx")
+var {getCookie, pausePlayer } = require("../../../MASAS_functions.jsx")
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -17,15 +17,15 @@ function mapStateToProps(state) {
 	}
 }
 
-var pause = function(dispatch) {
-	console.log('pausing')
-	// pause player
-	$("#jquery_jplayer_1").jPlayer('pause')
+// var pause = function(dispatch) {
+// 	console.log('pausing')
+// 	// pause player
+// 	$("#jquery_jplayer_1").jPlayer('pause')
 	
-	// get time to start playing at this time when unpausing and update app state
-	var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
-}
+// 	// get time to start playing at this time when unpausing and update app state
+// 	var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
+// 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+// }
 
 var resumePlaying = function(playerAtTime) {
 	$("#jquery_jplayer_1").jPlayer("play", playerAtTime)
@@ -231,7 +231,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 function mapDispatchToProps(dispatch) {
 	return {
 		play: () => dispatch({ type: 'PLAY'}),
-		pause: (pausingAtTime) => pause(dispatch, pausingAtTime), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		pause: (pausingAtTime) => pausePlayer(dispatch), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
