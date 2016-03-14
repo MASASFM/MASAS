@@ -81,7 +81,7 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 
 
 class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
-    queryset = Song.objects.all()
+    queryset = Song.objects.annotate(play_count=Count('play'))
     serializer_class = SongSerializer
 
 

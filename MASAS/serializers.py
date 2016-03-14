@@ -19,6 +19,8 @@ class CreateOnlyForMyUserMixin(object):
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
+    play_count = serializers.IntegerField()
+
     def create(self, data):
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
         r = s.get('/tracks/%s' % data['SC_ID'])
@@ -42,6 +44,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'timeInterval',
             'SC_ID',
             'dateUploaded',
+            'play_count',
         )
 
 
