@@ -100,6 +100,7 @@ var playNewSong = function(dispatch, newProps) {
 					toggleDuration: true
 				})
 
+				// play song and update state
 				$("#jquery_jplayer_1").jPlayer('play')
 				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
 				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })

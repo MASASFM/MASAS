@@ -31,7 +31,7 @@ var PickTimeUpload = React.createClass({
 				trackTitle: this.props.track.title,
 				trackDuration: this.props.track.duration,
 				SC_ID: this.props.track.id,
-				time: this.props.pickTimeUpload
+				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.pickTimeUpload + "/"
 			},
 			success: (data) => {
 				console.log(data)

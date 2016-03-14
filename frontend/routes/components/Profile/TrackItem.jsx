@@ -23,6 +23,26 @@ var TrackItem = React.createClass({
 		this.props.playNewSong(this.props.MASAS_songInfo.url)
 	},
 
+	renderRadioTime: function() {
+		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1);
+		switch(switchVar) {
+			case "1":
+				return "12-3 AM"
+			case "2":
+				return "6-9 AM"
+			case "3":
+				return "9-12AM"
+			case "4":
+				return "1-4 PM"
+			case "5":
+				return "5-8 PM"
+			case "6":
+				return "9-12 PM"
+			default:
+				return 0
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="track--wrapper">
@@ -49,10 +69,10 @@ var TrackItem = React.createClass({
 					</div>
 					<div className="song-stats-2">
 						<div className="radio">
-							<span className="title">Radio</span> 1
+							<span className="title">Radio</span> { this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1) }
 						</div>
 						<div className="time">
-							<span className="title">Time</span> 6-9AM
+							<span className="title">Time</span> { this.renderRadioTime() }
 						</div>
 						<div className="plays">
 							<span className="title">Plays</span> 210

@@ -67,6 +67,20 @@ var Likes = React.createClass({
 		if (!songs)
 			return (<div>NO SONGS</div>)
 		else {
+			var compareFn = (a, b) => {
+				var dateA = a.dateUploaded
+				var dateB = b.dateUploaded
+				if (dateA > dateB) {
+					return 1
+				}
+				if (dateB > dateA) {
+					return -1
+				}
+					return 0
+			}
+
+			songs.sort(compareFn)
+
 			var songList =  songs.map((song) => { 
 				var MASAS_songInfo = this.props.userLikes.filter((like) => {
 					return like.song.SC_ID === song.id

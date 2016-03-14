@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module '/Users/thomasbinetruy/Documents/mysite/index.jsx' from '/Users/thomasbinetruy/Documents/mysite'");

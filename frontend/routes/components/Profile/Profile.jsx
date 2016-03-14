@@ -66,14 +66,27 @@ var Profile = React.createClass({
 				</div>
 				)
 		else {
+			var songs = this.state.userInfo.songs
+
+			var compareFn = (a, b) => {
+				var dateA = a.dateUploaded
+				var dateB = b.dateUploaded
+				if (dateA > dateB) {
+					return -1
+				}
+				if (dateB > dateA) {
+					return 1
+				}
+					return 0
+			}
+			songs.sort(compareFn)
+
 			var songList =  songs.map((song) => { 
-				// console.log(song)
-				var MASAS_songInfo = this.state.userInfo.songs.filter((el) => {
-					console.log(el)
-					return el.SC_ID === song.id
+				var SC_songInfo = this.state.userSCSongs.filter((el) => {
+					return el.id === song.SC_ID
 				})[0]
 
-				return <TrackItem key={song.id} track={ song } MASAS_songInfo={MASAS_songInfo}/>
+				return <TrackItem key={song.id} track={ SC_songInfo } MASAS_songInfo={song}/>
 			})
 
 			return (

@@ -28,6 +28,12 @@ var Player = React.createClass({
 	componentDidMount: function() {
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			this.props.resumePlaying()
+
+		// add event listener to play new song at end of current song
+		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, (event) => {
+			console.log('NEXT SONG')
+			this.playRandomSong()
+		})
 	},
 
 	componentWillReceiveProps: function(newProps) {
