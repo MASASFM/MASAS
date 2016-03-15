@@ -40,14 +40,10 @@ var updateLikeButton = function(dispatch, MASAS_songInfo, SC_songInfo, props) {
 			"Authorization": header,
 		},
 		success: (user) => {
-			console.log(user)
 
 			var isSongLiked = user.likes.filter( (like) => {
 				return like.song.url === MASAS_songInfo.url
 			})
-
-			console.log('isSongLiked')
-			console.log(isSongLiked.length)
 
 			// update player state
 			if (isSongLiked.length === 0)
