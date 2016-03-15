@@ -69,47 +69,28 @@ var Player = React.createClass({
 			return <img src="/static/img/MASAS_like_shadow.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)} />
 	},
 
-	playRandomSong: function () {
-		var csrftoken = getCookie('csrftoken')
-		var header = "Bearer " + this.props.MASASuser
-
-		$.ajax({
-			type: "POST",
-			url: '/api/play/',	
-			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken
-			},
-			data: {},
-			success: (data) => {
-				console.log(data)
-				this.props.playRandomSong(data.url)
-				// this.props.closeWindow()
-			},
-			error: (err) => {
-				console.log(err)
-			},
-		})
-	},
-
 	render: function() {
-		// this.loadPlayer()
-
 		return (
 			<div className="navbar-player--wrapper">
 				{ 
 					this.renderLikeIcon()
 				}
-				<div className="song-info--wrapper" onClick={this.playRandomSong}>
-					<span className="song-artist">
-						{ this.props.SC_songInfo ? this.props.SC_songInfo.user.username : "" }
-					</span>
-					<span>
-						PLAY RANDOM SONG
-					</span>
-					<span className="song-title">
-						{ this.props.SC_songInfo ? this.props.SC_songInfo.title : "" }
-					</span>
+				<div className="song-info--wrapper">
+					{ this.props.SC_songInfo ? 
+						<div>
+							<div className="radio-info">
+								Playing from <span className="time">6-9 AM</span>
+							</div>
+							<div className="song-name">
+								<span className="song-title">
+									{ this.props.SC_songInfo.title+ " - " }
+								</span>
+								<span className="song-artist">
+									{ this.props.SC_songInfo.user.username }
+								</span>
+							</div> 
+						</div> 
+					: "" }
 				</div>
 				<div className="player-controls--wrapper">
 					{ this.getControlButtons() }

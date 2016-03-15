@@ -5,7 +5,7 @@
 	width: 80%
 	align-items: center
 	justify-content: space-around
-	max-height: 30rem
+	max-height: 35rem
 
 .pick-time-sc-sync
 	.artwork
@@ -14,13 +14,17 @@
 
 	.song-title
 		font-family: Lato-Semibold
-		font-size: 1.5rem
+		font-size: 1.2rem
+		text-align: center
+		width: 80%
 
 	.checkbox--wrapper
 		display: flex
 		justify-content: space-between
 		width: 100%
 		font-size: 1.5rem
+		min-height: 6rem
+		max-width: 16.5rem
 
 	.checkbox--wrapper
 		.line
@@ -31,3 +35,59 @@
 		.column
 			display: flex
 			flex-direction: column
+			justify-content: space-between
+
+		.column
+			.radioButton-label
+				margin-left: 1rem
+
+	.button--wrapper
+		width: 80%
+		display: flex
+		flex-direction: column
+		min-height: 5.5rem
+		justify-content: space-between
+		align-items: center
+
+	.button--wrapper
+		.submit
+			font-size: 1.1rem
+
+@media screen and (min-width: $desktop-min-width)
+	.pick-time-sc-sync
+		padding-top: 1.5rem
+
+	.pick-time-sc-sync
+		.artwork
+			width: 6rem
+			height: 6rem
+		.song-title
+			font-size: 0.9rem
+
+
+		.checkbox--wrapper
+			min-height: 4rem
+			max-width: 15rem
+
+		.checkbox--wrapper
+			.line
+
+
+			.column
+
+
+			.column
+				.radioButton-label
+					font-size: 1rem
+					margin-left: 0.4rem
+
+		.button--wrapper
+			width: 7rem
+			min-height: 4.5rem
+
+		.button--wrapper
+			.submit
+				font-size: 0.8rem
+				width: 9rem
+
+

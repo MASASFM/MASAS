@@ -4,10 +4,30 @@ $G: 9
 $B: 26
 
 .footer--wrapper
-	height: 3.5rem
+	height: 4rem
 	background-color: rgba($R, $G, $B, $opacity)
-	min-height: 3.5rem
-	max-height: 3.5rem
+	// min-height: 3.5rem
+	// max-height: 3.5rem
+
+.footer--wrapper
+	img
+		cursor: pointer
+
+	.next-icon
+		height: 1rem
+
+	.player--wrapper
+		display: flex
+		align-items: center
+		padding-right: 0
+
+	.nextSong--wrapper1
+		display: flex
+		align-items: center
+		padding-left: 0.8rem
+
+		
+
 
 
 @media screen and (min-width: $desktop-min-width)
@@ -17,4 +37,16 @@ $B: 26
 	$B: 0
 	
 	.footer--wrapper
+		height: 2.6rem
 		background-color: rgba($R, $G, $B, $opacity)
+
+	.footer--wrapper
+		.player--wrapper
+			padding-right: 0.8rem
+
+		.nextSong--wrapper1
+			padding-left: 0
+
+		.nextSong--wrapper1
+			.nextSong--wrapper2
+				padding-left: 0rem

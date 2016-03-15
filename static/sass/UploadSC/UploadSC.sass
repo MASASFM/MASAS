@@ -18,19 +18,25 @@
 		justify-content: space-around
 		// height: 100%
 		height: -webkit-max-content
+		align-items: center
 
 	.connect-sc--header
 		.MASAS-logo
 			height: 4rem
 
 		.SC-logo
-			height: 4rem
+			height: 3rem
 
 		.sync-icon
 			width: 4rem
 
 	p
-		font-size: 1.5rem
+		font-size: 1.2rem
+		text-align: center
+
+	.connect-button
+		width: 13rem
+		color: red
 
 .upload-sc--wrapper
 	// border: 3px solid red
@@ -62,7 +68,7 @@
 
 	.logout--wrapper
 		.logout-text
-		font-size: 0.7rem
+			font-size: 0.7rem
 
 		.logout-text--username
 			font-weight: bold
@@ -72,8 +78,8 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.upload-sc--wrapper
-		padding: 5rem 5rem 3rem 5rem 
-		width: 70%
+		padding: 2.5rem
+		flex: 1
 		max-height: 40rem
 
 	.upload-sc--wrapper
@@ -104,6 +110,8 @@
 	.upload-sc--wrapper
 		.table-head
 			display: flex
+			font-family: Lato-Semibold
+			font-size: 0.85rem
 
 		.logout--wrapper
 			display: none
@@ -118,8 +126,25 @@
 			min-height: 3rem
 			max-height: 3rem
 
+	.connect-sc--wrapper
+		max-height: 11rem
+		max-width: 15rem
 
 	.connect-sc--wrapper
 		p
-			font-size: 1rem
+			font-size: 0.8rem
+
+		.connect-sc--header
+			width: 70%
+
+
+		.connect-sc--header
+			.MASAS-logo
+				height: 2rem
+
+			.SC-logo
+				height: 1.5rem
+
+			.sync-icon
+				width: 2rem
 

@@ -6,6 +6,8 @@ var Button = React.createClass({
 		caps: React.PropTypes.bool,				// should button text be in all caps
 		white: React.PropTypes.bool,				// should button text be in all caps
 		small: React.PropTypes.bool,				// should button be in small version
+		noBorders: React.PropTypes.bool,				// should button have borders
+		className: React.PropTypes.string,				// class names
 	},
 
 	componentWillMount: function() {
@@ -13,7 +15,7 @@ var Button = React.createClass({
 
 	render: function() {
 		return (
-			<div className={"MASAS-button" + (this.props.white ? " white " : "") + (this.props.small ? "MASAS-small-button " : "")} onClick={this.props.onClick}>
+			<div className={"MASAS-button" + (this.props.white ? " white " : "") + (" " + this.props.className + " ") + (this.props.small ? "MASAS-small-button " : "") +  (this.props.noBorders ? " no-borders " : "") } onClick={this.props.onClick}>
 				<div className={"wrapper"} style={{ textTransform: ( this.props.caps ? 'uppercase' : 'none') }}>
 					{this.props.children}
 				</div>

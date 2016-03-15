@@ -3,7 +3,7 @@
 	flex: 1
 	align-items: center
 	height: 100%
-	padding: 0 1rem
+	padding: 0
 
 .navbar-player--wrapper
 	.like-icon
@@ -17,22 +17,46 @@
 		flex: 1
 
 	.song-info--wrapper
-		.song-artist
-			text-transform: uppercase
-			font-size: 1rem
-			font-family: Lato-Semibold
+		.radio-info 
 
-		.song-title
-			text-transform: uppercase
-			font-size: 1rem
-			font-family: Lato-Light
+		.radio-info
+			font-size: 0.7rem
+			opacity: 0.4
+
+			.time
+				text-transform: uppercase
+
+		.song-name
+
+		.song-name
+			.song-artist
+				text-transform: uppercase
+				font-size: 0.7rem
+				font-family: Lato-Semibold
+
+			.song-title
+				text-transform: uppercase
+				font-size: 0.7rem
+				font-family: Lato-Light
 
 	.player-controls--wrapper
 		.player-button
 			height: 2.5rem
+			padding-left: 1rem
 
 
 
 
 
 @media screen and (min-width: $desktop-min-width)
+	.navbar-player--wrapper
+		padding: 0
+
+	.navbar-player--wrapper
+		.like-icon
+			height: 1rem
+
+		.player-controls--wrapper
+			.player-button
+				height: 2rem
+

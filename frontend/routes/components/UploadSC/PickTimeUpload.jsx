@@ -50,42 +50,50 @@ var PickTimeUpload = React.createClass({
 				<h2 className="song-title">{this.props.track.title}</h2>
 				<div className="checkbox--wrapper">
 					<div className="column">
-						<span><input type="radio" 
+						<span className="radio--wrapper"><input type="radio" 
 								value = {1}
 								checked={this.props.pickTimeUpload === 1}
 								onChange={this.props.onTimeChanged.bind(this, 1)}
-								/>5-8AM</span>
-						<span><input type="radio" 
+								className="radio-button"
+								/><span className="radioButton-label">5-8AM</span></span>
+						<span className="radio--wrapper"><input type="radio" 
 								value = {2}
 								checked={this.props.pickTimeUpload === 2}
 								onChange={this.props.onTimeChanged.bind(this, 2)}
-								/>5-8AM</span>
-						<span><input type="radio" 
+								className="radio-button"
+								/><span className="radioButton-label">5-8AM</span></span>
+						<span className="radio--wrapper"><input type="radio" 
 								value = {3}
 								checked={this.props.pickTimeUpload === 3}
 								onChange={this.props.onTimeChanged.bind(this, 3)}
-								/>2-5AM</span>
+								className="radio-button"
+								/><span className="radioButton-label">2-5AM</span></span>
 					</div>
 					<div className="column">
-						<span><input type="radio" 
+						<span className="radio--wrapper"><input type="radio" 
 								value = {4}
 								checked={this.props.pickTimeUpload === 4}
 								onChange={this.props.onTimeChanged.bind(this, 4)}
-								/>8-11AM</span>
-						<span><input type="radio" 
+								className="radio-button"
+								/><span className="radioButton-label">8-11AM</span></span>
+						<span className="radio--wrapper"><input type="radio" 
 								value = {5}
 								checked={this.props.pickTimeUpload === 5}
 								onChange={this.props.onTimeChanged.bind(this, 5)}
-								/>9-12PM</span>
-						<span><input type="radio" 
+								className="radio-button"
+								/><span className="radioButton-label">9-12PM</span></span>
+						<span className="radio--wrapper"><input type="radio" 
 								value = {6}
 								checked={this.props.pickTimeUpload === 6}
 								onChange={this.props.onTimeChanged.bind(this, 6)}
-								/>1-3AM</span>
+								className="radio-button"
+								/><span className="radioButton-label">1-3AM</span></span>
 					</div>
 				</div>
-				<Button white={true} onClick={this.submitSong}>Submit</Button>
-				<Button onClick={this.props.closeWindow}>Cancel</Button>
+				<div className="button--wrapper">
+					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
+					<Button noBorders={true} onClick={this.props.closeWindow}>Cancel</Button>
+				</div>
 			</div>
 		)
 	}

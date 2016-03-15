@@ -13,6 +13,9 @@
 	$G: 9
 	$B: 26
 
+	.links--wrapper
+		display: flex
+
 	.desktop-header
 		display: none
 
@@ -51,17 +54,21 @@
 		.desktop-header
 			display: flex
 			background-color: rgba($R, $G, $B, $opacity)
-			height: 3.5rem
+			height: 3.3rem
 			margin: 0
+			justify-content: center
 
 		.desktop-header
+			.links--wrapper
+				min-width: 82vw
 			.logo
 				height: 3.2rem
 
 			.header-link
 				min-width: 6rem
 				display: flex
-				justify-content: flex-end
+				justify-content: center
+				align-items: center
 				font-size: 0.75rem
 
 			.search-icon

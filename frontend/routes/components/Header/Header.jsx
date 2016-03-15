@@ -17,26 +17,19 @@ var Header = React.createClass({
 				<div className="top-decoration">
 				</div>
 				<div className="row middle-xs desktop-header">
-					<div className="col-xs-2">
-						<div className="box"></div>
-					</div>
-					<div className="col-xs-2">
-						<Link to="/">
+					<div className="col-xs-10 links--wrapper">
+						<Link to="/" className="logo">
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
-					</div>
-					<div className="col-xs-6">
-						<div className="box" style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}>
+						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
 							<div className="header-link"><Link to="/" disabled={true}>Discover</Link></div>
 							<div className="header-link"><Link to="/" disabled={true}>Radio</Link></div>
 							<div className="header-link"><Link to="/sc-sync" disabled={this.props.user ? false : true}>Upload</Link></div>
 							<div className="header-link"><Link to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
-							<div className="header-link">
+							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>
 							</div>
 						</div>
-					</div>
-					<div className="col-xs-2" style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start'}}>
 						<HeaderDropdown />
 					</div>
 				</div>

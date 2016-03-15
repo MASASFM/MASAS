@@ -118,9 +118,6 @@ var UploadSC = React.createClass({
 							""
 						}
 					</div>
-					<div className="back-button">
-						<Button onClick={goToURL.bind(null, '/')}>Go Back</Button>
-					</div>
 				</div>
 				</Body>
 			)
@@ -136,7 +133,9 @@ var UploadSC = React.createClass({
 					<p>
 						What about discovering new artists from your friends, upload sounds in a click and so much more ?
 					</p>
-					<Button onClick={this.connectToSC} white={true}>Connect to SC</Button>
+					<div className="connect-button">
+						<Button onClick={this.connectToSC} white={true}>Connect to SC</Button>
+					</div>
 				</div>
 				</Body>
 				);
