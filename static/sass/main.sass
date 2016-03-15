@@ -19,16 +19,40 @@ html
 	max-height: 100vh
 	font-size: 14px
 	color: white
+	font-family: Lato-Regular
 
 @media screen and (min-width: $desktop-min-width)
 	html
 		font-size: 16px
 
-body
+// body
+	
+// 	background-size: cover
+// 	margin: 0
+// 	font-family: Lato-Light
+
+body::after 
+	content: ""
 	background-image: url('https://source.unsplash.com/category/nature/1600x900')
-	background-size: cover
-	margin: 0
-	font-family: Lato-Light
+	opacity: 0.8
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	position: absolute
+	z-index: -1
+
+body::before 
+	content: ""
+	background-color: black
+	opacity: 1
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	position: absolute
+	z-index: -1
+
 
 h1
 	margin: 0.5rem
