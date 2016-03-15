@@ -3,6 +3,9 @@
 	min-height: 8rem
 	max-height: 8rem
 
+.likes-item--wrapper:nth-of-type(odd)
+	background-color: rgba(0, 0, 0, 1)
+
 
 .likes-item--wrapper
 	.artwork--wrapper
@@ -10,9 +13,13 @@
 		cursor: pointer
 
 	.artwork--wrapper
+		.artwork-div
+			width: 8rem
+			height: 8rem
+
 		.artwork
 			object-fit: cover
-			width: 12rem
+			width: 8rem
 			z-index: 0
 
 		.artwork-overlay
@@ -36,7 +43,7 @@
 		flex-direction: column
 		flex: 1
 		justify-content: space-between
-		padding: 0.5rem
+		padding: 1.5rem 0.9rem
 
 	.text--wrapper
 		.song-name--wrapper
@@ -75,16 +82,25 @@
 		flex-direction: column
 		margin: 0.5rem
 
+	.likes-item--wrapper:nth-of-type(odd)
+		background-color: rgba(0, 0, 0, 0)
+
 	.likes-item--wrapper
 		.artwork--wrapper:hover
 			.artwork-overlay
 				display: flex
-		.artwork
-			width: 12rem
-			height: 12rem
+		.artwork--wrapper
+			.artwork-div
+				width: 12rem
+				height: 12rem
+
+			.artwork
+				width: 12rem
+				height: 12rem
 
 		.text--wrapper
 			background-color: black
+			padding: 0.5rem
 
 		.text--wrapper
 

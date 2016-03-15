@@ -1113,24 +1113,32 @@
   flex: 1;
   flex-direction: column;
   width: 100%;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  background-color: #00002b; }
 
 @media screen and (min-width: 992px) {
   .likes--wrapper {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between; } }
+    justify-content: space-between;
+    background-color: transparent; } }
 .likes-item--wrapper {
   display: flex;
   min-height: 8rem;
   max-height: 8rem; }
 
+.likes-item--wrapper:nth-of-type(odd) {
+  background-color: black; }
+
 .likes-item--wrapper .artwork--wrapper {
   position: relative;
   cursor: pointer; }
+.likes-item--wrapper .artwork--wrapper .artwork-div {
+  width: 8rem;
+  height: 8rem; }
 .likes-item--wrapper .artwork--wrapper .artwork {
   object-fit: cover;
-  width: 12rem;
+  width: 8rem;
   z-index: 0; }
 .likes-item--wrapper .artwork--wrapper .artwork-overlay {
   align-items: center;
@@ -1150,7 +1158,7 @@
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
-  padding: 0.5rem; }
+  padding: 1.5rem 0.9rem; }
 .likes-item--wrapper .text--wrapper .song-name--wrapper {
   display: flex;
   flex-direction: column; }
@@ -1178,13 +1186,20 @@
     flex-direction: column;
     margin: 0.5rem; }
 
+  .likes-item--wrapper:nth-of-type(odd) {
+    background-color: transparent; }
+
   .likes-item--wrapper .artwork--wrapper:hover .artwork-overlay {
     display: flex; }
-  .likes-item--wrapper .artwork {
+  .likes-item--wrapper .artwork--wrapper .artwork-div {
+    width: 12rem;
+    height: 12rem; }
+  .likes-item--wrapper .artwork--wrapper .artwork {
     width: 12rem;
     height: 12rem; }
   .likes-item--wrapper .text--wrapper {
-    background-color: black; }
+    background-color: black;
+    padding: 0.5rem; }
   .likes-item--wrapper .text--wrapper .song-name--wrapper {
     flex-direction: row;
     justify-content: center;
@@ -1254,7 +1269,7 @@ h1 {
   .app-body .page-content {
     background-color: rgba(0, 0, 0, 0.7); }
   .app-body .page-title {
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: white;
     font-family: Lato-Light;
     padding-left: 1rem;

@@ -58,8 +58,8 @@ var LikesItem = React.createClass({
 			<div className="likes-item--wrapper">
 				
 				<div className="artwork--wrapper">
-					<div className="artwork-div">
-						<img src={ artworkURL } alt="artwork" className="artwork" onClick={this.playTrack } />
+					<div className="artwork-div" style={ !this.props.SCinfo.artwork_url ? {backgroundColor: 'black'} : {} }>
+						{ this.props.SCinfo.artwork_url ? <img src={ artworkURL } alt="artwork" className="artwork" onClick={this.playTrack } /> : "" }
 					</div>
 					<div className="artwork-overlay">
 						{ this.renderPlayerControlButton() }

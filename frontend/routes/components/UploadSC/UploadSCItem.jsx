@@ -30,7 +30,7 @@ var UploadSCItem = React.createClass({
 		return (
 			<div className={"upload-sc-item--wrapper" + (this.props.synced ? " synced" : "")}>
 				<div className="artwork--wrapper">
-					<img src={this.props.track.artwork_url} alt="artwork" />
+					{ this.props.track.artwork_url ? <img src={this.props.track.artwork_url} alt="artwork" /> : ""}
 				</div>
 				<div className="song-info--wrapper">
 					<div className="song-name">

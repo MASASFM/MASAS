@@ -51,8 +51,8 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link disabled={true}>
-										<img src="/static/img/MASAS_like_shadow.svg" alt="radio icon" />
+									<Link to="likes">
+										<img src="/static/img/MASAS_liked.svg" alt="radio icon" />
 										likes
 									</Link>
 								</div>
