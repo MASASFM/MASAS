@@ -7,7 +7,9 @@ from django.core.exceptions import PermissionDenied
 from rest_framework import serializers
 from rest_framework.response import Response
 
-from models import Like, Play, Song, User, TimeInterval
+from cities_light.contrib.restframework3 import CitySerializer
+
+from models import Status, Play, Song, User, Link, TimeInterval
 
 
 class CreateOnlyForMyUserMixin(object):
@@ -60,20 +62,31 @@ class PlaySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('pk', 'url', 'user', 'song')
 
 
-class LikeSerializer(CreateOnlyForMyUserMixin,
-                     serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Like
-        fields = ('pk', 'url', 'user', 'song')
-
-
-class UserLikeSerializer(LikeSerializer):
+class StatusSerializer(CreateOnlyForMyUserMixin,
+                       serializers.HyperlinkedModelSerializer):
     song = SongSerializer()
+    class Meta:
+        model = Status
+        fields = ('pk', 'url', 'user', 'song', 'status')
+
+
+class LinkSerializer(serializers.HyperlinkedModelSerializer):
+    link_url = serializers.CharField(source='url')
+
+    class Meta:
+        model = Link
+        fields = (
+            'url',
+            'pk',
+            'user',
+            'name',
+            'link_url',
+        )
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    songs = SongSerializer(many=True)
-    like_set = UserLikeSerializer(many=True)
+    city = CitySerializer()
+    link_set = LinkSerializer(many=True)
 
     class Meta:
     	model = User
@@ -81,6 +94,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'username',
             'email',
-            'songs',
-            'like_set',
+            'name',
+            'city',
+            'occupation',
+            'avatar_url',
+            'link_set',
         )

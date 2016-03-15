@@ -1,7 +1,9 @@
 from django.conf import settings
-from django.db.models import Count
+from django.db.models import Prefetch
 from django.shortcuts import render
 from django.views import generic
+
+import django_filters
 
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
 
@@ -12,6 +14,7 @@ from permissions import (
 )
 
 from rest_framework import decorators
+from rest_framework import filters
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import serializers
@@ -34,14 +37,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from serializers import (
-    LikeSerializer,
+    StatusSerializer,
     PlaySerializer,
     SongSerializer,
     UserSerializer,
+    LinkSerializer,
     TimeIntervalSerializer,
 )
 
-from models import Like, Play, Song, User, TimeInterval
+from models import Status, Play, Song, User, TimeInterval, Link
 
 
 class BaseModelViewSetMixin(object):
@@ -62,13 +66,15 @@ class PlayViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     serializer_class = PlaySerializer
 
 
-class LikeViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+class StatusViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
         IsOwnerOrReadOnly,
     )
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
+    queryset = Status.objects.all()
+    serializer_class = StatusSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('user', 'song')
 
 
 class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
@@ -76,13 +82,21 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
         permissions.IsAuthenticatedOrReadOnly,
         IsUserOrReadOnly
     )
-    queryset = User.objects.prefetch_related('like_set__song', 'songs')
+    queryset = User.objects.prefetch_related('link_set')
     serializer_class = UserSerializer
+
+
+class LinkViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    queryset = Link.objects.all()
+    serializer_class = LinkSerializer
 
 
 class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('trackArtist',)
 
 
 class TimeIntervalViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):

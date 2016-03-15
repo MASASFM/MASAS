@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     'cities_light',
     'MASAS',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -100,6 +101,12 @@ MIDDLEWARE_CLASSES = [
 ]
 
 AUTH_USER_MODEL = 'MASAS.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'PAGE_SIZE': 10
+}
 
 # oauth
 CORS_ORIGIN_ALLOW_ALL = True
