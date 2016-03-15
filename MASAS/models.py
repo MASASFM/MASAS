@@ -60,7 +60,7 @@ class Status(models.Model):
             (-3, 'Report SPAM'),
             (-2, 'Report Copyright infrigement'),
             (-1, 'Dislike'),
-            (1, 'Status'),
+            (1, 'Like'),
             (2, 'Love'),
             (5, 'Life changing'),
         ),
@@ -84,6 +84,14 @@ class User(AbstractUser):
     avatar_url = models.URLField(null=True, blank=True)
 
     objects = UserManager()
+
+    @property
+    def likes(self):
+        return self.status_set.filter(user=self, status=1)
+
+    @property
+    def dislikes(self):
+        return self.status_set.filter(user=self, status=-1)
 
 
 class Link(models.Model):

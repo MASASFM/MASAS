@@ -91,6 +91,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     city = CitySerializer()
     link_set = LinkSerializer(many=True)
 
+    songs = SongSerializer(many=True)
+    likes = SongSerializer(many=True)
+    dislikes = SongSerializer(many=True)
+
     class Meta:
     	model = User
     	fields = (
@@ -102,4 +106,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'occupation',
             'avatar_url',
             'link_set',
+            'songs',
+            'likes',
+            'dislikes',
         )
