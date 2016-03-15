@@ -75,7 +75,7 @@ class StatusViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     queryset = Status.objects.all()
     serializer_class = StatusSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('user', 'song')
+    filter_fields = ('user', 'song', 'status')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
