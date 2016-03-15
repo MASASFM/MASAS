@@ -92,8 +92,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     link_set = LinkSerializer(many=True)
 
     songs = SongSerializer(many=True)
-    likes = SongSerializer(many=True)
-    dislikes = SongSerializer(many=True)
+    likes = StatusListSerializer(many=True)
+    dislikes = StatusListSerializer(many=True)
 
     class Meta:
     	model = User
