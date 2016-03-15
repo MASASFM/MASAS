@@ -1146,8 +1146,8 @@
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  height: 12rem;
-  width: 12rem;
+  height: 10rem;
+  width: 10rem;
   z-index: 1;
   top: 0; }
 .likes-item--wrapper .artwork--wrapper .artwork-overlay img {
@@ -1181,8 +1181,8 @@
 
 @media screen and (min-width: 992px) {
   .likes-item--wrapper {
-    min-height: 15rem;
-    width: 12rem;
+    min-height: 13rem;
+    width: 10rem;
     flex-direction: column;
     margin: 0.5rem; }
 
@@ -1192,11 +1192,11 @@
   .likes-item--wrapper .artwork--wrapper:hover .artwork-overlay {
     display: flex; }
   .likes-item--wrapper .artwork--wrapper .artwork-div {
-    width: 12rem;
-    height: 12rem; }
+    width: 10rem;
+    height: 10rem; }
   .likes-item--wrapper .artwork--wrapper .artwork {
-    width: 12rem;
-    height: 12rem; }
+    width: 10rem;
+    height: 10rem; }
   .likes-item--wrapper .text--wrapper {
     background-color: black;
     padding: 0.5rem; }

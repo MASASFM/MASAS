@@ -42,10 +42,7 @@ var LikesWrapper = React.createClass({
 						<div className="box"></div>
 					</div>
 				</div>
-				<div className="row row-display-none-sm no-margin" style={ {maxHeight: '1rem', minHeight: '1rem', height: '1rem'} }>
-					<div className="col-xs-12">
-					</div>
-				</div>
+
 			</div>
 		)
 	}
