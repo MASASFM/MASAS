@@ -16,7 +16,7 @@ var getLikes = (dispatch, userPk) => {
 	$.ajax({
 		type: "GET",
 		// url: 'api/users/' + userPk + '/',	
-		url: '/api/statuses/?users=' + userPk + '&status=1',	
+		url: '/api/statuses/?user=' + userPk + '&status=1',	
 
 			 // -u"<client_id>:<client_secret>" 
 		success: (data) => {
