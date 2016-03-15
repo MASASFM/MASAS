@@ -42,7 +42,7 @@ var updateLikeButton = function(dispatch, MASAS_songInfo, SC_songInfo, props) {
 		success: (user) => {
 			console.log(user)
 
-			var isSongLiked = user.like_set.filter( (like) => {
+			var isSongLiked = user.likes.filter( (like) => {
 				return like.song.url === MASAS_songInfo.url
 			})
 
@@ -148,10 +148,10 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 					"Authorization": header,
 				},
 				success: (user) => {
-					var likes = user.like_set
+					var likes = user.likes
 					console.log("like ===>", likes)
 
-					var isSongLiked = user.like_set.filter( (like) => {
+					var isSongLiked = user.likes.filter( (like) => {
 						console.log(like.song.url, songId)
 						return like.song.url === songId
 					})
@@ -161,14 +161,16 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 					if(isSongLiked.length === 0) {
 						$.ajax({
 							type: "POST",
-							url: "/api/likes/",	
+							// url: "/api/likes/",	
+							url: "/api/statuses/",	
 							headers: {
 								"Authorization": header,
 								"X-CSRFToken": csrftoken,
 							},
 							data: {
 								user: user.url,
-								song: songId
+								song: songId,
+								status: 1
 							},
 							success: (data) => {
 								// update UI
@@ -182,9 +184,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 					} else {
 
 						// find if song liked
-						console.log()
-						let songLiked = user.like_set.filter( (like) => { return like.song.url === songId } )
-						console.log("song liked ===>", songLiked)
+						let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
 						if(songLiked.length === 1) {
 							songLiked = isSongLiked[0]
 							$.ajax({
