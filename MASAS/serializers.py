@@ -64,10 +64,13 @@ class PlaySerializer(serializers.HyperlinkedModelSerializer):
 
 class StatusSerializer(CreateOnlyForMyUserMixin,
                        serializers.HyperlinkedModelSerializer):
-    song = SongSerializer()
     class Meta:
         model = Status
         fields = ('pk', 'url', 'user', 'song', 'status')
+
+
+class StatusListSerializer(StatusSerializer):
+    song = SongSerializer()
 
 
 class LinkSerializer(serializers.HyperlinkedModelSerializer):

@@ -2,7 +2,7 @@ from django import test
 
 from rest_framework.reverse import reverse
 
-from .models import Like, Play, Song, User
+from .models import Status, Play, Song, User
 
 
 class BaseTestMixin(object):
@@ -24,10 +24,10 @@ class BaseTestMixin(object):
         self.client.login(username='test', password='test')
 
 
-class LikeTest(BaseTestMixin, test.TestCase):
+class StatusTest(BaseTestMixin, test.TestCase):
     def like(self, user, song):
         return self.client.post(
-            reverse('like-list'),
+            reverse('status-list'),
             data={
                 # We're logged in as test user, this should fail
                 'user': reverse('user-detail', args=[user]),
@@ -43,7 +43,7 @@ class LikeTest(BaseTestMixin, test.TestCase):
         response = self.like(self.user.pk, 1)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(
-            list(self.user.likes.values_list('pk', flat=True)),
+            list(self.user.status_set.values_list('pk', flat=True)),
             [1]
         )
 

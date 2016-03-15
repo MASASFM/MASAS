@@ -38,6 +38,7 @@ from rest_framework.views import APIView
 
 from serializers import (
     StatusSerializer,
+    StatusListSerializer,
     PlaySerializer,
     SongSerializer,
     UserSerializer,
@@ -75,6 +76,11 @@ class StatusViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     serializer_class = StatusSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('user', 'song')
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return StatusListSerializer
+        return super(StatusViewSet, self).get_serializer_class()
 
 
 class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
