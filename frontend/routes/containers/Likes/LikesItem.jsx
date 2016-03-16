@@ -8,7 +8,8 @@ var { pausePlayer } = require("../../../MASAS_functions.jsx")
 function mapStateToProps(state) {
 	return {
 		songPlaying: state.playerReducer.songPlaying,
-		isPaused: state.playerReducer.isPaused
+		isPaused: state.playerReducer.isPaused,
+		isFetchingSong: state.playerReducer.isFetchingSong
 	}
 }
 

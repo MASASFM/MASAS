@@ -14,6 +14,7 @@ function mapStateToProps(state) {
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userPk: state.appReducer.MASASuserPk,
 		MASASuser: state.appReducer.MASASuser,
+		isFetchingSong: state.playerReducer.isFetchingSong
 	}
 }
 
@@ -59,7 +60,9 @@ var updateLikeButton = function(dispatch, MASAS_songInfo, SC_songInfo, props) {
 
 var playNewSong = function(dispatch, newProps) {
 	var songId = newProps.songPlaying
-	console.log(newProps.songPlaying)
+	
+	// set loading state
+	dispatch({type: 'SET_SONG_IS_FETCHING_TRUE'})
 	$.ajax({
 		type: "GET",
 		url: newProps.songPlaying, //'http://localhost:8000/api/song/'+songId+'/',	
@@ -67,10 +70,6 @@ var playNewSong = function(dispatch, newProps) {
 			// "Authorization": header,
 		},
 		success: (data) => {
-			// check if song is liked
-			
-
-			console.log(data)
 			SC.get('/tracks/' + data.SC_ID).then((response) => {
 				console.log(response)
 				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3" 
@@ -80,6 +79,7 @@ var playNewSong = function(dispatch, newProps) {
 				$("#jquery_jplayer_1").jPlayer( "destroy" )
 				$("#jquery_jplayer_1").jPlayer({
 					ready: function(	) {
+						console.log("INIT JPLAYER= >", streamURL)
 						$(this).jPlayer("setMedia", {
 							m4a: streamURL,
 							oga: streamURL
@@ -98,18 +98,27 @@ var playNewSong = function(dispatch, newProps) {
 
 				// play song and update state
 				$("#jquery_jplayer_1").jPlayer('play')
+				
 				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
 				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })
 
-				// check if song liked
+				// update song liked button based on server response (vs optimistic UI)
 				updateLikeButton(dispatch, data, response, newProps)
+
+				// end loading state
+				dispatch({type: 'SET_SONG_IS_FETCHING_FALSE'})
 			}).catch((err) => {
 				console.log(err)
+
+				// end loading state
+				dispatch({type: 'SET_SONG_IS_FETCHING_FALSE'})
 			})
-			
 		},
 		error: (err) => {
 			console.log(err)
+
+			// end loading state
+			dispatch('SET_SONG_IS_FETCHING_FALSE')
 		},
 	})
 }
@@ -226,6 +235,7 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
+		dispatch,
 		play: () => dispatch({ type: 'PLAY'}),
 		pause: (pausingAtTime) => pausePlayer(dispatch), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),

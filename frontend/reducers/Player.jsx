@@ -7,6 +7,7 @@ exportVar.defaultState = {
 	MASAS_songInfo: null,			// song info from MASAS db
 	SC_songInfo: null,			// song info from soundcloud API
 	isSongPlayingLiked: false,		// is currently playing song liked
+	isFetchingSong: false			// is song currently fetching
 }
 
 const { defaultState } = exportVar
@@ -56,6 +57,16 @@ exportVar.playerReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				isSongPlayingLiked: false
+			}
+		case 'SET_SONG_IS_FETCHING_TRUE': 	// not tested
+			return {
+				...state,
+				isFetchingSong: true
+			}
+		case 'SET_SONG_IS_FETCHING_FALSE': 	// not tested
+ 			return {
+				...state,
+				isFetchingSong: false
 			}
 		default:
 			return state

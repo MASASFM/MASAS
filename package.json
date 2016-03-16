@@ -27,6 +27,7 @@
     "react-sidebar": "^2.1.1",
     "redux": "^3.0.6",
     "redux-devtools": "^3.0.1",
+    "redux-thunk": "^2.0.1",
     "soundcloud": "^3.1.0"
   },
   "devDependencies": {

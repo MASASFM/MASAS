@@ -4,5 +4,22 @@
 
 .HomeCountdown--wrapper1
 	.HomeCountdown--wrapper2
+		display: none
 		position: relative
 		height: 200px
+
+	.mobile-logo
+		display: flex
+		justify-content: center
+
+	.mobile-logo
+		img
+			width: 100vw
+
+@media screen and (min-width: $desktop-min-width)
+	.HomeCountdown--wrapper1
+		.HomeCountdown--wrapper2
+			display: block
+
+		.mobile-logo
+			display: none

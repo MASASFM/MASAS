@@ -39,10 +39,13 @@ var LikesItem = React.createClass({
 	renderPlayerControlButton: function() {
 		if(this.props.MASASinfo)	// prevent accessing MASAS_songInfo.url before props.MASAS_songInfo is loaded
 		{
+			if(this.props.isFetchingSong)
+				return <img src="/static/img/puff_loader.svg" alt="loading" className="artwork" />
+			
 			if (this.props.MASASinfo.url === this.props.songPlaying && this.props.isPaused === false)
 				return <img src="/static/img/MASAS_player_pause.svg" alt="pause" className="artwork" onClick={this.props.pause }/>
-			else
-				return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
+
+			return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
 		}
 	},
 

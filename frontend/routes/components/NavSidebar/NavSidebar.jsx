@@ -51,7 +51,7 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link to="likes">
+									<Link to="likes" onClick={this.props.toogleSidebar}>
 										<img src="/static/img/MASAS_liked.svg" alt="radio icon" />
 										likes
 									</Link>

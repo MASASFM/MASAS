@@ -1,26 +1,38 @@
 var Redux = require("redux")
-var { appReducer } = require("./App.jsx")
-var { headerReducer } = require("./Header.jsx")
-var { bodyReducer } = require("./Body.jsx")
-var { footerReducer } = require("./Footer.jsx")
-var { loginReducer } = require("./Login.jsx")
-var { homeReducer } = require("./Home.jsx")
-var { uploadSCReducer } = require("./UploadSC.jsx")
-var { playerReducer } = require("./Player.jsx")
-var { likesReducer } = require("./Likes.jsx")
+import thunk from 'redux-thunk'
+import { appReducer, defaultState as appDefaultState } from "./App.jsx"
+import { headerReducer, defaultState as headerDefaultState } from "./Header.jsx"
+import { bodyReducer, defaultState as bodyDefaultState } from "./Body.jsx"
+import { footerReducer, defaultState as footerDefaultState } from "./Footer.jsx"
+import { loginReducer, defaultState as loginDefaultState } from "./Login.jsx"
+import { homeReducer, defaultState as homeDefaultState } from "./Home.jsx"
+import { uploadSCReducer, defaultState as uploadDefaultState } from "./UploadSC.jsx"
+import { playerReducer, defaultState as playerDefaultState } from "./Player.jsx"
+import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
 
-const todoReducer = Redux.combineReducers({
-  headerReducer,
-  bodyReducer,
-  footerReducer,
-  loginReducer,
-  homeReducer,
-  appReducer,
-  uploadSCReducer,
-  playerReducer,
-  likesReducer,
+const defaultReducers = {
+	headerReducer: headerDefaultState,
+	bodyReducer: bodyDefaultState,
+	footerReducer: footerDefaultState,
+	loginReducer: loginDefaultState,
+	homeReducer: homeDefaultState,
+	appReducer: appDefaultState,
+	uploadSCReducer: uploadDefaultState,
+	playerReducer: playerDefaultState,
+	likesReducer: likesDefaultState,
+}
+const rootReducer = Redux.combineReducers({
+	headerReducer,
+	bodyReducer,
+	footerReducer,
+	loginReducer,
+	homeReducer,
+	appReducer,
+	uploadSCReducer,
+	playerReducer,
+	likesReducer,
 })
 
 
-var store = Redux.createStore(todoReducer)
+var store = Redux.createStore(rootReducer, defaultReducers, Redux.applyMiddleware(thunk))
 module.exports = store

@@ -34,6 +34,12 @@ var Player = React.createClass({
 			console.log('NEXT SONG')
 			this.playRandomSong()
 		})
+
+		// update player UI on start play
+		$("#jquery_jplayer_1").bind($.jPlayer.event.play, (event) => {
+			console.log('PLAY SONG')
+			this.props.dispatch({ type: 'PLAY' })
+		})
 	},
 
 	componentWillReceiveProps: function(newProps) {
@@ -52,10 +58,13 @@ var Player = React.createClass({
 	},
 
 	getControlButtons() {
+		if(this.props.isFetchingSong)
+			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button" />
+
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			return <img onClick={this.props.pause} src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button" />
-		else
-			return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
+
+		return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
 	},
 
 	renderLikeIcon: function() {
