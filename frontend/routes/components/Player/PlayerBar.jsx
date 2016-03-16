@@ -40,6 +40,12 @@ var Player = React.createClass({
 			console.log('PLAY SONG')
 			this.props.dispatch({ type: 'PLAY' })
 		})
+
+		// update player UI on start play
+		$("#jquery_jplayer_1").bind($.jPlayer.event.pause, (event) => {
+			console.log('PAUSE SONG')
+			this.props.dispatch({ type: 'PAUSE' })
+		})
 	},
 
 	componentWillReceiveProps: function(newProps) {
