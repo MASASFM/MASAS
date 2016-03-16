@@ -57,11 +57,13 @@ var Player = React.createClass({
 
 	playRandomSong: function() {
 		var header = "Bearer " + this.props.MASASuser
+		var csrftoken = getCookie('csrftoken')
 		$.ajax({
 			type: 'POST',
 			url: '/api/play/',
 			headers: {
 				"Authorization": header,
+				"X-CSRFToken": csrftoken
 			},
 			success: (data) => {
 				console.log(data)
