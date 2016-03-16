@@ -7,6 +7,25 @@ var { getCookie } = require("../../../MASAS_functions.jsx")
 
 var Footer = React.createClass({
 
+	componentWillMount: function() {
+		// init progress bar width
+		var progressBarWidth = 0
+
+		// init interval for progress bar width
+		setInterval( () => {
+			// if player is playing
+			if(typeof($("#jquery_jplayer_1").data('jPlayer'))!=="undefined") {
+				// update progress bar length
+				progressBarWidth = $("#jquery_jplayer_1").data('jPlayer').status.currentTime*1000*100 / this.props.SC_songInfo.duration
+				this.props.updateProgressBar(progressBarWidth)
+			} else {
+				// verify that progress bar isn't already 0
+				if(this.props.progressBarWidth !== 0)
+					this.props.updateProgressBar(0)	// reset progress bar
+			}
+		}, 250)
+	},
+
 	playRandomSong: function () {
 		var csrftoken = getCookie('csrftoken')
 		var header = "Bearer " + this.props.MASASuser
@@ -33,6 +52,10 @@ var Footer = React.createClass({
 	render: function() {
 		return (
 			<div className="footer--wrapper">
+				<div className="playerProgressBar--wrapper">
+					<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
+					</div>
+				</div>
 				<div className="row no-margin"  style={{height: '100%'}}>
 					<div className="col-md-2 col-display-none-sm">
 						<div className="box"></div>

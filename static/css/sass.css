@@ -504,8 +504,21 @@
 
 .footer--wrapper {
   height: 4rem;
-  background-color: #09091a; }
+  background-color: #09091a;
+  position: relative; }
 
+.footer--wrapper .playerProgressBar--wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0; }
+  .footer--wrapper .playerProgressBar--wrapper .playerProgressBar {
+    display: flex;
+    background-color: white;
+    width: 0vw; }
 .footer--wrapper img {
   cursor: pointer; }
 .footer--wrapper .next-icon {

@@ -8,8 +8,23 @@ $B: 26
 	background-color: rgba($R, $G, $B, $opacity)
 	// min-height: 3.5rem
 	// max-height: 3.5rem
+	position: relative
 
 .footer--wrapper
+	.playerProgressBar--wrapper
+		display: flex
+		justify-content: flex-start
+		width: 100vw
+		height: 2px
+		position: absolute
+		top: 0
+		left: 0
+
+		.playerProgressBar
+			display: flex
+			background-color: white
+			width: 0vw
+
 	img
 		cursor: pointer
 

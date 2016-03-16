@@ -63,6 +63,7 @@ var playNewSong = function(dispatch, newProps) {
 	
 	// set loading state
 	dispatch({type: 'SET_SONG_IS_FETCHING_TRUE'})
+
 	$.ajax({
 		type: "GET",
 		url: newProps.songPlaying, //'http://localhost:8000/api/song/'+songId+'/',	
@@ -112,6 +113,9 @@ var playNewSong = function(dispatch, newProps) {
 
 				// end loading state
 				dispatch({type: 'SET_SONG_IS_FETCHING_FALSE'})
+
+				// stop player
+				dispatch({type: 'STOP'})
 			})
 		},
 		error: (err) => {
@@ -119,6 +123,8 @@ var playNewSong = function(dispatch, newProps) {
 
 			// end loading state
 			dispatch('SET_SONG_IS_FETCHING_FALSE')
+			// stop player
+			dispatch({type: 'STOP'})
 		},
 	})
 }

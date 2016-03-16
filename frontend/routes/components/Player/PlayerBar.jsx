@@ -4,14 +4,6 @@ var jPlayer = require("jplayer")
 
 var {getCookie} = require("../../../MASAS_functions.jsx")
 
-// var {goToURL} = require("../../../MASAS_functions.jsx")
-// var {getCookie} = require("../../../MASAS_functions.jsx")
-// var { Link } = require("../../containers/UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
-
 var Player = React.createClass({
 	propTypes: {
 	},
@@ -63,13 +55,38 @@ var Player = React.createClass({
 		}
 	},
 
+	playRandomSong: function() {
+		var header = "Bearer " + this.props.MASASuser
+		$.ajax({
+			type: 'POST',
+			url: '/api/play/',
+			headers: {
+				"Authorization": header,
+			},
+			success: (data) => {
+				console.log(data)
+				this.props.playRandomSong(data.url)
+			},
+			error: (err) => {
+				console.log(err)
+			},
+		})
+	},
+
 	getControlButtons() {
+		// show loader if fetching song info
 		if(this.props.isFetchingSong)
 			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button" />
 
+		// pause on click if song playing is not paused
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			return <img onClick={this.props.pause} src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button" />
 
+		// if nothing is playing, play random song on play icon
+		if(!this.props.songPlaying)
+			return <img onClick={this.playRandomSong} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
+
+		// else, click play to unpause
 		return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
 	},
 

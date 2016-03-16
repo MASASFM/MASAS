@@ -26,6 +26,10 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				isPaused: true,
 				playerAtTime: action.pausingAtTime
 			}
+		case 'STOP':
+			return {
+				defaultState
+			}
 		case 'PLAY_NEW_SONG':
 			return {
 				...state,
