@@ -9,6 +9,18 @@ var HeaderDropdown = require("../../containers/Header/HeaderDropdown.jsx")
 var Link = require("../../containers/UI/Link.jsx")
 
 var Header = React.createClass({
+	goToHomepageSlide1: function() {
+		// if on homepage, got to first slide
+		if(document.getElementById('homepage-login')) {
+			console.log('GOTO HOMEPAGE 1')
+			document.getElementById('homepage-login').className = 'page1--wrapper'
+			document.getElementById('homepage-description--choose').className='page2--wrapper'
+			document.getElementById('homepage-description--artist').className='page2--wrapper'
+			document.getElementById('homepage-description--musicLover').className='page2--wrapper'
+			document.getElementsByClassName('body--background')[0].className = 'body--background'
+		}
+	},
+
 	render: function() {
 		return (
 			<nav  className="header">
@@ -18,7 +30,7 @@ var Header = React.createClass({
 				</div>
 				<div className="row middle-xs desktop-header">
 					<div className="col-xs-10 links--wrapper">
-						<Link to="/" className="logo">
+						<Link to="/" className="logo" onClick={this.goToHomepageSlide1}>
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>

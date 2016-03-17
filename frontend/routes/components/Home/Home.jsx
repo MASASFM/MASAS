@@ -15,7 +15,7 @@ var Home = React.createClass({
 	},
 
 	goToPage1: function() {
-		console.log('GOTO PAGE 2')
+		console.log('GOTO PAGE 1')
 		document.getElementById('homepage-login').className = 'page1--wrapper'
 		document.getElementById('homepage-description--choose').className='page2--wrapper'
 		document.getElementById('homepage-description--artist').className='page2--wrapper'
@@ -24,7 +24,7 @@ var Home = React.createClass({
 	},
 
 	goToPage2: function() {
-		console.log('GOTO PAGE 1')
+		console.log('GOTO PAGE 2')
 		document.getElementById('homepage-login').className = 'page2--wrapper'
 		document.getElementById('homepage-description--artist').className='page2--wrapper'
 		document.getElementById('homepage-description--musicLover').className='page2--wrapper'
@@ -83,13 +83,24 @@ var Home = React.createClass({
 								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
 							</p>
 							<div className="button">
-								<Button>Start Uploading</Button>
+								<Button onClick={goToURL.bind('null', '/login')}>Start Uploading</Button>
 							</div>
 						</div>
-						
 					</div>
 					<div className="page2--wrapper" id="homepage-description--musicLover">
-						<h1 onClick={this.goToPage1}>MUSIC LOVER</h1>
+						<div className="artist-page--wrapper">
+							<img src="/static/img/homepage/musicLover_deco2.png" alt="website screenshot" />
+						</div>
+						<div className="text--wrapper">
+							<img src="/static/img/homepage/musicLover_deco1.png" alt="website screenshot" />
+							<h1 onClick={this.goToPage1}>i'm a music lover</h1>
+							<p>
+								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
+							</p>
+							<div className="button">
+								<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

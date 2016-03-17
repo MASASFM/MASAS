@@ -278,6 +278,32 @@
   padding-bottom: 2rem; }
 .home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper .button {
   min-width: 12rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover {
+  display: flex;
+  flex: 1;
+  padding: 0 5rem;
+  max-width: 62rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .artist-page--wrapper {
+  display: flex;
+  align-items: center; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .artist-page--wrapper img {
+  width: 35rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  height: 21rem;
+  align-items: flex-start; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper h1 {
+  font-size: 2rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper p {
+  font-size: 0.85rem;
+  text-align: justify;
+  padding-bottom: 2rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .button {
+  min-width: 12rem; }
 
 .login-form--wrapper1 {
   display: flex;
