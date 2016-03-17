@@ -2,6 +2,8 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 var Button = require("../../containers/UI/Button.jsx")
 
+var {goToURL} = require("../../../MASAS_functions.jsx")
+
 var HomeCountdown = React.createClass({
 	getInitialState: function() {
 		// protect against render bug where if this.state.height === 0 the canvas draws dissapear on mouse move
@@ -255,7 +257,11 @@ var HomeCountdown = React.createClass({
 			<div className="HomeCountdown--wrapper1">
 				<div id='masasLoaderContainer' style={{ position: 'relative', height: '300px' }} className="HomeCountdown--wrapper2">
 					<div style={positionLinks}>
-							<Button onClick={ this.signUpButtonClick } white={true}>Sign up for free</Button>
+							{ this.props.user ?
+								<Button onClick={ goToURL.bind(null, '/profile') } white={false}>My Profile</Button>
+								:
+								<Button onClick={ goToURL.bind(null, '/login') } white={false}>Get Early Access</Button>
+							}
 					</div>
 
 					<canvas id="myCanvas">

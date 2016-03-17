@@ -56,14 +56,15 @@ var Home = React.createClass({
 			<div className="home--wrapper">
 				<div className="multiPage--wrapper">
 					<div className="page1--wrapper" id="homepage-login">
-						<div className="logo" onClick={this.goToPage2}>
-							<HomeCountdown />
+						<div className="logo">
+							<HomeCountdown user={this.props.user}/>
 						</div>
-						<div className="login-container" style={{display: (this.props.user ? 'none' : 'flex')}}>
+						<div className="login-container" style={{display: 'none'}}>
 							<Button onClick={goToURL.bind(null, 'login')} caps={true}>log-in</Button>
 							<br />
 							<Link to="/sign-up" className="signup-text">Sign up</Link>
 						</div>
+						<img onClick={this.goToPage2} src="/static/img/puff_loader.svg" alt="down arrow" className="arrow-icon"/>
 					</div>
 					<div className="page2--wrapper" id="homepage-description--choose">
 						<h1 onClick={this.goToPage1}>it's all about you...</h1>
@@ -83,7 +84,11 @@ var Home = React.createClass({
 								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
 							</p>
 							<div className="button">
-								<Button onClick={goToURL.bind('null', '/login')}>Start Uploading</Button>
+								{ this.props.user ?
+									<Button onClick={goToURL.bind('null', '/sc-sync')}>Start Uploading</Button>
+								:
+									<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+								}
 							</div>
 						</div>
 					</div>
@@ -95,10 +100,14 @@ var Home = React.createClass({
 							<img src="/static/img/homepage/musicLover_deco1.png" alt="website screenshot" />
 							<h1 onClick={this.goToPage1}>i'm a music lover</h1>
 							<p>
-								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
+								Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio.
 							</p>
 							<div className="button">
-								<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+								{ this.props.user ?
+									<Button onClick={goToURL.bind('null', '/profile')}>My Profile</Button>
+								:
+									<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+								}
 							</div>
 						</div>
 					</div>

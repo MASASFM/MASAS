@@ -221,6 +221,11 @@
   justify-content: center;
   align-items: center;
   flex: 1; }
+.home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
+  height: 2rem;
+  padding-top: 3rem;
+  animation: Floating 3s infinite ease-in-out;
+  cursor: pointer; }
 .home--wrapper .multiPage--wrapper #homepage-login .logo {
   width: 100%;
   display: flex;
@@ -234,7 +239,7 @@
   max-width: 20rem;
   display: flex;
   flex-direction: column;
-  height: 7rem;
+  height: 6rem;
   justify-content: space-around;
   align-items: center; }
 .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
@@ -497,7 +502,8 @@
   display: flex;
   align-items: center;
   min-height: 3.5rem;
-  position: relative; }
+  position: relative;
+  z-index: 2; }
 
 .dropdown--wrapper .username--wrapper {
   display: flex; }
