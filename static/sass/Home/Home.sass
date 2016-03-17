@@ -14,6 +14,12 @@
 
 
 .home--wrapper
+	h1
+		font-family: Lato-Semibold
+		text-transform: uppercase
+		letter-spacing: 8px
+		font-size: 1.8rem
+
 	.multiPage--wrapper
 		overflow: hidden
 		display: flex
@@ -33,12 +39,13 @@
 			right: 0
 			left: 0
 			transition-property: opacity
-			transition-duration: 2s
+			transition-duration: 1s
 			transition-timing-function: ease-in-out
 
 		.page1--wrapper
 			opacity: 1
 			z-index: 1
+			align-items: center
 
 		.page2--wrapper
 			opacity: 0
@@ -82,11 +89,6 @@
 			justify-content: space-around
 
 		#homepage-description--choose
-			h1
-				font-family: Lato-Semibold
-				text-transform: uppercase
-				letter-spacing: 8px
-				font-size: 1.8rem
 
 			.links--wrapper
 				display: flex
@@ -97,3 +99,38 @@
 					width: 20rem
 					margin: 0 3rem
 					cursor: pointer
+
+		#homepage-description--artist
+			display: flex
+			flex: 1
+			padding: 0 5rem
+
+		#homepage-description--artist
+			.artist-page--wrapper
+				display: flex
+				align-items: center
+
+			.artist-page--wrapper
+				img
+					width: 40rem
+
+			.text--wrapper
+				display: flex
+				flex-direction: column
+				align-items: center
+				justify-content: center
+				justify-content: space-between
+				height: 21rem
+				align-items: flex-start
+
+			.text--wrapper
+				h1
+					font-size: 2rem
+
+				p
+					font-size: 0.85rem
+					text-align: justify
+					padding-bottom: 2rem
+
+				.button
+					min-width: 12rem

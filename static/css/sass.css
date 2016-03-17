@@ -184,6 +184,11 @@
   margin: 2.5rem;
   position: relative; }
 
+.home--wrapper h1 {
+  font-family: Lato-Semibold;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-size: 1.8rem; }
 .home--wrapper .multiPage--wrapper {
   overflow: hidden;
   display: flex;
@@ -201,11 +206,12 @@
   right: 0;
   left: 0;
   transition-property: opacity;
-  transition-duration: 2s;
+  transition-duration: 1s;
   transition-timing-function: ease-in-out; }
 .home--wrapper .multiPage--wrapper .page1--wrapper {
   opacity: 1;
-  z-index: 1; }
+  z-index: 1;
+  align-items: center; }
 .home--wrapper .multiPage--wrapper .page2--wrapper {
   opacity: 0;
   z-index: -1; }
@@ -240,11 +246,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around; }
-.home--wrapper .multiPage--wrapper #homepage-description--choose h1 {
-  font-family: Lato-Semibold;
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  font-size: 1.8rem; }
 .home--wrapper .multiPage--wrapper #homepage-description--choose .links--wrapper {
   display: flex; }
 .home--wrapper .multiPage--wrapper #homepage-description--choose .links--wrapper img {
@@ -252,6 +253,31 @@
   width: 20rem;
   margin: 0 3rem;
   cursor: pointer; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist {
+  display: flex;
+  flex: 1;
+  padding: 0 5rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .artist-page--wrapper {
+  display: flex;
+  align-items: center; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .artist-page--wrapper img {
+  width: 40rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  height: 21rem;
+  align-items: flex-start; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper h1 {
+  font-size: 2rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper p {
+  font-size: 0.85rem;
+  text-align: justify;
+  padding-bottom: 2rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper .button {
+  min-width: 12rem; }
 
 .login-form--wrapper1 {
   display: flex;
@@ -1319,11 +1345,14 @@ html {
   position: absolute;
   z-index: -1;
   transition-property: all;
-  transition-duration: 2s;
+  transition-duration: 1s;
   transition-timing-function: ease-in-out; }
 
 .body--background.blurred::after {
   -webkit-filter: blur(5px); }
+
+.body--background.blurred.saturated::after {
+  -webkit-filter: blur(5px) saturate(0%); }
 
 .body--background::before {
   content: "";
