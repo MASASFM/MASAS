@@ -10,29 +10,90 @@
 	justify-content: space-around
 	flex-direction: column
 	margin: 2.5rem
+	position: relative
 
 
 .home--wrapper
-	.logo
-		width: 100%
+	.multiPage--wrapper
+		overflow: hidden
 		display: flex
-		// max-width: 20rem
 		flex: 1
-		padding-bottom: 2.5rem
-		height: 100%
-		justify-content: center
-		min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
-
-	.login-container
-		width: 100%
-		max-width: 20rem
-		display: flex
 		flex-direction: column
-		height: 7rem
-		justify-content: space-around
-		align-items: center
+		position: absolute
+		top: 0
+		bottom: 0
+		right: 0
+		left: 0
 
-	.login-container
-		.signup-text
-			color: white
-			align-self: center
+	.multiPage--wrapper
+		.page1--wrapper, .page2--wrapper
+			position: absolute
+			top: 0
+			bottom: 0
+			right: 0
+			left: 0
+			transition-property: opacity
+			transition-duration: 2s
+			transition-timing-function: ease-in-out
+
+		.page1--wrapper
+			opacity: 1
+			z-index: 1
+
+		.page2--wrapper
+			opacity: 0
+			z-index: -1
+		#homepage-login
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			flex: 1
+
+		#homepage-login
+			.logo
+				width: 100%
+				display: flex
+				flex: 1
+				padding-bottom: 2.5rem
+				height: 100%
+				justify-content: center
+				min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
+
+			.login-container
+				width: 100%
+				max-width: 20rem
+				display: flex
+				flex-direction: column
+				height: 7rem
+				justify-content: space-around
+				align-items: center
+
+			.login-container
+				.signup-text
+					color: white
+					align-self: center
+
+		#homepage-description--choose
+			display: flex
+			flex: 1
+			flex-direction: column
+			align-items: center
+			justify-content: space-around
+
+		#homepage-description--choose
+			h1
+				font-family: Lato-Semibold
+				text-transform: uppercase
+				letter-spacing: 8px
+				font-size: 1.8rem
+
+			.links--wrapper
+				display: flex
+
+			.links--wrapper
+				img
+					height: 20rem
+					width: 20rem
+					margin: 0 3rem
+					cursor: pointer

@@ -161,7 +161,7 @@
 .HomeCountdown--wrapper1 .HomeCountdown--wrapper2 {
   display: none;
   position: relative;
-  height: 200px; }
+  height: 300px; }
 .HomeCountdown--wrapper1 .mobile-logo {
   display: flex;
   justify-content: center; }
@@ -181,9 +181,41 @@
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 2.5rem; }
+  margin: 2.5rem;
+  position: relative; }
 
-.home--wrapper .logo {
+.home--wrapper .multiPage--wrapper {
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0; }
+.home--wrapper .multiPage--wrapper .page1--wrapper, .home--wrapper .multiPage--wrapper .page2--wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition-property: opacity;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out; }
+.home--wrapper .multiPage--wrapper .page1--wrapper {
+  opacity: 1;
+  z-index: 1; }
+.home--wrapper .multiPage--wrapper .page2--wrapper {
+  opacity: 0;
+  z-index: -1; }
+.home--wrapper .multiPage--wrapper #homepage-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1; }
+.home--wrapper .multiPage--wrapper #homepage-login .logo {
   width: 100%;
   display: flex;
   flex: 1;
@@ -191,7 +223,7 @@
   height: 100%;
   justify-content: center;
   min-height: 1rem; }
-.home--wrapper .login-container {
+.home--wrapper .multiPage--wrapper #homepage-login .login-container {
   width: 100%;
   max-width: 20rem;
   display: flex;
@@ -199,9 +231,27 @@
   height: 7rem;
   justify-content: space-around;
   align-items: center; }
-.home--wrapper .login-container .signup-text {
+.home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
   color: white;
   align-self: center; }
+.home--wrapper .multiPage--wrapper #homepage-description--choose {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
+.home--wrapper .multiPage--wrapper #homepage-description--choose h1 {
+  font-family: Lato-Semibold;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-size: 1.8rem; }
+.home--wrapper .multiPage--wrapper #homepage-description--choose .links--wrapper {
+  display: flex; }
+.home--wrapper .multiPage--wrapper #homepage-description--choose .links--wrapper img {
+  height: 20rem;
+  width: 20rem;
+  margin: 0 3rem;
+  cursor: pointer; }
 
 .login-form--wrapper1 {
   display: flex;
@@ -1258,18 +1308,24 @@ html {
 @media screen and (min-width: 992px) {
   html {
     font-size: 16px; } }
-body::after {
+.body--background::after {
   content: "";
-  background-image: url("https://source.unsplash.com/category/nature/1600x900");
+  background-image: url("https://source.unsplash.com/user/andrewcoelho/1600x900");
   opacity: 0.8;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1; }
+  z-index: -1;
+  transition-property: all;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out; }
 
-body::before {
+.body--background.blurred::after {
+  -webkit-filter: blur(5px); }
+
+.body--background::before {
   content: "";
   background-color: black;
   opacity: 1;

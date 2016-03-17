@@ -253,7 +253,7 @@ var HomeCountdown = React.createClass({
 
 		return (
 			<div className="HomeCountdown--wrapper1">
-				<div id='masasLoaderContainer' style={{ position: 'relative', height: '200px' }} className="HomeCountdown--wrapper2">
+				<div id='masasLoaderContainer' style={{ position: 'relative', height: '300px' }} className="HomeCountdown--wrapper2">
 					<div style={positionLinks}>
 							<Button onClick={ this.signUpButtonClick } white={true}>Sign up for free</Button>
 					</div>
