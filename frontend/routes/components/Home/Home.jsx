@@ -64,7 +64,7 @@ var Home = React.createClass({
 							<br />
 							<Link to="/sign-up" className="signup-text">Sign up</Link>
 						</div>
-						<img onClick={this.goToPage2} src="/static/img/puff_loader.svg" alt="down arrow" className="arrow-icon"/>
+						<img onClick={this.goToPage2} src="/static/img/puff_loader_slow.svg" alt="down arrow" className="arrow-icon"/>
 					</div>
 					<div className="page2--wrapper" id="homepage-description--choose">
 						<h1 onClick={this.goToPage1}>it's all about you...</h1>
