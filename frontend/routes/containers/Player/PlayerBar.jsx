@@ -82,6 +82,7 @@ var playNewSong = function(dispatch, newProps) {
 					ready: function(	) {
 						console.log("INIT JPLAYER= >", streamURL)
 						$(this).jPlayer("setMedia", {
+							mp3: streamURL,
 							m4a: streamURL,
 							oga: streamURL
 						}).jPlayer('play')
