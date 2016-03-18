@@ -23,11 +23,12 @@ exportVar.appReducer = function(state = defaultState, action) {
 				userData: { ...state.userData, ...action.userData }
 			}
 		case 'LOGOUT':
+		console.log('LOGOUT!!')
 			return {
 				...state,
 				MASASuser: null,
 				MASASuserPk: null,
-				userData: null
+				userData: {}
 			}
 		case 'UPDATE_PAGE_TITLE':
 			let pageType = action.pageType
