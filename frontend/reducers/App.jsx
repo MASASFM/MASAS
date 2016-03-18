@@ -3,6 +3,7 @@ let exportVar = {}
 exportVar.defaultState = {
 	MASASuser: 0, 	// user login token
 	MASASuserPk: null, 	
+	userData: {},	// user data (pk, username, email etc)
 	pageTitle: 'home', 
 	pageType: 0,		// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
@@ -18,13 +19,15 @@ exportVar.appReducer = function(state = defaultState, action) {
 			// login(action.token)
 			return {
 				...state,
-				MASASuser: action.token
+				MASASuser: action.token,
+				userData: { ...state.userData, ...action.userData }
 			}
-		 case 'LOGOUT':
+		case 'LOGOUT':
 			return {
 				...state,
 				MASASuser: null,
-				MASASuserPk: null
+				MASASuserPk: null,
+				userData: null
 			}
 		case 'UPDATE_PAGE_TITLE':
 			let pageType = action.pageType

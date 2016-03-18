@@ -12,12 +12,15 @@ ajaxCalls.getUsername = (dispatch, MASASuser) => {
 			"Authorization": header,
 		},
 		success: (data) => {
+			console.log(data)
 			var username = data.user
 			if (username.length > 13)
 				username = username.substr(0,13) + "..."
 
 			// document.getElementById('username-header').innerHTML = username
+			// if(data.user !== "AnonymousUser")
 			dispatch({type:'SET_USERNAME', username: username})
+			
 			return data
 		},
 		error: (err) => {

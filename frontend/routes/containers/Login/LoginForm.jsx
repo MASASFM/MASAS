@@ -6,7 +6,7 @@ var Cookie = require('js-cookie')
 
 var {browserHistory} = require('react-router')
 
-var { updateAuthCookie } = require("../../../MASAS_functions.jsx")
+var { updateAuthCookie, logInWithToken } = require("../../../MASAS_functions.jsx")
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -44,7 +44,6 @@ var loginFB = (dispatch) => {
 	if (typeof(FB) === "undefined")
 		return 0
 
-	console.log('hey')
 	FB.login( (response) => {
 		if (response.status === 'connected') {
 			// Logged into your app and Facebook.
@@ -62,10 +61,14 @@ var loginFB = (dispatch) => {
 				},
 				success: (data) => { 
 					console.log(data)
-					dispatch({type:'LOGIN', token: data.access_token})
-					browserHistory.push('/')
-					getUserPk(dispatch, data.access_token)
 
+					// login
+					logInWithToken(dispatch, data.access_token)
+					
+					
+					// dispatch({type:'UPDATE_USER_DATA', userData: data})
+					browserHistory.push('/')
+					getUserPk(dispatch, data.access_token)	
 					updateAuthCookie(data.access_token)
 				},
 				error: (err) => { 

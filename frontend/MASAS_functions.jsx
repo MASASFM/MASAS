@@ -5,7 +5,7 @@ var MASAS_functions = {}
 
 MASAS_functions.logout = (dispatch) => {
 	console.log("logout ===>", dispatch)
-	Cookie.remove('MASAS_authToken');
+	Cookie.remove('MASAS_authToken')
 	dispatch({type: 'LOGOUT'})
 }
 
@@ -35,7 +35,7 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 				var pk = data.userPk
 
 				dispatch({type: 'UPDATE_USER_PK', pk: pk})
-				dispatch({type: 'LOGIN', token: userToken})
+				dispatch({type: 'LOGIN', token: userToken, userData: data})
 			}
 
 			// render app
