@@ -62,8 +62,16 @@ var loginFB = (dispatch) => {
 				success: (data) => { 
 					console.log(data)
 
-					// login
+					// // get profile picture and then login
+					// let picURL = "http://graph.facebook.com/me/picture?access_token=" + data.access_token
+					// FB.api(picURL, function(r) {
+					// 	console.log(r)
+					// 	logInWithToken(dispatch, {...data.access_token, profilePictureURL: r.data.url})
+					// })
+
 					logInWithToken(dispatch, data.access_token)
+
+					// get profile picture
 					
 					
 					// dispatch({type:'UPDATE_USER_DATA', userData: data})

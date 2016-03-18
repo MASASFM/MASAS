@@ -34,8 +34,13 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 				console.log(data)
 				var pk = data.userPk
 
-				dispatch({type: 'UPDATE_USER_PK', pk: pk})
-				dispatch({type: 'LOGIN', token: userToken, userData: data})
+				// let picURL = "http://graph.facebook.com/me/picture?access_token=" + FB_token
+				// FB.api(picURL, function(r) {
+				// 	console.log(r)
+					dispatch({type: 'UPDATE_USER_PK', pk: pk})
+					dispatch({type: 'LOGIN', token: userToken, userData: data})
+				// })
+				
 			}
 
 			// render app

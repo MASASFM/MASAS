@@ -45,13 +45,13 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link to="sc-sync" onClick={this.props.toogleSidebar}>
+									<Link disabled={ !this.props.MASASuser ? true : false } to="sc-sync" onClick={this.props.toogleSidebar}>
 										<img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />
 										upload
 									</Link>
 								</div>
 								<div className="link">
-									<Link to="likes" onClick={this.props.toogleSidebar}>
+									<Link disabled={ !this.props.MASASuser ? true : false } to="likes" onClick={this.props.toogleSidebar}>
 										<img src="/static/img/MASAS_liked.svg" alt="radio icon" />
 										likes
 									</Link>
@@ -60,7 +60,11 @@ var NavSidebar = React.createClass({
 							<div className="navSidebar-footer">
 								<Link to="/" onClick={this.props.toogleSidebar}>Legals</Link>
 								<Link disabled={true}>Settings</Link>
-								<Link disabled={true}>Logout</Link>
+								{ this.props.MASASuser ?
+									<Link to="/" onClick={this.props.logout}>Logout</Link>
+									:
+									<Link to="/login" onClick={this.props.toogleSidebar}>Login</Link>
+								}
 							</div>
 						</div>
 					</div>

@@ -12,7 +12,8 @@ function mapStateToProps(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
 		// userLoggedIn: state.appReducer.userLoggedIn,
-		username: state.appReducer.userData.user
+		// username: state.appReducer.userData.user
+		userData: state.appReducer.userData
 	}
 }
 
