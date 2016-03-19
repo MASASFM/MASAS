@@ -11,7 +11,7 @@ var ReactDOM = require("react-dom")
 
 var TrackItem = React.createClass({
 	propTypes: {
-		track: React.PropTypes.string,			//track SC info
+		track: React.PropTypes.object,			//track SC info
 		MASAS_songInfo: React.PropTypes.object,		//track MASAS info
 	},
 
