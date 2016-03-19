@@ -175,7 +175,7 @@ var Profile = React.createClass({
 					</div>
 					<div className="song-list--wrapper">
 						<div>
-						
+						{ this.getSongs() }
 						</div>
 					</div>
 
