@@ -90,7 +90,7 @@ var Profile = React.createClass({
 				})[0]
 
 				// return nothing if song no longer exists on soundcloud
-				if(SC_songInfo === null)
+				if(SC_songInfo === undefined)
 					return
 
 				console.log(<TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>)
