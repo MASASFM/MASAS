@@ -82,10 +82,12 @@ var Profile = React.createClass({
 			songs.sort(compareFn)
 
 			var songList =  songs.map((song) => { 
+				console.log(song)
 				var SC_songInfo = this.state.userSCSongs.filter((el) => {
+					console.log(el)
 					return el.id === song.SC_ID
 				})[0]
-
+				console.log(<TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>)
 				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>
 			})
 
@@ -190,8 +192,8 @@ var Profile = React.createClass({
 
 var styles = {
 	container: {
-		minHeight: '100vh',
-		maxHeight: '100vh',
+		// minHeight: '100vh',
+		// maxHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
 	}
