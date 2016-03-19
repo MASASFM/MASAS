@@ -16,11 +16,12 @@ var TrackItem = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log(track.id)
+		console.log('he')
+		console.log(this.props.track.id)
 	},
 
 	componentDidMount: function() {
-		console.log(track.id)
+		console.log(this.props.track.id)
 	},
 
 	playTrack: function() {
