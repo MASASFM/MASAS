@@ -86,7 +86,7 @@ var Profile = React.createClass({
 					return el.id === song.SC_ID
 				})[0]
 
-				return <TrackItem key={song.id} track={ SC_songInfo } MASAS_songInfo={song}/>
+				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>
 			})
 
 			return (
