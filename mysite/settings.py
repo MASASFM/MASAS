@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'cities_light',
     'MASAS',
     'crispy_forms',
+    'explorer',
 ]
 
 MIDDLEWARE_CLASSES = [
