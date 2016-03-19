@@ -552,7 +552,6 @@
   display: block; }
 
 .header {
-  height: 100%;
   color: white;
   margin: 0;
   min-height: -webkit-min-content;
@@ -1357,8 +1356,6 @@
   .likes--wrapper .likes-searchbar--wrapper {
     display: none; } }
 html {
-  min-height: 100vh;
-  max-height: 100vh;
   font-size: 14px;
   color: white;
   font-family: Lato-Regular; }
@@ -1400,6 +1397,9 @@ html {
 h1 {
   margin: 0.5rem;
   color: white; }
+
+#content {
+  position: relative; }
 
 .app-body {
   flex: 1;

@@ -32,16 +32,29 @@ var App = React.createClass({
 			this.props.forceRender()
 	},
 
+	componentDidMount: function() {
+		document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
+		document.getElementById('content').style.height = window.innerHeight + 'px'
+		document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
+
+		window.addEventListener("resize", () => {
+			document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
+			document.getElementById('content').style.height = window.innerHeight + 'px'
+			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
+		})
+	},
+
 	getUserTokenFromCookie: function() {
 		return Cookie.get('MASAS_authToken')
 	},	
 
 	render: function() {
+
 		// don't render app until the auth cookie has been processed
 		if(!this.props.processingAuthCookie)
 			return (
 				<NavSidebar>
-					<div style = { styles.container }>
+					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
 						<Header />
 							{this.props.children ? 
 									this.props.children
@@ -55,15 +68,27 @@ var App = React.createClass({
 				</NavSidebar>
 			)
 		else
-			return <div>LOADING</div>
+			return (
+				<NavSidebar>
+					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
+						<Header />
+							<h1>LOADING...</h1>
+						<Footer />
+									
+					</div>
+					<div id="jquery_jplayer_1"></div>
+				</NavSidebar>
+			)
 		
 	}
 })
 
 var styles = {
 	container: {
-		minHeight: '100vh',
-		maxHeight: '100vh',
+		// minHeight: '100vh',
+		// maxHeight: '100vh',
+		height: window.innerHeight + 'px',
+		// height: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 	}
