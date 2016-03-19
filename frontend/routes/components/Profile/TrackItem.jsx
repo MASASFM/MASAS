@@ -16,6 +16,11 @@ var TrackItem = React.createClass({
 	},
 
 	componentWillMount: function() {
+		console.log(track.id)
+	},
+
+	componentDidMount: function() {
+		console.log(track.id)
 	},
 
 	playTrack: function() {
