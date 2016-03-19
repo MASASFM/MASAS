@@ -16,7 +16,6 @@ var TrackItem = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log('he')
 		console.log(this.props.track.id)
 	},
 
