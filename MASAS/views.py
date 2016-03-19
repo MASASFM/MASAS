@@ -126,13 +126,13 @@ class PlayView(APIView):
                     s.*
                     , count(p.id) as play_count
                 from
-                    MASAS_song s
+                    "MASAS_song" s
                 left join
-                    MASAS_play p on s.id = p.song_id
+                    "MASAS_play" p on s.id = p.song_id
                 where
                     p.user_id = %s
                 group by
-                    p.song_id
+                    s.id
                 order by
                     play_count asc
                     , random()
