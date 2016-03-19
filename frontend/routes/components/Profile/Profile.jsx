@@ -88,7 +88,11 @@ var Profile = React.createClass({
 					console.log("song.SC_ID ==> ", song.SC_ID)
 					return el.id === song.SC_ID
 				})[0]
-				console.log(<TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>)
+
+				// return nothing if song no longer exists on soundcloud
+				if(SC_songInfo === null)
+					return
+
 				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>
 			})
 
