@@ -555,7 +555,8 @@
   color: white;
   margin: 0;
   min-height: -webkit-min-content;
-  min-height: min-content; }
+  min-height: min-content;
+  z-index: 4; }
 
 .header .links--wrapper {
   display: flex; }
