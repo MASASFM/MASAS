@@ -962,7 +962,7 @@
   height: 5rem;
   background-color: #2c0b35; }
 .profile--wrapper .track--wrapper:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.4); }
+  background-color: rgba(44, 11, 53, 0.4); }
 .profile--wrapper .track--wrapper .artwork--wrapper {
   position: relative;
   cursor: pointer; }
