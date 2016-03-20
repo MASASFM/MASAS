@@ -122,7 +122,7 @@ var NavSidebar = React.createClass({
 				open={this.props.navSiderbarOpen}
 				onSetOpen={this.props.toogleSidebar}
 				styles={navBarStylesOverride}
-				touchHandleWidth={40}>
+				touchHandleWidth={20}>
 				{this.props.children}
 			</Sidebar>
 		)
