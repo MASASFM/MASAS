@@ -959,10 +959,9 @@
   display: flex;
   width: 100%;
   min-height: 5rem;
-  height: 5rem;
-  background-color: #2c0b35; }
+  height: 5rem; }
 .profile--wrapper .track--wrapper:nth-of-type(odd) {
-  background-color: rgba(44, 11, 53, 0.4); }
+  background-color: rgba(0, 0, 0, 0.4); }
 .profile--wrapper .track--wrapper .artwork--wrapper {
   position: relative;
   cursor: pointer; }
@@ -1029,7 +1028,8 @@
     justify-content: space-around; } }
 #app-body--profile {
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  background-color: #2c0b35; }
 
 .profile--wrapper .profile-info--wrapper {
   position: relative;
@@ -1141,6 +1141,11 @@
   right: 0; }
 
 @media screen and (min-width: 992px) {
+  #app-body--profile {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: transparent; }
+
   .profile--wrapper .profile-info--wrapper {
     max-height: 6rem;
     min-height: 6rem;
