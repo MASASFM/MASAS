@@ -121,9 +121,11 @@ var UploadSC = React.createClass({
 				</div>
 				</Body>
 			)
-		else
+		else {
+			window.open("https://soundcloud.com/connect?client_id=ed631b7b4a7b72dcddf94294319ef093&display=popup&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fsc-callback&response_type=code_and_token&scope=non-expiring&state=SoundCloud_Dialog_6a105")
 			return (
 				<Body>
+
 				<div className="connect-sc--wrapper">
 					<div className="connect-sc--header">
 						<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
@@ -139,6 +141,7 @@ var UploadSC = React.createClass({
 				</div>
 				</Body>
 				);
+		}
 	}
 });
 

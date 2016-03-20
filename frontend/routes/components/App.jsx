@@ -21,7 +21,8 @@ var App = React.createClass({
 	componentWillMount: function() {
 		SC.initialize({
 			client_id: document.MASAS.SC.client_id,
-			redirect_uri: document.MASAS.SC.redirect_uri 
+			redirect_uri: document.MASAS.SC.redirect_uri ,
+			display: 'popup'
 		})
 
 		var userToken = this.getUserTokenFromCookie()
