@@ -27,7 +27,7 @@ var LikesWrapper = React.createClass({
 						<div className="box"></div>
 					</div>
 				</div>
-				<div className="row no-margin" style={{overflowY: 'scroll'}}>
+				<div className="row no-margin likes-scroll--wrapper">
 					<div className="col-md-2 col-display-none-sm">
 						<div className="box"></div>
 					</div>
