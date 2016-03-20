@@ -79,7 +79,7 @@ var NavSidebar = React.createClass({
 					// overflow: 'hidden',
 				},
 				sidebar: {
-					zIndex: 4,
+					zIndex: 5,
 					// position: 'absolute',
 					// top: 0,
 					// bottom: 0,
@@ -121,7 +121,8 @@ var NavSidebar = React.createClass({
 			<Sidebar sidebar={sidebarContent}
 				open={this.props.navSiderbarOpen}
 				onSetOpen={this.props.toogleSidebar}
-				styles={navBarStylesOverride}>
+				styles={navBarStylesOverride}
+				touchHandleWidth={50}>
 				{this.props.children}
 			</Sidebar>
 		)

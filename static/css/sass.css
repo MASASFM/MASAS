@@ -612,7 +612,8 @@
 .footer--wrapper {
   height: 4rem;
   background-color: #09091a;
-  position: relative; }
+  position: relative;
+  z-index: 4; }
 
 .footer--wrapper .playerProgressBar--wrapper {
   display: flex;
