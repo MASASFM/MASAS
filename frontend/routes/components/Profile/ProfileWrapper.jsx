@@ -14,7 +14,7 @@ var Body = React.createClass({
 			maxHeight: marginHeight
 		}
 		return (
-			<div className="app-body" >
+			<div className="app-body" id="app-body--profile">
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
 					<div className="col-md-2">
 						<div className="box"></div>
