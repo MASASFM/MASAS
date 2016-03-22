@@ -8,7 +8,7 @@ var SoundcloudCallback = React.createClass({
 	},
 
 	componentDidMount: function() {
-		window.setTimeout(opener.SC.connectCallback, 1);
+		window.setTimeout(opener.SC.connectCallback.call(window), 1);
 	},
 
   render() {

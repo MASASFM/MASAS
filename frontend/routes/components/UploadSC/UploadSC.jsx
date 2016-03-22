@@ -52,6 +52,7 @@ var UploadSC = React.createClass({
 	},
 
 	connectToSC: function() {
+		// window.open("https://soundcloud.com/connect?client_id=ed631b7b4a7b72dcddf94294319ef093&display=popup&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fsc-callback&response_type=code_and_token&scope=non-expiring&state=SoundCloud_Dialog_80f9e")
 		SC.connect().then( () => {
 			// this.setState({isConnectedSoundcloud: true})
 			this.props.updateIsConnectedSC(true)
@@ -122,7 +123,7 @@ var UploadSC = React.createClass({
 				</Body>
 			)
 		else {
-			window.open("https://soundcloud.com/connect?client_id=ed631b7b4a7b72dcddf94294319ef093&display=popup&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fsc-callback&response_type=code_and_token&scope=non-expiring&state=SoundCloud_Dialog_6a105")
+
 			return (
 				<Body>
 
