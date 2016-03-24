@@ -794,23 +794,9 @@ input[type=range].MASAS-slider {
   font-size: 1.2rem;
   text-align: center;
   width: 80%; }
-.pick-time-sc-sync .checkbox--wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 1.5rem;
-  min-height: 6rem;
-  max-width: 16.5rem; }
-.pick-time-sc-sync .checkbox--wrapper .line {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
-.pick-time-sc-sync .checkbox--wrapper .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
-.pick-time-sc-sync .checkbox--wrapper .column .radioButton-label {
-  margin-left: 1rem; }
+.pick-time-sc-sync .pickTime--wrapper {
+  height: 140px;
+  width: 300px; }
 .pick-time-sc-sync .button--wrapper {
   width: 80%;
   display: flex;
@@ -830,12 +816,9 @@ input[type=range].MASAS-slider {
     height: 6rem; }
   .pick-time-sc-sync .song-title {
     font-size: 0.9rem; }
-  .pick-time-sc-sync .checkbox--wrapper {
-    min-height: 4rem;
-    max-width: 15rem; }
-  .pick-time-sc-sync .checkbox--wrapper .column .radioButton-label {
-    font-size: 1rem;
-    margin-left: 0.4rem; }
+  .pick-time-sc-sync .pickTime--wrapper {
+    height: 200px;
+    width: 400px; }
   .pick-time-sc-sync .button--wrapper {
     width: 7rem;
     min-height: 4.5rem; }
@@ -843,20 +826,29 @@ input[type=range].MASAS-slider {
     font-size: 0.8rem;
     width: 9rem; } }
 .timePicker--wrapper {
-  height: -webkit-min-content;
-  height: min-content;
+  height: 100%;
   position: relative; }
   .timePicker--wrapper #timePicker-canvas {
-    height: 140px;
-    width: 300px; }
+    height: 100%;
+    width: 100%; }
   .timePicker--wrapper .timePicker-slider--wrapper {
     position: absolute;
-    bottom: 4rem;
+    height: 3.5rem;
+    bottom: 1.5rem;
     left: 0;
     width: 100%;
     z-index: 2;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; }
+    .timePicker--wrapper .timePicker-slider--wrapper .timeRange-hashtag {
+      font-size: 1.3rem;
+      opacity: 0.8; }
 
+@media screen and (min-width: 992px) {
+  .timePicker--wrapper .timePicker-slider--wrapper {
+    bottom: 2.5rem; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;

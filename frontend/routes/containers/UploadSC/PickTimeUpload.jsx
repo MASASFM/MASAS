@@ -8,7 +8,6 @@ function mapStateToProps(state) {
 		track: state.uploadSCReducer.choosingTime,
 		MASASuser: state.appReducer.MASASuser,
 		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
-		// pickTimeSliderValue: state.uploadSCReducer.pickTimeSliderValue
 	}
 }
 

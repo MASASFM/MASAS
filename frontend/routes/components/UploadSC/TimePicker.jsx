@@ -1,16 +1,21 @@
-// NOT REDUX COMPONENT
+// element depends on size of document.getElementsByClassName('pickTime--wrapper')[0]
+
+// COMPONENT ONLY LOOSELY COUPLED WITH REDUX
+
+// component reads from redux state through props passed by parent
+// component updates pickTimeUpload state variable through a dispatch function passed by its parent through a prop
+// this dispatch only occurs when need be (when the time interval chosen by the user changes)
+// this is because the slider is discretized in 100 points and pickTimeUpload only in 6
+// It is important to keep pickTimeUpload in the general app state (redux)
+// the loose coupling is done because strong coupling (with slider value) induced heavy lag of the sun movement
+// when changing the slider value
+
+// sun initial position is still hardcoded in the component and needs to be synced manually with the redux initial state
+// to take into account the case when a user submits a song with the default slider value
 
 var React = require("react")
 var ReactDOM = require("react-dom")
 var $ = require("jquery")
-
-// var {goToURL} = require("../../../MASAS_functions.jsx")
-// var {getCookie} = require("../../../MASAS_functions.jsx")
-// var { Link } = require("../../containers/UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
 
 // maps the slider value to sun coordinates
 var mapSliderToHeight =  function(x) {
@@ -29,11 +34,12 @@ var TimePicker = React.createClass({
 	},
 
 	getInitialState: function() {
-		var rangePercent = 33			// slider value
+		var rangePercent = 33
 		var sunCoords = { x: 99, y: 23.5 }
+
 		return {
-			rangePercent,
-			sunCoords,
+			rangePercent,						// (number) 0-100, slider value
+			sunCoords,						// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
@@ -45,23 +51,34 @@ var TimePicker = React.createClass({
 	},
 
 	componentDidMount: function() {
-		// var pixelRatio = paper.view.pixelRatio
+		// add event to get new canvas dimensions on resize
+		$(window).resize( () => {
+			this.updateCanvasDim()
+		})
+
+		this.updateCanvasDim()
+	},
+
+	updateCanvasDim: function() {
 
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
 		var canvas = document.getElementById('timePicker-canvas')
+		var canvasWrapper = document.getElementsByClassName('pickTime--wrapper')[0]
+		
+			// get canvas dimensions from styles
+		var canvasHeight = window.getComputedStyle(canvasWrapper).height
+		var canvasWidth = window.getComputedStyle(canvasWrapper).width
+		canvasHeight = parseInt(canvasHeight.split("p")[0])
+		canvasWidth = parseInt(canvasWidth.split("p")[0])
 
-		var canvasHeight = 140 * pixelRatio()
-		var canvasWidth = 300 * pixelRatio()
-
-			// can't have sunset curve if canvas isn't at least twice as wide as high
-		if(2*canvasHeight > canvasWidth) {
-			canvas.height(canvasWidth / 2)
-			canvasWidth = canvas.width()
-		}
+		console.log(canvasWidth, canvasHeight)
+		
+			// update canvas size
+		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight)
 
 			// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9
-		var arcCenterCoords = { x: canvasWidth / 2, y: arcRadius + 15}
+		var arcCenterCoords = { x: canvasWidth / 2, y: arcRadius + 15 }
 
 		// save dimensions in state vars
 		this.setState({ canvasHeight, canvasWidth, arcCenterCoords, arcRadius })
@@ -72,6 +89,7 @@ var TimePicker = React.createClass({
 
 		// SETUP PAPER JS
 		paper.setup(canvas)
+		// paper.view.on('resize', () => { this.updateCanvasDim() } )
 
 		//DRAW AND STYLE ARC CIRCLE
 			// draw arc from circle radius and center
@@ -92,27 +110,47 @@ var TimePicker = React.createClass({
 	handleSliderChange: function(e) {
 		var sunCoords = this.getSunCoords(e.target.value)
 
+		// call method that will update redux pickTimeUpload variable only if it has changed
 		this.props.onChange(e.target.value, this.props.pickTimeUpload)
+
+		// update local state
 		this.setState({ rangePercent: e.target.value, sunCoords })
 	},
 
 	getSunCoords: function(sliderValue) {
-		// calculating y from positive solutions to circle equation
 		var { sqrt, pow } = Math
 
 		var R = this.state.arcRadius
 		var C = this.state.arcCenterCoords
-		// var xOffset = ( this.state.canvasWidth - 2*R ) / 2
-		// console.log(xOffset)
 		var x = sliderValue / 100 * this.state.canvasWidth
 		var y = -sqrt( pow( R, 2 ) - pow( x - C.x, 2 ) ) + C.y
 
 		return { x: x / pixelRatio(), y: y / pixelRatio() }
 	},
 
+	getHashtag: function() {
+		switch(this.props.pickTimeUpload) {
+			case 1:
+				return	"#EarlyMorning"
+			case 2:
+				return	"#LateMorning"
+			case 3:
+				return	"#EarlyAfternoon"
+			case 4:
+				return	"#LateAfternoon"
+			case 5:
+				return	"#EarlyEvening"
+			case 6:
+				return	"#LateEvening"
+			default:
+				return
+		}
+	},
+
 	render: function() {
 		this.renderSunArcPath()
 
+		// accounting for sun icon size
 		var sunIconSize = 40
 		var top = this.state.sunCoords.y - sunIconSize / 2
 		var left = this.state.sunCoords.x - sunIconSize / 2
@@ -133,6 +171,9 @@ var TimePicker = React.createClass({
 				<canvas id="timePicker-canvas"></canvas>
 				<div className="timePicker-slider--wrapper">
 					<input type="range" value={ this.state.rangePercent } onChange={ this.handleSliderChange } className="MASAS-slider" />
+					<div className="timeRange-hashtag">
+						{ this.getHashtag() }
+					</div>
 				</div>
 				<img src="/static/img/time-picker-sun.png" style={sunIconStyle} />
 			</div>
