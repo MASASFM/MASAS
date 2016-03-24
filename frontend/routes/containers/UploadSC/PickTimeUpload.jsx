@@ -7,16 +7,30 @@ function mapStateToProps(state) {
 	return {
 		track: state.uploadSCReducer.choosingTime,
 		MASASuser: state.appReducer.MASASuser,
-		pickTimeUpload: state.uploadSCReducer.pickTimeUpload
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		// pickTimeSliderValue: state.uploadSCReducer.pickTimeSliderValue
 	}
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
+	var handleTimePickerChange = function(rangeValue, currentPickTimeUpload) {
+		var pickTimeUpload = Math.floor(rangeValue/100*6) + 1
+
+		if(pickTimeUpload > 6)
+			pickTimeUpload = 6
+		if(pickTimeUpload < 0)
+			pickTimeUpload = 0
+
+		if(pickTimeUpload !== currentPickTimeUpload)
+			dispatch({type:'HANDLE_PICK_TIME_UPLOAD', rangeValue, pickTimeUpload})
+	}
+
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		closeWindow: () => { dispatch({type:'SYNC_SONG', song: null}); dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: null}) },
-		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time})
+		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
+		handleTimePickerChange,
 	}
 }
 

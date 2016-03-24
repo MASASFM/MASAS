@@ -5,6 +5,7 @@ var {goToURL} = require("../../../MASAS_functions.jsx")
 
 var Button = require("../../containers/UI/Button.jsx")
 var Link = require("../../containers/UI/Link.jsx")
+var TimePicker = require("../UploadSC/TimePicker.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
 
@@ -52,12 +53,13 @@ var Home = React.createClass({
 	},
 
 	render: function() {
+		//<HomeCountdown user={this.props.user}/>
 		return (
 			<div className="home--wrapper">
 				<div className="multiPage--wrapper">
 					<div className="page1--wrapper" id="homepage-login">
 						<div className="logo">
-							<HomeCountdown user={this.props.user}/>
+							<TimePicker rangePercent={20} />
 						</div>
 						<div className="login-container" style={{display: 'none'}}>
 							<Button onClick={goToURL.bind(null, 'login')} caps={true}>log-in</Button>

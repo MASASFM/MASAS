@@ -5,7 +5,6 @@ var { getUserTracks } = require('./ajaxCalls.jsx')
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
-	console.log(state.uploadSCReducer.choosingTime)
 	return {
 		MASASuser: state.appReducer.MASASuser,
 		userPk: state.appReducer.MASASuserPk,

@@ -154,6 +154,82 @@
 .MASAS-link.disabled:hover {
   font-family: Lato-Light; }
 
+input[type=range].MASAS-slider {
+  -webkit-appearance: none;
+  margin: 6px 0;
+  width: 100%; }
+  input[type=range].MASAS-slider:focus {
+    outline: none; }
+  input[type=range].MASAS-slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 4px #222, 0 0 4px #2f2f2f;
+    background: #FFF;
+    border: 0px solid #000;
+    border-radius: 1.5px; }
+  input[type=range].MASAS-slider::-webkit-slider-thumb {
+    box-shadow: 4px 4px 4px #111, 0 0 4px #1e1e1e;
+    border: 1px solid #fff;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    background: #FFF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -4.5px; }
+  input[type=range].MASAS-slider:focus::-webkit-slider-runnable-track {
+    background: white; }
+  input[type=range].MASAS-slider::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 4px 4px 4px #222, 0 0 4px #2f2f2f;
+    background: #FFF;
+    border: 0px solid #000;
+    border-radius: 1.5px; }
+  input[type=range].MASAS-slider::-moz-range-thumb {
+    box-shadow: 4px 4px 4px #111, 0 0 4px #1e1e1e;
+    border: 1px solid #fff;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    background: #FFF;
+    cursor: pointer; }
+  input[type=range].MASAS-slider::-ms-track {
+    width: 100%;
+    height: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border-color: transparent;
+    border-width: 12px 0;
+    color: transparent; }
+  input[type=range].MASAS-slider::-ms-fill-lower {
+    box-shadow: 4px 4px 4px #222, 0 0 4px #2f2f2f;
+    background: #f2f2f2;
+    border: 0px solid #000;
+    border-radius: 3px; }
+  input[type=range].MASAS-slider::-ms-fill-upper {
+    box-shadow: 4px 4px 4px #222, 0 0 4px #2f2f2f;
+    background: #FFF;
+    border: 0px solid #000;
+    border-radius: 3px; }
+  input[type=range].MASAS-slider::-ms-thumb {
+    box-shadow: 4px 4px 4px #111, 0 0 4px #1e1e1e;
+    border: 1px solid #fff;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    background: #FFF;
+    cursor: pointer; }
+  input[type=range].MASAS-slider:focus::-ms-fill-lower {
+    background: #FFF; }
+  input[type=range].MASAS-slider:focus::-ms-fill-upper {
+    background: white; }
+
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -766,6 +842,21 @@
   .pick-time-sc-sync .button--wrapper .submit {
     font-size: 0.8rem;
     width: 9rem; } }
+.timePicker--wrapper {
+  height: -webkit-min-content;
+  height: min-content;
+  position: relative; }
+  .timePicker--wrapper #timePicker-canvas {
+    height: 140px;
+    width: 300px; }
+  .timePicker--wrapper .timePicker-slider--wrapper {
+    position: absolute;
+    bottom: 4rem;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    }
+
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;
