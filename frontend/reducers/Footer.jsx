@@ -1,7 +1,8 @@
 let exportVar = {}
 
 exportVar.defaultState = {
-	progressBar: 0				// (INT) 0-100
+	progressBar: 0,				// (INT) 0-100, song progress time bar
+	isOpened: false,				// (BOOL), is footer opened
 }
 const { defaultState } = exportVar
 
@@ -12,6 +13,11 @@ exportVar.footerReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				progressBar: action.progress
+			}
+		case 'TOOGLE_IS_OPENED': // not tested
+			return {
+				...state,
+				isOpened: !state.isOpened
 			}
 		default:
 			return state

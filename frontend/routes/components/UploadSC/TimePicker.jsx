@@ -34,20 +34,14 @@ var TimePicker = React.createClass({
 	},
 
 	getInitialState: function() {
-		var rangePercent = 33
-		var sunCoords = { x: 99, y: 23.5 }
-
 		return {
-			rangePercent,						// (number) 0-100, slider value
-			sunCoords,						// (obj) sun coordinates
+			rangePercent: 33,					// (number) 0-100, slider value
+			sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
 			arcRadius: 0						// (number) sun arc path radius
 		}
-	},
-
-	componentWillMount: function() {
 	},
 
 	componentDidMount: function() {
@@ -56,6 +50,7 @@ var TimePicker = React.createClass({
 			this.updateCanvasDim()
 		})
 
+		// get canvas dim on initial render
 		this.updateCanvasDim()
 	},
 
@@ -70,8 +65,6 @@ var TimePicker = React.createClass({
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
 		canvasHeight = parseInt(canvasHeight.split("p")[0])
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
-
-		console.log(canvasWidth, canvasHeight)
 		
 			// update canvas size
 		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight)
@@ -80,7 +73,7 @@ var TimePicker = React.createClass({
 		var arcRadius = canvasWidth / 1.9
 		var arcCenterCoords = { x: canvasWidth / 2, y: arcRadius + 15 }
 
-		// save dimensions in state vars
+		// SAVE DIMENSIONS IN STATE VARS
 		this.setState({ canvasHeight, canvasWidth, arcCenterCoords, arcRadius })
 	},
 
@@ -89,7 +82,6 @@ var TimePicker = React.createClass({
 
 		// SETUP PAPER JS
 		paper.setup(canvas)
-		// paper.view.on('resize', () => { this.updateCanvasDim() } )
 
 		//DRAW AND STYLE ARC CIRCLE
 			// draw arc from circle radius and center
@@ -151,13 +143,14 @@ var TimePicker = React.createClass({
 		this.renderSunArcPath()
 
 		// accounting for sun icon size
-		var sunIconSize = 40
+		var sunIconSize = 40	// px
 		var sunCoords = this.getSunCoords(this.state.rangePercent)
 		var top = sunCoords.y - sunIconSize / 2
 		var left = sunCoords.x - sunIconSize / 2
 		var height = sunIconSize + "px"
 		var width = sunIconSize + "px"
 
+		// styling and positioning sun icon
 		var sunIconStyle = {
 			position: 'absolute',
 			top,

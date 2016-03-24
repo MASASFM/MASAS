@@ -2,45 +2,57 @@ $opacity: 1
 $R: 9
 $G: 9
 $B: 26
+$footerHeight: 4rem
 
 .footer--wrapper
-	height: 4rem
-	background-color: rgba($R, $G, $B, $opacity)
+	height: $footerHeight
 	// min-height: 3.5rem
 	// max-height: 3.5rem
 	position: relative
 	z-index: 4			// for like button on sidebar overlay (for touch open siderbar but doesn't go history(-1) on mobile safari)
 
 .footer--wrapper
-	.playerProgressBar--wrapper
-		display: flex
-		justify-content: flex-start
-		width: 100vw
-		height: 2px
+	.slider--wrapper
+		background-color: rgba($R, $G, $B, $opacity)
 		position: absolute
 		top: 0
 		left: 0
+		right: 0
+		bottom: 0
+		transition: top 0.3s ease-in
 
-		.playerProgressBar
-			display: flex
-			background-color: white
-			width: 0vw
+		.visible--wrapper
+			height: $footerHeight
 
-	img
-		cursor: pointer
+			.playerProgressBar--wrapper
+				display: flex
+				justify-content: flex-start
+				width: 100vw
+				height: 2px
+				position: absolute
+				top: 0
+				left: 0
 
-	.next-icon
-		height: 1rem
+				.playerProgressBar
+					display: flex
+					background-color: white
+					width: 0vw
 
-	.player--wrapper
-		display: flex
-		align-items: center
-		padding-right: 0
+			img
+				cursor: pointer
 
-	.nextSong--wrapper1
-		display: flex
-		align-items: center
-		padding-left: 0.8rem
+			.next-icon
+				height: 1rem
+
+			.player--wrapper
+				display: flex
+				align-items: center
+				padding-right: 0
+
+			.nextSong--wrapper1
+				display: flex
+				align-items: center
+				padding-left: 0.8rem
 
 		
 
@@ -51,18 +63,22 @@ $B: 26
 	$R: 0
 	$G: 0
 	$B: 0
+	$footerHeight: 2.6rem
 	
 	.footer--wrapper
-		height: 2.6rem
+		height: $footerHeight
 		background-color: rgba($R, $G, $B, $opacity)
 
-	.footer--wrapper
-		.player--wrapper
-			padding-right: 0.8rem
+		.slider--wrapper
+			.visible--wrapper
+				height: $footerHeight
+				
+				.player--wrapper
+					padding-right: 0.8rem
 
-		.nextSong--wrapper1
-			padding-left: 0
+				.nextSong--wrapper1
+					padding-left: 0
 
-		.nextSong--wrapper1
-			.nextSong--wrapper2
-				padding-left: 0rem
+				.nextSong--wrapper1
+					.nextSong--wrapper2
+					padding-left: 0rem

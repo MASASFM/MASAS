@@ -51,25 +51,31 @@ var Footer = React.createClass({
 
 	render: function() {
 		return (
-			<div className="footer--wrapper">
-				<div className="playerProgressBar--wrapper">
-					<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
-					</div>
-				</div>
-				<div className="row no-margin"  style={{height: '100%'}}>
-					<div className="col-md-2 col-display-none-sm">
-						<div className="box"></div>
-					</div>
-					<div className="col-xs-10 col-md-8 player--wrapper">
-						<Player />
-					</div>
-					<div className="col-xs-2 col-md-2 col-display-none-sm nextSong--wrapper1">
-						<div className="box nextSong--wrapper2">
-							<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+			<div className="footer--wrapper" onClick={this.props.toogleIsOpened}>
+				<div className="slider--wrapper" style={{ top: this.props.isOpened ? '-5rem' : '0' }}>
+					<div className="visible--wrapper">
+						<div className="playerProgressBar--wrapper">
+							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
+							</div>
+						</div>
+						<div className="row no-margin"  style={{height: '100%'}}>
+							<div className="col-md-2 col-display-none-sm">
+								<div className="box"></div>
+							</div>
+							<div className="col-xs-10 col-md-8 player--wrapper">
+								<Player />
+							</div>
+							<div className="col-xs-2 col-md-2 col-display-none-sm nextSong--wrapper1">
+								<div className="box nextSong--wrapper2">
+									<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+								</div>
+							</div>
 						</div>
 					</div>
+					<div className="hidden--wrapper">
+						HEY
+					</div>
 				</div>
-				
 			</div>
 		)
 	}

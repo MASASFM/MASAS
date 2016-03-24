@@ -54,6 +54,9 @@ var PickTimeUpload = React.createClass({
 						<TimePicker pickTimeUpload={this.props.pickTimeUpload} onChange={this.props.handleTimePickerChange} />
 					</div>
 				</div>
+				<h3 className="question-text">
+					when would you most likely listen to your sound?
+				</h3>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
 					<Button noBorders={true} onClick={this.props.closeWindow}>Cancel</Button>

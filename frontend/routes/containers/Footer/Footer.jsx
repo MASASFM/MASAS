@@ -9,6 +9,7 @@ function mapStateToProps(state) {
 		MASASuser: state.appReducer.MASASuser,
 		SC_songInfo: state.playerReducer.SC_songInfo,
 		progressBarWidth: state.footerReducer.progressBar,
+		isOpened: state.footerReducer.isOpened,
 	}
 }
 
@@ -16,7 +17,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress})
+		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
+		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_OPENED' })
 	}
 }
 

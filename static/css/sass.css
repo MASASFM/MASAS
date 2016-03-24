@@ -688,46 +688,56 @@ input[type=range].MASAS-slider {
 
 .footer--wrapper {
   height: 4rem;
-  background-color: #09091a;
   position: relative;
   z-index: 4; }
 
-.footer--wrapper .playerProgressBar--wrapper {
-  display: flex;
-  justify-content: flex-start;
-  width: 100vw;
-  height: 2px;
+.footer--wrapper .slider--wrapper {
+  background-color: #09091a;
   position: absolute;
   top: 0;
-  left: 0; }
-  .footer--wrapper .playerProgressBar--wrapper .playerProgressBar {
-    display: flex;
-    background-color: white;
-    width: 0vw; }
-.footer--wrapper img {
-  cursor: pointer; }
-.footer--wrapper .next-icon {
-  height: 1rem; }
-.footer--wrapper .player--wrapper {
-  display: flex;
-  align-items: center;
-  padding-right: 0; }
-.footer--wrapper .nextSong--wrapper1 {
-  display: flex;
-  align-items: center;
-  padding-left: 0.8rem; }
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: top 0.3s ease-in; }
+  .footer--wrapper .slider--wrapper .visible--wrapper {
+    height: 4rem; }
+    .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper {
+      display: flex;
+      justify-content: flex-start;
+      width: 100vw;
+      height: 2px;
+      position: absolute;
+      top: 0;
+      left: 0; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .playerProgressBar {
+        display: flex;
+        background-color: white;
+        width: 0vw; }
+    .footer--wrapper .slider--wrapper .visible--wrapper img {
+      cursor: pointer; }
+    .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
+      height: 1rem; }
+    .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
+      display: flex;
+      align-items: center;
+      padding-right: 0; }
+    .footer--wrapper .slider--wrapper .visible--wrapper .nextSong--wrapper1 {
+      display: flex;
+      align-items: center;
+      padding-left: 0.8rem; }
 
 @media screen and (min-width: 992px) {
   .footer--wrapper {
     height: 2.6rem;
     background-color: rgba(0, 0, 0, 0.7); }
-
-  .footer--wrapper .player--wrapper {
-    padding-right: 0.8rem; }
-  .footer--wrapper .nextSong--wrapper1 {
-    padding-left: 0; }
-  .footer--wrapper .nextSong--wrapper1 .nextSong--wrapper2 {
-    padding-left: 0rem; } }
+    .footer--wrapper .slider--wrapper .visible--wrapper {
+      height: 2.6rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
+        padding-right: 0.8rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .nextSong--wrapper1 {
+        padding-left: 0; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .nextSong--wrapper1 {
+        padding-left: 0rem; } }
 .upload-sc-item--wrapper {
   border-width: 1px;
   border-style: solid;
@@ -797,6 +807,12 @@ input[type=range].MASAS-slider {
 .pick-time-sc-sync .pickTime--wrapper {
   height: 140px;
   width: 300px; }
+.pick-time-sc-sync .question-text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  display: flex;
+  font-family: Lato-Semibold;
+  text-align: center; }
 .pick-time-sc-sync .button--wrapper {
   width: 80%;
   display: flex;

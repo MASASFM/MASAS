@@ -53,13 +53,12 @@ var Home = React.createClass({
 	},
 
 	render: function() {
-		//<HomeCountdown user={this.props.user}/>
 		return (
 			<div className="home--wrapper">
 				<div className="multiPage--wrapper">
 					<div className="page1--wrapper" id="homepage-login">
 						<div className="logo">
-							<TimePicker rangePercent={20} />
+							<HomeCountdown user={this.props.user} />
 						</div>
 						<div className="login-container" style={{display: 'none'}}>
 							<Button onClick={goToURL.bind(null, 'login')} caps={true}>log-in</Button>
