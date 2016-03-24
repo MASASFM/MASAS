@@ -152,8 +152,9 @@ var TimePicker = React.createClass({
 
 		// accounting for sun icon size
 		var sunIconSize = 40
-		var top = this.state.sunCoords.y - sunIconSize / 2
-		var left = this.state.sunCoords.x - sunIconSize / 2
+		var sunCoords = this.getSunCoords(this.state.rangePercent)
+		var top = sunCoords.y - sunIconSize / 2
+		var left = sunCoords.x - sunIconSize / 2
 		var height = sunIconSize + "px"
 		var width = sunIconSize + "px"
 
