@@ -173,6 +173,6 @@ var TimePicker = React.createClass({
 			</div>
 		)
 	}
-});
+})
 
 module.exports = TimePicker

@@ -14,7 +14,8 @@ exportVar.footerReducer = function(state = defaultState, action) {
 				...state,
 				progressBar: action.progress
 			}
-		case 'TOOGLE_IS_OPENED': // not tested
+		case 'TOOGLE_IS_FOOTER_OPENED': // not tested
+			console.log('hey')
 			return {
 				...state,
 				isOpened: !state.isOpened

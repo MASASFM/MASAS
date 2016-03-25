@@ -18,7 +18,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
 		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
-		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_OPENED' })
+		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
 	}
 }
 

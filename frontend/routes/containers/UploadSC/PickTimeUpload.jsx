@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch) {
 
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		closeWindow: () => { dispatch({type:'SYNC_SONG', song: null}); dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: null}) },
+		closeWindow: () => { dispatch({type:'CLOSE_PICK_TIME_WINDOW'}) },
 		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
 		handleTimePickerChange,
 	}

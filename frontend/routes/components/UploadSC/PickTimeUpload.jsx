@@ -6,9 +6,6 @@ var { Button, Checkbox } = require("../../containers/UI/UI.jsx")
 var { getCookie } = require("../../../MASAS_functions.jsx")
 var TimePicker = require("./TimePicker.jsx")
 
-// var Template = (props) => {
-
-// }
 
 var PickTimeUpload = React.createClass({
 	propTypes: {
@@ -16,6 +13,9 @@ var PickTimeUpload = React.createClass({
 
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', '0')		// 0 = menu icon; 1 = arrow back
+
+		if(!$("#body--background").hasClass('blurred'))
+			$("#body--background").addClass('blurred')
 	},
 
 	submitSong: function() {
@@ -44,7 +44,12 @@ var PickTimeUpload = React.createClass({
 		})
 	},
 
+	componentWillUnmount: function() {
+		$("#body--background").removeClass('blurred')
+	},
+
 	render: function() {
+
 		return (
 			<div className="pick-time-sc-sync">
 				<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
@@ -64,6 +69,6 @@ var PickTimeUpload = React.createClass({
 			</div>
 		)
 	}
-});
+})
 
 module.exports = PickTimeUpload

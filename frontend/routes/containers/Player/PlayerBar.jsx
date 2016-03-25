@@ -14,7 +14,8 @@ function mapStateToProps(state) {
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userPk: state.appReducer.MASASuserPk,
 		MASASuser: state.appReducer.MASASuser,
-		isFetchingSong: state.playerReducer.isFetchingSong
+		isFetchingSong: state.playerReducer.isFetchingSong,
+		isPlayerBarOpened: state.footerReducer.isOpened
 	}
 }
 
@@ -248,7 +249,8 @@ function mapDispatchToProps(dispatch) {
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
-		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId})
+		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
+		tooglePlayerBarOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
 	}
 }
 

@@ -51,8 +51,8 @@ var Footer = React.createClass({
 
 	render: function() {
 		return (
-			<div className="footer--wrapper" onClick={this.props.toogleIsOpened}>
-				<div className="slider--wrapper" style={{ top: this.props.isOpened ? '-5rem' : '0' }}>
+			<div className="footer--wrapper">
+				<div className={ "slider--wrapper " + (this.props.isOpened ? "opened" : "") }>
 					<div className="visible--wrapper">
 						<div className="playerProgressBar--wrapper">
 							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
@@ -73,7 +73,12 @@ var Footer = React.createClass({
 						</div>
 					</div>
 					<div className="hidden--wrapper">
-						HEY
+						<div className="dislike-choices--wrapper">
+							<span className="spam">Report spam</span>
+							<span className="copyright">Report copyright</span>
+							<span className="suggest-time">Suggest time</span>
+							<span className="no-like">I don't like it</span>
+						</div>
 					</div>
 				</div>
 			</div>

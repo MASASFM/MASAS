@@ -42,17 +42,23 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 				isConnectedSoundcloud: action.isConnectedSoundcloud
 			}
 		case 'HANDLE_PICK_TIME_UPLOAD':  				// (updated TO BE TESTED
-			// var pickTimeUpload = Math.floor(action.rangeValue/100*6) + 1
 
 			// if(pickTimeUpload > 6)
 			// 	pickTimeUpload = 6
-			// if(pickTimeUpload < 0)
-			// 	pickTimeUpload = 0
+			// if(pickTimeUpload < 1)
+			// 	pickTimeUpload = 1
 
 			return {
 				...state,
 				pickTimeUpload: action.pickTimeUpload,
 				pickTimeSliderValue: action.rangeValue
+			}
+		case 'CLOSE_PICK_TIME_WINDOW':  				// (TO BE TESTED
+			return {
+				...state,
+				pickTimeUpload: exportVar.defaultState.pickTimeUpload,
+				pickTimeSliderValue: exportVar.defaultState.pickTimeSliderValue,
+				choosingTime: null
 			}
 		default:
 			return state
