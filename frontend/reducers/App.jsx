@@ -32,7 +32,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 			}
 		case 'UPDATE_PAGE_TITLE':
 			let pageType = action.pageType
-			
+
 			if(typeof(pageType) !== "number")
 				pageType = 0
 

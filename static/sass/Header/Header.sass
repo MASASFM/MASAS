@@ -9,10 +9,10 @@
 	z-index: 4					// see footer--wrapper
 
 .header
-	$opacity: 1
-	$R: 9
-	$G: 9
-	$B: 26
+	$opacity: 0.8
+	$R: 0
+	$G: 0
+	$B: 0
 
 	.links--wrapper
 		display: flex
@@ -27,13 +27,33 @@
 
 	.phone-header
 		.menu-icon
-			height: 1.2rem
+			height: 1rem
 			margin-left: 1rem
 
 		.title
 			text-align: center
-			text-transform: uppercase
+			text-transform: capitalize
 			font-family: Lato-Light
+			font-size: 1.2rem
+
+		.tray-icon--wrapper
+			display: flex
+			justify-content: flex-end
+
+			.toogle-open-tray-icon
+				height: 1.5rem
+				width: 1.5rem
+				margin-right: 1rem
+				background-image: url('/static/img/MASAS_icon_dot.svg')
+				background-size: contain
+				background-position: center
+				background-repeat: no-repeat
+				
+
+			.toogle-open-tray-icon.opened
+				background-image: url('/static/img/MASAS_icon_close.svg')
+				height: 14px
+				width: 14px
 
 	.top-decoration
 		height: 0.8rem

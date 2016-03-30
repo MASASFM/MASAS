@@ -1,6 +1,7 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 var { goToURL } = require("../../../MASAS_functions.jsx")
+import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
 var { Button } = require("../../containers/UI/UI.jsx")
 var Body = require("../../containers/UI/Body.jsx")
@@ -10,6 +11,8 @@ var PickTimeUpload = require("../../containers/UploadSC/PickTimeUpload.jsx")
 
 
 var UploadSC = React.createClass({
+	mixins: [ MobileBlurBackground ],
+	
 	propTypes: {
 		// choosingTime: React.PropTypes.object
 	},

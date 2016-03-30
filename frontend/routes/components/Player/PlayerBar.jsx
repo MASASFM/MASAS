@@ -106,12 +106,6 @@ var Player = React.createClass({
 	render: function() {
 		return (
 			<div className="navbar-player--wrapper">
-				{ this.props.isPlayerBarOpened ?
-					<img src="/static/img/MASAS_arrow_left.svg" onClick={ this.props.tooglePlayerBarOpened } className="tray-icon" alt="close tray" />
-					:
-					<img src="/static/img/MASAS_arrow_down.svg" onClick={ this.props.tooglePlayerBarOpened } className="tray-icon" alt="open tray" />
-				}
-
 				{ 
 					this.renderLikeIcon()
 				}

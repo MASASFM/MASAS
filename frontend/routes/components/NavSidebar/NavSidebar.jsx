@@ -76,7 +76,7 @@ var NavSidebar = React.createClass({
 					// left: 0,
 					// right: 0,
 					// bottom: 0,
-					// overflow: 'hidden',
+					overflow: 'hidden',
 				},
 				sidebar: {
 					zIndex: 5,
@@ -94,7 +94,7 @@ var NavSidebar = React.createClass({
 					// left: 0,
 					// right: 0,
 					// bottom: 0,
-					// overflow: 'auto',
+					overflow: 'hidden',
 					// transition: 'left .3s ease-out, right .3s ease-out',
 				},
 				overlay: {

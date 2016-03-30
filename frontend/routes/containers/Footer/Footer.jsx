@@ -9,7 +9,7 @@ function mapStateToProps(state) {
 		MASASuser: state.appReducer.MASASuser,
 		SC_songInfo: state.playerReducer.SC_songInfo,
 		progressBarWidth: state.footerReducer.progressBar,
-		isOpened: state.footerReducer.isOpened,
+		isPlayerBarOpened: state.footerReducer.isOpened,
 	}
 }
 

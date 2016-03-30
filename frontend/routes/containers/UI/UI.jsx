@@ -16,4 +16,4 @@ UI.Password = Password
 UI.Textbox = Textbox
 
 
-module.exports = UI;
+module.exports = UI

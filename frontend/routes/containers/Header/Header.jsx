@@ -8,7 +8,8 @@ function mapStateToProps(state) {
 	return {
 		pageType: state.appReducer.pageType,
 		pageTitle: state.appReducer.pageTitle,
-		user: state.appReducer.MASASuser
+		user: state.appReducer.MASASuser,
+		isPlayerBarOpened: state.footerReducer.isOpened,
 	}
 }
 
@@ -16,6 +17,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
   	onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+  	toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
+  	goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4})
   }
 }
 

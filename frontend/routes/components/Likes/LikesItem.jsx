@@ -20,19 +20,19 @@ var LikesItem = React.createClass({
 		
 		switch(switchVar) {
 			case "1":
-				return "12-3 AM"
+				return "#EarlyMorning"
 			case "2":
-				return "6-9 AM"
+				return "#LateMorning"
 			case "3":
-				return "9-12AM"
+				return "#EarlyAfternoon"
 			case "4":
-				return "1-4 PM"
+				return "#LateAfternoon"
 			case "5":
-				return "5-8 PM"
+				return "#EarlyEvening"
 			case "6":
-				return "9-12 PM"
+				return "#LateEvening"
 			default:
-				return 0
+				return 
 		}
 	},
 
@@ -79,14 +79,11 @@ var LikesItem = React.createClass({
 						</div>
 					</div>
 					<div className="song-stats--wrapper">
-						<div className="radio">
-							<span className="title">Radio</span> { this.props.MASASinfo.timeInterval.substr(this.props.MASASinfo.timeInterval.length - 2, 1) }
-						</div>
 						<div className="time">
-							<span className="title">Time</span> { this.renderRadioTime() }
+							{ this.renderRadioTime() }
 						</div>
 						<div className="plays">
-							<span className="title">Plays</span> { this.props.MASASinfo.play_count }
+							{ this.props.MASASinfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
 						</div>
 					</div>
 				</div>

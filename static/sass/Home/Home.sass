@@ -9,29 +9,62 @@
 	align-items: center
 	justify-content: space-around
 	flex-direction: column
-	margin: 2.5rem
+	margin: 0.7rem 2.5rem
 	position: relative
 
+	.page-up--wrapper
+		display: flex
+		justify-content: center
+		align-items: center
+		height: 3rem
+		width: 100%
+		z-index: 2
+		transform: rotate(180deg)
 
-.home--wrapper
-	h1
-		font-family: Lato-Semibold
-		text-transform: uppercase
-		letter-spacing: 8px
-		font-size: 1.8rem
+		img
+			height: 0.8rem
+
+	.page-down--wrapper
+		display: flex
+		justify-content: center
+		align-items: center
+		height: 3rem
+		width: 100%
+		z-index: 2
+
+		img
+			height: 0.8rem
+
+	// h1
+	// 	font-family: Lato-Semibold
+	// 	text-transform: uppercase
+	// 	letter-spacing: 8px
+	// 	font-size: 1.8rem
 
 	.multiPage--wrapper
 		overflow: hidden
 		display: flex
 		flex: 1
 		flex-direction: column
-		position: absolute
-		top: 0
-		bottom: 0
-		right: 0
-		left: 0
+		position: relative
+		width: 100%
 
 	.multiPage--wrapper
+		h1
+			font-family: Lato-Semibold
+			font-size: 1.8rem
+			border-bottom: 1px solid white
+			padding-bottom: 1.2rem
+			margin-bottom: 2rem
+			text-transform: uppercase
+			letter-spacing: 0.35rem
+
+		p
+			font-size: 0.85rem
+			text-align: justify
+			padding-bottom: 2rem
+			line-height: 1.1rem
+
 		.page1--wrapper, .page2--wrapper
 			position: absolute
 			top: 0
@@ -43,6 +76,7 @@
 			transition-timing-function: ease-in-out
 
 		.page1--wrapper
+			padding: 0 3rem
 			opacity: 1
 			z-index: 1
 			align-items: center
@@ -50,6 +84,7 @@
 		.page2--wrapper
 			opacity: 0
 			z-index: -1
+
 		#homepage-login
 			display: flex
 			flex-direction: column
@@ -57,10 +92,10 @@
 			align-items: center
 			flex: 1
 
-		#homepage-login
 			.arrow-icon
 				height: 2rem
 				padding-top: 3rem
+				padding-bottom: 1.8rem 				// account for margins lost to position down arrow lower on the page
 				animation: Floating 3s infinite ease-in-out
 				cursor: pointer
 
@@ -87,38 +122,17 @@
 					color: white
 					align-self: center
 
-		#homepage-description--choose
-			display: flex
-			flex: 1
-			flex-direction: column
-			align-items: center
-			justify-content: space-around
-
-		#homepage-description--choose
-
-			.links--wrapper
-				display: flex
-
-			.links--wrapper
-				img
-					height: 20rem
-					width: 20rem
-					margin: 0 3rem
-					cursor: pointer
-
 		#homepage-description--artist
 			display: flex
 			flex: 1
-			padding: 0 5rem
 
-		#homepage-description--artist
 			.artist-page--wrapper
 				display: flex
 				align-items: center
 
 			.artist-page--wrapper
 				img
-					width: 40rem
+					width: 70%
 
 			.text--wrapper
 				display: flex
@@ -126,53 +140,201 @@
 				align-items: center
 				justify-content: center
 				justify-content: space-between
-				height: 21rem
 				align-items: flex-start
 
 			.text--wrapper
-				h1
-					font-size: 2rem
-
-				p
-					font-size: 0.85rem
-					text-align: justify
-					padding-bottom: 2rem
 
 				.button
 					min-width: 12rem
+					width: 100%
 
 		#homepage-description--musicLover
 			display: flex
 			flex: 1
-			padding: 0 5rem
 			max-width: 62rem
 
 		#homepage-description--musicLover
-			.artist-page--wrapper
-				display: flex
-				align-items: center
-
-			.artist-page--wrapper
-				img
-					width: 35rem
-
 			.text--wrapper
 				display: flex
 				flex-direction: column
 				align-items: center
 				justify-content: center
 				justify-content: space-between
-				height: 21rem
 				align-items: flex-start
 
-			.text--wrapper
-				h1
-					font-size: 2rem
-
-				p
-					font-size: 0.85rem
-					text-align: justify
-					padding-bottom: 2rem
+				img
+					width: 70%
 
 				.button
 					min-width: 12rem
+					width: 100%
+
+		#homepage-description--developpers
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+
+			.founders-info--wrapper
+				display: flex
+				flex-wrap: wrap
+				justify-content: space-around
+				align-items: center
+				flex: 1
+
+				.founder-info--wrapper
+					display: flex
+					flex-direction: column
+					align-items: center
+
+					img
+						width: 4.5rem
+						margin-bottom: 1.5rem
+
+					.text--wrapper
+						display: flex
+						flex-direction: column
+						align-content: center
+
+						.name, .job
+							text-align: center
+
+						.name
+							text-transform: uppercase
+							font-size: 0.6rem
+							letter-spacing: 0.1rem
+
+						hr
+							width: 100%
+
+						.job
+							opacity: 0.3
+							font-size: 0.7rem
+
+			.description
+				text-align: center
+				padding: 2rem 0
+
+			.social-buttons
+				display: flex
+				justify-content: space-between
+				margin-bottom: 1.5rem
+				width: 100%
+
+				.twitter, .facebook
+					padding: 0.55rem
+
+				.twitter
+					background-color: rgb(93,168, 220)
+
+				.twitter::before
+					background-image: url("/static/img/twitter.svg")
+					content: ""
+
+				.facebook
+					background-color: rgb(72,90,150)
+
+				.facebook::before
+					content: ""
+					background-image: url("/static/img/twitter.svg")
+
+
+@media screen and (min-width: $desktop-min-width)
+	.home--wrapper
+		.page-up--wrapper
+			img
+
+		.page-down--wrapper
+			img
+
+		.multiPage--wrapper
+
+
+		.multiPage--wrapper
+			h1
+
+
+			p
+
+
+			.page1--wrapper, .page2--wrapper
+
+
+			.page1--wrapper
+
+
+			.page2--wrapper
+
+
+			#homepage-login
+
+				.arrow-icon
+
+				.logo
+
+
+				.login-container
+
+
+				.login-container
+					.signup-text
+
+			#homepage-description--artist
+				justify-content: flex-end
+
+				.artist-page--wrapper
+
+				.artist-page--wrapper
+
+				.text--wrapper
+					padding-right: 5rem
+					width: 30%
+					height: 100%
+					justify-content: flex-start
+
+				.text--wrapper
+
+					.button
+
+			#homepage-description--musicLover
+
+			#homepage-description--musicLover
+				.text--wrapper
+
+					img
+
+
+					.button
+
+			#homepage-description--developpers
+
+				.founders-info--wrapper
+
+					.founder-info--wrapper
+
+						img
+
+						.text--wrapper
+
+							.name, .job
+
+							.name
+
+							hr
+
+							.job
+
+				.description
+
+				.social-buttons
+
+					.twitter, .facebook
+
+					.twitter
+
+					.twitter::before
+
+					.facebook
+
+					.facebook::before
+
+

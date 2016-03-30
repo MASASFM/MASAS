@@ -1,10 +1,14 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
-var Body = React.createClass({
+var ProfileWrapper = React.createClass({
+	mixins: [ MobileBlurBackground ],
+
 	componentWillMount: function() {
 		// this.props.updateTitle()
+		console.log(MobileBlurBackground)
 	},
 
 	render: function() {
@@ -53,4 +57,4 @@ var Body = React.createClass({
 });
 
 
-module.exports = Body
+module.exports = ProfileWrapper

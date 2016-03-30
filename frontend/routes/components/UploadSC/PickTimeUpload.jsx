@@ -12,7 +12,7 @@ var PickTimeUpload = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Upload', '0')		// 0 = menu icon; 1 = arrow back
+		this.props.updateTitle('Upload', 1)		// 0 = menu icon; 1 = arrow back
 
 		if(!$("#body--background").hasClass('blurred'))
 			$("#body--background").addClass('blurred')
@@ -52,8 +52,14 @@ var PickTimeUpload = React.createClass({
 
 		return (
 			<div className="pick-time-sc-sync">
-				<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
-				<h2 className="song-title">{this.props.track.title}</h2>
+				{ 
+					this.props.track.artwork_url ?
+						<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
+					:
+						<div className="artwork"></div>
+				}
+
+				<h2 className="song-title">{this.props.track.title}ON DECK: The Geek x VRV THUMP</h2>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
 						<TimePicker pickTimeUpload={this.props.pickTimeUpload} onChange={this.props.handleTimePickerChange} />
@@ -64,7 +70,6 @@ var PickTimeUpload = React.createClass({
 				</h3>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
-					<Button noBorders={true} onClick={this.props.closeWindow}>Cancel</Button>
 				</div>
 			</div>
 		)

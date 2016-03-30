@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 		userPk: state.appReducer.MASASuserPk,
 		MASASuser: state.appReducer.MASASuser,
 		isFetchingSong: state.playerReducer.isFetchingSong,
-		isPlayerBarOpened: state.footerReducer.isOpened
+		// isPlayerBarOpened: state.footerReducer.isOpened
 	}
 }
 
@@ -132,7 +132,12 @@ var playNewSong = function(dispatch, newProps) {
 }
 
 // songId = url to django rest for this song
+// Refactor with like and dislike functions called from toogleSongLike
 var toggleSongLike = function(dispatch, userToken, songId) {
+	// NO ACTION IF NO SONG IS PROVIDED
+	if(!songId)
+		return 
+
 	// CHECK IF SONG IS LIKED FROM REST API
 		// fetch user info
 		// compare liked songs with songId
@@ -250,7 +255,7 @@ function mapDispatchToProps(dispatch) {
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
 		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		tooglePlayerBarOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
+		// tooglePlayerBarOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
 	}
 }
 

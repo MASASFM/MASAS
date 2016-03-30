@@ -1,5 +1,6 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
+import $ from "jquery"
 
 var {goToURL} = require("../../../MASAS_functions.jsx")
 
@@ -10,53 +11,70 @@ var TimePicker = require("../UploadSC/TimePicker.jsx")
 var HomeCountdown = require("./HomeCountdown.jsx")
 
 
+const FounderInfoBox = (props) => {
+	return (
+			<div className="founder-info--wrapper">
+				<img src={ props.url } alt="founder picture" />
+				<div className="text--wrapper">
+					<span className="name">{ props.name }</span>
+					<hr />
+					<span className="job">{ props.job }</span>
+				</div>
+			</div>
+		)
+}
+
+
 var Home = React.createClass({
+	getInitialState: function() {
+		return {
+			pageNumber: 1, 		// page numebr
+		}
+	},
+
 	componentWillUnmount: function () {
-		this.goToPage1()
-	},
-
-	goToPage1: function() {
-		console.log('GOTO PAGE 1')
-		document.getElementById('homepage-login').className = 'page1--wrapper'
-		document.getElementById('homepage-description--choose').className='page2--wrapper'
-		document.getElementById('homepage-description--artist').className='page2--wrapper'
-		document.getElementById('homepage-description--musicLover').className='page2--wrapper'
-		document.getElementsByClassName('body--background')[0].className = 'body--background'
-	},
-
-	goToPage2: function() {
-		console.log('GOTO PAGE 2')
-		document.getElementById('homepage-login').className = 'page2--wrapper'
-		document.getElementById('homepage-description--artist').className='page2--wrapper'
-		document.getElementById('homepage-description--musicLover').className='page2--wrapper'
-		document.getElementById('homepage-description--choose').className='page1--wrapper'
-		document.getElementsByClassName('body--background')[0].className = 'body--background blurred'
-	},
-
-	goToPageArtist: function() {
-		console.log('GOTO PAGE ARTIST')
-		document.getElementById('homepage-login').className = 'page2--wrapper'
-		document.getElementById('homepage-description--choose').className='page2--wrapper'
-		document.getElementById('homepage-description--musicLover').className='page2--wrapper'
-		document.getElementById('homepage-description--artist').className='page1--wrapper'
-		document.getElementsByClassName('body--background')[0].className = 'body--background blurred saturated'
-	},
-
-	gotToPageMusicLover: function() {
-		
-		console.log('GOTO PAGE MUSIC LOVER')
-		document.getElementById('homepage-login').className = 'page2--wrapper'
-		document.getElementById('homepage-description--choose').className='page2--wrapper'
-		document.getElementById('homepage-description--artist').className='page2--wrapper'
-		document.getElementById('homepage-description--musicLover').className='page1--wrapper'
-		document.getElementsByClassName('body--background')[0].className = 'body--background blurred saturated'
+		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
+		this.props.goToPage(1, 4)
 	},
 
 	render: function() {
+		const currentPage = this.props.currentPage
+		const pageCount = 4
+
+		// update page backgound (fixed positioning are slow)
+		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
+		switch(currentPage) {
+			case 1:
+				// app background
+				break
+			case 2:
+				$("#body--background").addClass("artist-page-bg")
+				break
+			case 3:
+				$("#body--background").addClass("musicLover-page-bg")
+				break
+			case 4:
+				$("#body--background").addClass("dev-page-bg blurred saturated")
+				break
+			default:
+				break
+		}
+
 		return (
 			<div className="home--wrapper">
+
+				{ 
+					currentPage !== 1 ? 
+						<div className="page-up--wrapper">
+							<img onClick={this.props.goToPage.bind(null, currentPage - 1, pageCount)} src="/static/img/MASAS_arrow_down.svg" alt="down arrow" className="page-up-icon"/>
+						</div>
+					:
+						""
+				}
+
 				<div className="multiPage--wrapper">
-					<div className="page1--wrapper" id="homepage-login">
+
+					<div className={ "page" + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
 						</div>
@@ -65,38 +83,27 @@ var Home = React.createClass({
 							<br />
 							<Link to="/sign-up" className="signup-text">Sign up</Link>
 						</div>
-						<img onClick={this.goToPage2} src="/static/img/puff_loader_slow.svg" alt="down arrow" className="arrow-icon"/>
+						<img onClick={this.props.goToPage.bind(null, 2, pageCount)} src="/static/img/puff_loader_slow.svg" alt="down arrow" className="arrow-icon"/>
 					</div>
-					<div className="page2--wrapper" id="homepage-description--choose">
-						<h1 onClick={this.goToPage1}>it's all about you...</h1>
-						<div className="links--wrapper">
-							<img onClick={this.goToPageArtist} src="/static/img/homepage/picto_artist.png" alt="I'm an artist" />
-							<img onClick={this.gotToPageMusicLover} src="/static/img/homepage/picto_musicLover.png" alt="I'm a music lover" />
-						</div>
-					</div>
-					<div className="page2--wrapper" id="homepage-description--artist">
-						<div className="artist-page--wrapper">
-							<img src="/static/img/homepage/artist_deco2.png" alt="website screenshot" />
-						</div>
+
+					<div className={ "page" + (currentPage === 2 ? "1" : "2") + "--wrapper" } id="homepage-description--artist">
 						<div className="text--wrapper">
 							<img src="/static/img/homepage/artist_deco1.png" alt="website screenshot" />
 							<h1 onClick={this.goToPage1}>i'm an artist</h1>
 							<p>
 								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
 							</p>
-							<div className="button">
+							<div className="button" style={{width: '70%'}}>
 								{ this.props.user ?
-									<Button onClick={goToURL.bind('null', '/sc-sync')}>Start Uploading</Button>
+									<Button white={true} onClick={goToURL.bind('null', '/sc-sync')}>Start Uploading</Button>
 								:
 									<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
 								}
 							</div>
 						</div>
 					</div>
-					<div className="page2--wrapper" id="homepage-description--musicLover">
-						<div className="artist-page--wrapper">
-							<img src="/static/img/homepage/musicLover_deco2.png" alt="website screenshot" />
-						</div>
+
+					<div className={ "page" + (currentPage === 3 ? "1" : "2") + "--wrapper" } id="homepage-description--musicLover">
 						<div className="text--wrapper">
 							<img src="/static/img/homepage/musicLover_deco1.png" alt="website screenshot" />
 							<h1 onClick={this.goToPage1}>i'm a music lover</h1>
@@ -112,7 +119,44 @@ var Home = React.createClass({
 							</div>
 						</div>
 					</div>
+
+					<div className={ "page" + (currentPage === 4 ? "1" : "2") + "--wrapper" } id="homepage-description--developpers">
+						<h1>founders</h1>
+						<div className="founders-info--wrapper">
+							<FounderInfoBox
+								url="/static/img/founders.png"
+								name="Victor Binétruy-Pic"
+								job="Front-end Developper" />
+							<FounderInfoBox
+								url="/static/img/founders.png"
+								name="Thomas Binétruy-Pic"
+								job="Front-end Developper" />
+							<FounderInfoBox
+								url="/static/img/founders.png"
+								name="Micka Touillaud"
+								job="Product Designer " />
+							<FounderInfoBox
+								url="/static/img/founders.png"
+								name="James Pic"
+								job="Back-end Engineer" />
+						</div>
+						<div className="description">
+							With MASAS, we hope to nurture the true essence of an ever-expanding grassroots movement. Be part of the evolution by simply… sharing.
+						</div>
+						<div className="social-buttons">
+							<div className="facebook">
+								Invite a friend
+							</div>
+							<div className="twitter">
+								Invite a friend
+							</div>
+						</div>	
+					</div>
+
 				</div>
+						<div className="page-down--wrapper" style={{ display: currentPage !== pageCount && currentPage !== 1 ? 'flex' : 'none' }}>
+							<img onClick={this.props.goToPage.bind(null, currentPage + 1, pageCount)} src="/static/img/MASAS_arrow_down.svg" alt="down icon" className="page-down-icon"/>
+						</div>
 			</div>
 		)
 	}

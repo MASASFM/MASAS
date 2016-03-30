@@ -282,7 +282,7 @@ var HomeCountdown = React.createClass({
 					</svg>
 				</div>
 				<div className="mobile-logo">
-					<img src="/static/img/logo2.svg" alt="logo" />
+					<img src="/static/img/MASAS_logo_tipi.svg" alt="logo" />
 				</div>
 			</div>
 		);

@@ -52,7 +52,7 @@ var Footer = React.createClass({
 	render: function() {
 		return (
 			<div className="footer--wrapper">
-				<div className={ "slider--wrapper " + (this.props.isOpened ? "opened" : "") }>
+				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
 					<div className="visible--wrapper">
 						<div className="playerProgressBar--wrapper">
 							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
@@ -60,14 +60,18 @@ var Footer = React.createClass({
 						</div>
 						<div className="row no-margin"  style={{height: '100%'}}>
 							<div className="col-md-2 col-display-none-sm">
-								<div className="box"></div>
+								<div className="box">
+									
+								</div>
 							</div>
 							<div className="col-xs-10 col-md-8 player--wrapper">
 								<Player />
 							</div>
-							<div className="col-xs-2 col-md-2 col-display-none-sm nextSong--wrapper1">
-								<div className="box nextSong--wrapper2">
+							<div className="col-xs-2 col-md-2 col-display-none-sm extra-controls--wrapper">
+								<div className="box nextSong--wrapper">
 									<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+								</div>
+								<div className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } onClick={this.props.toogleIsOpened} >
 								</div>
 							</div>
 						</div>
@@ -75,8 +79,11 @@ var Footer = React.createClass({
 					<div className="hidden--wrapper">
 						<div className="dislike-choices--wrapper">
 							<span className="spam">Report spam</span>
+							<hr />
 							<span className="copyright">Report copyright</span>
+							<hr />
 							<span className="suggest-time">Suggest time</span>
+							<hr />
 							<span className="no-like">I don't like it</span>
 						</div>
 					</div>

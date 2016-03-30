@@ -32,19 +32,19 @@ var TrackItem = React.createClass({
 		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1);
 		switch(switchVar) {
 			case "1":
-				return "12-3 AM"
+				return "#EarlyMorning"
 			case "2":
-				return "6-9 AM"
+				return "#LateMorning"
 			case "3":
-				return "9-12AM"
+				return "#EarlyAfternoon"
 			case "4":
-				return "1-4 PM"
+				return "#LateAfternoon"
 			case "5":
-				return "5-8 PM"
+				return "#EarlyEvening"
 			case "6":
-				return "9-12 PM"
+				return "#LateEvening"
 			default:
-				return 0
+				return 
 		}
 	},
 
@@ -60,7 +60,12 @@ var TrackItem = React.createClass({
 			<div className="track--wrapper">
 				<div className="artwork--wrapper">
 					<div className="artwork-div">
-						<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
+						{ 
+							this.props.track.artwork_url ?
+								<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
+							:
+								""
+						}
 					</div>
 					<div className="artwork-overlay">
 						{ this.renderPlayerControlButton() }
@@ -72,28 +77,19 @@ var TrackItem = React.createClass({
 							{this.props.track.title} <br /> 
 							{this.props.track.user.username}
 						</div>
-						<div className="lives-left">
-							<img src="/static/img/MASAS_logo_life.svg" alt="life-on" />
-							<img src="/static/img/MASAS_logo_life.svg" alt="life-on" />
-							<img src="/static/img/MASAS_logo_life_off.svg" alt="life-on" />
-
-						</div>
 					</div>
 					<div className="song-stats-2">
-						<div className="radio">
-							<span className="title">Radio</span> { this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1) }
-						</div>
 						<div className="time">
-							<span className="title">Time</span> { this.renderRadioTime() }
+							{ this.renderRadioTime() }
 						</div>
 						<div className="plays">
-							<span className="title">Plays</span> { this.props.MASAS_songInfo.play_count }
+							{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
 						</div>
 					</div>
 				</div>
 			</div>
 		)
 	}
-});
+})
 
 module.exports = TrackItem

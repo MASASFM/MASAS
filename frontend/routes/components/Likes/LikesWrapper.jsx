@@ -1,8 +1,12 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+import { MobileBlurBackground } from "../MASAS_mixins.jsx"
+
 
 var LikesWrapper = React.createClass({
+	mixins: [ MobileBlurBackground ],
+	
 	componentWillMount: function() {
 		// this.props.updateTitle()
 	},

@@ -4,13 +4,12 @@
 #app-body--profile
 	overflow-y: scroll
 	-webkit-overflow-scrolling: touch
-	background-color: rgb(44,11,53)
 
 .profile--wrapper
 	.profile-info--wrapper
 		position: relative
 		width: 100%
-		height: 15rem
+		height: 22rem
 
 	.profile-info--wrapper
 		.user-info-desktop
@@ -22,23 +21,24 @@
 			height: 100%
 
 		.tab--wrapper
+			display: none
 			position: absolute
 			top: 0
 			width: 100%
 			display: flex
+			height: 2.4rem
 
 		.tab--wrapper
 			.tab
 				flex: 1
 				justify-content: center
 				display: flex
-				height: 2rem
 				align-content: center
 				flex-direction: column
 				align-items: center
 				text-transform: uppercase
 				box-sizing: border-box
-				background-color: rgba(0,0,0,0.7)
+				background-color: rgba(0,0,0,0.6)
 
 		.social--wrapper
 			display: flex
@@ -46,7 +46,7 @@
 			position: absolute
 			bottom: 0
 			width: 100%
-			background-color: rgba(0,0,0,0.7)
+			background-color: rgba(0,0,0,0.6)
 			height: 4rem
 			align-items: center
 			flex: 1
@@ -69,7 +69,7 @@
 	.social-stats--wrapper
 		height: 4rem
 		background-color: black
-		display: flex
+		display: none
 		justify-content: space-around
 		align-items: center
 		width: 100%
@@ -109,7 +109,6 @@
 	.song-list--wrapper
 		display: flex
 		flex: 1
-		background-color: rgb(44,11,53)
 		justify-content: center
 		width: 100%
 		position: relative
