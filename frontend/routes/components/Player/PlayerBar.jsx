@@ -103,6 +103,28 @@ var Player = React.createClass({
 			return <img src="/static/img/MASAS_like_shadow.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)} />
 	},
 
+	renderRadioTime: function() {
+		console.log("%%%%%%%", this.props.MASAS_songInfo)
+		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
+		console.log("^^^^^^^^^", switchVar)
+		switch(switchVar) {
+			case "1":
+				return "#EarlyMorning"
+			case "2":
+				return "#LateMorning"
+			case "3":
+				return "#EarlyAfternoon"
+			case "4":
+				return "#LateAfternoon"
+			case "5":
+				return "#EarlyEvening"
+			case "6":
+				return "#LateEvening"
+			default:
+				return 
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="navbar-player--wrapper">
@@ -113,7 +135,7 @@ var Player = React.createClass({
 					{ this.props.SC_songInfo ? 
 						<div>
 							<div className="radio-info">
-								Playing from <span className="time">6-9 AM</span>
+								Playing from <span className="time">{ this.renderRadioTime() }</span>
 							</div>
 							<div className="song-name">
 								<span className="song-title">
@@ -132,6 +154,6 @@ var Player = React.createClass({
 			</div>
 		)
 	}
-});
+})
 
 module.exports = Player

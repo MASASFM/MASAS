@@ -16,7 +16,10 @@ const FounderInfoBox = (props) => {
 			<div className="founder-info--wrapper">
 				<img src={ props.url } alt="founder picture" />
 				<div className="text--wrapper">
-					<span className="name">{ props.name }</span>
+					<div className="founder-name--wrapper">
+						<span className="name1">{ props.name1 }</span>
+						<span className="name2">{ props.name2 }</span>
+					</div>
 					<hr />
 					<span className="job">{ props.job }</span>
 				</div>
@@ -97,7 +100,7 @@ var Home = React.createClass({
 								{ this.props.user ?
 									<Button white={true} onClick={goToURL.bind('null', '/sc-sync')}>Start Uploading</Button>
 								:
-									<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+									<Button white={true} onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
 								}
 							</div>
 						</div>
@@ -105,52 +108,61 @@ var Home = React.createClass({
 
 					<div className={ "page" + (currentPage === 3 ? "1" : "2") + "--wrapper" } id="homepage-description--musicLover">
 						<div className="text--wrapper">
-							<img src="/static/img/homepage/musicLover_deco1.png" alt="website screenshot" />
+							<div style={{position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0.2)', zIndex: -1 }}>
+							</div>
+
+							<img src="/static/img/homepage/musicLover_deco1.svg" alt="website screenshot" />
 							<h1 onClick={this.goToPage1}>i'm a music lover</h1>
 							<p>
 								Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio.
 							</p>
-							<div className="button">
+							<div className="button" style={{width: '70%'}}>
 								{ this.props.user ?
-									<Button onClick={goToURL.bind('null', '/profile')}>My Profile</Button>
+									<Button white={true} onClick={goToURL.bind('null', '/profile')}>My Profile</Button>
 								:
-									<Button onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
+									<Button white={true} onClick={goToURL.bind('null', '/login')}>Get Early Access</Button>
 								}
 							</div>
 						</div>
 					</div>
 
 					<div className={ "page" + (currentPage === 4 ? "1" : "2") + "--wrapper" } id="homepage-description--developpers">
-						<h1>founders</h1>
-						<div className="founders-info--wrapper">
-							<FounderInfoBox
-								url="/static/img/founders.png"
-								name="Victor Binétruy-Pic"
-								job="Front-end Developper" />
-							<FounderInfoBox
-								url="/static/img/founders.png"
-								name="Thomas Binétruy-Pic"
-								job="Front-end Developper" />
-							<FounderInfoBox
-								url="/static/img/founders.png"
-								name="Micka Touillaud"
-								job="Product Designer " />
-							<FounderInfoBox
-								url="/static/img/founders.png"
-								name="James Pic"
-								job="Back-end Engineer" />
-						</div>
-						<div className="description">
-							With MASAS, we hope to nurture the true essence of an ever-expanding grassroots movement. Be part of the evolution by simply… sharing.
-						</div>
-						<div className="social-buttons">
-							<div className="facebook">
-								Invite a friend
+						<div className="scroll--wrapper">
+							<h1>founders</h1>
+							<div className="founders-info--wrapper">
+								<FounderInfoBox
+									url="/static/img/founders.png"
+									name1="Victor"
+									name2="Binétruy-Pic"
+									job="Front-end Developper" />
+								<FounderInfoBox
+									url="/static/img/founders.png"
+									name1="Thomas"
+									name2="Binétruy-Pic"
+									job="Front-end Developper" />
+								<FounderInfoBox
+									url="/static/img/founders.png"
+									name1="Micka"
+									name2= "Touillaud"
+									job="Product Designer " />
+								<FounderInfoBox
+									url="/static/img/founders.png"
+									name1="James"
+									name2= "Pic"
+									job="Back-end Engineer" />
 							</div>
-							<div className="twitter">
-								Invite a friend
+							<div className="description">
+								With MASAS, we hope to nurture the true essence of an ever-expanding grassroots movement. Be part of the evolution by simply… sharing.
 							</div>
-						</div>	
+							<div className="social-buttons">
+								<div className="facebook">
+									Invite a friend
+								</div>
+								<div className="twitter">
+									Invite a friend
+								</div>
+							</div>	
+						</div>
 					</div>
 
 				</div>

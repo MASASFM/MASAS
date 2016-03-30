@@ -71,8 +71,12 @@
 					color: rgba(255,255,255,0.5)
 
 				.plays
+					display: flex
+					align-items: center
+
 					.play-count-icon
 						width: 1.2rem
+						padding-left: 0.3rem
 
 @media screen and (min-width: $desktop-min-width)
 	.profile--wrapper
@@ -80,6 +84,20 @@
 			background-color: rgba(255,255,255, 0.16)
 
 		.track--wrapper
+			min-height: 6rem
+			height: 6rem
+
+			.artwork--wrapper
+				height: 6rem
+				width: 6rem
+
+				.artwork
+					width: 6rem
+
+				.artwork-overlay
+					height: 6rem
+					width: 6rem
+
 			.artwork--wrapper:hover
 				.artwork-overlay
 					display: flex

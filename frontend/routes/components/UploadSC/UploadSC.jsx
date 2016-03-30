@@ -18,7 +18,7 @@ var UploadSC = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('SC Sync', '0')
+		this.props.updateTitle('Upload', '0')
 		if(this.props.isConnectedSoundcloud)
 			this.getUserTracks()
 	},

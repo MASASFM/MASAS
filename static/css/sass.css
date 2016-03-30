@@ -288,17 +288,20 @@ input[type=range].MASAS-slider {
     width: 100%; }
   .home--wrapper .multiPage--wrapper h1 {
     font-family: Lato-Semibold;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     border-bottom: 1px solid white;
     padding-bottom: 1.2rem;
     margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: 0.35rem; }
+    letter-spacing: 0.35rem;
+    width: min-content;
+    white-space: pre; }
   .home--wrapper .multiPage--wrapper p {
     font-size: 0.85rem;
     text-align: justify;
     padding-bottom: 2rem;
-    line-height: 1.1rem; }
+    line-height: 1.1rem;
+    width: 80%; }
   .home--wrapper .multiPage--wrapper .page1--wrapper, .home--wrapper .multiPage--wrapper .page2--wrapper {
     position: absolute;
     top: 0;
@@ -309,7 +312,7 @@ input[type=range].MASAS-slider {
     transition-duration: 1s;
     transition-timing-function: ease-in-out; }
   .home--wrapper .multiPage--wrapper .page1--wrapper {
-    padding: 0 3rem;
+    padding: 0 2rem;
     opacity: 1;
     z-index: 1;
     align-items: center; }
@@ -368,71 +371,89 @@ input[type=range].MASAS-slider {
   .home--wrapper .multiPage--wrapper #homepage-description--musicLover {
     display: flex;
     flex: 1;
-    max-width: 62rem; }
-  .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-between;
-    align-items: flex-start; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper img {
-      width: 70%; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .button {
-      min-width: 12rem;
-      width: 100%; }
+    max-width: 62rem;
+    color: black; }
+    .home--wrapper .multiPage--wrapper #homepage-description--musicLover h1 {
+      color: black;
+      border-bottom: 1px solid black; }
+    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      justify-content: space-between;
+      align-items: flex-start; }
+      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper img {
+        width: 70%; }
+      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .button {
+        min-width: 12rem;
+        width: 100%; }
   .home--wrapper .multiPage--wrapper #homepage-description--developpers {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; }
-    .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper {
+    overflow: auto;
+    flex: 1; }
+    .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      flex: 1; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper {
+      flex-direction: column;
+      justify-content: space-between; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper {
         display: flex;
-        flex-direction: column;
-        align-items: center; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper img {
-          width: 4.5rem;
-          margin-bottom: 1.5rem; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        flex: 1; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper {
           display: flex;
           flex-direction: column;
-          align-content: center; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper .name, .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
-            text-align: center; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper .name {
-            text-transform: uppercase;
-            font-size: 0.6rem;
-            letter-spacing: 0.1rem; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper hr {
-            width: 100%; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
-            opacity: 0.3;
-            font-size: 0.7rem; }
-    .home--wrapper .multiPage--wrapper #homepage-description--developpers .description {
-      text-align: center;
-      padding: 2rem 0; }
-    .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      width: 100%; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .twitter, .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .facebook {
-        padding: 0.55rem; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .twitter {
-        background-color: #5da8dc; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .twitter::before {
-        background-image: url("/static/img/twitter.svg");
-        content: ""; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .facebook {
-        background-color: #485a96; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .social-buttons .facebook::before {
-        content: "";
-        background-image: url("/static/img/twitter.svg"); }
+          align-items: center; }
+          .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper img {
+            width: 4.5rem;
+            margin-bottom: 1.5rem; }
+          .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center; }
+            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper {
+              width: min-content;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around; }
+              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .job {
+                text-align: center; }
+              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
+                text-transform: uppercase;
+                font-size: 0.6rem;
+                letter-spacing: 0.1rem; }
+              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1 {
+                padding-right: 0.5rem; }
+              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
+                white-space: pre; }
+            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper hr {
+              width: 100%; }
+            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
+              opacity: 0.3;
+              font-size: 0.7rem; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .description {
+        text-align: center;
+        padding: 2rem 0; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        width: 100%; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook {
+          padding: 0.55rem; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter {
+          background-color: #5da8dc; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter::before {
+          background-image: url("/static/img/twitter.svg");
+          content: ""; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook {
+          background-color: #485a96; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook::before {
+          content: "";
+          background-image: url("/static/img/twitter.svg"); }
 
 @media screen and (min-width: 992px) {
   .home--wrapper .multiPage--wrapper #homepage-description--artist {
@@ -441,7 +462,32 @@ input[type=range].MASAS-slider {
       padding-right: 5rem;
       width: 30%;
       height: 100%;
-      justify-content: flex-start; } }
+      justify-content: flex-start; }
+  .home--wrapper .multiPage--wrapper #homepage-description--musicLover {
+    justify-content: flex-start; }
+  .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
+    padding-left: 5rem;
+    width: 40%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-end; }
+    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper p {
+      text-align: right; }
+  .home--wrapper .multiPage--wrapper #homepage-description--developpers {
+    justify-content: center; }
+    .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper {
+      width: 75%; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper img {
+        width: 7.5rem; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; }
+        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
+          font-size: 0.9rem;
+          letter-spacing: 0.25rem; }
+      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
+        font-size: 1rem; } }
 .login-form--wrapper1 {
   display: flex;
   flex: 1;
@@ -841,7 +887,7 @@ input[type=range].MASAS-slider {
         border-top: 1px solid rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
       .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         position: relative;
         display: flex;
         height: 3rem;
@@ -870,11 +916,12 @@ input[type=range].MASAS-slider {
     .footer--wrapper .slider--wrapper {
       background-color: rgba(0, 0, 0, 0.7); }
     .footer--wrapper .slider--wrapper.opened {
-      top: -5rem; }
+      top: -3rem; }
     .footer--wrapper .slider--wrapper {
-      bottom: -5rem; }
+      bottom: -3rem; }
       .footer--wrapper .slider--wrapper .toogle-open-tray-icon {
-        display: block; }
+        display: block;
+        margin-left: 1.8rem; }
       .footer--wrapper .slider--wrapper .visible--wrapper {
         height: 2.6rem; }
         .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
@@ -888,9 +935,12 @@ input[type=range].MASAS-slider {
           align-items: center;
           justify-content: center;
           width: 80%;
-          justify-content: space-around; }
+          justify-content: space-around;
+          padding: 0; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper hr {
             display: none; }
+          .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span {
+            font-size: 0.8rem; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
             padding-right: 0.8rem; } }
 .upload-sc-item--wrapper {
@@ -1267,30 +1317,45 @@ input[type=range].MASAS-slider {
   .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 .title {
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.5); }
-  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 .plays .play-count-icon {
-    width: 1.2rem; }
+  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 .plays {
+    display: flex;
+    align-items: center; }
+    .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 .plays .play-count-icon {
+      width: 1.2rem;
+      padding-left: 0.3rem; }
 
 @media screen and (min-width: 992px) {
   .profile--wrapper .track--wrapper:nth-of-type(odd) {
     background-color: rgba(255, 255, 255, 0.16); }
-  .profile--wrapper .track--wrapper .artwork--wrapper:hover .artwork-overlay {
-    display: flex; }
-  .profile--wrapper .track--wrapper .song-info--wrapper {
-    flex-direction: row; }
-  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 {
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row-reverse; }
-  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .lives-left {
-    min-width: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .song-name {
-    flex: 1; }
-  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 {
-    align-items: center;
-    justify-content: space-around; } }
+  .profile--wrapper .track--wrapper {
+    min-height: 6rem;
+    height: 6rem; }
+    .profile--wrapper .track--wrapper .artwork--wrapper {
+      height: 6rem;
+      width: 6rem; }
+      .profile--wrapper .track--wrapper .artwork--wrapper .artwork {
+        width: 6rem; }
+      .profile--wrapper .track--wrapper .artwork--wrapper .artwork-overlay {
+        height: 6rem;
+        width: 6rem; }
+    .profile--wrapper .track--wrapper .artwork--wrapper:hover .artwork-overlay {
+      display: flex; }
+    .profile--wrapper .track--wrapper .song-info--wrapper {
+      flex-direction: row; }
+    .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 {
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row-reverse; }
+    .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .lives-left {
+      min-width: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .song-name {
+      flex: 1; }
+    .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 {
+      align-items: center;
+      justify-content: space-around; } }
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
@@ -1486,7 +1551,8 @@ input[type=range].MASAS-slider {
   padding-right: 1rem; }
 .navbar-player--wrapper .like-icon {
   height: 1.5rem;
-  padding-left: 1rem; }
+  padding-left: 1rem;
+  padding-right: 1rem; }
 .navbar-player--wrapper .song-info--wrapper {
   display: flex;
   flex-direction: column;
@@ -1636,7 +1702,9 @@ input[type=range].MASAS-slider {
     white-space: nowrap;
     max-width: 50%; }
   .likes-item--wrapper .text--wrapper .song-stats--wrapper {
-    font-size: 0.5rem; } }
+    font-size: 0.5rem; }
+  .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
+    width: 0.8rem; } }
 .likes--wrapper .likes-searchbar--wrapper {
   display: block;
   flex-direction: column;

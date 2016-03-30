@@ -77,14 +77,24 @@ var Footer = React.createClass({
 						</div>
 					</div>
 					<div className="hidden--wrapper">
+						<div className="col-md-2 col-display-none-sm">
+							<div className="box">
+								
+							</div>
+						</div>
 						<div className="dislike-choices--wrapper">
-							<span className="spam">Report spam</span>
+							<span className="copyright">Report as Copyright Infringment</span>
 							<hr />
-							<span className="copyright">Report copyright</span>
+							<span className="spam">Report as SPAM</span>
 							<hr />
-							<span className="suggest-time">Suggest time</span>
+							<span className="suggest-time">Suggest another time</span>
 							<hr />
 							<span className="no-like">I don't like it</span>
+						</div>
+						<div className="col-md-2 col-display-none-sm">
+							<div className="box">
+								
+							</div>
 						</div>
 					</div>
 				</div>
