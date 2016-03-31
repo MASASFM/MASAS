@@ -84,7 +84,7 @@ MASAS_functions.pausePlayer = function(dispatch) {
 
 MASAS_functions.playPreviousSong = function(dispatch, discoverNumber, discoverHistory) {
 	// POP SONG FROM HISTORY
-	dispatch({ type: 'POP_SONG_FROM_HISTORY', discoverNumber })
+	dispatch({ type: 'POP_SONG_FROM_HISTORY' })
 
 	// PLAY LATEST SONG IN HISTORY
 	console.log("SONG_URL =>", discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url)
