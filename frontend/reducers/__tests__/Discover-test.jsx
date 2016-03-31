@@ -17,6 +17,39 @@ describe('discover reducer', () => {
 		)
 	})
 
+	it('should change discoverNumber', () => {
+		expect(
+			reducer(defaultState, {
+				type: 'CHANGE_DISCOVER_NUMBER',
+				discoverNumber: 3
+			})
+		).toEqual({
+			...defaultState,
+			discoverNumber: 3
+		})
+
+		// boundary conditions
+		expect(
+			reducer(defaultState, {
+				type: 'CHANGE_DISCOVER_NUMBER',
+				discoverNumber: 0
+			})
+		).toEqual({
+			...defaultState,
+			discoverNumber: 1
+		})
+
+		expect(
+			reducer(defaultState, {
+				type: 'CHANGE_DISCOVER_NUMBER',
+				discoverNumber: 7
+			})
+		).toEqual({
+			...defaultState,
+			discoverNumber: 1
+		})
+	})
+
 	it('should add song to history', () => {
 		// ADD SONG TO DEFAULT STATE
 

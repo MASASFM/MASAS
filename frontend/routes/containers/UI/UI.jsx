@@ -4,6 +4,7 @@ var Checkbox = require('./Checkbox.jsx')
 var Link = require('./Link.jsx')
 var Password = require('./Password.jsx')
 var Textbox = require('./Textbox.jsx')
+var TimePicker = require('../../components/UI/TimePicker.jsx')
 
 
 var UI = {}
@@ -14,6 +15,7 @@ UI.Checkbox = Checkbox
 UI.Link = Link
 UI.Password = Password
 UI.Textbox = Textbox
+UI.TimePicker = TimePicker
 
 
 module.exports = UI

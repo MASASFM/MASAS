@@ -1,6 +1,7 @@
 let exportVar = {}
 
 exportVar.defaultState = {
+	discoverNumber: 1,						// which discover to show on page
 	history: {
 		1: [],
 		2: [],
@@ -52,6 +53,15 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				history: stateBis.history
+			}
+		case 'CHANGE_DISCOVER_NUMBER':
+			var discoverNumber = action.discoverNumber
+			if( !(discoverNumber <= 6 && discoverNumber >= 1) )
+				discoverNumber = 1
+
+			return {
+				...state,
+				discoverNumber
 			}
 		default:
 			return state

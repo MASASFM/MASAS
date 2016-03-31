@@ -1723,7 +1723,33 @@ input[type=range].MASAS-slider {
     display: none; } }
 .discover--wrapper {
   display: flex;
-  flex: 1; }
+  flex-direction: column;
+  flex: 1;
+  align-items: center; }
+  .discover--wrapper .multi-page--wrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    position: relative; }
+    .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0; }
+    .discover--wrapper .multi-page--wrapper .page1 {
+      visibility: visible;
+      transition: visibility 1s ease-in;
+      }
+    .discover--wrapper .multi-page--wrapper .page2 {
+      visibility: hidden;
+      }
+  .discover--wrapper .timePicker--wrapper {
+    height: 11rem;
+    width: 23rem; }
+    .discover--wrapper .timePicker--wrapper #timePicker--canvas {
+      height: 11rem;
+      width: 23rem; }
 
 html {
   font-size: 14px;

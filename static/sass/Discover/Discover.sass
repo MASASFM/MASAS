@@ -1,3 +1,33 @@
 .discover--wrapper
 	display: flex
+	flex-direction: column
 	flex: 1
+	align-items: center
+
+	.multi-page--wrapper
+		display: flex
+		flex: 1
+		width: 100%
+		position: relative
+
+		.page1, .page2
+			position: absolute
+			top: 0
+			bottom: 0
+			right: 0
+			left: 0
+
+		.page1
+			visibility: visible
+
+		.page2
+			visibility: hidden
+		
+
+	.timePicker--wrapper
+		height: 11rem
+		width: 23rem
+
+		#timePicker--canvas
+			height: 11rem
+			width: 23rem
