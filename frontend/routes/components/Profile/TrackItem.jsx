@@ -29,7 +29,8 @@ var TrackItem = React.createClass({
 	},
 
 	renderRadioTime: function() {
-		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1);
+		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
+		
 		switch(switchVar) {
 			case "1":
 				return "#EarlyMorning"

@@ -82,4 +82,43 @@ MASAS_functions.pausePlayer = function(dispatch) {
 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 }
 
+MASAS_functions.playPreviousSong = function(dispatch, discoverNumber, discoverHistory) {
+	// POP SONG FROM HISTORY
+	dispatch({ type: 'POP_SONG_FROM_HISTORY', discoverNumber })
+
+	// PLAY LATEST SONG IN HISTORY
+	console.log("SONG_URL =>", discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url)
+	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url })
+}
+
+// play new random song based on song play count and likes
+// addToHistory: (BOOL) should song be added to history
+MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = false) {
+	// PLAY NEW SONG
+	dispatch({ type: 'PLAY_NEW_SONG', song: MASAS_songId})
+
+	// STORE NEW SONG IN HISTORY if addToHistory = true
+	// fetch MASAS song info
+	if(addToHistory)
+		$.ajax({
+			type: "GET",
+			url: MASAS_songId,
+			success: (MASAS_songInfo) => {
+				// fetch SC song info
+				SC.get('/tracks/' + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
+					dispatch({
+						type: 'ADD_SONG_TO_HISTORY',
+						MASAS_songInfo,
+						SC_songInfo
+					})
+				}).catch( (err) => {
+					console.warn(err)
+				})
+			},
+			error: (err) => {
+				console.warn(err)
+			},
+		})
+}
+
 module.exports = MASAS_functions

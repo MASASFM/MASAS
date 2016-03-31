@@ -1571,9 +1571,15 @@ input[type=range].MASAS-slider {
   text-transform: uppercase;
   font-size: 0.7rem;
   font-family: Lato-Light; }
-.navbar-player--wrapper .player-controls--wrapper .player-button {
-  height: 2.5rem;
-  padding-left: 1rem; }
+.navbar-player--wrapper .player-controls--wrapper {
+  display: flex;
+  align-items: center; }
+  .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
+    transform: rotate(180deg);
+    height: 1rem; }
+  .navbar-player--wrapper .player-controls--wrapper .player-button {
+    height: 2.5rem;
+    padding-left: 0.8rem; }
 
 @media screen and (min-width: 992px) {
   .navbar-player--wrapper {
@@ -1715,6 +1721,10 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .likes--wrapper .likes-searchbar--wrapper {
     display: none; } }
+.discover--wrapper {
+  display: flex;
+  flex: 1; }
+
 html {
   font-size: 14px;
   color: white;

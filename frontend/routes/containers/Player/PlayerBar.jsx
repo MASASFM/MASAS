@@ -1,6 +1,7 @@
 var ReactRedux = require("react-redux")
 var Player = require('../../components/Player/PlayerBar.jsx')
-var {getCookie, pausePlayer } = require("../../../MASAS_functions.jsx")
+var { getCookie, pausePlayer, playPreviousSong } = require("../../../MASAS_functions.jsx")
+var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -15,7 +16,7 @@ function mapStateToProps(state) {
 		userPk: state.appReducer.MASASuserPk,
 		MASASuser: state.appReducer.MASASuser,
 		isFetchingSong: state.playerReducer.isFetchingSong,
-		// isPlayerBarOpened: state.footerReducer.isOpened
+		discoverHistory: state.discoverReducer.history,
 	}
 }
 
@@ -104,6 +105,7 @@ var playNewSong = function(dispatch, newProps) {
 				
 				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
 				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })
+				dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response })
 
 				// update song liked button based on server response (vs optimistic UI)
 				updateLikeButton(dispatch, data, response, newProps)
@@ -249,13 +251,13 @@ var toggleSongLike = function(dispatch, userToken, songId) {
 function mapDispatchToProps(dispatch) {
 	return {
 		dispatch,
-		play: () => dispatch({ type: 'PLAY'}),
+		play: () => dispatch({ type: 'PLAY' }),
 		pause: (pausingAtTime) => pausePlayer(dispatch), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
-		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		// tooglePlayerBarOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
+		playRandomSong: (songId) => MASAS_functions.playNewSong(dispatch, songId, true),
+		playPreviousSong: (discoverNumber, discoverHistory) => playPreviousSong(dispatch, discoverNumber, discoverHistory)
 	}
 }
 

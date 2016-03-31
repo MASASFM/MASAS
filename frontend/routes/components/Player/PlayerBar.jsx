@@ -126,6 +126,11 @@ var Player = React.createClass({
 	},
 
 	render: function() {
+		// store discover number for previous icon
+		let discoverNumber = 0
+		if(this.props.MASAS_songInfo)
+			 discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
+		console.log('DISCOVER NUMBER =>, ', discoverNumber)
 		return (
 			<div className="navbar-player--wrapper">
 				{ 
@@ -145,10 +150,21 @@ var Player = React.createClass({
 									{ this.props.SC_songInfo.user.username }
 								</span>
 							</div> 
-						</div> 
+						</div>
 					: "" }
 				</div>
 				<div className="player-controls--wrapper">
+					{ discoverNumber !== 0 ?
+							<img 
+								src="/static/img/MASAS_next.svg" 
+								onClick={ this.props.playPreviousSong.bind(this, discoverNumber, this.props.discoverHistory) } 
+								alt="next song" 
+								className="previous-song-icon" 
+								style={{ visibility: this.props.discoverHistory[discoverNumber].length > 1 ? 'visible' : 'hidden' }}
+								/>
+						:
+							""
+					}
 					{ this.getControlButtons() }
 				</div>
 			</div>

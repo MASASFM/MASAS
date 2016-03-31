@@ -19,6 +19,7 @@ var UploadSC = require('./routes/containers/UploadSC/UploadSC.jsx')
 var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 var Profile = require('./routes/containers/Profile/Profile.jsx')
 var Likes = require('./routes/containers/Likes/Likes.jsx')
+var Discover = require('./routes/containers/Discover/Discover.jsx')
 
 
 
@@ -26,6 +27,7 @@ ReactDOM.render((
        <ReactRedux.Provider store={store}>
                <Router history={browserHistory}>
                        <Route path="/" component={App}>
+                               <Route path="discover" component={Discover} />
                                <Route path="login" component={Login} />
                                <Route path="sign-up" component={SignUp} />
                                <Route path="sc-sync" component={UploadSC} />

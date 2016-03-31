@@ -1,6 +1,7 @@
 
 var ReactRedux = require("react-redux")
 var Footer = require('../../components/Footer/Footer.jsx')
+var { playNewSong } = require("../../../MASAS_functions.jsx")
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -16,7 +17,8 @@ function mapStateToProps(state) {
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
-		playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
+		// playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
+		playRandomSong: (songId) => playNewSong(dispatch, songId, true),
 		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
 		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
 	}
