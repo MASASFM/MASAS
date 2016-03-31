@@ -25,22 +25,24 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			var discoverNumber = parseInt(action.MASAS_songInfo.timeInterval.substr(action.MASAS_songInfo.timeInterval.length - 2, 1))
 
 			// check discover number within range
-			var stateBis = state
-			if (discoverNumber >= 1 && discoverNumber <= 6) {
-
-				if(state.history[ discoverNumber ].length > 0) {
-					var a = state.history[ discoverNumber ][ state.history[ discoverNumber ].length - 1 ]
-					var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
-					if(JSON.stringify(a) === JSON.stringify(b) )
-						return state
-				}
+			var stateBis = {...state}
+			if ( !(discoverNumber >= 1 && discoverNumber <= 6) ) {
+				return 
+				// if(state.history[ discoverNumber ].length > 0) {
+				// 	var a = state.history[ discoverNumber ][ state.history[ discoverNumber ].length - 1 ]
+				// 	var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
+				// 	if(JSON.stringify(a) === JSON.stringify(b) )
+				// 		return state
+				// }
 
 				stateBis.history[discoverNumber].push({MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo})
 			}
 
 			return {
 				...state,
-				history: stateBis.history
+				history: {
+					...state.history,
+					discoverNumber
 			}
 		case 'POP_SONG_FROM_HISTORY':
 			// action.discoverNumber: (int) 1-6

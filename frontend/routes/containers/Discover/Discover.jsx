@@ -6,7 +6,8 @@ var Discover = require('../../components/Discover/Discover.jsx')
 function mapStateToProps(state) {
 	return {
 		discoverNumber: state.discoverReducer.discoverNumber,
-		history: state.discoverReducer.history
+		history: state.discoverReducer.history,
+		songPlaying: state.playerReducer.songPlaying,
 	}
 }
 

@@ -1736,20 +1736,72 @@ input[type=range].MASAS-slider {
       top: 0;
       bottom: 0;
       right: 0;
-      left: 0; }
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around; }
+      .discover--wrapper .multi-page--wrapper .page1 h1, .discover--wrapper .multi-page--wrapper .page2 h1 {
+        font-size: 2rem;
+        letter-spacing: 0rem;
+        border-bottom: 1px solid white;
+        width: min-content;
+        padding-bottom: 1.5rem;
+        margin-bottom: 2.5rem; }
+      .discover--wrapper .multi-page--wrapper .page1 .play-discover--wrapper, .discover--wrapper .multi-page--wrapper .page2 .play-discover--wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 12rem;
+        width: 100%; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper {
+        display: flex;
+        align-self: flex-start;
+        width: 100%;
+        position: relative; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4); }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing img {
+            height: 17rem;
+            width: 17rem; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .right-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .right-side {
+          display: flex; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
+          width: 50%;
+          overflow: hidden; }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .empty-artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
+              height: 12rem;
+              width: 6rem; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
+              height: 12rem;
+              width: 12rem; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
+              display: none;
+              align-items: center; }
     .discover--wrapper .multi-page--wrapper .page1 {
-      visibility: visible;
-      transition: visibility 1s ease-in;
-      }
+      visibility: visible; }
     .discover--wrapper .multi-page--wrapper .page2 {
-      visibility: hidden;
-      }
-  .discover--wrapper .timePicker--wrapper {
-    height: 11rem;
-    width: 23rem; }
-    .discover--wrapper .timePicker--wrapper #timePicker--canvas {
-      height: 11rem;
-      width: 23rem; }
+      visibility: hidden; }
+  .discover--wrapper .time-picker--wrapper {
+    display: flex;
+    flex-grow: 0.1;
+    align-items: flex-end; }
+    .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
+      height: 7rem;
+      width: 15rem; }
+      .discover--wrapper .time-picker--wrapper .timePicker--wrapper #timePicker--canvas {
+        height: 7rem;
+        width: 15rem; }
+      .discover--wrapper .time-picker--wrapper .timePicker--wrapper .timePicker-slider--wrapper {
+        bottom: 0; }
 
 html {
   font-size: 14px;

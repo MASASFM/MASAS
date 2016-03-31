@@ -16,6 +16,69 @@
 			bottom: 0
 			right: 0
 			left: 0
+			display: flex
+			flex-direction: column
+			align-items: center
+			justify-content: space-around
+
+			h1
+				font-size: 2rem
+				letter-spacing: 0rem
+				border-bottom: 1px solid white
+				width: min-content
+				padding-bottom: 1.5rem
+				margin-bottom: 2.5rem
+
+			.play-discover--wrapper
+				display: flex
+				justify-content: center
+				align-items: center
+				height: 12rem
+				width: 100%
+
+			.artwork-line--wrapper
+				display: flex
+				align-self: flex-start
+				width: 100%
+				position: relative
+
+				.artwork-playing
+					position: absolute
+					top: 50%
+					left: 50%
+					transform: translate(-50%, -50%)
+					box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
+
+					img
+						$artworkWidth: 17rem
+						height: $artworkWidth
+						width: $artworkWidth
+
+				.left-side, .right-side
+					display: flex
+
+				.left-side
+					width: 50%
+					overflow: hidden
+
+					.artwork-line
+						$artworkWidth: 12rem
+						display: flex
+						width: 100%
+						justify-content: flex-end
+
+						.empty-artwork
+							height: $artworkWidth
+							width: $artworkWidth / 2
+
+						.artwork--wrapper
+							.artwork
+								height: $artworkWidth
+								width: $artworkWidth
+
+							.song-info--wrapper
+								display: none
+								align-items: center
 
 		.page1
 			visibility: visible
@@ -24,10 +87,20 @@
 			visibility: hidden
 		
 
-	.timePicker--wrapper
-		height: 11rem
-		width: 23rem
+	.time-picker--wrapper
+		display: flex
+		flex-grow: 0.1
+		align-items: flex-end
 
-		#timePicker--canvas
-			height: 11rem
-			width: 23rem
+		$timePickerHeight: 7rem
+		$timePickerWidth: 15rem
+		.timePicker--wrapper
+			height: $timePickerHeight
+			width:  $timePickerWidth
+
+			#timePicker--canvas
+				height: $timePickerHeight
+				width:  $timePickerWidth
+
+			.timePicker-slider--wrapper
+				bottom: 0
