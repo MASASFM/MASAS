@@ -19,9 +19,9 @@ var ArtworkLine = React.createClass({
 				</div>
 				)
 		else {
-			console.log('ARTWORK LINE=>', props.history)
+			console.log('ARTWORK LINE=>', this.props.history)
 			// artwork line (song history)
-			const artworkLine =  this.props.history.map( ({ SC_songInfo }) => {
+			const artworkLine =  this.props.history.all.map( ({ SC_songInfo }) => {
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
@@ -38,11 +38,11 @@ var ArtworkLine = React.createClass({
 			artworkLine.pop()
 
 			// bigger artwork in center
-			const artworkPlaying = this.props.history.map( ({ SC_songInfo }) => SC_songInfo ).pop()
+			const artworkPlaying = this.props.history.all.map( ({ SC_songInfo }) => SC_songInfo ).pop()
 
 			// get bigger artwork
 			let artworkPlayingURL = ""
-			 if(artworkPlaying.artwork_url !== null) {
+			 if(typeof(artworkPlaying) !== "undefined") {
 			 	artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 			 }
 			return  (
@@ -65,7 +65,7 @@ var ArtworkLine = React.createClass({
 })
 
 ArtworkLine.propTypes = {
-	history: React.PropTypes.array.isRequired
+	history: React.PropTypes.object.isRequired
 }
 
 
@@ -89,27 +89,27 @@ var Discover = React.createClass({
 				<div className="multi-page--wrapper">
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
 						<h1>#EarlyMorning</h1>
-						<ArtworkLine  history={ this.props.history[1] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
 						<h1>#LateMorning</h1>
-						<ArtworkLine  history={ this.props.history[2] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
 						<h1>#EarlyAfternoon</h1>
-						<ArtworkLine  history={ this.props.history[3] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
 						<h1>#LateAfternoon</h1>
-						<ArtworkLine  history={ this.props.history[4] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
 						<h1>#EarlyEvening</h1>
-						<ArtworkLine  history={ this.props.history[5] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
 						<h1>#LateAfternoon</h1>
-						<ArtworkLine  history={ this.props.history[6] }/>
+						<ArtworkLine  history={ this.props.history }/>
 					</div>
 				</div>
 				<div className="time-picker--wrapper">

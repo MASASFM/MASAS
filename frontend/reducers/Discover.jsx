@@ -3,6 +3,7 @@ let exportVar = {}
 exportVar.defaultState = {
 	discoverNumber: 1,						// which discover to show on page
 	history: {
+		all: [],
 		1: [],
 		2: [],
 		3: [],
@@ -38,11 +39,20 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 				stateBis.history[discoverNumber].push({MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo})
 			}
 
+			// stateBis.history[discoverNumber].push()
 			return {
 				...state,
 				history: {
 					...state.history,
-					discoverNumber
+					discoverNumber,
+					all: [
+						...state.history.all,
+						{
+							MASAS_songInfo: action.MASAS_songInfo, 
+							SC_songInfo: action.SC_songInfo
+						}
+					]
+				}
 			}
 		case 'POP_SONG_FROM_HISTORY':
 			// action.discoverNumber: (int) 1-6

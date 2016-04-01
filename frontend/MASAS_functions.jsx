@@ -93,7 +93,7 @@ MASAS_functions.playPreviousSong = function(dispatch, discoverNumber, discoverHi
 
 // play new random song based on song play count and likes
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = false) {
+MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = true) {
 	// PLAY NEW SONG
 	dispatch({ type: 'PLAY_NEW_SONG', song: MASAS_songId})
 
