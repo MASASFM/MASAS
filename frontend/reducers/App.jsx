@@ -8,6 +8,7 @@ exportVar.defaultState = {
 	pageType: 0,		// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
+	backArrowFunc: () => ""
 }
 
 const { defaultState } = exportVar
@@ -31,18 +32,23 @@ exportVar.appReducer = function(state = defaultState, action) {
 				userData: {}
 			}
 		case 'UPDATE_PAGE_TITLE':
+			// HANDLE PAGE TYPE
 			let pageType = action.pageType
-
 			if(typeof(pageType) !== "number")
 				pageType = 0
-
 			if(pageType > 1 || pageType < 0)
 				pageType = 0
+
+			// HANDLE BACK ARROW FUNCTION
+			let backArrowFunc = defaultState.backArrowFunc
+			if(typeof(action.backArrowFunc) !== "undefined")			
+				backArrowFunc = action.backArrowFunc
 
 			return {
 				...state,
 				pageTitle: action.title,
-				pageType: pageType 
+				pageType: pageType,
+				backArrowFunc
 			}
 		case 'TOOGLE_NAV_SIDEBAR':
 			return {

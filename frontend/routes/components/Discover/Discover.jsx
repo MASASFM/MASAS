@@ -12,18 +12,9 @@ var { TimePicker } = require("../../containers/UI/UI.jsx")
 var ArtworkLine = React.createClass({
  // = (props) => {
  	render: function() {
- 		console.log('ARTWORK LINE=>', this.props.history)
 		let history = this.props.history.all.filter( ({MASAS_songInfo}) => {
-			console.log('BLABLA=>', MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1))
-			console.log('BLABLA2=>', MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1) === this.props.discoverNumber)
-			console.log('BLABLA3=>', MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1) == this.props.discoverNumber)
-			console.log('BLABLA4=>', typeof(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1)))
-			console.log('BLABLA45>', typeof(this.props.discoverNumber))
 			return MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1) === this.props.discoverNumber
 		})
-
-		console.log('DISCOVER #=>', this.props.discoverNumber)
-		console.log('HISTORY=>', history)
 
 		if(history.length === 0)
 			return (
@@ -47,9 +38,7 @@ var ArtworkLine = React.createClass({
 					</div>
 					)
 			})
-			console.log("artworkline => ", artworkLine)
 			artworkLine.pop()
-			console.log("artworkline => ", artworkLine)
 
 			// bigger artwork in center
 			const artworkPlaying = history.map( ({ SC_songInfo }) => SC_songInfo ).pop()
@@ -93,12 +82,9 @@ var Discover = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		console.log("props =>", this.props.history)
-		console.log("nextProps =>", nextProps.history)
 	},
 
 	render: function() {
-		console.log('RENDER DISCOVER')
 		return (
 			<div className="discover--wrapper">
 				<div className="multi-page--wrapper">

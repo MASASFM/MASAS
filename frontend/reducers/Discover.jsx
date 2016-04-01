@@ -33,7 +33,6 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 					return state
 			}
 
-			// stateBis.history[discoverNumber].push()
 			return {
 				...state,
 				history: {
@@ -49,11 +48,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 				}
 			}
 		case 'POP_SONG_FROM_HISTORY':
-			// action.discoverNumber: (int) 1-6
-
-			var discoverNumber = action.discoverNumber
 			var stateBis = state
-			// if (discoverNumber >= 1 && discoverNumber <= 6)
 			stateBis.history.all.pop()
 
 			return {
