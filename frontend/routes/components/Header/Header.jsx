@@ -23,7 +23,7 @@ var Header = React.createClass({
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
-							<div className="header-link"><Link to="/discover" disabled={false}>Discover</Link></div>
+							<div className="header-link"><Link to="/discover" disabled={ this.props.user ? false : true }>Discover</Link></div>
 							<div className="header-link"><Link to="/" disabled={true}>Radio</Link></div>
 							<div className="header-link"><Link to="/sc-sync" disabled={this.props.user ? false : true}>Upload</Link></div>
 							<div className="header-link"><Link to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
