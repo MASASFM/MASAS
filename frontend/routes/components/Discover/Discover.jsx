@@ -33,7 +33,7 @@ var ArtworkLine = React.createClass({
 				)
 		else {
 			// artwork line (song history)
-			const artworkLine =  history.map( ({ SC_songInfo }) => {
+			let artworkLine =  history.map( ({ SC_songInfo }) => {
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
@@ -47,7 +47,9 @@ var ArtworkLine = React.createClass({
 					</div>
 					)
 			})
+			console.log("artworkline => ", artworkLine)
 			artworkLine.pop()
+			console.log("artworkline => ", artworkLine)
 
 			// bigger artwork in center
 			const artworkPlaying = history.map( ({ SC_songInfo }) => SC_songInfo ).pop()
