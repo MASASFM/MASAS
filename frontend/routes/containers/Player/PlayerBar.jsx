@@ -257,7 +257,7 @@ function mapDispatchToProps(dispatch) {
 		playNewSong: (newProps) => playNewSong(dispatch, newProps),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
 		playRandomSong: (songId) => MASAS_functions.playNewSong(dispatch, songId, true),
-		playPreviousSong: (discoverNumber, discoverHistory) => playPreviousSong(dispatch, discoverNumber, discoverHistory)
+		playPreviousSong: (discoverHistory) => playPreviousSong(dispatch, discoverHistory)
 	}
 }
 

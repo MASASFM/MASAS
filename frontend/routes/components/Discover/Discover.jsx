@@ -80,7 +80,7 @@ var ArtworkLine = React.createClass({
 
 ArtworkLine.propTypes = {
 	history: React.PropTypes.object.isRequired,
-	discoverNumber: React.PropTypes.number.isRequired
+	discoverNumber: React.PropTypes.string.isRequired
 }
 
 

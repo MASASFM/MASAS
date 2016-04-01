@@ -82,13 +82,13 @@ MASAS_functions.pausePlayer = function(dispatch) {
 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 }
 
-MASAS_functions.playPreviousSong = function(dispatch, discoverNumber, discoverHistory) {
+MASAS_functions.playPreviousSong = function(dispatch, discoverHistory) {
 	// POP SONG FROM HISTORY
-	dispatch({ type: 'POP_SONG_FROM_HISTORY', discoverNumber })
+	dispatch({ type: 'POP_SONG_FROM_HISTORY' })
 
 	// PLAY LATEST SONG IN HISTORY
-	console.log("SONG_URL =>", discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url)
-	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url })
+	console.log("SONG_URL =>", discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url)
+	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
 }
 
 // play new random song based on song play count and likes

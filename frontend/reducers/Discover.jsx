@@ -53,8 +53,8 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 
 			var discoverNumber = action.discoverNumber
 			var stateBis = state
-			if (discoverNumber >= 1 && discoverNumber <= 6)
-				stateBis.history[discoverNumber].pop()
+			// if (discoverNumber >= 1 && discoverNumber <= 6)
+			stateBis.history.all.pop()
 
 			return {
 				...state,
