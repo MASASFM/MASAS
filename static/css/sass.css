@@ -234,47 +234,45 @@ input[type=range].MASAS-slider {
   white-space: pre;
   text-overflow: ellipsis;
   overflow: hidden;
-  height: 100%; }
-
-.MASAS_marquee:hover {
-  overflow: hidden;
+  height: 100%;
   position: relative; }
-  .MASAS_marquee:hover .text {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    text-align: center;
-    /* Starting position */
-    -moz-transform: translateX(0%);
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-    /* Apply animation to this element */
-    -moz-animation: MASAS_marquee 14s linear infinite;
-    -webkit-animation: MASAS_marquee 14s linear infinite;
-    animation: MASAS_marquee 14s linear infinite;
-    animation-delay: -7.4s; }
+  .MASAS_marquee .text {
+    width: min-content;
+    animation-delay: -5s; }
 
-/* Move it (define the animation) */
+.MASAS_marquee:hover .text {
+  width: min-content;
+  white-space: pre;
+  position: absolute;
+  height: 100%;
+  margin: 0;
+  text-align: center;
+  /* Apply animation to this element */
+  animation-name: MASAS_marquee;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; }
+
 @-moz-keyframes MASAS_marquee {
   100% {
-    moz-transform: translateX(-100%); }
+    moz-transform: translateX(-100%);
+    left: 0; }
   0% {
-    moz-transform: translateX(100%); } }
+    left: 100%; } }
 @-webkit-keyframes MASAS_marquee {
   100% {
-    webkit-transform: translateX(-100%); }
+    webkit-transform: translateX(-100%);
+    left: 0; }
   0% {
-    -webkit-transform: translateX(100%); } }
+    left: 100%; } }
 @keyframes MASAS_marquee {
   100% {
     -moz-transform: translateX(-100%);
     -webkit-transform: translateX(-100%);
-    transform: translateX(-100%); }
+    transform: translateX(-100%);
+    left: 0; }
   0% {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%); } }
+    left: 100%; } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -1634,6 +1632,8 @@ input[type=range].MASAS-slider {
   .navbar-player--wrapper {
     padding: 0; }
 
+  .navbar-player--wrapper .song-info--wrapper .song-name .song-title {
+    width: 20rem; }
   .navbar-player--wrapper .tray-icon {
     height: 0.6rem;
     width: 0.6rem; }

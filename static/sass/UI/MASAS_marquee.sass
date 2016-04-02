@@ -3,50 +3,58 @@
 	text-overflow: ellipsis
 	overflow: hidden
 	height: 100%
+	position: relative
 	// width: 5rem
+
+	.text
+		width: min-content	
+		animation-delay: -5s	
 
 
 .MASAS_marquee:hover
-	overflow: hidden
-	position: relative
 
 	.text
+		width: min-content
+		white-space: pre
 		position: absolute
-		width: 100%
 		height: 100%
 		margin: 0
-		// line-height: 50px
 		text-align: center
-		/* Starting position */
-		-moz-transform: translateX(0%)
-		-webkit-transform: translateX(0%)
-		transform: translateX(0%)
 		/* Apply animation to this element */	
-		-moz-animation: MASAS_marquee 14s linear infinite
-		-webkit-animation: MASAS_marquee 14s linear infinite
-		animation: MASAS_marquee 14s linear infinite
-		animation-delay: -7.4s
+		$animationLength: 10s
+		animation-name: MASAS_marquee
+		animation-duration: $animationLength
+		animation-timing-function: linear
+		animation-iteration-count: infinite
+		// -moz-animation: MASAS_marquee $animationLength linear infinite
+		// -webkit-animation: MASAS_marquee $animationLength linear infinite
+		// animation: MASAS_marquee $animationLength linear infinite
+		// animation-delay: (-$animationLength) / 2
+		// transition: all 2s linear 1s
 
-/* Move it (define the animation) */
+// /* Move it (define the animation) */
 @-moz-keyframes MASAS_marquee 
 	100% 
 		moz-transform: translateX(-100%)
+		left: 0
 	0% 
-		moz-transform: translateX(100%)
+		left: 100%
 
 @-webkit-keyframes MASAS_marquee
 	100%   
 		webkit-transform: translateX(-100%)
+		left: 0
 	0% 
-		-webkit-transform: translateX(100%)
+		left: 100%
 
 @keyframes MASAS_marquee
 	100%   
-		-moz-transform: translateX(-100%)		//FF bugfix
-		-webkit-transform: translateX(-100%)		//FF bugfix
-		transform: translateX(-100%)	
-	 
-	0% 
-		-moz-transform: translateX(100%)		//FF bugfix
-		-webkit-transform: translateX(100%)		//FF bugfix
-		transform: translateX(100%)
+		$percent: -100%
+		-moz-transform: translateX($percent)			//FF bugfix
+		-webkit-transform: translateX($percent)		//FF bugfix
+		transform: translateX($percent)	
+		left: 0
+
+	
+	0%  
+		left: 100%
