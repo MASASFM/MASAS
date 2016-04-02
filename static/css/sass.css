@@ -1809,6 +1809,8 @@ input[type=range].MASAS-slider {
         align-self: flex-start;
         width: 100%;
         position: relative; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
+          display: none; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
           position: absolute;
           top: 50%;
@@ -1863,61 +1865,66 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .discover--wrapper .multi-page--wrapper .page1 .play-discover--wrapper, .discover--wrapper .multi-page--wrapper .page2 .play-discover--wrapper {
     height: 12rem; }
-  .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork--wrapper {
-    display: flex;
-    flex-direction: column; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork--wrapper .artwork {
-      height: 14rem;
-      width: 14rem; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper {
-      font-size: 0.7rem;
-      height: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 0 1rem;
-      background-color: black; }
-      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork--wrapper .song-info--wrapper .artist {
-        height: 0.7rem;
-        width: 9.5rem; }
-  .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
-    max-width: 14rem; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
-      background-color: black;
-      height: 14rem;
-      width: 14rem; }
-      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img {
+  .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper {
+    height: 13.6rem; }
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding-left: 28rem;
+      width: 2rem; }
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
+      max-width: 14rem; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
+        background-color: black;
         height: 14rem;
         width: 14rem; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
-      height: 3rem;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      background-color: black; }
-      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon {
-        width: 1.5rem; }
-        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img {
-          width: 1.5rem; }
-      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info {
-        text-overflow: wrap;
-        padding-left: 1rem;
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img {
+          height: 14rem;
+          width: 14rem; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
+        height: 3rem;
         display: flex;
-        flex-direction: column;
-        font-size: 0.7rem; }
-        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
-          height: 0.7rem;
-          width: 9.5rem; }
-  .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
-    width: calc(50% - 14rem / 4); }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .empty-artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
-      width: 0; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
-      height: 12rem;
-      width: 12rem; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
-      display: flex; } }
+        align-items: center;
+        padding: 0 1rem;
+        background-color: black; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon {
+          width: 1.5rem; }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .like-icon img {
+            width: 1.5rem; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info {
+          text-overflow: wrap;
+          padding-left: 1rem;
+          display: flex;
+          flex-direction: column;
+          font-size: 0.7rem; }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
+            height: 0.7rem;
+            width: 9.5rem; }
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
+      width: calc(50% - 11.2rem / 4); }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .empty-artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
+        width: 0; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper {
+        display: flex;
+        flex-direction: column; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
+          height: 11.2rem;
+          width: 11.2rem; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
+          font-size: 0.56rem;
+          height: 2.4rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0 1rem;
+          background-color: black; }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .artist {
+            height: 0.56rem;
+            width: 9.2rem; } }
 html {
   font-size: 14px;
   color: white;

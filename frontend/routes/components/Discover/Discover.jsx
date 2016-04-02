@@ -76,6 +76,7 @@ var ArtworkLine = React.createClass({
 							</div>
 						</div>
 					</div>
+					<img className="next-button" src="/static/img/MASAS_next.svg" alt="next" />
 					<div className="right-side">
 					</div>
 				</div>

@@ -43,6 +43,9 @@
 				width: 100%
 				position: relative
 
+				.next-button
+					display: none
+
 				.artwork-playing--wrapper
 					position: absolute
 					top: 50%
@@ -129,33 +132,23 @@
 					height: 12rem
 
 				.artwork-line--wrapper
-					.artwork--wrapper
-						$artworkWidth: 14rem
-						display: flex
-						flex-direction: column
-
-						.artwork
-							height: $artworkWidth
-							width: $artworkWidth
-
-						.song-info--wrapper
-							$sidePadding: 1rem
-							$like-icon-width: 1.5rem
-							$font-size: 0.7rem
-							font-size: $font-size
-							height: 3rem
-							display: flex
-							flex-direction: column
-							justify-content: center
-							align-items: center
-							padding: 0 $sidePadding
-							background-color: black
-
-							.title, .artist
-								height: $font-size
-								width: $artworkWidth - (3*$sidePadding + $like-icon-width)
-
 					$artworkWidth: 14rem
+					$song-info-height: 3rem 
+					$font-size: 0.7rem
+					$ratio: $artworkWidth / $song-info-height
+					$font-ratio: $artworkWidth / $font-size
+					$sidePadding: 1rem
+					$like-icon-width: 1.5rem
+
+					.next-button
+						display: block
+						position: absolute
+						top: 50%
+						left: 50%
+						transform: translate(-50%, -50%)
+						padding-left: 2*$artworkWidth
+						width: 2rem
+
 					.artwork-playing--wrapper
 						max-width: $artworkWidth
 
@@ -168,10 +161,7 @@
 								width: $artworkWidth
 							
 						.song-info--wrapper
-							$sidePadding: 1rem
-							$like-icon-width: 1.5rem
-							$font-size: 0.7rem
-							height: 3rem
+							height: $song-info-height
 							display: flex
 							align-items: center
 							padding: 0 $sidePadding
@@ -196,11 +186,17 @@
 
 					.left-side, .right-side
 
+
+					$ratio: 0.8
+					$artworkWidth: $artworkWidth * $ratio
+					$song-info-height: $song-info-height * $ratio
+					$font-size: $font-size * $ratio
+					$sidePadding: $sidePadding * 1
+					height: $artworkWidth + $song-info-height
 					.left-side
 						width: calc(50% - #{$artworkWidth} / 4)
 
 						.artwork-line
-							$artworkWidth: 12rem
 
 							.empty-artwork
 								// height: $artworkWidth
@@ -208,9 +204,23 @@
 								width: 0
 
 							.artwork--wrapper
+								display: flex
+								flex-direction: column
+
 								.artwork
 									height: $artworkWidth
 									width: $artworkWidth
 
 								.song-info--wrapper
+									font-size: $font-size
+									height: $song-info-height
 									display: flex
+									flex-direction: column
+									justify-content: center
+									align-items: center
+									padding: 0 $sidePadding
+									background-color: black
+
+									.title, .artist
+										height: $font-size
+										width: $artworkWidth - 2*$sidePadding
