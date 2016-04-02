@@ -9,12 +9,7 @@ var { TimePicker, Marquee } = require("../../containers/UI/UI.jsx")
 
 // }
 
-<<<<<<< HEAD
-// var ArtworkLine = React.createClass({
-var ArtworkLine = (props) => {
- 	// render: function() {
-		if(props.history.length === 0)
-=======
+
 var ArtworkLine = React.createClass({
  // = (props) => {
  	render: function() {
@@ -23,25 +18,15 @@ var ArtworkLine = React.createClass({
 		})
 
 		if(history.length === 0)
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
 			return (
 				<div className="play-discover--wrapper">
 					<h1 >Click here to play from discover</h1>
 				</div>
 				)
 		else {
-<<<<<<< HEAD
-			// filter current Discover history
-			let history = props.history.filter( ({ MASAS_songInfo }) => {
-				var discoverNumber = parseInt(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1))
-				return discoverNumber === props.discoverNumber
-			})
-			// artwork line (song history)
-			const artworkLine =  history.map( ({ SC_songInfo }) => {
-=======
 			// artwork line (song history)
 			let artworkLine =  history.map( ({ SC_songInfo }) => {
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
+
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
@@ -99,18 +84,9 @@ var ArtworkLine = React.createClass({
 				</div>
 				)
 		}
-	// }
-}
+	}
+})
 
-ArtworkLine.propTypes = {
-<<<<<<< HEAD
-	history: React.PropTypes.array.isRequired,			// array containing all the songs played
-	discoverNumber: React.PropTypes.array.number,		// show songs from discover #
-=======
-	history: React.PropTypes.object.isRequired,
-	discoverNumber: React.PropTypes.string.isRequired
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
-}
 
 
 var Discover = React.createClass({
@@ -130,29 +106,6 @@ var Discover = React.createClass({
 				<div className="multi-page--wrapper">
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
 						<h1>#EarlyMorning</h1>
-<<<<<<< HEAD
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 1 } />
-					</div>
-					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
-						<h1>#LateMorning</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 2 } />
-					</div>
-					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
-						<h1>#EarlyAfternoon</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 3 } />
-					</div>
-					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
-						<h1>#LateAfternoon</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 4 } />
-					</div>
-					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
-						<h1>#EarlyEvening</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 5 } />
-					</div>
-					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
-						<h1>#LateAfternoon</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber={ 6 } />
-=======
 						<ArtworkLine 
 							songPlaying={ this.props.songPlaying }
 							userToken={ this.props.userToken }
@@ -210,7 +163,7 @@ var Discover = React.createClass({
 							isSongPlayingLiked={ this.props.isSongPlayingLiked } 
 							history={ this.props.history } 
 							discoverNumber="6" />
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
+
 					</div>
 				</div>
 				<div className="time-picker--wrapper">

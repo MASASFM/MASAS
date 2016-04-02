@@ -2,17 +2,7 @@ let exportVar = {}
 
 exportVar.defaultState = {
 	discoverNumber: 1,						// which discover to show on page
-<<<<<<< HEAD
-	// history: {
-	// 	1: [],
-	// 	2: [],
-	// 	3: [],
-	// 	4: [],
-	// 	5: [],
-	// 	6: [],
-	// }
-	history: []
-=======
+
 	history: {
 		all: [],
 		1: [],
@@ -22,7 +12,7 @@ exportVar.defaultState = {
 		5: [],
 		6: [],
 	}
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
+
 }
 
 const { defaultState } = exportVar
@@ -37,21 +27,8 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			// // don't add latest song in history if action.songInfo already in
 			// var discoverNumber = parseInt(action.MASAS_songInfo.timeInterval.substr(action.MASAS_songInfo.timeInterval.length - 2, 1))
 
-<<<<<<< HEAD
-			// // check discover number within range
-			// var stateBis = {...state}
-			// if ( !(discoverNumber >= 1 && discoverNumber <= 6) ) {
-			// 	return 
-			// 	// if(state.history[ discoverNumber ].length > 0) {
-			// 	// 	var a = state.history[ discoverNumber ][ state.history[ discoverNumber ].length - 1 ]
-			// 	// 	var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
-			// 	// 	if(JSON.stringify(a) === JSON.stringify(b) )
-			// 	// 		return state
-			// 	// }
 
-			// 	stateBis.history[discoverNumber].push({MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo})
-			// }
-=======
+
 			// check discover number within range
 			if(state.history.all.length > 0) {
 				var a = state.history.all[state.history.all.length -1]
@@ -59,19 +36,12 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 				if(JSON.stringify(a) === JSON.stringify(b) )
 					return state
 			}
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
+
 
 			return {
 				...state,
-				history: [
+				history: {
 					...state.history,
-<<<<<<< HEAD
-					{
-						SC_songInfo: action.SC_songInfo,
-						MASAS_songInfo: action.MASAS_songInfo
-					}
-=======
-					discoverNumber,
 					all: [
 						...state.history.all,
 						{
@@ -80,21 +50,12 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 						}
 					]
 				}
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
+
 			}
 			
 		case 'POP_SONG_FROM_HISTORY':
-<<<<<<< HEAD
-			// action.discoverNumber: (int) 1-6
-
-			// var discoverNumber = action.discoverNumber
-			var stateBis = state
-			// if (discoverNumber >= 1 && discoverNumber <= 6)
-				stateBis.history[discoverNumber].pop()
-=======
 			var stateBis = state
 			stateBis.history.all.pop()
->>>>>>> 931d7a14fd22cf5b9c213dc01d1265805f9c4d98
 
 			return {
 				...state,
