@@ -14,6 +14,7 @@ let Marquee = React.createClass({
 	componentDidMount: function() {
 		// recompute animationDelay if need be on window resize
 		$(window).resize( () => {
+			this.setState({ overflow: false })
 			this.checkTextOverflow()
 		})
 
