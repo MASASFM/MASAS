@@ -235,10 +235,19 @@ input[type=range].MASAS-slider {
   text-overflow: ellipsis;
   overflow: hidden;
   height: 100%;
-  position: relative; }
-  .MASAS_marquee .text {
-    width: min-content;
-    animation-delay: -5s; }
+  width: 100%; }
+  .MASAS_marquee .wrapper2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden; }
+    .MASAS_marquee .wrapper2 .text {
+      width: min-content;
+      animation-delay: -5s; }
 
 .MASAS_marquee:hover .text {
   width: min-content;
@@ -1602,22 +1611,30 @@ input[type=range].MASAS-slider {
   align-content: flex-start;
   flex: 1; }
 .navbar-player--wrapper .song-info--wrapper .radio-info {
+  position: relative;
+  width: 100%;
   font-size: 0.7rem;
+  height: 0.7rem;
   opacity: 0.4; }
   .navbar-player--wrapper .song-info--wrapper .radio-info .time {
     text-transform: uppercase; }
-.navbar-player--wrapper .song-info--wrapper .song-name .song-artist {
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  font-family: Lato-Semibold;
-  width: 10rem;
-  height: 0.7rem; }
-.navbar-player--wrapper .song-info--wrapper .song-name .song-title {
-  width: 10rem;
-  height: 0.7rem;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  font-family: Lato-Light; }
+.navbar-player--wrapper .song-info--wrapper .song-name {
+  margin-right: 1rem; }
+  .navbar-player--wrapper .song-info--wrapper .song-name .song-artist {
+    position: relative;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-family: Lato-Semibold;
+    width: 10rem;
+    height: 0.7rem; }
+  .navbar-player--wrapper .song-info--wrapper .song-name .song-title {
+    position: relative;
+    width: 100%;
+    height: 0.7rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-family: Lato-Light; }
 .navbar-player--wrapper .player-controls--wrapper {
   display: flex;
   align-items: center; }
@@ -1632,8 +1649,6 @@ input[type=range].MASAS-slider {
   .navbar-player--wrapper {
     padding: 0; }
 
-  .navbar-player--wrapper .song-info--wrapper .song-name .song-title {
-    width: 20rem; }
   .navbar-player--wrapper .tray-icon {
     height: 0.6rem;
     width: 0.6rem; }
@@ -1902,6 +1917,7 @@ input[type=range].MASAS-slider {
           flex-direction: column;
           font-size: 0.7rem; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
+            position: relative;
             height: 0.7rem;
             width: 9.5rem; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
@@ -1924,6 +1940,7 @@ input[type=range].MASAS-slider {
           padding: 0 1rem;
           background-color: black; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .artist, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper .artist {
+            position: relative;
             height: 0.56rem;
             width: 9.2rem; } }
 html {

@@ -144,7 +144,9 @@ var Player = React.createClass({
 					{ this.props.SC_songInfo ? 
 						<div>
 							<div className="radio-info">
-								Playing from <span className="time">{ this.renderRadioTime() }</span>
+								<Marquee>
+									Playing from <span className="time">{ this.renderRadioTime() }</span>
+								</Marquee>
 							</div>
 							<div className="song-name">
 								<Marquee className="song-title">

@@ -1,3 +1,5 @@
+// NEEDS DIRECT PARENT WITH => position: relative
+
 var React = require("react")
 var ReactDOM = require("react-dom")
 
@@ -13,12 +15,18 @@ let Marquee = React.createClass({
 
 	componentDidMount: function() {
 		// recompute animationDelay if need be on window resize
-		$(window).resize( () => {
-			this.setState({ overflow: false })
-			this.checkTextOverflow()
-		})
+		$(window).resize(this.resizer)
 
 		// check if overflow and compute animationDelay if need be
+		this.checkTextOverflow()
+	},
+
+	componentWillUnmount: function() {
+		$(window).off('resize', this.resizer)
+	},
+
+	resizer: function() {
+		this.setState({ overflow: false })
 		this.checkTextOverflow()
 	},
 
@@ -35,13 +43,16 @@ let Marquee = React.createClass({
 	checkTextOverflow: function() {
 		const element = this.refs.wrapper
 
-		if (element.offsetWidth < element.scrollWidth) {
-			console.log('overflow')
+		const a = this.refs.wrapper.offsetWidth
+		const b = this.refs.text.offsetWidth
+
+		if (b > a) {
+			console.log('overflow +')
 			if(!this.state.overflow) {
 				this.setState({ overflow: true })
 			}
 		} else {
-			console.log('no overflow')
+			console.log('no overflow =')
 			if(this.state.overflow)
 				this.setState({ overflow: false })
 		}
@@ -59,7 +70,9 @@ let Marquee = React.createClass({
 
 		return (
 			<div className={ (this.props.className ? this.props.className : "") + " MASAS_marquee"} ref="wrapper">
-				<span ref="text" style={{ animationDelay: (animationDelay ? animationDelay : '0s') }} className={ this.state.overflow ? "text" : "" }>{ this.props.children }</span>
+				<div className="wrapper2">
+					<span ref="text" style={{ animationDelay: (animationDelay ? animationDelay : '0s') }} className={ "textBis" + ( this.state.overflow ? " text" : "" ) }>{ this.props.children }</span>
+				</div>
 			</div>
 		)
 	}

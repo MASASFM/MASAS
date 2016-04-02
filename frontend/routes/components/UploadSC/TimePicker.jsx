@@ -46,12 +46,14 @@ var TimePicker = React.createClass({
 
 	componentDidMount: function() {
 		// add event to get new canvas dimensions on resize
-		$(window).resize( () => {
-			this.updateCanvasDim()
-		})
+		$(window).resize(this.updateCanvasDim())
 
 		// get canvas dim on initial render
 		this.updateCanvasDim()
+	},
+
+	componentWillUnmout: function() {
+		$(window).off('resize', this.updateCanvasDim)
 	},
 
 	updateCanvasDim: function() {
