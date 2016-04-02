@@ -99,6 +99,8 @@ MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = tr
 
 	// STORE NEW SONG IN HISTORY if addToHistory = true
 	// fetch MASAS song info
+	// console.log("HEY HEY =>", addToHistory)
+	// console.log("MASAS_songId =>", MASAS_songId)
 	if(addToHistory)
 		$.ajax({
 			type: "GET",
@@ -119,6 +121,9 @@ MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = tr
 				console.warn(err)
 			},
 		})
+
+	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
+	// dispatch({ type: 'SET_ADD_SONG_HISTORY_TRUE' })
 }
 
 // songId = url to django rest for this song

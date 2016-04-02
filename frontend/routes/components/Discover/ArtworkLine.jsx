@@ -43,10 +43,9 @@ var ArtworkLine = React.createClass({
 
 			// bigger artwork in center
 			let artworkPlaying = history.map( ({ SC_songInfo, MASAS_songInfo }) => { return { SC_songInfo, MASAS_songInfo } }).pop()
-			console.log("======>",artworkPlaying)
+
 			const MASAS_songPlayingInfo = artworkPlaying.MASAS_songInfo
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
-			console.log("======>",artworkPlaying)
 			// get bigger artwork
 			let artworkPlayingURL = ""
 			 if(typeof(artworkPlaying) !== "undefined") {
@@ -63,12 +62,25 @@ var ArtworkLine = React.createClass({
 					<div className="artwork-playing--wrapper">	
 						<div className="artwork-playing">	
 							<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
-							<div className="player-button">
+							<div 
+								className="player-button"
+								onClick={ 
+									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
+										this.props.pause
+									:
+										this.props.play.bind(this, MASAS_songPlayingInfo.url)
+									}>
 								{
 									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
-										<img src="/static/img/MASAS_player_pause.svg" alt="pause" />
+										<img 
+											src="/static/img/MASAS_player_pause.svg" 
+											
+											alt="pause" />
 									:
-										<img src="/static/img/MASAS_player_play.svg" alt="play" />
+										<img 
+											src="/static/img/MASAS_player_play.svg" 
+											
+											alt="play" />
 								}
 							</div>
 						</div>

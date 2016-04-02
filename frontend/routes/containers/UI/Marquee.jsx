@@ -48,12 +48,11 @@ let Marquee = React.createClass({
 		const b = this.refs.text.offsetWidth
 
 		if (b > a) {
-			console.log('overflow +')
 			if(!this.state.overflow) {
 				this.setState({ overflow: true })
 			}
 		} else {
-			console.log('no overflow =')
+
 			if(this.state.overflow)
 				this.setState({ overflow: false })
 		}

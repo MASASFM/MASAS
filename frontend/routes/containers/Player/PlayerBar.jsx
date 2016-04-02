@@ -142,7 +142,7 @@ function mapDispatchToProps(dispatch) {
 		play: () => dispatch({ type: 'PLAY' }),
 		pause: (pausingAtTime) => pausePlayer(dispatch), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
-		playNewSong: (newProps) => playNewSong(dispatch, newProps),
+		playNewSong: (newProps, addToHistory) => playNewSong(dispatch, newProps, addToHistory),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
 		playRandomSong: (songId) => MASAS_functions.playNewSong(dispatch, songId, true),
 		playPreviousSong: (discoverHistory) => playPreviousSong(dispatch, discoverHistory)

@@ -1,7 +1,7 @@
 var ReactRedux = require("react-redux")
 var ArtworkLine = require('../../components/Discover/ArtworkLine.jsx')
 
-var { toggleSongLike } = require("../../../MASAS_functions.jsx")
+var { pausePlayer, playNewSong, toggleSongLike } = require("../../../MASAS_functions.jsx")
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -22,6 +22,8 @@ function mapDispatchToProps(dispatch) {
 		// updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
 		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
+		play: (songToPlay) => playNewSong(dispatch, songToPlay, false),
+		pause: () => pausePlayer(dispatch),
 	}
 }
 

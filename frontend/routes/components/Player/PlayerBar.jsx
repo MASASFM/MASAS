@@ -46,7 +46,7 @@ var Player = React.createClass({
 		{
 			if(newProps.songPlaying !== this.props.songPlaying) {
 				// if new song, fetch new song and play it
-				this.props.playNewSong(newProps)
+				this.props.playNewSong(newProps, this.props.addToHistory)
 
 			} else if(newProps.isPaused === true) {	
 				// if not a new song and is paused, then pause

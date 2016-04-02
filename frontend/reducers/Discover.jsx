@@ -29,13 +29,27 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 
 
 
-			// check discover number within range
+			// check song not latest in history
 			if(state.history.all.length > 0) {
 				var a = state.history.all[state.history.all.length -1]
 				var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
 				if(JSON.stringify(a) === JSON.stringify(b) )
 					return state
+
+				// CHECK IF SONG NOT LATEST IN ITS TIME INTERVAL
+				// filter songs by timeInterval of interest
+				a = state.history.all
+				a = a.filter( ({ MASAS_songInfo }) => {
+					return MASAS_songInfo.timeInterval === action.MASAS_songInfo.timeInterval
+				})
+				// check songId of last song in a (last song of timeInterval of interest added to history)
+				if(a.length) {
+					b = a.pop()
+					if(b.MASAS_songInfo.url === action.MASAS_songInfo.url)
+						return state
+				}
 			}
+
 
 
 			return {

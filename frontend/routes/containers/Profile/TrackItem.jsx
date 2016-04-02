@@ -11,6 +11,7 @@ function mapStateToProps(state) {
 	}
 }
 
+// moved to MASAS_functions.jsx
 // var pause = function(dispatch) {
 // 	console.log('pausing')
 // 	// pause player
@@ -25,7 +26,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		playNewSong: (songToPlay) => dispatch({type:'PLAY_NEW_SONG', song: songToPlay}),
-		pause: (pausingAtTime) => pausePlayer(dispatch),
+		pause: () => pausePlayer(dispatch),
 	}
 }
 
