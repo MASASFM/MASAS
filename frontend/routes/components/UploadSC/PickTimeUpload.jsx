@@ -70,6 +70,7 @@ var PickTimeUpload = React.createClass({
 				</h3>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
+					<Button className="cancel" noBorders={true} small={true} white={false} onClick={this.props.closeWindow}>cancel</Button>
 				</div>
 			</div>
 		)

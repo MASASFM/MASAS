@@ -1,6 +1,8 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+var { Marquee } = require("../../containers/UI/UI.jsx")
+
 // var {goToURL} = require("../../../MASAS_functions.jsx")
 
 // var UploadSC = (props) => {
@@ -39,7 +41,7 @@ var UploadSCItem = React.createClass({
 				</div>
 				<div className="song-info--wrapper">
 					<div className="song-name">
-						{this.props.track.title}
+						<Marquee>{this.props.track.title}</Marquee>
 					</div>
 					<div className="song-stats">
 						<span className="number-listens">

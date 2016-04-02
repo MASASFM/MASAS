@@ -1020,7 +1020,11 @@ input[type=range].MASAS-slider {
   flex-grow: 1;
   padding: 0.5rem 0.5rem; }
 .upload-sc-item--wrapper .song-info--wrapper .song-name {
-  font-size: 0.85rem; }
+  font-size: 0.85rem;
+  width: 100%;
+  height: 0.85rem;
+  position: relative;
+  margin-right: 1rem; }
 .upload-sc-item--wrapper .song-info--wrapper .song-stats {
   display: flex;
   justify-content: space-between;
