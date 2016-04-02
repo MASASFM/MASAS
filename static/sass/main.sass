@@ -60,18 +60,21 @@ html
 
 .body--background.blurred::after 
 	-webkit-filter: blur(5px)
+	filter: blur(5px)
 
 .body--background.blurred-mobile::before
 	opacity: 0.5
 
 .body--background.blurred-mobile::after 
 	-webkit-filter: blur(15px)
+	filter: blur(15px)
 
 // .body--background.saturated::after 
 // 	-webkit-filter: saturate(0%)
 
 .body--background.blurred.saturated::after 
 	-webkit-filter: blur(5px) saturate(0%)
+	filter: blur(5px) saturate(0%)
 
 .body--background::before 
 	content: ""
@@ -149,5 +152,9 @@ h1
 	.row-display-none-sm
 		display: flex
 
+	.body--background.blurred-mobile::before
+		opacity: 1
+
 	.body--background.blurred-mobile::after 
 		-webkit-filter: blur(0px)
+		filter: blur(0px)
