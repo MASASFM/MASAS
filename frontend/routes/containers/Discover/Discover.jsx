@@ -8,9 +8,12 @@ var { toggleSongLike } = require("../../../MASAS_functions.jsx")
 function mapStateToProps(state) {
 	return {
 		discoverNumber: state.discoverReducer.discoverNumber,
-		history: state.discoverReducer.history,
-		songPlaying: state.playerReducer.songPlaying,
-		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
+		// history: state.discoverReducer.history,
+		// songPlaying: state.playerReducer.songPlaying,
+		// songPlaying_MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		// songPlaying_SC_songInfo: state.playerReducer.SC_songInfo,
+		// isPlayerPaused: state.playerReducer.isPaused,
+		// isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userToken: state.appReducer.MASASuser,
 	}
 }
@@ -20,7 +23,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
-		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
+		// toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
 	}
 }
 

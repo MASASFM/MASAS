@@ -1023,8 +1023,7 @@ input[type=range].MASAS-slider {
   font-size: 0.85rem;
   width: 100%;
   height: 0.85rem;
-  position: relative;
-  margin-right: 1rem; }
+  position: relative; }
 .upload-sc-item--wrapper .song-info--wrapper .song-stats {
   display: flex;
   justify-content: space-between;
@@ -1049,6 +1048,8 @@ input[type=range].MASAS-slider {
   .upload-sc-item--wrapper .song-info--wrapper {
     flex-direction: row;
     align-items: center; }
+  .upload-sc-item--wrapper .song-info--wrapper .song-name {
+    margin-right: 1rem; }
   .upload-sc-item--wrapper .song-info--wrapper .song-stats .number-listens {
     display: none; } }
 .pick-time-sc-sync {
@@ -1851,10 +1852,27 @@ input[type=range].MASAS-slider {
           box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4); }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
             height: 17rem;
-            width: 17rem; }
-            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img {
+            width: 17rem;
+            position: relative;
+            cursor: pointer; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              display: none;
+              justify-content: center;
+              align-items: center;
+              background-color: rgba(0, 0, 0, 0.5); }
+              .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img {
+                height: 5rem;
+                width: 5rem; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
               height: 17rem;
               width: 17rem; }
+          .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing:hover .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing:hover .player-button {
+            display: flex; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
             display: none; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .right-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .right-side {
@@ -1900,6 +1918,7 @@ input[type=range].MASAS-slider {
   .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper {
     height: 13.6rem; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
+      z-index: -1;
       display: block;
       position: absolute;
       top: 50%;
@@ -1913,7 +1932,7 @@ input[type=range].MASAS-slider {
         background-color: black;
         height: 14rem;
         width: 14rem; }
-        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing img {
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
           height: 14rem;
           width: 14rem; }
       .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {

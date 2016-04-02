@@ -57,10 +57,32 @@
 						$artworkWidth: 17rem
 						height: $artworkWidth
 						width: $artworkWidth
+						position: relative
+						cursor: pointer
 
-						img
+						.player-button
+							position: absolute
+							top: 0
+							right: 0
+							bottom: 0
+							left: 0
+							display: none
+							justify-content: center
+							align-items: center
+							background-color: rgba(0,0,0,0.5)
+
+							img
+								height: 5rem
+								width: 5rem
+
+						.artwork
 							height: $artworkWidth
 							width: $artworkWidth
+
+					.artwork-playing:hover
+						.player-button
+							display: flex
+								
 						
 					.song-info--wrapper
 						display: none
@@ -141,6 +163,7 @@
 					$like-icon-width: 1.5rem
 
 					.next-button
+						z-index: -1
 						display: block
 						position: absolute
 						top: 50%
@@ -156,7 +179,7 @@
 							background-color: black
 							height: $artworkWidth
 							width: $artworkWidth
-							img
+							.artwork
 								height: $artworkWidth
 								width: $artworkWidth
 							
