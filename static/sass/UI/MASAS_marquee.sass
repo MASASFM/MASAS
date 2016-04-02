@@ -1,0 +1,52 @@
+.MASAS_marquee
+	white-space: pre
+	text-overflow: ellipsis
+	overflow: hidden
+	height: 100%
+	// width: 5rem
+
+
+.MASAS_marquee:hover
+	overflow: hidden
+	position: relative
+
+	.text
+		position: absolute
+		width: 100%
+		height: 100%
+		margin: 0
+		// line-height: 50px
+		text-align: center
+		/* Starting position */
+		-moz-transform: translateX(0%)
+		-webkit-transform: translateX(0%)
+		transform: translateX(0%)
+		/* Apply animation to this element */	
+		-moz-animation: MASAS_marquee 14s linear infinite
+		-webkit-animation: MASAS_marquee 14s linear infinite
+		animation: MASAS_marquee 14s linear infinite
+		animation-delay: -7.4s
+
+/* Move it (define the animation) */
+@-moz-keyframes MASAS_marquee 
+	100% 
+		moz-transform: translateX(-100%)
+	0% 
+		moz-transform: translateX(100%)
+
+@-webkit-keyframes MASAS_marquee
+	100%   
+		webkit-transform: translateX(-100%)
+	0% 
+		-webkit-transform: translateX(100%)
+
+@keyframes MASAS_marquee
+	100%   
+		-moz-transform: translateX(-100%)		//FF bugfix
+		-webkit-transform: translateX(-100%)		//FF bugfix
+		transform: translateX(-100%)	
+	 
+	0% 
+		-moz-transform: translateX(100%)		//FF bugfix
+		-webkit-transform: translateX(100%)		//FF bugfix
+		transform: translateX(100%)

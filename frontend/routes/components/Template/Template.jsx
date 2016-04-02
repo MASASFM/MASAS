@@ -23,6 +23,6 @@ var Template = React.createClass({
 			</div>
 		)
 	}
-});
+})
 
 module.exports = Template

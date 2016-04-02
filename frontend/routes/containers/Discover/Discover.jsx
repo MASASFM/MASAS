@@ -8,6 +8,7 @@ function mapStateToProps(state) {
 		discoverNumber: state.discoverReducer.discoverNumber,
 		history: state.discoverReducer.history,
 		songPlaying: state.playerReducer.songPlaying,
+		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 	}
 }
 

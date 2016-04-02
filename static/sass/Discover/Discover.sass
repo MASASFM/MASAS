@@ -11,6 +11,7 @@
 		position: relative
 
 		.page1, .page2
+			transition: opacity 0.3s ease-in
 			position: absolute
 			top: 0
 			bottom: 0
@@ -42,23 +43,30 @@
 				width: 100%
 				position: relative
 
-				.artwork-playing
+				.artwork-playing--wrapper
 					position: absolute
 					top: 50%
 					left: 50%
 					transform: translate(-50%, -50%)
 					box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
 
-					img
+					.artwork-playing
 						$artworkWidth: 17rem
 						height: $artworkWidth
 						width: $artworkWidth
+
+						img
+							height: $artworkWidth
+							width: $artworkWidth
+						
+					.song-info--wrapper
+						display: none
 
 				.left-side, .right-side
 					display: flex
 
 				.left-side
-					width: 50%
+					width: 40%
 					overflow: hidden
 
 					.artwork-line
@@ -66,6 +74,7 @@
 						display: flex
 						width: 100%
 						justify-content: flex-end
+						// flex-direction: row-reverse
 
 						.empty-artwork
 							height: $artworkWidth
@@ -81,10 +90,12 @@
 								align-items: center
 
 		.page1
-			visibility: visible
+			opacity: 1
+			z-index: 1
 
 		.page2
-			visibility: hidden
+			opacity: 0
+			z-index: 0
 		
 
 	.time-picker--wrapper
@@ -104,3 +115,102 @@
 
 			.timePicker-slider--wrapper
 				bottom: 0
+
+@media screen and (min-width: $desktop-min-width)
+	.discover--wrapper
+
+		.multi-page--wrapper
+
+			.page1, .page2
+
+				h1
+
+				.play-discover--wrapper
+					height: 12rem
+
+				.artwork-line--wrapper
+					.artwork--wrapper
+						$artworkWidth: 14rem
+						display: flex
+						flex-direction: column
+
+						.artwork
+							height: $artworkWidth
+							width: $artworkWidth
+
+						.song-info--wrapper
+							$sidePadding: 1rem
+							$like-icon-width: 1.5rem
+							$font-size: 0.7rem
+							font-size: $font-size
+							height: 3rem
+							display: flex
+							flex-direction: column
+							justify-content: center
+							align-items: center
+							padding: 0 $sidePadding
+							background-color: black
+
+							.title, .artist
+								height: $font-size
+								width: $artworkWidth - (3*$sidePadding + $like-icon-width)
+
+					$artworkWidth: 14rem
+					.artwork-playing--wrapper
+						max-width: $artworkWidth
+
+						.artwork-playing
+							background-color: black
+							height: $artworkWidth
+							width: $artworkWidth
+							img
+								height: $artworkWidth
+								width: $artworkWidth
+							
+						.song-info--wrapper
+							$sidePadding: 1rem
+							$like-icon-width: 1.5rem
+							$font-size: 0.7rem
+							height: 3rem
+							display: flex
+							align-items: center
+							padding: 0 $sidePadding
+							background-color: black
+
+							.like-icon
+								width: $like-icon-width
+
+								img
+									width: $like-icon-width
+
+							.song-info
+								text-overflow: wrap
+								padding-left: $sidePadding
+								display: flex
+								flex-direction: column
+								font-size: $font-size
+
+								.title, .artist
+									height: $font-size
+									width: $artworkWidth - (3*$sidePadding + $like-icon-width)
+
+					.left-side, .right-side
+
+					.left-side
+						width: calc(50% - #{$artworkWidth} / 4)
+
+						.artwork-line
+							$artworkWidth: 12rem
+
+							.empty-artwork
+								// height: $artworkWidth
+								// width: $artworkWidth / 2
+								width: 0
+
+							.artwork--wrapper
+								.artwork
+									height: $artworkWidth
+									width: $artworkWidth
+
+								.song-info--wrapper
+									display: flex

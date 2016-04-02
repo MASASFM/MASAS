@@ -3,7 +3,7 @@ var ReactDOM = require("react-dom")
 
 // var {goToURL} = require("../../../MASAS_functions.jsx")
 // var {getCookie} = require("../../../MASAS_functions.jsx")
-var { TimePicker } = require("../../containers/UI/UI.jsx")
+var { TimePicker, Marquee } = require("../../containers/UI/UI.jsx")
 
 // var Template = (props) => {
 
@@ -33,7 +33,8 @@ var ArtworkLine = React.createClass({
 					<div className="artwork--wrapper" key={SC_songInfo.id}>
 						<img src={ artworkURL } alt="artwork" className="artwork"/>
 						<div className="song-info--wrapper">
-							{ SC_songInfo.id }
+							<Marquee className="title">{ SC_songInfo.title }</Marquee>
+							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
 						</div>
 					</div>
 					)
@@ -56,8 +57,24 @@ var ArtworkLine = React.createClass({
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
-					<div className="artwork-playing">	
-						<img src={ artworkPlayingURL } alt="song playing" />
+					<div className="artwork-playing--wrapper">	
+						<div className="artwork-playing">	
+							<img src={ artworkPlayingURL } alt="song playing" />
+						</div>
+						<div className="song-info--wrapper">
+							<div className="like-icon">
+								{
+									this.props.isSongPlayingLiked ?
+										<img src="/static/img/MASAS_like.svg" alt="like" />
+									:
+										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
+								}
+							</div>
+							<div className="song-info">
+								<div className="title"><Marquee>{ artworkPlaying.title }</Marquee></div>
+								<div className="artist"><Marquee>{ artworkPlaying.user.username }</Marquee></div>
+							</div>
+						</div>
 					</div>
 					<div className="right-side">
 					</div>
@@ -109,7 +126,7 @@ var Discover = React.createClass({
 						<ArtworkLine  history={ this.props.history } discoverNumber="5" />
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
-						<h1>#LateAfternoon</h1>
+						<h1>#LateEvening</h1>
 						<ArtworkLine  history={ this.props.history } discoverNumber="6" />
 					</div>
 				</div>

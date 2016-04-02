@@ -3,6 +3,7 @@ var ReactDOM = require("react-dom")
 var jPlayer = require("jplayer")
 
 var {getCookie} = require("../../../MASAS_functions.jsx")
+var { Marquee } = require("../../containers/UI/UI.jsx")
 
 var Player = React.createClass({
 	propTypes: {
@@ -64,6 +65,9 @@ var Player = React.createClass({
 			headers: {
 				"Authorization": header,
 				"X-CSRFToken": csrftoken
+			},
+			data: {
+				
 			},
 			success: (data) => {
 				console.log(data)
@@ -143,12 +147,12 @@ var Player = React.createClass({
 								Playing from <span className="time">{ this.renderRadioTime() }</span>
 							</div>
 							<div className="song-name">
-								<span className="song-title">
+								<Marquee className="song-title">
 									{ this.props.SC_songInfo.title+ " - " }
-								</span>
-								<span className="song-artist">
+								</Marquee>
+								<Marquee className="song-artist">
 									{ this.props.SC_songInfo.user.username }
-								</span>
+								</Marquee>
 							</div> 
 						</div>
 					: "" }
