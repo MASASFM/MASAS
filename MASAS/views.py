@@ -114,6 +114,7 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def post(self, request, format=None):
+        # import ipdb; ipdb.set_trace() 
         unplayed = Song.objects.exclude(
             play__user=request.user
         ).order_by('?').first()

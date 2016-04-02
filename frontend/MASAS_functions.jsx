@@ -82,18 +82,18 @@ MASAS_functions.pausePlayer = function(dispatch) {
 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 }
 
-MASAS_functions.playPreviousSong = function(dispatch, discoverNumber, discoverHistory) {
+MASAS_functions.playPreviousSong = function(dispatch, discoverHistory) {
 	// POP SONG FROM HISTORY
 	dispatch({ type: 'POP_SONG_FROM_HISTORY' })
 
 	// PLAY LATEST SONG IN HISTORY
-	console.log("SONG_URL =>", discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url)
-	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory[discoverNumber][discoverHistory[discoverNumber].length-1].MASAS_songInfo.url })
+	console.log("SONG_URL =>", discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url)
+	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
 }
 
 // play new random song based on song play count and likes
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = false) {
+MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = true) {
 	// PLAY NEW SONG
 	dispatch({ type: 'PLAY_NEW_SONG', song: MASAS_songId})
 
@@ -119,6 +119,120 @@ MASAS_functions.playNewSong = function(dispatch, MASAS_songId, addToHistory = fa
 				console.warn(err)
 			},
 		})
+}
+
+// songId = url to django rest for this song
+// Refactor with like and dislike functions called from toogleSongLike
+MASAS_functions.toggleSongLike = function(dispatch, userToken, songId) {
+	// NO ACTION IF NO SONG IS PROVIDED
+	if(!songId)
+		return 
+
+	// CHECK IF SONG IS LIKED FROM REST API
+		// fetch user info
+		// compare liked songs with songId
+
+	// optimistic UI
+	dispatch({type: 'TOGGLE_SONG_LIKE'})
+
+	// server check and UI update if necessary
+	var header = "Bearer " + userToken
+	var csrftoken = MASAS_functions.getCookie('csrftoken')
+		
+	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
+	$.ajax({
+		type: "GET",
+		url: 'api/check-user/',	
+		headers: {
+			"Authorization": header,
+		},
+		success: (data) => {
+			console.log(data)
+			// GET USER LIKES FROM USER.PK
+			$.ajax({
+				type: "GET",
+				url: 'api/users/' + data.userPk + "/",	
+				headers: {
+					"Authorization": header,
+				},
+				success: (user) => {
+					var likes = user.likes
+					console.log("like ===>", likes)
+
+					var isSongLiked = user.likes.filter( (like) => {
+						console.log(like.song.url, songId)
+						return like.song.url === songId
+					})
+					console.log(isSongLiked)
+
+					// song not liked yet
+					if(isSongLiked.length === 0) {
+						$.ajax({
+							type: "POST",
+							// url: "/api/likes/",	
+							url: "/api/statuses/",	
+							headers: {
+								"Authorization": header,
+								"X-CSRFToken": csrftoken,
+							},
+							data: {
+								user: user.url,
+								song: songId,
+								status: 1
+							},
+							success: (data) => {
+								// update UI
+								dispatch({type: 'LIKE_SONG'})
+								dispatch({type: 'REFETCH_LIKES'})
+							},
+							error: (err) => {
+								console.log(err)
+							},
+						})
+					} else {
+
+						// find if song liked
+						let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
+						if(songLiked.length === 1) {
+							songLiked = isSongLiked[0]
+							$.ajax({
+							type: "DELETE",
+							url: songLiked.url,	
+							headers: {
+								"Authorization": header,
+								"X-CSRFToken": csrftoken,
+							},
+							success: (data) => {
+								console.log(data)
+								// update UI
+								dispatch({type: 'UNLIKE_SONG'})
+								dispatch({type: 'REFETCH_LIKES'})
+							},
+							error: (err) => {
+								console.log(err)
+							},
+						})
+						}
+						
+					}
+				},
+				error: (err) => {
+					console.log(err)
+				},
+			})
+
+
+
+
+		},
+		error: (err) => {
+			console.log(err)
+		},
+	})
+
+	// if song is liked, delete like from DB and update player UI state
+
+	// else (song is not liked yet), update DB and player UI state
 }
 
 module.exports = MASAS_functions

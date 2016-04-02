@@ -25,9 +25,11 @@ function mapDispatchToProps(dispatch) {
 			dispatch({type:'HANDLE_PICK_TIME_UPLOAD', rangeValue, pickTimeUpload})
 	}
 
+	var closeWindow = () => { dispatch({type:'CLOSE_PICK_TIME_WINDOW'}) }
+
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		closeWindow: () => { dispatch({type:'CLOSE_PICK_TIME_WINDOW'}) },
+		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType, backArrowFunc: closeWindow}),
+		closeWindow,
 		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
 		handleTimePickerChange,
 	}

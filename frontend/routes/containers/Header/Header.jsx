@@ -10,20 +10,21 @@ function mapStateToProps(state) {
 		pageTitle: state.appReducer.pageTitle,
 		user: state.appReducer.MASASuser,
 		isPlayerBarOpened: state.footerReducer.isOpened,
+		backArrowFunc: state.appReducer.backArrowFunc
 	}
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
-  return {
-  	onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
-  	toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
-  	goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4})
-  }
+	return {
+		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
+		goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4})
+	}
 }
 
 Header = ReactRedux.connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(Header)
 module.exports = Header

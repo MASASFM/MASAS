@@ -24,9 +24,10 @@ var UploadSC = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
+		if(this.props.choosingTime !== nextProps.choosingTime && nextProps.choosingTime === null)
+			this.props.updateTitle('Upload', '0')
+
 		// update masas user track prop to have the sync icon updatd in real time
-		console.log(this.props)
-		console.log(nextProps)
 		if(this.props.choosingTime !== nextProps.choosingTime)
 			this.getUserTracks()
 	},
@@ -40,7 +41,7 @@ var UploadSC = React.createClass({
 			}
 
 		var error = (err) => {
-				console.log(err)
+				console.warn(err)
 			}
 
 		this.props.getUserTracks(this.props.userPk, success, error)
@@ -49,15 +50,11 @@ var UploadSC = React.createClass({
 	getUserSCTracks: function() {
 		SC.get('me/favorites', {limit: 100}).then( (response) => {  // async call to SC servers
 			this.props.updateSoundcloudUserTracks(response)
-			console.log(this.state.soundcloudUserTracks)
 		})
-		// SC.get('tracks', {limit: 200, genre: 'house', ids: '246013120,246012982', duration: {to: 111111}})
 	},
 
 	connectToSC: function() {
-		// window.open("https://soundcloud.com/connect?client_id=ed631b7b4a7b72dcddf94294319ef093&display=popup&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fsc-callback&response_type=code_and_token&scope=non-expiring&state=SoundCloud_Dialog_80f9e")
 		SC.connect().then( () => {
-			// this.setState({isConnectedSoundcloud: true})
 			this.props.updateIsConnectedSC(true)
 			SC.get('/me').then((r) => {
 				// store suername for mobile
@@ -144,9 +141,9 @@ var UploadSC = React.createClass({
 					</div>
 				</div>
 				</Body>
-				);
+				)
 		}
 	}
-});
+})
 
 module.exports = UploadSC
