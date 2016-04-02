@@ -1,10 +1,11 @@
-// NEEDS DIRECT PARENT WITH => position: relative
+// NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
 
 var React = require("react")
 var ReactDOM = require("react-dom")
 
 let Marquee = React.createClass({
 	propTypes: {
+		className: React.PropTypes.string,
 	},
 
 	getInitialState: function() {

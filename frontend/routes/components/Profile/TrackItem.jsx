@@ -3,7 +3,7 @@ var ReactDOM = require("react-dom")
 
 // var {goToURL} = require("../../../MASAS_functions.jsx")
 // var {getCookie} = require("../../../MASAS_functions.jsx")
-// var { Link } = require("../../containers/UI/UI.jsx")
+var { Marquee } = require("../../containers/UI/UI.jsx")
 
 // var Template = (props) => {
 
@@ -75,8 +75,12 @@ var TrackItem = React.createClass({
 				<div className="song-info--wrapper">
 					<div className="song-stats-1">
 						<div className="song-name">
-							{this.props.track.title} <br /> 
-							{this.props.track.user.username}
+							<div className="title">
+								<Marquee>{this.props.track.title}</Marquee>
+							</div>
+							<div className="username">
+								<Marquee>{this.props.track.user.username}</Marquee>
+							</div>
 						</div>
 					</div>
 					<div className="song-stats-2">

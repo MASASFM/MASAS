@@ -52,6 +52,13 @@
 
 			.song-stats-1
 				.song-name
+					display: flex
+					flex-direction: column
+					width: 100%
+
+					.title, .username
+						position: relative  		// needed for <Marquee>
+						height: 1rem
 
 				.lives-left
 					img

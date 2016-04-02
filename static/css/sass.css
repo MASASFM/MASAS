@@ -1356,6 +1356,13 @@ input[type=range].MASAS-slider {
   display: flex;
   flex: 1;
   justify-content: space-between; }
+.profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .song-name {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+  .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .song-name .title, .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .song-name .username {
+    position: relative;
+    height: 1rem; }
 .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-1 .lives-left img {
   width: 1.2rem; }
 .profile--wrapper .track--wrapper .song-info--wrapper .song-stats-2 {
