@@ -62,10 +62,10 @@ var ArtworkLine = React.createClass({
 							<img src={ artworkPlayingURL } alt="song playing" />
 						</div>
 						<div className="song-info--wrapper">
-							<div className="like-icon">
+							<div className="like-icon" onClick={ this.props.toggleSongLike.bind(this, this.props.userToken, this.props.songPlaying) }>
 								{
 									this.props.isSongPlayingLiked ?
-										<img src="/static/img/MASAS_like.svg" alt="like" />
+										<img src="/static/img/MASAS_liked.svg" alt="like" />
 									:
 										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
 								}
@@ -108,27 +108,63 @@ var Discover = React.createClass({
 				<div className="multi-page--wrapper">
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
 						<h1>#EarlyMorning</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="1" />
+						<ArtworkLine 
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken }
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked }
+							history={ this.props.history }
+							discoverNumber="1" />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
 						<h1>#LateMorning</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="2" />
+						<ArtworkLine 
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken }
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked }
+							history={ this.props.history }
+							discoverNumber="2" />
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
 						<h1>#EarlyAfternoon</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="3" />
+						<ArtworkLine
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken } 
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked } 
+							history={ this.props.history } 
+							discoverNumber="3" />
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
 						<h1>#LateAfternoon</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="4" />
+						<ArtworkLine
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken } 
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked } 
+							history={ this.props.history } 
+							discoverNumber="4" />
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
 						<h1>#EarlyEvening</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="5" />
+						<ArtworkLine  
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken }
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked } 
+							history={ this.props.history } 
+							discoverNumber="5" />
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
 						<h1>#LateEvening</h1>
-						<ArtworkLine  history={ this.props.history } discoverNumber="6" />
+						<ArtworkLine 
+							songPlaying={ this.props.songPlaying }
+							userToken={ this.props.userToken } 
+							toggleSongLike={ this.props.toggleSongLike } 
+							isSongPlayingLiked={ this.props.isSongPlayingLiked } 
+							history={ this.props.history } 
+							discoverNumber="6" />
 					</div>
 				</div>
 				<div className="time-picker--wrapper">

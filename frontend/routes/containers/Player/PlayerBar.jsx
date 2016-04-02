@@ -1,6 +1,6 @@
 var ReactRedux = require("react-redux")
 var Player = require('../../components/Player/PlayerBar.jsx')
-var { getCookie, pausePlayer, playPreviousSong } = require("../../../MASAS_functions.jsx")
+var { getCookie, pausePlayer, playPreviousSong, toggleSongLike } = require("../../../MASAS_functions.jsx")
 var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 
@@ -133,119 +133,7 @@ var playNewSong = function(dispatch, newProps) {
 	})
 }
 
-// songId = url to django rest for this song
-// Refactor with like and dislike functions called from toogleSongLike
-var toggleSongLike = function(dispatch, userToken, songId) {
-	// NO ACTION IF NO SONG IS PROVIDED
-	if(!songId)
-		return 
 
-	// CHECK IF SONG IS LIKED FROM REST API
-		// fetch user info
-		// compare liked songs with songId
-
-	// optimistic UI
-	dispatch({type: 'TOGGLE_SONG_LIKE'})
-
-	// server check and UI update if necessary
-	var header = "Bearer " + userToken
-	var csrftoken = getCookie('csrftoken')
-		
-	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
-	$.ajax({
-		type: "GET",
-		url: 'api/check-user/',	
-		headers: {
-			"Authorization": header,
-		},
-		success: (data) => {
-			console.log(data)
-			// GET USER LIKES FROM USER.PK
-			$.ajax({
-				type: "GET",
-				url: 'api/users/' + data.userPk + "/",	
-				headers: {
-					"Authorization": header,
-				},
-				success: (user) => {
-					var likes = user.likes
-					console.log("like ===>", likes)
-
-					var isSongLiked = user.likes.filter( (like) => {
-						console.log(like.song.url, songId)
-						return like.song.url === songId
-					})
-					console.log(isSongLiked)
-
-					// song not liked yet
-					if(isSongLiked.length === 0) {
-						$.ajax({
-							type: "POST",
-							// url: "/api/likes/",	
-							url: "/api/statuses/",	
-							headers: {
-								"Authorization": header,
-								"X-CSRFToken": csrftoken,
-							},
-							data: {
-								user: user.url,
-								song: songId,
-								status: 1
-							},
-							success: (data) => {
-								// update UI
-								dispatch({type: 'LIKE_SONG'})
-								dispatch({type: 'REFETCH_LIKES'})
-							},
-							error: (err) => {
-								console.log(err)
-							},
-						})
-					} else {
-
-						// find if song liked
-						let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
-						if(songLiked.length === 1) {
-							songLiked = isSongLiked[0]
-							$.ajax({
-							type: "DELETE",
-							url: songLiked.url,	
-							headers: {
-								"Authorization": header,
-								"X-CSRFToken": csrftoken,
-							},
-							success: (data) => {
-								console.log(data)
-								// update UI
-								dispatch({type: 'UNLIKE_SONG'})
-								dispatch({type: 'REFETCH_LIKES'})
-							},
-							error: (err) => {
-								console.log(err)
-							},
-						})
-						}
-						
-					}
-				},
-				error: (err) => {
-					console.log(err)
-				},
-			})
-
-
-
-
-		},
-		error: (err) => {
-			console.log(err)
-		},
-	})
-
-	// if song is liked, delete like from DB and update player UI state
-
-	// else (song is not liked yet), update DB and player UI state
-}
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
