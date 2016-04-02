@@ -1,6 +1,8 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+var { Marquee } = require("../../containers/UI/UI.jsx")
+
 var LikesItem = React.createClass({
 	propTypes: {
 		MASASinfo: React.PropTypes.object,			// song info from MASAS database
@@ -71,11 +73,11 @@ var LikesItem = React.createClass({
 				<div className="text--wrapper">
 					<div className="song-name--wrapper">
 						<div className="title">
-							{ SCinfo.title }
+							<Marquee>{ SCinfo.title }</Marquee>
 						</div>
 						<div className="dash"> - </div>
 						<div className="artist">
-							{ SCinfo.user.username }
+							<Marquee>{ SCinfo.user.username }</Marquee>
 						</div>
 					</div>
 					<div className="song-stats--wrapper">

@@ -1721,6 +1721,10 @@ input[type=range].MASAS-slider {
 .likes-item--wrapper .text--wrapper .song-name--wrapper {
   display: flex;
   flex-direction: column; }
+.likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+  position: relative;
+  height: 1.2rem;
+  width: 100%; }
 .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
   font-family: Lato-Semibold;
   font-size: 1.2rem;
@@ -1768,6 +1772,8 @@ input[type=range].MASAS-slider {
     flex-direction: row;
     justify-content: center;
     align-items: center; }
+  .likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+    height: 0.6rem; }
   .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
     font-size: 0.6rem;
     white-space: nowrap; }
