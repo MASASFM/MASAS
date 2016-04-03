@@ -4,9 +4,13 @@ var Cookie = require('js-cookie')
 var MASAS_functions = {}
 
 MASAS_functions.logout = (dispatch) => {
-	console.log("logout ===>", dispatch)
+	// console.log("logout ===>", dispatch)
 	Cookie.remove('MASAS_authToken')
 	dispatch({type: 'LOGOUT'})
+	FB.logout(function(response) {
+		console.log('logged out from FB')
+	})
+	return
 }
 
 MASAS_functions.updateAuthCookie = (userToken) => {
