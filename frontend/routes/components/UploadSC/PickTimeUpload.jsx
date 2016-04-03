@@ -36,10 +36,13 @@ var PickTimeUpload = React.createClass({
 			},
 			success: (data) => {
 				console.log(data)
+				this.props.emitNotification('song synced ;)')
 				this.props.closeWindow()
+
 			},
 			error: (err) => {
 				console.log(err)
+				this.props.emitNotification(err.responseJSON.SC_ID[0])
 			},
 		})
 	},
@@ -59,7 +62,7 @@ var PickTimeUpload = React.createClass({
 						<div className="artwork"></div>
 				}
 
-				<h2 className="song-title">{this.props.track.title}ON DECK: The Geek x VRV THUMP</h2>
+				<h2 className="song-title">{this.props.track.title}</h2>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
 						<TimePicker pickTimeUpload={this.props.pickTimeUpload} onChange={this.props.handleTimePickerChange} />
@@ -70,7 +73,7 @@ var PickTimeUpload = React.createClass({
 				</h3>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
-					<Button className="cancel" noBorders={true} small={true} white={false} onClick={this.props.closeWindow}>cancel</Button>
+					<Button className="cancel-button" noBorders={true} small={true} white={false} onClick={this.props.closeWindow}>cancel</Button>
 				</div>
 			</div>
 		)

@@ -827,7 +827,8 @@ input[type=range].MASAS-slider {
     margin: 0; }
   .header .phone-header .menu-icon {
     height: 1rem;
-    margin-left: 1rem; }
+    margin-left: 1rem;
+    cursor: pointer; }
   .header .phone-header .title {
     text-align: center;
     text-transform: capitalize;
@@ -837,6 +838,7 @@ input[type=range].MASAS-slider {
     display: flex;
     justify-content: flex-end; }
     .header .phone-header .tray-icon--wrapper .toogle-open-tray-icon {
+      cursor: pointer;
       height: 1.5rem;
       width: 1.5rem;
       margin-right: 1rem;
@@ -1146,6 +1148,8 @@ input[type=range].MASAS-slider {
   align-items: center; }
 .pick-time-sc-sync .button--wrapper .submit {
   font-size: 1.1rem; }
+.pick-time-sc-sync .button--wrapper .cancel-button {
+  visibility: hidden; }
 
 @media screen and (min-width: 992px) {
   .pick-time-sc-sync {
@@ -1164,7 +1168,9 @@ input[type=range].MASAS-slider {
     min-height: 4.5rem; }
   .pick-time-sc-sync .button--wrapper .submit {
     font-size: 0.8rem;
-    width: 9rem; } }
+    width: 9rem; }
+  .pick-time-sc-sync .button--wrapper .cancel-button {
+    visibility: visible; } }
 .timePicker--wrapper {
   height: 100%;
   position: relative; }

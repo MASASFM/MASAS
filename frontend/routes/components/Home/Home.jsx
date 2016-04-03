@@ -35,6 +35,10 @@ var Home = React.createClass({
 		}
 	},
 
+	componentWillMount: function() {
+		this.props.updateTitle('', '0')		// 0 = menu icon; 1 = arrow back
+	},
+
 	componentWillUnmount: function () {
 		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)

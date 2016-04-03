@@ -32,6 +32,10 @@ function mapDispatchToProps(dispatch) {
 		closeWindow,
 		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
 		handleTimePickerChange,
+		emitNotification: (text) => {
+			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: text})
+		}
 	}
 }
 
