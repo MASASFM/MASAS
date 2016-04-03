@@ -15,6 +15,7 @@ exportVar.headerReducer = function(state = defaultState, action) {
 				username: action.username
 			}
 		case 'UPDATE_NOTIFICATION_TEXT':
+			console.log("===$$$$=====>",action.notificationText)
 			return {
 				...state,
 				notificationText: action.notificationText

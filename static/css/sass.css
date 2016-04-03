@@ -860,6 +860,16 @@ input[type=range].MASAS-slider {
     height: 0.3rem;
     background-color: rgba(0, 0, 0, 0.8); }
   @media screen and (min-width: 992px) {
+    .header .notification--wrapper1 {
+      top: calc(100% + 0.5rem);
+      right: 0.5rem;
+      justify-content: flex-end; }
+      .header .notification--wrapper1 .notification--wrapper2 {
+        flex: 0;
+        min-width: 30%;
+        animation: fadein 2s linear;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.7); }
     .header .desktop-header {
       display: flex;
       background-color: rgba(0, 0, 0, 0.7);
@@ -921,7 +931,7 @@ input[type=range].MASAS-slider {
   .footer--wrapper .slider--wrapper .visible--wrapper {
     height: 4rem; }
     .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       font-family: Lato-Light;
@@ -1029,6 +1039,8 @@ input[type=range].MASAS-slider {
         margin-left: 1.8rem; }
       .footer--wrapper .slider--wrapper .visible--wrapper {
         height: 2.6rem; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
+          display: flex; }
         .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
           padding-right: 0.8rem; }
         .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper {

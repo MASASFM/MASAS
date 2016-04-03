@@ -6,11 +6,15 @@ var MASAS_functions = {}
 MASAS_functions.logout = (dispatch) => {
 	// console.log("logout ===>", dispatch)
 	Cookie.remove('MASAS_authToken')
+
+	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 	dispatch({type: 'LOGOUT'})
+
 	FB.logout(function(response) {
 		console.log('logged out from FB')
+		dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Logged out !"})
 	})
-	return
+
 }
 
 MASAS_functions.updateAuthCookie = (userToken) => {
@@ -43,6 +47,8 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 				// 	console.log(r)
 					dispatch({type: 'UPDATE_USER_PK', pk: pk})
 					dispatch({type: 'LOGIN', token: userToken, userData: data})
+					dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+					dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !"})
 				// })
 				
 			}
@@ -53,7 +59,10 @@ MASAS_functions.logInWithToken = (dispatch, userToken) => {
 		error: (err) => {
 			console.log(err)
 			// render app
+			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: err.responseText})
 			dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'})
+
 		},
 	})
 }

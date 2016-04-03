@@ -21,6 +21,11 @@ var NavSidebar = React.createClass({
 		this.props.toogleSidebar()
 	},
 
+	logout: function() {
+		this.props.toogleSidebar()
+		this.props.logout()
+	},
+
 	render: function() {
 		var sidebarContent = <div className="navSidebar--wrapper">
 						<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
@@ -61,7 +66,7 @@ var NavSidebar = React.createClass({
 								<Link to="/" onClick={this.props.toogleSidebar}>Legals</Link>
 								<Link disabled={true}>Settings</Link>
 								{ this.props.MASASuser ?
-									<Link to="/" onClick={this.props.logout}>Logout</Link>
+									<Link to="/" onClick={this.logout}>Logout</Link>
 									:
 									<Link to="/login" onClick={this.props.toogleSidebar}>Login</Link>
 								}
