@@ -106,7 +106,7 @@ AUTH_USER_MODEL = 'MASAS.User'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 100
 }
 
 # oauth
@@ -200,7 +200,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAdminUser',
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 100,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'oauth2_provider.ext.rest_framework.OAuth2Authentication',
         'rest_framework_social_oauth2.authentication.SocialAuthentication',

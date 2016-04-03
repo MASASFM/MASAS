@@ -25,7 +25,7 @@ exportVar.likesReducer = function(state = defaultState, action) {
 		case 'REFETCH_LIKES': // NOT TESTED
 			return {
 				...state,
-				reFetch: ( state.reFetch > 100 ? 0 : state.reFetch+1 ),
+				reFetch: ( state.reFetch > 100 ? 1 : state.reFetch+1 ),
 			}
 
 		default:
