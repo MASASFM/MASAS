@@ -13,6 +13,18 @@ var Header = React.createClass({
 	render: function() {
 		return (
 			<nav  className="header">
+				<div className="notification--wrapper1">
+					{
+						this.props.notificationText !== "" ?
+							<div className="notification--wrapper2">
+								<div className="notification-text">
+									{ this.props.notificationText }
+								</div>
+							</div>
+						:
+							""
+					}
+				</div>
 				<div className="top-decoration--top-border">
 				</div>
 				<div className="top-decoration">

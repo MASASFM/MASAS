@@ -10,7 +10,8 @@ function mapStateToProps(state) {
 		pageTitle: state.appReducer.pageTitle,
 		user: state.appReducer.MASASuser,
 		isPlayerBarOpened: state.footerReducer.isOpened,
-		backArrowFunc: state.appReducer.backArrowFunc
+		backArrowFunc: state.appReducer.backArrowFunc,
+		notificationText: state.headerReducer.notificationText,
 	}
 }
 

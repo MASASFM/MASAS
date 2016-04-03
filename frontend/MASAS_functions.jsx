@@ -189,6 +189,8 @@ MASAS_functions.toggleSongLike = function(dispatch, userToken, songId) {
 								// update UI
 								dispatch({type: 'LIKE_SONG'})
 								dispatch({type: 'REFETCH_LIKES'})
+								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "song liked"})
 							},
 							error: (err) => {
 								console.log(err)
@@ -212,6 +214,8 @@ MASAS_functions.toggleSongLike = function(dispatch, userToken, songId) {
 								// update UI
 								dispatch({type: 'UNLIKE_SONG'})
 								dispatch({type: 'REFETCH_LIKES'})
+								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "song unliked"})
 							},
 							error: (err) => {
 								console.log(err)
