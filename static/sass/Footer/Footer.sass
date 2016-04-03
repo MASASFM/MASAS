@@ -46,7 +46,15 @@ $footerHeight: 4rem
 		.visible--wrapper
 			height: $footerHeight
 
+			.buffer-info
+				display: flex
+				align-items: center
+				justify-content: center
+				font-family: Lato-Light
+				font-size: 0.7rem
+
 			.playerProgressBar--wrapper
+				// position: relative
 				display: flex
 				justify-content: flex-start
 				width: 100vw
@@ -59,6 +67,24 @@ $footerHeight: 4rem
 					display: flex
 					background-color: white
 					width: 0vw
+					z-index: 2
+
+				.bufferingBar--wrapper
+					display: flex
+					height: 2px
+					flex: 1
+					position: relative
+					width: 100%
+
+					.bufferingBar.buffering
+						position: absolute
+						width: 300%
+						background: linear-gradient(45deg, white, rgba(0,0,0,0.5), white, rgba(0,0,0,0.5))
+						height: 2px
+						animation-name: buffering
+						animation-duration: 5s
+						animation-timing-function: linear
+						animation-iteration-count: infinite
 
 			img
 				cursor: pointer
@@ -193,3 +219,34 @@ $footerHeight: 4rem
 
 					span::before
 						padding-right: 0.8rem
+
+
+
+// @-moz-keyframes buffering 
+// 	100% 
+// 		// moz-transform: translateX(-100%)
+// 		left: 0
+// 	0% 
+// 		left: 100%
+
+// @-webkit-keyframes buffering
+// 	100%   
+// 		// webkit-transform: translateX(-100%)
+// 		left: 0
+// 	0% 
+// 		left: 100%
+
+@keyframes buffering
+	100%   
+		// $percent: -100%
+		// -moz-transform: translateX($percent)			//FF bugfix
+		// -webkit-transform: translateX($percent)		//FF bugfix
+		// transform: translateX($percent)	
+		left: -200%
+
+	// 50%  
+	// 	left: -10%
+
+	
+	0%  
+		left: 0%

@@ -57,11 +57,17 @@ var Footer = React.createClass({
 						<div className="playerProgressBar--wrapper">
 							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
 							</div>
+							<div className="bufferingBar--wrapper">
+								<div className={ "bufferingBar" + (this.props.isBuffering && this.props.playerAtTime ? " buffering" : "")}>
+								</div>
+							</div>
 						</div>
 						<div className="row no-margin"  style={{height: '100%'}}>
-							<div className="col-md-2 col-display-none-sm">
+							<div className="col-md-2 col-display-none-sm buffer-info">
 								<div className="box">
-									
+									<div className="">
+										{this.props.isBuffering ? " Buffering..." : ""}
+									</div>
 								</div>
 							</div>
 							<div className="col-xs-10 col-md-8 player--wrapper">

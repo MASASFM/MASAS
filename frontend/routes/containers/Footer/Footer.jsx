@@ -11,6 +11,9 @@ function mapStateToProps(state) {
 		SC_songInfo: state.playerReducer.SC_songInfo,
 		progressBarWidth: state.footerReducer.progressBar,
 		isPlayerBarOpened: state.footerReducer.isOpened,
+		isBuffering: state.playerReducer.isBuffering,
+		songPlaying: state.playerReducer.songPlaying,
+		playerAtTime: state.playerReducer.playerAtTime,
 	}
 }
 

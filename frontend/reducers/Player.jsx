@@ -7,7 +7,8 @@ exportVar.defaultState = {
 	MASAS_songInfo: null,			// song info from MASAS db
 	SC_songInfo: null,			// song info from soundcloud API
 	isSongPlayingLiked: false,		// is currently playing song liked
-	isFetchingSong: false			// is song currently fetching
+	isFetchingSong: false,			// is song currently fetching
+	isBuffering: false,			// is song buffering
 }
 
 const { defaultState } = exportVar
@@ -15,6 +16,16 @@ const { defaultState } = exportVar
 exportVar.playerReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'SET_IS_BUFFERING_TRUE':
+			return {
+				...state,
+				isBuffering: true
+			}
+		case 'SET_IS_BUFFERING_FALSE':
+			return {
+				...state,
+				isBuffering: false
+			}
 		case 'PLAY':
 			return {
 				...state,

@@ -889,6 +889,12 @@ input[type=range].MASAS-slider {
     width: 14px; }
   .footer--wrapper .slider--wrapper .visible--wrapper {
     height: 4rem; }
+    .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Lato-Light;
+      font-size: 0.7rem; }
     .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper {
       display: flex;
       justify-content: flex-start;
@@ -900,7 +906,23 @@ input[type=range].MASAS-slider {
       .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .playerProgressBar {
         display: flex;
         background-color: white;
-        width: 0vw; }
+        width: 0vw;
+        z-index: 2; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper {
+        display: flex;
+        height: 2px;
+        flex: 1;
+        position: relative;
+        width: 100%; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper .bufferingBar.buffering {
+          position: absolute;
+          width: 300%;
+          background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
+          height: 2px;
+          animation-name: buffering;
+          animation-duration: 5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite; }
     .footer--wrapper .slider--wrapper .visible--wrapper img {
       cursor: pointer; }
     .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
@@ -995,6 +1017,11 @@ input[type=range].MASAS-slider {
             font-size: 0.8rem; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
             padding-right: 0.8rem; } }
+@keyframes buffering {
+  100% {
+    left: -200%; }
+  0% {
+    left: 0%; } }
 .upload-sc-item--wrapper {
   border-width: 1px;
   border-style: solid;

@@ -32,6 +32,21 @@ var Player = React.createClass({
 		$("#jquery_jplayer_1").bind($.jPlayer.event.play, (event) => {
 			console.log('PLAY SONG')
 			this.props.dispatch({ type: 'PLAY' })
+			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
+		})
+
+		// test buffering
+		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, (event) => {
+			console.log('BUFFERING =>', event)
+			this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+		})
+		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, (event) => {
+			console.log('STALLED =>', event)
+			this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+		})
+		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, (event) => {
+			console.log('STOP BUFFERING =>', event)
+			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
 		})
 
 		// update player UI on start play
@@ -108,9 +123,7 @@ var Player = React.createClass({
 	},
 
 	renderRadioTime: function() {
-		console.log("%%%%%%%", this.props.MASAS_songInfo)
 		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
-		console.log("^^^^^^^^^", switchVar)
 		switch(switchVar) {
 			case "1":
 				return "#EarlyMorning"
@@ -134,7 +147,6 @@ var Player = React.createClass({
 		let discoverNumber = 0
 		if(this.props.MASAS_songInfo)
 			 discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1))
-		console.log('HISTORY LENGTH =>, ', this.props.discoverHistory.all.length)
 		return (
 			<div className="navbar-player--wrapper">
 				{ 
