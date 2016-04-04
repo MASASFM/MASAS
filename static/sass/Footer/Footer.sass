@@ -5,13 +5,21 @@ $B: 0
 $footerHeight: 4rem
 
 .footer--wrapper
+	position: relative
 	height: $footerHeight
 	// min-height: 3.5rem
 	// max-height: 3.5rem
 	position: relative
 	z-index: 4			// for like button on sidebar overlay (for touch open siderbar but doesn't go history(-1) on mobile safari)
 
-.footer--wrapper
+	// .unsplash-artist
+	// 	display: none
+	// 	position: absolute
+
+	// 	a
+	// 		text-transform: uppercase
+	// 		font-family: Lato-Semibold
+
 	.slider--wrapper.opened
 		top: -17rem
 		bottom: 0rem
@@ -175,6 +183,23 @@ $footerHeight: 4rem
 	.footer--wrapper
 		height: $footerHeight
 
+		// .unsplash-artist
+		// 	display: flex
+		// 	position: absolute
+		// 	bottom: $footerHeight
+		// 	left: 0
+		// 	padding: 1.7rem
+
+		// 	a
+		// 		text-transform: uppercase
+		// 		font-family: Lato-Semibold
+		// 		font-size: 0.6rem
+		// 		letter-spacing: 0.2rem
+		// 		opacity: 0.7
+
+			a:hover
+				opacity: 1
+
 		.slider--wrapper
 			background-color: rgba($R, $G, $B, $opacity)
 
@@ -238,17 +263,17 @@ $footerHeight: 4rem
 // 	0% 
 // 		left: 100%
 
-@keyframes buffering
-	100%   
-		// $percent: -100%
-		// -moz-transform: translateX($percent)			//FF bugfix
-		// -webkit-transform: translateX($percent)		//FF bugfix
-		// transform: translateX($percent)	
-		left: -200%
+// @keyframes buffering
+// 	100%   
+// 		// $percent: -100%
+// 		// -moz-transform: translateX($percent)			//FF bugfix
+// 		// -webkit-transform: translateX($percent)		//FF bugfix
+// 		// transform: translateX($percent)	
+// 		left: -200%
 
-	// 50%  
-	// 	left: -10%
+// 	// 50%  
+// 	// 	left: -10%
 
 	
-	0%  
-		left: 0%
+// 	0%  
+// 		left: 0%

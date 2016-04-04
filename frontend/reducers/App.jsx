@@ -8,7 +8,8 @@ exportVar.defaultState = {
 	pageType: 0,		// 0 = hamburger icon, 1 = arrow icon
 	navSiderbarOpen: false,
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
-	backArrowFunc: () => ""
+	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow 
+	isAppFetching: false,				// (bool)
 }
 
 const { defaultState } = exportVar
@@ -16,6 +17,16 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'SET_APP_FETCHING_STATE_FALSE':
+			return {
+				...state,
+				isAppFetching: false
+			}
+		case 'SET_APP_FETCHING_STATE_TRUE':
+			return {
+				...state,
+				isAppFetching: true
+			}
 		case 'LOGIN':
 			// login(action.token)
 			return {

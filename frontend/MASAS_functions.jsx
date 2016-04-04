@@ -1,3 +1,5 @@
+const { dispatch } = require('./reducers/reducers.js')
+
 var {browserHistory} = require('react-router')
 var Cookie = require('js-cookie')
 
@@ -7,13 +9,23 @@ MASAS_functions.logout = (dispatch) => {
 	// console.log("logout ===>", dispatch)
 	Cookie.remove('MASAS_authToken')
 
-	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 	dispatch({type: 'LOGOUT'})
 
 	FB.logout(function(response) {
 		console.log('logged out from FB')
-		dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Logged out !"})
+		// dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Logged out !"})
+		MASAS_functions.updateNotificationBar("Logged out !")
 	})
+
+}
+
+MASAS_functions.updateNotificationBar = (notificationText) => {
+	// console.log("logout ===>", dispatch)
+	const currentText = document.getElementById("notification-text")
+	if(currentText != notificationText) {
+		dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+		dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: notificationText})
+	}
 
 }
 

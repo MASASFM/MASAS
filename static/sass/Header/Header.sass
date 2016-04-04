@@ -2,17 +2,6 @@
 
 
 
-
-@keyframes fadein 
-	from 
-		opacity: 0
-	25%
-		opacity: 1
-	75%
-		opacity: 1
-	to   
-		opacity: 0
-
 $opacity: 0.8
 $R: 0
 $G: 0
@@ -26,6 +15,24 @@ $B: 0
 	min-height: min-content
 	z-index: 4					// see footer--wrapper
 	position: relative
+
+	.ajax-loader--wrapper
+		position: absolute
+		top: 100%
+		left: 0
+		right: 0
+		height: 2px
+		
+		.ajax-loader
+			visibility: hidden
+			position: absolute
+			width: 300%
+			height: 100%
+			background: linear-gradient(45deg, white, rgba(0,0,0,0), white, rgba(0,0,0,0))
+
+		.ajax-loader.visible
+			visibility: visible
+			animation: ajaxLoaderAnimation 1.25s linear infinite
 
 	.notification--wrapper1
 		position: absolute

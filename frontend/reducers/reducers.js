@@ -11,7 +11,7 @@ import { playerReducer, defaultState as playerDefaultState } from "./Player.jsx"
 import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
 import { discoverReducer, defaultState as discoverDefaultState  } from "./Discover.jsx"
 
-const defaultReducers = {
+const initialState = {
 	headerReducer: headerDefaultState,
 	bodyReducer: bodyDefaultState,
 	footerReducer: footerDefaultState,
@@ -37,5 +37,12 @@ const rootReducer = Redux.combineReducers({
 })
 
 
-var store = Redux.createStore(rootReducer, defaultReducers, Redux.applyMiddleware(thunk))
+var store = Redux.createStore(
+		rootReducer, 
+		initialState,
+		// Redux.compose(
+			// Redux.applyMiddleware(thunk),
+			window.devToolsExtension ? window.devToolsExtension() : f => f
+			// )
+		)
 module.exports = store

@@ -12,6 +12,7 @@ function mapStateToProps(state) {
 		isPlayerBarOpened: state.footerReducer.isOpened,
 		backArrowFunc: state.appReducer.backArrowFunc,
 		notificationText: state.headerReducer.notificationText,
+		isAppFetching: state.appReducer.isAppFetching,
 	}
 }
 

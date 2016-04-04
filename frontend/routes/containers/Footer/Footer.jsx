@@ -14,6 +14,7 @@ function mapStateToProps(state) {
 		isBuffering: state.playerReducer.isBuffering,
 		songPlaying: state.playerReducer.songPlaying,
 		playerAtTime: state.playerReducer.playerAtTime,
+		isPlayerPaused: state.playerReducer.isPaused,
 	}
 }
 

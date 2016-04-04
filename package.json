@@ -33,13 +33,17 @@
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-jest": "^9.0.0",
+    "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-rewire": "^1.0.0-rc-1",
     "babel-preset-es2015": "*",
     "babel-preset-react": "*",
     "babel-rewire-plugin": "^0.1.0",
     "jest-cli": "*",
+    "livereactload": "^2.2.2",
     "react-addons-test-utils": "0.14.6",
-    "redux-mock-store": "^1.0.2"
+    "react-proxy": "^1.1.8",
+    "redux-mock-store": "^1.0.2",
+    "watchify": "^3.7.0"
   },
   "scripts": {
     "test": "jest"

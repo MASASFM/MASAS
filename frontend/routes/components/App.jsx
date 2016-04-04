@@ -1,3 +1,5 @@
+// Thomass-MacBook-Pro-2:frontend thomasbinetruy$ watchify index.jsx -t babelify -o "../node_modules/exorcist/bin/exorcist.js  bundle.js.map > bundle.js" -d
+
 var React = require("react")
 var ReactDOM = require("react-dom")
 var Radium = require("radium")
@@ -19,12 +21,24 @@ var App = React.createClass({
 	},
 
 	componentWillMount: function() {
+		// BIND EVENTS TO AJAX REQUESTS
+		// http://api.jquery.com/Ajax_Events/
+
+		$(document).bind("ajaxStart", () => {
+			this.props.showAppFetchingBar()
+		}).bind("ajaxStop", () => {
+			this.props.hideAppFetchingBar()
+		})
+
+
+		// INIT SOUNDCLOUD JS SDK
 		SC.initialize({
 			client_id: document.MASAS.SC.client_id,
 			redirect_uri: document.MASAS.SC.redirect_uri ,
 			display: 'popup'
 		})
 
+		// SIGN IN USER IF VALID TOKEN STORED IN COOKIES
 		var userToken = this.getUserTokenFromCookie()
 
 		if(userToken)

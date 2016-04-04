@@ -13,11 +13,15 @@ var Header = React.createClass({
 	render: function() {
 		return (
 			<nav  className="header">
+				<div className="ajax-loader--wrapper">
+					<div className={ "ajax-loader" + (this.props.isAppFetching ? " visible" : "") }>
+					</div>
+				</div>
 				<div className="notification--wrapper1">
 					{
 						this.props.notificationText !== "" ?
 							<div className="notification--wrapper2">
-								<div className="notification-text">
+								<div className="notification-text" id="notification-text">
 									{ this.props.notificationText }
 								</div>
 							</div>

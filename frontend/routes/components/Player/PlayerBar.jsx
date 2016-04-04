@@ -152,22 +152,27 @@ var Player = React.createClass({
 				{ 
 					this.renderLikeIcon()
 				}
-				<div className="song-info--wrapper">
+				<div className="song-info--wrapper1">
 					{ this.props.SC_songInfo ? 
-						<div>
-							<div className="radio-info">
-								<Marquee>
-									Playing from <span className="time">{ this.renderRadioTime() }</span>
-								</Marquee>
+						<div className="song-info--wrapper2">
+							<div className="text-info">
+								<div className="radio-info">
+									<Marquee>
+										Playing from <span className="time">{ this.renderRadioTime() }</span>
+									</Marquee>
+								</div>
+								<div className="song-name">
+									<Marquee className="song-title">
+										{ this.props.SC_songInfo.title+ " - " }
+									</Marquee>
+									<Marquee className="song-artist">
+										{ this.props.SC_songInfo.user.username }
+									</Marquee>
+								</div> 
 							</div>
-							<div className="song-name">
-								<Marquee className="song-title">
-									{ this.props.SC_songInfo.title+ " - " }
-								</Marquee>
-								<Marquee className="song-artist">
-									{ this.props.SC_songInfo.user.username }
-								</Marquee>
-							</div> 
+							<div className="sc-icon">
+								<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud page" />
+							</div>
 						</div>
 					: "" }
 				</div>

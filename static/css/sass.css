@@ -28,6 +28,25 @@
   font-style: 500;
   font-weight: normal;
   src: url(./../fonts/Anders/Anders.woff) format("woff"), url(./../fonts/Anders/Anders.woff2) format("woff2"); }
+@keyframes buffering {
+  0% {
+    left: -200%; }
+  100% {
+    left: 0%; } }
+@keyframes ajaxLoaderAnimation {
+  0% {
+    left: -200%; }
+  100% {
+    left: 0%; } }
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  25% {
+    opacity: 1; }
+  75% {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
 /* Forms */
 .MASAS-button {
   color: white;
@@ -376,7 +395,20 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1; }
+    flex: 1;
+    position: relative; }
+    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist {
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 1rem 1.7rem; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a {
+        text-transform: uppercase;
+        font-family: Lato-Semibold;
+        font-size: 0.6rem;
+        letter-spacing: 0.2rem;
+        opacity: 0.7; }
     .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
       height: 2rem;
       padding-top: 3rem;
@@ -781,15 +813,6 @@ input[type=range].MASAS-slider {
 .dropdown--wrapper:hover .dropdown-content {
   display: block; }
 
-@keyframes fadein {
-  from {
-    opacity: 0; }
-  25% {
-    opacity: 1; }
-  75% {
-    opacity: 1; }
-  to {
-    opacity: 0; } }
 .header {
   color: white;
   margin: 0;
@@ -797,6 +820,23 @@ input[type=range].MASAS-slider {
   min-height: min-content;
   z-index: 4;
   position: relative; }
+  .header .ajax-loader--wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 2px; }
+    .header .ajax-loader--wrapper .ajax-loader {
+      visibility: hidden;
+      position: absolute;
+      width: 300%;
+      height: 100%;
+      background: linear-gradient(45deg, white, transparent, white, transparent);
+      /* transition: visibility 1s ease-in; */
+      }
+    .header .ajax-loader--wrapper .ajax-loader.visible {
+      visibility: visible;
+      animation: ajaxLoaderAnimation 1.25s linear infinite; }
   .header .notification--wrapper1 {
     position: absolute;
     top: 100%;
@@ -898,132 +938,132 @@ input[type=range].MASAS-slider {
       display: none; } }
 
 .footer--wrapper {
+  position: relative;
   height: 4rem;
   position: relative;
   z-index: 4; }
-
-.footer--wrapper .slider--wrapper.opened {
-  top: -17rem;
-  bottom: 0rem; }
-.footer--wrapper .slider--wrapper {
-  background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: -15rem;
-  transition-property: top, bottom;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in; }
-  .footer--wrapper .slider--wrapper .toogle-open-tray-icon {
-    display: none;
-    background-image: url("/static/img/MASAS_icon_dot.svg");
-    transform: rotate(180deg);
-    background-repeat: no-repeat;
-    height: 1.5rem;
-    width: 1.5rem;
-    background-size: contain;
-    background-position: center; }
-  .footer--wrapper .slider--wrapper .toogle-open-tray-icon.opened {
-    background-image: url("/static/img/MASAS_icon_close.svg");
-    height: 14px;
-    width: 14px; }
-  .footer--wrapper .slider--wrapper .visible--wrapper {
-    height: 4rem; }
-    .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-family: Lato-Light;
-      font-size: 0.7rem; }
-    .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper {
-      display: flex;
-      justify-content: flex-start;
-      width: 100vw;
-      height: 2px;
-      position: absolute;
-      top: 0;
-      left: 0; }
-      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .playerProgressBar {
-        display: flex;
-        background-color: white;
-        width: 0vw;
-        z-index: 2; }
-      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper {
-        display: flex;
-        height: 2px;
-        flex: 1;
-        position: relative;
-        width: 100%; }
-        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper .bufferingBar.buffering {
-          position: absolute;
-          width: 300%;
-          background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
-          height: 2px;
-          animation-name: buffering;
-          animation-duration: 5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite; }
-    .footer--wrapper .slider--wrapper .visible--wrapper img {
-      cursor: pointer; }
-    .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
-      height: 1rem; }
-    .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
-      display: flex;
-      align-items: center;
-      padding-right: 0; }
-    .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-left: 0.8rem;
-      justify-content: flex-start; }
-      .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper .nextSong--wrapper {
-        display: flex; }
-  .footer--wrapper .slider--wrapper .hidden--wrapper {
-    display: flex;
-    justify-content: center;
+  .footer--wrapper .slider--wrapper.opened {
+    top: -17rem;
+    bottom: 0rem; }
+  .footer--wrapper .slider--wrapper {
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
-    top: 4rem;
-    bottom: 0;
-    right: 0;
+    top: 0;
     left: 0;
-    align-items: center; }
-    .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      padding: 0 calc(14px + 1rem); }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper hr {
-        width: 100%;
-        border: 0;
-        height: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span {
-        font-size: 1.1rem;
-        position: relative;
+    right: 0;
+    bottom: -15rem;
+    transition-property: top, bottom;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in; }
+    .footer--wrapper .slider--wrapper .toogle-open-tray-icon {
+      display: none;
+      background-image: url("/static/img/MASAS_icon_dot.svg");
+      transform: rotate(180deg);
+      background-repeat: no-repeat;
+      height: 1.5rem;
+      width: 1.5rem;
+      background-size: contain;
+      background-position: center; }
+    .footer--wrapper .slider--wrapper .toogle-open-tray-icon.opened {
+      background-image: url("/static/img/MASAS_icon_close.svg");
+      height: 14px;
+      width: 14px; }
+    .footer--wrapper .slider--wrapper .visible--wrapper {
+      height: 4rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .buffer-info {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: Lato-Light;
+        font-size: 0.7rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper {
         display: flex;
-        height: 3rem;
-        align-items: center; }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span:hover {
+        justify-content: flex-start;
+        width: 100vw;
+        height: 2px;
+        position: absolute;
+        top: 0;
+        left: 0; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .playerProgressBar {
+          display: flex;
+          background-color: white;
+          width: 0vw;
+          z-index: 2; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper {
+          display: flex;
+          height: 2px;
+          flex: 1;
+          position: relative;
+          width: 100%; }
+          .footer--wrapper .slider--wrapper .visible--wrapper .playerProgressBar--wrapper .bufferingBar--wrapper .bufferingBar.buffering {
+            position: absolute;
+            width: 300%;
+            background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
+            height: 2px;
+            animation-name: buffering;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite; }
+      .footer--wrapper .slider--wrapper .visible--wrapper img {
         cursor: pointer; }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
-        height: 1.5rem;
-        width: 1.5rem;
-        content: "";
-        padding-right: calc(1rem + 14px);
-        background-repeat: no-repeat;
-        background-size: contain; }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .spam::before {
-        background-image: url("/static/img/MASAS_icon_spam.svg"); }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .copyright::before {
-        background-image: url("/static/img/MASAS_icon_copyright.svg"); }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .suggest-time::before {
-        background-image: url("/static/img/MASAS_icon_copyright.svg"); }
-      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .no-like::before {
-        background-image: url("/static/img/MASAS_icon_dislike.svg"); }
+      .footer--wrapper .slider--wrapper .visible--wrapper .next-icon {
+        height: 1rem; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .player--wrapper {
+        display: flex;
+        align-items: center;
+        padding-right: 0; }
+      .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0.8rem;
+        justify-content: flex-start; }
+        .footer--wrapper .slider--wrapper .visible--wrapper .extra-controls--wrapper .nextSong--wrapper {
+          display: flex; }
+    .footer--wrapper .slider--wrapper .hidden--wrapper {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: 4rem;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      align-items: center; }
+      .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0 calc(14px + 1rem); }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper hr {
+          width: 100%;
+          border: 0;
+          height: 0;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span {
+          font-size: 1.1rem;
+          position: relative;
+          display: flex;
+          height: 3rem;
+          align-items: center; }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span:hover {
+          cursor: pointer; }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
+          height: 1.5rem;
+          width: 1.5rem;
+          content: "";
+          padding-right: calc(1rem + 14px);
+          background-repeat: no-repeat;
+          background-size: contain; }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .spam::before {
+          background-image: url("/static/img/MASAS_icon_spam.svg"); }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .copyright::before {
+          background-image: url("/static/img/MASAS_icon_copyright.svg"); }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .suggest-time::before {
+          background-image: url("/static/img/MASAS_icon_copyright.svg"); }
+        .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .no-like::before {
+          background-image: url("/static/img/MASAS_icon_dislike.svg"); }
 
 @media screen and (min-width: 992px) {
   .footer--wrapper {
@@ -1060,11 +1100,6 @@ input[type=range].MASAS-slider {
             font-size: 0.8rem; }
           .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper span::before {
             padding-right: 0.8rem; } }
-@keyframes buffering {
-  100% {
-    left: -200%; }
-  0% {
-    left: 0%; } }
 .upload-sc-item--wrapper {
   border-width: 1px;
   border-style: solid;
@@ -1691,36 +1726,51 @@ input[type=range].MASAS-slider {
   height: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem; }
-.navbar-player--wrapper .song-info--wrapper {
+.navbar-player--wrapper .song-info--wrapper1 {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
   flex: 1; }
-.navbar-player--wrapper .song-info--wrapper .radio-info {
-  position: relative;
-  width: 100%;
-  font-size: 0.7rem;
-  height: 0.7rem;
-  opacity: 0.4; }
-  .navbar-player--wrapper .song-info--wrapper .radio-info .time {
-    text-transform: uppercase; }
-.navbar-player--wrapper .song-info--wrapper .song-name {
-  margin-right: 1rem; }
-  .navbar-player--wrapper .song-info--wrapper .song-name .song-artist {
-    position: relative;
-    width: 100%;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    font-family: Lato-Semibold;
-    width: 10rem;
-    height: 0.7rem; }
-  .navbar-player--wrapper .song-info--wrapper .song-name .song-title {
-    position: relative;
-    width: 100%;
-    height: 0.7rem;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    font-family: Lato-Light; }
+  .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 {
+    display: flex;
+    align-content: flex-start;
+    flex: 1; }
+    .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .text-info {
+      display: flex;
+      flex: 1;
+      flex-direction: column; }
+    .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info {
+      position: relative;
+      width: 100%;
+      font-size: 0.7rem;
+      height: 0.7rem;
+      opacity: 0.4; }
+      .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info .time {
+        text-transform: uppercase; }
+    .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name {
+      margin-right: 1rem; }
+      .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name .song-artist {
+        position: relative;
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-family: Lato-Semibold;
+        width: 10rem;
+        height: 0.7rem; }
+      .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name .song-title {
+        position: relative;
+        width: 100%;
+        height: 0.7rem;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-family: Lato-Light; }
+    .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .sc-icon {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center; }
+      .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .sc-icon img {
+        height: 1rem; }
 .navbar-player--wrapper .player-controls--wrapper {
   display: flex;
   align-items: center; }

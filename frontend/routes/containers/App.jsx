@@ -19,7 +19,9 @@ function mapDispatchToProps(dispatch) {
 		onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
 		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
 		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
-		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'})
+		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'}),
+		showAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_TRUE' }),
+		hideAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_FALSE' }),
 	}
 }
 
