@@ -58,7 +58,7 @@ var HeaderDropdown = React.createClass({
 		} else
 			return (
 				<div className="dropdown--wrapper" >
-					<Link to="/login" ref="loginLink"><span className="username">Log In</span></Link>
+					<Link to="/login" ref="loginLink"><span className="username login">Log In</span></Link>
 				</div>
 				)
 	}

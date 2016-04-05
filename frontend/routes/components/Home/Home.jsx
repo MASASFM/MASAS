@@ -2,6 +2,8 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 import $ from "jquery"
 
+var LoginForm = require("../../containers/Login/LoginForm.jsx")
+
 var {goToURL} = require("../../../MASAS_functions.jsx")
 
 var Button = require("../../containers/UI/Button.jsx")
@@ -83,15 +85,13 @@ var Home = React.createClass({
 
 					<div className={ "page" + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
 						<div className="unsplash-artist">
-							<a href="https://unsplash.com/andrewcoelho">andrew coelho</a>
+							<a href="https://unsplash.com/andrewcoelho" target="_blank">andrew coelho</a>
 						</div>
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
 						</div>
-						<div className="login-container" style={{display: 'none'}}>
-							<Button onClick={goToURL.bind(null, 'login')} caps={true}>log-in</Button>
-							<br />
-							<Link to="/sign-up" className="signup-text">Sign up</Link>
+						<div className="login-container" style={{ display: (this.props.user ? 'none' : 'flex') }}>
+							<LoginForm fullForm={false} />
 						</div>
 						<img onClick={this.props.goToPage.bind(null, 2, pageCount)} src="/static/img/puff_loader_slow.svg" alt="down arrow" className="arrow-icon"/>
 					</div>

@@ -57,7 +57,7 @@ ReactDOM.render((
                                <Route path="discover" component={Discover} />
                                <Route path="login" component={Login} />
                                <Route path="sign-up" component={SignUp} />
-                               <Route path="sc-sync" component={UploadSC} />
+                               <Route path="upload" component={UploadSC} />
                                <Route path="profile" component={Profile} />
                                <Route path="likes" component={Likes} />
                        </Route>

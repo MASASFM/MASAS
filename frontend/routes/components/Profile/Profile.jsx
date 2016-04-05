@@ -61,7 +61,7 @@ var Profile = React.createClass({
 						<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
 					</div>
 					<div className="upload-button">
-						<Button onClick={goToURL.bind(null, "/sc-sync")}>Upload my first sound</Button>
+						<Button onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
 					</div>
 				</div>
 				)

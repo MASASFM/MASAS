@@ -41,7 +41,7 @@ var Header = React.createClass({
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
 							<div className="header-link"><Link to="/discover" disabled={ this.props.user ? false : true }>Discover</Link></div>
 							<div className="header-link"><Link to="/" disabled={true}>Radio</Link></div>
-							<div className="header-link"><Link to="/sc-sync" disabled={this.props.user ? false : true}>Upload</Link></div>
+							<div className="header-link"><Link to="/upload" disabled={this.props.user ? false : true}>Upload</Link></div>
 							<div className="header-link"><Link to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>

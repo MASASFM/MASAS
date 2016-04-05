@@ -12,6 +12,7 @@ var Login = React.createClass({
 	},
 
 	render: function() {
+		console.log("loginnn")
 		var marginHeight = '3rem'
 		var marginStyle = {
 			minHeight:  marginHeight,
@@ -38,7 +39,7 @@ var Login = React.createClass({
 					</div>
 					<div className="col-xs-12 col-md-8 page-content--wrapper">
 						<div className="box page-content">
-							<LoginForm />
+							<LoginForm fullForm={true} />
 						</div>
 					</div>
 					<div className="col-md-2 col-display-none-sm">
