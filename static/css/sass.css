@@ -2263,7 +2263,7 @@ html {
   filter: blur(15px); }
 
 .body--background.saturated::after {
-  filter: saturate(0%); }
+  -webkit-filter: saturate(0%); }
 
 .body--background.blurred.saturated::after {
   -webkit-filter: blur(5px) saturate(0%);
