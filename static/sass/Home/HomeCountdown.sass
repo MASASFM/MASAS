@@ -2,7 +2,6 @@
 	display: flex
 	align-items: center
 
-.HomeCountdown--wrapper1
 	.HomeCountdown--wrapper2
 		display: none
 		position: relative
@@ -25,7 +24,13 @@
 @media screen and (min-width: $desktop-min-width)
 	.HomeCountdown--wrapper1
 		.HomeCountdown--wrapper2
-			display: block
+			display: none
+
+		.HomeCountdown--wrapper2.logged-in
+			display: flex	
 
 		.mobile-logo
 			display: none
+
+		.mobile-logo.logged-out
+			display: flex
