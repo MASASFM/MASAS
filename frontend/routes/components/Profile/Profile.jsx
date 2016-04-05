@@ -10,7 +10,7 @@ var TrackItem = require("../../containers/Profile/TrackItem.jsx")
 
 var {goToURL} = require("../../../MASAS_functions.jsx")
 // var {getCookie} = require("../../../MASAS_functions.jsx")
-var { Button } = require("../../containers/UI/UI.jsx")
+var { Button, Body } = require("../../containers/UI/UI.jsx")
 
 // var Template = (props) => {
 
@@ -110,73 +110,79 @@ var Profile = React.createClass({
 			<div style={{display: 'flex', flex: 1}}>
 			{ this.state.userInfo ?
 				<ProfileWrapper>
-					<div className="profile-info--wrapper">
-						<div className="user-info-desktop">
-							<span className="username">
-								{this.state.userInfo.username}
-							</span>
-							<span className="location">
-								Amsterdam - Holland
-							</span>
-							<span className="occupation">
-								DJ & Music Producer
-							</span>
-						</div>
-						<img src="/static/img/menupicture.jpg" alt="profile picture" className="profile-picture" />
-						<div className="tab--wrapper">
-							<div className="tab" style={{ borderBottom: '4px solid white'}}>
-								info
-							</div>
-							<div className="tab">
-								post
-							</div>
-						</div>
-						<div className="social--wrapper">
-							<div className="social-links right">
-								<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-								<img src="/static/img/MASAS_logo_world.svg" alt="soundcloud" />
-							</div>
-							<div className="occupation--wrapper">
-								<div className="occupation">
-									DJ & Music Producer
+					<div className="main--wrapper">
+						<div className="profile-info--wrapper">
+							<img src="/static/img/menupicture.jpg" alt="profile picture" className="profile-picture" />
+							<div className="tab--wrapper">
+								<div className="tab" style={{ borderBottom: '4px solid white'}}>
+									info
 								</div>
-								<div className="location">
-									<span className="city">
-										Amsterdam
-									</span>
-									-
-									<span className="country">
-										Holland
-									</span>
+								<div className="tab">
+									post
 								</div>
 							</div>
-							<div className="social-links left">
-								<img src="/static/img/twitter.svg" alt="soundcloud" />
-								<img src="/static/img/facebook.svg" alt="soundcloud" />
+							<div className="text--wrapper">
+								<div className="user-info-desktop">
+									<span className="username">
+										{this.state.userInfo.username}
+									</span>
+									<div className="occupation--wrapper">
+										<span className="location">
+											Amsterdam - Holland
+										</span>
+										<span className="occupation">
+											DJ & Music Producer
+										</span>
+									</div>
+								</div>
+								<div className="social--wrapper">
+									<div className="social-links right">
+										<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+										<img src="/static/img/MASAS_logo_world.svg" alt="soundcloud" />
+									</div>
+									<div className="occupation--wrapper">
+										<div className="occupation">
+											DJ & Music Producer
+										</div>
+										<div className="location">
+											<span className="city">
+												Amsterdam
+											</span>
+											-
+											<span className="country">
+												Holland
+											</span>
+										</div>
+									</div>
+									<div className="social-links left">
+										<img src="/static/img/twitter.svg" alt="soundcloud" />
+										<img src="/static/img/facebook.svg" alt="soundcloud" />
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className="social-stats--wrapper">
-						<div className="section" style={{borderRight: '1px solid white'}}>
-							<div className="section-title">
-								<img src="/static/img/MASAS_followers.svg" alt="soundcloud" />
-								Followers
+						<div className="social-stats--wrapper">
+							<div className="section" style={{borderRight: '1px solid white'}}>
+								<div className="section-title">
+									<img src="/static/img/MASAS_followers.svg" alt="soundcloud" />
+									Followers
+								</div>
+								<span className="number">1240</span>
 							</div>
-							<span className="number">1240</span>
-						</div>
-						<div className="section total-plays" style={{borderRight: '1px solid white'}}>
-							<div className="section-title">
-								<img src="/static/img/MASAS_logo_tunes.svg" alt="total plays" />
-								Total plays
+							<div className="section total-plays" style={{borderRight: '1px solid white'}}>
+								<div className="section-title">
+									<img src="/static/img/MASAS_logo_tunes.svg" alt="total plays" />
+									Total plays
+								</div>
+								<span className="number">1240</span>
 							</div>
-							<span className="number">1240</span>
-						</div>
-						<div className="section">
-							<div className="section-title">
-								<img src="/static/img/MASAS_logo_tunes.svg" alt="soundcloud" />
-								Following
+							<div className="section">
+								<div className="section-title">
+									<img src="/static/img/MASAS_logo_tunes.svg" alt="soundcloud" />
+									Following
+								</div>
+								<span className="number">1240</span>
 							</div>
-							<span className="number">1240</span>
 						</div>
 					</div>
 					<div className="song-list--wrapper">

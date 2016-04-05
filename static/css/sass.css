@@ -76,6 +76,17 @@
 .MASAS-button .small-button {
   height: 1.5rem; }
 
+.body--wrapper .page-title--wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; }
+  .body--wrapper .page-title--wrapper .page-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem; }
+  .body--wrapper .page-title--wrapper hr {
+    width: 100%;
+    margin-bottom: 1.33rem; }
+
 .MASAS-checkbox {
   display: flex; }
 
@@ -149,6 +160,17 @@
   background-repeat: no-repeat;
   background-position: 95%;
   background-size: 20px; }
+
+.body--wrapper .page-title--wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; }
+  .body--wrapper .page-title--wrapper .page-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem; }
+  .body--wrapper .page-title--wrapper hr {
+    width: 100%;
+    margin-bottom: 1.33rem; }
 
 .MASAS-link {
   cursor: pointer;
@@ -1260,7 +1282,7 @@ input[type=range].MASAS-slider {
   width: 90%;
   flex-direction: column;
   justify-content: space-around;
-  max-height: 20rem;
+  max-height: 16rem;
   max-width: 20rem; }
 
 .connect-sc--wrapper .connect-sc--header {
@@ -1277,9 +1299,9 @@ input[type=range].MASAS-slider {
   width: 4rem; }
 .connect-sc--wrapper p {
   font-size: 1.2rem;
-  text-align: center; }
+  text-align: center;
+  line-height: 1.5rem; }
 .connect-sc--wrapper .connect-button {
-  width: 13rem;
   color: red; }
 
 .upload-sc--wrapper {
@@ -1352,20 +1374,18 @@ input[type=range].MASAS-slider {
     min-height: 3rem;
     max-height: 3rem; }
 
-  .connect-sc--wrapper {
-    max-height: 11rem;
-    max-width: 15rem; }
-
   .connect-sc--wrapper p {
-    font-size: 0.8rem; }
+    font-size: 1rem;
+    font-family: Lato-Light; }
   .connect-sc--wrapper .connect-sc--header {
-    width: 70%; }
+    width: 17rem; }
   .connect-sc--wrapper .connect-sc--header .MASAS-logo {
-    height: 2rem; }
+    height: 4rem; }
   .connect-sc--wrapper .connect-sc--header .SC-logo {
-    height: 1.5rem; }
+    height: 2.6rem; }
   .connect-sc--wrapper .connect-sc--header .sync-icon {
-    width: 2rem; } }
+    width: 4rem;
+    margin: 0 1.5rem; } }
 .navSidebar--wrapper {
   width: 15rem;
   display: flex;
@@ -1429,9 +1449,6 @@ input[type=range].MASAS-slider {
   padding-top: 0; }
 
 @media screen and (min-width: 992px) {
-  .profile--wrapper {
-    padding-top: 1.5rem; }
-
   .profile-header-desktop {
     position: relative; }
 
@@ -1544,114 +1561,124 @@ input[type=range].MASAS-slider {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
 
-.profile--wrapper .profile-info--wrapper {
-  position: relative;
-  width: 100%;
-  height: 22rem; }
-.profile--wrapper .profile-info--wrapper .user-info-desktop {
-  display: none; }
-.profile--wrapper .profile-info--wrapper .profile-picture {
-  width: 100%;
-  object-fit: cover;
-  height: 100%; }
-.profile--wrapper .profile-info--wrapper .tab--wrapper {
-  display: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  height: 2.4rem; }
-.profile--wrapper .profile-info--wrapper .tab--wrapper .tab {
-  flex: 1;
-  justify-content: center;
-  display: flex;
-  align-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.6); }
-.profile--wrapper .profile-info--wrapper .social--wrapper {
-  display: flex;
-  justify-content: space-around;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  height: 4rem;
-  align-items: center;
-  flex: 1; }
-.profile--wrapper .profile-info--wrapper .social--wrapper img {
-  width: 1.5rem;
-  max-height: 1.5rem; }
-.profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
-  width: 4.5rem;
-  display: flex;
-  justify-content: space-between; }
-.profile--wrapper .profile-info--wrapper .social--wrapper .occupation--wrapper .occupation {
-  padding-bottom: 0.5rem; }
-.profile--wrapper .social-stats--wrapper {
-  height: 4rem;
-  background-color: black;
-  display: none;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%; }
-.profile--wrapper .social-stats--wrapper .section {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: space-around; }
-.profile--wrapper .social-stats--wrapper .section img {
-  width: 1.5rem;
-  max-height: 1.5rem;
-  padding-right: 0.5rem; }
-.profile--wrapper .social-stats--wrapper .section .number {
-  display: block;
-  height: 100%;
-  width: 2.5rem;
-  line-height: 2.5rem;
-  -moz-border-radius: 60%;
-  border-radius: 60%;
-  color: white;
-  border: 1px solid white;
-  text-align: center;
-  font-size: 0.7rem; }
-.profile--wrapper .social-stats--wrapper .section .section-title {
+.profile--wrapper {
   display: flex;
   align-items: center; }
-.profile--wrapper .social-stats--wrapper .total-plays {
-  display: none; }
-.profile--wrapper .song-list--wrapper {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-  overflow: none; }
-.profile--wrapper .song-list--wrapper .no-songs--wrapper {
-  display: flex;
-  flex: 1;
-  max-width: 13rem;
-  flex-direction: column;
-  justify-content: center; }
-.profile--wrapper .song-list--wrapper .no-songs--wrapper img {
-  width: 3rem; }
-.profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
-  align-self: center;
-  width: 100%;
-  padding-top: 0.5rem; }
-.profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
-  display: flex;
-  justify-content: space-between; }
-.profile--wrapper .song-list--wrapper .track-table--wrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  position: absolute;
-  left: 0;
-  height: 100%;
-  right: 0; }
+  .profile--wrapper .main--wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column; }
+  .profile--wrapper .profile-picture {
+    height: 10rem;
+    width: 10rem; }
+  .profile--wrapper .profile-info--wrapper {
+    position: relative;
+    width: 100%;
+    height: 22rem; }
+  .profile--wrapper .profile-info--wrapper .user-info-desktop {
+    display: none; }
+  .profile--wrapper .profile-info--wrapper .profile-picture {
+    width: 100%;
+    object-fit: cover;
+    height: 100%; }
+  .profile--wrapper .profile-info--wrapper .tab--wrapper {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    height: 2.4rem; }
+  .profile--wrapper .profile-info--wrapper .tab--wrapper .tab {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.6); }
+  .profile--wrapper .profile-info--wrapper .social--wrapper {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 4rem;
+    align-items: center;
+    flex: 1; }
+  .profile--wrapper .profile-info--wrapper .social--wrapper img {
+    width: 1.5rem;
+    max-height: 1.5rem; }
+  .profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
+    width: 4.5rem;
+    display: flex;
+    justify-content: space-between; }
+  .profile--wrapper .profile-info--wrapper .social--wrapper .occupation--wrapper .occupation {
+    padding-bottom: 0.5rem; }
+  .profile--wrapper .social-stats--wrapper {
+    height: 4rem;
+    display: flex;
+    background-color: black;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%; }
+  .profile--wrapper .social-stats--wrapper .section {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: space-around; }
+  .profile--wrapper .social-stats--wrapper .section img {
+    width: 1.5rem;
+    max-height: 1.5rem;
+    padding-right: 0.5rem; }
+  .profile--wrapper .social-stats--wrapper .section .number {
+    display: block;
+    height: 100%;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    -moz-border-radius: 60%;
+    border-radius: 60%;
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+    font-size: 0.7rem; }
+  .profile--wrapper .social-stats--wrapper .section .section-title {
+    display: flex;
+    align-items: center; }
+  .profile--wrapper .social-stats--wrapper .total-plays {
+    display: none; }
+  .profile--wrapper .song-list--wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: none; }
+  .profile--wrapper .song-list--wrapper .no-songs--wrapper {
+    display: flex;
+    flex: 1;
+    max-width: 13rem;
+    flex-direction: column;
+    justify-content: center; }
+  .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
+    width: 3rem; }
+  .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
+    align-self: center;
+    width: 100%;
+    padding-top: 0.5rem; }
+  .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
+    display: flex;
+    justify-content: space-between; }
+  .profile--wrapper .song-list--wrapper .track-table--wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    right: 0; }
 
 @media screen and (min-width: 992px) {
   #app-body--profile {
@@ -1659,59 +1686,68 @@ input[type=range].MASAS-slider {
     -webkit-overflow-scrolling: touch;
     background-color: transparent; }
 
+  .profile--wrapper .main--wrapper {
+    flex-direction: row;
+    height: 8rem;
+    margin-bottom: 1.5rem; }
   .profile--wrapper .profile-info--wrapper {
-    max-height: 6rem;
-    min-height: 6rem;
+    height: 100%;
     align-items: center;
     display: flex;
-    justify-content: center;
-    position: inherit;
-    flex-direction: column; }
-  .profile--wrapper .profile-info--wrapper .user-info-desktop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 4rem;
-    justify-content: space-around; }
-  .profile--wrapper .profile-info--wrapper .user-info-desktop .username {
-    font-family: Lato-Semibold;
-    height: 3rem;
-    padding-bottom: 0.5rem; }
-  .profile--wrapper .profile-info--wrapper .user-info-desktop .location {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.8rem;
-    padding-bottom: 0.2rem; }
-  .profile--wrapper .profile-info--wrapper .user-info-desktop .occupation {
-    color: rgba(255, 255, 255, 0.8); }
-  .profile--wrapper .profile-info--wrapper .profile-picture {
-    display: none; }
-  .profile--wrapper .profile-info--wrapper .tab--wrapper {
-    display: none; }
-  .profile--wrapper .profile-info--wrapper .occupation--wrapper {
-    display: none; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper {
-    background-color: transparent;
-    max-width: 10rem; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper {
-    align-self: center;
-    display: flex;
-    position: inherit;
-    height: 3rem; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
-    flex-grow: 1;
-    justify-content: space-around; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper img {
-    width: 1rem;
-    max-height: 1rem;
-    padding-right: 0.15rem; }
+    justify-content: flex-start;
+    position: inherit; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 90%; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 5rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .username {
+          font-family: Lato-Semibold;
+          padding-bottom: 0.5rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .location {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            padding-bottom: 0.2rem; }
+          .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .occupation {
+            color: rgba(255, 255, 255, 0.8); }
+    .profile--wrapper .profile-info--wrapper .profile-picture {
+      margin-right: 1rem;
+      width: 8rem;
+      height: 8rem; }
+    .profile--wrapper .profile-info--wrapper .tab--wrapper {
+      display: none; }
+    .profile--wrapper .profile-info--wrapper .occupation--wrapper {
+      display: none; }
+    .profile--wrapper .profile-info--wrapper .social--wrapper {
+      background-color: transparent;
+      max-width: 10rem; }
+    .profile--wrapper .profile-info--wrapper .social--wrapper {
+      align-self: center;
+      display: flex;
+      position: inherit;
+      align-items: flex-end; }
+    .profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
+      flex-grow: 1;
+      justify-content: space-around; }
+    .profile--wrapper .profile-info--wrapper .social--wrapper img {
+      width: 1rem;
+      max-height: 1rem;
+      padding-right: 0.15rem; }
   .profile--wrapper .social-stats--wrapper {
     background-color: transparent;
-    width: 40rem;
     padding-bottom: 0.5rem;
-    min-height: 3rem;
-    max-height: 3rem; }
-  .profile--wrapper .social-stats--wrapper .total-plays {
-    display: flex; }
+    height: 100%;
+    align-items: flex-end; }
   .profile--wrapper .social-stats--wrapper .section .section-title {
     display: flex;
     flex-direction: column; }

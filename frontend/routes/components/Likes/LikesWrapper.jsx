@@ -12,18 +12,18 @@ var LikesWrapper = React.createClass({
 	},
 
 	render: function() {
-		var marginHeight = '3rem'
+		var marginHeight = '4.2rem'
 		var marginStyle = {
 			minHeight:  marginHeight,
 			maxHeight: marginHeight
 		}
 		return (
-			<div className="app-body" >
+			<div className="app-body body--wrapper" >
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
 					<div className="col-md-2">
 						<div className="box"></div>
 					</div>
-					<div className="col-md-8 profile-header-desktop">
+					<div className="col-md-8 page-title--wrapper">
 						<div className="box page-title">{ this.props.title }</div>
 						<hr />
 					</div>

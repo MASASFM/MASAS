@@ -134,10 +134,10 @@ var UploadSC = React.createClass({
 						<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
 					</div>
 					<p>
-						What about discovering new artists from your friends, upload sounds in a click and so much more ?
+						Connect your Souncloud account to MASAS and start sharing your songs in a click.
 					</p>
 					<div className="connect-button">
-						<Button onClick={this.connectToSC} white={true}>Connect to SC</Button>
+						<Button onClick={this.connectToSC} isBigButton={true}>Connect to SounCloud</Button>
 					</div>
 				</div>
 				</Body>

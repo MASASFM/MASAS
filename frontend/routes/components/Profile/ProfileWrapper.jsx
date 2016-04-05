@@ -12,21 +12,22 @@ var ProfileWrapper = React.createClass({
 	},
 
 	render: function() {
-		var marginHeight = '3rem'
+		var marginHeight = '4rem'
 		var marginStyle = {
 			minHeight:  marginHeight,
 			maxHeight: marginHeight
 		}
+		//
 		return (
-			<div className="app-body" id="app-body--profile">
+			<div className="app-body body--wrapper" id="app-body--profile">
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
 					<div className="col-md-2">
 						<div className="box"></div>
 					</div>
-					<div className="col-md-8 profile-header-desktop">
+					<div className="col-md-8 profile-header-desktop page-title--wrapper">
 						<div className="box page-title">{ this.props.title }</div>
 						<hr />
-						<img src="/static/img/menupicture.jpg" atl="profile picture" className="profile-picture"/>
+						
 					</div>
 					<div className="col-md-2">
 						<div className="box"></div>
