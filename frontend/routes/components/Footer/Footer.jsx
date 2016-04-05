@@ -53,6 +53,11 @@ var Footer = React.createClass({
 		})
 	},
 
+	toogleMenu: function() {
+		if(!this.props.isModalOpened)
+			this.props.toogleIsOpened()
+	},
+
 	render: function() {
 		return (
 			<div className="footer--wrapper">
@@ -81,7 +86,9 @@ var Footer = React.createClass({
 								<div className="box nextSong--wrapper">
 									<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
 								</div>
-								<div className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } onClick={this.props.toogleIsOpened} >
+								<div 
+									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
+									onClick={  this.toogleMenu } >
 								</div>
 							</div>
 						</div>

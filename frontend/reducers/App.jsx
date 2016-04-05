@@ -12,7 +12,7 @@ exportVar.defaultState = {
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
 	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow 
 	isAppFetching: false,				// (bool)
-	isModalOpened: true,				// (bool) is modal opened
+	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
 }
 

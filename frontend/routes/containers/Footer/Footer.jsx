@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 		songPlaying: state.playerReducer.songPlaying,
 		playerAtTime: state.playerReducer.playerAtTime,
 		isPlayerPaused: state.playerReducer.isPaused,
+		isModalOpened: state.appReducer.isModalOpened,
 	}
 }
 
