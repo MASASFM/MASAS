@@ -8,13 +8,16 @@ var {logInWithToken} = require("../../MASAS_functions.jsx")
 function mapStateToProps(state) {
 	return {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
-		processingAuthCookie: state.appReducer.processingAuthCookie
+		processingAuthCookie: state.appReducer.processingAuthCookie,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalContent: state.appReducer.modalContent
 	}
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
 	return {
+		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
 		onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
 		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),

@@ -340,6 +340,61 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .timePicker--wrapper .timePicker-slider--wrapper {
     bottom: 2.5rem; } }
+.MASAS-modal {
+  position: fixed;
+  top: 0;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: all 1s ease-in;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center; }
+  .MASAS-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%; }
+  .MASAS-modal .modal-content {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .MASAS-modal .modal-content .close-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 1rem;
+      cursor: pointer;
+      height: 1rem;
+      opacity: 0.6; }
+    .MASAS-modal .modal-content .close-icon:hover {
+      opacity: 0.8; }
+    .MASAS-modal .modal-content .close-icon:active {
+      opacity: 1; }
+
+.MASAS-modal.closed {
+  display: none;
+  z-index: -4; }
+
+@media screen and (min-width: 992px) {
+  .MASAS-modal .modal-content {
+    width: 50%;
+    height: 50%;
+    background-color: black;
+    color: white;
+    position: relative;
+    height: 62%;
+    margin-top: 5rem;
+    border: 1px solid rgba(255, 255, 255, 0.4); } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -1258,7 +1313,10 @@ input[type=range].MASAS-slider {
 .pick-time-sc-sync .button--wrapper .submit {
   font-size: 1.1rem; }
 .pick-time-sc-sync .button--wrapper .cancel-button {
-  visibility: hidden; }
+  visibility: hidden;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-top: 0.8rem; }
 
 @media screen and (min-width: 992px) {
   .pick-time-sc-sync {
@@ -2163,6 +2221,14 @@ html {
 @media screen and (min-width: 992px) {
   html {
     font-size: 16px; } }
+.modal-blur--wrapper {
+  display: flex;
+  flex: 1; }
+
+.modal-blur--wrapper.blurred {
+  -webkit-filter: blur(2.5px) saturate(0%);
+  filter: blur(2.5px) saturate(0%); }
+
 .body--background::after {
   content: "";
   background-image: url("https://source.unsplash.com/user/andrewcoelho/1600x900");
@@ -2196,7 +2262,14 @@ html {
   -webkit-filter: blur(15px);
   filter: blur(15px); }
 
+.body--background.saturated::after {
+  filter: saturate(0%); }
+
 .body--background.blurred.saturated::after {
+  -webkit-filter: blur(5px) saturate(0%);
+  filter: blur(5px) saturate(0%); }
+
+.body--background.blurred-mobile.saturated::after {
   -webkit-filter: blur(5px) saturate(0%);
   filter: blur(5px) saturate(0%); }
 
@@ -2273,6 +2346,10 @@ h1 {
 
   .body--background.blurred-mobile::after {
     -webkit-filter: blur(0px);
-    filter: blur(0px); } }
+    filter: blur(0px); }
+
+  .body--background.blurred-mobile.saturated::after {
+    -webkit-filter: saturate(0%);
+    filter: saturate(0%); } }
 
 /*# sourceMappingURL=sass.css.map */

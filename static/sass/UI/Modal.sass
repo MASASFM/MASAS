@@ -1,0 +1,68 @@
+.MASAS-modal
+	position: fixed
+	top: 0
+	bottom: $phone-footer-height
+	left: 0
+	right: 0
+	z-index: 10
+	transition: all 1s ease-in
+	display: flex
+	flex: 1
+	justify-content: center
+	align-items: center
+
+	.modal-overlay
+		position: absolute
+		top: 0
+		bottom: 0
+		right: 0
+		left: 0
+		height: 100%
+
+	.modal-content
+		width: 100%
+		height: 100%
+		background-color: black
+		color: white
+		position: relative
+		display: flex
+		justify-content: center
+		align-items: center
+
+		.close-icon
+			position: absolute
+			top: 0
+			left:  0
+			padding: 1rem
+			cursor: pointer
+			height: 1rem
+			opacity: 0.6
+
+		.close-icon:hover
+			opacity: 0.8
+
+		.close-icon:active
+			opacity: 1
+
+.MASAS-modal.closed
+	display: none
+	z-index: -4
+
+@media screen and (min-width: $desktop-min-width)
+	.MASAS-modal
+
+		.modal-overlay
+
+		.modal-content
+			width: 50%
+			height: 50%
+			background-color: black
+			color: white
+			position: relative
+			height: 62%
+			margin-top: 5rem
+			border: 1px solid rgba(255,255,255,0.4)
+
+			.close-icon
+
+	.MASAS-modal.closed

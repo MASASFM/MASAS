@@ -6,7 +6,8 @@ var Radium = require("radium")
 var StyleRoot = Radium.StyleRoot
 
 var Header = require("../containers/Header/Header.jsx")
-var Body = require("../containers/UI/Body.jsx")
+// var Body = require("../containers/UI/Body.jsx")
+var { Modal, Body } = require("../containers/UI/UI.jsx")
 var Footer = require("../containers/Footer/Footer.jsx")
 var Home = require("../containers/Home/Home.jsx")
 var NavSidebar = require("../containers/NavSidebar/NavSidebar.jsx")
@@ -69,17 +70,26 @@ var App = React.createClass({
 		if(!this.props.processingAuthCookie)
 			return (
 				<NavSidebar>
-					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
+					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
+						<div className={"body--background"+ ( this.props.isModalOpened ? " saturated" : "" )} id="body--background">
+						</div>
 						<Header />
-							{this.props.children ? 
-									this.props.children
-								:
-									 <Home />
-							}
+							<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened ? " blurred" : "" )}>
+								{this.props.children ? 
+										this.props.children
+									:
+										 <Home />
+								}
+							</div>
 						<Footer />
 									
 					</div>
 					<div id="jquery_jplayer_1"></div>
+					<Modal 
+						isOpened={ this.props.isModalOpened }
+						closeModalFunc={ this.props.toogleModal }>
+						<h1>{ this.props.modalContent }</h1>
+					</Modal>
 				</NavSidebar>
 			)
 		else
@@ -87,7 +97,9 @@ var App = React.createClass({
 				<NavSidebar>
 					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
 						<Header />
-							<h1>LOADING...</h1>
+							<div style={{ display: 'flex', flex: 1 }}>
+								<h1>LOADING...</h1>
+							</div>
 						<Footer />
 									
 					</div>

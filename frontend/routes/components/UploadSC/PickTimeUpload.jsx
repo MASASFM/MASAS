@@ -2,7 +2,7 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 
 // var {goToURL} = require("../../../MASAS_functions.jsx")
-var { Button, Checkbox } = require("../../containers/UI/UI.jsx")
+var { Button, Checkbox, Link } = require("../../containers/UI/UI.jsx")
 var { getCookie } = require("../../../MASAS_functions.jsx")
 var TimePicker = require("./TimePicker.jsx")
 
@@ -19,6 +19,7 @@ var PickTimeUpload = React.createClass({
 	},
 
 	submitSong: function() {
+
 		var csrftoken = getCookie('csrftoken')
 		var header = "Bearer " + this.props.MASASuser
 		$.ajax({
@@ -37,11 +38,17 @@ var PickTimeUpload = React.createClass({
 			success: (data) => {
 				console.log(data)
 				this.props.emitNotification('song synced ;)')
+				// CLOSE MODAL 
+				this.props.toogleModal()
+
+				// CLOSE CHOOSING TIME
 				this.props.closeWindow()
 
 			},
 			error: (err) => {
 				console.log(err)
+
+				// EMIT NOTIFICATION
 				this.props.emitNotification(err.responseJSON.SC_ID[0])
 			},
 		})
@@ -49,6 +56,15 @@ var PickTimeUpload = React.createClass({
 
 	componentWillUnmount: function() {
 		$("#body--background").removeClass('blurred')
+	},
+
+	openModal: function() {
+		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
+		var that = this
+		this.props.updateModalContent(
+			<Button className="submit" onClick={that.submitSong}>Submit</Button>
+			)
+		this.props.toogleModal()
 	},
 
 	render: function() {
@@ -72,8 +88,8 @@ var PickTimeUpload = React.createClass({
 					when would you most likely listen to your sound?
 				</h3>
 				<div className="button--wrapper">
-					<Button className="submit" small={true} white={true} onClick={this.submitSong}>Submit</Button>
-					<Button className="cancel-button" noBorders={true} small={true} white={false} onClick={this.props.closeWindow}>cancel</Button>
+					<Button className="submit" small={true} white={true} onClick={this.openModal}>Submit</Button>
+					<Link to="/upload" className="cancel-button" onClick={this.props.closeWindow}>cancel</Link>
 				</div>
 			</div>
 		)

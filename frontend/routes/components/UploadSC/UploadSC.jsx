@@ -137,7 +137,7 @@ var UploadSC = React.createClass({
 						Connect your Souncloud account to MASAS and start sharing your songs in a click.
 					</p>
 					<div className="connect-button">
-						<Button onClick={this.connectToSC} isBigButton={true}>Connect to SounCloud</Button>
+						<Button onClick={this.connectToSC} isBigButton={true}>Connect to SoundCloud</Button>
 					</div>
 				</div>
 				</Body>

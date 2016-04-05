@@ -33,6 +33,14 @@ html
 // 	margin: 0
 // 	font-family: Lato-Light
 
+.modal-blur--wrapper
+	display: flex
+	flex: 1
+
+.modal-blur--wrapper.blurred
+	-webkit-filter: blur(2.5px) saturate(0%)
+	filter: blur(2.5px) saturate(0%)
+
 .body--background::after 
 	content: ""
 	background-image: url('https://source.unsplash.com/user/andrewcoelho/1600x900')
@@ -73,7 +81,15 @@ html
 // .body--background.saturated::after 
 // 	-webkit-filter: saturate(0%)
 
+.body--background.saturated::after 
+	-webkit-filter:saturate(0%)
+	filter: saturate(0%)
+
 .body--background.blurred.saturated::after 
+	-webkit-filter: blur(5px) saturate(0%)
+	filter: blur(5px) saturate(0%)
+
+.body--background.blurred-mobile.saturated::after 
 	-webkit-filter: blur(5px) saturate(0%)
 	filter: blur(5px) saturate(0%)
 
@@ -159,3 +175,7 @@ h1
 	.body--background.blurred-mobile::after 
 		-webkit-filter: blur(0px)
 		filter: blur(0px)
+
+	.body--background.blurred-mobile.saturated::after 
+		-webkit-filter: saturate(0%)
+		filter: saturate(0%)

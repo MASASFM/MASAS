@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>Exit</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Notification" transform="translate(-594.000000, -148.000000)" fill="#FFFFFF">
+            <path d="M596.758217,148 L594,150.759731 L601.240808,158.001951 L594,165.245146 L596.758217,168.003902 L604,160.761681 L611.240808,168.003902 L614,165.245146 L606.758217,158.001951 L614,150.759731 L611.240808,148 L604,155.243196 L596.758217,148 Z" id="Exit"></path>
+        </g>
+    </g>
+</svg>

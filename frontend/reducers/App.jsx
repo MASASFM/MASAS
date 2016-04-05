@@ -1,3 +1,5 @@
+var React = require('react')
+
 let exportVar = {} 
 
 exportVar.defaultState = {
@@ -10,6 +12,8 @@ exportVar.defaultState = {
 	processingAuthCookie: true,			// (bool) don't render app children until set to false
 	backArrowFunc: () => "",			// (func) what happens when user clicks on back arrow 
 	isAppFetching: false,				// (bool)
+	isModalOpened: true,				// (bool) is modal opened
+	modalContent: <div></div>, 			// (obj) modal content
 }
 
 const { defaultState } = exportVar
@@ -17,6 +21,16 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'TOOGLE_IS_MODAL_OPENED':
+			return {
+				...state,
+				isModalOpened: !state.isModalOpened
+			}
+		case 'CHANGE_MODAL_CONTENT':
+			return {
+				...state,
+				modalContent: action.modalContent
+			}
 		case 'SET_APP_FETCHING_STATE_FALSE':
 			return {
 				...state,

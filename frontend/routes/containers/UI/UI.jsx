@@ -7,6 +7,7 @@ var Textbox = require('./Textbox.jsx')
 // var TimePicker = require('../../components/UI/TimePicker.jsx')
 var TimePicker = require('./TimePicker.jsx')
 var Marquee = require('./Marquee.jsx')
+var Modal = require('./Modal.jsx')
 
 
 var UI = {}
@@ -19,6 +20,7 @@ UI.Password = Password
 UI.Textbox = Textbox
 UI.TimePicker = TimePicker
 UI.Marquee = Marquee
+UI.Modal = Modal
 
 
 module.exports = UI
