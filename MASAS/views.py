@@ -114,8 +114,18 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def post(self, request, format=None):
-        # import ipdb; ipdb.set_trace() 
-        unplayed = Song.objects.exclude(
+        time_interval_id = None
+        if 'time_interval_id' in request.GET:
+            time_interval_id = int(request.GET['time_interval_id'])
+
+        songs = Song.objects.all()
+
+        if time_interval_id:
+            songs = songs.filter(
+                timeInterval_id=time_interval_id,
+            )
+
+        unplayed = songs.exclude(
             play__user=request.user
         ).order_by('?').first()
 
@@ -132,15 +142,25 @@ class PlayView(APIView):
                     "MASAS_play" p on s.id = p.song_id
                 where
                     p.user_id = %s
+            ''' + (
+            '''
+                and
+                    timeInterval_id = %d
+            ''' if time_interval_id else ''
+            ) + '''
                 group by
                     s.id
                 order by
                     play_count asc
                     , random()
                 limit 1
-            ''', [
-                request.user.pk
-            ])[0]
+            ''',
+            [
+                request.user.pk,
+            ] + (
+                [time_interval_id] if time_interval_id else []
+            )
+            )[0]
 
         Play.objects.create(
             user=request.user,
