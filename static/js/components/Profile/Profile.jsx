@@ -111,7 +111,7 @@ var Profile = React.createClass({
 				<ProfileWrapper>
 					<div className="main--wrapper">
 						<div className="profile-info--wrapper">
-							<img src="/static/img/menupicture.jpg" alt="profile picture" className="profile-picture" />
+							<img src={ "graph.facebook.com/v2.5/" + FB.getUserId() + "/picture?width=150" } alt="profile picture" className="profile-picture" />
 							<div className="tab--wrapper">
 								<div className="tab" style={{ borderBottom: '4px solid white'}}>
 									info

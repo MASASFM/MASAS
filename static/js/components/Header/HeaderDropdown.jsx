@@ -38,7 +38,7 @@ var HeaderDropdown = React.createClass({
 			return (
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">
-						<img src={"/static/img/menupicture.jpg"} alt="profile picture" className="profile-picture"/>
+						<img src={"graph.facebook.com/v2.5/" + FB.getUserId() + "/picture?width=50"} alt="profile picture" className="profile-picture"/>
 						<span className="username" id="username-header">{this.props.userData.user}</span>
 					</div>
 					<div className="dropdown-content">
