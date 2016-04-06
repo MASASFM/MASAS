@@ -32,7 +32,11 @@ var ArtworkLine = React.createClass({
 				 }
 				return (
 					<div className="artwork--wrapper" key={SC_songInfo.id}>
-						<img src={ artworkURL } alt="artwork" className="artwork"/>
+						{ artworkURL ?
+								<img src={ artworkURL } alt="artwork" className="artwork"/>
+							:
+								<div className="artwork"></div>
+						}
 						<div className="song-info--wrapper">
 							<Marquee className="title">{ SC_songInfo.title }</Marquee>
 							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
@@ -49,9 +53,10 @@ var ArtworkLine = React.createClass({
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
 			// get bigger artwork
 			let artworkPlayingURL = ""
-			 if(typeof(artworkPlaying) !== "undefined") {
-			 	artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-			 }
+			 if(typeof(artworkPlaying) !== "undefined") 
+			 	if(artworkPlaying.artwork_url)
+				 	artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+			 
 			return  (
 				<div className="artwork-line--wrapper">
 					<div className="left-side">
@@ -62,7 +67,11 @@ var ArtworkLine = React.createClass({
 					</div>
 					<div className="artwork-playing--wrapper">	
 						<div className="artwork-playing">	
-							<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
+							{ artworkPlayingURL ?
+									<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
+								:
+									""
+							}
 							<div 
 								className="player-button"
 								onClick={ 

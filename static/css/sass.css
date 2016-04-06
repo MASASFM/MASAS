@@ -2086,6 +2086,7 @@ input[type=range].MASAS-slider {
           transform: translate(-50%, -50%);
           box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4); }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
+            background-color: black;
             height: 17rem;
             width: 17rem;
             position: relative;
@@ -2124,7 +2125,8 @@ input[type=range].MASAS-slider {
               width: 6rem; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
               height: 12rem;
-              width: 12rem; }
+              width: 12rem;
+              background-color: black; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
               display: none;
               align-items: center; }

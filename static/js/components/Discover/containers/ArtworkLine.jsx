@@ -19,8 +19,8 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 	return {
 		// updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
-		toggleSongLike: (userToken, songId) => toggleSongLike(dispatch, userToken, songId),
-		play: (songToPlay) => playNewSong(dispatch, songToPlay, false),
+		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
+		play: (songToPlay) => playNewSong(songToPlay, false),
 		pause: () => pausePlayer(dispatch),
 	}
 }
