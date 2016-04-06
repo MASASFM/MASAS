@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'MASAS',
     'crispy_forms',
     'explorer',
+    'taggit',
 ]
 
 MIDDLEWARE_CLASSES = [

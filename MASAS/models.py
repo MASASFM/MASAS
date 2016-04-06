@@ -9,6 +9,8 @@ from django.db.models import Count
 from django.contrib.auth.models import User
 from django.conf import settings
 
+from taggit.managers import TaggableManager
+
 
 class TimeIntervalManager(models.Manager):
     pass
@@ -82,6 +84,7 @@ class User(AbstractUser):
     city = models.ForeignKey('cities_light.City', null=True, blank=True)
     occupation = models.CharField(max_length=150, null=True, blank=True)
     avatar_url = models.URLField(null=True, blank=True)
+    tags = TaggableManager()
 
     objects = UserManager()
 

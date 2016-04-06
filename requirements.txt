@@ -27,3 +27,4 @@ django-filter
 django-crispy-forms
 raven
 django-sql-explorer
+django-taggit==0.18.1
