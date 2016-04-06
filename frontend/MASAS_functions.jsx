@@ -1,6 +1,6 @@
 const { dispatch } = require('./reducers/reducers.js')
 
-var {browserHistory} = require('react-router')
+var { browserHistory } = require('react-router')
 var Cookie = require('js-cookie')
 
 var MASAS_functions = {}
@@ -41,7 +41,7 @@ MASAS_functions.goToURL = (path) => {
 	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
 	result: returns nothing. but updates appReducer's auth token and user pk
 */
-MASAS_functions.logInWithToken = (dispatch, userToken) => {
+MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",

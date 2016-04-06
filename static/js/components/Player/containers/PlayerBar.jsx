@@ -1,0 +1,42 @@
+var { playNewSong, updateLikeButton } = require("../ajaxCalls.jsx")
+var { getCookie, pausePlayer, playPreviousSong, toggleSongLike } = require("../../../MASAS_functions.jsx")
+var MASAS_functions = require("../../../MASAS_functions.jsx")
+
+var Player = {}
+
+// Which part of the Redux global state does our component want to receive as props?
+Player.mapStateToProps = function(state) {
+	return {
+		songPlaying: state.playerReducer.songPlaying,
+		isPaused: state.playerReducer.isPaused,
+		playerAtTime: state.playerReducer.playerAtTime,
+		SC_songInfo: state.playerReducer.SC_songInfo,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
+		userPk: state.appReducer.MASASuserPk,
+		MASASuser: state.appReducer.MASASuser,
+		isFetchingSong: state.playerReducer.isFetchingSong,
+		discoverHistory: state.discoverReducer.history,
+	}
+}
+
+var resumePlaying = function(playerAtTime) {
+	$("#jquery_jplayer_1").jPlayer("play", playerAtTime)
+}
+
+
+// Which action creators does it want to receive by props?
+Player.mapDispatchToProps = function(dispatch) {
+	return {
+		dispatch,
+		play: () => dispatch({ type: 'PLAY' }),
+		pause: (pausingAtTime) => pausePlayer(), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
+		playNewSong: (newProps, addToHistory) => playNewSong(newProps, addToHistory),
+		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
+		playRandomSong: (songId) => MASAS_functions.playNewSong(songId, true),
+		playPreviousSong: (discoverHistory) => playPreviousSong(discoverHistory)
+	}
+}
+
+module.exports = Player

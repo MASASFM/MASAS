@@ -1119,7 +1119,7 @@ input[type=range].MASAS-slider {
             background: linear-gradient(45deg, white, rgba(0, 0, 0, 0.5), white, rgba(0, 0, 0, 0.5));
             height: 2px;
             animation-name: buffering;
-            animation-duration: 5s;
+            animation-duration: 1.5s;
             animation-timing-function: linear;
             animation-iteration-count: infinite; }
       .footer--wrapper .slider--wrapper .visible--wrapper img {
