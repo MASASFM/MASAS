@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 from cities_light.contrib.restframework3 import CitySerializer
 
-from models import Status, Play, Song, User, Link, TimeInterval
+from models import Status, Play, Song, User, UserStep, Link, TimeInterval
 
 
 class CreateOnlyForMyUserMixin(object):
@@ -87,6 +87,17 @@ class LinkSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 
+class UserStepSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserStep
+        fields = (
+            'url',
+            'pk',
+            'user',
+            'step',
+        )
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     city = CitySerializer()
     link_set = LinkSerializer(many=True)
@@ -94,6 +105,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     songs = SongSerializer(many=True)
     likes = StatusListSerializer(many=True)
     dislikes = StatusListSerializer(many=True)
+    usersteps = UserStepSerializer(many=True)
 
     class Meta:
     	model = User
@@ -110,4 +122,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'songs',
             'likes',
             'dislikes',
+            'usersteps',
         )

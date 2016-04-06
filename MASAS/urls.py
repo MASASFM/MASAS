@@ -18,6 +18,7 @@ check_user = views.CheckUserViewSet.as_view()
 
 router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'usersteps', views.UserStepViewSet)
 router.register(r'links', views.LinkViewSet)
 router.register(r'songs', views.SongViewSet)
 router.register(r'statuses', views.StatusViewSet)

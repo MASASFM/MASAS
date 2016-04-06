@@ -42,11 +42,12 @@ from serializers import (
     PlaySerializer,
     SongSerializer,
     UserSerializer,
+    UserStepSerializer,
     LinkSerializer,
     TimeIntervalSerializer,
 )
 
-from models import Status, Play, Song, User, TimeInterval, Link
+from models import Status, Play, Song, User, UserStep, TimeInterval, Link
 
 
 class BaseModelViewSetMixin(object):
@@ -90,6 +91,15 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     )
     queryset = User.objects.prefetch_related('link_set')
     serializer_class = UserSerializer
+
+
+class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsUserOrReadOnly
+    )
+    queryset = UserStep.objects.all()
+    serializer_class = UserStepSerializer
 
 
 class LinkViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):

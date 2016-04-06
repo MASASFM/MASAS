@@ -95,6 +95,15 @@ class User(AbstractUser):
         return self.status_set.filter(user=self, status=-1)
 
 
+class UserStep(models.Model):
+    STEP_CHOICES = (
+        (1, 'Accepted terms and conditions'),
+    )
+
+    user = models.ForeignKey('User', related_name='usersteps')
+    step = models.PositiveIntegerField(choices=STEP_CHOICES)
+
+
 class Link(models.Model):
     user = models.ForeignKey('User')
     name = models.CharField(max_length=100, null=True, blank=True)
