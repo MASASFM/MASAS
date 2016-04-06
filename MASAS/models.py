@@ -82,6 +82,7 @@ class User(AbstractUser):
     city = models.ForeignKey('cities_light.City', null=True, blank=True)
     occupation = models.CharField(max_length=150, null=True, blank=True)
     avatar_url = models.URLField(null=True, blank=True)
+    accepted_terms = models.BooleanField(default=False)
 
     objects = UserManager()
 

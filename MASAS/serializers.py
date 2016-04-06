@@ -102,6 +102,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'username',
             'email',
             'name',
+            'accepted_terms',
             'city',
             'occupation',
             'avatar_url',
