@@ -49,7 +49,7 @@ var HomeCountdown = React.createClass({
 
 		var successFunc = (songs) => {
 			var songCount = songs.count
-			const songCountGoal =300
+			const songCountGoal =170
 			if(songCount > songCountGoal)
 				songCount = songCountGoal
 
@@ -109,8 +109,8 @@ var HomeCountdown = React.createClass({
 			if(stateHeight > 0.228 && stateHeight < 0.289)
 				stateHeight = 0.289
 				// MASAS and circle
-			if(stateHeight > 0.393&& stateHeight < 0.437)
-				stateHeight = 0.437
+			if(stateHeight > 0.393&& stateHeight < 0.445)
+				stateHeight = 0.445
 				// circle and tipi
 			if(stateHeight > 0.808 && stateHeight < 0.897)
 				stateHeight = 0.897
