@@ -10,7 +10,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('MASAS', '0011_link_rewrite'),
+        ('MASAS', '0012_auto_20160406_1156'),
     ]
 
     operations = [
