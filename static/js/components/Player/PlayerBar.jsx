@@ -27,8 +27,17 @@ var Player = React.createClass({
 
 		// add event listener to play new song at end of current song
 		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, (event) => {
+			// get state from reducer because "this" object doesn't have access to state mutations 
+			// (this object is a copy of component instance at componentDidMount)
+			const { getState } = require('../../reducers/reducers.js')
+			const currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval
+			const MASASuser = getState().appReducer.MASASuser
+
+			const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
 			console.log('NEXT SONG')
-			this.props.playRandomSong(this.props.MASASuser, getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval))
+			
+			console.log(currentTimeInterval)
+			this.props.playRandomSong(MASASuser, currentTimeInterval)
 		})
 
 		// update player UI on start play

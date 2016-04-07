@@ -1,10 +1,12 @@
-var { pausePlayer, playNewSong, toggleSongLike } = require("../../../MASAS_functions.jsx")
+var { pausePlayer, playNewSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
 
 var ArtworkLine = {}
 
 // Which part of the Redux global state does our component want to receive as props?
 ArtworkLine.mapStateToProps = function(state) {
 	return {
+		MASASuser: state.appReducer.MASASuser,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		discoverNumber: state.discoverReducer.discoverNumber,
 		history: state.discoverReducer.history,
 		songPlaying: state.playerReducer.songPlaying,
@@ -21,6 +23,7 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
 		play: (songToPlay) => playNewSong(songToPlay, false),
+		playRandomSong: (MASASuser, timeInterval) => playRandomSong(MASASuser, timeInterval),
 		pause: () => pausePlayer(dispatch),
 	}
 }

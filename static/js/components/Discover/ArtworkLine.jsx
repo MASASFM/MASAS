@@ -19,7 +19,9 @@ var ArtworkLine = React.createClass({
 		if(history.length === 0)
 			return (
 				<div className="play-discover--wrapper">
-					<h1 >Click here to play from discover</h1>
+					<h1 onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)}>
+						Click here to play from discover
+					</h1>
 				</div>
 				)
 		else {
@@ -112,7 +114,11 @@ var ArtworkLine = React.createClass({
 							</div>
 						</div>
 					</div>
-					<img className="next-button" src="/static/img/MASAS_next.svg" alt="next" />
+					<img
+						onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
+						className="next-button" 
+						src="/static/img/MASAS_next.svg"
+						 alt="next" />
 					<div className="right-side">
 					</div>
 				</div>

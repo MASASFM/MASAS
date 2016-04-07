@@ -2155,14 +2155,15 @@ input[type=range].MASAS-slider {
   .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper {
     height: 13.6rem; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
-      z-index: -1;
+      z-index: 2;
       display: block;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       padding-left: 28rem;
-      width: 2rem; }
+      width: 2rem;
+      cursor: pointer; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
       max-width: 14rem; }
       .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
