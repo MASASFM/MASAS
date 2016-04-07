@@ -23,6 +23,7 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
 		play: (songToPlay) => playNewSong(songToPlay, false),
+		playAndSaveHistory: (songToPlay) => playNewSong(songToPlay),
 		playRandomSong: (MASASuser, timeInterval) => playRandomSong(MASASuser, timeInterval),
 		pause: () => pausePlayer(dispatch),
 	}

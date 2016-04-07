@@ -197,7 +197,7 @@ var Profile = React.createClass({
 
 				</ProfileWrapper>
 			:
-				<ProfileWrapper>HEY</ProfileWrapper>
+				<ProfileWrapper/>
 			}
 			</div>
 		)

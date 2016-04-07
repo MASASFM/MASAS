@@ -2198,6 +2198,8 @@ input[type=range].MASAS-slider {
               .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button img {
                 height: 5rem;
                 width: 5rem; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button {
+              display: flex; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
               height: 17rem;
               width: 17rem; }
@@ -2208,22 +2210,42 @@ input[type=range].MASAS-slider {
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .right-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .right-side {
           display: flex; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
-          width: 40%;
-          overflow: hidden; }
+          margin-right: 3rem;
+          overflow: hidden;
+          max-width: 50%;
+          flex: 1;
+          overflow: auto; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line {
             display: flex;
-            width: 100%;
+            width: min-content;
             justify-content: flex-end; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .empty-artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
               height: 12rem;
-              width: 6rem; }
-            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
-              height: 12rem;
-              width: 12rem;
-              background-color: black; }
-            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
-              display: none;
-              align-items: center; }
+              width: 0; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper {
+              position: relative; }
+              .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .artwork {
+                height: 12rem;
+                width: 12rem;
+                background-color: black; }
+              .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .song-info--wrapper {
+                display: none;
+                align-items: center; }
+              .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .player-button {
+                position: absolute;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5); }
+                .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .player-button img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper .player-button img {
+                  width: 4rem;
+                  height: 4rem; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper:hover .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork--wrapper:hover .player-button {
+              display: flex; }
     .discover--wrapper .multi-page--wrapper .page1 {
       opacity: 1;
       z-index: 1; }

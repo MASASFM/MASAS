@@ -10,17 +10,31 @@ var ArtworkLine = React.createClass({
 	propTypes: {
 		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
 	},
+
+	componentDidMount: function() {
+		this.scrollToEnd()
+	},
+
+	componentDidUpdate: function() {
+		this.scrollToEnd()
+	},
+
+	scrollToEnd: function() {
+		this.refs.leftSide.scrollLeft = this.refs.leftSide.scrollWidth
+	},
  
  	render: function() {
+
 		let history = this.props.history.all.filter( ({MASAS_songInfo}) => {
 			return parseInt(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1)) === this.props.discoverNumber
 		})
 
+		// if nothing is playing
 		if(history.length === 0)
 			return (
 				
 				<div className="artwork-line--wrapper">
-					<div className="left-side">
+					<div className="left-side" ref="leftSide">
 						<div className="artwork-line">
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
@@ -41,19 +55,41 @@ var ArtworkLine = React.createClass({
 				)
 		else {
 			// artwork line (song history)
+			let key_ID = 0
 			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo }) => {
-
+				key_ID = key_ID + 1
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 				 }
 				return (
-					<div className="artwork--wrapper" key={MASAS_songInfo.url}>
+					<div className="artwork--wrapper" key={ key_ID }>
 						{ artworkURL ?
 								<img src={ artworkURL } alt="artwork" className="artwork"/>
 							:
 								<div className="artwork"></div>
 						}
+						<div 
+							className={ "player-button" }
+							onClick={ 
+								this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
+									this.props.pause
+								:
+									this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url)
+								}>
+							{
+								this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
+									<img 
+										src="/static/img/MASAS_player_pause.svg" 
+										alt="pause" />
+								:
+									<img 
+										src="/static/img/MASAS_player_play.svg" 
+										
+										alt="play" />
+							}
+						</div>
+
 						<div className="song-info--wrapper">
 							<Marquee className="title">{ SC_songInfo.title }</Marquee>
 							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
@@ -76,7 +112,7 @@ var ArtworkLine = React.createClass({
 			 
 			return  (
 				<div className="artwork-line--wrapper">
-					<div className="left-side">
+					<div className="left-side" ref="leftSide">
 						<div className="artwork-line">
 							{ artworkLine }
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
@@ -90,7 +126,7 @@ var ArtworkLine = React.createClass({
 									""
 							}
 							<div 
-								className="player-button"
+								className={ "player-button" + (this.props.songPlaying !== MASAS_songPlayingInfo.url  ? " show-play-button" : "") }
 								onClick={ 
 									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
 										this.props.pause
@@ -101,7 +137,6 @@ var ArtworkLine = React.createClass({
 									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
 										<img 
 											src="/static/img/MASAS_player_pause.svg" 
-											
 											alt="pause" />
 									:
 										<img 

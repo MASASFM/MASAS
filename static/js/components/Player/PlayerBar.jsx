@@ -191,7 +191,9 @@ var Player = React.createClass({
 								</div> 
 							</div>
 							<div className="sc-icon">
-								<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud page" />
+								<a href={ this.props.SC_songInfo.permalink_url } target="_blank">
+									<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud page" />
+								</a>
 							</div>
 						</div>
 					: "" }

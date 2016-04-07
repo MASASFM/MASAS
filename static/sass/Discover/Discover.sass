@@ -76,6 +76,9 @@
 								height: 5rem
 								width: 5rem
 
+						.player-button.show-play-button
+							display: flex
+
 						.artwork
 							height: $artworkWidth
 							width: $artworkWidth
@@ -92,21 +95,27 @@
 					display: flex
 
 				.left-side
-					width: 40%
+					margin-right: 3rem
 					overflow: hidden
+					max-width: 50%
+					flex: 1
+					overflow: auto
 
 					.artwork-line
 						$artworkWidth: 12rem
 						display: flex
-						width: 100%
+						width: min-content
 						justify-content: flex-end
 						// flex-direction: row-reverse
 
 						.empty-artwork
 							height: $artworkWidth
-							width: $artworkWidth / 2
+							// width: $artworkWidth / 2
+							width: 0
 
 						.artwork--wrapper
+							position: relative 
+
 							.artwork
 								height: $artworkWidth
 								width: $artworkWidth
@@ -115,6 +124,25 @@
 							.song-info--wrapper
 								display: none
 								align-items: center
+
+							.player-button
+								position: absolute
+								display: none
+								justify-content: center
+								align-items: center
+								top: 0
+								left: 0
+								right: 0
+								bottom: 0
+								background-color: rgba(0,0,0,0.5)
+
+								img
+									width: 4rem
+									height: 4rem
+
+						.artwork--wrapper:hover	
+							.player-button
+								display: flex
 
 		.page1
 			opacity: 1
