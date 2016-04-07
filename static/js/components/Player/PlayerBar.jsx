@@ -21,6 +21,15 @@ var Player = React.createClass({
 	componentWillMount: function() {
 	},
 
+	componentWillUnmount: function() {
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.ended)
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.play)
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.waiting)
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.stalled)
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.canplay)
+		$("#jquery_jplayer_1").unbind($.jPlayer.event.pause)
+	},
+
 	componentDidMount: function() {
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
 			this.props.resumePlaying()
