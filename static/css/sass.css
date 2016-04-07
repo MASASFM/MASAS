@@ -2211,14 +2211,21 @@ input[type=range].MASAS-slider {
           display: flex; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side {
           margin-right: 3rem;
-          overflow: hidden;
-          max-width: 50%;
-          flex: 1;
-          overflow: auto; }
+          width: 50%; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            overflow-x: auto;
+            overflow-y: hidden;
             display: flex;
-            width: min-content;
-            justify-content: flex-end; }
+            height: 100%; }
+            .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork-line2, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
+              position: absolute;
+              display: flex;
+              width: min-content;
+              min-width: 100%;
+              justify-content: flex-end; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .empty-artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
               height: 12rem;
               width: 0; }

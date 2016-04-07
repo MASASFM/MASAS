@@ -96,17 +96,26 @@
 
 				.left-side
 					margin-right: 3rem
-					overflow: hidden
-					max-width: 50%
-					flex: 1
-					overflow: auto
+					width: 50%
+					// justify-content: flex-end
 
 					.artwork-line
-						$artworkWidth: 12rem
+						position: relative
+						width: 100%
+						flex: 1
+						overflow-x: auto
+						overflow-y: hidden
 						display: flex
-						width: min-content
-						justify-content: flex-end
+						height: 100%
 						// flex-direction: row-reverse
+
+						$artworkWidth: 12rem
+						.artwork-line2
+							position: absolute
+							display: flex
+							width: min-content
+							min-width: 100%
+							justify-content: flex-end
 
 						.empty-artwork
 							height: $artworkWidth

@@ -20,7 +20,8 @@ var ArtworkLine = React.createClass({
 	},
 
 	scrollToEnd: function() {
-		this.refs.leftSide.scrollLeft = this.refs.leftSide.scrollWidth
+		// this.refs.artworkLine.animate({ scrollLeft: this.refs.artworkLine.scrollWidth }, 1000);
+		this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
 	},
  
  	render: function() {
@@ -34,8 +35,8 @@ var ArtworkLine = React.createClass({
 			return (
 				
 				<div className="artwork-line--wrapper">
-					<div className="left-side" ref="leftSide">
-						<div className="artwork-line">
+					<div className="left-side">
+						<div className="artwork-line" ref="artworkLine">
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
@@ -112,9 +113,11 @@ var ArtworkLine = React.createClass({
 			 
 			return  (
 				<div className="artwork-line--wrapper">
-					<div className="left-side" ref="leftSide">
-						<div className="artwork-line">
-							{ artworkLine }
+					<div className="left-side">
+						<div className="artwork-line" ref="artworkLine">
+							<div className="artwork-line2">
+								{ artworkLine }
+							</div>
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
