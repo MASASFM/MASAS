@@ -74,16 +74,16 @@ var Footer = React.createClass({
 	render: function() {
 		return (
 			<div className="footer--wrapper">
-				<div 
-					className="select-range" 
-					id="footer-select-range" >
-					<input 
-						type="range" 
-						value={ this.props.progressBarWidth } 
-						onChange={ this.onSliderChange } 
-						className="MASAS-slider" />
-				</div>
 				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
+					<div 
+						className="select-range" 
+						id="footer-select-range" >
+						<input 
+							type="range" 
+							value={ this.props.progressBarWidth } 
+							onChange={ this.onSliderChange } 
+							className="MASAS-slider" />
+					</div>
 					<div className="visible--wrapper">
 						<div className="playerProgressBar--wrapper">
 							<div className="playerProgressBar" style={{width: this.props.progressBarWidth + '%' }}>
