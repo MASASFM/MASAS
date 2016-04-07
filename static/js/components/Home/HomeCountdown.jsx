@@ -1,13 +1,16 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
-var { Button } = require("../UI/UI.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
+var { getSongCount } = require("./ajaxCalls.jsx")
+
+var { Button } = require("../UI/UI.jsx")
+
 
 var HomeCountdown = React.createClass({
 	getInitialState: function() {
 		// protect against render bug where if this.state.height === 0 the canvas draws dissapear on mouse move
-		var numberOfArtists = 400
+		var numberOfArtists = 0
 		var artists = numberOfArtists/800
 
 		return {
@@ -15,7 +18,21 @@ var HomeCountdown = React.createClass({
 			height: artists, 
 			width: window.innerWidth,       // WIDTH OF BROWSER WINDOW
 			loginButtonPosition: {x: 0, y: 0} // absolute position of login button in px (DUMMY STATE USED TO TRIGGER RERENDER)
-		};
+		}
+	},
+
+	componentWillMount: function() {
+
+		var successFunc = (songs) => {
+			var songCount = songs.count
+			const songCountGoal =800
+			if(songCount > songCountGoal)
+				songCount = songCountGoal
+
+			this.setState({ height: songCount/songCountGoal})
+		}
+
+		getSongCount(successFunc)
 	},
 
 	attributes: {
@@ -35,6 +52,11 @@ var HomeCountdown = React.createClass({
 	componentDidMount: function() {
 		window.addEventListener("resize", this.updateDimensions)
 		this.drawLine()
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		if(this.state.height !== prevState.height)
+			this.drawLine()
 	},
 
 	drawLine: function() {
