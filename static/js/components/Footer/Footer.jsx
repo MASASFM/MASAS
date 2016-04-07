@@ -7,7 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
 var Radium = require("radium")
 
 var Player = require("../Player/PlayerBar.jsx")
-var { getCookie } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 var Footer = React.createClass({
 
@@ -35,26 +35,29 @@ var Footer = React.createClass({
 	},
 
 	playRandomSong: function () {
-		var csrftoken = getCookie('csrftoken')
-		var header = "Bearer " + this.props.MASASuser
+		const timeInterval = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
 
-		$.ajax({
-			type: "POST",
-			url: '/api/play/',	
-			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken
-			},
-			data: {},
-			success: (data) => {
-				console.log(data)
-				this.props.playRandomSong(data.url)
-				// this.props.closeWindow()
-			},
-			error: (err) => {
-				console.log(err)
-			},
-		})
+		this.props.playRandomSong(this.props.MASASuser, timeInterval)
+		// var csrftoken = getCookie('csrftoken')
+		// var header = "Bearer " + this.props.MASASuser
+
+		// $.ajax({
+		// 	type: "POST",
+		// 	url: '/api/play/',	
+		// 	headers: {
+		// 		"Authorization": header,
+		// 		"X-CSRFToken": csrftoken
+		// 	},
+		// 	data: {},
+		// 	success: (data) => {
+		// 		console.log(data)
+		// 		this.props.playRandomSong(data.url)
+		// 		// this.props.closeWindow()
+		// 	},
+		// 	error: (err) => {
+		// 		console.log(err)
+		// 	},
+		// })
 	},
 
 	toogleMenu: function() {
@@ -88,7 +91,12 @@ var Footer = React.createClass({
 							</div>
 							<div className="col-xs-2 col-md-2 col-display-none-sm extra-controls--wrapper">
 								<div className="box nextSong--wrapper">
-									<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+									{
+										this.props.songPlaying ?
+											<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+										:
+											""
+									}
 								</div>
 								<div 
 									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 

@@ -1,12 +1,13 @@
 var { playNewSong, updateLikeButton } = require("../ajaxCalls.jsx")
-var { getCookie, pausePlayer, playPreviousSong, toggleSongLike } = require("../../../MASAS_functions.jsx")
-var MASAS_functions = require("../../../MASAS_functions.jsx")
+var { getCookie, pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
+// var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 var Player = {}
 
 // Which part of the Redux global state does our component want to receive as props?
 Player.mapStateToProps = function(state) {
 	return {
+		MASASuser: state.appReducer.MASASuser,
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
 		playerAtTime: state.playerReducer.playerAtTime,
@@ -34,7 +35,7 @@ Player.mapDispatchToProps = function(dispatch) {
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
 		playNewSong: (newProps, addToHistory) => playNewSong(newProps, addToHistory),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
-		playRandomSong: (songId) => MASAS_functions.playNewSong(songId, true),
+		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
 		playPreviousSong: (discoverHistory) => playPreviousSong(discoverHistory)
 	}
 }

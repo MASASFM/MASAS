@@ -116,7 +116,7 @@ MASAS_functions.playPreviousSong = function(discoverHistory) {
 	dispatch({ type: 'PLAY_NEW_SONG', song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
 }
 
-// play new random song based on song play count and likes
+// update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
 MASAS_functions.playNewSong = function(MASAS_songId, addToHistory = true) {
 	console.log('PLAY NEW SONG')
@@ -151,6 +151,35 @@ MASAS_functions.playNewSong = function(MASAS_songId, addToHistory = true) {
 	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
 	// dispatch({ type: 'SET_ADD_SONG_HISTORY_TRUE' })
 }
+
+// gets song based on timeInteral and play song
+MASAS_functions.playRandomSong = function(MASASuser, timeInterval = 0) {
+	console.log(MASASuser)
+	var URL = "/api/play/"
+	if(timeInterval)
+		URL = URL + "?time_interval_id=" + timeInterval
+
+	var header = "Bearer " + MASASuser
+	var csrftoken = MASAS_functions.getCookie('csrftoken')
+	$.ajax({
+		type: 'POST',
+		url: URL,
+		headers: {
+			"Authorization": header,
+			"X-CSRFToken": csrftoken
+		},
+		data: {
+			
+		},
+		success: (data) => {
+			console.log("/api/test !!! => ", data)
+			MASAS_functions.playNewSong(data.url)
+		},
+		error: (err) => {
+			console.log(err)
+		},
+	})
+},
 
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
@@ -264,10 +293,11 @@ MASAS_functions.toggleSongLike = function(userToken, songId) {
 			console.log(err)
 		},
 	})
+}
 
-	// if song is liked, delete like from DB and update player UI state
-
-	// else (song is not liked yet), update DB and player UI state
+// returns 1-6 for timeInterval based on songId
+MASAS_functions.getTimeIntervalFromURL = function(timeIntervalURL) {
+	return timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
 }
 
 module.exports = MASAS_functions

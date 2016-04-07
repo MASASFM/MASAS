@@ -1,5 +1,5 @@
 
-var { playNewSong } = require("../../../MASAS_functions.jsx")
+var { playRandomSong } = require("../../../MASAS_functions.jsx")
 
 var Footer = {}
 
@@ -12,6 +12,7 @@ Footer.mapStateToProps = function(state) {
 		isPlayerBarOpened: state.footerReducer.isOpened,
 		isBuffering: state.playerReducer.isBuffering,
 		songPlaying: state.playerReducer.songPlaying,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		playerAtTime: state.playerReducer.playerAtTime,
 		isPlayerPaused: state.playerReducer.isPaused,
 		isModalOpened: state.appReducer.isModalOpened,
@@ -22,7 +23,8 @@ Footer.mapStateToProps = function(state) {
 Footer.mapDispatchToProps = function(dispatch) {
 	return {
 		// playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		playRandomSong: (songId) => playNewSong(songId, true),
+		// playRandomSong: (songId) => playNewSong(songId, true),
+		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
 		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
 		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
 	}

@@ -1,9 +1,11 @@
 var { browserHistory } = require('react-router')
 
 const { dispatch } = require('../../reducers/reducers.js')
+const MASAS_functions = require('../../MASAS_functions.jsx')
 
 var ajaxCalls = {}
 
+// caled when state.playerReducer.songPlaying changes
 ajaxCalls.playNewSong = function(newProps, addToHistory) {
 	var songId = newProps.songPlaying
 	console.log('new props =>', songId)

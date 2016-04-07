@@ -5,7 +5,7 @@ var jPlayer = require("jplayer")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.jsx")
 
-var { getCookie } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
 var Player = React.createClass({
@@ -28,7 +28,7 @@ var Player = React.createClass({
 		// add event listener to play new song at end of current song
 		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, (event) => {
 			console.log('NEXT SONG')
-			this.playRandomSong()
+			this.props.playRandomSong(this.props.MASASuser, getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval))
 		})
 
 		// update player UI on start play
@@ -74,28 +74,28 @@ var Player = React.createClass({
 		}
 	},
 
-	playRandomSong: function() {
-		var header = "Bearer " + this.props.MASASuser
-		var csrftoken = getCookie('csrftoken')
-		$.ajax({
-			type: 'POST',
-			url: '/api/play/',
-			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken
-			},
-			data: {
+	// playRandomSong: function() {
+	// 	var header = "Bearer " + this.props.MASASuser
+	// 	var csrftoken = getCookie('csrftoken')
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: '/api/play/?time_interval_id=1',
+	// 		headers: {
+	// 			"Authorization": header,
+	// 			"X-CSRFToken": csrftoken
+	// 		},
+	// 		data: {
 				
-			},
-			success: (data) => {
-				console.log(data)
-				this.props.playRandomSong(data.url)
-			},
-			error: (err) => {
-				console.log(err)
-			},
-		})
-	},
+	// 		},
+	// 		success: (data) => {
+	// 			console.log("/api/test !!! => ", data)
+	// 			this.props.playRandomSong(data.url)
+	// 		},
+	// 		error: (err) => {
+	// 			console.log(err)
+	// 		},
+	// 	})
+	// },
 
 	getControlButtons() {
 		// show loader if fetching song info
@@ -108,7 +108,7 @@ var Player = React.createClass({
 
 		// if nothing is playing, play random song on play icon
 		if(!this.props.songPlaying)
-			return <img onClick={this.playRandomSong} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
+			return <img onClick={this.props.playRandomSong.bind(this, this.props.MASASuser, 0)} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
 
 		// else, click play to unpause
 		return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
