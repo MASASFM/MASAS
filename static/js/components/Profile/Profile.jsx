@@ -1,3 +1,5 @@
+// STATEFUL COMPONENT => CHANGE !!!! (integrate w/ redux states)
+
 var React = require("react")
 var ReactDOM = require("react-dom")
 
@@ -23,7 +25,7 @@ var Profile = React.createClass({
 		return {
 			userInfo: null,				// user entry in REST API
 			userSCSongs: [],			// song info from SC using songs from user entry
-		};
+		}
 	},
 
 	componentWillMount: function() {
@@ -105,13 +107,14 @@ var Profile = React.createClass({
 	},
 
 	render: function() {
+		console.log("PROFILE =>", this.state.userInfo)
 		return (
 			<div style={{display: 'flex', flex: 1}}>
 			{ this.state.userInfo ?
 				<ProfileWrapper>
 					<div className="main--wrapper">
 						<div className="profile-info--wrapper">
-							<img src={ "graph.facebook.com/v2.5/" + FB.getUserId() + "/picture?width=150" } alt="profile picture" className="profile-picture" />
+							<img src="" alt="profile picture" className="profile-picture" />
 							<div className="tab--wrapper">
 								<div className="tab" style={{ borderBottom: '4px solid white'}}>
 									info
@@ -194,12 +197,12 @@ var Profile = React.createClass({
 
 				</ProfileWrapper>
 			:
-				<ProfileWrapper />
+				<ProfileWrapper>HEY</ProfileWrapper>
 			}
 			</div>
 		)
 	}
-});
+})
 
 var styles = {
 	container: {

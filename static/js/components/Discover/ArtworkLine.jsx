@@ -18,10 +18,25 @@ var ArtworkLine = React.createClass({
 
 		if(history.length === 0)
 			return (
-				<div className="play-discover--wrapper">
-					<h1 onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)}>
-						Click here to play from discover
-					</h1>
+				
+				<div className="artwork-line--wrapper">
+					<div className="left-side">
+						<div className="artwork-line">
+							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
+						</div>
+					</div>
+					<div className="artwork-playing--wrapper">	
+						<div className="artwork-playing">	
+							<div 
+								onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)}
+								className="player-button"
+								style={{ display: 'flex' }}>
+								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
+							</div>
+						</div>
+					</div>
+					<div className="right-side">
+					</div>
 				</div>
 				)
 		else {
@@ -116,6 +131,7 @@ var ArtworkLine = React.createClass({
 					</div>
 					<img
 						onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
+						style={{ display: (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'block' : 'none') }}
 						className="next-button" 
 						src="/static/img/MASAS_next.svg"
 						 alt="next" />

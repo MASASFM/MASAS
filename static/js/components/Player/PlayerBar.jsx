@@ -36,7 +36,6 @@ var Player = React.createClass({
 			const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
 			console.log('NEXT SONG')
 			
-			console.log(currentTimeInterval)
 			this.props.playRandomSong(MASASuser, currentTimeInterval)
 		})
 
