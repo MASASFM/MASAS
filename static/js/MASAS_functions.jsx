@@ -177,6 +177,8 @@ MASAS_functions.playRandomSong = function(MASASuser, timeInterval = 0) {
 		},
 		error: (err) => {
 			console.log(err)
+			if(err.status === 401)
+				MASAS_functions.updateNotificationBar("Login to play music !")
 		},
 	})
 },

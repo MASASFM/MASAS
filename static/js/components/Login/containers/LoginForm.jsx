@@ -14,7 +14,6 @@ LoginForm.mapStateToProps = function(state) {
 }
 
 var loginFB = () => {
-	console.log('HEYEHEY')
 	// if FB SDK not loaded
 	if (typeof(FB) === "undefined")
 		return 0
@@ -29,7 +28,7 @@ var loginFB = () => {
 			if (response.status === 'connected') {
 				// Logged into your app and Facebook.
 				console.log(FB.getAccessToken())
-				convertToken(FB.access_token())
+				convertToken(FB.getAccessToken())
 			} else if (response.status === 'not_authorized') {
 				// The person is logged into Facebook, but not your app.
 				console.log('Login failed')

@@ -2180,11 +2180,12 @@ input[type=range].MASAS-slider {
           transform: translate(-50%, -50%);
           box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4); }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
-            background-color: black;
+            background-color: rgba(0, 0, 0, 0);
             height: 17rem;
             width: 17rem;
             position: relative;
-            cursor: pointer; }
+            cursor: pointer;
+            }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
               position: absolute;
               top: 0;
