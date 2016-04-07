@@ -21,7 +21,7 @@ ajaxCalls.convertToken = (token) => {
 
 			logInWithToken(dispatch, data.access_token)
 			browserHistory.push('/')
-			ajaxCalls.getUserPk(dispatch, data.access_token)	
+			ajaxCalls.getUserPk(data.access_token)	
 			updateAuthCookie(data.access_token)
 		},
 		error: (err) => { 
