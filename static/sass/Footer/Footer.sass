@@ -22,6 +22,13 @@ $footerHeight: $phone-footer-height
 	// 		text-transform: uppercase
 	// 		font-family: Lato-Semibold
 
+	.select-range
+		height: 10px
+		transform: translateY(-50%)
+		position: absolute
+		z-Index: 10
+		width: 100%
+
 	.slider--wrapper.opened
 		top: -17rem
 		bottom: 0rem
@@ -46,6 +53,7 @@ $footerHeight: $phone-footer-height
 			width: 1.5rem
 			background-size: contain
 			background-position: center
+			cursor: pointer
 
 		.toogle-open-tray-icon.opened
 			background-image: url('/static/img/MASAS_icon_close.svg')

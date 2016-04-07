@@ -4,10 +4,9 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var ArtworkLine = require("./ArtworkLine.jsx")
+var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
-// var {goToURL} = require("../../../MASAS_functions.jsx")
-// var {getCookie} = require("../../../MASAS_functions.jsx")
+var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
 
 var Discover = React.createClass({
@@ -15,13 +14,23 @@ var Discover = React.createClass({
 	},
 
 	componentWillMount: function() {
+		console.log('componentWillMount')
 		this.props.updateTitle('Discover', '0')		// 0 = menu icon; 1 = arrow back
+
+		// check what discover is playing
+		if(this.props.MASAS_songInfo)
+			this.props.handleTimePickerChange(getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval))
+
 	},
 
 	componentWillReceiveProps: function(nextProps) {
 	},
 
 	render: function() {
+		var sliderInitDiscover = null
+		if(this.props.MASAS_songInfo)
+			sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
+
 		return (
 			<div className="discover--wrapper">
 				<div className="multi-page--wrapper">
@@ -62,6 +71,7 @@ var Discover = React.createClass({
 						canvasId="timePicker--canvas" 
 						wrapperClassName="timePicker--wrapper" 
 						onSliderChange={ this.props.handleTimePickerChange } 
+						initialDiscover={ sliderInitDiscover ? sliderInitDiscover : 1 }
 						currentDiscover={ this.props.discoverNumber }/>
 				</div>
 			</div>

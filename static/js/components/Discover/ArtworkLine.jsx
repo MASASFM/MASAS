@@ -131,8 +131,7 @@ var ArtworkLine = React.createClass({
 					</div>
 					<img
 						onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
-						style={{ display: (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'block' : 'none') }}
-						className="next-button" 
+						className={ "next-button" + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show' : '') }
 						src="/static/img/MASAS_next.svg"
 						 alt="next" />
 					<div className="right-side">

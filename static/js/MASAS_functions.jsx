@@ -298,7 +298,7 @@ MASAS_functions.toggleSongLike = function(userToken, songId) {
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = function(timeIntervalURL) {
 	console.log(timeIntervalURL)
-	return timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 
 module.exports = MASAS_functions

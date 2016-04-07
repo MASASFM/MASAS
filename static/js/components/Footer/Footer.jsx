@@ -77,7 +77,7 @@ var Footer = React.createClass({
 				<div 
 					className="select-range" 
 					id="footer-select-range" 
-					style={{ position: 'absolute', zIndex: 10, width: '100%', height: '1rem', height: '2px' }}>
+					style={{ height: '10px', transform: 'translateY(-50%)', position: 'absolute', zIndex: 10, width: '100%', height: '1rem', height: '2px' }}>
 					<input 
 						type="range" 
 						value={ this.props.progressBarWidth } 

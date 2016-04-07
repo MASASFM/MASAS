@@ -52,7 +52,7 @@ var TimePicker = React.createClass({
 		this.updateCanvasDim()
 	},
 
-	componentWillUnmout: function() {
+	componentWillUnmount: function() {
 		$(window).unbind('resize', this.updateCanvasDim)
 	},
 

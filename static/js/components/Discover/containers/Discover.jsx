@@ -7,6 +7,7 @@ Discover.mapStateToProps = function(state) {
 	return {
 		discoverNumber: state.discoverReducer.discoverNumber,
 		userToken: state.appReducer.MASASuser,
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 	}
 }
 

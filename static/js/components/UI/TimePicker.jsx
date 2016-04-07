@@ -20,13 +20,15 @@ var TimePicker = React.createClass({
 	propTypes: {
 		wrapperClassName: React.PropTypes.string.isRequired,	// class used to size TimePicker
 		canvasId: React.PropTypes.string.isRequired,			// canvas id used for drawing
-		onSliderChange: React.PropTypes.func, 				// callback called when slider changes
-		currentDiscover: React.PropTypes.number 			
+		onSliderChange: React.PropTypes.func, 			// callback called when slider changes
+		currentDiscover: React.PropTypes.number, 			// 1-6 used to check if necessary to call onChange calback
+		initialDiscover: React.PropTypes.number, 			// 1-6 starting slider position	
 	},
 
 	getInitialState: function() {
+		const rangePercent = (this.props.initialDiscover-0.5)*100/6
 		return {
-			rangePercent: 33,					// (number) 0-100, slider value
+			rangePercent,						// (number) 0-100, slider value
 			sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
@@ -43,7 +45,7 @@ var TimePicker = React.createClass({
 		this.updateCanvasDim()
 	},
 
-	componentWillUnmout: function() {
+	componentWillUnmount: function() {
 		console.log('hoho')
 		$(window).unbind('resize', this.updateCanvasDim)
 	},
