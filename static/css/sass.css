@@ -2218,8 +2218,7 @@ input[type=range].MASAS-slider {
             flex: 1;
             overflow-x: auto;
             overflow-y: hidden;
-            display: flex;
-            height: 100%; }
+            display: flex; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .left-side .artwork-line .artwork-line2, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
               position: absolute;
               display: flex;
