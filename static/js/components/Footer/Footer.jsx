@@ -10,7 +10,7 @@ var Player = require("../Player/PlayerBar.jsx")
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 var Footer = React.createClass({
-
+//foo
 	componentWillMount: function() {
 		// init progress bar width
 		var progressBarWidth = 0
