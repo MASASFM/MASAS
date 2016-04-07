@@ -65,9 +65,25 @@ var Footer = React.createClass({
 			this.props.toogleIsOpened()
 	},
 
+	onSliderChange: function(e) {
+		// $("#jquery_jplayer_1").jPlayer('pause')
+		$("#jquery_jplayer_1").jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
+		this.props.updateProgressBar(e.target.value)
+	},
+
 	render: function() {
 		return (
 			<div className="footer--wrapper">
+				<div 
+					className="select-range" 
+					id="footer-select-range" 
+					style={{ position: 'absolute', zIndex: 10, width: '100%', height: '1rem', height: '2px' }}>
+					<input 
+						type="range" 
+						value={ this.props.progressBarWidth } 
+						onChange={ this.onSliderChange } 
+						className="MASAS-slider" />
+				</div>
 				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
 					<div className="visible--wrapper">
 						<div className="playerProgressBar--wrapper">

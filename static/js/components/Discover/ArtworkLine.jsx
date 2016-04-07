@@ -41,14 +41,14 @@ var ArtworkLine = React.createClass({
 				)
 		else {
 			// artwork line (song history)
-			let artworkLine =  history.map( ({ SC_songInfo }) => {
+			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo }) => {
 
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 				 }
 				return (
-					<div className="artwork--wrapper" key={SC_songInfo.id}>
+					<div className="artwork--wrapper" key={MASAS_songInfo.url}>
 						{ artworkURL ?
 								<img src={ artworkURL } alt="artwork" className="artwork"/>
 							:
