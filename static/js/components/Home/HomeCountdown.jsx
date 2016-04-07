@@ -1,3 +1,27 @@
+// HACK NECESSARY TO HANDLE INTERVALS (magic numbers)
+			// 	// bottom tipi and subtitle
+			// if(stateHeight > 0.115 && stateHeight < 0.195)
+			// 	stateHeight = 0.18
+			// 	// subtitle and MASAS
+			// if(stateHeight > 0.22875 && stateHeight < 0.282)
+			// 	stateHeight = 0.282
+			// 	// MASAS and circle
+			// if(stateHeight > 0.39375 && stateHeight < 0.44)
+			// 	stateHeight = 0.44
+			// 	// circle and tipi
+			// if(stateHeight > 0.80875 && stateHeight < 0.89)
+			// 	stateHeight = 0.89
+
+			// // BOUNDARY CONDITIONS
+			// 	// handle top boundary
+			// if(stateHeight > 0.978)
+			// 	stateHeight = 0.978
+			// 	// handle bottom boundary
+			// if(stateHeight < 0.02)
+			// 	stateHeight = 0.02
+
+
+
 var React = require("react")
 var ReactDOM = require("react-dom")
 
@@ -25,7 +49,7 @@ var HomeCountdown = React.createClass({
 
 		var successFunc = (songs) => {
 			var songCount = songs.count
-			const songCountGoal =800
+			const songCountGoal =300
 			if(songCount > songCountGoal)
 				songCount = songCountGoal
 
@@ -72,23 +96,24 @@ var HomeCountdown = React.createClass({
 		// SUBTRACTION NEEDED BECAUSE OF DO-WHILE LOOP
 		// variable will change because of sections of the logo with no intersections. We therefore store state.height into new variable (that will increase when no intersection at state.height)
 		var stateHeight = this.state.height // - 0.01;   
+		console.log('STATE HEIGHT 1 =>', stateHeight)
 
 		// INIT VAR
 		var rightMostPoint = null      // right most intersection of level line and logo
 		if(canvas) {
 			// HACK NECESSARY TO HANDLE INTERVALS (magic numbers)
 				// bottom tipi and subtitle
-			if(stateHeight > 0.115 && stateHeight < 0.195)
-				stateHeight = 0.18
+			if(stateHeight > 0.114 && stateHeight < 0.203)
+				stateHeight = 0.203
 				// subtitle and MASAS
-			if(stateHeight > 0.22875 && stateHeight < 0.282)
-				stateHeight = 0.282
+			if(stateHeight > 0.228 && stateHeight < 0.289)
+				stateHeight = 0.289
 				// MASAS and circle
-			if(stateHeight > 0.39375 && stateHeight < 0.44)
-				stateHeight = 0.44
+			if(stateHeight > 0.393&& stateHeight < 0.437)
+				stateHeight = 0.437
 				// circle and tipi
-			if(stateHeight > 0.80875 && stateHeight < 0.89)
-				stateHeight = 0.89
+			if(stateHeight > 0.808 && stateHeight < 0.897)
+				stateHeight = 0.897
 
 			// BOUNDARY CONDITIONS
 				// handle top boundary
@@ -98,6 +123,7 @@ var HomeCountdown = React.createClass({
 			if(stateHeight < 0.02)
 				stateHeight = 0.02
 
+			console.log('STATE HEIGHT = >', stateHeight)
 			// Create paper.js canvas
 			paper.setup(canvas)
 
@@ -176,11 +202,15 @@ var HomeCountdown = React.createClass({
 						if(intersections[i]._point.x > rightMostPoint.x)
 							rightMostPoint = intersections[i]._point
 					}
-				}
+				} else if(intersections.length === 1)
+					rightMostPoint = intersections[0]
+				else
+					rightMostPoint = 0
 
 				return rightMostPoint
-			};
-
+			}
+			console.log('RIGHT MOST POINT =>', rightMostPoint)
+			console.log('INTERSECTIONS', intersections)
 			var rightMostPoint = getRightMostPoint(intersections)
 
 			// DRAW HORIZONTAL LINE FROM RIGHT OF LOGO (also scale length of line)

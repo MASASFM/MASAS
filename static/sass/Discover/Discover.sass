@@ -23,12 +23,13 @@
 			justify-content: space-around
 
 			h1
-				font-size: 2rem
-				letter-spacing: 0rem
+				font-size: 1.5rem
+				letter-spacing: 0.35rem
 				border-bottom: 1px solid white
 				width: min-content
 				padding-bottom: 1.5rem
 				margin-bottom: 2.5rem
+				font-family: Lato-Light, sans-serif
 
 			.play-discover--wrapper
 				display: flex
@@ -51,10 +52,11 @@
 					top: 50%
 					left: 50%
 					transform: translate(-50%, -50%)
-					box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
+					box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
+					z-index: 4		// to be over artwork-line--wapper
 
 					.artwork-playing
-						background-color: black
+						background-color: rgba(0,0,0,0.5)
 						$artworkWidth: 17rem
 						height: $artworkWidth
 						width: $artworkWidth
@@ -115,6 +117,7 @@
 							width: min-content
 							min-width: 100%
 							justify-content: flex-end
+							z-index: 3		// next-button is z-index 2 
 
 						.empty-artwork
 							height: $artworkWidth
@@ -122,7 +125,9 @@
 							width: 0
 
 						.artwork--wrapper
-							position: relative 
+							.artwork--wrapper2
+								position: relative
+								cursor: pointer
 
 							.artwork
 								height: $artworkWidth
@@ -148,7 +153,7 @@
 									width: 4rem
 									height: 4rem
 
-						.artwork--wrapper:hover	
+						.artwork--wrapper2:hover	
 							.player-button
 								display: flex
 
@@ -163,8 +168,8 @@
 
 	.time-picker--wrapper
 		display: flex
-		flex-grow: 0.1
-		align-items: flex-end
+		flex-grow: 0.25
+		align-items: center
 
 		$timePickerHeight: 7rem
 		$timePickerWidth: 15rem
@@ -187,12 +192,13 @@
 			.page1, .page2
 
 				h1
+					font-size: 1.3rem
 
 				.play-discover--wrapper
 					height: 12rem
 
 				.artwork-line--wrapper
-					$artworkWidth: 14rem
+					$artworkWidth: 16rem
 					$song-info-height: 3rem 
 					$font-size: 0.7rem
 					$ratio: $artworkWidth / $song-info-height
@@ -217,7 +223,7 @@
 						max-width: $artworkWidth
 
 						.artwork-playing
-							background-color: black
+							background-color: rgba(0,0,0,0.4)
 							height: $artworkWidth
 							width: $artworkWidth
 							.artwork
@@ -253,14 +259,14 @@
 					.left-side, .right-side
 
 
-					$ratio: 0.8
+					$ratio: 0.7
 					$artworkWidth: $artworkWidth * $ratio
 					$song-info-height: $song-info-height * $ratio
 					$font-size: $font-size * $ratio
 					$sidePadding: $sidePadding * 1
 					height: $artworkWidth + $song-info-height
 					.left-side
-						width: calc(50% - #{$artworkWidth} / 4)
+						width: calc(50% - #{$artworkWidth} / 2.2)
 
 						.artwork-line
 

@@ -49,6 +49,15 @@ var ArtworkLine = React.createClass({
 								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
 							</div>
 						</div>
+						<div className="song-info--wrapper">
+							<div className="like-icon">
+								<img src="/static/img/MASAS_like_shadow.svg" style={{ pointer: 'default' }} alt="like" />
+							</div>
+							<div className="song-info">
+								<div className="title"></div>
+								<div className="artist"></div>
+							</div>
+						</div>
 					</div>
 					<div className="right-side">
 					</div>
@@ -65,30 +74,32 @@ var ArtworkLine = React.createClass({
 				 }
 				return (
 					<div className="artwork--wrapper" key={ key_ID }>
-						{ artworkURL ?
-								<img src={ artworkURL } alt="artwork" className="artwork"/>
-							:
-								<div className="artwork"></div>
-						}
-						<div 
-							className={ "player-button" }
-							onClick={ 
-								this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
-									this.props.pause
+						<div className="artwork--wrapper2">
+							{ artworkURL ?
+									<img src={ artworkURL } alt="artwork" className="artwork"/>
 								:
-									this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url)
-								}>
-							{
-								this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
-									<img 
-										src="/static/img/MASAS_player_pause.svg" 
-										alt="pause" />
-								:
-									<img 
-										src="/static/img/MASAS_player_play.svg" 
-										
-										alt="play" />
+									<div className="artwork"></div>
 							}
+							<div 
+								className={ "player-button" }
+								onClick={ 
+									this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
+										this.props.pause
+									:
+										this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url)
+									}>
+								{
+									this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
+										<img 
+											src="/static/img/MASAS_player_pause.svg" 
+											alt="pause" />
+									:
+										<img 
+											src="/static/img/MASAS_player_play.svg" 
+											
+											alt="play" />
+								}
+							</div>
 						</div>
 
 						<div className="song-info--wrapper">
