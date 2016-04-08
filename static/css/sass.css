@@ -430,8 +430,10 @@ input[type=range].MASAS-slider {
     align-items: center;
     justify-content: space-around; }
     .MASAS-time-picker .timePicker-slider--wrapper .timeRange-hashtag {
-      font-size: 1.3rem;
-      opacity: 0.8; }
+      font-size: 0.8rem;
+      opacity: 0.8;
+      font-family: Lato-Light;
+      letter-spacing: 0.2rem; }
 
 @media screen and (min-width: 992px) {
   .timePicker--wrapper .timePicker-slider--wrapper {
@@ -1286,13 +1288,46 @@ input[type=range].MASAS-slider {
     .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper {
       display: flex;
       width: 250px;
-      height: 150px; }
+      height: 120px; }
       .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
         width: 250px;
-        height: 150px; }
+        height: 120px; }
       .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
-        bottom: 2.8rem; }
+        bottom: 1rem; }
 
+@media screen and (min-width: 992px) {
+  .footer-modal--wrapper {
+    padding: 0 1.5rem; }
+    .footer-modal--wrapper .song-info--wrapper {
+      width: 100%;
+      max-width: 100%;
+      flex-direction: row;
+      flex: 0.3;
+      height: 4rem; }
+      .footer-modal--wrapper .song-info--wrapper .artwork {
+        border: 3px solid white;
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 0rem;
+        margin-right: 1.5rem; }
+      .footer-modal--wrapper .song-info--wrapper .song-title {
+        text-align: left;
+        font-size: 0.825rem; }
+    .footer-modal--wrapper .footer-modal-content {
+      width: 100%;
+      justify-content: space-around; }
+      .footer-modal--wrapper .footer-modal-content h2 {
+        max-width: 100%; }
+      .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper {
+        display: flex;
+        width: 300px;
+        height: 100px; }
+        .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
+          width: 300px;
+          height: 100px; }
+        .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
+          bottom: 0rem;
+          height: 2.8rem; } }
 .footer--wrapper {
   position: relative;
   height: 4rem;

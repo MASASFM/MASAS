@@ -147,8 +147,13 @@ var TimePicker = React.createClass({
 		return { x: x / pixelRatio(), y: y / pixelRatio() }
 	},
 
-	getHashtag: function() {
-		switch(this.props.currentDiscover) {
+	getHashtag: function(switchVar) {
+		// used because component initially renders twice (once before componentDidMount
+		// and once after the canvas is resized
+		if(this.renderNumber <= 2 )
+			switchVar = this.props.initialDiscover
+
+		switch(switchVar) {
 			case 1:
 				return	"#EarlyMorning"
 			case 2:
@@ -174,6 +179,10 @@ var TimePicker = React.createClass({
 	},
 
 	render: function() {
+		if(!this.renderNumber)
+			this.renderNumber = 1
+		else if(this.renderNumber < 5)
+			this.renderNumber = this.renderNumber + 1
 
 		// accounting for sun icon size
 		var sunIconSize = 50	// px
@@ -210,7 +219,7 @@ var TimePicker = React.createClass({
 					<div className="timeRange-hashtag">
 						{ 
 							this.props.showHashtag ?
-								this.getHashtag() 
+								this.getHashtag(this.props.currentDiscover) 
 							:
 								""
 						}

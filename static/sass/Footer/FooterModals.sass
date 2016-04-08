@@ -45,7 +45,7 @@
 
 		// SUGGEST OTHER TIME
 		$timePickerWidth: 250px
-		$timePickerHeight: 150px
+		$timePickerHeight: 120px
 		.suggest-time-modal--wrapper
 			display: flex
 			width: $timePickerWidth
@@ -56,4 +56,54 @@
 				height: $timePickerHeight
 
 			.timePicker-slider--wrapper
-				bottom: 2.8rem
+				bottom: 1rem
+
+
+@media screen and (min-width: $desktop-min-width)
+
+	.footer-modal--wrapper
+		padding: 0 1.5rem
+		
+		$artworkWidth: 4rem
+		.song-info--wrapper
+			width: 100%
+			max-width: 100%
+			flex-direction: row
+			flex: 0.3
+			height: $artworkWidth
+
+			.artwork
+				border: 3px solid white
+				width: $artworkWidth
+				height: $artworkWidth
+				margin-bottom: 0rem
+				margin-right: 1.5rem
+			
+				img
+			
+			.song-title
+				text-align: left
+				font-size: 0.825rem
+			
+		.footer-modal-content
+			width: 100%
+			justify-content: space-around
+
+			h2
+				max-width: 100%
+
+			// SUGGEST OTHER TIME
+			$timePickerWidth: 300px
+			$timePickerHeight: 100px
+			.suggest-time-modal--wrapper
+				display: flex
+				width: $timePickerWidth
+				height: $timePickerHeight
+
+				#suggest-time-modal-timePicker-canvas-id
+					width: $timePickerWidth
+					height: $timePickerHeight
+
+				.timePicker-slider--wrapper
+					bottom: 0rem
+					height: 2.8rem

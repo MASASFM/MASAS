@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/FooterModals.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 var { TimePicker, Button } = require("../UI/UI.jsx")
 
 // var Template = (props) => {
@@ -16,6 +16,14 @@ var FooterModal = React.createClass({
 		isSpamModal: React.PropTypes.bool,				// is spam modal content
 		isCopyrightModal: React.PropTypes.bool,			// is report copyright modal content
 		isSuggestTimeModal: React.PropTypes.bool, 			// is suggest another time modal content
+	},
+
+	// keeping props in state so that song info doesn't change when player changes song
+	getInitialState: function() {
+		return {
+			MASAS_songInfo: this.props.MASAS_songInfo,
+			SC_songInfo: this.props.SC_songInfo,
+		}
 	},
 
 	componentWillMount: function() {
@@ -56,7 +64,9 @@ var FooterModal = React.createClass({
 				</div>
 				)
 
-		if(isSuggestTimeModal)
+		if(isSuggestTimeModal) {
+			const initialTime = getTimeIntervalFromURL(this.state.MASAS_songInfo.timeInterval)
+
 			return (
 				<div className="footer-modal-content">
 					<h2>
@@ -66,7 +76,7 @@ var FooterModal = React.createClass({
 						<TimePicker
 							wrapperClassName="suggest-time-modal--wrapper"
 							canvasId="suggest-time-modal-timePicker-canvas-id"
-							initialDiscover={ this.props.suggestNewTimeValue }
+							initialDiscover={ initialTime }
 							currentDiscover={ this.props.suggestNewTimeValue }
 							onSliderChange={ this.props.updateTimeSuggestion } />
 					</div>
@@ -79,19 +89,21 @@ var FooterModal = React.createClass({
 					</Button>
 				</div>
 				)
+		}
 		else
 			return <div></div>
 	},
 
 	render: function() {
+		console.log("this.state => ", this.state)
 		return (
 			<div className="footer-modal--wrapper">
 				<div className="song-info--wrapper">
 					<div className="artwork">
-						<img src={ this.props.SC_songInfo.artwork_url } alt="artwork" />
+						<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
 					</div>
 					<div className="song-title">
-						{ this.props.SC_songInfo.title }
+						{ this.state.SC_songInfo.title }
 					</div>
 				</div>
 				{ this.getModalContent() }
