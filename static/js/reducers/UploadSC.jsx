@@ -3,6 +3,8 @@ var SC = require('soundcloud')
 let exportVar = {}
 
 exportVar.defaultState = {
+	// choosingTime: {},
+	// isConnectedSoundcloud: true,
 	choosingTime: null,				// (object)  song info from SC (if not null => show picking time screen)
 	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
@@ -61,16 +63,9 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 				isConnectedSoundcloud: action.isConnectedSoundcloud
 			}
 		case 'HANDLE_PICK_TIME_UPLOAD':  				// (updated TO BE TESTED
-
-			// if(pickTimeUpload > 6)
-			// 	pickTimeUpload = 6
-			// if(pickTimeUpload < 1)
-			// 	pickTimeUpload = 1
-
 			return {
 				...state,
-				pickTimeUpload: action.pickTimeUpload,
-				pickTimeSliderValue: action.rangeValue
+				pickTimeUpload: action.newDiscover,
 			}
 		case 'CLOSE_PICK_TIME_WINDOW':  				// (TO BE TESTED
 			return {

@@ -88,8 +88,8 @@ var PickTimeUpload = React.createClass({
 					<div className="canvas">
 						<TimePicker 
 							initialDiscover={ 1 }
-							pickTimeUpload={this.props.pickTimeUpload} 
-							onSliderChange={this.props.handleTimePickerChange} />
+							currentDiscover={ this.props.pickTimeUpload } 
+							onSliderChange={ this.props.handleTimePickerChange } />
 					</div>
 				</div>
 				<h3 className="question-text">

@@ -19,10 +19,10 @@ var pixelRatio = () => {
 var TimePicker = React.createClass({
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
+		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
 		onSliderChange: React.PropTypes.func.isRequired, 			// callback called when slider changes
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
-		currentDiscover: React.PropTypes.number, 				// 1-6 used to check if necessary to call onChange calback
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 	},
 
@@ -54,7 +54,6 @@ var TimePicker = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		console.log('hoho')
 		$(window).unbind('resize', this.updateCanvasDim)
 	},
 
@@ -66,7 +65,6 @@ var TimePicker = React.createClass({
 	},
 
 	updateCanvasDim: function() {
-		console.log('heyhey')
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
 		// var canvas = document.getElementById(this.props.canvasId)
 		// var canvasWrapper = document.getElementsByClassName(this.props.wrapperClassName)[0]
@@ -118,10 +116,12 @@ var TimePicker = React.createClass({
 		if(newDiscover < 0)
 			newDiscover = 0
 
-		if(newDiscover !== currentDiscover)
+		if(newDiscover !== currentDiscover){
 			return newDiscover
-		else
+		}
+		else{
 			return 0
+		}
 	},
 
 	handleSliderChange: function(e) {
