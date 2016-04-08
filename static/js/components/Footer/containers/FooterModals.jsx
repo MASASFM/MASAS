@@ -7,13 +7,17 @@ FooterModal.mapStateToProps = function(state) {
 		MASASuser: state.appReducer.MASASuser,
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		SC_songInfo: state.playerReducer.SC_songInfo,
+		suggestNewTimeValue: state.footerReducer.suggestNewTime,
 	}
 }
 
 // Which action creators does it want to receive by props?
 FooterModal.mapDispatchToProps = function(dispatch) {
 	return {
-		
+		updateTimeSuggestion: (newTimeInterval) => {
+			console.log("WHATDDDDDDUP")
+			dispatch({ type: 'UPDATE_SUGGEST_NEW_TIME', newTimeInterval })
+		}
 	}
 }
 

@@ -105,6 +105,8 @@ var TimePicker = React.createClass({
 
 	handleTimePickerChange: function(rangeValue, currentDiscover) {
 		var newDiscover = Math.floor(rangeValue/100*6) + 1
+		console.log("new discover =>", newDiscover)
+		console.log("current discover =>", currentDiscover)
 
 		if(newDiscover > 6)
 			newDiscover = 6

@@ -52,9 +52,9 @@ var FooterModal = React.createClass({
 						<TimePicker
 							wrapperClassName="suggest-time-modal--wrapper"
 							canvasId="suggest-time-modal-timePicker-canvas-id"
-							initialDiscover={ 3 }
-							pickTimeUpload={ 2 }
-							onSliderChange={ () => { console.log("YAY") } } />
+							initialDiscover={ this.props.suggestNewTimeValue }
+							currentDiscover={ this.props.suggestNewTimeValue }
+							onSliderChange={ this.props.updateTimeSuggestion } />
 					</div>
 				</div>
 				)

@@ -1530,6 +1530,8 @@ input[type=range].MASAS-slider {
 .pick-time-sc-sync .pickTime--wrapper {
   height: 140px;
   width: 300px; }
+  .pick-time-sc-sync .pickTime--wrapper .timePicker-slider--wrapper {
+    bottom: 1.5rem; }
 .pick-time-sc-sync .question-text {
   font-size: 1.02rem;
   letter-spacing: 0.18rem;
