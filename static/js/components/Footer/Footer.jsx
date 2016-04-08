@@ -110,7 +110,8 @@ var Footer = React.createClass({
 								</div>
 								<div 
 									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
-									onClick={  this.toogleMenu } >
+									onClick={ this.props.songPlaying ? this.toogleMenu : () => {} } 
+									style={ !this.props.songPlaying ? { cursor: 'default', opacity: 0.7 } : {} }>
 								</div>
 							</div>
 						</div>
@@ -122,9 +123,9 @@ var Footer = React.createClass({
 							</div>
 						</div>
 						<div className="dislike-choices--wrapper">
-							<span className="copyright" onClick={ this.openModal.bind(this, 1) }>Report as Copyright Infringment</span>
+							<span className="copyright" onClick={ this.openModal.bind(this, 2) }>Report as Copyright Infringment</span>
 							<hr />
-							<span className="spam" onClick={ this.openModal.bind(this, 2) }>Report as SPAM</span>
+							<span className="spam" onClick={ this.openModal.bind(this, 1) }>Report as SPAM</span>
 							<hr />
 							<span className="suggest-time" onClick={ this.openModal.bind(this, 3) }>Suggest another time</span>
 							<hr />

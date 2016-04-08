@@ -1285,6 +1285,8 @@ input[type=range].MASAS-slider {
       line-height: 1.3rem;
       text-align: center;
       max-width: 18rem; }
+    .footer-modal--wrapper .footer-modal-content > img {
+      width: 5rem; }
     .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper {
       display: flex;
       width: 250px;
@@ -1294,6 +1296,8 @@ input[type=range].MASAS-slider {
         height: 120px; }
       .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
         bottom: 1rem; }
+  .footer-modal--wrapper .cancel-button {
+    display: none; }
 
 @media screen and (min-width: 992px) {
   .footer-modal--wrapper {
@@ -1327,7 +1331,13 @@ input[type=range].MASAS-slider {
           height: 100px; }
         .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
           bottom: 0rem;
-          height: 2.8rem; } }
+          height: 2.8rem; }
+    .footer-modal--wrapper .cancel-button {
+      display: block;
+      font-size: 0.7rem;
+      cursor: pointer; }
+    .footer-modal--wrapper .cancel-button:active {
+      font-family: Lato-Semibold, sans-serif; } }
 .footer--wrapper {
   position: relative;
   height: 4rem;
@@ -1459,7 +1469,7 @@ input[type=range].MASAS-slider {
         .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .copyright::before {
           background-image: url("/static/img/MASAS_icon_copyright.svg"); }
         .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .suggest-time::before {
-          background-image: url("/static/img/MASAS_icon_copyright.svg"); }
+          background-image: url("/static/img/MASAS_icon_changemood.svg"); }
         .footer--wrapper .slider--wrapper .hidden--wrapper .dislike-choices--wrapper .no-like::before {
           background-image: url("/static/img/MASAS_icon_dislike.svg"); }
 

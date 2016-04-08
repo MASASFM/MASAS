@@ -13,6 +13,7 @@ Header.mapStateToProps = function(state) {
 		backArrowFunc: state.appReducer.backArrowFunc,
 		notificationText: state.headerReducer.notificationText,
 		isAppFetching: state.appReducer.isAppFetching,
+		songPlaying: state.playerReducer.songPlaying,
 	}
 }
 

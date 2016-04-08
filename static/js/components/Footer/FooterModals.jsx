@@ -38,12 +38,13 @@ var FooterModal = React.createClass({
 					<h2>
 						do you really want to report this sound as spam?
 					</h2>
+					<img src="/static/img/MASAS_icon_spam.svg" alt="icon" />
 					<Button
-						isSecondaryAction={ true }
+						isSecondaryAction={ false }
 						isBigButton={ false }
 						onClick={ () => {} }
 						isDisabled={ false }>
-						Submit
+						yes
 					</Button>
 				</div>
 				)
@@ -54,12 +55,13 @@ var FooterModal = React.createClass({
 					<h2>
 						do you really want to report this sound as copyright infringement?
 					</h2>
+					<img src="/static/img/MASAS_icon_copyright.svg" alt="icon" />
 					<Button
-						isSecondaryAction={ true }
+						isSecondaryAction={ false }
 						isBigButton={ false }
 						onClick={ () => {} }
 						isDisabled={ false }>
-						Submit
+						yes
 					</Button>
 				</div>
 				)
@@ -67,6 +69,7 @@ var FooterModal = React.createClass({
 		if(isSuggestTimeModal) {
 			const initialTime = getTimeIntervalFromURL(this.state.MASAS_songInfo.timeInterval)
 
+			// var { initialDiscover, currentDiscover } = this.props.
 			return (
 				<div className="footer-modal-content">
 					<h2>
@@ -81,10 +84,10 @@ var FooterModal = React.createClass({
 							onSliderChange={ this.props.updateTimeSuggestion } />
 					</div>
 					<Button
-						isSecondaryAction={ true }
+						isSecondaryAction={ this.props.initialDiscover === this.props.currentDiscover ? false : false }
 						isBigButton={ false }
 						onClick={ () => {} }
-						isDisabled={ false }>
+						isDisabled={ this.props.initialDiscover === this.props.currentDiscover ? true : false }>
 						Submit
 					</Button>
 				</div>
@@ -107,6 +110,7 @@ var FooterModal = React.createClass({
 					</div>
 				</div>
 				{ this.getModalContent() }
+				<div className="cancel-button" onClick={ this.props.toogleIsModalOpened }>Cancel</div>
 			</div>
 		)
 	}
