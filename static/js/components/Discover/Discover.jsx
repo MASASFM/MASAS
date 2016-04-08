@@ -72,7 +72,8 @@ var Discover = React.createClass({
 						wrapperClassName="timePicker--wrapper" 
 						onSliderChange={ this.props.handleTimePickerChange } 
 						initialDiscover={ sliderInitDiscover ? sliderInitDiscover : 1 }
-						currentDiscover={ this.props.discoverNumber }/>
+						currentDiscover={ this.props.discoverNumber }
+						showHashtag={ false } />
 				</div>
 			</div>
 		)

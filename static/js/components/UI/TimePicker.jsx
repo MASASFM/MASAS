@@ -18,11 +18,12 @@ var pixelRatio = () => {
 
 var TimePicker = React.createClass({
 	propTypes: {
-		wrapperClassName: React.PropTypes.string,	// class used to size TimePicker
-		canvasId: React.PropTypes.string,			// canvas id used for drawing
-		onSliderChange: React.PropTypes.func.isRequired, 			// callback called when slider changes
-		currentDiscover: React.PropTypes.number, 			// 1-6 used to check if necessary to call onChange calback
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
+		onSliderChange: React.PropTypes.func.isRequired, 			// callback called when slider changes
+		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
+		canvasId: React.PropTypes.string,					// canvas id used for drawing
+		currentDiscover: React.PropTypes.number, 				// 1-6 used to check if necessary to call onChange calback
+		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 	},
 
 	getInitialState: function() {
@@ -34,6 +35,12 @@ var TimePicker = React.createClass({
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
 			arcRadius: 0						// (number) sun arc path radius
+		}
+	},
+
+	getDefaultProps: function() {
+		return {
+			showHashtag: true
 		}
 	},
 
@@ -105,8 +112,6 @@ var TimePicker = React.createClass({
 
 	handleTimePickerChange: function(rangeValue, currentDiscover) {
 		var newDiscover = Math.floor(rangeValue/100*6) + 1
-		console.log("new discover =>", newDiscover)
-		console.log("current discover =>", currentDiscover)
 
 		if(newDiscover > 6)
 			newDiscover = 6
@@ -143,7 +148,7 @@ var TimePicker = React.createClass({
 	},
 
 	getHashtag: function() {
-		switch(this.props.pickTimeUpload) {
+		switch(this.props.currentDiscover) {
 			case 1:
 				return	"#EarlyMorning"
 			case 2:
@@ -203,7 +208,12 @@ var TimePicker = React.createClass({
 						onChange={ this.handleSliderChange } 
 						className="MASAS-slider" />
 					<div className="timeRange-hashtag">
-						{ this.getHashtag() }
+						{ 
+							this.props.showHashtag ?
+								this.getHashtag() 
+							:
+								""
+						}
 					</div>
 				</div>
 				<img src="/static/img/time-picker-sun.png" style={sunIconStyle} />
