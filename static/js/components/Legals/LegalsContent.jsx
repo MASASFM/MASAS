@@ -22,8 +22,14 @@ var LegalsContent = React.createClass({
 	render: function() {
 		return (
 			<Body>
-				{ this.props.children }
-				<div onClick={ this.props.goToHome }>BACK</div>
+				<div className="legals-content--wrapper">
+					<div className="legals-content">
+						{ this.props.children }
+					</div>
+					<div onClick={ this.props.goToHome } className="back-icon">
+						<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
+					</div>
+				</div>
 			</Body>
 		)
 	}

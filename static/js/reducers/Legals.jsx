@@ -1,7 +1,7 @@
 let exportVar = {}
 
 exportVar.defaultState = {
-	pageNumber: 0, 				// (int) what legal page to show (0 = legals home page)
+	pageNumber: 1, 				// (int) what legal page to show (0 = legals home page)
 }
 const { defaultState } = exportVar
 
