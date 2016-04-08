@@ -5,7 +5,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/FooterModals.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
-var { TimePicker } = require("../UI/UI.jsx")
+var { TimePicker, Button } = require("../UI/UI.jsx")
 
 // var Template = (props) => {
 
@@ -30,6 +30,13 @@ var FooterModal = React.createClass({
 					<h2>
 						do you really want to report this sound as spam?
 					</h2>
+					<Button
+						isSecondaryAction={ true }
+						isBigButton={ false }
+						onClick={ () => {} }
+						isDisabled={ false }>
+						Submit
+					</Button>
 				</div>
 				)
 
@@ -39,6 +46,13 @@ var FooterModal = React.createClass({
 					<h2>
 						do you really want to report this sound as copyright infringement?
 					</h2>
+					<Button
+						isSecondaryAction={ true }
+						isBigButton={ false }
+						onClick={ () => {} }
+						isDisabled={ false }>
+						Submit
+					</Button>
 				</div>
 				)
 
@@ -56,6 +70,13 @@ var FooterModal = React.createClass({
 							currentDiscover={ this.props.suggestNewTimeValue }
 							onSliderChange={ this.props.updateTimeSuggestion } />
 					</div>
+					<Button
+						isSecondaryAction={ true }
+						isBigButton={ false }
+						onClick={ () => {} }
+						isDisabled={ false }>
+						Submit
+					</Button>
 				</div>
 				)
 		else
