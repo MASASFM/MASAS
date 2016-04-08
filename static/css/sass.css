@@ -77,6 +77,8 @@
 .MASAS-button .small-button {
   height: 1.5rem; }
 
+.body--wrapper .page-content {
+  position: relative; }
 .body--wrapper .page-title--wrapper {
   display: flex;
   flex-direction: column;
@@ -179,6 +181,8 @@
   background-position: 95%;
   background-size: 20px; }
 
+.body--wrapper .page-content {
+  position: relative; }
 .body--wrapper .page-title--wrapper {
   display: flex;
   flex-direction: column;
@@ -2577,6 +2581,52 @@ input[type=range].MASAS-slider {
             position: relative;
             height: 0.49rem;
             width: 9.2rem; } }
+.legals--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: Lato-Light, sans-serif; }
+  .legals--wrapper .star-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6rem;
+    padding: 1.5rem; }
+  .legals--wrapper .logo--wrapper img {
+    height: 6.5rem;
+    margin-top: 1.5rem; }
+  .legals--wrapper .text--wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 0;
+    line-height: 1.3rem;
+    max-width: 35rem; }
+    .legals--wrapper .text--wrapper p:nth-child(1) {
+      margin-bottom: 1rem; }
+  .legals--wrapper .links--wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 1.5rem; }
+    .legals--wrapper .links--wrapper .legal-links {
+      cursor: pointer; }
+
+@media screen and (min-width: 992px) {
+  .legals--wrapper {
+    font-size: 0.7rem; }
+    .legals--wrapper .star-icon {
+      padding: 2.5rem; }
+    .legals--wrapper .logo--wrapper img {
+      height: 5rem; }
+    .legals--wrapper .text--wrapper {
+      font-size: 0.9rem;
+      max-width: 22rem; }
+      .legals--wrapper .text--wrapper p {
+        text-align: center; } }
 html {
   font-size: 14px;
   color: white;

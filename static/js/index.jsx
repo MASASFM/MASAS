@@ -18,6 +18,7 @@ var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 var Profile = require('./components/Profile/Profile.jsx')
 var Likes = require('./components/Likes/Likes.jsx')
 var Discover = require('./components/Discover/Discover.jsx')
+var Legals = require('./components/Legals/LegalsHome.jsx')
 
 // <Route path="*" component={NoMatch}/>      // 404
 ReactDOM.render((
@@ -30,6 +31,7 @@ ReactDOM.render((
                                <Route path="upload" component={UploadSC} />
                                <Route path="profile" component={Profile} />
                                <Route path="likes" component={Likes} />
+                               <Route path="legals" component={Legals} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
 

@@ -13,13 +13,15 @@ PickTimeUpload.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 PickTimeUpload.mapDispatchToProps = function(dispatch) {
 
-	var closeWindow = () => {  }
+	var closeWindow = () => {
+		dispatch({ type:'CLOSE_PICK_TIME_WINDOW' })
+	}
 
 	return {
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType, backArrowFunc: closeWindow}),
-		closeWindow: () => dispatch({ type:'CLOSE_PICK_TIME_WINDOW' }),
+		closeWindow,
 		onTimeChanged: (time) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', time: time}),
 		handleTimePickerChange: (newDiscover) => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', newDiscover}),
 		emitNotification: (text) => {

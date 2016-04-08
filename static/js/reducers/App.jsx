@@ -63,6 +63,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				userData: {}
 			}
 		case 'UPDATE_PAGE_TITLE':
+			console.log(action.backArrowFunc)
 			// HANDLE PAGE TYPE
 			let pageType = action.pageType
 			if(typeof(pageType) !== "number")

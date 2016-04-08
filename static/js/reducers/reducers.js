@@ -10,6 +10,7 @@ import { uploadSCReducer, defaultState as uploadDefaultState } from "./UploadSC.
 import { playerReducer, defaultState as playerDefaultState } from "./Player.jsx"
 import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
 import { discoverReducer, defaultState as discoverDefaultState  } from "./Discover.jsx"
+import { legalsReducer, defaultState as legalsDefaultState  } from "./Legals.jsx"
 
 const initialState = {
 	headerReducer: headerDefaultState,
@@ -22,6 +23,7 @@ const initialState = {
 	playerReducer: playerDefaultState,
 	likesReducer: likesDefaultState,
 	discoverReducer: discoverDefaultState,
+	legalsReducer: legalsDefaultState,
 }
 const rootReducer = Redux.combineReducers({
 	headerReducer,
@@ -33,7 +35,8 @@ const rootReducer = Redux.combineReducers({
 	uploadSCReducer,
 	playerReducer,
 	likesReducer,
-	discoverReducer
+	discoverReducer,
+	legalsReducer
 })
 
 

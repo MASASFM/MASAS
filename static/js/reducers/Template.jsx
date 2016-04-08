@@ -3,7 +3,7 @@ let exportVar = {}
 exportVar.defaultState = {}
 const { defaultState } = exportVar
 
-exportVar.appReducer = function(state = defaultState, action) {
+exportVar.templateReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
 		case 'TYPE':
@@ -13,7 +13,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 			};
 
 		default:
-			return state;
+			return state
 	}
 }
 

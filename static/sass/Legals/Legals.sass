@@ -1,0 +1,65 @@
+.legals--wrapper
+	display: flex
+	flex: 1
+	flex-direction: column
+	align-items: center
+	padding: 2rem
+	font-family: Lato-Light, sans-serif
+
+	.star-icon
+		position: absolute
+		top: 0
+		right: 0
+		width: 6rem
+		padding: 1.5rem
+
+	.logo--wrapper
+
+		img
+			height: 6.5rem
+			margin-top: 1.5rem
+
+	.text--wrapper
+		display: flex
+		flex-direction: column
+		width: 100%
+		padding: 1rem 0
+		line-height: 1.3rem
+		max-width: 35rem
+
+		p:nth-child(1)
+			margin-bottom: 1rem
+
+	.links--wrapper
+		display: flex
+		flex: 1
+		flex-direction: column
+		justify-content: space-around
+		padding-left: 1.5rem
+
+		.legal-links
+			cursor: pointer
+
+@media screen and (min-width: $desktop-min-width)
+	.legals--wrapper
+		font-size: 0.7rem
+
+		.star-icon
+			padding: 2.5rem
+
+		.logo--wrapper
+
+			img
+				height: 5rem
+
+		.text--wrapper
+			font-size: 0.9rem
+			max-width: 22rem
+
+			p
+				text-align: center
+
+			p:nth-child(1)
+			
+		.links--wrapper
+			

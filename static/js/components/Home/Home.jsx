@@ -98,7 +98,7 @@ var Home = React.createClass({
 
 					<div className={ "page" + (currentPage === 2 ? "1" : "2") + "--wrapper" } id="homepage-description--artist">
 						<div className="text--wrapper">
-							<img src="/static/img/homepage/artist_deco1.png" alt="website screenshot" />
+							<img src="/static/img/homepage/artist_deco1.png" alt="stars" />
 							<h1 onClick={this.goToPage1}>i'm an artist</h1>
 							<p>
 								Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music.
@@ -118,7 +118,7 @@ var Home = React.createClass({
 							<div style={{position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0.2)', zIndex: -1 }}>
 							</div>
 
-							<img src="/static/img/homepage/musicLover_deco1.svg" alt="website screenshot" />
+							<img src="/static/img/homepage/musicLover_deco1.svg" alt="stars" />
 							<h1 onClick={this.goToPage1}>i'm a music lover</h1>
 							<p>
 								Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio.
