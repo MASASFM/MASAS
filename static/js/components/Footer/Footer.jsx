@@ -52,6 +52,8 @@ var Footer = React.createClass({
 	},
 
 	openModal: function(modalType) {
+		this.toogleMenu()
+
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
 		this.props.updateModalContent(

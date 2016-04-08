@@ -18,11 +18,11 @@ var pixelRatio = () => {
 
 var TimePicker = React.createClass({
 	propTypes: {
-		wrapperClassName: React.PropTypes.string.isRequired,	// class used to size TimePicker
-		canvasId: React.PropTypes.string.isRequired,			// canvas id used for drawing
-		onSliderChange: React.PropTypes.func, 			// callback called when slider changes
+		wrapperClassName: React.PropTypes.string,	// class used to size TimePicker
+		canvasId: React.PropTypes.string,			// canvas id used for drawing
+		onSliderChange: React.PropTypes.func.isRequired, 			// callback called when slider changes
 		currentDiscover: React.PropTypes.number, 			// 1-6 used to check if necessary to call onChange calback
-		initialDiscover: React.PropTypes.number, 			// 1-6 starting slider position	
+		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
 	},
 
 	getInitialState: function() {
@@ -42,6 +42,7 @@ var TimePicker = React.createClass({
 		$(window).bind('resize', this.updateCanvasDim)
 
 		// get canvas dim on initial render
+		this.setupPaperJS()
 		this.updateCanvasDim()
 	},
 
@@ -50,12 +51,22 @@ var TimePicker = React.createClass({
 		$(window).unbind('resize', this.updateCanvasDim)
 	},
 
+	setupPaperJS: function() {
+		var canvas = this.refs.canvas
+
+		// SETUP PAPER JS
+		paper.setup(canvas)
+	},
+
 	updateCanvasDim: function() {
 		console.log('heyhey')
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
-		var canvas = document.getElementById(this.props.canvasId)
-		var canvasWrapper = document.getElementsByClassName(this.props.wrapperClassName)[0]
-		
+		// var canvas = document.getElementById(this.props.canvasId)
+		// var canvasWrapper = document.getElementsByClassName(this.props.wrapperClassName)[0]
+		var canvas = this.refs.canvas
+		var canvasWrapper = this.refs.canvasWrapper
+
+
 			// get canvas dimensions from styles
 		var canvasHeight = window.getComputedStyle(canvasWrapper).height
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
@@ -74,10 +85,7 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function() {
-		var canvas = document.getElementById(this.props.canvasId)
-
-		// SETUP PAPER JS
-		paper.setup(canvas)
+		this.setupPaperJS()
 
 		//DRAW AND STYLE ARC CIRCLE
 			// draw arc from circle radius and center
@@ -151,8 +159,14 @@ var TimePicker = React.createClass({
 		}
 	},
 
+	componentDidUpdate: function() {
+		// var canvas = document.getElementById(this.props.canvasId)
+		var canvas = this.refs.canvas
+		if(canvas)
+			this.renderSunArcPath()
+	},
+
 	render: function() {
-		this.renderSunArcPath()
 
 		// accounting for sun icon size
 		var sunIconSize = 50	// px
@@ -163,20 +177,29 @@ var TimePicker = React.createClass({
 		var width = sunIconSize + "px"
 
 		// styling and positioning sun icon
-		var sunIconStyle = {
-			position: 'absolute',
-			top,
-			left,
-			height,
-			width,
-			zIndex: 1
-		}
+		var sunIconStyle
+		if(!isNaN(top))
+			sunIconStyle = {
+				position: 'absolute',
+				top,
+				left,
+				height,
+				width,
+				zIndex: 1
+			}
+		else
+			sunIconStyle = {}
 
 		return (
-			<div className={this.props.wrapperClassName}>
-				<canvas id={this.props.canvasId}></canvas>
+			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="canvasWrapper">
+				<canvas id={this.props.canvasId} ref="canvas"></canvas>
 				<div className="timePicker-slider--wrapper">
-					<input type="range" value={ this.state.rangePercent } onChange={ this.handleSliderChange } className="MASAS-slider" />
+					<input 
+						type="range" 
+						ref="slider"
+						value={ this.state.rangePercent } 
+						onChange={ this.handleSliderChange } 
+						className="MASAS-slider" />
 					<div className="timeRange-hashtag">
 						{ this.getHashtag() }
 					</div>

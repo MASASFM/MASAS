@@ -5,7 +5,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/FooterModals.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
+var { TimePicker } = require("../UI/UI.jsx")
 
 // var Template = (props) => {
 
@@ -48,6 +48,14 @@ var FooterModal = React.createClass({
 					<h2>
 						when would you most likely listen to this sound?
 					</h2>
+					<div className="suggest-time-modal--wrapper">
+						<TimePicker
+							wrapperClassName="suggest-time-modal--wrapper"
+							canvasId="suggest-time-modal-timePicker-canvas-id"
+							initialDiscover={ 3 }
+							pickTimeUpload={ 2 }
+							onSliderChange={ () => { console.log("YAY") } } />
+					</div>
 				</div>
 				)
 		else

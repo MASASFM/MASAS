@@ -4,9 +4,9 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUpload.jsx")
 
-var { Button, Checkbox, Link } = require("../UI/UI.jsx")
+var { Button, Checkbox, Link, TimePicker } = require("../UI/UI.jsx")
 var { getCookie } = require("../../MASAS_functions.jsx")
-var TimePicker = require("./TimePicker.jsx")
+// var TimePicker = require("./TimePicker.jsx")
 var ModalContent = require("./ModalContent.jsx")
 
 
@@ -86,7 +86,10 @@ var PickTimeUpload = React.createClass({
 				<h2 className="song-title">{this.props.track.title}</h2>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
-						<TimePicker pickTimeUpload={this.props.pickTimeUpload} onChange={this.props.handleTimePickerChange} />
+						<TimePicker 
+							initialDiscover={ 1 }
+							pickTimeUpload={this.props.pickTimeUpload} 
+							onSliderChange={this.props.handleTimePickerChange} />
 					</div>
 				</div>
 				<h3 className="question-text">

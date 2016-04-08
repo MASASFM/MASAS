@@ -410,24 +410,26 @@ input[type=range].MASAS-slider {
     left: 0; }
   0% {
     left: 100%; } }
-.timePicker--wrapper {
+.MASAS-time-picker {
   height: 100%;
+  width: 100%;
   position: relative; }
-  .timePicker--wrapper #timePicker-canvas {
+  .MASAS-time-picker #timePicker-canvas {
     height: 100%;
     width: 100%; }
-  .timePicker--wrapper .timePicker-slider--wrapper {
+  .MASAS-time-picker .timePicker-slider--wrapper {
     position: absolute;
     height: 3.5rem;
     bottom: 1.5rem;
     left: 0;
+    bottom: 0;
     width: 100%;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; }
-    .timePicker--wrapper .timePicker-slider--wrapper .timeRange-hashtag {
+    .MASAS-time-picker .timePicker-slider--wrapper .timeRange-hashtag {
       font-size: 1.3rem;
       opacity: 0.8; }
 
@@ -1271,6 +1273,13 @@ input[type=range].MASAS-slider {
       letter-spacing: 0.2rem;
       font-size: 0.7rem;
       text-transform: uppercase; }
+    .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper {
+      display: flex;
+      width: 300px;
+      height: 100px; }
+      .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
+        width: 300px;
+        height: 100px; }
 
 .footer--wrapper {
   position: relative;
