@@ -35,9 +35,11 @@ let Modal = React.createClass({
 				<div className="modal-overlay" onClick={ this.props.closeModalFunc }>
 					
 				</div>
-				<div className="modal-content">
+				<div className="modal-content--wrapper">
 					<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" className="close-icon" alt="close modal" />
-					{ this.props.children }
+					<div className="modal-content">
+						{ this.props.children }
+					</div>
 				</div>
 			</div>
 			)

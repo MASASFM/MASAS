@@ -13,7 +13,7 @@ var Header = require("../Header/Header.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var TrackItem = require("../Profile/TrackItem.jsx")
 
-var {goToURL} = require("../../MASAS_functions.jsx")
+var { goToURL } = require("../../MASAS_functions.jsx")
 var { Button, Body } = require("../UI/UI.jsx")
 
 

@@ -89,14 +89,31 @@
     margin-bottom: 1.33rem; }
 
 .MASAS-checkbox {
-  display: flex; }
+  display: flex;
+  position: relative; }
+  .MASAS-checkbox .label {
+    padding-left: 30px;
+    line-height: 1.25rem;
+    font-family: Lato-Light, sans-serif;
+    font-size: 1.1rem; }
+    .MASAS-checkbox .label .MASAS-link {
+      font-family: Lato-Semibold; }
+  .MASAS-checkbox input[type="checkbox"] {
+    opacity: 0;
+    z-index: 10;
+    position: absolute; }
+  .MASAS-checkbox input[type="checkbox"] + label {
+    opacity: 0.7;
+    margin-left: 0 4px 0 0;
+    background: url(/static/img/MASAS_checkbox_OFF.svg) no-repeat;
+    cursor: pointer; }
+  .MASAS-checkbox input[type="checkbox"]:checked + label {
+    opacity: 1;
+    background: url(/static/img/MASAS_checkbox_ON.svg) no-repeat; }
 
-.MASAS-checkbox .label {
-  align-self: center;
-  padding-left: 0.5rem; }
-.MASAS-checkbox .input {
-  align-self: center; }
-
+@media screen and (min-width: 992px) {
+  .MASAS-checkbox .label {
+    font-size: 0.85rem; } }
 .MASAS-textbox {
   width: 100%; }
 
@@ -436,7 +453,7 @@ input[type=range].MASAS-slider {
     right: 0;
     left: 0;
     height: 100%; }
-  .MASAS-modal .modal-content {
+  .MASAS-modal .modal-content--wrapper {
     width: 100%;
     height: 100%;
     background-color: black;
@@ -445,7 +462,8 @@ input[type=range].MASAS-slider {
     display: flex;
     justify-content: center;
     align-items: center; }
-    .MASAS-modal .modal-content .close-icon {
+    .MASAS-modal .modal-content--wrapper .close-icon {
+      z-index: 3;
       position: absolute;
       top: 0;
       left: 0;
@@ -453,17 +471,24 @@ input[type=range].MASAS-slider {
       cursor: pointer;
       height: 1rem;
       opacity: 0.6; }
-    .MASAS-modal .modal-content .close-icon:hover {
+    .MASAS-modal .modal-content--wrapper .close-icon:hover {
       opacity: 0.8; }
-    .MASAS-modal .modal-content .close-icon:active {
+    .MASAS-modal .modal-content--wrapper .close-icon:active {
       opacity: 1; }
+    .MASAS-modal .modal-content--wrapper .modal-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 2rem; }
 
 .MASAS-modal.closed {
   display: none;
   z-index: -4; }
 
 @media screen and (min-width: 992px) {
-  .MASAS-modal .modal-content {
+  .MASAS-modal .modal-content--wrapper {
     width: 50%;
     height: 50%;
     background-color: black;
@@ -1219,6 +1244,34 @@ input[type=range].MASAS-slider {
   .footer--wrapper input[type=range].MASAS-slider:focus::-ms-fill-upper {
     background: white; }
 
+.footer-modal--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; }
+  .footer-modal--wrapper .song-info--wrapper {
+    display: flex;
+    align-items: center; }
+    .footer-modal--wrapper .song-info--wrapper .artwork {
+      border: 1px solid white;
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1.5rem; }
+      .footer-modal--wrapper .song-info--wrapper .artwork img {
+        height: 100%; }
+    .footer-modal--wrapper .song-info--wrapper .song-title {
+      font-family: Lato-Semibold, sans-serif; }
+  .footer-modal--wrapper .footer-modal-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column; }
+    .footer-modal--wrapper .footer-modal-content h2 {
+      letter-spacing: 0.2rem;
+      font-size: 0.7rem;
+      text-transform: uppercase; }
+
 .footer--wrapper {
   position: relative;
   height: 4rem;
@@ -1510,6 +1563,40 @@ input[type=range].MASAS-slider {
     width: 9rem; }
   .pick-time-sc-sync .button--wrapper .cancel-button {
     visibility: visible; } }
+.MASAS-modal .confirm-ownership--wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center; }
+  .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.7; }
+    .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
+      width: 5rem; }
+  .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 4rem;
+    padding-bottom: 2rem; }
+    .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .checkbox-row {
+      display: flex;
+      justify-content: space-between; }
+    .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .submit--wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center; }
+
+@media screen and (min-width: 992px) {
+  .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
+    width: 3.7rem; }
+  .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
+    width: 66%; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;

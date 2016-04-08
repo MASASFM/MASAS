@@ -36,7 +36,7 @@ PickTimeUpload.mapDispatchToProps = function(dispatch) {
 		emitNotification: (text) => {
 			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 			dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: text})
-		}
+		},
 	}
 }
 

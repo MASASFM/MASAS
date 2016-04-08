@@ -92,7 +92,7 @@ var App = React.createClass({
 					<Modal 
 						isOpened={ this.props.isModalOpened }
 						closeModalFunc={ this.props.toogleModal }>
-						<h1>{ this.props.modalContent }</h1>
+						{ this.props.modalContent }
 					</Modal>
 				</NavSidebar>
 			)

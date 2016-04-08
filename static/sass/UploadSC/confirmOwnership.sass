@@ -1,0 +1,53 @@
+.MASAS-modal
+	.confirm-ownership--wrapper
+		display: flex
+		flex-direction: column
+		flex: 1
+		height: 100%
+		justify-content: space-around
+		align-items: center
+
+		.lock-icon--wrapper
+			display: flex
+			justify-content: center
+			align-items: center
+			flex: 0.7
+
+			.lock-icon
+				width: 5rem
+
+		.checkbox--wrapper
+			display: flex
+			flex: 1
+			flex-direction: column
+			justify-content: space-between
+			padding: 0 4rem
+			padding-bottom: 2rem
+
+			.checkbox-row
+				display: flex
+				justify-content: space-between
+
+				.terms-link
+
+			.submit--wrapper
+				width: 100%
+				display: flex
+				justify-content: center	
+				.submit
+
+@media screen and (min-width: $desktop-min-width)
+	.MASAS-modal
+		.confirm-ownership--wrapper
+			.lock-icon--wrapper
+				.lock-icon
+					width: 3.7rem
+
+
+			.checkbox--wrapper
+				width: 66%
+				.checkbox-row
+					.terms-link
+
+				.submit--wrapper	
+					.submit

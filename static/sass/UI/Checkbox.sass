@@ -1,10 +1,38 @@
 .MASAS-checkbox
 	display: flex
+	position: relative
 
-.MASAS-checkbox
 	.label
-		align-self: center
-		padding-left: 0.5rem	
+		// align-self: center
+		padding-left: 30px
+		line-height: 1.25rem
+		font-family: Lato-Light, sans-serif
+		font-size: 1.1rem
 
-	.input
-		align-self: center
+		.MASAS-link
+			font-family: Lato-Semibold
+
+	input[type="checkbox"]
+		opacity: 0
+		z-index: 10
+		position: absolute
+
+	input[type="checkbox"] + label
+		// display: inline-block
+		// margin: -1px 4px 0 0
+		// vertical-align: middle
+		opacity: 0.7
+		margin-left: 0 4px 0 0
+		background: url(/static/img/MASAS_checkbox_OFF.svg) no-repeat
+		cursor: pointer
+	
+	input[type="checkbox"]:checked + label
+		opacity: 1
+		background: url(/static/img/MASAS_checkbox_ON.svg) no-repeat
+
+@media screen and (min-width: $desktop-min-width)
+	.MASAS-checkbox
+
+		.label
+			font-size: 0.85rem
+			.MASAS-link

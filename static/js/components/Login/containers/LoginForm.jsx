@@ -40,36 +40,6 @@ var loginFB = () => {
 		})
 }
 
-// var login = (dispatch) => {
-// 	var username = document.getElementById('login-username-input').value
-// 	var password = document.getElementById('login-password-input').value
-
-// 	$.ajax({
-// 		type: "POST",
-// 		url: 'auth/token/',	
-// 		data: {
-// 			grant_type: "password",
-// 			username: username,
-// 			password: password,
-// 			client_id: "biHRTlM74WJ2l8NddjR6pa8uNYpWC4vFzTjyjOUO",
-// 			client_secret: "aNXFRxyW20wBDLmTlf4ntmFKYSQ7qvig3PSRLlSxBYfxpmFPnh9JJz876eLMIeZJaoYyM2F6Q7q36QveAWacmiOT14y1z0EwpqO7lQVhXBx037FNGr6mDwYNq1fGfNVl",
-// 			},
-// 			 // -u"<client_id>:<client_secret>" 
-// 		success: (data) => {
-// 			console.log(data)
-// 			dispatch({type:'LOGIN', token: data.access_token})
-// 			browserHistory.push('/')
-// 			getUserPk(data.access_token)
-
-// 			updateAuthCookie(data.access_token)
-// 		},
-// 		error: (err) => {
-// 			console.log(err)
-// 			dispatch({type:'LOGOUT'})
-// 		},
-// 	})
-// }
-
 // Which action creators does it want to receive by props?
 LoginForm.mapDispatchToProps = function(dispatch) {
 	return {

@@ -7,6 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUplo
 var { Button, Checkbox, Link } = require("../UI/UI.jsx")
 var { getCookie } = require("../../MASAS_functions.jsx")
 var TimePicker = require("./TimePicker.jsx")
+var ModalContent = require("./ModalContent.jsx")
 
 
 var PickTimeUpload = React.createClass({
@@ -49,6 +50,8 @@ var PickTimeUpload = React.createClass({
 			},
 			error: (err) => {
 				console.log(err)
+				// CLOSE MODAL 
+				this.props.toogleModal()
 
 				// EMIT NOTIFICATION
 				this.props.emitNotification(err.responseJSON.SC_ID[0])
@@ -64,7 +67,7 @@ var PickTimeUpload = React.createClass({
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
 		this.props.updateModalContent(
-			<Button className="submit" onClick={that.submitSong}>Submit</Button>
+			<ModalContent onSubmit={ that.submitSong }/>
 			)
 		this.props.toogleModal()
 	},

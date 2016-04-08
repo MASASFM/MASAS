@@ -26,7 +26,9 @@ Footer.mapDispatchToProps = function(dispatch) {
 		// playRandomSong: (songId) => playNewSong(songId, true),
 		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
 		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
-		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' })
+		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
+		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
 	}
 }
 

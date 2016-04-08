@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="15px" viewBox="0 0 16 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>MASAS_icon_checkbox_ON</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Website-Beta" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Upload-Browse" transform="translate(-916.000000, -510.000000)">
+            <g id="Group" transform="translate(0.000000, -1.000000)">
+                <g id="Uploading">
+                    <g id="Group" transform="translate(915.213448, 507.000000)">
+                        <g id="MASAS_icon_checkbox_ON" transform="translate(1.500000, 3.500000)">
+                            <rect id="Rectangle-89-Copy-6" stroke="#FFFFFF" x="0" y="0.5" width="15" height="15"></rect>
+                            <path d="M9.49616882,12.2571901 L9.49616882,12.5024785 L4,12.5024785 L4,10.5104063 L7.86727623,10.5104063 L7.86727623,1.5 L9.80091435,1.5 L9.80091435,12.2571901 L9.49616882,12.2571901 Z" id="Checkmark-Copy-2" fill="#FFFFFF" transform="translate(6.900457, 7.077802) rotate(38.000000) translate(-6.900457, -7.077802) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

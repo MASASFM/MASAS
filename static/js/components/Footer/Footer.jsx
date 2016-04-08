@@ -6,11 +6,12 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
 
 var Radium = require("radium")
 
+var FooterModal = require("./FooterModals.jsx")
+
 var Player = require("../Player/PlayerBar.jsx")
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 var Footer = React.createClass({
-//foo
 	componentWillMount: function() {
 		// init progress bar width
 		var progressBarWidth = 0
@@ -38,26 +39,6 @@ var Footer = React.createClass({
 		const timeInterval = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
 
 		this.props.playRandomSong(this.props.MASASuser, timeInterval)
-		// var csrftoken = getCookie('csrftoken')
-		// var header = "Bearer " + this.props.MASASuser
-
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: '/api/play/',	
-		// 	headers: {
-		// 		"Authorization": header,
-		// 		"X-CSRFToken": csrftoken
-		// 	},
-		// 	data: {},
-		// 	success: (data) => {
-		// 		console.log(data)
-		// 		this.props.playRandomSong(data.url)
-		// 		// this.props.closeWindow()
-		// 	},
-		// 	error: (err) => {
-		// 		console.log(err)
-		// 	},
-		// })
 	},
 
 	toogleMenu: function() {
@@ -66,9 +47,21 @@ var Footer = React.createClass({
 	},
 
 	onSliderChange: function(e) {
-		// $("#jquery_jplayer_1").jPlayer('pause')
 		$("#jquery_jplayer_1").jPlayer('play', e.target.value / 100 * this.props.SC_songInfo.duration/1000)
 		this.props.updateProgressBar(e.target.value)
+	},
+
+	openModal: function(modalType) {
+		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
+		var that = this
+		this.props.updateModalContent(
+			<FooterModal 
+				isSpamModal={ modalType === 1 ? true : false}
+				isCopyrightModal={ modalType === 2 ? true : false}
+				isSuggestTimeModal={ modalType === 3 ? true : false}
+				/>
+			)
+		this.props.toogleModal()
 	},
 
 	render: function() {
@@ -127,11 +120,11 @@ var Footer = React.createClass({
 							</div>
 						</div>
 						<div className="dislike-choices--wrapper">
-							<span className="copyright">Report as Copyright Infringment</span>
+							<span className="copyright" onClick={ this.openModal.bind(this, 1) }>Report as Copyright Infringment</span>
 							<hr />
-							<span className="spam">Report as SPAM</span>
+							<span className="spam" onClick={ this.openModal.bind(this, 2) }>Report as SPAM</span>
 							<hr />
-							<span className="suggest-time">Suggest another time</span>
+							<span className="suggest-time" onClick={ this.openModal.bind(this, 3) }>Suggest another time</span>
 							<hr />
 							<span className="no-like">I don't like it</span>
 						</div>

@@ -10,12 +10,31 @@ exportVar.defaultState = {
 	SCusername: null,	
 	pickTimeUpload: 2, 				// (int) 1 to 6, time interval
 	pickTimeSliderValue: 10,			// (int) 0 - 100 __ [ slider controls pickTimeUpload ]
+	checkbox1_checked: false,			// (bool) checkbox values for song ownership conf checkboxes
+	checkbox2_checked: false,
+	checkbox3_checked: false,
+
 }
 const { defaultState } = exportVar
 
 exportVar.uploadSCReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'TOOGLE_CHECKBOX_1':
+			return {
+				...state,
+				checkbox1_checked: !state.checkbox1_checked
+			}
+		case 'TOOGLE_CHECKBOX_2':
+			return {
+				...state,
+				checkbox2_checked: !state.checkbox2_checked
+			}
+		case 'TOOGLE_CHECKBOX_3':
+			return {
+				...state,
+				checkbox3_checked: !state.checkbox3_checked
+			}
 		case 'SYNC_SONG':
 			return {
 				...state,

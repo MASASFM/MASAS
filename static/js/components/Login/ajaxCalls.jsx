@@ -5,6 +5,35 @@ var { updateAuthCookie, logInWithToken } = require("../../MASAS_functions.jsx")
 
 var ajaxCalls = {}
 
+
+// (obj) userDict => userDict.userToken and userDict.userPk 
+ajaxCalls.updateProfilePicture = (userDict) => {
+	const userToken = userDict.userToken
+	const userPk = userDict.userPk
+
+	var header = "Bearer " + userToken
+	console.log("BEARER =>", header)
+
+	if(FB)
+		$.ajax({
+			type: 'PATCH',
+			url: '/api/users/' + userPk + "/",
+			headers: {
+				"Authorization": header,
+			},
+			data: {
+				avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture",
+			},
+			success: (resp) => {
+				console.log(resp)
+			},
+			error: (err) => {
+				console.warn(err)
+			}
+		})
+}
+
+
 ajaxCalls.convertToken = (token) => {
 	$.ajax({
 		type: "POST",
@@ -21,7 +50,7 @@ ajaxCalls.convertToken = (token) => {
 
 			logInWithToken(dispatch, data.access_token)
 			browserHistory.push('/')
-			ajaxCalls.getUserPk(data.access_token)	
+			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture)	
 			updateAuthCookie(data.access_token)
 		},
 		error: (err) => { 
@@ -31,7 +60,7 @@ ajaxCalls.convertToken = (token) => {
 	})
 }
 
-ajaxCalls.getUserPk = (userToken) => {
+ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
@@ -44,6 +73,9 @@ ajaxCalls.getUserPk = (userToken) => {
 			var pk = data.userPk
 
 			dispatch({type: 'UPDATE_USER_PK', pk: pk})
+
+			if(callbackFunc)
+				callbackFunc({ userToken, userPk: data.userPk})
 		},
 		error: (err) => {
 			console.log(err)
