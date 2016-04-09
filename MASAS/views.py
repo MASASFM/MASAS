@@ -142,11 +142,7 @@ class PlayView(APIView):
         if unplayed:
             song = unplayed
         else:
-            query_vars = (request.user.pk,) 
-            if time_interval_id:
-                query_vars = (request.user.pk, time_interval_id)
-
-            query = '''
+            query = ['''
                 select
                     s.*
                     , count(p.id) as play_count
@@ -155,51 +151,26 @@ class PlayView(APIView):
                 left join
                     "MASAS_play" p on s.id = p.song_id
                 where
-                    p.user_id = '{0}'
-            ''' .format(request.user.pk)+ (
-            '''
-                and
-                    timeInterval_id = '{0}'
-            '''.format(time_interval_id) if time_interval_id else ''
-            ) + '''
+                     p.user_id = %d
+            ''']
+            query_vars = [request.user.pk]
+
+            if time_interval_id:
+                query.append('''
+                and s."timeInterval_id" = %d
+                ''')
+                query_vars.append(time_interval_id)
+
+            query.append('''
                 group by
                     s.id
                 order by
                     play_count asc
                     , random()
                 limit 1
-            '''
+            ''')
 
-            song = Song.objects.raw(query)[0]
-            # song = Song.objects.raw('''
-            #     select
-            #         s.*
-            #         , count(p.id) as play_count
-            #     from
-            #         "MASAS_song" s
-            #     left join
-            #         "MASAS_play" p on s.id = p.song_id
-            #     where
-            #         p.user_id = %s
-            # ''' + (
-            # '''
-            #     and
-            #         timeInterval_id = %d
-            # ''' if time_interval_id else ''
-            # ) + '''
-            #     group by
-            #         s.id
-            #     order by
-            #         play_count asc
-            #         , random()
-            #     limit 1
-            # ''',
-            # [
-            #     request.user.pk,
-            # ] + (
-            #     [time_interval_id] if time_interval_id else []
-            # )
-            # )[0]
+            song = Song.objects.raw('\n'.join(query), query_vars)[0]
 
         Play.objects.create(
             user=request.user,
