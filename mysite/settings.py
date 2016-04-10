@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import re
 from os.path import abspath, basename, dirname, join, normpath
 from socket import gethostname
 
@@ -309,3 +310,8 @@ if os.path.exists(RAVEN_FILE):
         RAVEN_CONFIG = {
             'dsn': f.read().strip()
         }
+        RAVEN_JS_DSN = re.sub(
+            r'://(.*):[^@]*@',
+            '://\\1@',
+            RAVEN_CONFIG['dsn'],
+        )

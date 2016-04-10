@@ -232,6 +232,8 @@ class SPAView(generic.TemplateView):
         c = super(SPAView, self).get_context_data(*args, **kwargs)
 
         c['settings'] = {
+            'ALLOWED_HOSTS': settings.ALLOWED_HOSTS,
+            'RAVEN_JS_DSN': getattr(settings, 'RAVEN_JS_DSN', None),
             'SOUNDCLOUD': settings.SOUNDCLOUD,
             'FB': {
                 'KEY': settings.SOCIAL_AUTH_FACEBOOK_KEY,

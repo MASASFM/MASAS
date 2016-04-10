@@ -16,7 +16,30 @@
     <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}" />
     <link rel="stylesheet" href="{% static 'css/sass.css' %}" />
 
+    <script src="//cdn.ravenjs.com/1.1.19/jquery,native/raven.min.js"></script>
+
     <script type="text/javascript">
+{% if settings.RAVEN_JS_DSN %}
+Raven.config('{{ settings.RAVEN_JS_DSN }}', {
+    // pass along the version of your application
+    // release: '1.0.0',
+
+    // we highly recommend restricting exceptions to a domain in order to filter out clutter
+        whitelistUrls: [
+            {% for host in settings.ALLOWED_HOSTS %}
+            '{{ host }}'{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]
+}).install();
+
+{%  if request.user.is_authenticated %}
+Raven.setUserContext({
+    email: '{{ request.user.email }}',
+    id: '{{ request.user.pk }}',
+});
+{%  endif %}
+{% endif %}
+
 document.MASAS = {
     SC: {
         client_id: '{{ settings.SOUNDCLOUD.CLIENT_ID }}',
