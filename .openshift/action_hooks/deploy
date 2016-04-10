@@ -7,7 +7,7 @@ set -xe
 
 source ${OPENSHIFT_HOMEDIR}app-root/runtime/dependencies/python/virtenv/bin/activate
 
-pip install -r ${OPENSHIFT_REPO_DIR}requirements.txt
+pip install -Ur ${OPENSHIFT_REPO_DIR}requirements.txt
 
 python ${OPENSHIFT_REPO_DIR}manage.py raven test
 
