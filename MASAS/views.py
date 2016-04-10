@@ -157,13 +157,13 @@ class PlayView(APIView):
                 where
                     s.deleted = NULL
                 and
-                    p.user_id = %d
+                    p.user_id = %s
             ''']
             query_vars = [request.user.pk]
 
             if time_interval_id:
                 query.append('''
-                and s."timeInterval_id" = %d
+                and s."timeInterval_id" = %s
                 ''')
                 query_vars.append(time_interval_id)
 
