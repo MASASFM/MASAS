@@ -13,6 +13,7 @@ var SoundcloudCallback = require('./SoundcloudCallback.jsx')
 
 var App = require('./components/App/App.jsx')
 var Login = require('./components/Login/LoginForm.jsx')
+var InvitationPending = require('./components/Login/InvitationPending.jsx')
 var SignUp = require('./components/Login/SignUp.jsx')
 var UploadSC = require('./components/UploadSC/UploadSC.jsx')
 var Profile = require('./components/Profile/Profile.jsx')
@@ -32,6 +33,7 @@ ReactDOM.render((
                                <Route path="profile" component={Profile} />
                                <Route path="likes" component={Likes} />
                                <Route path="legals" component={Legals} />
+                               <Route path="pending" component={InvitationPending} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
 

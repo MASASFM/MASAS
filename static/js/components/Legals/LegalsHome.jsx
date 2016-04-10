@@ -6,6 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsHome.j
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Body } = require("../UI/UI.jsx")
+var LegalsContent = require("./LegalsContent.jsx")
 var EnforcementGuidelines = require("./EnforcementGuidelines.jsx")
 var Guidelines = require("./Guidelines.jsx")
 var LearnCopyright = require("./LearnCopyright.jsx")
@@ -29,7 +30,7 @@ var LegalsHome = React.createClass({
 	render: function() {
 		switch(this.props.pageNumber) {
 			case 1:
-				return <Terms />
+				return <LegalsContent><Terms /></LegalsContent>
 			case 2:
 				return <Guidelines />
 			case 3:

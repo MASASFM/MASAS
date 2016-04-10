@@ -1,7 +1,11 @@
+var React = require('react')
+
 const { dispatch } = require('./reducers/reducers.js')
 
 var { browserHistory } = require('react-router')
 var Cookie = require('js-cookie')
+
+var TermsAndCond = require('./components/Login/TermsAndCond.jsx')
 
 var MASAS_functions = {}
 
@@ -45,7 +49,7 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
-		url: 'api/check-user/',	
+		url: '/api/check-user/',	
 		headers: {
 			"Authorization": header,
 		},
@@ -57,12 +61,12 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 				// let picURL = "http://graph.facebook.com/me/picture?access_token=" + FB_token
 				// FB.api(picURL, function(r) {
 				// 	console.log(r)
-					dispatch({type: 'UPDATE_USER_PK', pk: pk})
-					dispatch({type: 'LOGIN', token: userToken, userData: data})
-					dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
-					dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !"})
-				// })
-				
+				// 	dispatch({type: 'UPDATE_USER_PK', pk: pk})
+				// 	dispatch({type: 'LOGIN', token: userToken, userData: data})
+				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
+				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !"})
+				// // })
+				MASAS_functions.updateUserInfo(pk, userToken)
 			}
 
 			// render app
@@ -79,8 +83,32 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 	})
 }
 
+MASAS_functions.updateUserInfo = (userPk, userToken) => {
+	$.ajax({
+		type: 'GET',
+		url: '/api/users/' + userPk + '/',
+		success: (userData) => {
+			// check that terms and conditions were accepted
+			const hasAcceptedTerms = userData.usersteps.filter( (userSteps) => userStep.step === 1).length
+
+			if(!hasAcceptedTerms) {
+				dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
+				dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
+				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
+				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+			} else {
+				dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: <TermsAndCond userPk={ userPk } userToken={ userToken } userData={ userData } /> })
+				dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+			}
+		},
+		error: (e) => {
+			console.warn(err)
+		}
+	})
+}
+
 // using jQuery
-MASAS_functions.getCookie = function(name) {
+MASAS_functions.getCookie = (name) => {
 	var cookieValue = null
 	if (document.cookie && document.cookie != '') {
 		var cookies = document.cookie.split(';')
@@ -97,7 +125,7 @@ MASAS_functions.getCookie = function(name) {
 }
 
 // pause player
-MASAS_functions.pausePlayer = function() {
+MASAS_functions.pausePlayer = () => {
 	console.log('pausing')
 	// pause player
 	$("#jquery_jplayer_1").jPlayer('pause')
@@ -107,7 +135,7 @@ MASAS_functions.pausePlayer = function() {
 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 }
 
-MASAS_functions.playPreviousSong = function(discoverHistory) {
+MASAS_functions.playPreviousSong = (discoverHistory) => {
 	// POP SONG FROM HISTORY
 	dispatch({ type: 'POP_SONG_FROM_HISTORY' })
 
@@ -118,7 +146,7 @@ MASAS_functions.playPreviousSong = function(discoverHistory) {
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = function(MASAS_songId, addToHistory = true) {
+MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
 	console.log('PLAY NEW SONG')
 	// PLAY NEW SONG
 	dispatch({ type: 'PLAY_NEW_SONG', song: MASAS_songId})
@@ -153,7 +181,7 @@ MASAS_functions.playNewSong = function(MASAS_songId, addToHistory = true) {
 }
 
 // gets song based on timeInteral and play song
-MASAS_functions.playRandomSong = function(MASASuser, timeInterval = 0) {
+MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 	console.log(MASASuser)
 	var URL = "/api/play/"
 	if(timeInterval)
@@ -185,7 +213,7 @@ MASAS_functions.playRandomSong = function(MASASuser, timeInterval = 0) {
 
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
-MASAS_functions.toggleSongLike = function(userToken, songId) {
+MASAS_functions.toggleSongLike = (userToken, songId) => {
 	// NO ACTION IF NO SONG IS PROVIDED
 	if(!songId)
 		return 
@@ -298,7 +326,7 @@ MASAS_functions.toggleSongLike = function(userToken, songId) {
 }
 
 // returns 1-6 for timeInterval based on songId
-MASAS_functions.getTimeIntervalFromURL = function(timeIntervalURL) {
+MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 	console.log(timeIntervalURL)
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }

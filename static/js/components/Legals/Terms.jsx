@@ -1,7 +1,7 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
-var LegalsContent = require('./LegalsContent.jsx')
+// var LegalsContent = require('./LegalsContent.jsx')
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -20,7 +20,7 @@ var Terms = React.createClass({
 
 	render: function() {
 		return (
-			<LegalsContent>
+		<div>
 				<h1>Terms of Uses</h1>
 
 				<img className="decoration" src="/static/img/MASAS_icon_legals_deco2.svg" alt="stars" />
@@ -118,40 +118,41 @@ Guidelines, Copyright Laws, or any applicable laws and/or regulations.
 
 					<p>
 						In addition, if you register to use the Equal Platform, and subject to your strict compliance with these Terms of Use and our Community Guidelines, MASAS grants you a limited, personal, non-exclusive, revocable, non-assignable and nontransferable right and license to:
-						<ol>
+					</p>
+					<ol>
 						<li> submit, upload, post, or sync (from Third-Party) Content to the Platform strictly as permitted in accordance with these Terms of Use and the Terms of Use of Third-Party Websites from which content has been synced onto MASAS and any other applicable terms posted on the Website from time to time;</li>
 						<li> participate in the community areas and communicate with other members of the MASAS community strictly in accordance with these Terms of Use and our Community Guidelines; and</li>
 						<li> use our Apps and other Services provided as part of the Equal Platform strictly as permitted in accordance with these Terms of Use and any other terms applicable to those Apps or Services from time to time.</li>
-						</ol>
-					</p>
+					</ol>
+					
 
 					<p>
 						The above licenses are conditional upon your strict compliance with these Terms of Use and our Community Guidelines, including, without limitation, the following:
-						<ol>
-							<li>You must not copy, rip or capture, or attempt to copy, rip or capture, any audio Content from the Equal Platform or any other Platforms from which music is being synced from, other than by means of download in circumstances where the relevant Uploader has elected to permit downloads or sale of the relevant item of Content.</li>
-							<li>You must not adapt, copy, republish, make available or otherwise communicate to the public, display, perform, transfer, share, distribute or otherwise use or exploit any Content on or from the Equal Platform, except (a) where such Content is Your Content, or (b) as permitted under these Terms of Use, and within the parameters set by the Uploader.</li>
-							<li>You must not use any Content (other than Your Content) in any way that is designed to create a separate content service or that replicates any part of the Equal Platform offering.</li>
-							<li>You must not employ scraping or similar techniques to aggregate, repurpose, republish or otherwise make use of any Content.</li>
-							<li>You must not employ any techniques or make use of any services, automated or otherwise, designed to misrepresent the popularity of Your Content on the Equal Platform, or to misrepresent your activity on the Equal Platform, including without limitation by the use of bots, botnets, scripts, apps, plugins, extensions or other automated means to register accounts, log in, add followers to your account, play Content, follow or unfollow other users, send messages, post comments, like or dislike a musical work or otherwise to act on your behalf, particularly where such activity occurs in a multiple or repetitive fashion. You must not offer or promote the availability of any such techniques or services to any other users of the Equal Platform.</li>
-							<li>You must not alter or remove, attempt to alter or remove, any trademark, copyright or other proprietary or legal notices contained in, or appearing on, the Equal Platform or any Content appearing on the Equal Platform (other than Your Content).</li>
-							<li>You must not, and must not permit any third party to, copy or adapt the object code of the Website or any of the Apps or Services, or reverse engineer, reverse assemble, decompile, modify or attempt to discover any source or object code of any part of the Platform, or circumvent or attempt to circumvent or copy any copy protection mechanism or access any rights management information pertaining to Content other than Your Content.</li>
-							<li>
-								You must not use the Equal Platform to upload, post, store, transmit, display, copy, distribute, promote, make available or otherwise communicate to the public:
-								<ul>
-									<li>any Content that is offensive, abusive, defamatory, obscene, racist, sexually explicit, ethnically or culturally offensive, indecent, that promotes violence, terrorism, or illegal acts, incites hatred on grounds of race, gender, religion or sexual orientation, or is otherwise objectionable in MASAS reasonable discretion; any advertisements or commercials of any goods or services may they be not-for-profit or for profit; any information, Content or other material that violates, plagiarizes,that misappropriate or infringes the rights of third parties including, without limitation, copyright, trademark rights, rights of privacy or publicity, confidential information or any other right; or any Content that violates, breaches or is contrary to any law, rule, regulation, court order or is otherwise illegal or unlawful in MASAS’s reasonable opinion; any material of any kind that contains any virus, Trojan horse, spyware, adware, malware, bot, time bomb, worm, or other harmful or malicious component, which or might overburden, impair or disrupt the Equal Platform or servers or networks forming part of, or connected to, the platform, or which does or might restrict or inhibit any other user's use and enjoyment of the Equal Platform; or</li>
-									<li>any unsolicited or unauthorized advertising, promotional messages, spam or any other form of solicitation.</li>
-								</ul>
-							</li>
-							<li>You must not commit or engage in, or encourage, induce, solicit or promote, any conduct that would constitute a criminal offence, give rise to civil liability or otherwise violate any law or regulation.</li>
-							<li>You must not rent, sell or lease access to the Equal Platform, or any Content on the equal Platform, although this shall not prevent you from including links from Your Content to any legitimate online download store from where any item of Your Content may be purchased.</li>
-							<li>You must not deliberately impersonate any person or entity or otherwise misrepresent your affiliation with a person or entity, for example, by registering an account in the name of another person or company, or sending messages or making comments using the name of another person, may they be moral or physical.</li>
-							<li>You must not stalk, exploit, threaten, abuse or otherwise harass another user, or any MASAS employee.</li>
-							<li>You must not use or attempt to use another person's account, password, or other information, unless you have express permission from that other person.</li>
-							<li>You must not sell or transfer, or offer to sell or transfer, any MASAS account to any third party without the prior written approval of MASAS.</li>
-							<li>You must not collect or attempt to collect personal data, or any other kind of information about other users, including without limitation, through spidering or any form of scraping.</li>
-							<li>You must not violate, circumvent or attempt to violate or circumvent any data security measures employed by MASAS or any Uploader; access or attempt to access data or materials which are not intended for your use; log into, or attempt to log into, a server or account which you are not authorized to access; attempt to scan or test the vulnerability of MASAS servers, system or network or attempt to breach MASAS data security or authentication procedures; attempt to interfere with the Website or the Services by any means including, but not limited to, hacking MASAS servers or systems, submitting a virus, overloading, mail-bombing or crashing. Without limitation to any other rights or remedies of MASAS under these Terms of Use, MASAS reserves the right to investigate any situation that appears to involve any of the above, and may report such matters to, and co-operate with, appropriate law enforcement authorities in prosecuting any users who have participated in any such violations.</li>
-						</ol>
 					</p>
+					<ol>
+						<li>You must not copy, rip or capture, or attempt to copy, rip or capture, any audio Content from the Equal Platform or any other Platforms from which music is being synced from, other than by means of download in circumstances where the relevant Uploader has elected to permit downloads or sale of the relevant item of Content.</li>
+						<li>You must not adapt, copy, republish, make available or otherwise communicate to the public, display, perform, transfer, share, distribute or otherwise use or exploit any Content on or from the Equal Platform, except (a) where such Content is Your Content, or (b) as permitted under these Terms of Use, and within the parameters set by the Uploader.</li>
+						<li>You must not use any Content (other than Your Content) in any way that is designed to create a separate content service or that replicates any part of the Equal Platform offering.</li>
+						<li>You must not employ scraping or similar techniques to aggregate, repurpose, republish or otherwise make use of any Content.</li>
+						<li>You must not employ any techniques or make use of any services, automated or otherwise, designed to misrepresent the popularity of Your Content on the Equal Platform, or to misrepresent your activity on the Equal Platform, including without limitation by the use of bots, botnets, scripts, apps, plugins, extensions or other automated means to register accounts, log in, add followers to your account, play Content, follow or unfollow other users, send messages, post comments, like or dislike a musical work or otherwise to act on your behalf, particularly where such activity occurs in a multiple or repetitive fashion. You must not offer or promote the availability of any such techniques or services to any other users of the Equal Platform.</li>
+						<li>You must not alter or remove, attempt to alter or remove, any trademark, copyright or other proprietary or legal notices contained in, or appearing on, the Equal Platform or any Content appearing on the Equal Platform (other than Your Content).</li>
+						<li>You must not, and must not permit any third party to, copy or adapt the object code of the Website or any of the Apps or Services, or reverse engineer, reverse assemble, decompile, modify or attempt to discover any source or object code of any part of the Platform, or circumvent or attempt to circumvent or copy any copy protection mechanism or access any rights management information pertaining to Content other than Your Content.</li>
+						<li>
+							You must not use the Equal Platform to upload, post, store, transmit, display, copy, distribute, promote, make available or otherwise communicate to the public:
+							<ul>
+								<li>any Content that is offensive, abusive, defamatory, obscene, racist, sexually explicit, ethnically or culturally offensive, indecent, that promotes violence, terrorism, or illegal acts, incites hatred on grounds of race, gender, religion or sexual orientation, or is otherwise objectionable in MASAS reasonable discretion; any advertisements or commercials of any goods or services may they be not-for-profit or for profit; any information, Content or other material that violates, plagiarizes,that misappropriate or infringes the rights of third parties including, without limitation, copyright, trademark rights, rights of privacy or publicity, confidential information or any other right; or any Content that violates, breaches or is contrary to any law, rule, regulation, court order or is otherwise illegal or unlawful in MASAS’s reasonable opinion; any material of any kind that contains any virus, Trojan horse, spyware, adware, malware, bot, time bomb, worm, or other harmful or malicious component, which or might overburden, impair or disrupt the Equal Platform or servers or networks forming part of, or connected to, the platform, or which does or might restrict or inhibit any other user's use and enjoyment of the Equal Platform; or</li>
+								<li>any unsolicited or unauthorized advertising, promotional messages, spam or any other form of solicitation.</li>
+							</ul>
+						</li>
+						<li>You must not commit or engage in, or encourage, induce, solicit or promote, any conduct that would constitute a criminal offence, give rise to civil liability or otherwise violate any law or regulation.</li>
+						<li>You must not rent, sell or lease access to the Equal Platform, or any Content on the equal Platform, although this shall not prevent you from including links from Your Content to any legitimate online download store from where any item of Your Content may be purchased.</li>
+						<li>You must not deliberately impersonate any person or entity or otherwise misrepresent your affiliation with a person or entity, for example, by registering an account in the name of another person or company, or sending messages or making comments using the name of another person, may they be moral or physical.</li>
+						<li>You must not stalk, exploit, threaten, abuse or otherwise harass another user, or any MASAS employee.</li>
+						<li>You must not use or attempt to use another person's account, password, or other information, unless you have express permission from that other person.</li>
+						<li>You must not sell or transfer, or offer to sell or transfer, any MASAS account to any third party without the prior written approval of MASAS.</li>
+						<li>You must not collect or attempt to collect personal data, or any other kind of information about other users, including without limitation, through spidering or any form of scraping.</li>
+						<li>You must not violate, circumvent or attempt to violate or circumvent any data security measures employed by MASAS or any Uploader; access or attempt to access data or materials which are not intended for your use; log into, or attempt to log into, a server or account which you are not authorized to access; attempt to scan or test the vulnerability of MASAS servers, system or network or attempt to breach MASAS data security or authentication procedures; attempt to interfere with the Website or the Services by any means including, but not limited to, hacking MASAS servers or systems, submitting a virus, overloading, mail-bombing or crashing. Without limitation to any other rights or remedies of MASAS under these Terms of Use, MASAS reserves the right to investigate any situation that appears to involve any of the above, and may report such matters to, and co-operate with, appropriate law enforcement authorities in prosecuting any users who have participated in any such violations.</li>
+					</ol>
 					<p>
 						You agree to comply with the above conditions, and acknowledge and agree that MASAS has the
 						right, in its sole discretion, to terminate your account or take such other action as we see fit
@@ -160,7 +161,7 @@ Guidelines, Copyright Laws, or any applicable laws and/or regulations.
 					</p>
 
 
-			</LegalsContent>         
+			</div>     
 
 		)     
 	}

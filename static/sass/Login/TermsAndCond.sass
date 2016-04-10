@@ -1,0 +1,21 @@
+.term-and-cond-modal-content
+	display: flex
+	flex-direction: column
+	flex: 1
+	overflow: auto
+	height: 95%
+	padding-top: 2.2rem	// account for closing modal cross
+	justify-content: space-around
+	align-items: center
+
+	// overriding class (LegalsContent.sass)
+	// removing padding because we already have modal padding
+	// and account space for button
+	.legals-content--wrapper
+		padding: 0
+		max-height: 65%
+		border-bottom: 1px solid white
+
+	.accept-text
+		text-align: center
+		padding: 0 2rem

@@ -896,6 +896,39 @@ input[type=range].MASAS-slider {
     flex-basis: 50%;
     flex-grow: 1;
     justify-content: space-around; } }
+.term-and-cond-modal-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+  height: 95%;
+  padding-top: 2.2rem;
+  justify-content: space-around;
+  align-items: center; }
+  .term-and-cond-modal-content .legals-content--wrapper {
+    padding: 0;
+    max-height: 65%;
+    border-bottom: 1px solid white; }
+  .term-and-cond-modal-content .accept-text {
+    text-align: center;
+    padding: 0 2rem; }
+
+.invitation-pending--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem 1rem; }
+  .invitation-pending--wrapper img {
+    width: 8rem; }
+  .invitation-pending--wrapper h2 {
+    font-family: Anders, sans-serif;
+    font-size: 1.3rem; }
+  .invitation-pending--wrapper p {
+    text-align: justify;
+    padding: 0 2.5rem; }
+
 .sign-up-form--wrapper1 {
   display: flex;
   flex: 1;

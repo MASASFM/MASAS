@@ -52,7 +52,8 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				MASASuser: action.token,
-				userData: { ...state.userData, ...action.userData }
+				userData: { ...state.userData, ...action.userData },
+				MASASuserPk: action.pk
 			}
 		case 'LOGOUT':
 		console.log('LOGOUT!!')

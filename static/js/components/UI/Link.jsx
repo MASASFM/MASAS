@@ -1,7 +1,7 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
-var {goToURL} = require("../../MASAS_functions.jsx")
+var { browserHistory } = require('react-router')
 
 var Link = React.createClass({
 	propTypes: {
@@ -13,10 +13,14 @@ var Link = React.createClass({
 	componentWillMount: function() {
 	},
 
+	goToURL: function(path) {
+		browserHistory.push(path)
+	},
+
 	render: function() {
 		return (
 			<span onClick={this.props.onClick}>
-				<span onClick={!this.props.disabled ? goToURL.bind(null, this.props.to) : null} 
+				<span onClick={!this.props.disabled ? this.goToURL.bind(null, this.props.to) : null} 
 					className={"MASAS-link " + (this.props.className ? this.props.className : "") + (this.props.disabled ? " disabled" : "")}>
 					{this.props.children}
 				</span>
