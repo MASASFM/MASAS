@@ -27,3 +27,4 @@ django-filter
 django-crispy-forms
 raven
 django-sql-explorer
+mock

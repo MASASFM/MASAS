@@ -175,24 +175,33 @@ class PlayView(APIView):
                     , random()
                 limit 1
             ''')
+            sql = '\n'.join(query)
 
-            song = Song.objects.raw('\n'.join(query), query_vars)[0]
+            song = Song.objects.raw(sql, query_vars)[0]
 
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+
         try:
             s.get('/tracks/%s' % song.SC_ID)
-        except requests.HTTPError:
-            song.deleted = datetime.datetime.now()
-            song.save()
-            return None
+        except requests.HTTPError as e:
+            # Let's not blacklist the song if it's not a 404, because there
+            # might be just a network issue between the server and soundcloud's
+            # API and we don't want to start a loop where all songs become
+            # deleted in this case.
+            if e.response.status_code == 404:
+                song.deleted = datetime.datetime.now()
+                song.save()
+                return None
 
         return song
 
     def get_song(self, request):
         song = self._get_song(request)
 
-        while song is None:
+        tries = 10
+        while song is None and tries > 0:
             song = self._get_song(request)
+            tries -= 1
 
         return song
 
