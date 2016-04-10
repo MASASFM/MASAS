@@ -40,6 +40,7 @@ class Song(models.Model):
     trackDuration = models.IntegerField(help_text='in ms')
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
+    deleted = models.DateTimeField(null=True, blank=True, default=None)
 
     objects = SongManager()
 

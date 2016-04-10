@@ -1,3 +1,7 @@
+import datetime
+import soundcloud
+import requests
+
 from django.conf import settings
 from django.db.models import Prefetch
 from django.shortcuts import render
@@ -108,11 +112,11 @@ class LinkViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 
 
 class SongViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
-    queryset = Song.objects.all()
+    queryset = Song.objects.filter(deleted=None)
     serializer_class = SongSerializer
 
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('trackArtist',)
+    filter_fields = ('trackArtist', 'deleted')
 
 
 class TimeIntervalViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
@@ -123,12 +127,12 @@ class TimeIntervalViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 class PlayView(APIView):
     serializer_class = SongSerializer
 
-    def post(self, request, format=None):
+    def _get_song(self, request):
         time_interval_id = None
         if 'time_interval_id' in request.GET:
             time_interval_id = int(request.GET['time_interval_id'])
 
-        songs = Song.objects.all()
+        songs = Song.objects.filter(deleted=None)
 
         if time_interval_id:
             songs = songs.filter(
@@ -151,7 +155,9 @@ class PlayView(APIView):
                 left join
                     "MASAS_play" p on s.id = p.song_id
                 where
-                     p.user_id = %d
+                    s.deleted = NULL
+                and
+                    p.user_id = %d
             ''']
             query_vars = [request.user.pk]
 
@@ -171,6 +177,27 @@ class PlayView(APIView):
             ''')
 
             song = Song.objects.raw('\n'.join(query), query_vars)[0]
+
+        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+        try:
+            s.get('/tracks/%s' % song.SC_ID)
+        except requests.HTTPError:
+            song.deleted = datetime.datetime.now()
+            song.save()
+            return None
+
+        return song
+
+    def get_song(self, request):
+        song = self._get_song(request)
+
+        while song is None:
+            song = self._get_song(request)
+
+        return song
+
+    def post(self, request, format=None):
+        song = self.get_song(request)
 
         Play.objects.create(
             user=request.user,
