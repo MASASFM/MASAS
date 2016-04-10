@@ -208,6 +208,27 @@ class PlayView(APIView):
     def post(self, request, format=None):
         song = self.get_song(request)
 
+        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+        try:
+            s.get('/tracks/%s' % song.SC_ID)
+        except requests.HTTPError:
+            song.deleted = datetime.datetime.now()
+            song.save()
+            return None
+
+        return song
+
+    def get_song(self, request):
+        song = self._get_song(request)
+
+        while song is None:
+            song = self._get_song(request)
+
+        return song
+
+    def post(self, request, format=None):
+        song = self.get_song(request)
+
         Play.objects.create(
             user=request.user,
             song=song,
