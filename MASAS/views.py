@@ -155,7 +155,7 @@ class PlayView(APIView):
                 left join
                     "MASAS_play" p on s.id = p.song_id
                 where
-                    s.deleted = NULL
+                    s.deleted is NULL
                 and
                     p.user_id = %s
             ''']
