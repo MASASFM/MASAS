@@ -21,11 +21,11 @@ var HeaderDropdown = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.getUsername(this.props.dispatch, this.props.MASASuser)
+		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		this.props.getUsername(this.props.dispatch, this.props.MASASuser)
+		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	logout: function() {
@@ -39,7 +39,7 @@ var HeaderDropdown = React.createClass({
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">
 						<img src={"/static/img/menupicture.jpg"} alt="profile picture" className="profile-picture"/>
-						<span className="username" id="username-header">{this.props.userData.user}</span>
+						<span className="username" id="username-header">{this.props.userData.username}</span>
 					</div>
 					<div className="dropdown-content">
 						<MenuLink src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>
