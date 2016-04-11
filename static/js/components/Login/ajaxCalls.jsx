@@ -5,6 +5,32 @@ var { updateAuthCookie, logInWithToken } = require("../../MASAS_functions.jsx")
 
 var ajaxCalls = {}
 
+ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
+	var header = "Bearer " + userToken
+
+	$.ajax({
+		type: 'POST',
+		url: '/api/usersteps/',
+		headers: {
+			"Authorization": header,
+		},
+		data: {
+			user: userData.url,
+			step: 1,
+		},
+		success: (r) => {
+			dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
+			dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
+			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
+			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+		},
+		error: (e) => {
+			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
+			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+		}
+	})
+}
 
 // (obj) userDict => userDict.userToken and userDict.userPk 
 ajaxCalls.updateProfilePicture = (userDict) => {

@@ -5,8 +5,6 @@ const { dispatch } = require('./reducers/reducers.js')
 var { browserHistory } = require('react-router')
 var Cookie = require('js-cookie')
 
-var TermsAndCond = require('./components/Login/TermsAndCond.jsx')
-
 var MASAS_functions = {}
 
 MASAS_functions.logout = () => {
@@ -89,15 +87,16 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 		url: '/api/users/' + userPk + '/',
 		success: (userData) => {
 			// check that terms and conditions were accepted
-			const hasAcceptedTerms = userData.usersteps.filter( (userSteps) => userStep.step === 1).length
+			const hasAcceptedTerms = userData.usersteps.filter( (userStep) => userStep.step === 1).length
 
-			if(!hasAcceptedTerms) {
+			if(hasAcceptedTerms) {
 				dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
 				dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
 				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
 				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
 			} else {
-				dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: <TermsAndCond userPk={ userPk } userToken={ userToken } userData={ userData } /> })
+				var TermsAndCond = require('./components/Login/TermsAndCond.jsx')
+				dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
 				dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
 			}
 		},

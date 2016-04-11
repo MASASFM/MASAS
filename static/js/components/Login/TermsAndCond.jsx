@@ -4,6 +4,8 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TermsAndCond.jsx")
 
+var { acceptTerms } = require('./ajaxCalls.jsx')
+
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Button, Checkbox, Link } = require("../UI/UI.jsx")
 
@@ -20,7 +22,11 @@ var TermsAndCond = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
+	},
+
+	acceptTerms: function() {
+		console.log(this.props)
+		acceptTerms(this.props.userToken, this.props.userData, this.props.userPk)
 	},
 
 	render: function() {
@@ -35,7 +41,7 @@ var TermsAndCond = React.createClass({
 				<p className="accept-text">
 					By creating an account I accept MASAS's Terms of Uses and Privacy Policy
 				</p>
-				<Button isBigButton={ true }>Get Early Access</Button>
+				<Button isBigButton={ true } onClick={ this.acceptTerms }>Get Early Access</Button>
 			</div>
 		)
 	}
