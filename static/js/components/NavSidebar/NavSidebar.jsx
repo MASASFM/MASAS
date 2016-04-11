@@ -40,6 +40,12 @@ var NavSidebar = React.createClass({
 							</div>
 							<div className="nav-links">
 								<div className="link">
+									<Link to="/" onClick={this.props.toogleSidebar}>
+										<img src="/static/img/MASAS_logo-M.svg" alt="radio icon" />
+										home
+									</Link>
+								</div>
+								<div className="link">
 									<Link disabled={true}>
 										<img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />
 										radio
@@ -65,7 +71,7 @@ var NavSidebar = React.createClass({
 								</div>
 							</div>
 							<div className="navSidebar-footer">
-								<Link to="/" onClick={this.props.toogleSidebar}>Legals</Link>
+								<Link to="/legals" onClick={this.props.toogleSidebar}>Legals</Link>
 								<Link disabled={true}>Settings</Link>
 								{ this.props.MASASuser ?
 									<Link to="/" onClick={this.logout}>Logout</Link>
