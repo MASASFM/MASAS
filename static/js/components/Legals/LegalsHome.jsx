@@ -27,6 +27,10 @@ var LegalsHome = React.createClass({
 		this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
+	componentWillUpdate: function() {
+		this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
+	},
+
 	render: function() {
 		switch(this.props.pageNumber) {
 			case 1:
