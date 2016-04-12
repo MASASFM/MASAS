@@ -921,7 +921,7 @@ input[type=range].MASAS-slider {
   align-items: center;
   justify-content: space-around;
   padding: 2rem 1rem;
-  min-height: 28rem;
+  min-height: 29rem;
   align-self: center; }
   .invitation-pending--wrapper img {
     width: 8rem; }
@@ -932,6 +932,15 @@ input[type=range].MASAS-slider {
     text-align: justify;
     padding: 0 2.5rem; }
 
+@media screen and (min-width: 992px) {
+  .invitation-pending--wrapper {
+    padding: 0;
+    min-height: 0;
+    align-self: auto; }
+    .invitation-pending--wrapper img {
+      width: 6rem; }
+    .invitation-pending--wrapper p {
+      padding: 0 5rem; } }
 .sign-up-form--wrapper1 {
   display: flex;
   flex: 1;
