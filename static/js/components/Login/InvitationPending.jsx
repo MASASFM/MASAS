@@ -19,7 +19,6 @@ var InvitationPending = React.createClass({
 
 	render: function() {
 		return (
-			<Body>
 				<div className="invitation-pending--wrapper">
 					<img src="/static/img/MASAS_icon_check_round.svg" alt="check logo" />
 					<h2>thank you for your interest</h2>
@@ -30,7 +29,6 @@ var InvitationPending = React.createClass({
 						evolution, by simply sharing.
 					</p>
 				</div>
-			</Body>
 		)
 	}
 })

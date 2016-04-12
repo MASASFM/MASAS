@@ -88,13 +88,23 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 		success: (userData) => {
 			// check that terms and conditions were accepted
 			const hasAcceptedTerms = userData.usersteps.filter( (userStep) => userStep.step === 1).length
+			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
 			if(hasAcceptedTerms) {
-				dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
-				dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
-				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
-				dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+				if(canLogIn) {
+					// log in user
+					dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
+					dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
+					dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
+					dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+				} else {
+					// show invitation pending component
+					var InvitationPending = require('./components/Login/InvitationPending.jsx')
+					dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: <InvitationPending /> })
+					dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+				}
 			} else {
+				// show terms and conditions form
 				var TermsAndCond = require('./components/Login/TermsAndCond.jsx')
 				dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: <TermsAndCond userPk={ parseInt(userPk) } userToken={ userToken } userData={ userData } /> })
 				dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
