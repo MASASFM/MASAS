@@ -81,6 +81,34 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 	})
 }
 
+// (obj) userDict => userDict.userToken, userDict.userPk, and userDict.userData
+MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
+	const header = "Bearer " + userToken
+	console.log("BEARER =>", header)
+
+	if(FB) {
+		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
+
+		if(avatar_url !== userData.avatar_url)
+			$.ajax({
+				type: 'PATCH',
+				url: '/api/users/' + userPk + "/",
+				headers: {
+					"Authorization": header,
+				},
+				data: {
+					avatar_url,
+				},
+				success: (resp) => {
+					console.log(resp)
+				},
+				error: (err) => {
+					console.warn(err)
+				}
+			})
+	}
+}
+
 MASAS_functions.updateUserInfo = (userPk, userToken) => {
 	$.ajax({
 		type: 'GET',
@@ -91,7 +119,10 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
 			if(hasAcceptedTerms) {
-				if(!canLogIn) {
+				if(canLogIn) {
+					// update profile picture
+					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
+
 					// log in user
 					dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
 					dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
