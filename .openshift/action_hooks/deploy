@@ -11,6 +11,7 @@ pip install -U setuptools
 pip install -Ur ${OPENSHIFT_REPO_DIR}requirements.txt
 
 python ${OPENSHIFT_REPO_DIR}manage.py raven test
+python ${OPENSHIFT_REPO_DIR}manage.py test MASAS
 
 python ${OPENSHIFT_REPO_DIR}manage.py migrate --noinput
 
