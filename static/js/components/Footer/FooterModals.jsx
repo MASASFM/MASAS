@@ -59,7 +59,7 @@ var FooterModal = React.createClass({
 					<Button
 						isSecondaryAction={ false }
 						isBigButton={ false }
-						onClick={ () => {} }
+						onClick={ this.props.reportCopyright }
 						isDisabled={ false }>
 						yes
 					</Button>

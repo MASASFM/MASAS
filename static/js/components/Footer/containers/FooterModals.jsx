@@ -1,3 +1,4 @@
+var { reportCopyright } = require('../ajaxCalls.jsx')
 
 var FooterModal = {}
 
@@ -18,7 +19,8 @@ FooterModal.mapDispatchToProps = function(dispatch) {
 			console.log("WHATDDDDDDUP")
 			dispatch({ type: 'UPDATE_SUGGEST_NEW_TIME', newTimeInterval })
 		},
-		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		reportCopyright,
 	}
 }
 
