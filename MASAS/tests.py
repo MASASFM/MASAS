@@ -64,6 +64,12 @@ class StatusTest(BaseTestMixin, test.TestCase):
         response = self.like(self.user.pk, 1)
         self.assertEqual(response.status_code, 201)
 
+        status = Status.objects.get(
+            user=self.user,
+            song=Song.objects.get(pk=1)
+        )
+        self.assertEqual(status.status, 1)
+
     def test_remove_unliked_from_likes_fails(self):
         pass
 
