@@ -1,4 +1,4 @@
-var { reportCopyright } = require('../ajaxCalls.jsx')
+var { reportCopyright, reportSpam } = require('../ajaxCalls.jsx')
 
 var FooterModal = {}
 
@@ -20,6 +20,7 @@ FooterModal.mapDispatchToProps = function(dispatch) {
 		},
 		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		reportCopyright,
+		reportSpam,
 	}
 }
 

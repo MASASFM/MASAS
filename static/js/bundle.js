@@ -57795,7 +57795,7 @@ var FooterModal = _wrapComponent("_component")(React.createClass({
 				{
 					isSecondaryAction: false,
 					isBigButton: false,
-					onClick: function onClick() {},
+					onClick: this.props.reportSpam,
 					isDisabled: false },
 				"yes"
 			)
@@ -57906,7 +57906,7 @@ var updateNotificationBar = _require3.updateNotificationBar;
 
 var ajaxCalls = {};
 
-ajaxCalls.reportCopyright = function () {
+ajaxCalls.reportSpam = function () {
 	var _require4 = require('../../reducers/reducers.js');
 
 	var getState = _require4.getState;
@@ -57916,6 +57916,49 @@ ajaxCalls.reportCopyright = function () {
 	var _getState$playerReduc = getState().playerReducer;
 	var MASAS_songInfo = _getState$playerReduc.MASAS_songInfo;
 	var songPlaying = _getState$playerReduc.songPlaying;
+
+	var header = "Bearer " + MASASuser;
+	$.ajax({
+		type: 'POST',
+		url: '/api/statuses/',
+		headers: {
+			"Authorization": header
+		},
+		data: {
+			song: MASAS_songInfo.url,
+			user: userData.url,
+			status: -3
+		},
+		success: function success(r) {
+			console.log(r);
+
+			// play next song
+			playRandomSong(MASASuser, getTimeIntervalFromURL(MASAS_songInfo.timeInterval));
+
+			// close modal
+			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+
+			// notify user about success
+			updateNotificationBar("Spam reported");
+		},
+		error: function error(e) {
+			console.warn(e);
+			// notify user about error
+			updateNotificationBar("Error reporting spam");
+		}
+	});
+};
+
+ajaxCalls.reportCopyright = function () {
+	var _require5 = require('../../reducers/reducers.js');
+
+	var getState = _require5.getState;
+	var _getState$appReducer2 = getState().appReducer;
+	var MASASuser = _getState$appReducer2.MASASuser;
+	var userData = _getState$appReducer2.userData;
+	var _getState$playerReduc2 = getState().playerReducer;
+	var MASAS_songInfo = _getState$playerReduc2.MASAS_songInfo;
+	var songPlaying = _getState$playerReduc2.songPlaying;
 
 	var header = "Bearer " + MASASuser;
 	$.ajax({
@@ -58008,6 +58051,7 @@ module.exports = Footer;
 var _require = require('../ajaxCalls.jsx');
 
 var reportCopyright = _require.reportCopyright;
+var reportSpam = _require.reportSpam;
 
 var FooterModal = {};
 
@@ -58030,7 +58074,8 @@ FooterModal.mapDispatchToProps = function (dispatch) {
 		toogleIsModalOpened: function toogleIsModalOpened() {
 			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
 		},
-		reportCopyright: reportCopyright
+		reportCopyright: reportCopyright,
+		reportSpam: reportSpam
 	};
 };
 

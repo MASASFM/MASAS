@@ -7,6 +7,43 @@ const { playRandomSong, getTimeIntervalFromURL, updateNotificationBar } = requir
 
 var ajaxCalls = {}
 
+ajaxCalls.reportSpam = () => {
+	const { getState } = require('../../reducers/reducers.js')
+	const { MASASuser, userData } = getState().appReducer
+	const { MASAS_songInfo, songPlaying } = getState().playerReducer
+
+	var header = "Bearer " + MASASuser
+	$.ajax({
+		type: 'POST',
+		url: '/api/statuses/',
+		headers: {
+			"Authorization": header,
+		},
+		data: {
+			song: MASAS_songInfo.url,
+			user: userData.url,
+			status: -3
+		},
+		success: (r) => {
+			console.log(r)
+
+			// play next song
+			playRandomSong( MASASuser, getTimeIntervalFromURL(MASAS_songInfo.timeInterval) )
+
+			// close modal
+			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+
+			// notify user about success
+			updateNotificationBar("Spam reported")
+		},
+		error: (e) => {
+			console.warn(e)
+			// notify user about error
+			updateNotificationBar("Error reporting spam")
+		}
+	})
+}
+
 ajaxCalls.reportCopyright = () => {
 	const { getState } = require('../../reducers/reducers.js')
 	const { MASASuser, userData } = getState().appReducer
