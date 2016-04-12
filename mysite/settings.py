@@ -269,18 +269,10 @@ LOGGING = {
         },
     },
     'loggers': {
-        'memopol': {
+        'django': {
             'handlers': ['console'],
             'level': LOG_LEVEL,
         },
-        'representatives': {
-            'handlers': ['console'],
-            'level': LOG_LEVEL,
-        },
-        'representatives_votes': {
-            'handlers': ['console'],
-            'level': LOG_LEVEL,
-        }
     },
 }
 
