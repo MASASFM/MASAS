@@ -60,7 +60,7 @@ var LoginForm = React.createClass({
 			)
 		else
 			return (
-				<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>Log-in via Facebook</Button>
+				<Button isBigButton={true} isSecondaryAction={true} onClick={this.props.logInFB}>Log-in via Facebook</Button>
 				)
 	}
 })
