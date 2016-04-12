@@ -98,6 +98,7 @@ class User(AbstractUser):
 class UserStep(models.Model):
     STEP_CHOICES = (
         (1, 'Accepted terms and conditions'),
+        (2, 'Can log in'),
     )
 
     user = models.ForeignKey('User', related_name='usersteps')
