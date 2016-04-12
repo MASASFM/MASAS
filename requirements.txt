@@ -29,3 +29,4 @@ raven
 django-sql-explorer
 mock
 django-logging-json==1.4
+setuptools>=17.1
