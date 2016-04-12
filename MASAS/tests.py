@@ -199,31 +199,3 @@ class PlayTest(BaseTestMixin, test.TestCase):
             Song.objects.exclude(deleted=None).count(),
             0
         )
-
-
-class UserApiTest(BaseTestMixin, test.TestCase):
-    def like(self, user, song):
-        return self.client.post(
-            reverse('status-list'),
-            data={
-                # We're logged in as test user, this should fail
-                'user': reverse('user-detail', args=[user]),
-                'song': reverse('song-detail', args=[song]),
-            }
-        )
-
-    def test_add_like_with_wrong_user_fails(self):
-        import ipdb; ipdb.set_trace()
-        response = self.client.post()
-        user = reverse('user-detail', args=[user]),
-
-        self.like(self.artist.pk, 1)
-        self.assertEqual(response.status_code, 403)
-
-    def test_add_to_likes(self):
-        response = self.like(self.user.pk, 1)
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(
-            list(self.user.status_set.values_list('pk', flat=True)),
-            [1]
-        )
