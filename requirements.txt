@@ -28,3 +28,4 @@ django-crispy-forms
 raven
 django-sql-explorer
 mock
+django-logging-json==1.4

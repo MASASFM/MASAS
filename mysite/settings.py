@@ -88,9 +88,11 @@ INSTALLED_APPS = [
     'MASAS',
     'crispy_forms',
     'explorer',
+    'django_logging',
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django_logging.middleware.DjangoLoggingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
