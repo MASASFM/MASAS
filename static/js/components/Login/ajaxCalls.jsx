@@ -40,16 +40,17 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 	var header = "Bearer " + userToken
 	console.log("BEARER =>", header)
 
-	if(FB)
+	if(typeof(FB) !== "undefined")
 		$.ajax({
 			type: 'PATCH',
 			url: '/api/users/' + userPk + "/",
 			headers: {
 				"Authorization": header,
+				"Content-Type": "application/json"
 			},
-			data: {
+			data: JSON.stringify({
 				avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture",
-			},
+			}),
 			success: (resp) => {
 				console.log(resp)
 			},
@@ -58,6 +59,7 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 			}
 		})
 }
+
 
 
 ajaxCalls.convertToken = (token) => {

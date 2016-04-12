@@ -31,8 +31,8 @@ var NavSidebar = React.createClass({
 	render: function() {
 		var sidebarContent = <div className="navSidebar--wrapper">
 						<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
-							<img src="/static/img/menupicture.jpg" alt="profile-picture" className="profile-picture" />
-							<span className="username">Thomas Binétruy</span>
+							<img src={this.props.userData.avatar_url + "?width=300"}alt="profile-picture" className="profile-picture" />
+							<span className="username">{this.props.userData.username}</span>
 						</div>
 						<div className="content">
 							<div className="search-input">

@@ -94,10 +94,11 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 						url: '/api/users/' + userPk + "/",
 						headers: {
 							"Authorization": header,
+							"Content-Type:": "application/json"
 						},
-						data: {
+						data: JSON.stringify({
 							email,
-						},
+						}),
 						success: (resp) => {
 							console.log(resp)
 						},
@@ -112,11 +113,12 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 
 // (obj) userDict => userDict.userToken, userDict.userPk, and userDict.userData
 MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
+	console.log("============")
 	const header = "Bearer " + userToken
 	console.log("BEARER =>", header)
 
 	if(typeof(FB) !== "undefined") {
-		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
+		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picturee"
 
 		// update avatar url if user has none
 		if(avatar_url && !userData.avatar_url)
@@ -125,10 +127,11 @@ MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
 				url: '/api/users/' + userPk + "/",
 				headers: {
 					"Authorization": header,
+					"Content-Type:": "application/json"
 				},
-				data: {
+				data: JSON.stringify({
 					avatar_url,
-				},
+				}),
 				success: (resp) => {
 					console.log(resp)
 				},
@@ -151,8 +154,8 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			if(hasAcceptedTerms) {
 				if(canLogIn) {
 					// update profile picture
-					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
 					MASAS_functions.updateUserEmail({ userToken, userPk, userData })
+					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
 
 					// log in user
 					dispatch({ type: 'UPDATE_USER_PK', pk: userPk })

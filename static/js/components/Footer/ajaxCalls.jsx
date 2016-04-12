@@ -2,10 +2,12 @@ var { browserHistory } = require('react-router')
 
 const { dispatch } = require('../../reducers/reducers.js')
 
+const { playRandomSong, getTimeIntervalFromURL, updateNotificationBar } = require('../../MASAS_functions.jsx')
+
+
 var ajaxCalls = {}
 
 ajaxCalls.reportCopyright = () => {
-	console.log('hey')
 	const { getState } = require('../../reducers/reducers.js')
 	const { MASASuser, userData } = getState().appReducer
 	const { MASAS_songInfo, songPlaying } = getState().playerReducer
@@ -24,10 +26,20 @@ ajaxCalls.reportCopyright = () => {
 		},
 		success: (r) => {
 			console.log(r)
+
 			// play next song
+			playRandomSong( MASASuser, getTimeIntervalFromURL(MASAS_songInfo.timeInterval) )
+
+			// close modal
+			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
+
+			// notify user about success
+			updateNotificationBar("Copyright infringement reported")
 		},
 		error: (e) => {
 			console.warn(e)
+			// notify user about error
+			updateNotificationBar("Error reporting copyright infringement")
 		}
 	})
 }

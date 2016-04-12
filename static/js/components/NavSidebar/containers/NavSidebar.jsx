@@ -6,7 +6,8 @@ var NavSidebar = {}
 NavSidebar.mapStateToProps = function(state) {
 	return {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
-		MASASuser: state.appReducer.MASASuser
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
 	}
 }
 
