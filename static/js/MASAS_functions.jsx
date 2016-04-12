@@ -91,7 +91,7 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
 			if(hasAcceptedTerms) {
-				if(canLogIn) {
+				if(!canLogIn) {
 					// log in user
 					dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
 					dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
