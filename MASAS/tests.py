@@ -4,6 +4,8 @@ from django import test
 
 import requests
 from rest_framework.reverse import reverse
+from rest_framework.test import APIClient
+
 
 import mock
 
@@ -25,18 +27,22 @@ class BaseTestMixin(object):
         self.user.set_password('test')
         self.user.save()
 
-        self.client = test.Client()
+        self.client = APIClient()
         self.client.login(username='test', password='test')
 
 
 class StatusTest(BaseTestMixin, test.TestCase):
     def like(self, user, song):
+        return self.set_status(user, song, 1)
+
+    def set_status(self, user, song, status):
         return self.client.post(
             reverse('status-list'),
             data={
                 # We're logged in as test user, this should fail
                 'user': reverse('user-detail', args=[user]),
                 'song': reverse('song-detail', args=[song]),
+                'status': status,
             }
         )
 
@@ -52,11 +58,11 @@ class StatusTest(BaseTestMixin, test.TestCase):
             [1]
         )
 
-    def test_add_liked_to_likes_fails(self):
+    def test_add_liked_to_likes_updates(self):
         response = self.like(self.user.pk, 1)
         self.assertEqual(response.status_code, 201)
         response = self.like(self.user.pk, 1)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 201)
 
     def test_remove_unliked_from_likes_fails(self):
         pass

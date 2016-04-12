@@ -65,6 +65,17 @@ class PlaySerializer(serializers.HyperlinkedModelSerializer):
 
 class StatusSerializer(CreateOnlyForMyUserMixin,
                        serializers.HyperlinkedModelSerializer):
+
+    validators = []
+
+    def create(self, validated_data):
+        obj, created = Status.objects.update_or_create(
+            user=validated_data['user'],
+            song=validated_data['song'],
+            defaults=dict(status=validated_data['status']),
+        )
+        return obj
+
     class Meta:
         model = Status
         fields = ('pk', 'url', 'user', 'song', 'status')
