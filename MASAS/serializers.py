@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
 from cities_light.contrib.restframework3 import CitySerializer
@@ -69,10 +70,17 @@ class StatusSerializer(CreateOnlyForMyUserMixin,
     validators = []
 
     def create(self, validated_data):
+        if self._context['request'].user != validated_data['user']:
+            raise PermissionDenied()
+
+        defaults = {}
+        if 'status' in validated_data:
+            defaults = dict(status=validated_data.get('status'))
+
         obj, created = Status.objects.update_or_create(
             user=validated_data['user'],
             song=validated_data['song'],
-            defaults=dict(status=validated_data['status']),
+            defaults=defaults,
         )
         return obj
 
