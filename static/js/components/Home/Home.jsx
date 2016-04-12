@@ -115,7 +115,7 @@ var Home = React.createClass({
 
 					<div className={ "page" + (currentPage === 3 ? "1" : "2") + "--wrapper" } id="homepage-description--musicLover">
 						<div className="text--wrapper">
-							<div style={{position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0.2)', zIndex: -1 }}>
+							<div style={{position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0)', zIndex: -1 }}>
 							</div>
 
 							<img src="/static/img/homepage/musicLover_deco1.svg" alt="stars" />
