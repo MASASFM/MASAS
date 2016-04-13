@@ -8,17 +8,27 @@
 	padding: 2rem 0
 
 .pick-time-sc-sync
-	.artwork
-		height: 8rem
-		width: 8rem
-		background-color: black
-		border: 2px solid white
-
-	.song-title
-		font-family: Lato-Semibold
-		font-size: 1.2rem
-		text-align: center
+	.song-name--wrapper
+		display: flex
+		justify-content: center 
+		flex-direction: column
 		width: 80%
+		align-items: center
+
+		.artwork
+			height: 8rem
+			width: 8rem
+			background-color: black
+			border: 2px solid white
+			margin-bottom: 1rem
+
+		.song-title
+			font-family: Lato-Semibold
+			font-size: 1.2rem
+			text-align: center
+			width: 80%
+			display: flex
+			align-items: center
 
 	.pickTime--wrapper
 		height: 140px
@@ -35,28 +45,6 @@
 		font-family: Lato-Semibold
 		text-align: center
 
-	// .checkbox--wrapper
-	// 	display: flex
-	// 	justify-content: space-between
-	// 	width: 100%
-	// 	font-size: 1.5rem
-	// 	min-height: 6rem
-	// 	max-width: 16.5rem
-
-	// .checkbox--wrapper
-	// 	.line
-	// 		display: flex
-	// 		flex-direction: column
-	// 		justify-content: space-between
-
-	// 	.column
-	// 		display: flex
-	// 		flex-direction: column
-	// 		justify-content: space-between
-
-	// 	.column
-	// 		.radioButton-label
-	// 			margin-left: 1rem
 
 	.button--wrapper
 		width: 80%
@@ -81,31 +69,23 @@
 		padding-top: 1.5rem
 
 	.pick-time-sc-sync
-		.artwork
-			width: 6rem
-			height: 6rem
-		.song-title
-			font-size: 0.9rem
+		.song-name--wrapper
+			flex-direction: row
+			width: 60%
+
+			.artwork
+				width: 6rem
+				height: 6rem
+				margin-bottom: 0
+				margin-right: 1rem
+
+			.song-title
+				font-size: 0.9rem
 
 		.pickTime--wrapper
-			height: 200px
+			height: 155px
 			width: 400px
 
-		// .checkbox--wrapper
-		// 	min-height: 4rem
-		// 	max-width: 15rem
-
-		// .checkbox--wrapper
-		// 	.line
-
-
-		// 	.column
-
-
-		// 	.column
-		// 		.radioButton-label
-		// 			font-size: 1rem
-		// 			margin-left: 0.4rem
 
 		.button--wrapper
 			width: 7rem

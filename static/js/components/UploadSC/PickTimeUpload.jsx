@@ -76,14 +76,19 @@ var PickTimeUpload = React.createClass({
 
 		return (
 			<div className="pick-time-sc-sync">
-				{ 
-					this.props.track.artwork_url ?
-						<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
-					:
-						<div className="artwork"></div>
-				}
+				<div className="song-name--wrapper">
+					{ 
+						this.props.track.artwork_url ?
+							<img src={this.props.track.artwork_url} alt="song artwork" className="artwork" />
+						:
+							<div className="artwork"></div>
+					}
 
-				<h2 className="song-title">{this.props.track.title}</h2>
+					<h2 className="song-title">{this.props.track.title}</h2>
+				</div>
+				<h3 className="question-text">
+					when would you most likely listen to your sound?
+				</h3>
 				<div className="pickTime--wrapper">
 					<div className="canvas">
 						<TimePicker 
@@ -92,9 +97,6 @@ var PickTimeUpload = React.createClass({
 							onSliderChange={ this.props.handleTimePickerChange } />
 					</div>
 				</div>
-				<h3 className="question-text">
-					when would you most likely listen to your sound?
-				</h3>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.openModal}>Submit</Button>
 					<Link to="/upload" className="cancel-button" onClick={this.props.closeWindow}>cancel</Link>

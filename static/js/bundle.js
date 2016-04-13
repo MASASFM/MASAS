@@ -64255,11 +64255,20 @@ var PickTimeUpload = _wrapComponent("_component")(React.createClass({
 		return React.createElement(
 			"div",
 			{ className: "pick-time-sc-sync" },
-			this.props.track.artwork_url ? React.createElement("img", { src: this.props.track.artwork_url, alt: "song artwork", className: "artwork" }) : React.createElement("div", { className: "artwork" }),
 			React.createElement(
-				"h2",
-				{ className: "song-title" },
-				this.props.track.title
+				"div",
+				{ className: "song-name--wrapper" },
+				this.props.track.artwork_url ? React.createElement("img", { src: this.props.track.artwork_url, alt: "song artwork", className: "artwork" }) : React.createElement("div", { className: "artwork" }),
+				React.createElement(
+					"h2",
+					{ className: "song-title" },
+					this.props.track.title
+				)
+			),
+			React.createElement(
+				"h3",
+				{ className: "question-text" },
+				"when would you most likely listen to your sound?"
 			),
 			React.createElement(
 				"div",
@@ -64272,11 +64281,6 @@ var PickTimeUpload = _wrapComponent("_component")(React.createClass({
 						currentDiscover: this.props.pickTimeUpload,
 						onSliderChange: this.props.handleTimePickerChange })
 				)
-			),
-			React.createElement(
-				"h3",
-				{ className: "question-text" },
-				"when would you most likely listen to your sound?"
 			),
 			React.createElement(
 				"div",

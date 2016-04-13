@@ -1546,16 +1546,25 @@ input[type=range].MASAS-slider {
   justify-content: space-between;
   padding: 2rem 0; }
 
-.pick-time-sc-sync .artwork {
-  height: 8rem;
-  width: 8rem;
-  background-color: black;
-  border: 2px solid white; }
-.pick-time-sc-sync .song-title {
-  font-family: Lato-Semibold;
-  font-size: 1.2rem;
-  text-align: center;
-  width: 80%; }
+.pick-time-sc-sync .song-name--wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  align-items: center; }
+  .pick-time-sc-sync .song-name--wrapper .artwork {
+    height: 8rem;
+    width: 8rem;
+    background-color: black;
+    border: 2px solid white;
+    margin-bottom: 1rem; }
+  .pick-time-sc-sync .song-name--wrapper .song-title {
+    font-family: Lato-Semibold;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    align-items: center; }
 .pick-time-sc-sync .pickTime--wrapper {
   height: 140px;
   width: 300px; }
@@ -1587,13 +1596,18 @@ input[type=range].MASAS-slider {
   .pick-time-sc-sync {
     padding-top: 1.5rem; }
 
-  .pick-time-sc-sync .artwork {
-    width: 6rem;
-    height: 6rem; }
-  .pick-time-sc-sync .song-title {
-    font-size: 0.9rem; }
+  .pick-time-sc-sync .song-name--wrapper {
+    flex-direction: row;
+    width: 60%; }
+    .pick-time-sc-sync .song-name--wrapper .artwork {
+      width: 6rem;
+      height: 6rem;
+      margin-bottom: 0;
+      margin-right: 1rem; }
+    .pick-time-sc-sync .song-name--wrapper .song-title {
+      font-size: 0.9rem; }
   .pick-time-sc-sync .pickTime--wrapper {
-    height: 200px;
+    height: 155px;
     width: 400px; }
   .pick-time-sc-sync .button--wrapper {
     width: 7rem;
