@@ -9,11 +9,15 @@ var { Body, Textbox, Password, Button, Link } = require("../UI/UI.jsx")
 var LoginForm = React.createClass({
 	propTypes: {
 		fullForm: React.PropTypes.bool, 			// show the full login form be shown
+		buttonTitle: React.PropTypes.string,			// log in button content
+		subtitle: React.PropTypes.string,			// text under button
 	},
 
 	getDefaultProps: function() {
 		return {
-				fullForm: true
+				fullForm: true,
+				buttonTitle: "Log-in via Facebook",
+				subtitle: "",
 			}
 	},
 
@@ -35,7 +39,7 @@ var LoginForm = React.createClass({
 						</div>
 						<div className="login-form--wrapper2">
 							<div className="fb-login">
-								<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>Log-in via Facebook</Button>
+								<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>{ this.props.buttonTitle }</Button>
 							</div>
 							<div style={{ display: 'none' }}>
 								<div className="divider">
@@ -60,7 +64,12 @@ var LoginForm = React.createClass({
 			)
 		else
 			return (
-				<Button isBigButton={true} isSecondaryAction={true} onClick={this.props.logInFB}>Log-in via Facebook</Button>
+				<div className="login-container">
+					<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>{ this.props.buttonTitle }</Button>
+					<div className="subtitle">
+						{ this.props.subtitle }
+					</div>
+				</div>
 				)
 	}
 })

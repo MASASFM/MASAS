@@ -40,13 +40,15 @@
     left: 0%; } }
 @keyframes fadein {
   from {
+    display: flex;
     opacity: 0; }
   25% {
     opacity: 1; }
   75% {
     opacity: 1; }
   to {
-    opacity: 0; } }
+    opacity: 0;
+    display: none; } }
 /* FORMS */
 /* SLIDER */
 .MASAS-button {
@@ -530,17 +532,18 @@ input[type=range].MASAS-slider {
     display: flex; }
   .HomeCountdown--wrapper1 .mobile-logo {
     display: none; }
+    .HomeCountdown--wrapper1 .mobile-logo img {
+      height: 290px; }
   .HomeCountdown--wrapper1 .mobile-logo.logged-out {
     display: flex; } }
 .home--wrapper {
   width: 100%;
   flex: 1;
   display: flex;
-  align-self: center;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 0.7rem 2.5rem;
+  margin: 0.7rem 28px;
   position: relative; }
   .home--wrapper .page-up--wrapper {
     display: flex;
@@ -568,16 +571,20 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     position: relative;
     width: 100%; }
-  .home--wrapper .multiPage--wrapper h1 {
-    font-family: Lato-Semibold;
-    font-size: 1.3rem;
-    border-bottom: 1px solid white;
-    padding-bottom: 1.2rem;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.35rem;
-    width: min-content;
-    white-space: pre; }
+  .home--wrapper .multiPage--wrapper .title {
+    width: 100%;
+    display: flex;
+    justify-content: center; }
+    .home--wrapper .multiPage--wrapper .title h1 {
+      font-family: Lato-Semibold;
+      font-size: 1.3rem;
+      border-bottom: 1px solid white;
+      padding-bottom: 1.2rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35rem;
+      width: min-content;
+      white-space: pre; }
   .home--wrapper .multiPage--wrapper p {
     font-size: 0.85rem;
     text-align: justify;
@@ -589,12 +596,8 @@ input[type=range].MASAS-slider {
     top: 0;
     bottom: 0;
     right: 0;
-    left: 0;
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out; }
+    left: 0; }
   .home--wrapper .multiPage--wrapper .page1--wrapper {
-    padding: 0 2rem;
     opacity: 1;
     z-index: 1;
     align-items: center; }
@@ -629,6 +632,8 @@ input[type=range].MASAS-slider {
       animation: Floating 3s infinite ease-in-out;
       cursor: pointer; }
     .home--wrapper .multiPage--wrapper #homepage-login .logo {
+      display: flex;
+      flex: 1;
       width: 100%;
       display: flex;
       height: -webkit-min-content;
@@ -636,164 +641,70 @@ input[type=range].MASAS-slider {
       justify-content: center;
       min-height: 1rem; }
     .home--wrapper .multiPage--wrapper #homepage-login .login-container {
-      width: 100%;
-      max-width: 20rem;
-      display: flex;
-      flex-direction: column;
-      height: 6rem;
-      justify-content: space-around;
-      align-items: center; }
-    .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
-      color: white;
-      align-self: center; }
-  .home--wrapper .multiPage--wrapper #homepage-description--artist {
-    display: flex;
-    flex: 1; }
-    .home--wrapper .multiPage--wrapper #homepage-description--artist .artist-page--wrapper {
-      display: flex;
-      align-items: center; }
-    .home--wrapper .multiPage--wrapper #homepage-description--artist .artist-page--wrapper img {
-      width: 70%; }
-    .home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-between;
-      align-items: flex-start; }
-    .home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper .button {
-      min-width: 12rem;
-      width: 100%; }
-  .home--wrapper .multiPage--wrapper #homepage-description--musicLover {
-    display: flex;
-    flex: 1;
-    max-width: 62rem;
-    color: black; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover h1 {
-      color: black;
-      border-bottom: 1px solid black; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-between;
-      align-items: flex-start; }
-      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper img {
-        width: 70%; }
-      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .button {
-        min-width: 12rem;
-        width: 100%; }
-  .home--wrapper .multiPage--wrapper #homepage-description--developpers {
-    display: flex;
-    overflow: auto;
-    flex: 1; }
-    .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: center;
-        flex: 1; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper img {
-            width: 4.5rem;
-            margin-bottom: 1.5rem; }
-          .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper {
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-            align-items: center; }
-            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper {
-              width: min-content;
-              display: flex;
-              flex-direction: row;
-              justify-content: space-around; }
-              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .job {
-                text-align: center; }
-              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
-                text-transform: uppercase;
-                font-size: 0.6rem;
-                letter-spacing: 0.1rem; }
-              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1 {
-                padding-right: 0.5rem; }
-              .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
-                white-space: pre; }
-            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper hr {
-              width: 100%; }
-            .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
-              opacity: 0.3;
-              font-size: 0.7rem; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .description {
-        text-align: center;
-        padding: 2rem 0; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        width: 100%; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook {
-          padding: 0.55rem; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter {
-          background-color: #5da8dc; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .twitter::before {
-          background-image: url("/static/img/twitter.svg");
-          content: ""; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook {
-          background-color: #485a96; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .social-buttons .facebook::before {
-          content: "";
-          background-image: url("/static/img/twitter.svg"); }
-
-@media screen and (min-width: 992px) {
-  .home--wrapper .multiPage--wrapper #homepage-login {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    margin-top: 0; }
-    .home--wrapper .multiPage--wrapper #homepage-login .login-container {
       display: none; }
-    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a {
-      opacity: 0.5; }
-    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a:hover {
-      opacity: 1; }
-  .home--wrapper .multiPage--wrapper #homepage-description--artist {
-    justify-content: flex-end; }
-    .home--wrapper .multiPage--wrapper #homepage-description--artist .text--wrapper {
-      padding-right: 5rem;
-      width: 30%;
-      height: 100%;
-      justify-content: flex-start; }
-  .home--wrapper .multiPage--wrapper #homepage-description--musicLover {
-    justify-content: flex-start; }
-  .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
-    padding-left: 5rem;
-    width: 40%;
-    height: 100%;
-    justify-content: center;
-    align-items: flex-end; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper p {
-      text-align: right; }
-  .home--wrapper .multiPage--wrapper #homepage-description--developpers {
-    justify-content: center; }
-    .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper {
-      width: 75%; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper img {
-        width: 7.5rem; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper {
+      .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
+        color: white;
+        align-self: center; }
+  .home--wrapper .multiPage--wrapper .homepage-description {
+    display: flex;
+    flex: 1; }
+    .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      justify-content: space-between; }
+      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper img {
+        height: 6rem;
+        padding-bottom: 1rem; }
+      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content {
         display: flex;
         flex-direction: column;
-        justify-content: space-around; }
-        .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name1, .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .founder-name--wrapper .name2 {
-          font-size: 0.9rem;
-          letter-spacing: 0.25rem; }
-      .home--wrapper .multiPage--wrapper #homepage-description--developpers .scroll--wrapper .founders-info--wrapper .founder-info--wrapper .text--wrapper .job {
-        font-size: 1rem; } }
+        align-items: center; }
+        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content .button {
+          min-width: 12rem;
+          width: 100%;
+          display: flex;
+          justify-content: center; }
+
+@media screen and (min-width: 992px) {
+  .home--wrapper {
+    margin: 0.7rem 0; }
+    .home--wrapper .multiPage--wrapper #homepage-login {
+      padding-top: 5rem;
+      margin-top: 0; }
+      .home--wrapper .multiPage--wrapper #homepage-login .login-container {
+        display: flex; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a {
+        opacity: 0.5; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a:hover {
+        opacity: 1; }
+    .home--wrapper .multiPage--wrapper .homepage-description {
+      padding: 0 15rem; }
+      .home--wrapper .multiPage--wrapper .homepage-description .title {
+        width: inherit; }
+        .home--wrapper .multiPage--wrapper .homepage-description .title h1 {
+          font-size: 1.8rem; }
+      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper {
+        flex-direction: row; }
+        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper {
+          display: flex;
+          flex: 1;
+          justify-content: flex-end; }
+          .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper img {
+            height: 16rem;
+            padding: 0; }
+        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content {
+          align-items: flex-start;
+          padding-left: 7rem;
+          flex: 1; }
+          .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content p {
+            width: 100%; }
+    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
+      flex-direction: row-reverse; }
+      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .side-content {
+        padding-left: 0;
+        padding-right: 7rem; } }
 .login-form--wrapper1 {
   display: flex;
   flex: 1;
@@ -941,6 +852,18 @@ input[type=range].MASAS-slider {
       width: 6rem; }
     .invitation-pending--wrapper p {
       padding: 0 5rem; } }
+.login-container {
+  width: 100%;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  justify-content: space-around;
+  align-items: center;
+  height: 5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1rem; }
+
 .sign-up-form--wrapper1 {
   display: flex;
   flex: 1;
@@ -2758,6 +2681,14 @@ html {
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: ease-in-out; }
+
+.body--background.artist-page-bg::after {
+  -webkit-filter: blur(6px) saturate(0%);
+  filter: blur(6px) saturate(0%); }
+
+.body--background.musicLover-page-bg::after {
+  -webkit-filter: blur(12px) saturate(0%);
+  filter: blur(12px) saturate(0%); }
 
 .body--background.blurred::after {
   -webkit-filter: blur(5px);

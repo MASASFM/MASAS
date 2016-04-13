@@ -5,11 +5,10 @@
 	// max-width: 20rem
 	flex: 1
 	display: flex
-	align-self: center
 	align-items: center
 	justify-content: space-around
 	flex-direction: column
-	margin: 0.7rem 2.5rem
+	margin: 0.7rem 28px			// margin same as hamburger menu
 	position: relative
 
 	.page-up--wrapper
@@ -50,16 +49,21 @@
 		width: 100%
 
 	.multiPage--wrapper
-		h1
-			font-family: Lato-Semibold
-			font-size: 1.3rem
-			border-bottom: 1px solid white
-			padding-bottom: 1.2rem
-			margin-bottom: 2rem
-			text-transform: uppercase
-			letter-spacing: 0.35rem
-			width: min-content
-			white-space: pre
+		.title
+			width: 100%
+			display: flex
+			justify-content: center
+
+			h1
+				font-family: Lato-Semibold
+				font-size: 1.3rem
+				border-bottom: 1px solid white
+				padding-bottom: 1.2rem
+				margin-bottom: 2rem
+				text-transform: uppercase
+				letter-spacing: 0.35rem
+				width: min-content
+				white-space: pre
 
 		p
 			font-size: 0.85rem
@@ -74,12 +78,8 @@
 			bottom: 0
 			right: 0
 			left: 0
-			transition-property: opacity
-			transition-duration: 1s
-			transition-timing-function: ease-in-out
 
 		.page1--wrapper
-			padding: 0 2rem
 			opacity: 1
 			z-index: 1
 			align-items: center
@@ -123,6 +123,8 @@
 				cursor: pointer
 
 			.logo
+				display: flex
+				flex: 1
 				width: 100%
 				display: flex
 				// flex: 1
@@ -132,31 +134,27 @@
 				justify-content: center
 				min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
 
-			.login-container
-				width: 100%
-				max-width: 20rem
-				display: flex
-				flex-direction: column
-				height: 6rem
-				justify-content: space-around
-				align-items: center
+			// .login-container
+			// 	width: 100%
+			// 	max-width: 20rem
+			// 	display: flex
+			// 	flex-direction: column
+			// 	height: 6rem
+			// 	justify-content: space-around
+			// 	align-items: center
+			// 	height: 5rem
+			// 	font-size: 0.85rem
+			// 	letter-spacing: 0.1rem
 
 			.login-container
+				display: none
 				.signup-text
 					color: white
 					align-self: center
 
-		#homepage-description--artist
+		.homepage-description
 			display: flex
 			flex: 1
-
-			.artist-page--wrapper
-				display: flex
-				align-items: center
-
-			.artist-page--wrapper
-				img
-					width: 70%
 
 			.text--wrapper
 				display: flex
@@ -164,129 +162,140 @@
 				align-items: center
 				justify-content: center
 				justify-content: space-between
-				align-items: flex-start
 
-			.text--wrapper
+				.image--wrapper
+					img
+						height: 6rem
+						padding-bottom: 1rem
 
-				.button
-					min-width: 12rem
-					width: 100%
-
-		#homepage-description--musicLover
-			display: flex
-			flex: 1
-			max-width: 62rem
-			color: black
-
-			h1
-				color: black
-				border-bottom: 1px solid black
-
-			.text--wrapper
-				display: flex
-				flex-direction: column
-				align-items: center
-				justify-content: center
-				justify-content: space-between
-				align-items: flex-start
-
-				img
-					width: 70%
-
-				.button
-					min-width: 12rem
-					width: 100%
-
-		#homepage-description--developpers
-			display: flex
-			overflow: auto
-			flex: 1
-
-			.scroll--wrapper
-				// min-height: min-content
-				display: flex
-				flex-direction: column
-				justify-content: space-between
-
-				.founders-info--wrapper
+				.side-content
 					display: flex
-					flex-wrap: wrap
-					justify-content: space-around
+					flex-direction: column
 					align-items: center
-					flex: 1
 
-					.founder-info--wrapper
+					.button
+						min-width: 12rem
+						width: 100%
 						display: flex
-						flex-direction: column
-						align-items: center
+						justify-content: center
 
-						img
-							width: 4.5rem
-							margin-bottom: 1.5rem
+		// #homepage-description--musicLover
+		// 	display: flex
+		// 	flex: 1
+		// 	max-width: 62rem
+		// 	color: black
 
-						.text--wrapper
-							display: flex
-							flex-direction: column
-							align-content: center
-							align-items: center
+		// 	h1
+		// 		color: black
+		// 		border-bottom: 1px solid black
 
-							.founder-name--wrapper
-								width: min-content
-								display: flex
-								flex-direction: row
-								justify-content: space-around
+		// 	.text--wrapper
+		// 		display: flex
+		// 		flex-direction: column
+		// 		align-items: center
+		// 		justify-content: center
+		// 		justify-content: space-between
+		// 		align-items: flex-start
 
-								.name1, .name2, .job
-									text-align: center
+		// 		img
+		// 			width: 70%
 
-								.name1, .name2
-									text-transform: uppercase
-									font-size: 0.6rem
-									letter-spacing: 0.1rem
+		// 		.button
+		// 			min-width: 12rem
+		// 			width: 100%
 
-								.name1
-									padding-right: 0.5rem
+		// #homepage-description--developpers
+		// 	display: flex
+		// 	overflow: auto
+		// 	flex: 1
 
-								.name2
-									white-space: pre
+		// 	.scroll--wrapper
+		// 		// min-height: min-content
+		// 		display: flex
+		// 		flex-direction: column
+		// 		justify-content: space-between
 
-							hr
-								width: 100%
+		// 		.founders-info--wrapper
+		// 			display: flex
+		// 			flex-wrap: wrap
+		// 			justify-content: space-around
+		// 			align-items: center
+		// 			flex: 1
 
-							.job
-								opacity: 0.3
-								font-size: 0.7rem
+		// 			.founder-info--wrapper
+		// 				display: flex
+		// 				flex-direction: column
+		// 				align-items: center
 
-				.description
-					text-align: center
-					padding: 2rem 0
+		// 				img
+		// 					width: 4.5rem
+		// 					margin-bottom: 1.5rem
 
-				.social-buttons
-					display: flex
-					justify-content: space-between
-					margin-bottom: 1.5rem
-					width: 100%
+		// 				.text--wrapper
+		// 					display: flex
+		// 					flex-direction: column
+		// 					align-content: center
+		// 					align-items: center
 
-					.twitter, .facebook
-						padding: 0.55rem
+		// 					.founder-name--wrapper
+		// 						width: min-content
+		// 						display: flex
+		// 						flex-direction: row
+		// 						justify-content: space-around
 
-					.twitter
-						background-color: rgb(93,168, 220)
+		// 						.name1, .name2, .job
+		// 							text-align: center
 
-					.twitter::before
-						background-image: url("/static/img/twitter.svg")
-						content: ""
+		// 						.name1, .name2
+		// 							text-transform: uppercase
+		// 							font-size: 0.6rem
+		// 							letter-spacing: 0.1rem
 
-					.facebook
-						background-color: rgb(72,90,150)
+		// 						.name1
+		// 							padding-right: 0.5rem
 
-					.facebook::before
-						content: ""
-						background-image: url("/static/img/twitter.svg")
+		// 						.name2
+		// 							white-space: pre
+
+		// 					hr
+		// 						width: 100%
+
+		// 					.job
+		// 						opacity: 0.3
+		// 						font-size: 0.7rem
+
+		// 		.description
+		// 			text-align: center
+		// 			padding: 2rem 0
+
+		// 		.social-buttons
+		// 			display: flex
+		// 			justify-content: space-between
+		// 			margin-bottom: 1.5rem
+		// 			width: 100%
+
+		// 			.twitter, .facebook
+		// 				padding: 0.55rem
+
+		// 			.twitter
+		// 				background-color: rgb(93,168, 220)
+
+		// 			.twitter::before
+		// 				background-image: url("/static/img/twitter.svg")
+		// 				content: ""
+
+		// 			.facebook
+		// 				background-color: rgb(72,90,150)
+
+		// 			.facebook::before
+		// 				content: ""
+		// 				background-image: url("/static/img/twitter.svg")
 
 
 @media screen and (min-width: $desktop-min-width)
 	.home--wrapper
+		margin: 0.7rem 0
+
 		.page-up--wrapper
 			img
 
@@ -306,7 +315,6 @@
 			.page1--wrapper, .page2--wrapper
 
 
-			.page1--wrapper
 
 
 			.page2--wrapper
@@ -314,7 +322,7 @@
 
 			#homepage-login
 				padding-top: 5rem
-				padding-bottom: 5rem
+				// padding-bottom: 5rem
 				margin-top: 0				// because margin needed on phone and padding used here (so it doesn't add up)
 
 				.arrow-icon
@@ -324,7 +332,7 @@
 
 
 				.login-container
-					display: none
+					display: flex
 
 				.login-container
 					.signup-text
@@ -335,85 +343,38 @@
 					a:hover
 						opacity: 1
 
-			#homepage-description--artist
-				justify-content: flex-end
+			.homepage-description
+				padding: 0 15rem
 
-				.artist-page--wrapper
-
-				.artist-page--wrapper
-
-				.text--wrapper
-					padding-right: 5rem
-					width: 30%
-					height: 100%
-					justify-content: flex-start
+				.title
+					width: inherit
+					h1
+						font-size: 1.8rem
 
 				.text--wrapper
+					flex-direction: row
 
-					.button
+					.image--wrapper
+						display: flex
+						flex: 1
+						justify-content: flex-end
+
+						img
+							height: 16rem
+							padding: 0
+
+					.side-content
+						align-items: flex-start
+						padding-left: 7rem
+						flex: 1
+
+						p
+							width: 100%
 
 			#homepage-description--musicLover
-				justify-content: flex-start
-
-			#homepage-description--musicLover
 				.text--wrapper
-					padding-left: 5rem
-					width: 40%
-					height: 100%
-					justify-content: center
-					align-items: flex-end
+					flex-direction: row-reverse
 
-					p
-						text-align: right
-
-					img
-
-
-					.button
-
-			#homepage-description--developpers
-				justify-content: center
-
-				.scroll--wrapper
-
-					.founders-info--wrapper
-						width: 75%
-
-						.founder-info--wrapper
-
-							img
-								width: 7.5rem
-
-							.text--wrapper
-								.founder-name--wrapper
-									display: flex
-									flex-direction: column
-									justify-content: space-around
-
-									.name1, .name2, .job
-
-									.name1, .name2
-										font-size: 0.9rem
-										letter-spacing: 0.25rem
-
-
-								hr
-
-								.job
-									font-size: 1rem
-
-				.description
-
-				.social-buttons
-
-					.twitter, .facebook
-
-					.twitter
-
-					.twitter::before
-
-					.facebook
-
-					.facebook::before
-
-
+					.side-content
+						padding-left: 0
+						padding-right: 7rem

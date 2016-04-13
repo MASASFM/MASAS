@@ -58647,7 +58647,7 @@ var Home = _wrapComponent("_component")(React.createClass({
 			pageNumber: 1 };
 	},
 
-	// page numebr
+	// page number
 	componentWillMount: function componentWillMount() {
 
 		this.props.updateTitle('', '0'); // 0 = menu icon; 1 = arrow back
@@ -58657,6 +58657,11 @@ var Home = _wrapComponent("_component")(React.createClass({
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
 	},
+
+	// <div className="login-container" style={{ display: (this.props.user ? 'none' : 'flex') }}>
+	// 						<LoginForm fullForm={false} buttonTitle="Request an Invitation" />
+	// 						<div>via Facebook</div>
+	// 					</div>
 
 	render: function render() {
 		var currentPage = this.props.currentPage;
@@ -58711,72 +58716,97 @@ var Home = _wrapComponent("_component")(React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "login-container", style: { display: this.props.user ? 'none' : 'flex' } },
-						React.createElement(LoginForm, { fullForm: false })
+						{ style: { visibility: this.props.user ? 'hidden' : 'visible' } },
+						React.createElement(LoginForm, {
+							fullForm: false,
+							buttonTitle: "Request an Invitation",
+							subtitle: "via Facebook" })
 					),
 					React.createElement("img", { onClick: this.props.goToPage.bind(null, 2, pageCount), src: "/static/img/puff_loader_slow.svg", alt: "down arrow", className: "arrow-icon" })
 				),
 				React.createElement(
 					"div",
-					{ className: "page" + (currentPage === 2 ? "1" : "2") + "--wrapper", id: "homepage-description--artist" },
+					{ className: "homepage-description page" + (currentPage === 2 ? "1" : "2") + "--wrapper", id: "homepage-description--artist" },
 					React.createElement(
 						"div",
 						{ className: "text--wrapper" },
-						React.createElement("img", { src: "/static/img/homepage/artist_deco1.png", alt: "stars" }),
 						React.createElement(
-							"h1",
-							{ onClick: this.goToPage1 },
-							"i'm an artist"
-						),
-						React.createElement(
-							"p",
-							null,
-							"Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music."
+							"div",
+							{ className: "image--wrapper" },
+							React.createElement("img", { src: "/static/img/MASAS_icon_Mixer.svg", alt: "stars" })
 						),
 						React.createElement(
 							"div",
-							{ className: "button", style: { width: '70%' } },
-							this.props.user ? React.createElement(
-								Button,
-								{ onClick: goToURL.bind('null', '/sc-sync') },
-								"Start Uploading"
-							) : React.createElement(
-								Button,
-								{ onClick: goToURL.bind('null', '/login') },
-								"Get Early Access"
+							{ className: "side-content" },
+							React.createElement(
+								"div",
+								{ className: "title" },
+								React.createElement(
+									"h1",
+									{ onClick: this.goToPage1 },
+									"i'm an artist"
+								)
+							),
+							React.createElement(
+								"p",
+								null,
+								"Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music."
+							),
+							React.createElement(
+								"div",
+								{ className: "button", style: { width: '70%' } },
+								this.props.user ? React.createElement(
+									Button,
+									{ onClick: goToURL.bind('null', '/sc-sync') },
+									"Start Uploading"
+								) : React.createElement(LoginForm, {
+									fullForm: false,
+									buttonTitle: "Start Uploading",
+									subtitle: "via Soundcloud" })
 							)
 						)
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "page" + (currentPage === 3 ? "1" : "2") + "--wrapper", id: "homepage-description--musicLover" },
+					{ className: "homepage-description page" + (currentPage === 3 ? "1" : "2") + "--wrapper", id: "homepage-description--musicLover" },
 					React.createElement(
 						"div",
 						{ className: "text--wrapper" },
 						React.createElement("div", { style: { position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0)', zIndex: -1 } }),
-						React.createElement("img", { src: "/static/img/homepage/musicLover_deco1.svg", alt: "stars" }),
 						React.createElement(
-							"h1",
-							{ onClick: this.goToPage1 },
-							"i'm a music lover"
-						),
-						React.createElement(
-							"p",
-							null,
-							"Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio."
+							"div",
+							{ className: "image--wrapper" },
+							React.createElement("img", { src: "/static/img/MASAS_icon_vinyl.svg", alt: "stars" })
 						),
 						React.createElement(
 							"div",
-							{ className: "button", style: { width: '70%' } },
-							this.props.user ? React.createElement(
-								Button,
-								{ onClick: goToURL.bind('null', '/profile') },
-								"My Profile"
-							) : React.createElement(
-								Button,
-								{ onClick: goToURL.bind('null', '/login') },
-								"Get Early Access"
+							{ className: "side-content" },
+							React.createElement(
+								"div",
+								{ className: "title" },
+								React.createElement(
+									"h1",
+									{ onClick: this.goToPage1 },
+									"i'm a music lover"
+								)
+							),
+							React.createElement(
+								"p",
+								null,
+								"Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio."
+							),
+							React.createElement(
+								"div",
+								{ className: "button", style: { width: '70%' } },
+								this.props.user ? React.createElement(
+									Button,
+									{ onClick: goToURL.bind('null', '/profile') },
+									"My Profile"
+								) : React.createElement(LoginForm, {
+									fullForm: false,
+									buttonTitle: "Request and Invitation",
+									subtitle: "via Facebook" })
 							)
 						)
 					)
@@ -60951,12 +60981,16 @@ var LoginForm = _wrapComponent("_component")(React.createClass({
 	displayName: "LoginForm",
 
 	propTypes: {
-		fullForm: React.PropTypes.bool },
+		fullForm: React.PropTypes.bool, // show the full login form be shown
+		buttonTitle: React.PropTypes.string, // log in button content
+		subtitle: React.PropTypes.string },
 
-	// show the full login form be shown
+	// text under button
 	getDefaultProps: function getDefaultProps() {
 		return {
-			fullForm: true
+			fullForm: true,
+			buttonTitle: "Log-in via Facebook",
+			subtitle: ""
 		};
 	},
 
@@ -60991,7 +61025,7 @@ var LoginForm = _wrapComponent("_component")(React.createClass({
 						React.createElement(
 							Button,
 							{ isBigButton: true, isSecondaryAction: false, onClick: this.props.logInFB },
-							"Log-in via Facebook"
+							this.props.buttonTitle
 						)
 					),
 					React.createElement(
@@ -61046,9 +61080,18 @@ var LoginForm = _wrapComponent("_component")(React.createClass({
 				)
 			)
 		);else return React.createElement(
-			Button,
-			{ isBigButton: true, isSecondaryAction: true, onClick: this.props.logInFB },
-			"Log-in via Facebook"
+			"div",
+			{ className: "login-container" },
+			React.createElement(
+				Button,
+				{ isBigButton: true, isSecondaryAction: false, onClick: this.props.logInFB },
+				this.props.buttonTitle
+			),
+			React.createElement(
+				"div",
+				{ className: "subtitle" },
+				this.props.subtitle
+			)
 		);
 	}
 }));
