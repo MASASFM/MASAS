@@ -21,6 +21,14 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_USER_DATA':
+			return {
+				...state,
+				userData: {
+					...state.userData,
+					...action.userData,
+				}
+			}
 		case 'TOOGLE_IS_MODAL_OPENED':
 			// empty modal content on closing
 			var modalContent = state.modalContent

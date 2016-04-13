@@ -30,20 +30,22 @@ var Profile = React.createClass({
 
 	componentWillMount: function() {
 		this.props.updateTitle('My Profile', '0')		// 0 = menu icon; 1 = arrow back
+
+		this.getSCinfo()
 	},
 
 	getSCinfo: function() {
-		var idString = this.props.userData.songs.map((song) => {return song.SC_ID}).join()
+		if(typeof(this.props.userData.songs) !== "undefined") {
+			var idString = this.props.userData.songs.map((song) => {return song.SC_ID}).join()
 
-		SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-			this.setState({ userSCSongs: response })
-		})
+			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
+				this.setState({ userSCSongs: response })
+			})
+		}
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		if(typeof(this.props.userData.songs) !== "undefined")
-			if(JSON.stringify(this.props.userData) !== JSON.stringify(prevProps.userData)) 
-				this.getSCinfo()
+		this.getSCinfo()
 	},
 
 	// shouldComponentUpdate: function(newProps, newState) {
@@ -70,8 +72,9 @@ var Profile = React.createClass({
 			var songs = this.props.userData.songs
 
 			var compareFn = (a, b) => {
-				var dateA = a.dateUploaded
-				var dateB = b.dateUploaded
+				var dateA = new Date(a.dateUploaded)
+				var dateB = new Date(b.dateUploaded)
+
 				if (dateA > dateB) {
 					return -1
 				}

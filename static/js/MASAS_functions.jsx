@@ -155,7 +155,7 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			if(hasAcceptedTerms) {
 				if(canLogIn) {
 					// update profile picture
-					MASAS_functions.updateUserEmail({ userToken, userPk, userData })
+					// MASAS_functions.updateUserEmail({ userToken, userPk, userData })
 					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
 
 					// log in user
@@ -321,6 +321,8 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 					"Authorization": header,
 				},
 				success: (user) => {
+					const { updateProfileInfo } = require('./components/Profile/ajaxCalls.jsx')
+
 					var likes = user.likes
 					console.log("like ===>", likes)
 
@@ -351,6 +353,9 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 								dispatch({type: 'REFETCH_LIKES'})
 								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "song liked"})
+
+								// update user profile data
+								updateProfileInfo()
 							},
 							error: (err) => {
 								console.log(err)
@@ -376,6 +381,9 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 								dispatch({type: 'REFETCH_LIKES'})
 								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
 								dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "song unliked"})
+
+								// update user profile data
+								updateProfileInfo()
 							},
 							error: (err) => {
 								console.log(err)
@@ -389,9 +397,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 					console.log(err)
 				},
 			})
-
-
-
 
 		},
 		error: (err) => {
