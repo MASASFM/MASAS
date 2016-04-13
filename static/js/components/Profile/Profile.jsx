@@ -23,35 +23,35 @@ var Profile = React.createClass({
 
 	getInitialState: function() {
 		return {
-			userInfo: null,				// user entry in REST API
+			// userInfo: null,				// user entry in REST API
 			userSCSongs: [],			// song info from SC using songs from user entry
 		}
 	},
 
 	componentWillMount: function() {
 		this.props.updateTitle('My Profile', '0')		// 0 = menu icon; 1 = arrow back
+	},
 
-		$.ajax({
-			type: "GET",
-			url: 'api/users/' + this.props.userPk + '/',	
+	getSCinfo: function() {
+		var idString = this.props.userData.songs.map((song) => {return song.SC_ID}).join()
 
-				 // -u"<client_id>:<client_secret>" 
-			success: (data) => {
-				console.log(data)
-				var idString = data.songs.map((song) => {return song.SC_ID}).join()
-				SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-					console.log(response)
-					this.setState({userInfo: data, userSCSongs: response})
-				})
-			},
-			error: (err) => {
-				console.log(err)
-			},
+		SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
+			this.setState({ userSCSongs: response })
 		})
 	},
 
-	getSongs: function() {
-		var songs = this.state.userSCSongs
+	componentDidUpdate: function(prevProps, prevState) {
+		if(typeof(this.props.userData.songs) !== "undefined")
+			if(JSON.stringify(this.props.userData) !== JSON.stringify(prevProps.userData)) 
+				this.getSCinfo()
+	},
+
+	// shouldComponentUpdate: function(newProps, newState) {
+	// 		return false
+	// },
+
+	displaySongs: function() {
+		var songs = this.props.userData.songs
 
 		if (!songs) 
 			return (
@@ -67,7 +67,7 @@ var Profile = React.createClass({
 				</div>
 				)
 		else {
-			var songs = this.state.userInfo.songs
+			var songs = this.props.userData.songs
 
 			var compareFn = (a, b) => {
 				var dateA = a.dateUploaded
@@ -83,10 +83,7 @@ var Profile = React.createClass({
 			songs.sort(compareFn)
 
 			var songList =  songs.map((song) => { 
-				console.log(song)
 				var SC_songInfo = this.state.userSCSongs.filter((el) => {
-					console.log("el.id ==> ",el.id)
-					console.log("song.SC_ID ==> ", song.SC_ID)
 					return el.id === song.SC_ID
 				})[0]
 
@@ -94,7 +91,6 @@ var Profile = React.createClass({
 				if(SC_songInfo === undefined)
 					return
 
-				console.log(<TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>)
 				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>
 			})
 
@@ -107,14 +103,13 @@ var Profile = React.createClass({
 	},
 
 	render: function() {
-		console.log("PROFILE =>", this.state.userInfo)
 		return (
 			<div style={{display: 'flex', flex: 1}}>
-			{ this.state.userInfo ?
+			{ this.props.userData ?
 				<ProfileWrapper>
 					<div className="main--wrapper">
 						<div className="profile-info--wrapper">
-							<img src="" alt="profile picture" className="profile-picture" />
+							<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
 							<div className="tab--wrapper">
 								<div className="tab" style={{ borderBottom: '4px solid white'}}>
 									info
@@ -126,7 +121,7 @@ var Profile = React.createClass({
 							<div className="text--wrapper">
 								<div className="user-info-desktop">
 									<span className="username">
-										{this.state.userInfo.username}
+										{this.props.userData.username}
 									</span>
 									<div className="occupation--wrapper">
 										<span className="location">
@@ -189,7 +184,7 @@ var Profile = React.createClass({
 					</div>
 					<div className="song-list--wrapper">
 						<div>
-						{ this.getSongs() }
+						{ this.displaySongs() }
 						</div>
 					</div>
 

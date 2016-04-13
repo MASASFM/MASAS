@@ -56327,18 +56327,19 @@ MASAS_functions.logInWithToken = function (removeVariable, userToken) {
 		},
 		success: function success(data) {
 			if (data.userPk !== "None") {
-				console.log(data);
-				var pk = data.userPk;
+				if (data.auth === "None") {
+					// remove cookie
+					var delete_cookie = function delete_cookie(name) {
+						document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+					};
 
-				// let picURL = "http://graph.facebook.com/me/picture?access_token=" + FB_token
-				// FB.api(picURL, function(r) {
-				// 	console.log(r)
-				// 	dispatch({type: 'UPDATE_USER_PK', pk: pk})
-				// 	dispatch({type: 'LOGIN', token: userToken, userData: data})
-				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
-				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !"})
-				// // })
-				MASAS_functions.updateUserInfo(pk, userToken);
+					delete_cookie('MASAS_authToken');
+				} else {
+					console.log(data);
+					var pk = data.userPk;
+
+					MASAS_functions.updateUserInfo(pk, userToken);
+				}
 			}
 
 			// render app
@@ -57867,7 +57868,7 @@ var FooterModal = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: "artwork" },
-					React.createElement("img", { src: this.state.SC_songInfo.artwork_url, alt: "artwork" })
+					this.state.SC_songInfo.artwork_url ? React.createElement("img", { src: this.state.SC_songInfo.artwork_url, alt: "artwork" }) : ""
 				),
 				React.createElement(
 					"div",
@@ -58369,7 +58370,7 @@ var HeaderDropdown = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: "username--wrapper" },
-					React.createElement("img", { src: "/static/img/menupicture.jpg", alt: "profile picture", className: "profile-picture" }),
+					React.createElement("img", { src: this.props.userData.avatar_url, alt: "profile picture", className: "profile-picture" }),
 					React.createElement(
 						"span",
 						{ className: "username", id: "username-header" },
@@ -58689,8 +58690,8 @@ var Home = _wrapComponent("_component")(React.createClass({
 						{ className: "unsplash-artist" },
 						React.createElement(
 							"a",
-							{ href: "https://unsplash.com/andrewcoelho", target: "_blank" },
-							"andrew coelho"
+							{ href: "https://unsplash.com/jeromeprax", target: "_blank" },
+							"Jérôme Prax"
 						)
 					),
 					React.createElement(
@@ -62316,41 +62317,39 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			userInfo: null, // user entry in REST API
+			// userInfo: null,				// user entry in REST API
 			userSCSongs: [] };
 	},
 
 	// song info from SC using songs from user entry
 	componentWillMount: function componentWillMount() {
+		this.props.updateTitle('My Profile', '0'); // 0 = menu icon; 1 = arrow back
+	},
+
+	getSCinfo: function getSCinfo() {
 		var _this = this;
 
-		this.props.updateTitle('My Profile', '0'); // 0 = menu icon; 1 = arrow back
+		var idString = this.props.userData.songs.map(function (song) {
+			return song.SC_ID;
+		}).join();
 
-		$.ajax({
-			type: "GET",
-			url: 'api/users/' + this.props.userPk + '/',
-
-			// -u"<client_id>:<client_secret>"
-			success: function success(data) {
-				console.log(data);
-				var idString = data.songs.map(function (song) {
-					return song.SC_ID;
-				}).join();
-				SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
-					console.log(response);
-					_this.setState({ userInfo: data, userSCSongs: response });
-				});
-			},
-			error: function error(err) {
-				console.log(err);
-			}
+		SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
+			_this.setState({ userSCSongs: response });
 		});
 	},
 
-	getSongs: function getSongs() {
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		if (typeof this.props.userData.songs !== "undefined") if (JSON.stringify(this.props.userData) !== JSON.stringify(prevProps.userData)) this.getSCinfo();
+	},
+
+	// shouldComponentUpdate: function(newProps, newState) {
+	// 		return false
+	// },
+
+	displaySongs: function displaySongs() {
 		var _this2 = this;
 
-		var songs = this.state.userSCSongs;
+		var songs = this.props.userData.songs;
 
 		if (!songs) return React.createElement(
 			"div",
@@ -62372,7 +62371,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 				)
 			)
 		);else {
-			var songs = this.state.userInfo.songs;
+			var songs = this.props.userData.songs;
 
 			var compareFn = function compareFn(a, b) {
 				var dateA = a.dateUploaded;
@@ -62388,17 +62387,13 @@ var Profile = _wrapComponent("_component")(React.createClass({
 			songs.sort(compareFn);
 
 			var songList = songs.map(function (song) {
-				console.log(song);
 				var SC_songInfo = _this2.state.userSCSongs.filter(function (el) {
-					console.log("el.id ==> ", el.id);
-					console.log("song.SC_ID ==> ", song.SC_ID);
 					return el.id === song.SC_ID;
 				})[0];
 
 				// return nothing if song no longer exists on soundcloud
 				if (SC_songInfo === undefined) return;
 
-				console.log(React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song }));
 				return React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song });
 			});
 
@@ -62411,11 +62406,10 @@ var Profile = _wrapComponent("_component")(React.createClass({
 	},
 
 	render: function render() {
-		console.log("PROFILE =>", this.state.userInfo);
 		return React.createElement(
 			"div",
 			{ style: { display: 'flex', flex: 1 } },
-			this.state.userInfo ? React.createElement(
+			this.props.userData ? React.createElement(
 				ProfileWrapper,
 				null,
 				React.createElement(
@@ -62424,7 +62418,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 					React.createElement(
 						"div",
 						{ className: "profile-info--wrapper" },
-						React.createElement("img", { src: "", alt: "profile picture", className: "profile-picture" }),
+						React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
 						React.createElement(
 							"div",
 							{ className: "tab--wrapper" },
@@ -62448,7 +62442,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 								React.createElement(
 									"span",
 									{ className: "username" },
-									this.state.userInfo.username
+									this.props.userData.username
 								),
 								React.createElement(
 									"div",
@@ -62563,7 +62557,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 					React.createElement(
 						"div",
 						null,
-						this.getSongs()
+						this.displaySongs()
 					)
 				)
 			) : React.createElement(ProfileWrapper, null)
@@ -62875,7 +62869,8 @@ var Profile = {};
 Profile.mapStateToProps = function (state) {
 	return {
 		userToken: state.appReducer.MASASuser,
-		userPk: state.appReducer.MASASuserPk
+		userPk: state.appReducer.MASASuserPk,
+		userData: state.appReducer.userData
 	};
 };
 

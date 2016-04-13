@@ -103,7 +103,12 @@ var FooterModal = React.createClass({
 			<div className="footer-modal--wrapper">
 				<div className="song-info--wrapper">
 					<div className="artwork">
-						<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
+						{
+							this.state.SC_songInfo.artwork_url ?
+								<img src={ this.state.SC_songInfo.artwork_url } alt="artwork" />
+							:
+								""
+						}
 					</div>
 					<div className="song-title">
 						{ this.state.SC_songInfo.title }

@@ -53,18 +53,19 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 		},
 		success: (data) => {
 			if(data.userPk !== "None") {
-				console.log(data)
-				var pk = data.userPk
+				if(data.auth === "None") {
+					// remove cookie
+					const delete_cookie = function( name ) {
+						document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+					}
 
-				// let picURL = "http://graph.facebook.com/me/picture?access_token=" + FB_token
-				// FB.api(picURL, function(r) {
-				// 	console.log(r)
-				// 	dispatch({type: 'UPDATE_USER_PK', pk: pk})
-				// 	dispatch({type: 'LOGIN', token: userToken, userData: data})
-				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: ""})
-				// 	dispatch({type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !"})
-				// // })
-				MASAS_functions.updateUserInfo(pk, userToken)
+					delete_cookie('MASAS_authToken')
+				} else {
+					console.log(data)
+					var pk = data.userPk
+
+					MASAS_functions.updateUserInfo(pk, userToken)
+				}
 			}
 
 			// render app

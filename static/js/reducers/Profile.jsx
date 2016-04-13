@@ -1,6 +1,8 @@
 let exportVar = {}
 
-exportVar.defaultState = {}
+exportVar.defaultState = {
+	// profileInfo: {},						// user MASAS profile Info
+}
 const { defaultState } = exportVar
 
 exportVar.profileReducer = function(state = defaultState, action) {

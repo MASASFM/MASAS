@@ -37,7 +37,7 @@ var HeaderDropdown = React.createClass({
 			return (
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">
-						<img src={"/static/img/menupicture.jpg"} alt="profile picture" className="profile-picture"/>
+						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
 						<span className="username" id="username-header">{this.props.userData.username}</span>
 					</div>
 					<div className="dropdown-content">

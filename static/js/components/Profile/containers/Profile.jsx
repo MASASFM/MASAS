@@ -4,7 +4,8 @@ var Profile = {}
 Profile.mapStateToProps = function(state) {
 	return {
 		userToken: state.appReducer.MASASuser,
-		userPk: state.appReducer.MASASuserPk
+		userPk: state.appReducer.MASASuserPk,
+		userData: state.appReducer.userData
 	}
 }
 

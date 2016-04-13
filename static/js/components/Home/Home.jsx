@@ -85,7 +85,7 @@ var Home = React.createClass({
 
 					<div className={ "page" + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
 						<div className="unsplash-artist">
-							<a href="https://unsplash.com/andrewcoelho" target="_blank">andrew coelho</a>
+							<a href="https://unsplash.com/jeromeprax" target="_blank">Jérôme Prax</a>
 						</div>
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
