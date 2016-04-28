@@ -60309,59 +60309,18 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		this.getLikes();
 	},
 
-	// componentWillReceiveProps: function(nextProps) {
-	// 	console.log(this.props)
-
-	// 	var isEquivalent = function(a, b) {
-	// 		if(a === null)
-	// 			a = {}
-
-	// 		if(b === null)
-	// 			b = {}
-
-	// 		// Create arrays of property names
-	// 		var aProps = Object.getOwnPropertyNames(a)
-	// 		var bProps = Object.getOwnPropertyNames(b)
-
-	// 		// If number of properties is different,
-	// 		// objects are not equivalent
-	// 		if (aProps.length != bProps.length) {
-	// 			return false
-	// 		}
-
-	// 		for (var i = 0; i < aProps.length; i++) {
-	// 			var propName = aProps[i]
-
-	// 			// If values of same property are not equal,
-	// 			// objects are not equivalent
-	// 			if (a[propName] !== b[propName])
-	// 			    return false
-	// 		}
-
-	// 		// If we made it this far, objects
-	// 		// are considered equivalent
-	// 		return true
-	// 	}
-
-	// 	console.log(isEquivalent(nextProps.SCinfo, this.props.SCinfo))
-	// 	if(isEquivalent(nextProps.SCinfo, this.props.SCinfo) && nextProps.reFetch !== this.props.reFetch) {
-	// 			console.log(isEquivalent(nextProps.SCinfo, this.props.SCinfo) && nextProps.reFetch !== this.props.reFetch);
-	// 			console.log("******************"); this.getLikes(); console.log("******************")
-	// 	}
-	// },
-
 	componentDidMount: function componentDidMount() {},
 
 	getLikes: function getLikes() {
 		var _this = this;
 
-		console.log('no way');
+		// console.log('no way')
 		if (typeof this.props.userData.likes !== "undefined") {
 			var idString = this.props.userData.likes.map(function (like) {
 				return like.song.SC_ID;
 			}).join();
 			SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
-				console.log(response);
+				// console.log(response)
 				// this.setState({userInfo: data, userSCSongs: response})
 				_this.props.updateLikes(response);
 			});
@@ -60377,10 +60336,10 @@ var Likes = _wrapComponent("_component")(React.createClass({
 	renderLikes: function renderLikes() {
 		var _this2 = this;
 
-		console.log("RENDER LIKES");
+		// console.log("RENDER LIKES")
 
 		var songs = this.props.SCinfo;
-		console.log('render liked songs => ', songs);
+		// console.log('render liked songs => ', songs)
 
 		if (!songs) return React.createElement(
 			"div",
@@ -60401,7 +60360,7 @@ var Likes = _wrapComponent("_component")(React.createClass({
 			};
 
 			songs.sort(compareFn);
-			console.log(songs);
+			// console.log(songs)
 
 			var songList = songs.map(function (song) {
 				var MASAS_songInfo = _this2.props.userData.likes.filter(function (like) {
@@ -60415,8 +60374,72 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		}
 	},
 
+	/**
+ 	** Purpose **
+ 	returns width of artwork and likes wrapper before component render
+ 		** returns **
+ 	{ artworkWidth: int, likesWrapperWidth: int }
+ 	units: px
+ */
+	getElementsWidth: function getElementsWidth() {
+		// insert artwork wrapper in body to get its width
+		// for the artwork, we can just get the hardcoded width from css
+		var $artworkWrapper = $("<div class='likes-item--wrapper'><div class='artwork--wrapper'><img class='artwork'/></div></div>").hide().appendTo("body");
+		var artworkInnerWidth = $artworkWrapper.css("width").replace('px', '');
+		var artworkMargin = window.getComputedStyle(document.getElementsByClassName('likes-item--wrapper')[0]).margin.replace('px', '');
+		var artworkWidth = parseInt(artworkInnerWidth) + 2 * parseInt(artworkMargin);
+
+		// same for likes wrapper
+		// but now we have to get the getComputedStyle() because width is dynamically defined based on window width
+		var $likesWrapper = $("<div class='likes-scroll--wrapper'><div class='likes--wrapper'></div></div>").hide().appendTo("body");
+		var likesWrapperWidth = window.getComputedStyle(document.getElementsByClassName('likes--wrapper')[0]).width.replace('px', '');
+
+		// remove dummy elements now that we have their width
+		$artworkWrapper.remove();
+		$likesWrapper.remove();
+
+		return { artworkWidth: artworkWidth, likesWrapperWidth: likesWrapperWidth };
+	},
+
+	/**
+ 	** goal **
+ 	calculates how many are missing on the last line to align all artworks left
+ 		** output **
+ 	jsx elements
+ */
+	alignArtworksLeft: function alignArtworksLeft() {
+		var _getElementsWidth = this.getElementsWidth();
+
+		var artworkWidth = _getElementsWidth.artworkWidth;
+		var likesWrapperWidth = _getElementsWidth.likesWrapperWidth;
+		// console.log("FUNCTION RETURN ======> ", this.getElementsWidth())
+		// console.log('ARTWORK WIDTH ===== ', artworkWidth)
+		// console.log('LIKES WRAPPER WIDTH ===== ', likesWrapperWidth)
+
+		var A = likesWrapperWidth;
+		var B = artworkWidth;
+		var artworkCount = 0;
+		if (this.props.SCinfo) artworkCount = this.props.SCinfo.length; // artwork count
+
+		// calculate how many artworks fit in a line
+		var n_line = Math.floor(A / B);
+
+		// calculate how many artworks are on the last line
+		var n_lastLine = artworkCount % n_line;
+
+		// return the missing artworks to align the last line to the left if need be
+		var divArray = [];
+		for (var i = 0; i < n_lastLine; i++) {
+			divArray.push(React.createElement("div", { key: i, className: "filler-artwork", style: { height: 0, width: artworkWidth } }));
+		}
+
+		// console.log("DIV ARRAY ======> ", divArray)
+
+		return divArray;
+	},
+
 	render: function render() {
-		console.log("PROPS => ", this.props);
+		// console.log("PROPS => ", this.props)
 		return React.createElement(
 			LikesWrapper,
 			null,
@@ -60425,7 +60448,8 @@ var Likes = _wrapComponent("_component")(React.createClass({
 				{ className: "likes-searchbar--wrapper" },
 				React.createElement(Textbox, null)
 			),
-			this.renderLikes()
+			this.renderLikes(),
+			this.alignArtworksLeft()
 		);
 	}
 }));
