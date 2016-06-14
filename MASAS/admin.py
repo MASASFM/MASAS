@@ -3,8 +3,20 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from models import Song, User, TimeInterval
+from models import Play, Song, User, TimeInterval
 
 admin.site.register(User)
-admin.site.register(Song)
+
+
+class SongAdmin(admin.ModelAdmin):
+    list_display = [
+        'dateUploaded',
+        'trackTitle',
+        'trackArtist',
+        'timeInterval',
+        'deleted',
+    ]
+
+admin.site.register(Song, SongAdmin)
+admin.site.register(Play)
 admin.site.register(TimeInterval)
