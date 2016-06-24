@@ -5,7 +5,17 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from models import Play, Song, User, TimeInterval
 
-admin.site.register(User)
+
+class UserAdmin(BaseUserAdmin):
+    list_display = [
+        'name',
+        'city',
+        'is_active',
+    ]
+    list_editable = [
+        'is_active',
+    ]
+admin.site.register(User, UserAdmin)
 
 
 class SongAdmin(admin.ModelAdmin):
