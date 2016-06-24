@@ -8,8 +8,7 @@ from models import Play, Song, User, TimeInterval
 
 class UserAdmin(BaseUserAdmin):
     list_display = [
-        'name',
-        'city',
+        '__unicode__',
         'is_active',
     ]
     list_editable = [
