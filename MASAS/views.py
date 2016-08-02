@@ -149,15 +149,10 @@ class PlayView(APIView):
             query = ['''
                 select
                     s.*
-                    , count(p.id) as play_count
                 from
                     "MASAS_song" s
-                left join
-                    "MASAS_play" p on s.id = p.song_id
                 where
                     s.deleted is NULL
-                and
-                    p.user_id = %s
             ''']
             query_vars = [request.user.pk]
 
@@ -171,8 +166,7 @@ class PlayView(APIView):
                 group by
                     s.id
                 order by
-                    play_count asc
-                    , random()
+                    random()
                 limit 1
             ''')
             sql = '\n'.join(query)
