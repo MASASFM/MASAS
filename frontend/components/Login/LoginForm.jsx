@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LoginForm.jsx")
 
-var { Body, Textbox, Password, Button, Link } = require("../UI/Body.jsx")
+var { Body, Textbox, Button, Password, Link } = require("../UI/UI.jsx")
 
 var LoginForm = React.createClass({
 	propTypes: {

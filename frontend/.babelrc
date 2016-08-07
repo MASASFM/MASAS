@@ -1,5 +1,3 @@
 {
   "presets": ["es2015", "stage-2", "stage-3", "react"],
-  "compact": false,
-  "plugins": ["rewire"]
 }

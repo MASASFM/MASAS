@@ -7,7 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
 
 var {goToURL} = require("../../MASAS_functions.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
-var { Button, Link } = require("../UI/Button.jsx")
+var { Button, Link } = require("../UI/UI.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
 

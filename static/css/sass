@@ -765,7 +765,7 @@ input[type=range].MASAS-slider {
     padding: 1.5rem 0rem;
     width: 100%;
     flex: 0;
-    min-height: 20rem; }
+    height: 20rem; }
     .login-form--wrapper1 .header {
       height: 11rem;
       justify-content: space-between; }
@@ -1994,8 +1994,7 @@ input[type=range].MASAS-slider {
   .profile--wrapper .profile-info--wrapper .social--wrapper .occupation--wrapper .occupation {
     padding-bottom: 0.5rem; }
   .profile--wrapper .social-stats--wrapper {
-    height: 0rem;
-    visibility: hidden;
+    height: 4rem;
     display: flex;
     background-color: black;
     justify-content: space-around;
