@@ -178,11 +178,17 @@ var ArtworkLine = React.createClass({
 							</div>
 						</div>
 					</div>
-					<img
-						onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
-						className={ "next-button" + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show' : '') }
-						src="/static/img/MASAS_next.svg"
-						 alt="next" />
+					<div className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') }>
+						<img
+							onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
+							className="next-song"
+							src="/static/img/MASAS_next.svg"
+							 alt="next" />
+						<img
+							src="/static/img/MASAS_icon_dot.svg"
+							className="toggle-menu"
+							alt="menu icon" />
+					</div>
 					<div className="right-side">
 					</div>
 				</div>

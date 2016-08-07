@@ -44,7 +44,7 @@
 				width: 100%
 				position: relative
 
-				.next-button
+				.button
 					display: none
 
 				.artwork-playing--wrapper
@@ -117,7 +117,7 @@
 							width: min-content
 							min-width: 100%
 							justify-content: flex-end
-							z-index: 3		// next-button is z-index 2 
+							z-index: 3		// button is z-index 2 
 
 						.empty-artwork
 							height: $artworkWidth
@@ -208,18 +208,23 @@
 					$sidePadding: 1rem
 					$like-icon-width: 1.5rem
 
-					.next-button
+					.button
 						z-index: 2
 						position: absolute
 						top: 50%
 						left: 50%
 						transform: translate(-50%, -50%)
-						padding-left: 2*$artworkWidth
-						width: 2rem
+						padding-left: 2*$artworkWidth 
 						cursor: pointer
 
-					.next-button.show
-						display: block
+						img
+							width: 2rem
+							height: 2rem
+							padding: 0 1rem
+
+					.button.show
+						display: flex
+						flex-direction: row-reverse
 
 					.artwork-playing--wrapper
 						max-width: $artworkWidth
