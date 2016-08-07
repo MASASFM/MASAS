@@ -15,7 +15,7 @@ var Player = React.createClass({
 	getInitialState: function() {
 		return {
 			songInPlayer: null,					// song currently playing (if any)
-		};
+		}
 	},
 
 	componentWillMount: function() {
