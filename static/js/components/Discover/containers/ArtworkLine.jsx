@@ -13,6 +13,7 @@ ArtworkLine.mapStateToProps = function(state) {
 		isPlayerPaused: state.playerReducer.isPaused,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userToken: state.appReducer.MASASuser,
+		isFooterOpened: state.footerReducer.isOpened,
 	}
 }
 
@@ -26,6 +27,7 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 		playAndSaveHistory: (songToPlay) => playNewSong(songToPlay),
 		playRandomSong: (MASASuser, timeInterval) => playRandomSong(MASASuser, timeInterval),
 		pause: () => pausePlayer(dispatch),
+		toggleIsFooterOpened: () => dispatch({ type: "TOOGLE_IS_FOOTER_OPENED" }) 
 	}
 }
 

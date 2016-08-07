@@ -9,6 +9,8 @@ var { Marquee } = require("../UI/UI.jsx")
 var ArtworkLine = React.createClass({
 	propTypes: {
 		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
+		isFooterOpened: React.PropTypes.bool,
+		toggleIsFooterOpened: React.PropTypes.func,
 	},
 
 	componentDidMount: function() {
@@ -184,10 +186,21 @@ var ArtworkLine = React.createClass({
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							 alt="next" />
-						<img
-							src="/static/img/MASAS_icon_dot.svg"
-							className="toggle-menu"
-							alt="menu icon" />
+						{ 
+							this.props.isFooterOpened === false ?
+								<img
+									onClick={ this.props.toggleIsFooterOpened }
+									src="/static/img/MASAS_icon_dot.svg"
+									className="toggle-menu"
+									alt="menu icon" />
+							:
+								<img
+									onClick={ this.props.toggleIsFooterOpened }
+									src="/static/img/MASAS_icon_close.svg"
+									className="toggle-menu small"
+									alt="menu icon" />
+						}
+
 					</div>
 					<div className="right-side">
 					</div>

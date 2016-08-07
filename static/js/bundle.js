@@ -52501,9 +52501,11 @@ var ArtworkLine = React.createClass({
 	displayName: "ArtworkLine",
 
 	propTypes: {
-		discoverNumber: React.PropTypes.number.isRequired },
+		discoverNumber: React.PropTypes.number.isRequired, // artwork shown from discover
+		isFooterOpened: React.PropTypes.bool,
+		toggleIsFooterOpened: React.PropTypes.func
+	},
 
-	// artwork shown from discover
 	componentDidMount: function componentDidMount() {
 		this.scrollToEnd();
 	},
@@ -52708,11 +52710,24 @@ var ArtworkLine = React.createClass({
 								)
 							)
 						),
-						React.createElement("img", {
-							onClick: _this.props.playRandomSong.bind(_this, _this.props.MASASuser, _this.props.discoverNumber),
-							className: "next-button" + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show' : ''),
-							src: "/static/img/MASAS_next.svg",
-							alt: "next" }),
+						React.createElement(
+							"div",
+							{ className: "button " + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') },
+							React.createElement("img", {
+								onClick: _this.props.playRandomSong.bind(_this, _this.props.MASASuser, _this.props.discoverNumber),
+								className: "next-song",
+								src: "/static/img/MASAS_next.svg",
+								alt: "next" }),
+							_this.props.isFooterOpened === false ? React.createElement("img", {
+								onClick: _this.props.toggleIsFooterOpened,
+								src: "/static/img/MASAS_icon_dot.svg",
+								className: "toggle-menu",
+								alt: "menu icon" }) : React.createElement("img", {
+								onClick: _this.props.toggleIsFooterOpened,
+								src: "/static/img/MASAS_icon_close.svg",
+								className: "toggle-menu small",
+								alt: "menu icon" })
+						),
 						React.createElement("div", { className: "right-side" })
 					)
 				};
@@ -52879,7 +52894,8 @@ ArtworkLine.mapStateToProps = function (state) {
 		songPlaying: state.playerReducer.songPlaying,
 		isPlayerPaused: state.playerReducer.isPaused,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
-		userToken: state.appReducer.MASASuser
+		userToken: state.appReducer.MASASuser,
+		isFooterOpened: state.footerReducer.isOpened
 	};
 };
 
@@ -52902,6 +52918,9 @@ ArtworkLine.mapDispatchToProps = function (dispatch) {
 		},
 		pause: function pause() {
 			return pausePlayer(dispatch);
+		},
+		toggleIsFooterOpened: function toggleIsFooterOpened() {
+			return dispatch({ type: "TOOGLE_IS_FOOTER_OPENED" });
 		}
 	};
 };

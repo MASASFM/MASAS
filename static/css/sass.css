@@ -2391,7 +2391,7 @@ input[type=range].MASAS-slider {
         align-self: flex-start;
         width: 100%;
         position: relative; }
-        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button {
           display: none; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
           position: absolute;
@@ -2503,17 +2503,26 @@ input[type=range].MASAS-slider {
     height: 12rem; }
   .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper {
     height: 13.3rem; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button {
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button {
       z-index: 2;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       padding-left: 32rem;
-      width: 2rem;
       cursor: pointer; }
-    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .next-button.show, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .next-button.show {
-      display: block; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button img, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button img {
+        width: 2rem;
+        height: 2rem;
+        padding: 0 1rem; }
+      .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button img.small, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button img.small {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem; }
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button.show, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button.show {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
       max-width: 16rem; }
       .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
