@@ -1,7 +1,10 @@
 let exportVar = {}
 
 exportVar.defaultState = {
-	currentPage: 1								// current page on the home page
+	currentPage: 1,								// (int) current page on the home page
+	unsplashArtistUsername: "jeromeprax",				// (string) unsplash username  to look up backgrounds against
+	unsplashArtistName: "Jérome Prax", 					// (string) unsplash name to display
+	backgroundURL: "https://source.unsplash.com/user/jeromeprax/1600x900",							// (string) unsplash URL of bg
 }
 const{ defaultState } = exportVar
 
@@ -18,6 +21,18 @@ exportVar.homeReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				currentPage: pageNumber
+			}
+		case 'CHANGE_UNSPLASH_ARTIST':
+			return {
+				...state,
+				unsplashArtistName: action.unsplashArtistName,
+				unsplashArtistUsername: action.unsplashArtistUsername,
+				backgroundURL: action.backgroundURL
+			}
+		case 'CHANGE_BACKGROUND':
+			return {
+				...state,
+				backgroundURL: action.backgroundURL
 			}
 		default:
 			return state

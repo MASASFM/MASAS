@@ -76,6 +76,7 @@ var App = React.createClass({
 				<NavSidebar>
 					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
 						<div className={"body--background"+ ( this.props.isModalOpened ? " saturated" : "" )} id="body--background">
+							<div className="bg-image" id="app-bg-image"></div>
 						</div>
 						<Header />
 							<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened ? " blurred" : "" )}>

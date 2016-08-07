@@ -25,14 +25,6 @@ html
 	font-family: Lato-Regular
 
 @media screen and (min-width: $desktop-min-width)
-	html
-		font-size: 16px
-
-// body
-	
-// 	background-size: cover
-// 	margin: 0
-// 	font-family: Lato-Light
 
 .modal-blur--wrapper
 	display: flex
@@ -42,7 +34,7 @@ html
 	-webkit-filter: blur(2.5px) saturate(0%)
 	filter: blur(2.5px) saturate(0%)
 
-.body--background::after 
+.bg-image
 	content: ""
 	background-image: url('https://source.unsplash.com/user/jeromeprax/1600x900')
 	background-size: cover
@@ -58,43 +50,37 @@ html
 	transition-duration: 1s
 	transition-timing-function: ease-in-out
 
-.body--background.artist-page-bg::after
-	// background-image: url("https://images.unsplash.com/32/6Icr9fARMmTjTHqTzK8z_DSC_0123.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=6fa5f891aaa1ab578368b4086e0a5340")
+.body--background.artist-page-bg > .bg-image
 	-webkit-filter: blur(6px) saturate(0%)
 	filter: blur(6px) saturate(0%)
 
-.body--background.musicLover-page-bg::after
-	// background-image: url("https://images.unsplash.com/5/unsplash-kitsune-4.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=d229e68d587bc1201d35e234804d4006")
+.body--background.musicLover-page-bg > .bg-image
 	-webkit-filter: blur(12px) saturate(0%)
 	filter: blur(12px) saturate(0%)
 
-.body--background.dev-page-bg::after
-	// background-image: url("https://source.unsplash.com/category/nature/1600x900")
+.body--background.dev-page-bg > .bg-image
 
-
-.body--background.blurred::after 
+.body--background.blurred > .bg-image
 	-webkit-filter: blur(5px)
 	filter: blur(5px)
 
-.body--background.blurred-mobile::before
+.body--background.blurred-mobile > .bg-image
 	opacity: 0.5
 
-.body--background.blurred-mobile::after 
+.body--background.blurred-mobile > .bg-image
 	-webkit-filter: blur(15px)
 	filter: blur(15px)
 
-// .body--background.saturated::after 
-// 	-webkit-filter: saturate(0%)
 
-.body--background.saturated::after 
+.body--background.saturated > .bg-image
 	-webkit-filter: saturate(0%)
 	// filter: saturate(0%)
 
-.body--background.blurred.saturated::after 
+.body--background.blurred.saturated > .bg-image
 	-webkit-filter: blur(5px) saturate(0%)
 	filter: blur(5px) saturate(0%)
 
-.body--background.blurred-mobile.saturated::after 
+.body--background.blurred-mobile.saturated > .bg-image
 	-webkit-filter: blur(5px) saturate(0%)
 	filter: blur(5px) saturate(0%)
 
@@ -118,8 +104,6 @@ h1
 	position: relative
 
 .app-body
-	// padding-left: 5em
-	// padding-right: 5em
 	flex: 1
 	display: flex
 	position: relative
@@ -168,6 +152,9 @@ h1
 	display: none
 
 @media screen and (min-width: $desktop-min-width)
+	html
+		font-size: 16px
+
 	.col-display-none-sm
 		display: block
 

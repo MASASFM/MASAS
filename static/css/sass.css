@@ -613,20 +613,29 @@ input[type=range].MASAS-slider {
     justify-content: space-between;
     margin-top: 20%;
     padding-bottom: 2rem; }
-    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist {
+    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
       display: flex;
+      justify-content: space-between;
       position: absolute;
       bottom: 0;
       left: 0;
+      right: 0;
       padding: 1rem 1.7rem; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a {
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls .artist-controls {
+        display: flex;
+        align-items: center; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a {
         text-transform: uppercase;
         font-family: Lato-Semibold;
         font-size: 0.6rem;
         letter-spacing: 0.2rem;
-        opacity: 0; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a:hover {
-        opacity: 0; }
+        opacity: 0.5;
+        cursor: pointer; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a:hover {
+        opacity: 1; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
+        width: 2rem;
+        padding-left: 1rem; }
     .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
       height: 2rem;
       animation: Floating 3s infinite ease-in-out;
@@ -675,10 +684,6 @@ input[type=range].MASAS-slider {
       margin-top: 0; }
       .home--wrapper .multiPage--wrapper #homepage-login .login-container {
         display: flex; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a {
-        opacity: 0.5; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-artist a:hover {
-        opacity: 1; }
     .home--wrapper .multiPage--wrapper .homepage-description {
       padding: 0 15rem; }
       .home--wrapper .multiPage--wrapper .homepage-description .title {
@@ -2681,9 +2686,6 @@ html {
   color: white;
   font-family: Lato-Regular; }
 
-@media screen and (min-width: 992px) {
-  html {
-    font-size: 16px; } }
 .modal-blur--wrapper {
   display: flex;
   flex: 1; }
@@ -2692,7 +2694,7 @@ html {
   -webkit-filter: blur(2.5px) saturate(0%);
   filter: blur(2.5px) saturate(0%); }
 
-.body--background::after {
+.bg-image {
   content: "";
   background-image: url("https://source.unsplash.com/user/jeromeprax/1600x900");
   background-size: cover;
@@ -2708,33 +2710,33 @@ html {
   transition-duration: 1s;
   transition-timing-function: ease-in-out; }
 
-.body--background.artist-page-bg::after {
+.body--background.artist-page-bg > .bg-image {
   -webkit-filter: blur(6px) saturate(0%);
   filter: blur(6px) saturate(0%); }
 
-.body--background.musicLover-page-bg::after {
+.body--background.musicLover-page-bg > .bg-image {
   -webkit-filter: blur(12px) saturate(0%);
   filter: blur(12px) saturate(0%); }
 
-.body--background.blurred::after {
+.body--background.blurred > .bg-image {
   -webkit-filter: blur(5px);
   filter: blur(5px); }
 
-.body--background.blurred-mobile::before {
+.body--background.blurred-mobile > .bg-image {
   opacity: 0.5; }
 
-.body--background.blurred-mobile::after {
+.body--background.blurred-mobile > .bg-image {
   -webkit-filter: blur(15px);
   filter: blur(15px); }
 
-.body--background.saturated::after {
+.body--background.saturated > .bg-image {
   -webkit-filter: saturate(0%); }
 
-.body--background.blurred.saturated::after {
+.body--background.blurred.saturated > .bg-image {
   -webkit-filter: blur(5px) saturate(0%);
   filter: blur(5px) saturate(0%); }
 
-.body--background.blurred-mobile.saturated::after {
+.body--background.blurred-mobile.saturated > .bg-image {
   -webkit-filter: blur(5px) saturate(0%);
   filter: blur(5px) saturate(0%); }
 
@@ -2800,6 +2802,9 @@ h1 {
   display: none; }
 
 @media screen and (min-width: 992px) {
+  html {
+    font-size: 16px; }
+
   .col-display-none-sm {
     display: block; }
 

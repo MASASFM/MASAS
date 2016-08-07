@@ -8,6 +8,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
 var { goToURL } = require("../../MASAS_functions.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
 var { Button, Link } = require("../UI/UI.jsx")
+var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
 
@@ -89,9 +90,7 @@ var Home = React.createClass({
 				<div className="multiPage--wrapper">
 
 					<div className={ "page" + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
-						<div className="unsplash-artist">
-							<a href="https://unsplash.com/jeromeprax" target="_blank">Jérôme Prax</a>
-						</div>
+						<UnsplashControls />
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
 						</div>
