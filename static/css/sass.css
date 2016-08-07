@@ -614,7 +614,7 @@ input[type=range].MASAS-slider {
     margin-top: 20%;
     padding-bottom: 2rem; }
     .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
-      display: flex;
+      display: none;
       justify-content: space-between;
       position: absolute;
       bottom: 0;
@@ -636,6 +636,9 @@ input[type=range].MASAS-slider {
       .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
         width: 2rem;
         padding-left: 1rem; }
+    @media screen and (min-width: 992px) {
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
+        display: flex; } }
     .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
       height: 2rem;
       animation: Floating 3s infinite ease-in-out;
