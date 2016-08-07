@@ -57022,6 +57022,19 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 							oga: streamURL
 						}).jPlayer('play');
 					},
+
+					keyBindings: {
+						play: {
+							key: 32,
+							fn: function fn(f) {
+								if (f.status.paused) {
+									f.play();
+								} else {
+									f.pause();
+								}
+							}
+						}
+					},
 					swfPath: "http://jplayer.org/latest/dist/jplayer",
 					supplied: "mp3, oga",
 					wmode: "window",
