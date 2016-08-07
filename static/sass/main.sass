@@ -164,10 +164,11 @@ h1
 	.body--background.blurred-mobile::before
 		opacity: 1
 
-	.body--background.blurred-mobile::after 
+	.body--background.blurred-mobile > .bg-image
 		-webkit-filter: blur(0px)
 		filter: blur(0px)
+		opacity: 0.8
 
-	.body--background.blurred-mobile.saturated::after 
+	.body--background.blurred-mobile.saturated > .bg-image
 		-webkit-filter: saturate(0%)
 		filter: saturate(0%)
