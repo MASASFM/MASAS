@@ -52242,6 +52242,11 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 	});
 };
 
+// (BOOL) checks if a sequence is a subsequence of a string
+MASAS_functions.isSubsequence = function (sequence, string) {
+	if (string.toLowerCase().includes(sequence.toLowerCase())) return true;else return false;
+};
+
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
 	console.log(timeIntervalURL);
@@ -55466,10 +55471,18 @@ var _require2 = require("../UI/UI.jsx");
 
 var Textbox = _require2.Textbox;
 
+var _require3 = require("../../MASAS_functions.jsx");
+
+var isSubsequence = _require3.isSubsequence;
+
 var Likes = React.createClass({
 	displayName: "Likes",
 
-	propTypes: {},
+	propTypes: {
+		SCinfo: React.PropTypes.array,
+		userData: React.PropTypes.object,
+		searchInput: React.PropTypes.string
+	},
 
 	componentWillMount: function componentWillMount() {
 		this.props.updateTitle('Likes', '0'); // 0 = menu icon; 1 = arrow back
@@ -55501,6 +55514,55 @@ var Likes = React.createClass({
 		if (JSON.stringify(prevProps.userData) !== JSON.stringify(this.props.userData)) this.getLikes();
 	},
 
+	filterLikes: function filterLikes() {
+		var _this2 = this;
+
+		if (this.props.SCinfo !== null) {
+			var songs = this.props.SCinfo;
+			var songList = songs.map(function (song) {
+				var MASAS_songInfo = _this2.props.userData.likes.filter(function (like) {
+					return like.song.SC_ID === song.id;
+				});
+
+				if (MASAS_songInfo.length === 1) return [MASAS_songInfo, song];else return 0;
+			});
+
+			var radioTimeString = function radioTimeString(timeIntervalURL) {
+				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
+
+				switch (switchVar) {
+					case "1":
+						return "#EarlyMorning";
+					case "2":
+						return "#LateMorning";
+					case "3":
+						return "#EarlyAfternoon";
+					case "4":
+						return "#LateAfternoon";
+					case "5":
+						return "#EarlyEvening";
+					case "6":
+						return "#LateEvening";
+					default:
+						return;
+				}
+			};
+
+			var filteredSongList = songList.filter(function (song) {
+				var songSearchString = radioTimeString(song[0][0].song.timeInterval) + " " + song[1].title + " " + song[1].tag_list;
+
+				return isSubsequence(_this2.props.searchInput, songSearchString);
+			});
+
+			// ony keep SC data
+			filteredSongList = filteredSongList.map(function (song) {
+				return song[1];
+			});
+
+			return filteredSongList;
+		} else return;
+	},
+
 	render: function render() {
 		// console.log("PROPS => ", this.props)
 		return React.createElement(
@@ -55509,9 +55571,9 @@ var Likes = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "likes-searchbar--wrapper" },
-				React.createElement(Textbox, null)
+				React.createElement(Textbox, { id: "likes--search-textbox", actionString: "UPDATE_LIKES_SEARCH_INPUT", actionParamName: "input" })
 			),
-			React.createElement(LikesArtworks, { SCinfo: this.props.SCinfo, userData: this.props.userData })
+			React.createElement(LikesArtworks, { SCinfo: this.filterLikes(this.props.SCinfo), userData: this.props.userData })
 		);
 	}
 });
@@ -55622,7 +55684,7 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Likes);
 // 	return divArray
 // },
 
-},{"../UI/UI.jsx":365,"./LikesArtworks.jsx":328,"./LikesItem.jsx":329,"./LikesWrapper.jsx":330,"./containers/Likes.jsx":332,"react":278,"react-dom":80,"react-redux":83}],328:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":292,"../UI/UI.jsx":365,"./LikesArtworks.jsx":328,"./LikesItem.jsx":329,"./LikesWrapper.jsx":330,"./containers/Likes.jsx":332,"react":278,"react-dom":80,"react-redux":83}],328:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -56053,7 +56115,8 @@ Likes.mapStateToProps = function (state) {
 		userData: state.appReducer.userData,
 		SCinfo: state.likesReducer.SCinfo,
 		userPk: state.appReducer.MASASuserPk,
-		reFetch: state.likesReducer.reFetch
+		reFetch: state.likesReducer.reFetch,
+		searchInput: state.likesReducer.searchInput
 	};
 };
 
@@ -58531,16 +58594,42 @@ module.exports = Password;
 var React = require("react");
 var ReactDOM = require("react-dom");
 
+var _require = require("../../reducers/reducers.js");
+
+var dispatch = _require.dispatch;
+//
+
 var Textbox = React.createClass({
 	displayName: "Textbox",
 
 	propTypes: {
 		label: React.PropTypes.string, // textbox label
 		labelError: React.PropTypes.string, // textbox label when error
-		error: React.PropTypes.bool },
+		error: React.PropTypes.bool, // true = error
+		actionString: React.PropTypes.string, // name of action to call on string update
+		actionParamName: React.PropTypes.string, // name of input attribute of action dispatched
+		id: React.PropTypes.string },
 
-	// true = error
+	// name used to display textbox and error UI properly
+	getInitialState: function getInitialState() {
+		return {
+			input: ""
+		};
+	},
+
 	componentWillMount: function componentWillMount() {},
+
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		if (typeof this.props.actionString !== "undefined") {
+			var dispatchObject = { type: this.props.actionString };
+			dispatchObject[this.props.actionParamName] = this.state.input;
+			dispatch(dispatchObject);
+		}
+	},
+
+	onInputChange: function onInputChange(e) {
+		this.setState({ input: e.target.value });
+	},
 
 	render: function render() {
 		return React.createElement(
@@ -58554,7 +58643,7 @@ var Textbox = React.createClass({
 					{ className: "MASAS-label", htmlFor: this.props.id },
 					this.props.error ? this.props.labelError : this.props.children
 				),
-				React.createElement("input", { id: this.props.id, className: "MASAS-text-input", type: "text" })
+				React.createElement("input", { id: this.props.id, value: this.state.input, onChange: this.onInputChange, className: "MASAS-text-input", type: "text" })
 			)
 		);
 	}
@@ -58562,7 +58651,7 @@ var Textbox = React.createClass({
 
 module.exports = Textbox;
 
-},{"react":278,"react-dom":80}],364:[function(require,module,exports){
+},{"../../reducers/reducers.js":387,"react":278,"react-dom":80}],364:[function(require,module,exports){
 "use strict";
 
 // STATEFULL COMPONENT
@@ -59936,8 +60025,9 @@ var exportVar = {};
 exportVar.defaultState = {
 	userLikes: null, // user likes from MASAS API
 	SCinfo: null, // song info corresponding to these likes from SCinfo
-	reFetch: 0 };
-// rerender when new likes come in
+	reFetch: 0, // rerender when new likes come in
+	searchInput: "" };
+// (string) search textbox input
 var defaultState = exportVar.defaultState;
 
 exportVar.likesReducer = function () {
@@ -59960,7 +60050,10 @@ exportVar.likesReducer = function () {
 			return _extends({}, state, {
 				reFetch: state.reFetch > 100 ? 1 : state.reFetch + 1
 			});
-
+		case 'UPDATE_LIKES_SEARCH_INPUT':
+			return _extends({}, state, {
+				searchInput: action.input
+			});
 		default:
 			return state;
 	}

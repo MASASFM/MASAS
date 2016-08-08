@@ -10,6 +10,7 @@ Likes.mapStateToProps = function(state) {
 		SCinfo: state.likesReducer.SCinfo,
 		userPk: state.appReducer.MASASuserPk,
 		reFetch: state.likesReducer.reFetch,
+		searchInput: state.likesReducer.searchInput,
 	}
 }
 

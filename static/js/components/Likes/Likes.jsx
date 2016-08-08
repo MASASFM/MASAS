@@ -9,8 +9,13 @@ var LikesItem = require("./LikesItem.jsx")
 var LikesArtworks = require("./LikesArtworks.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 
+var { isSubsequence } = require("../../MASAS_functions.jsx")
+
 var Likes = React.createClass({
 	propTypes: {
+		SCinfo: React.PropTypes.array,
+		userData: React.PropTypes.object,
+		searchInput: React.PropTypes.string,
 	},
 
 	componentWillMount: function() {
@@ -41,16 +46,63 @@ var Likes = React.createClass({
 			this.getLikes()
 	},
 
+	filterLikes: function() {
+		if(this.props.SCinfo !== null) {
+			var songs = this.props.SCinfo
+			var songList =  songs.map((song) => { 
+				var MASAS_songInfo = this.props.userData.likes.filter((like) => {
+					return like.song.SC_ID === song.id
+				})
 
+				if(MASAS_songInfo.length === 1)
+					return [MASAS_songInfo, song]
+				else
+					return 0
+			})
+
+			var radioTimeString = (timeIntervalURL) => {
+				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+			
+				switch(switchVar) {
+					case "1":
+						return "#EarlyMorning"
+					case "2":
+						return "#LateMorning"
+					case "3":
+						return "#EarlyAfternoon"
+					case "4":
+						return "#LateAfternoon"
+					case "5":
+						return "#EarlyEvening"
+					case "6":
+						return "#LateEvening"
+					default:
+						return 
+				}
+			}
+
+			var filteredSongList = songList.filter((song) => {
+				var songSearchString = radioTimeString(song[0][0].song.timeInterval) + " " + song[1].title + " " + song[1].tag_list
+
+				return isSubsequence(this.props.searchInput, songSearchString)
+			})
+
+			// ony keep SC data
+			filteredSongList = filteredSongList.map((song) => song[1])
+
+			return filteredSongList
+		} else 
+			return
+	},
 
 	render: function() {
 		// console.log("PROPS => ", this.props)
 		return (
 			<LikesWrapper>
 				<div className="likes-searchbar--wrapper">
-					<Textbox />
+					<Textbox id="likes--search-textbox" actionString="UPDATE_LIKES_SEARCH_INPUT" actionParamName="input" />
 				</div>
-				<LikesArtworks SCinfo={ this.props.SCinfo } userData={ this.props.userData } />
+				<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
 				
 			</LikesWrapper>
 		)

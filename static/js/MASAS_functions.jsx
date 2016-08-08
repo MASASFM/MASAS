@@ -407,6 +407,14 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 	})
 }
 
+// (BOOL) checks if a sequence is a subsequence of a string
+MASAS_functions.isSubsequence = (sequence, string) => {
+	if (string.toLowerCase().includes(sequence.toLowerCase()))
+		return true
+	else
+		return false
+}
+
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 	console.log(timeIntervalURL)
