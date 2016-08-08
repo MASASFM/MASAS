@@ -121,7 +121,7 @@ REST_FRAMEWORK = {
 # oauth
 CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'settings_masas.urls'
 
 TEMPLATES = [
     {
@@ -139,7 +139,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'settings_masas.wsgi.application'
 
 
 # Database
