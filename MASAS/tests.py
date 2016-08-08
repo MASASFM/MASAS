@@ -168,7 +168,7 @@ class PlayTest(BaseTestMixin, test.TestCase):
             response = self.play(time_interval_id=1)
             self.assertIn(response.json()['pk'], inside)
 
-    def test_post_play_deletes_on_404(self):
+    def test_soundcloud_404_marks_song_as_deleted(self):
         fake_response = mock.Mock()
         fake_response.status_code = 404
 
