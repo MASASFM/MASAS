@@ -66,7 +66,10 @@ var Player = React.createClass({
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, (event) => {
 			console.log('STOP BUFFERING =>', event)
+			// $('.player-button').trigger('click')
+			// $('.player-button').trigger('click')
 			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
+			
 		})
 
 		// update player UI on start play
