@@ -62,6 +62,48 @@ var App = React.createClass({
 			document.getElementById('content').style.height = window.innerHeight + 'px'
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
 		})
+
+
+		// play pause play hack for mobile
+		$("#jquery_jplayer_1").jPlayer({
+			ready: function(	) {
+				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3"
+				console.log("INIT JPLAYER= >", streamURL)
+				$(this).jPlayer("setMedia", {
+					mp3: streamURL,
+					oga: ""
+				})
+
+				var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
+				var kickoff = function () {
+					$("#jquery_jplayer_1").jPlayer("play")
+					document.documentElement.removeEventListener(click, kickoff, true)
+				}
+				document.documentElement.addEventListener(click, kickoff, true)
+			},
+
+			keyBindings: {
+				play: {
+					key: 32,
+					fn: function(f) {
+						if(f.status.paused) {
+							f.play()
+						} else {
+							f.pause()
+						}
+					}
+				}
+			},
+			swfPath: "http://jplayer.org/latest/dist/jplayer",
+			supplied: "mp3, oga",
+			wmode: "window",
+			useStateClassSkin: true,
+			autoBlur: false,
+			smoothPlayBar: true,
+			keyEnabled: true,
+			remainingDuration: true,
+			toggleDuration: true
+		})
 	},
 
 	getUserTokenFromCookie: function() {

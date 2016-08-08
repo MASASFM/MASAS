@@ -19,7 +19,9 @@ var Footer = React.createClass({
 		// init interval for progress bar width
 		this.interval = setInterval( () => {
 			// if player is playing
-			if(typeof($("#jquery_jplayer_1").data('jPlayer')) !== "undefined" && !this.props.isPlayerPaused) {
+
+			//typeof($("#jquery_jplayer_1").data('jPlayer')) !== "undefined"
+			if(this.props.songPlaying !== null && !this.props.isPlayerPaused) {
 				// update progress bar length
 				progressBarWidth = $("#jquery_jplayer_1").data('jPlayer').status.currentTime*1000*100 / this.props.SC_songInfo.duration
 				this.props.updateProgressBar(progressBarWidth)

@@ -29,6 +29,7 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 
 				// reinit player with new media url
 				if($("#jquery_jplayer_1").data("jPlayer") === undefined) {
+					console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$")
 					$("#jquery_jplayer_1").jPlayer({
 						ready: function(	) {
 							console.log("INIT JPLAYER= >", streamURL)
