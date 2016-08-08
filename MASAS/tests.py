@@ -45,7 +45,6 @@ class StatusTest(BaseTestMixin, test.TestCase):
         return self.client.post(
             reverse('status-list'),
             data={
-                # We're logged in as test user, this should fail
                 'user': reverse('user-detail', args=[user]),
                 'song': reverse('song-detail', args=[song]),
                 'status': status,
