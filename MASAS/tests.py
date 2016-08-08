@@ -14,6 +14,11 @@ from .models import Status, Play, Song, User
 
 class BaseTestMixin(object):
     def setUp(self):
+        '''
+        Create an artist with 3 songs and a user for self.client
+
+        Each song has different id and time interval.
+        '''
         self.artist = User.objects.create(username='artist')
 
         for i in range(0, 4):
