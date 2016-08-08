@@ -29,6 +29,7 @@ class BaseTestMixin(object):
             )
 
         self.user, c = User.objects.get_or_create(username='test')
+        self.user.is_active = True
         self.user.set_password('test')
         self.user.save()
 
