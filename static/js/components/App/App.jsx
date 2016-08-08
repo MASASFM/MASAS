@@ -64,7 +64,7 @@ var App = React.createClass({
 		})
 
 
-		// play pause play hack for mobile
+		// play pause play hack for mobile 
 		$("#jquery_jplayer_1").jPlayer({
 			ready: function(	) {
 				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3"
