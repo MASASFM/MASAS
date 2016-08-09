@@ -5,7 +5,7 @@ exportVar.defaultState = {
 	SCinfo: null,						// song info corresponding to these likes from SCinfo
 	reFetch: 0,						// rerender when new likes come in
 	searchInput: "", 					// (string) search textbox input
-	hashtagFilter: [true,true,true,true,true,true],		// (array) 1 = include in search. 1st entry = #EarlyMorning
+	hashtagFilter: [false,false,false,false,false,false],		// (array) 1 = include in search. 1st entry = #EarlyMorning
 }
 
 const { defaultState } = exportVar

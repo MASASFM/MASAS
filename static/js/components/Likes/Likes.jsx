@@ -96,14 +96,19 @@ var Likes = React.createClass({
 			})
 
 			// filter by hashtags
-			for(var i = 0; i < this.props.hashtagFilter.length; i++) {
-				if(!this.props.hashtagFilter[i]) {
-					filteredSongList = filteredSongList.filter((song) => {
-						var timeIntervalURL = song[0][0].song.timeInterval
-						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-						return parseInt(hashtagNumber) - 1 !== i
-					})
-					console.log(filteredSongList)
+			var testVar = this.props.hashtagFilter.filter((hashtag) => {
+				return hashtag
+			})
+
+			if(testVar.length !== 0) {
+				for(var i = 0; i < this.props.hashtagFilter.length; i++) {
+					if(!this.props.hashtagFilter[i]) {
+						filteredSongList = filteredSongList.filter((song) => {
+							var timeIntervalURL = song[0][0].song.timeInterval
+							var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+							return parseInt(hashtagNumber) - 1 !== i
+						})
+					}
 				}
 			}
 

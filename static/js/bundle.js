@@ -55687,14 +55687,19 @@ var Likes = React.createClass({
 			});
 
 			// filter by hashtags
-			for (var i = 0; i < this.props.hashtagFilter.length; i++) {
-				if (!this.props.hashtagFilter[i]) {
-					filteredSongList = filteredSongList.filter(function (song) {
-						var timeIntervalURL = song[0][0].song.timeInterval;
-						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
-						return parseInt(hashtagNumber) - 1 !== i;
-					});
-					console.log(filteredSongList);
+			var testVar = this.props.hashtagFilter.filter(function (hashtag) {
+				return hashtag;
+			});
+
+			if (testVar.length !== 0) {
+				for (var i = 0; i < this.props.hashtagFilter.length; i++) {
+					if (!this.props.hashtagFilter[i]) {
+						filteredSongList = filteredSongList.filter(function (song) {
+							var timeIntervalURL = song[0][0].song.timeInterval;
+							var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
+							return parseInt(hashtagNumber) - 1 !== i;
+						});
+					}
 				}
 			}
 
@@ -60191,7 +60196,7 @@ exportVar.defaultState = {
 	SCinfo: null, // song info corresponding to these likes from SCinfo
 	reFetch: 0, // rerender when new likes come in
 	searchInput: "", // (string) search textbox input
-	hashtagFilter: [true, true, true, true, true, true] };
+	hashtagFilter: [false, false, false, false, false, false] };
 
 // (array) 1 = include in search. 1st entry = #EarlyMorning
 var defaultState = exportVar.defaultState;
