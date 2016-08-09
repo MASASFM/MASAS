@@ -23,6 +23,10 @@ class CreateOnlyForMyUserMixin(object):
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
     play_count = serializers.IntegerField(read_only=True)
+    like_count = serializers.SerializerMethodField()
+
+    def get_like_count(self, obj):
+        return getattr(obj, 'like_count', None)
 
     def create(self, data):
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
@@ -49,6 +53,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'deleted',
             'dateUploaded',
             'play_count',
+            'like_count',
         )
 
 

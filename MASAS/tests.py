@@ -56,12 +56,21 @@ class StatusTest(BaseTestMixin, test.TestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_add_to_likes(self):
+        response = self.client.get(reverse('song-detail', args=(1,)))
+        self.assertEqual(response.json()['like_count'], 0)
+
         response = self.like(self.user.pk, 1)
         self.assertEqual(response.status_code, 201)
         self.assertEqual(
             list(self.user.status_set.values_list('pk', flat=True)),
             [1]
         )
+
+        response = self.client.get(reverse('song-detail', args=(1,)))
+        self.assertEqual(response.json()['like_count'], 1)
+
+        response = self.client.get(reverse('user-detail', args=(self.user.pk,)))
+        self.assertEqual(response.json()['likes'][0]['song']['like_count'], 1)
 
     def test_add_liked_to_likes_updates(self):
         response = self.like(self.user.pk, 1)

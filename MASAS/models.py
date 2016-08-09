@@ -25,8 +25,33 @@ class TimeInterval(models.Model):
 
 
 class SongManager(models.Manager):
-    def all(self):
-        return self.annotate(play_count=Count('play'))
+    use_for_related_fields = True
+
+    def get_queryset(self):
+        qs = super(SongManager, self).get_queryset()
+        qs = qs.extra(
+            select={
+                'play_count': '''
+                    SELECT
+                        count(id)
+                    FROM
+                        MASAS_play
+                    WHERE
+                        MASAS_play.song_id = MASAS_song.id
+                ''',
+                'like_count': '''
+                    SELECT
+                        count(id)
+                    FROM
+                        MASAS_status
+                    WHERE
+                        MASAS_status.song_id = MASAS_song.id
+                    AND
+                        status = 1
+                ''',
+            }
+        )
+        return qs
 
 
 class Song(models.Model):
