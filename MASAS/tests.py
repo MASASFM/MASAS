@@ -85,8 +85,8 @@ class StatusTest(BaseTestMixin, test.TestCase):
         pass
 
 
-class PlayTest(BaseTestMixin, test.TestCase):
-    class SideEffect(object):
+class PlayTestBase(BaseTestMixin, test.TestCase):
+    class RequestSideEffect(object):
         def __init__(self, fake_response):
             self.count = 0
             self.fake_response = fake_response
@@ -97,24 +97,46 @@ class PlayTest(BaseTestMixin, test.TestCase):
             if self.count == 1:
                 raise requests.HTTPError(response=self.fake_response)
 
-    def play(self,
-             deleted=None,
-             time_interval_id=None,
-             soundcloud_side_effect=None):
+    def get_play_response(self, url=None):
+        return self.client.post('%s?%s' % (reverse('play'), url or ''))
+
+
+class SoundcloudSideEffectTest(PlayTestBase):
+    def test_404_marks_as_deleted(self):
+        self.execute(status=404, deleted=1)
+
+    def test_504_does_not_delete(self):
+        self.execute(status=503, deleted=0)
+
+    def execute(self, status, deleted):
+        self.assertEqual(
+            Song.objects.exclude(deleted=None).count(),
+            0,
+        )
+
+        soundcloud_response = mock.Mock()
+        soundcloud_response.status_code = status
 
         with mock.patch('MASAS.views.soundcloud.Client') as Client:
-            if soundcloud_side_effect is None:
-                Client().get.return_value = True
-            else:
-                Client().get.side_effect=soundcloud_side_effect
+            Client().get.side_effect=self.RequestSideEffect(soundcloud_response)
+            response = self.client.post(reverse('play'))
+            Client().get.assert_called()
 
-            url = reverse('play')
+        self.assertEqual(
+            Song.objects.exclude(deleted=None).count(),
+            deleted,
+        )
 
-            if time_interval_id:
-                url += '?time_interval_id=%s' % time_interval_id
 
+class PlayTest(PlayTestBase):
+    def play(self, time_interval_id=None):
+        url = reverse('play')
+        if time_interval_id:
+            url += '?time_interval_id=%s' % time_interval_id
+
+        with mock.patch('MASAS.views.soundcloud.Client') as Client:
+            Client().get.return_value = True
             response = self.client.post(url)
-
             Client().get.assert_called()
 
         return response
@@ -165,41 +187,3 @@ class PlayTest(BaseTestMixin, test.TestCase):
             # It should always be a song with time_interval_id=2
             response = self.play(time_interval_id=1)
             self.assertIn(response.json()['pk'], inside)
-
-    def test_soundcloud_404_marks_song_as_deleted(self):
-        fake_response = mock.Mock()
-        fake_response.status_code = 404
-
-        self.assertEqual(
-            Song.objects.exclude(deleted=None).count(),
-            0
-        )
-
-        response = self.play(
-            soundcloud_side_effect=self.SideEffect(fake_response)
-        )
-
-        self.assertEqual(
-            Song.objects.exclude(deleted=None).count(),
-            1
-        )
-
-    def test_post_play_ignores_soundcloud_connection_failure(self):
-        fake_response = mock.Mock()
-        # SoundCloud's API is down ! We shouldn't mark any song as deleted and
-        # just let the client handle it
-        fake_response.status_code = 503
-
-        self.assertEqual(
-            Song.objects.exclude(deleted=None).count(),
-            0
-        )
-
-        response = self.play(
-            soundcloud_side_effect=self.SideEffect(fake_response)
-        )
-
-        self.assertEqual(
-            Song.objects.exclude(deleted=None).count(),
-            0
-        )
