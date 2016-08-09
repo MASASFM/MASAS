@@ -55592,6 +55592,8 @@ var Likes = React.createClass({
 			};
 
 			var filteredSongList = songList.filter(function (song) {
+				if (song === 0) return false;
+
 				var songSearchString = radioTimeString(song[0][0].song.timeInterval) + " " + song[1].title + " " + song[1].tag_list;
 
 				return isSubsequence(_this2.props.searchInput, songSearchString);
@@ -56972,7 +56974,7 @@ var NavSidebar = React.createClass({
 							Link,
 							{ disabled: true },
 							React.createElement("img", { src: "/static/img/MASAS_icon_Radio.svg", alt: "radio icon" }),
-							"radio"
+							"popular"
 						)
 					),
 					React.createElement(

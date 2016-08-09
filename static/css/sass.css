@@ -2235,7 +2235,8 @@ input[type=range].MASAS-slider {
     flex: 1;
     flex-direction: column;
     width: 100%;
-    flex-wrap: nowrap; }
+    flex-wrap: nowrap;
+    align-content: flex-start; }
 
 @media screen and (min-width: 992px) {
   .likes-scroll--wrapper {
@@ -2359,9 +2360,6 @@ input[type=range].MASAS-slider {
 .likes--wrapper .likes-searchbar--wrapper .MASAS-text-input {
   margin: 0.7rem; }
 
-@media screen and (min-width: 992px) {
-  .likes--wrapper .likes-searchbar--wrapper {
-    display: none; } }
 .discover--wrapper {
   display: flex;
   flex-direction: column;
