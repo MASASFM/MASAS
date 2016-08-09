@@ -48,7 +48,7 @@ var NavSidebar = React.createClass({
 								<div className="link">
 									<Link disabled={true}>
 										<img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />
-										radio
+										popular
 									</Link>
 								</div>
 								<div className="link">
