@@ -11,6 +11,7 @@ Likes.mapStateToProps = function(state) {
 		userPk: state.appReducer.MASASuserPk,
 		reFetch: state.likesReducer.reFetch,
 		searchInput: state.likesReducer.searchInput,
+		hashtagFilter: state.likesReducer.hashtagFilter,
 	}
 }
 
@@ -22,6 +23,7 @@ Likes.mapDispatchToProps = function(dispatch) {
 		updateLikes: (SCinfo) => dispatch({ type: 'UPDATE_LIKES', SCinfo, userLikes: null }),
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
+		toogleHashtag: (hashtagNumber) => dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber }),
 	}
 }
 

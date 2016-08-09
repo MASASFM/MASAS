@@ -55609,7 +55609,9 @@ var Likes = React.createClass({
 		userData: React.PropTypes.object,
 		searchInput: React.PropTypes.string,
 		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func
+		updateModalContent: React.PropTypes.func,
+		toggleHashtag: React.PropTypes.func,
+		hashtagFilter: React.PropTypes.array
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -55684,6 +55686,18 @@ var Likes = React.createClass({
 				return isSubsequence(_this2.props.searchInput, songSearchString);
 			});
 
+			// filter by hashtags
+			for (var i = 0; i < this.props.hashtagFilter.length; i++) {
+				if (!this.props.hashtagFilter[i]) {
+					filteredSongList = filteredSongList.filter(function (song) {
+						var timeIntervalURL = song[0][0].song.timeInterval;
+						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
+						return parseInt(hashtagNumber) !== i;
+					});
+					console.log(filteredSongList);
+				}
+			}
+
 			// ony keep SC data
 			filteredSongList = filteredSongList.map(function (song) {
 				return song[1];
@@ -55697,6 +55711,11 @@ var Likes = React.createClass({
 		console.log(FiltersModal);
 		this.props.updateModalContent(React.createElement(FiltersModal, null));
 		this.props.toogleModal();
+	},
+
+	toggleFilter: function toggleFilter(hashtagNumber) {
+		console.log('FILTER');
+		this.props.toogleHashtag(hashtagNumber);
 	},
 
 	render: function render() {
@@ -55716,32 +55735,32 @@ var Likes = React.createClass({
 				{ className: "filters--wrapper" },
 				React.createElement(
 					"div",
-					{ id: "filter-early-morning", className: "tag-filter" },
+					{ onClick: this.toggleFilter.bind(this, 0), id: "filter-early-morning", className: "tag-filter " + (this.props.hashtagFilter[0] ? "enable" : "") },
 					"#EarlyMorning"
 				),
 				React.createElement(
 					"div",
-					{ id: "filter-late-morning", className: "tag-filter enable" },
+					{ onClick: this.toggleFilter.bind(this, 1), id: "filter-late-morning", className: "tag-filter " + (this.props.hashtagFilter[1] ? "enable" : "") },
 					"#LateMorning"
 				),
 				React.createElement(
 					"div",
-					{ id: "filter-early-afternoon", className: "tag-filter" },
+					{ onClick: this.toggleFilter.bind(this, 2), id: "filter-early-afternoon", className: "tag-filter " + (this.props.hashtagFilter[2] ? "enable" : "") },
 					"#EarlyAfternoon"
 				),
 				React.createElement(
 					"div",
-					{ id: "filter-late-afternoon", className: "tag-filter" },
+					{ onClick: this.toggleFilter.bind(this, 3), id: "filter-late-afternoon", className: "tag-filter " + (this.props.hashtagFilter[3] ? "enable" : "") },
 					"#LateMorning"
 				),
 				React.createElement(
 					"div",
-					{ id: "filter-early-evening", className: "tag-filter" },
+					{ onClick: this.toggleFilter.bind(this, 4), id: "filter-early-evening", className: "tag-filter " + (this.props.hashtagFilter[4] ? "enable" : "") },
 					"#EarlyEvening"
 				),
 				React.createElement(
 					"div",
-					{ id: "filter-late-evening", className: "tag-filter" },
+					{ onClick: this.toggleFilter.bind(this, 5), id: "filter-late-evening", className: "tag-filter " + (this.props.hashtagFilter[5] ? "enable" : "") },
 					"#LateMorning"
 				)
 			),
@@ -56235,7 +56254,8 @@ Likes.mapStateToProps = function (state) {
 		SCinfo: state.likesReducer.SCinfo,
 		userPk: state.appReducer.MASASuserPk,
 		reFetch: state.likesReducer.reFetch,
-		searchInput: state.likesReducer.searchInput
+		searchInput: state.likesReducer.searchInput,
+		hashtagFilter: state.likesReducer.hashtagFilter
 	};
 };
 
@@ -56256,6 +56276,9 @@ Likes.mapDispatchToProps = function (dispatch) {
 		},
 		updateModalContent: function updateModalContent(modalContent) {
 			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+		},
+		toogleHashtag: function toogleHashtag(hashtagNumber) {
+			return dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber: hashtagNumber });
 		}
 	};
 };

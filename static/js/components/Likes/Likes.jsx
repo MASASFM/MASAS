@@ -19,6 +19,8 @@ var Likes = React.createClass({
 		searchInput: React.PropTypes.string,
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
+		toggleHashtag: React.PropTypes.func,
+		hashtagFilter: React.PropTypes.array
 	},
 
 	componentWillMount: function() {
@@ -93,6 +95,18 @@ var Likes = React.createClass({
 				return isSubsequence(this.props.searchInput, songSearchString)
 			})
 
+			// filter by hashtags
+			for(var i = 0; i < this.props.hashtagFilter.length; i++) {
+				if(!this.props.hashtagFilter[i]) {
+					filteredSongList = filteredSongList.filter((song) => {
+						var timeIntervalURL = song[0][0].song.timeInterval
+						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+						return parseInt(hashtagNumber) !== i
+					})
+					console.log(filteredSongList)
+				}
+			}
+
 			// ony keep SC data
 			filteredSongList = filteredSongList.map((song) => song[1])
 
@@ -107,6 +121,11 @@ var Likes = React.createClass({
 		this.props.toogleModal()
 	},
 
+	toggleFilter: function(hashtagNumber) {
+		console.log('FILTER')
+		this.props.toogleHashtag(hashtagNumber)
+	},
+
 	render: function() {
 		// console.log("PROPS => ", this.props)
 		return (
@@ -117,12 +136,12 @@ var Likes = React.createClass({
 					<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" alt="select-time" />
 				</div>
 				<div className="filters--wrapper">
-					<div id="filter-early-morning" className="tag-filter">#EarlyMorning</div>
-					<div id="filter-late-morning" className="tag-filter enable">#LateMorning</div>
-					<div id="filter-early-afternoon" className="tag-filter">#EarlyAfternoon</div>
-					<div id="filter-late-afternoon" className="tag-filter">#LateMorning</div>
-					<div id="filter-early-evening" className="tag-filter">#EarlyEvening</div>
-					<div id="filter-late-evening" className="tag-filter">#LateMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ "tag-filter " + ( this.props.hashtagFilter[1] ? "enable" : "" )}>#LateMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[2] ? "enable" : "" )}>#EarlyAfternoon</div>
+					<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ "tag-filter " + ( this.props.hashtagFilter[4] ? "enable" : "" )}>#EarlyEvening</div>
+					<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateMorning</div>
 				</div>
 				<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
 				
