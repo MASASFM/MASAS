@@ -19,7 +19,9 @@ Likes.mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		getLikes: (userPk) => getLikes(userPk),
-		updateLikes: (SCinfo) => dispatch({ type: 'UPDATE_LIKES', SCinfo, userLikes: null })
+		updateLikes: (SCinfo) => dispatch({ type: 'UPDATE_LIKES', SCinfo, userLikes: null }),
+		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
 	}
 }
 

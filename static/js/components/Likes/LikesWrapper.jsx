@@ -9,10 +9,13 @@ import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
 var LikesWrapper = React.createClass({
 	mixins: [ MobileBlurBackground ],
+
+	propTypes: {
+	},
 	
 	componentWillMount: function() {
 		// this.props.updateTitle()
-		this.scrollOffset = 60
+		this.scrollOffset = 70
 	},
 
 	componentDidMount: function() {
@@ -20,17 +23,19 @@ var LikesWrapper = React.createClass({
 		console.log("+++++++++")
 		console.log(node)
 
-		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight
+		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+
 		//$('.box.page-content')[0].scrollTop = 44
 		console.log($('.box.page-content')[0].scrollTop)
 
-		$('.box.page-content')[0].scrollTop = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight
+		$('.box.page-content')[0].scrollTop = this.scrollOffset
+
 
 		console.log(node.scrollTop, this.scrollOffset, $('.box.page-content')[0].scrollTop)
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight
+		this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
 	},
 
 	render: function() {

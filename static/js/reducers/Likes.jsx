@@ -4,13 +4,23 @@ exportVar.defaultState = {
 	userLikes: null,						// user likes from MASAS API
 	SCinfo: null,						// song info corresponding to these likes from SCinfo
 	reFetch: 0,						// rerender when new likes come in
-	searchInput: "", 				// (string) search textbox input
+	searchInput: "", 					// (string) search textbox input
+	hashtagFilter: [true,true,true,true,true,true],		// (array) 1 = include in search. 1st entry = #EarlyMorning
 }
+
 const { defaultState } = exportVar
 
 exportVar.likesReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'TOOGLE_HASHTAG_FILTER':
+			var hashtagFilter = state.hashtagFilter.slice(0)
+			hashtagFilter[action.hashtagNumber] = !hashtagFilter[action.hashtagNumber]
+
+			return {
+				...state,
+				hashtagFilter
+			}
 		case 'UPDATE_LIKES':
 			return {
 				...state,

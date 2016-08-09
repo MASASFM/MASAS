@@ -2236,8 +2236,7 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     width: 100%;
     flex-wrap: nowrap;
-    align-content: flex-start;
-    }
+    align-content: flex-start; }
 
 @media screen and (min-width: 992px) {
   .likes-scroll--wrapper {
@@ -2354,13 +2353,69 @@ input[type=range].MASAS-slider {
     font-size: 0.5rem; }
   .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
     width: 0.8rem; } }
-.likes--wrapper .likes-searchbar--wrapper {
-  display: block;
+.filters-modal--wrapper {
+  display: flex;
+  flex: 1;
   flex-direction: column;
+  padding-left: 2rem;
+  justify-content: center; }
+  .filters-modal--wrapper h1 {
+    font-size: 2.5rem;
+    font-family: Lato-Semibold;
+    margin: 3rem 0; }
+  .filters-modal--wrapper .filter {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    height: 2rem; }
+  .filters-modal--wrapper .filter.active::after {
+    background-image: url("/static/img/MASAS_icon_check_round.svg");
+    width: 2rem;
+    height: 2rem;
+    content: "";
+    background-size: cover; }
+  .filters-modal--wrapper .filter.active {
+    display: flex;
+    justify-content: space-between; }
+  .filters-modal--wrapper .filter:hover {
+    cursor: pointer; }
+
+.likes--wrapper .likes-searchbar--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%; }
 .likes--wrapper .likes-searchbar--wrapper .MASAS-text-input {
   margin: 0.7rem; }
+.likes--wrapper .likes-searchbar--wrapper img {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 1rem; }
+.likes--wrapper .filters--wrapper {
+  display: none;
+  justify-content: space-between;
+  width: 100%;
+  height: 2rem; }
+.likes--wrapper .tag-filter {
+  opacity: 0.5;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center; }
+.likes--wrapper .tag-filter:hover {
+  cursor: pointer; }
+.likes--wrapper .tag-filter.enable {
+  font-face: bold;
+  opacity: 1; }
 
+@media screen and (min-width: 992px) {
+  .likes--wrapper .likes-searchbar--wrapper img {
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 0.5rem; }
+  .likes--wrapper .likes-searchbar--wrapper .filter-icon {
+    display: none; }
+  .likes--wrapper .filters--wrapper {
+    display: flex; } }
 .discover--wrapper {
   display: flex;
   flex-direction: column;
@@ -2776,8 +2831,7 @@ h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
-  }
+  align-items: center; }
 .app-body .page-content--wrapper {
   display: flex;
   padding: 0; }
