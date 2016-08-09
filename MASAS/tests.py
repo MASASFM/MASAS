@@ -131,15 +131,8 @@ class PlayTest(BaseTestMixin, test.TestCase):
 
         # Cover the case where there is no unplayed song
         for i in range(0, 4):
+            # Just make sure it doesn't crash, this is random now
             response = self.play()
-
-            play_count = Play.objects.filter(song_id=response.json()['pk']).count()
-
-            self.assertEqual(
-                play_count,
-                2,
-                'Plays is not 2 for %s, it is %s' % (i, play_count)
-            )
 
     def test_post_play_skips_deleted(self):
         pks = list(Song.objects.values_list('pk', flat=True))
