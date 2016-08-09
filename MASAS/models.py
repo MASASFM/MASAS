@@ -35,17 +35,17 @@ class SongManager(models.Manager):
                     SELECT
                         count(id)
                     FROM
-                        MASAS_play
+                        "MASAS_play"
                     WHERE
-                        MASAS_play.song_id = MASAS_song.id
+                        "MASAS_play"."song_id" = "MASAS_song"."id"
                 ''',
                 'like_count': '''
                     SELECT
                         count(id)
                     FROM
-                        MASAS_status
+                        "MASAS_status"
                     WHERE
-                        MASAS_status.song_id = MASAS_song.id
+                        "MASAS_status"."song_id" = "MASAS_song"."id"
                     AND
                         status = 1
                 ''',
