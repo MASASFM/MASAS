@@ -1,1 +1,0 @@
-console.error("Error: Cannot find module './Header.jsx' from '/Users/thomasbinetruy/Documents/mysite/frontend/reducers'");
