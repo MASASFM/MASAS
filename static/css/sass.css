@@ -2236,7 +2236,8 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     width: 100%;
     flex-wrap: nowrap;
-    align-content: flex-start; }
+    align-content: flex-start;
+    }
 
 @media screen and (min-width: 992px) {
   .likes-scroll--wrapper {
@@ -2775,7 +2776,8 @@ h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  }
 .app-body .page-content--wrapper {
   display: flex;
   padding: 0; }

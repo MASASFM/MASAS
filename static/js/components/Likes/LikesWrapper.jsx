@@ -12,6 +12,25 @@ var LikesWrapper = React.createClass({
 	
 	componentWillMount: function() {
 		// this.props.updateTitle()
+		this.scrollOffset = 60
+	},
+
+	componentDidMount: function() {
+		var node = ReactDOM.findDOMNode(this.refs.scroll)
+		console.log("+++++++++")
+		console.log(node)
+
+		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight
+		//$('.box.page-content')[0].scrollTop = 44
+		console.log($('.box.page-content')[0].scrollTop)
+
+		$('.box.page-content')[0].scrollTop = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight
+
+		console.log(node.scrollTop, this.scrollOffset, $('.box.page-content')[0].scrollTop)
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight
 	},
 
 	render: function() {
@@ -39,8 +58,8 @@ var LikesWrapper = React.createClass({
 						<div className="box"></div>
 					</div>
 					<div className="col-xs-12 col-md-8 page-content--wrapper">
-						<div className="box page-content" style={{backgroundColor: 'rgba(0,0,0,0)'}}>
-							<div className="likes--wrapper">
+						<div ref="scroll" className="box page-content" style={{ overflow: 'scroll', justifyContent: 'initial', backgroundColor: 'rgba(0,0,0,0)'}}>
+							<div className="likes--wrapper" style={{ minHeight: 'calc(100% + ' + this.scrollOffset + 'px)'  }}>
 								{ this.props.children }
 							</div>
 						</div>

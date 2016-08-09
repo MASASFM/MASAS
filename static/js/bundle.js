@@ -55615,7 +55615,7 @@ var Likes = React.createClass({
 			null,
 			React.createElement(
 				"div",
-				{ className: "likes-searchbar--wrapper" },
+				{ className: "likes-searchbar--wrapper", id: "likes-searchbar-wrapper" },
 				React.createElement(Textbox, { id: "likes--search-textbox", actionString: "UPDATE_LIKES_SEARCH_INPUT", actionParamName: "input" })
 			),
 			React.createElement(LikesArtworks, { SCinfo: this.filterLikes(this.props.SCinfo), userData: this.props.userData })
@@ -56035,6 +56035,25 @@ var LikesWrapper = React.createClass({
 
 	componentWillMount: function componentWillMount() {
 		// this.props.updateTitle()
+		this.scrollOffset = 60;
+	},
+
+	componentDidMount: function componentDidMount() {
+		var node = ReactDOM.findDOMNode(this.refs.scroll);
+		console.log("+++++++++");
+		console.log(node);
+
+		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight;
+		//$('.box.page-content')[0].scrollTop = 44
+		console.log($('.box.page-content')[0].scrollTop);
+
+		$('.box.page-content')[0].scrollTop = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight;
+
+		console.log(node.scrollTop, this.scrollOffset, $('.box.page-content')[0].scrollTop);
+	},
+
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight;
 	},
 
 	render: function render() {
@@ -56083,10 +56102,10 @@ var LikesWrapper = React.createClass({
 					{ className: "col-xs-12 col-md-8 page-content--wrapper" },
 					React.createElement(
 						"div",
-						{ className: "box page-content", style: { backgroundColor: 'rgba(0,0,0,0)' } },
+						{ ref: "scroll", className: "box page-content", style: { overflow: 'scroll', justifyContent: 'initial', backgroundColor: 'rgba(0,0,0,0)' } },
 						React.createElement(
 							"div",
-							{ className: "likes--wrapper" },
+							{ className: "likes--wrapper", style: { minHeight: 'calc(100% + ' + this.scrollOffset + 'px)' } },
 							this.props.children
 						)
 					)

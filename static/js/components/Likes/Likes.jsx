@@ -102,7 +102,7 @@ var Likes = React.createClass({
 		// console.log("PROPS => ", this.props)
 		return (
 			<LikesWrapper>
-				<div className="likes-searchbar--wrapper">
+				<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
 					<Textbox id="likes--search-textbox" actionString="UPDATE_LIKES_SEARCH_INPUT" actionParamName="input" />
 				</div>
 				<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
