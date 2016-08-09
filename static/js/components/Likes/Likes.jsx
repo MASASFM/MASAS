@@ -101,7 +101,7 @@ var Likes = React.createClass({
 					filteredSongList = filteredSongList.filter((song) => {
 						var timeIntervalURL = song[0][0].song.timeInterval
 						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-						return parseInt(hashtagNumber) !== i
+						return parseInt(hashtagNumber) - 1 !== i
 					})
 					console.log(filteredSongList)
 				}
@@ -139,9 +139,9 @@ var Likes = React.createClass({
 					<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
 					<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ "tag-filter " + ( this.props.hashtagFilter[1] ? "enable" : "" )}>#LateMorning</div>
 					<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[2] ? "enable" : "" )}>#EarlyAfternoon</div>
-					<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateAfternoon</div>
 					<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ "tag-filter " + ( this.props.hashtagFilter[4] ? "enable" : "" )}>#EarlyEvening</div>
-					<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateMorning</div>
+					<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateEvening</div>
 				</div>
 				<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
 				

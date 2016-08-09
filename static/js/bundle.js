@@ -55692,7 +55692,7 @@ var Likes = React.createClass({
 					filteredSongList = filteredSongList.filter(function (song) {
 						var timeIntervalURL = song[0][0].song.timeInterval;
 						var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
-						return parseInt(hashtagNumber) !== i;
+						return parseInt(hashtagNumber) - 1 !== i;
 					});
 					console.log(filteredSongList);
 				}
@@ -55751,7 +55751,7 @@ var Likes = React.createClass({
 				React.createElement(
 					"div",
 					{ onClick: this.toggleFilter.bind(this, 3), id: "filter-late-afternoon", className: "tag-filter " + (this.props.hashtagFilter[3] ? "enable" : "") },
-					"#LateMorning"
+					"#LateAfternoon"
 				),
 				React.createElement(
 					"div",
@@ -55761,7 +55761,7 @@ var Likes = React.createClass({
 				React.createElement(
 					"div",
 					{ onClick: this.toggleFilter.bind(this, 5), id: "filter-late-evening", className: "tag-filter " + (this.props.hashtagFilter[5] ? "enable" : "") },
-					"#LateMorning"
+					"#LateEvening"
 				)
 			),
 			React.createElement(LikesArtworks, { SCinfo: this.filterLikes(this.props.SCinfo), userData: this.props.userData })
