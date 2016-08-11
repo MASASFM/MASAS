@@ -55658,7 +55658,7 @@ var _require2 = require("../UI/UI.jsx");
 var Textbox = _require2.Textbox;
 
 var FiltersModal = require("./FiltersModal.jsx");
-InfiniteScroll = require('react-infinite-scroll')(React);
+var InfiniteScroll = require('react-infinite-scroll')(React);
 
 var _require3 = require("../../MASAS_functions.jsx");
 
@@ -55688,6 +55688,12 @@ var Likes = React.createClass({
 
 	componentDidMount: function componentDidMount() {},
 
+	componentWillUnmount: function componentWillUnmount() {
+		for (var i = 0; i < this.props.hashtagFilter.length; i++) {
+			if (this.props.hashtagFilter[i]) this.props.toogleHashtag(i);
+		}
+	},
+
 	getLikes: function getLikes() {
 		var _this = this;
 
@@ -55695,7 +55701,7 @@ var Likes = React.createClass({
 			var idString = this.props.userData.likes.map(function (like) {
 				return like.song.SC_ID;
 			}).join();
-			SC.get("tracks", { limit: 200, ids: idString }).then(function (response) {
+			SC.get("tracks", { limit: this.props.userData.likes.length, ids: idString }).then(function (response) {
 				_this.props.updateLikes(response);
 			});
 		} else {
@@ -60257,9 +60263,10 @@ exportVar.defaultState = {
 	SCinfo: null, // song info corresponding to these likes from SCinfo
 	reFetch: 0, // rerender when new likes come in
 	searchInput: "", // (string) search textbox input
-	hashtagFilter: [false, false, false, false, false, false] };
+	hashtagFilter: [false, false, false, false, false, false], // (array) 1 = include in search. 1st entry = #EarlyMorning
+	loadMoreLikes: true // (bool) need more likes to load in infinite scrool ?
+};
 
-// (array) 1 = include in search. 1st entry = #EarlyMorning
 var defaultState = exportVar.defaultState;
 
 exportVar.likesReducer = function () {

@@ -7,7 +7,7 @@ var LikesWrapper = require("./LikesWrapper.jsx")
 var LikesArtworks = require("./LikesArtworks.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 var FiltersModal = require("./FiltersModal.jsx")
-InfiniteScroll = require('react-infinite-scroll')(React)
+var InfiniteScroll = require('react-infinite-scroll')(React)
 
 var { isSubsequence } = require("../../MASAS_functions.jsx")
 
@@ -34,10 +34,17 @@ var Likes = React.createClass({
 	componentDidMount: function() {
 	},
 
+	componentWillUnmount: function() {
+		for(var i = 0; i < this.props.hashtagFilter.length; i++) {
+			if(this.props.hashtagFilter[i])
+				this.props.toogleHashtag(i)
+		}
+	},
+
 	getLikes: function() {
 		if(typeof(this.props.userData.likes) !== "undefined") {
 			var idString = this.props.userData.likes.map((like) => {return like.song.SC_ID}).join()
-			SC.get("tracks", {limit: 200, ids: idString}).then( (response) => {
+			SC.get("tracks", {limit: this.props.userData.likes.length, ids: idString}).then( (response) => {
 				this.props.updateLikes(response)
 			})
 		} else {
