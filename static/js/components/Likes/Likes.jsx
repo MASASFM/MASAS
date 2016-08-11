@@ -1,14 +1,13 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Likes.jsx")
 
 var LikesWrapper = require("./LikesWrapper.jsx")
-var LikesItem = require("./LikesItem.jsx")
 var LikesArtworks = require("./LikesArtworks.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 var FiltersModal = require("./FiltersModal.jsx")
+InfiniteScroll = require('react-infinite-scroll')(React)
 
 var { isSubsequence } = require("../../MASAS_functions.jsx")
 
@@ -20,11 +19,14 @@ var Likes = React.createClass({
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		toggleHashtag: React.PropTypes.func,
-		hashtagFilter: React.PropTypes.array
+		hashtagFilter: React.PropTypes.array,
+		updateLikes: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		toogleHashtag: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Likes', '0')		// 0 = menu icon; 1 = arrow back
+		this.props.updateTitle("Likes", "0")		// 0 = menu icon; 1 = arrow back
 
 		this.getLikes()
 	},
@@ -33,12 +35,9 @@ var Likes = React.createClass({
 	},
 
 	getLikes: function() {
-		// console.log('no way')
 		if(typeof(this.props.userData.likes) !== "undefined") {
 			var idString = this.props.userData.likes.map((like) => {return like.song.SC_ID}).join()
-			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-				// console.log(response)
-				// this.setState({userInfo: data, userSCSongs: response})
+			SC.get("tracks", {limit: 200, ids: idString}).then( (response) => {
 				this.props.updateLikes(response)
 			})
 		} else {
@@ -121,13 +120,11 @@ var Likes = React.createClass({
 	},
 
 	openFiltersModal: function() {
-		console.log(FiltersModal)
 		this.props.updateModalContent(<FiltersModal />)
 		this.props.toogleModal()
 	},
 
 	toggleFilter: function(hashtagNumber) {
-		console.log('FILTER')
 		this.props.toogleHashtag(hashtagNumber)
 	},
 
@@ -138,7 +135,7 @@ var Likes = React.createClass({
 				<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
 					<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
 					<Textbox id="likes--search-textbox" actionString="UPDATE_LIKES_SEARCH_INPUT" actionParamName="input" />
-					<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" alt="select-time" />
+					<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" />
 				</div>
 				<div className="filters--wrapper">
 					<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
