@@ -57693,7 +57693,7 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 
 				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data });
 				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response });
-				dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response });
+				if (!newProps.isPlaylistPlaying) dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response });
 
 				// update song liked button based on server response (vs optimistic UI)
 				ajaxCalls.updateLikeButton(data, response, newProps);
