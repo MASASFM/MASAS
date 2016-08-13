@@ -15,9 +15,11 @@ Player.mapStateToProps = function(state) {
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userPk: state.appReducer.MASASuserPk,
-		MASASuser: state.appReducer.MASASuser,
 		isFetchingSong: state.playerReducer.isFetchingSong,
 		discoverHistory: state.discoverReducer.history,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
 	}
 }
 
@@ -36,7 +38,8 @@ Player.mapDispatchToProps = function(dispatch) {
 		playNewSong: (newProps, addToHistory) => playNewSong(newProps, addToHistory),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
 		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
-		playPreviousSong: (discoverHistory) => playPreviousSong(discoverHistory)
+		playPreviousSong: (discoverHistory) => playPreviousSong(discoverHistory),
+		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
 	}
 }
 

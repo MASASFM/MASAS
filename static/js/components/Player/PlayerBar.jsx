@@ -10,6 +10,17 @@ var { Marquee } = require("../UI/UI.jsx")
 
 var Player = React.createClass({
 	propTypes: {
+		playlist: React.PropTypes.array,
+		isPlaylistPlaying: React.PropTypes.bool,
+		playlistPosition: React.PropTypes.number,
+		dispatch: React.PropTypes.func,
+		play: React.PropTypes.func,
+		resumePlaying: React.PropTypes.func,
+		playNewSong: React.PropTypes.func,
+		toggleSongLike: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		playPreviousSong: React.PropTypes.func,
+		playNewSongFromPlaylist: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -45,7 +56,11 @@ var Player = React.createClass({
 			const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
 			console.log('NEXT SONG')
 			
-			this.props.playRandomSong(MASASuser, currentTimeInterval)
+			if(this.props.isPlaylistPlaying) {
+				this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
+			} else {
+				this.props.playRandomSong(MASASuser, currentTimeInterval)
+			}
 		})
 
 		// update player UI on start play
@@ -80,7 +95,7 @@ var Player = React.createClass({
 	},
 
 	componentWillReceiveProps: function(newProps) {
-		if( this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused) 
+		if( newProps.songPlaying !== null && (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused)) 
 		{
 			if(newProps.songPlaying !== this.props.songPlaying) {
 				// if new song, fetch new song and play it
@@ -93,29 +108,6 @@ var Player = React.createClass({
 				this.props.resumePlaying(this.props.playerAtTime)
 		}
 	},
-
-	// playRandomSong: function() {
-	// 	var header = "Bearer " + this.props.MASASuser
-	// 	var csrftoken = getCookie('csrftoken')
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: '/api/play/?time_interval_id=1',
-	// 		headers: {
-	// 			"Authorization": header,
-	// 			"X-CSRFToken": csrftoken
-	// 		},
-	// 		data: {
-				
-	// 		},
-	// 		success: (data) => {
-	// 			console.log("/api/test !!! => ", data)
-	// 			this.props.playRandomSong(data.url)
-	// 		},
-	// 		error: (err) => {
-	// 			console.log(err)
-	// 		},
-	// 	})
-	// },
 
 	getControlButtons() {
 		// show loader if fetching song info

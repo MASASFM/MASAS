@@ -10,14 +10,32 @@ var LikesItem = React.createClass({
 	propTypes: {
 		MASASinfo: React.PropTypes.object,			// song info from MASAS database
 		SCinfo: React.PropTypes.object,			// related song info from SC
+		playNewSongFromPlaylist: React.PropTypes.func,
+		loadPlaylist: React.PropTypes.func,
+		pause: React.PropTypes.func,
+		isPaused: React.PropTypes.bool,
+		isFetchingSong: React.PropTypes.bool,
+		userData: React.PropTypes.object,
 	},
 
 	componentWillMount: function() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
+		
 	},
 
 	playTrack: function() {
-		this.props.playNewSong(this.props.MASASinfo.url)
+		//this.props.playNewSong(this.props.MASASinfo.url)
+		var playlist = this.props.userData.likes.map((like) => {
+			return like.song.url
+		})
+
+		var playlistPosition = 0
+		for(var i = 0; i < playlist.length; i++) {
+			if(this.props.MASASinfo.url === playlist[i])
+				playlistPosition = i
+		}
+
+		this.props.loadPlaylist(playlist)
+		this.props.playNewSongFromPlaylist(playlistPosition)
 	},
 
 	renderRadioTime: function() {

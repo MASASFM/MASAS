@@ -56006,15 +56006,30 @@ var LikesItem = React.createClass({
 
 	propTypes: {
 		MASASinfo: React.PropTypes.object, // song info from MASAS database
-		SCinfo: React.PropTypes.object },
-
-	// related song info from SC
-	componentWillMount: function componentWillMount() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
+		SCinfo: React.PropTypes.object, // related song info from SC
+		playNewSongFromPlaylist: React.PropTypes.func,
+		loadPlaylist: React.PropTypes.func,
+		pause: React.PropTypes.func,
+		isPaused: React.PropTypes.bool,
+		isFetchingSong: React.PropTypes.bool,
+		userData: React.PropTypes.object
 	},
 
+	componentWillMount: function componentWillMount() {},
+
 	playTrack: function playTrack() {
-		this.props.playNewSong(this.props.MASASinfo.url);
+		//this.props.playNewSong(this.props.MASASinfo.url)
+		var playlist = this.props.userData.likes.map(function (like) {
+			return like.song.url;
+		});
+
+		var playlistPosition = 0;
+		for (var i = 0; i < playlist.length; i++) {
+			if (this.props.MASASinfo.url === playlist[i]) playlistPosition = i;
+		}
+
+		this.props.loadPlaylist(playlist);
+		this.props.playNewSongFromPlaylist(playlistPosition);
 	},
 
 	renderRadioTime: function renderRadioTime() {
@@ -56371,7 +56386,8 @@ LikesItem.mapStateToProps = function (state) {
 	return {
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
-		isFetchingSong: state.playerReducer.isFetchingSong
+		isFetchingSong: state.playerReducer.isFetchingSong,
+		userData: state.appReducer.userData
 	};
 };
 
@@ -56383,6 +56399,12 @@ LikesItem.mapDispatchToProps = function (dispatch) {
 		},
 		pause: function pause() {
 			return pausePlayer(dispatch);
+		},
+		loadPlaylist: function loadPlaylist(playlist) {
+			return dispatch({ type: "LOAD_PLAYLIST", playlist: playlist });
+		},
+		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
+			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
 		}
 	};
 };
@@ -57324,7 +57346,19 @@ var Marquee = _require3.Marquee;
 var Player = React.createClass({
 	displayName: "Player",
 
-	propTypes: {},
+	propTypes: {
+		playlist: React.PropTypes.array,
+		isPlaylistPlaying: React.PropTypes.bool,
+		playlistPosition: React.PropTypes.number,
+		dispatch: React.PropTypes.func,
+		play: React.PropTypes.func,
+		resumePlaying: React.PropTypes.func,
+		playNewSong: React.PropTypes.func,
+		toggleSongLike: React.PropTypes.func,
+		playRandomSong: React.PropTypes.func,
+		playPreviousSong: React.PropTypes.func,
+		playNewSongFromPlaylist: React.PropTypes.func
+	},
 
 	getInitialState: function getInitialState() {
 		return {
@@ -57363,7 +57397,11 @@ var Player = React.createClass({
 			var currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL);
 			console.log('NEXT SONG');
 
-			_this.props.playRandomSong(MASASuser, currentTimeInterval);
+			if (_this.props.isPlaylistPlaying) {
+				_this.props.playNewSongFromPlaylist(_this.props.playlistPosition + 1);
+			} else {
+				_this.props.playRandomSong(MASASuser, currentTimeInterval);
+			}
 		});
 
 		// update player UI on start play
@@ -57397,7 +57435,7 @@ var Player = React.createClass({
 	},
 
 	componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-		if (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused) {
+		if (newProps.songPlaying !== null && (this.props.songPlaying !== newProps.songPlaying || this.props.isPaused !== newProps.isPaused)) {
 			if (newProps.songPlaying !== this.props.songPlaying) {
 				// if new song, fetch new song and play it
 				this.props.playNewSong(newProps, this.props.addToHistory);
@@ -57407,29 +57445,6 @@ var Player = React.createClass({
 			} else this.props.resumePlaying(this.props.playerAtTime);
 		}
 	},
-
-	// playRandomSong: function() {
-	// 	var header = "Bearer " + this.props.MASASuser
-	// 	var csrftoken = getCookie('csrftoken')
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: '/api/play/?time_interval_id=1',
-	// 		headers: {
-	// 			"Authorization": header,
-	// 			"X-CSRFToken": csrftoken
-	// 		},
-	// 		data: {
-
-	// 		},
-	// 		success: (data) => {
-	// 			console.log("/api/test !!! => ", data)
-	// 			this.props.playRandomSong(data.url)
-	// 		},
-	// 		error: (err) => {
-	// 			console.log(err)
-	// 		},
-	// 	})
-	// },
 
 	getControlButtons: function getControlButtons() {
 		// show loader if fetching song info
@@ -57724,9 +57739,11 @@ Player.mapStateToProps = function (state) {
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userPk: state.appReducer.MASASuserPk,
-		MASASuser: state.appReducer.MASASuser,
 		isFetchingSong: state.playerReducer.isFetchingSong,
-		discoverHistory: state.discoverReducer.history
+		discoverHistory: state.discoverReducer.history,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
 	};
 };
 
@@ -57759,6 +57776,9 @@ Player.mapDispatchToProps = function (dispatch) {
 		},
 		playPreviousSong: function playPreviousSong(discoverHistory) {
 			return _playPreviousSong(discoverHistory);
+		},
+		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
+			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
 		}
 	};
 };
@@ -60335,16 +60355,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var exportVar = {};
 
 exportVar.defaultState = {
-	songPlaying: null, // currently playing song (song api url)		
-	isPaused: false, // is player paused
-	playerAtTime: 0, // time current song playing is at
+	songPlaying: null, // (string) currently playing song (song api url)		
+	isPaused: false, // (bool) is player paused
+	playerAtTime: 0, // (float) time current song playing is at
 	MASAS_songInfo: null, // song info from MASAS db
 	SC_songInfo: null, // song info from soundcloud API
-	isSongPlayingLiked: false, // is currently playing song liked
-	isFetchingSong: false, // is song currently fetching
-	isBuffering: false };
+	isSongPlayingLiked: false, // (bool) is currently playing song liked
+	isFetchingSong: false, // (bool) is song currently fetching
+	isBuffering: false, // (bool) is song buffering
+	isPlaylistPlaying: false, // (bool)
+	playlist: [], // (array) array of songs to play
+	playlistPosition: 0 };
 
-// is song buffering
+// (int) in [0, playlist.length-1], position in playlist (used to play previous and next songs)
 var defaultState = exportVar.defaultState;
 
 exportVar.playerReducer = function () {
@@ -60377,7 +60400,20 @@ exportVar.playerReducer = function () {
 			return _extends({}, state, {
 				isPaused: false,
 				playerAtTime: 0,
-				songPlaying: action.song
+				songPlaying: action.song,
+				isPlaylistPlaying: false
+			});
+		case 'PLAY_NEW_SONG_FROM_PLAYLIST':
+			if (action.playlistPosition < state.playlist.length) return _extends({}, state, {
+				isPaused: false,
+				playerAtTime: 0,
+				songPlaying: state.playlist[action.playlistPosition],
+				isPlaylistPlaying: true,
+				playlistPosition: action.playlistPosition
+			});else return defaultState;
+		case 'LOAD_PLAYLIST':
+			return _extends({}, state, {
+				playlist: action.playlist
 			});
 		case 'UPDATE_MASAS_SONG_INFO':
 			return _extends({}, state, {

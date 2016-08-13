@@ -1,14 +1,17 @@
 let exportVar = {}
 
 exportVar.defaultState = {
-	songPlaying: null,				// currently playing song (song api url)		
-	isPaused: false,			// is player paused
-	playerAtTime: 0,			// time current song playing is at
-	MASAS_songInfo: null,			// song info from MASAS db
-	SC_songInfo: null,			// song info from soundcloud API
-	isSongPlayingLiked: false,		// is currently playing song liked
-	isFetchingSong: false,			// is song currently fetching
-	isBuffering: false,			// is song buffering
+	songPlaying: null,					// (string) currently playing song (song api url)		
+	isPaused: false,					// (bool) is player paused
+	playerAtTime: 0,					// (float) time current song playing is at
+	MASAS_songInfo: null,				// song info from MASAS db
+	SC_songInfo: null,					// song info from soundcloud API
+	isSongPlayingLiked: false,			// (bool) is currently playing song liked
+	isFetchingSong: false,				// (bool) is song currently fetching
+	isBuffering: false,					// (bool) is song buffering
+	isPlaylistPlaying: false, 			// (bool)
+	playlist: [], 						// (array) array of songs to play
+	playlistPosition: 0, 				// (int) in [0, playlist.length-1], position in playlist (used to play previous and next songs)
 }
 
 const { defaultState } = exportVar
@@ -35,7 +38,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				isPaused: true,
-				playerAtTime: action.pausingAtTime
+				playerAtTime: action.pausingAtTime,
 			}
 		case 'STOP':
 			return {
@@ -46,7 +49,25 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				isPaused: false,
 				playerAtTime: 0,
-				songPlaying: action.song
+				songPlaying: action.song,
+				isPlaylistPlaying: false,
+			}
+		case 'PLAY_NEW_SONG_FROM_PLAYLIST':
+			if(action.playlistPosition < state.playlist.length)
+				return {
+					...state,
+					isPaused: false,
+					playerAtTime: 0,
+					songPlaying: state.playlist[action.playlistPosition],
+					isPlaylistPlaying: true,
+					playlistPosition: action.playlistPosition,
+				}
+			else
+				return defaultState
+		case 'LOAD_PLAYLIST':
+			return {
+				...state,
+				playlist: action.playlist
 			}
 		case 'UPDATE_MASAS_SONG_INFO':
 			return {

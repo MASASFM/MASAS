@@ -12,7 +12,7 @@ var LikesItem = require("./LikesItem.jsx")
 var LikesArtworks = React.createClass({
 	propTypes: {
 		SCinfo: React.PropTypes.array,
-		userData: React.PropTypes.object,
+		userData: React.PropTypes.object,		
 	},
 
 	componentWillMount: function() {
@@ -132,4 +132,4 @@ var LikesArtworks = React.createClass({
 	}
 })
 
-module.exports =  LikesArtworks
+module.exports = LikesArtworks
