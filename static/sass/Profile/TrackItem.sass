@@ -1,133 +1,160 @@
 .profile--wrapper
+	$trackWrapperHeight: 8rem
 	.track--wrapper
 		display: flex
 		width: 100%
-		min-height: 8rem
-		height: 8rem
+		min-height: $trackWrapperHeight
+		flex-direction: column
+		overflow: hidden
+		transition: linear 0.3s min-height
+
+	.track--wrapper.open
+		min-height: $trackWrapperHeight * 2
 
 	.track--wrapper:nth-of-type(odd)
 		background-color: rgba(0,0,0, 0.4)
 
 	.track--wrapper
-		.artwork--wrapper
-			position: relative
-			cursor: pointer
-			background-color: black
-			height: 8rem
-			width: 8rem
-
-		.artwork--wrapper
-			.artwork
-				width: 8rem
-				object-fit: cover
-				z-index: 0
-
-			.artwork-overlay
-				align-items: center
-				justify-content: center
-				display: none
-				background-color: rgba(0,0,0,0.5)
-				position: absolute
-				height: 8rem
-				width: 8rem
-				z-index: 1
-				top: 0
-
-			.artwork-overlay
-				img
-					height: 3rem
-					width: 3rem
-
-		.song-info--wrapper
+		.visible-info
 			display: flex
-			flex-direction: column
+			flex-direction: row
 			flex: 1
-			padding: 1.5rem 0.9rem
+			min-height: $trackWrapperHeight
 
-		.song-info--wrapper
-			.song-stats-1
-				display: flex
-				flex: 1
-				justify-content: space-between
+			.artwork--wrapper
+				position: relative
+				cursor: pointer
+				background-color: black
+				height: $trackWrapperHeight
+				width: $trackWrapperHeight
 
-			.song-stats-1
-				.song-name
-					display: flex
-					flex-direction: column
-					width: 100%
+			.artwork--wrapper
+				.artwork
+					width: $trackWrapperHeight
+					object-fit: cover
+					z-index: 0
 
-					.title, .username
-						position: relative  		// needed for <Marquee>
-						height: 1rem
-
-				.lives-left
-					img
-						width: 1.2rem
-			.song-stats-2
-				display: flex
-				flex: 1
-				justify-content: space-between
-				align-items: flex-end
-
-			.song-stats-2
-				font-size: 0.9rem
-				color: rgba(255,255,255,1)
-
-				.title
-					font-size: 0.7rem
-					color: rgba(255,255,255,0.5)
-
-				.plays
-					display: flex
+				.artwork-overlay
 					align-items: center
+					justify-content: center
+					display: none
+					background-color: rgba(0,0,0,0.5)
+					position: absolute
+					height: $trackWrapperHeight
+					width: $trackWrapperHeight
+					z-index: 1
+					top: 0
 
-					.play-count-icon
-						width: 1.2rem
-						padding-left: 0.3rem
+				.artwork-overlay
+					img
+						height: 3rem
+						width: 3rem
+
+			.song-info--wrapper
+				display: flex
+				flex-direction: column
+				flex: 1
+				padding: 1.5rem 0.9rem
+
+			.song-info--wrapper
+				.song-stats-1
+					display: flex
+					flex: 1
+					justify-content: space-between
+
+				.song-stats-1
+					.song-name
+						display: flex
+						flex-direction: column
+						width: 100%
+
+						.title, .username
+							position: relative  		// needed for <Marquee>
+							height: 1rem
+
+					.lives-left
+						img
+							width: 1.2rem
+				.song-stats-2
+					display: flex
+					flex: 1
+					justify-content: space-between
+					align-items: flex-end
+
+				.song-stats-2
+					font-size: 0.9rem
+					color: rgba(255,255,255,1)
+
+					.title
+						font-size: 0.7rem
+						color: rgba(255,255,255,0.5)
+
+					.plays
+						display: flex
+						align-items: center
+
+						.play-count-icon
+							width: 1.2rem
+							padding-left: 0.3rem
+		.hidden-info
+			min-height: $trackWrapperHeight
+			transition: linear 2s height
+			display: flex
+
 
 @media screen and (min-width: $desktop-min-width)
 	.profile--wrapper
 		.track--wrapper:nth-of-type(odd)
 			background-color: rgba(255,255,255, 0.16)
 
+		$trackWrapperHeight: 6rem
+		.track--wrapper.open
+			min-height: $trackWrapperHeight * 2
+
 		.track--wrapper
-			min-height: 6rem
-			height: 6rem
+			min-height: $trackWrapperHeight
+			height: $trackWrapperHeight
 
-			.artwork--wrapper
-				height: 6rem
-				width: 6rem
+			.visible-info
+				min-height: $trackWrapperHeight
 
-				.artwork
-					width: 6rem
+				.artwork--wrapper
+					height: $trackWrapperHeight
+					width: $trackWrapperHeight
 
-				.artwork-overlay
-					height: 6rem
-					width: 6rem
+					.artwork
+						width: $trackWrapperHeight
 
-			.artwork--wrapper:hover
-				.artwork-overlay
-					display: flex
+					.artwork-overlay
+						height: $trackWrapperHeight
+						width: $trackWrapperHeight
 
-			.song-info--wrapper
-				flex-direction: row
-
-			.song-info--wrapper
-				.song-stats-1
-					align-items: center
-					justify-content: space-around
-					flex-direction: row-reverse
-
-				.song-stats-1
-					.lives-left
-						min-width: 5rem
+				.artwork--wrapper:hover
+					.artwork-overlay
 						display: flex
+
+				.song-info--wrapper
+					flex-direction: row
+
+				.song-info--wrapper
+				
+					.song-stats-1
 						align-items: center
-						justify-content: center
+						justify-content: space-around
+						flex-direction: row-reverse
 
-					.song-name
-						flex: 1
+					.song-stats-1
+						.lives-left
+							min-width: 5rem
+							display: flex
+							align-items: center
+							justify-content: center
 
-				.song-stats-2
-					align-items: center					
-					justify-content: space-around
+						.song-name
+							flex: 1
+
+					.song-stats-2
+						align-items: center					
+						justify-content: space-around
+
+			.hidden-info

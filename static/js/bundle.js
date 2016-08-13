@@ -58292,68 +58292,102 @@ var TrackItem = React.createClass({
 		if (this.props.MASAS_songInfo.url === this.props.songPlaying && this.props.isPaused === false) return React.createElement("img", { src: "/static/img/MASAS_player_pause.svg", alt: "pause", className: "artwork", onClick: this.props.pause });else return React.createElement("img", { src: "/static/img/MASAS_player_play.svg", alt: "play", className: "artwork", onClick: this.playTrack });
 	},
 
+	toggleOpenTray: function toggleOpenTray() {
+		var el = this.refs.trackWrapper;
+		console.log(el.className);
+		if (el.className.includes(" open")) {
+			el.className = el.className.replace(" open", "");
+		} else {
+			el.className = el.className + " open";
+		}
+		console.log(el.className);
+	},
+
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "track--wrapper" },
+			{ className: "track--wrapper", ref: "trackWrapper" },
 			React.createElement(
 				"div",
-				{ className: "artwork--wrapper" },
+				{ className: "visible-info" },
 				React.createElement(
 					"div",
-					{ className: "artwork-div" },
-					this.props.track.artwork_url ? React.createElement("img", { src: this.props.track.artwork_url, alt: "cover art", className: "artwork", onClick: this.playTrack }) : ""
+					{ className: "artwork--wrapper" },
+					React.createElement(
+						"div",
+						{ className: "artwork-div" },
+						this.props.track.artwork_url ? React.createElement("img", { src: this.props.track.artwork_url, alt: "cover art", className: "artwork", onClick: this.playTrack }) : ""
+					),
+					React.createElement(
+						"div",
+						{ className: "artwork-overlay" },
+						this.renderPlayerControlButton()
+					)
 				),
 				React.createElement(
 					"div",
-					{ className: "artwork-overlay" },
-					this.renderPlayerControlButton()
+					{ className: "song-info--wrapper", onClick: this.toggleOpenTray },
+					React.createElement(
+						"div",
+						{ className: "song-stats-1" },
+						React.createElement(
+							"div",
+							{ className: "song-name" },
+							React.createElement(
+								"div",
+								{ className: "title" },
+								React.createElement(
+									Marquee,
+									null,
+									this.props.track.title
+								)
+							),
+							React.createElement(
+								"div",
+								{ className: "username" },
+								React.createElement(
+									Marquee,
+									null,
+									this.props.track.user.username
+								)
+							)
+						)
+					),
+					React.createElement(
+						"div",
+						{ className: "song-stats-2" },
+						React.createElement(
+							"div",
+							{ className: "time" },
+							this.renderRadioTime()
+						),
+						React.createElement(
+							"div",
+							{ className: "plays" },
+							this.props.MASAS_songInfo.play_count,
+							" ",
+							React.createElement("img", { src: "/static/img/MASAS_icon_play_count.svg", alt: "play count", className: "play-count-icon" })
+						)
+					)
 				)
 			),
 			React.createElement(
 				"div",
-				{ className: "song-info--wrapper" },
+				{ className: "hidden-info" },
 				React.createElement(
 					"div",
-					{ className: "song-stats-1" },
-					React.createElement(
-						"div",
-						{ className: "song-name" },
-						React.createElement(
-							"div",
-							{ className: "title" },
-							React.createElement(
-								Marquee,
-								null,
-								this.props.track.title
-							)
-						),
-						React.createElement(
-							"div",
-							{ className: "username" },
-							React.createElement(
-								Marquee,
-								null,
-								this.props.track.user.username
-							)
-						)
-					)
+					null,
+					"HELLO"
 				),
 				React.createElement(
 					"div",
-					{ className: "song-stats-2" },
-					React.createElement(
-						"div",
-						{ className: "time" },
-						this.renderRadioTime()
-					),
-					React.createElement(
-						"div",
-						{ className: "plays" },
-						this.props.MASAS_songInfo.play_count,
-						" ",
-						React.createElement("img", { src: "/static/img/MASAS_icon_play_count.svg", alt: "play count", className: "play-count-icon" })
-					)
+					null,
+					"HELLO"
+				),
+				React.createElement(
+					"div",
+					null,
+					"HELLO"
 				)
 			)
 		);

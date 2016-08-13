@@ -66,41 +66,59 @@ var TrackItem = React.createClass({
 			return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
 	},
 
+	toggleOpenTray: function() {
+		var el = this.refs.trackWrapper
+		console.log(el.className)
+		if(el.className.includes(" open")) {
+			el.className = el.className.replace(" open", "")
+		} else {
+			el.className = el.className + " open"
+		}
+		console.log(el.className)
+	},
+
 	render: function() {
 		return (
-			<div className="track--wrapper">
-				<div className="artwork--wrapper">
-					<div className="artwork-div">
-						{ 
-							this.props.track.artwork_url ?
-								<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
-							:
-								""
-						}
+			<div className="track--wrapper" ref="trackWrapper">
+				<div className="visible-info">
+					<div className="artwork--wrapper">
+						<div className="artwork-div">
+							{ 
+								this.props.track.artwork_url ?
+									<img src={this.props.track.artwork_url} alt="cover art" className="artwork" onClick={this.playTrack }/>
+								:
+									""
+							}
+						</div>
+						<div className="artwork-overlay">
+							{ this.renderPlayerControlButton() }
+						</div>
 					</div>
-					<div className="artwork-overlay">
-						{ this.renderPlayerControlButton() }
+					<div className="song-info--wrapper" onClick={ this.toggleOpenTray }>
+						<div className="song-stats-1">
+							<div className="song-name">
+								<div className="title">
+									<Marquee>{this.props.track.title}</Marquee>
+								</div>
+								<div className="username">
+									<Marquee>{this.props.track.user.username}</Marquee>
+								</div>
+							</div>
+						</div>
+						<div className="song-stats-2">
+							<div className="time">
+								{ this.renderRadioTime() }
+							</div>
+							<div className="plays">
+								{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className="song-info--wrapper">
-					<div className="song-stats-1">
-						<div className="song-name">
-							<div className="title">
-								<Marquee>{this.props.track.title}</Marquee>
-							</div>
-							<div className="username">
-								<Marquee>{this.props.track.user.username}</Marquee>
-							</div>
-						</div>
-					</div>
-					<div className="song-stats-2">
-						<div className="time">
-							{ this.renderRadioTime() }
-						</div>
-						<div className="plays">
-							{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />
-						</div>
-					</div>
+				<div className="hidden-info">
+					<div>HELLO</div>
+					<div>HELLO</div>
+					<div>HELLO</div>
 				</div>
 			</div>
 		)
