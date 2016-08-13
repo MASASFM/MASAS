@@ -56195,8 +56195,6 @@ var LikesWrapper = React.createClass({
 
 	componentDidMount: function componentDidMount() {
 		var node = ReactDOM.findDOMNode(this.refs.scroll);
-		console.log("+++++++++");
-		console.log(node);
 
 		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
 
@@ -58243,16 +58241,30 @@ var TrackItem = React.createClass({
 
 	propTypes: {
 		track: React.PropTypes.object, //track SC info
-		MASAS_songInfo: React.PropTypes.object },
+		MASAS_songInfo: React.PropTypes.object, //track MASAS info
+		playNewSongFromPlaylist: React.PropTypes.func,
+		loadPlaylist: React.PropTypes.func,
+		userData: React.PropTypes.object
+	},
 
-	//track MASAS info
 	componentWillMount: function componentWillMount() {},
 
 	componentDidMount: function componentDidMount() {},
 
 	playTrack: function playTrack() {
 		// console.log("======"+this.props.MASAS_songInfo.url+"======")
-		this.props.playNewSong(this.props.MASAS_songInfo.url);
+		// this.props.playNewSong(this.props.MASAS_songInfo.url)
+		var playlist = this.props.userData.songs.map(function (song) {
+			return song.url;
+		});
+
+		var playlistPosition = 0;
+		for (var i = 0; i < playlist.length; i++) {
+			if (this.props.MASAS_songInfo.url === playlist[i]) playlistPosition = i;
+		}
+
+		this.props.loadPlaylist(playlist);
+		this.props.playNewSongFromPlaylist(playlistPosition);
 	},
 
 	renderRadioTime: function renderRadioTime() {
@@ -58454,20 +58466,10 @@ var TrackItem = {};
 TrackItem.mapStateToProps = function (state) {
 	return {
 		songPlaying: state.playerReducer.songPlaying,
-		isPaused: state.playerReducer.isPaused
+		isPaused: state.playerReducer.isPaused,
+		userData: state.appReducer.userData
 	};
 };
-
-// moved to MASAS_functions.jsx
-// var pause = function(dispatch) {
-// 	console.log('pausing')
-// 	// pause player
-// 	$("#jquery_jplayer_1").jPlayer('pause')
-
-// 	// get time to start playing at this time when unpausing and update app state
-// 	var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-// 	dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
-// }
 
 // Which action creators does it want to receive by props?
 TrackItem.mapDispatchToProps = function (dispatch) {
@@ -58477,6 +58479,12 @@ TrackItem.mapDispatchToProps = function (dispatch) {
 		},
 		pause: function pause() {
 			return pausePlayer(dispatch);
+		},
+		loadPlaylist: function loadPlaylist(playlist) {
+			return dispatch({ type: "LOAD_PLAYLIST", playlist: playlist });
+		},
+		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
+			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
 		}
 	};
 };

@@ -20,8 +20,6 @@ var LikesWrapper = React.createClass({
 
 	componentDidMount: function() {
 		var node = ReactDOM.findDOMNode(this.refs.scroll)
-		console.log("+++++++++")
-		console.log(node)
 
 		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
 

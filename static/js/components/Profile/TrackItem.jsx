@@ -10,6 +10,9 @@ var TrackItem = React.createClass({
 	propTypes: {
 		track: React.PropTypes.object,			//track SC info
 		MASAS_songInfo: React.PropTypes.object,		//track MASAS info
+		playNewSongFromPlaylist: React.PropTypes.func,
+		loadPlaylist: React.PropTypes.func,
+		userData: React.PropTypes.object,
 	},
 
 	componentWillMount: function() {
@@ -20,7 +23,19 @@ var TrackItem = React.createClass({
 
 	playTrack: function() {
 		// console.log("======"+this.props.MASAS_songInfo.url+"======")
-		this.props.playNewSong(this.props.MASAS_songInfo.url)
+		// this.props.playNewSong(this.props.MASAS_songInfo.url)
+		var playlist = this.props.userData.songs.map((song) => {
+			return song.url
+		})
+
+		var playlistPosition = 0
+		for(var i = 0; i < playlist.length; i++) {
+			if(this.props.MASAS_songInfo.url === playlist[i])
+				playlistPosition = i
+		}
+
+		this.props.loadPlaylist(playlist)
+		this.props.playNewSongFromPlaylist(playlistPosition)
 	},
 
 	renderRadioTime: function() {
