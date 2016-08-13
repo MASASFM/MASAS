@@ -157,6 +157,31 @@ var Player = React.createClass({
 		}
 	},
 
+	getPreviousSongIcon: function() {
+		if(this.props.isPlaylistPlaying) {
+			if(this.props.playlistPosition === 0)
+				return
+			else
+				return <img 
+					src="/static/img/MASAS_next.svg" 
+					onClick={ this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition - 1)} 
+					alt="pevious song" 
+					className="previous-song-icon" 
+					/>
+		} else {
+			if(this.props.discoverHistory.all.length > 1)
+				return <img 
+					src="/static/img/MASAS_next.svg" 
+					onClick={ this.props.playPreviousSong.bind(this, this.props.discoverHistory) } 
+					alt="previous song" 
+					className="previous-song-icon" 
+					style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
+					/>
+			else
+				return
+		}
+	},
+
 	render: function() {
 		// store discover number for previous icon
 		let discoverNumber = 0
@@ -194,14 +219,7 @@ var Player = React.createClass({
 					: "" }
 				</div>
 				<div className="player-controls--wrapper">
-					<img 
-						src="/static/img/MASAS_next.svg" 
-						onClick={ this.props.playPreviousSong.bind(this, this.props.discoverHistory) } 
-						alt="next song" 
-						className="previous-song-icon" 
-						style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
-						/>
-
+					{ this.getPreviousSongIcon() }
 					{ this.getControlButtons() }
 				</div>
 			</div>

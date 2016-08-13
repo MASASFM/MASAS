@@ -57512,6 +57512,25 @@ var Player = React.createClass({
 		}
 	},
 
+	getPreviousSongIcon: function getPreviousSongIcon() {
+		if (this.props.isPlaylistPlaying) {
+			if (this.props.playlistPosition === 0) return;else return React.createElement("img", {
+				src: "/static/img/MASAS_next.svg",
+				onClick: this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition - 1),
+				alt: "pevious song",
+				className: "previous-song-icon"
+			});
+		} else {
+			if (this.props.discoverHistory.all.length > 1) return React.createElement("img", {
+				src: "/static/img/MASAS_next.svg",
+				onClick: this.props.playPreviousSong.bind(this, this.props.discoverHistory),
+				alt: "previous song",
+				className: "previous-song-icon",
+				style: { visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }
+			});else return;
+		}
+	},
+
 	render: function render() {
 		// store discover number for previous icon
 		var discoverNumber = 0;
@@ -57572,13 +57591,7 @@ var Player = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "player-controls--wrapper" },
-				React.createElement("img", {
-					src: "/static/img/MASAS_next.svg",
-					onClick: this.props.playPreviousSong.bind(this, this.props.discoverHistory),
-					alt: "next song",
-					className: "previous-song-icon",
-					style: { visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }
-				}),
+				this.getPreviousSongIcon(),
 				this.getControlButtons()
 			)
 		);
