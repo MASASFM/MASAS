@@ -12,6 +12,15 @@ var Player = require("../Player/PlayerBar.jsx")
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 var Footer = React.createClass({
+	propTypes: {
+		playlist: React.PropTypes.array,
+		isPlaylistPlaying: React.PropTypes.bool,
+		playlistPosition: React.PropTypes.number,
+		playRandomSong: React.PropTypes.func,
+		playNewSongFromPlaylist: React.PropTypes.func,
+	},
+
+
 	componentWillMount: function() {
 		// init progress bar width
 		var progressBarWidth = 0
@@ -68,6 +77,21 @@ var Footer = React.createClass({
 		this.props.toogleModal()
 	},
 
+	getNextSongIcon: function() {
+		if(this.props.songPlaying) {
+			if(this.props.isPlaylistPlaying) {
+				if(this.props.playlistPosition < this.props.playlist.length - 1)
+					return <img onClick={this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition + 1)} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+				else
+					return
+			} else
+				return <img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
+			
+		} else {
+			return 
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="footer--wrapper">
@@ -103,12 +127,7 @@ var Footer = React.createClass({
 							</div>
 							<div className="col-xs-2 col-md-2 col-display-none-sm extra-controls--wrapper">
 								<div className="box nextSong--wrapper">
-									{
-										this.props.songPlaying ?
-											<img onClick={this.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-icon" />
-										:
-											""
-									}
+									{ this.getNextSongIcon() }
 								</div>
 								<div 
 									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 

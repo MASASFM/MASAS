@@ -16,6 +16,9 @@ Footer.mapStateToProps = function(state) {
 		playerAtTime: state.playerReducer.playerAtTime,
 		isPlayerPaused: state.playerReducer.isPaused,
 		isModalOpened: state.appReducer.isModalOpened,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
 	}
 }
 
@@ -29,6 +32,7 @@ Footer.mapDispatchToProps = function(dispatch) {
 		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
+		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
 	}
 }
 

@@ -53099,6 +53099,14 @@ var getTimeIntervalFromURL = _require2.getTimeIntervalFromURL;
 var Footer = React.createClass({
 	displayName: "Footer",
 
+	propTypes: {
+		playlist: React.PropTypes.array,
+		isPlaylistPlaying: React.PropTypes.bool,
+		playlistPosition: React.PropTypes.number,
+		playRandomSong: React.PropTypes.func,
+		playNewSongFromPlaylist: React.PropTypes.func
+	},
+
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
@@ -53151,6 +53159,16 @@ var Footer = React.createClass({
 			isSuggestTimeModal: modalType === 3 ? true : false
 		}));
 		this.props.toogleModal();
+	},
+
+	getNextSongIcon: function getNextSongIcon() {
+		if (this.props.songPlaying) {
+			if (this.props.isPlaylistPlaying) {
+				if (this.props.playlistPosition < this.props.playlist.length - 1) return React.createElement("img", { onClick: this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition + 1), src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-icon" });else return;
+			} else return React.createElement("img", { onClick: this.playRandomSong, src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-icon" });
+		} else {
+			return;
+		}
 	},
 
 	render: function render() {
@@ -53211,7 +53229,7 @@ var Footer = React.createClass({
 							React.createElement(
 								"div",
 								{ className: "box nextSong--wrapper" },
-								this.props.songPlaying ? React.createElement("img", { onClick: this.playRandomSong, src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-icon" }) : ""
+								this.getNextSongIcon()
 							),
 							React.createElement("div", {
 								className: "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : ""),
@@ -53553,7 +53571,10 @@ Footer.mapStateToProps = function (state) {
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		playerAtTime: state.playerReducer.playerAtTime,
 		isPlayerPaused: state.playerReducer.isPaused,
-		isModalOpened: state.appReducer.isModalOpened
+		isModalOpened: state.appReducer.isModalOpened,
+		playlist: state.playerReducer.playlist,
+		playlistPosition: state.playerReducer.playlistPosition,
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
 	};
 };
 
@@ -53577,6 +53598,9 @@ Footer.mapDispatchToProps = function (dispatch) {
 		},
 		updateModalContent: function updateModalContent(modalContent) {
 			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+		},
+		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
+			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
 		}
 	};
 };
