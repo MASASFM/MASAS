@@ -1960,9 +1960,11 @@ input[type=range].MASAS-slider {
     .profile--wrapper .track--wrapper .hidden-info .icon--wrapper img {
       height: 1.2rem;
       width: 1.2rem;
-      padding-left: 1.5rem; }
+      padding-left: 1.5rem;
+      cursor: pointer; }
     .profile--wrapper .track--wrapper .hidden-info .icon--wrapper .like-icon {
-      padding-left: 0.3rem; }
+      padding-left: 0.3rem;
+      cursor: default; }
     .profile--wrapper .track--wrapper .hidden-info .icon--wrapper .hidden-mobile {
       display: none; }
 
@@ -2012,6 +2014,96 @@ input[type=range].MASAS-slider {
       padding-right: 2rem; }
       .profile--wrapper .track--wrapper .hidden-info .icon--wrapper .hidden-mobile {
         display: block; } }
+.profile-modal--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; }
+  .profile-modal--wrapper .song-info--wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 18rem; }
+    .profile-modal--wrapper .song-info--wrapper .artwork {
+      border: 1px solid white;
+      width: 10rem;
+      height: 10rem;
+      margin-bottom: 1.5rem; }
+      .profile-modal--wrapper .song-info--wrapper .artwork img {
+        height: 100%; }
+    .profile-modal--wrapper .song-info--wrapper .song-title {
+      font-family: Lato-Semibold, sans-serif;
+      text-align: center; }
+  .profile-modal--wrapper .profile-modal-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; }
+    .profile-modal--wrapper .profile-modal-content h2 {
+      letter-spacing: 0.22rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      line-height: 1.3rem;
+      text-align: center;
+      max-width: 18rem; }
+    .profile-modal--wrapper .profile-modal-content > img {
+      width: 5rem; }
+    .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper {
+      display: flex;
+      width: 250px;
+      height: 120px; }
+      .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
+        width: 250px;
+        height: 120px; }
+      .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
+        bottom: 1rem; }
+  .profile-modal--wrapper .cancel-button {
+    display: none; }
+
+@media screen and (min-width: 992px) {
+  .profile-modal--wrapper {
+    padding: 0 1.5rem; }
+    .profile-modal--wrapper .song-info--wrapper {
+      width: 100%;
+      max-width: 100%;
+      flex-direction: row;
+      flex: 0.3;
+      height: 4rem; }
+      .profile-modal--wrapper .song-info--wrapper .artwork {
+        border: 3px solid white;
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 0rem;
+        margin-right: 1.5rem; }
+      .profile-modal--wrapper .song-info--wrapper .song-title {
+        text-align: left;
+        font-size: 0.825rem; }
+    .profile-modal--wrapper .profile-modal-content {
+      width: 100%;
+      justify-content: space-around; }
+      .profile-modal--wrapper .profile-modal-content h2 {
+        max-width: 100%; }
+      .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper {
+        display: flex;
+        width: 300px;
+        height: 100px; }
+        .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper #suggest-time-modal-timePicker-canvas-id {
+          width: 300px;
+          height: 100px; }
+        .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
+          bottom: 0rem;
+          height: 2.8rem; }
+    .profile-modal--wrapper .cancel-button {
+      display: block;
+      font-size: 0.7rem;
+      cursor: pointer; }
+    .profile-modal--wrapper .cancel-button:active {
+      font-family: Lato-Semibold, sans-serif; } }
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }

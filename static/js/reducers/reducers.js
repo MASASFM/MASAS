@@ -11,6 +11,7 @@ import { playerReducer, defaultState as playerDefaultState } from "./Player.jsx"
 import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
 import { discoverReducer, defaultState as discoverDefaultState  } from "./Discover.jsx"
 import { legalsReducer, defaultState as legalsDefaultState  } from "./Legals.jsx"
+import { profileReducer, defaultState as profileDefaultState  } from "./Profile.jsx"
 
 const initialState = {
 	headerReducer: headerDefaultState,
@@ -24,6 +25,7 @@ const initialState = {
 	likesReducer: likesDefaultState,
 	discoverReducer: discoverDefaultState,
 	legalsReducer: legalsDefaultState,
+	profileReducer: profileDefaultState,
 }
 const rootReducer = Redux.combineReducers({
 	headerReducer,
@@ -36,7 +38,8 @@ const rootReducer = Redux.combineReducers({
 	playerReducer,
 	likesReducer,
 	discoverReducer,
-	legalsReducer
+	legalsReducer,
+	profileReducer
 })
 
 

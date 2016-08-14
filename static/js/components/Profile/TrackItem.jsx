@@ -5,6 +5,8 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TrackItem.jsx")
 
 var { Marquee, RankingInfoIcon } = require("../UI/UI.jsx")
+var ChangeMoodModal = require("./ChangeMoodModal.jsx")
+var RemoveSongModal = require("./RemoveSongModal.jsx")
 
 var TrackItem = React.createClass({
 	propTypes: {
@@ -13,6 +15,8 @@ var TrackItem = React.createClass({
 		playNewSongFromPlaylist: React.PropTypes.func,
 		loadPlaylist: React.PropTypes.func,
 		userData: React.PropTypes.object,
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -77,6 +81,16 @@ var TrackItem = React.createClass({
 		console.log(el.className)
 	},
 
+	openChangeMoodModal: function() {
+		this.props.updateModalContent(<ChangeMoodModal toggleModal={ this.props.toogleModal } MASAS_info={ this.props.MASAS_songInfo } SC_info={ this.props.track } />)
+		this.props.toogleModal()
+	},
+
+	openRemoveSongModal: function() {
+		this.props.updateModalContent(<RemoveSongModal toggleModal={ this.props.toogleModal } MASAS_info={ this.props.MASAS_songInfo } SC_info={ this.props.track } />)
+		this.props.toogleModal()
+	},
+
 	render: function() {
 		return (
 			<div className="track--wrapper" ref="trackWrapper">
@@ -119,8 +133,8 @@ var TrackItem = React.createClass({
 					<div className="RankingInfoIcon--wrapper"><RankingInfoIcon ranking={ 0.5 }/></div>
 					<div className="icon--wrapper">
 						{ this.props.MASAS_songInfo.like_count }<img className="like-icon" src="/static/img/MASAS_liked.svg" alt="# of likes" />
-						<img className="hidden-mobile" src="/static/img/MASAS_icon_changemood.svg" alt="change mood" />
-						<img className="hidden-mobile" src="/static/img/MASAS_icon_trash.svg" alt="delete song" />
+						<img onClick={ this.openChangeMoodModal } className="hidden-mobile" src="/static/img/MASAS_icon_changemood.svg" alt="change mood" />
+						<img onClick={ this.openRemoveSongModal } className="hidden-mobile" src="/static/img/MASAS_icon_trash.svg" alt="delete song" />
 					</div>
 				</div>
 			</div>
