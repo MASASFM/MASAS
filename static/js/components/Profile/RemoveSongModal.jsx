@@ -2,7 +2,7 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
-// var { mapStateToProps, mapDispatchToProps } = require("./containers/Template.jsx")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/RemoveSongModal.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
@@ -20,6 +20,24 @@ var RemoveSongModal = React.createClass({
 
 	componentWillMount: function() {
 		
+	},
+
+	removeSong: function() {
+		var header = "Bearer " + this.props.MASASuser
+
+		$.ajax({
+			type: 'DELETE',
+			url: this.props.MASAS_info.url,
+			headers: {
+				"Authorization": header,
+			},
+			success: (r) => {
+				this.props.toggleModal()
+			},
+			error: (e) => {
+				console.log(e)
+			}
+		})
 	},
 
 	render: function() {
@@ -46,7 +64,7 @@ var RemoveSongModal = React.createClass({
 						isSecondaryAction={ false }
 						isBigButton={ false }
 						isDisabled={ false }
-						onClick={ () => {} }>
+						onClick={ this.removeSong }>
 						yes
 					</Button>
 				</div>
@@ -55,5 +73,7 @@ var RemoveSongModal = React.createClass({
 		)
 	}
 })
-
-module.exports = RemoveSongModal
+module.exports = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(RemoveSongModal)
