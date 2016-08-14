@@ -53118,7 +53118,7 @@ var Footer = React.createClass({
 			// if player is playing
 
 			//typeof($("#jquery_jplayer_1").data('jPlayer')) !== "undefined"
-			if (_this.props.songPlaying !== null && !_this.props.isPlayerPaused) {
+			if (_this.props.songPlaying !== null && !_this.props.isPlayerPaused && _this.props.SC_songInfo) {
 				// update progress bar length
 				progressBarWidth = $("#jquery_jplayer_1").data('jPlayer').status.currentTime * 1000 * 100 / _this.props.SC_songInfo.duration;
 				_this.props.updateProgressBar(progressBarWidth);
@@ -57413,16 +57413,18 @@ var Player = React.createClass({
 
 			var getState = _require4.getState;
 
-			var currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval;
-			var MASASuser = getState().appReducer.MASASuser;
+			if (getState().playerReducer.songPlaying !== null) {
+				var currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval;
+				var MASASuser = getState().appReducer.MASASuser;
 
-			var currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL);
-			console.log('NEXT SONG');
+				var currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL);
+				console.log('NEXT SONG');
 
-			if (_this.props.isPlaylistPlaying) {
-				_this.props.playNewSongFromPlaylist(_this.props.playlistPosition + 1);
-			} else {
-				_this.props.playRandomSong(MASASuser, currentTimeInterval);
+				if (_this.props.isPlaylistPlaying) {
+					_this.props.playNewSongFromPlaylist(_this.props.playlistPosition + 1);
+				} else {
+					_this.props.playRandomSong(MASASuser, currentTimeInterval);
+				}
 			}
 		});
 
@@ -57647,12 +57649,12 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 								oga: streamURL
 							}).jPlayer('play');
 
-							var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
-							var kickoff = function kickoff() {
-								$("#jquery_jplayer_1").jPlayer("play");
-								document.documentElement.removeEventListener(click, kickoff, true);
-							};
-							document.documentElement.addEventListener(click, kickoff, true);
+							// var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
+							// var kickoff = function () {
+							// 	$("#jquery_jplayer_1").jPlayer("play")
+							// 	document.documentElement.removeEventListener(click, kickoff, true)
+							// }
+							// document.documentElement.addEventListener(click, kickoff, true)
 						},
 
 						keyBindings: {

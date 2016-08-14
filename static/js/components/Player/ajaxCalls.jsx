@@ -39,12 +39,12 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 								oga: streamURL
 							}).jPlayer('play')
 
-							var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
-							var kickoff = function () {
-								$("#jquery_jplayer_1").jPlayer("play")
-								document.documentElement.removeEventListener(click, kickoff, true)
-							}
-							document.documentElement.addEventListener(click, kickoff, true)
+							// var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
+							// var kickoff = function () {
+							// 	$("#jquery_jplayer_1").jPlayer("play")
+							// 	document.documentElement.removeEventListener(click, kickoff, true)
+							// }
+							// document.documentElement.addEventListener(click, kickoff, true)
 						},
 
 						keyBindings: {

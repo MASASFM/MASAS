@@ -49,17 +49,20 @@ var Player = React.createClass({
 		$("#jquery_jplayer_1").bind($.jPlayer.event.ended, (event) => {
 			// get state from reducer because "this" object doesn't have access to state mutations 
 			// (this object is a copy of component instance at componentDidMount)
-			const { getState } = require('../../reducers/reducers.js')
-			const currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval
-			const MASASuser = getState().appReducer.MASASuser
 
-			const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
-			console.log('NEXT SONG')
-			
-			if(this.props.isPlaylistPlaying) {
-				this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
-			} else {
-				this.props.playRandomSong(MASASuser, currentTimeInterval)
+			const { getState } = require('../../reducers/reducers.js')
+			if(getState().playerReducer.songPlaying !== null) {
+				const currentTimeIntervalURL = getState().playerReducer.MASAS_songInfo.timeInterval
+				const MASASuser = getState().appReducer.MASASuser
+
+				const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
+				console.log('NEXT SONG')
+				
+				if(this.props.isPlaylistPlaying) {
+					this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
+				} else {
+					this.props.playRandomSong(MASASuser, currentTimeInterval)
+				}
 			}
 		})
 
