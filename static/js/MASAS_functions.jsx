@@ -421,4 +421,7 @@ MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 
+const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
+MASAS_functions.updateProfileInfo = updateProfileInfo
+
 module.exports = MASAS_functions

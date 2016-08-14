@@ -52317,6 +52317,12 @@ MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1));
 };
 
+var _require4 = require("./components/Profile/ajaxCalls.jsx");
+
+var updateProfileInfo = _require4.updateProfileInfo;
+
+MASAS_functions.updateProfileInfo = updateProfileInfo;
+
 module.exports = MASAS_functions;
 
 },{"./components/Login/InvitationPending.jsx":338,"./components/Login/TermsAndCond.jsx":341,"./components/Profile/ajaxCalls.jsx":357,"./reducers/reducers.js":396,"js-cookie":31,"react":279,"react-router":118}],294:[function(require,module,exports){
@@ -58329,11 +58335,14 @@ var _require = require("./containers/RemoveSongModal.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var _require2 = require('../../MASAS_functions.jsx');
 
-var _require2 = require("../UI/UI.jsx");
+var updateNotificationBar = _require2.updateNotificationBar;
+var updateProfileInfo = _require2.updateProfileInfo;
 
-var Button = _require2.Button;
+var _require3 = require("../UI/UI.jsx");
+
+var Button = _require3.Button;
 
 // var Template = (props) => {
 
@@ -58363,6 +58372,8 @@ var RemoveSongModal = React.createClass({
 			},
 			success: function success(r) {
 				_this.props.toggleModal();
+				updateNotificationBar("Song deleted");
+				updateProfileInfo();
 			},
 			error: function error(e) {
 				console.log(e);
@@ -58416,7 +58427,7 @@ var RemoveSongModal = React.createClass({
 });
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(RemoveSongModal);
 
-},{"../UI/UI.jsx":373,"./containers/RemoveSongModal.jsx":361,"react":279,"react-dom":80,"react-redux":84}],356:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":293,"../UI/UI.jsx":373,"./containers/RemoveSongModal.jsx":361,"react":279,"react-dom":80,"react-redux":84}],356:[function(require,module,exports){
 "use strict";
 
 var React = require("react");

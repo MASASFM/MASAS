@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/RemoveSongModal.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+const { updateNotificationBar, updateProfileInfo } = require('../../MASAS_functions.jsx')
 var { Button } = require("../UI/UI.jsx")
 
 // var Template = (props) => {
@@ -33,6 +33,8 @@ var RemoveSongModal = React.createClass({
 			},
 			success: (r) => {
 				this.props.toggleModal()
+				updateNotificationBar("Song deleted")
+				updateProfileInfo()
 			},
 			error: (e) => {
 				console.log(e)
