@@ -57841,12 +57841,16 @@ var _require = require("./containers/ChangeMoodModal.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var _require2 = require("../../MASAS_functions.jsx");
 
-var _require2 = require("../UI/UI.jsx");
+var getCookie = _require2.getCookie;
+var updateNotificationBar = _require2.updateNotificationBar;
+var updateProfileInfo = _require2.updateProfileInfo;
 
-var TimePicker = _require2.TimePicker;
-var Button = _require2.Button;
+var _require3 = require("../UI/UI.jsx");
+
+var TimePicker = _require3.TimePicker;
+var Button = _require3.Button;
 
 // var Template = (props) => {
 
@@ -57864,6 +57868,33 @@ var ChangeMoodModal = React.createClass({
 	},
 
 	componentWillMount: function componentWillMount() {},
+
+	changeMood: function changeMood() {
+		var _this = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+		var csrftoken = getCookie("csrftoken");
+
+		$.ajax({
+			type: 'PATCH',
+			url: this.props.MASAS_info.url,
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken
+			},
+			data: {
+				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.moodValue + "/"
+			},
+			success: function success(r) {
+				_this.props.toggleModal();
+				updateNotificationBar("Song updated");
+				updateProfileInfo();
+			},
+			error: function error(e) {
+				updateNotificationBar("Error");
+			}
+		});
+	},
 
 	render: function render() {
 		return React.createElement(
@@ -57908,7 +57939,7 @@ var ChangeMoodModal = React.createClass({
 						isSecondaryAction: false,
 						isBigButton: false,
 						isDisabled: false,
-						onClick: function onClick() {} },
+						onClick: this.changeMood },
 					"yes"
 				)
 			),
@@ -57923,7 +57954,7 @@ var ChangeMoodModal = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ChangeMoodModal);
 
-},{"../UI/UI.jsx":373,"./containers/ChangeMoodModal.jsx":358,"react":279,"react-dom":80,"react-redux":84}],353:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":293,"../UI/UI.jsx":373,"./containers/ChangeMoodModal.jsx":358,"react":279,"react-dom":80,"react-redux":84}],353:[function(require,module,exports){
 "use strict";
 
 // STATEFUL COMPONENT => CHANGE !!!! (integrate w/ redux states)
@@ -58376,6 +58407,7 @@ var RemoveSongModal = React.createClass({
 				updateProfileInfo();
 			},
 			error: function error(e) {
+				updateNotificationBar("Error");
 				console.log(e);
 			}
 		});
@@ -58667,7 +58699,8 @@ var ChangeMoodModal = {};
 // Which part of the Redux global state does our component want to receive as props?
 ChangeMoodModal.mapStateToProps = function (state) {
 	return {
-		moodValue: state.profileReducer.changeSongMoodValue
+		moodValue: state.profileReducer.changeSongMoodValue,
+		MASASuser: state.appReducer.MASASuser
 	};
 };
 

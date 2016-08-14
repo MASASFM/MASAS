@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ChangeMoodModal.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { getCookie, updateNotificationBar, updateProfileInfo } = require("../../MASAS_functions.jsx")
 var { TimePicker, Button } = require("../UI/UI.jsx")
 
 // var Template = (props) => {
@@ -22,6 +22,31 @@ var ChangeMoodModal = React.createClass({
 
 	componentWillMount: function() {
 		
+	},
+
+	changeMood: function() {
+		var header = "Bearer " + this.props.MASASuser
+		var csrftoken = getCookie("csrftoken")
+
+		$.ajax({
+			type: 'PATCH',
+			url: this.props.MASAS_info.url,
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken
+			},
+			data: {
+				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.moodValue + "/",
+			},
+			success: (r) => {
+				this.props.toggleModal()
+				updateNotificationBar("Song updated")
+				updateProfileInfo()
+			},
+			error: (e) => {
+				updateNotificationBar("Error")
+			}
+		})
 	},
 
 	render: function() {
@@ -57,7 +82,7 @@ var ChangeMoodModal = React.createClass({
 						isSecondaryAction={ false }
 						isBigButton={ false }
 						isDisabled={ false }
-						onClick={ () => {} }>
+						onClick={ this.changeMood }>
 						yes
 					</Button>
 				</div>

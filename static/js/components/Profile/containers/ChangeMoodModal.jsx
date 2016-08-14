@@ -5,6 +5,7 @@ var ChangeMoodModal = {}
 ChangeMoodModal.mapStateToProps = function(state) {
 	return {
 		moodValue: state.profileReducer.changeSongMoodValue,
+		MASASuser: state.appReducer.MASASuser,
 	}
 }
 
