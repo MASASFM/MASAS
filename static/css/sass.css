@@ -508,6 +508,29 @@ input[type=range].MASAS-slider {
     height: 62%;
     margin-top: 5rem;
     border: 1px solid rgba(255, 255, 255, 0.4); } }
+.RankingInfoIcon--wrapper {
+  width: 20rem;
+  position: relative; }
+  .RankingInfoIcon--wrapper .line1 {
+    font-size: 0.3rem;
+    fill: #949494; }
+  .RankingInfoIcon--wrapper .line2 {
+    font-size: 0.5rem;
+    fill: white; }
+  .RankingInfoIcon--wrapper .line .out, .RankingInfoIcon--wrapper .line .discover, .RankingInfoIcon--wrapper .line .popular {
+    stroke-linecap: round;
+    stroke-width: 1.5px; }
+  .RankingInfoIcon--wrapper .line .out {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-dasharray: 3px; }
+  .RankingInfoIcon--wrapper .line .discover {
+    stroke: rgba(255, 255, 255, 0.7); }
+  .RankingInfoIcon--wrapper .line .popular {
+    stroke: white; }
+  .RankingInfoIcon--wrapper .line .circle {
+    stroke: white;
+    fill: white; }
+
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -1961,7 +1984,9 @@ input[type=range].MASAS-slider {
         flex: 1; }
       .profile--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 {
         align-items: center;
-        justify-content: space-around; } }
+        justify-content: space-around; }
+    .profile--wrapper .track--wrapper .hidden-info {
+      padding-left: 6rem; } }
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }

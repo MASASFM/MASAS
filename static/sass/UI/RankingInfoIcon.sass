@@ -1,0 +1,37 @@
+.RankingInfoIcon--wrapper
+	width: 20rem
+	position: relative
+
+	// .info
+	// 	display: flex
+	// 	flex-direction: column
+	// 	position: absolute
+
+	.line1
+		font-size: 0.3rem
+		fill: #949494
+
+
+	.line2
+		font-size: 0.5rem
+		fill: white
+
+	$strokeWidth: 1.5px
+	.line
+		.out, .discover, .popular
+			stroke-linecap: round
+			stroke-width: $strokeWidth
+
+		.out
+			stroke: rgba(255,255,255,0.3)
+			stroke-dasharray: 3px
+
+		.discover
+			stroke: rgba(255,255,255,0.7)
+
+		.popular	
+			stroke: rgba(255,255,255,1)
+
+		.circle
+			stroke: white
+			fill: white

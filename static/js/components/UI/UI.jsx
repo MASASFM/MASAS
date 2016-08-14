@@ -7,6 +7,7 @@ var Textbox = require('./Textbox.jsx')
 var TimePicker = require('./TimePicker.jsx')
 var Marquee = require('./Marquee.jsx')
 var Modal = require('./Modal.jsx')
+var RankingInfoIcon = require('./RankingInfoIcon.jsx')
 
 
 var UI = {}
@@ -20,6 +21,7 @@ UI.Textbox = Textbox
 UI.TimePicker = TimePicker
 UI.Marquee = Marquee
 UI.Modal = Modal
+UI.RankingInfoIcon = RankingInfoIcon
 
 
 module.exports = UI

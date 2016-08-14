@@ -4,7 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TrackItem.jsx")
 
-var { Marquee } = require("../UI/UI.jsx")
+var { Marquee, RankingInfoIcon } = require("../UI/UI.jsx")
 
 var TrackItem = React.createClass({
 	propTypes: {
@@ -116,9 +116,7 @@ var TrackItem = React.createClass({
 					</div>
 				</div>
 				<div className="hidden-info">
-					<div>HELLO</div>
-					<div>HELLO</div>
-					<div>HELLO</div>
+					<div><RankingInfoIcon ranking={ 0.5 }/></div>
 				</div>
 			</div>
 		)
