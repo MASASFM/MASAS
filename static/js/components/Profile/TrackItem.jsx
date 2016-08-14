@@ -116,7 +116,12 @@ var TrackItem = React.createClass({
 					</div>
 				</div>
 				<div className="hidden-info">
-					<div><RankingInfoIcon ranking={ 0.5 }/></div>
+					<div className="RankingInfoIcon--wrapper"><RankingInfoIcon ranking={ 0.5 }/></div>
+					<div className="icon--wrapper">
+						{ this.props.MASAS_songInfo.like_count }<img className="like-icon" src="/static/img/MASAS_liked.svg" alt="# of likes" />
+						<img className="hidden-mobile" src="/static/img/MASAS_icon_changemood.svg" alt="change mood" />
+						<img className="hidden-mobile" src="/static/img/MASAS_icon_trash.svg" alt="delete song" />
+					</div>
 				</div>
 			</div>
 		)

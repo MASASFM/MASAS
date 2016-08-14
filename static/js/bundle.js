@@ -58377,8 +58377,16 @@ var TrackItem = React.createClass({
 				{ className: "hidden-info" },
 				React.createElement(
 					"div",
-					null,
+					{ className: "RankingInfoIcon--wrapper" },
 					React.createElement(RankingInfoIcon, { ranking: 0.5 })
+				),
+				React.createElement(
+					"div",
+					{ className: "icon--wrapper" },
+					this.props.MASAS_songInfo.like_count,
+					React.createElement("img", { className: "like-icon", src: "/static/img/MASAS_liked.svg", alt: "# of likes" }),
+					React.createElement("img", { className: "hidden-mobile", src: "/static/img/MASAS_icon_changemood.svg", alt: "change mood" }),
+					React.createElement("img", { className: "hidden-mobile", src: "/static/img/MASAS_icon_trash.svg", alt: "delete song" })
 				)
 			)
 		);

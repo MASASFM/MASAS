@@ -55,6 +55,7 @@
 				flex-direction: column
 				flex: 1
 				padding: 1.5rem 0.9rem
+				cursor: pointer
 
 			.song-info--wrapper
 				.song-stats-1
@@ -100,7 +101,28 @@
 			min-height: $trackWrapperHeight
 			transition: linear 2s height
 			display: flex
+			// padding: 1.5rem 0.9rem
+			padding: 0 0.9rem
+			align-items: center
+			justify-content: space-between
 
+			.RankingInfoIcon--wrapper
+				width: 15rem
+
+			.icon--wrapper
+				display: flex
+				flex-direction: row
+
+				img
+					height: 1.2rem
+					width: 1.2rem
+					padding-left: 1.5rem
+
+				.like-icon
+					padding-left: 0.3rem
+
+				.hidden-mobile
+					display: none
 
 @media screen and (min-width: $desktop-min-width)
 	.profile--wrapper
@@ -137,6 +159,7 @@
 					flex-direction: row
 
 				.song-info--wrapper
+					padding-right: 2rem
 				
 					.song-stats-1
 						align-items: center
@@ -155,7 +178,16 @@
 
 					.song-stats-2
 						align-items: center					
-						justify-content: space-around
+						justify-content: flex-end
+
+						.plays
+							margin-left: 3rem
 
 			.hidden-info
 				padding-left: $trackWrapperHeight
+				min-height: $trackWrapperHeight
+				padding-right: 2rem
+
+				.icon--wrapper
+					.hidden-mobile
+						display: block
