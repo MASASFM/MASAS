@@ -2128,6 +2128,14 @@ input[type=range].MASAS-slider {
     position: relative;
     width: 100%;
     height: 22rem; }
+  .profile--wrapper .profile-info--wrapper .edit-profile-icon--wrapper {
+    position: absolute;
+    right: 28px;
+    top: 1rem;
+    cursor: pointer; }
+    .profile--wrapper .profile-info--wrapper .edit-profile-icon--wrapper img {
+      width: 1.5rem;
+      height: 1.5rem; }
   .profile--wrapper .profile-info--wrapper .user-info-desktop {
     display: none; }
   .profile--wrapper .profile-info--wrapper .profile-picture {
@@ -2326,8 +2334,10 @@ input[type=range].MASAS-slider {
     height: 100%;
     align-items: center;
     display: flex;
-    justify-content: flex-start;
-    position: inherit; }
+    justify-content: flex-start; }
+    .profile--wrapper .profile-info--wrapper .edit-profile-icon--wrapper {
+      top: -3rem;
+      right: 16px; }
     .profile--wrapper .profile-info--wrapper .profile-picture {
       margin-right: 1rem;
       width: 8rem;

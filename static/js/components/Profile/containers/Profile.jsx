@@ -9,6 +9,7 @@ Profile.mapStateToProps = function(state) {
 		userPk: state.appReducer.MASASuserPk,
 		userData: state.appReducer.userData,
 		isEditingProfile: state.profileReducer.isEditingProfile,
+		textboxValues: state.profileReducer.textboxValues,
 	}
 }
 

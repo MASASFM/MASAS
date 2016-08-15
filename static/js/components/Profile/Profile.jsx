@@ -15,7 +15,7 @@ var TrackItem = require("../Profile/TrackItem.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
 
-var { goToURL } = require("../../MASAS_functions.jsx")
+var { goToURL, getCookie, updateNotificationBar, updateProfileInfo } = require("../../MASAS_functions.jsx")
 var { Button, Body, Textbox } = require("../UI/UI.jsx")
 
 
@@ -23,6 +23,7 @@ var Profile = React.createClass({
 	propTypes: {
 		isEditingProfile: React.PropTypes.bool,
 		toggleEditingProfile: React.PropTypes.func,
+		textboxValues: React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -110,6 +111,31 @@ var Profile = React.createClass({
 		}
 	},
 
+	saveProfile: function() {
+		const header = "Bearer " + this.props.userToken
+		var csrftoken = getCookie("csrftoken")
+
+		$.ajax({
+			type: "PATCH",
+			url: this.props.userData.url,
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken
+			},
+			contentType: "application/json",
+			data: JSON.stringify(this.props.textboxValues), 
+			success: (r) => {
+				updateNotificationBar('Profile updated !')
+				updateProfileInfo()
+				this.props.toggleEditingProfile()
+			},
+			error: (e) => {
+				updateNotificationBar("Error updating profile...")
+				this.props.toggleEditingProfile()
+			}
+		})
+	},
+
 	render: function() {
 		return (
 			<div style={{display: 'flex', flex: 1}}>
@@ -117,7 +143,14 @@ var Profile = React.createClass({
 				<ProfileWrapper>
 					<div className="main--wrapper">
 						<div className="profile-info--wrapper">
-							<img onClick={ this.props.toggleEditingProfile } src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+							<div className="edit-profile-icon--wrapper">
+								{ this.props.isEditingProfile ?
+										<span onClick={ this.saveProfile }>save</span>
+									:
+										<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
+								}
+							</div>
+							<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
 							<div className="tab--wrapper">
 								<div className="tab" style={{ borderBottom: '4px solid white'}}>
 									info

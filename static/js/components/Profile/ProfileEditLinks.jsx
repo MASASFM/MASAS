@@ -13,9 +13,35 @@ var { Textbox } = require("../UI/UI.jsx")
 
 var ProfileEditLinks = React.createClass({
 	propTypes: {
+		textboxValues: React.PropTypes.object,
+		updateTextboxValues: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
+	},
+
+	updateLink1: function(url) {
+		var link_set = [...this.props.textboxValues.link_set]
+		link_set[0] = url
+		this.props.updateTextboxValues({ link_set })
+	},
+
+	updateLink2: function(url) {
+		var link_set = [...this.props.textboxValues.link_set]
+		link_set[1] = url
+		this.props.updateTextboxValues({ link_set })
+	},
+
+	updateLink3: function(url) {
+		var link_set = [...this.props.textboxValues.link_set]
+		link_set[2] = url
+		this.props.updateTextboxValues({ link_set })
+	},
+
+	updateLink4: function(url) {
+		var link_set = [...this.props.textboxValues.link_set]
+		link_set[3] = url
+		this.props.updateTextboxValues({ link_set })
 	},
 
 	render: function() {
@@ -23,19 +49,19 @@ var ProfileEditLinks = React.createClass({
 			<div className="links-edit--wrapper">
 				<div className="link-edit">
 					<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-					<Textbox />
+					<Textbox onChange={ this.updateLink1 } value={ this.props.textboxValues.link_set[0] } />
 				</div>
 				<div className="link-edit">
 					<img src="/static/img/twitter.svg" alt="twitter" />
-					<Textbox />
+					<Textbox onChange={ this.updateLink2 } value={ this.props.textboxValues.link_set[1] } />
 				</div>
 				<div className="link-edit">
 					<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
-					<Textbox />
+					<Textbox onChange={ this.updateLink3 } value={ this.props.textboxValues.link_set[2] } />
 				</div>
 				<div className="link-edit">
 					<img src="/static/img/facebook.svg" alt="facebook" />
-					<Textbox />
+					<Textbox onChange={ this.updateLink4 } value={ this.props.textboxValues.link_set[3] } />
 				</div>
 			</div>
 		)

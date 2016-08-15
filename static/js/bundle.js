@@ -57981,6 +57981,9 @@ var ProfileEdit = require("./ProfileEdit.jsx");
 var _require2 = require("../../MASAS_functions.jsx");
 
 var goToURL = _require2.goToURL;
+var getCookie = _require2.getCookie;
+var updateNotificationBar = _require2.updateNotificationBar;
+var updateProfileInfo = _require2.updateProfileInfo;
 
 var _require3 = require("../UI/UI.jsx");
 
@@ -57993,7 +57996,8 @@ var Profile = React.createClass({
 
 	propTypes: {
 		isEditingProfile: React.PropTypes.bool,
-		toggleEditingProfile: React.PropTypes.func
+		toggleEditingProfile: React.PropTypes.func,
+		textboxValues: React.PropTypes.object
 	},
 
 	getInitialState: function getInitialState() {
@@ -58091,6 +58095,33 @@ var Profile = React.createClass({
 		}
 	},
 
+	saveProfile: function saveProfile() {
+		var _this3 = this;
+
+		var header = "Bearer " + this.props.userToken;
+		var csrftoken = getCookie("csrftoken");
+
+		$.ajax({
+			type: "PATCH",
+			url: this.props.userData.url,
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken
+			},
+			contentType: "application/json",
+			data: JSON.stringify(this.props.textboxValues),
+			success: function success(r) {
+				updateNotificationBar('Profile updated !');
+				updateProfileInfo();
+				_this3.props.toggleEditingProfile();
+			},
+			error: function error(e) {
+				updateNotificationBar("Error updating profile...");
+				_this3.props.toggleEditingProfile();
+			}
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
 			"div",
@@ -58104,7 +58135,16 @@ var Profile = React.createClass({
 					React.createElement(
 						"div",
 						{ className: "profile-info--wrapper" },
-						React.createElement("img", { onClick: this.props.toggleEditingProfile, src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
+						React.createElement(
+							"div",
+							{ className: "edit-profile-icon--wrapper" },
+							this.props.isEditingProfile ? React.createElement(
+								"span",
+								{ onClick: this.saveProfile },
+								"save"
+							) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
+						),
+						React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
 						React.createElement(
 							"div",
 							{ className: "tab--wrapper" },
@@ -58300,9 +58340,24 @@ var ProfileEditLinks = require("./ProfileEditLinks.jsx");
 var ProfileEdit = React.createClass({
 	displayName: "ProfileEdit",
 
-	propTypes: {},
+	propTypes: {
+		textboxValues: React.PropTypes.object,
+		updateTextboxValues: React.PropTypes.func
+	},
 
 	componentWillMount: function componentWillMount() {},
+
+	updateName: function updateName(name) {
+		this.props.updateTextboxValues({ name: name });
+	},
+
+	updateCity: function updateCity(city) {
+		this.props.updateTextboxValues({ city: city });
+	},
+
+	updateOccupation: function updateOccupation(occupation) {
+		this.props.updateTextboxValues({ occupation: occupation });
+	},
 
 	render: function render() {
 		return React.createElement(
@@ -58313,17 +58368,17 @@ var ProfileEdit = React.createClass({
 				{ className: "personal-info" },
 				React.createElement(
 					Textbox,
-					{ id: "stage-name" },
+					{ onChange: this.updateName, value: this.props.textboxValues.name, id: "stage-name" },
 					"Stage Name"
 				),
 				React.createElement(
 					Textbox,
-					{ id: "city" },
+					{ onChange: this.updateCity, value: this.props.textboxValues.city, id: "city" },
 					"City"
 				),
 				React.createElement(
 					Textbox,
-					{ id: "occupation" },
+					{ onChange: this.updateOccupation, value: this.props.textboxValues.occupation, id: "occupation" },
 					"Occupation"
 				)
 			),
@@ -58340,6 +58395,8 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Profile
 
 },{"../UI/UI.jsx":377,"./ProfileEditLinks.jsx":355,"./containers/ProfileEdit.jsx":362,"react":279,"react-dom":80,"react-redux":84}],355:[function(require,module,exports){
 "use strict";
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var React = require("react");
 var ReactDOM = require("react-dom");
@@ -58364,9 +58421,36 @@ var Textbox = _require2.Textbox;
 var ProfileEditLinks = React.createClass({
 	displayName: "ProfileEditLinks",
 
-	propTypes: {},
+	propTypes: {
+		textboxValues: React.PropTypes.object,
+		updateTextboxValues: React.PropTypes.func
+	},
 
 	componentWillMount: function componentWillMount() {},
+
+	updateLink1: function updateLink1(url) {
+		var link_set = [].concat(_toConsumableArray(this.props.textboxValues.link_set));
+		link_set[0] = url;
+		this.props.updateTextboxValues({ link_set: link_set });
+	},
+
+	updateLink2: function updateLink2(url) {
+		var link_set = [].concat(_toConsumableArray(this.props.textboxValues.link_set));
+		link_set[1] = url;
+		this.props.updateTextboxValues({ link_set: link_set });
+	},
+
+	updateLink3: function updateLink3(url) {
+		var link_set = [].concat(_toConsumableArray(this.props.textboxValues.link_set));
+		link_set[2] = url;
+		this.props.updateTextboxValues({ link_set: link_set });
+	},
+
+	updateLink4: function updateLink4(url) {
+		var link_set = [].concat(_toConsumableArray(this.props.textboxValues.link_set));
+		link_set[3] = url;
+		this.props.updateTextboxValues({ link_set: link_set });
+	},
 
 	render: function render() {
 		return React.createElement(
@@ -58376,25 +58460,25 @@ var ProfileEditLinks = React.createClass({
 				"div",
 				{ className: "link-edit" },
 				React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
-				React.createElement(Textbox, null)
+				React.createElement(Textbox, { onChange: this.updateLink1, value: this.props.textboxValues.link_set[0] })
 			),
 			React.createElement(
 				"div",
 				{ className: "link-edit" },
 				React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
-				React.createElement(Textbox, null)
+				React.createElement(Textbox, { onChange: this.updateLink2, value: this.props.textboxValues.link_set[1] })
 			),
 			React.createElement(
 				"div",
 				{ className: "link-edit" },
 				React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" }),
-				React.createElement(Textbox, null)
+				React.createElement(Textbox, { onChange: this.updateLink3, value: this.props.textboxValues.link_set[2] })
 			),
 			React.createElement(
 				"div",
 				{ className: "link-edit" },
 				React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" }),
-				React.createElement(Textbox, null)
+				React.createElement(Textbox, { onChange: this.updateLink4, value: this.props.textboxValues.link_set[3] })
 			)
 		);
 	}
@@ -58876,7 +58960,8 @@ Profile.mapStateToProps = function (state) {
 		userToken: state.appReducer.MASASuser,
 		userPk: state.appReducer.MASASuserPk,
 		userData: state.appReducer.userData,
-		isEditingProfile: state.profileReducer.isEditingProfile
+		isEditingProfile: state.profileReducer.isEditingProfile,
+		textboxValues: state.profileReducer.textboxValues
 	};
 };
 
@@ -58902,12 +58987,18 @@ var ProfileEdit = {};
 
 // Which part of the Redux global state does our component want to receive as props?
 ProfileEdit.mapStateToProps = function (state) {
-	return {};
+	return {
+		textboxValues: state.profileReducer.textboxValues
+	};
 };
 
 // Which action creators does it want to receive by props?
 ProfileEdit.mapDispatchToProps = function (dispatch) {
-	return {};
+	return {
+		updateTextboxValues: function updateTextboxValues(textboxValues) {
+			return dispatch({ type: "UPDATE_EDIT_PROFILE_TEXTBOX_VALUES", textboxValues: textboxValues });
+		}
+	};
 };
 
 module.exports = ProfileEdit;
@@ -58919,12 +59010,18 @@ var ProfileEditLinks = {};
 
 // Which part of the Redux global state does our component want to receive as props?
 ProfileEditLinks.mapStateToProps = function (state) {
-	return {};
+	return {
+		textboxValues: state.profileReducer.textboxValues
+	};
 };
 
 // Which action creators does it want to receive by props?
 ProfileEditLinks.mapDispatchToProps = function (dispatch) {
-	return {};
+	return {
+		updateTextboxValues: function updateTextboxValues(textboxValues) {
+			return dispatch({ type: "UPDATE_EDIT_PROFILE_TEXTBOX_VALUES", textboxValues: textboxValues });
+		}
+	};
 };
 
 module.exports = ProfileEditLinks;
@@ -59506,9 +59603,11 @@ var Textbox = React.createClass({
 		error: React.PropTypes.bool, // true = error
 		actionString: React.PropTypes.string, // name of action to call on string update
 		actionParamName: React.PropTypes.string, // name of input attribute of action dispatched
-		id: React.PropTypes.string },
+		id: React.PropTypes.string, // name used to display textbox and error UI properly
+		onChange: React.PropTypes.func, // callback called when input field changes
+		value: React.PropTypes.string },
 
-	// name used to display textbox and error UI properly
+	// value of input field
 	getInitialState: function getInitialState() {
 		return {
 			input: ""
@@ -59526,7 +59625,7 @@ var Textbox = React.createClass({
 	},
 
 	onInputChange: function onInputChange(e) {
-		this.setState({ input: e.target.value });
+		this.props.onChange(e.target.value);
 	},
 
 	render: function render() {
@@ -59536,7 +59635,7 @@ var Textbox = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "MASAS-textbox--wrapper" + (this.props.error ? " error" : "") },
-				React.createElement("input", { id: this.props.id, value: this.state.input, onChange: this.onInputChange, className: "MASAS-text-input", type: "text" }),
+				React.createElement("input", { id: this.props.id, value: this.props.value, onChange: this.onInputChange, className: "MASAS-text-input", type: "text" }),
 				React.createElement(
 					"label",
 					{ className: "MASAS-label", htmlFor: this.props.id },
@@ -61106,9 +61205,15 @@ var exportVar = {};
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
 	changeSongMoodValue: 0, // (int) in [1,6], discover number on modal called when changing discover number for a song
-	isEditingProfile: true };
+	isEditingProfile: false, // (bool) is user editing profile
+	textboxValues: { // (obj) values of textboxes when editing profile info
+		name: "hi",
+		city: "",
+		occupation: "",
+		link_set: ["", "", "", ""] }
+};
 
-// (bool) is user editing profile
+// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
 var defaultState = exportVar.defaultState;
 
 exportVar.profileReducer = function () {
@@ -61116,6 +61221,12 @@ exportVar.profileReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES':
+			var textboxValues = _extends({}, state.textboxValues, action.textboxValues);
+
+			return _extends({}, state, {
+				textboxValues: textboxValues
+			});
 		case "UPDATE_SONG_MOOD_MODAL_VALUE":
 			var discoverNumber = action.discoverNumber;
 

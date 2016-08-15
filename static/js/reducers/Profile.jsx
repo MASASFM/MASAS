@@ -3,7 +3,13 @@ let exportVar = {}
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
 	changeSongMoodValue: 0,				// (int) in [1,6], discover number on modal called when changing discover number for a song 
-	isEditingProfile: true,					// (bool) is user editing profile
+	isEditingProfile: false,					// (bool) is user editing profile
+	textboxValues: {					// (obj) values of textboxes when editing profile info
+		name: "hi",
+		city: "",
+		occupation: "",
+		link_set: ["", "", "", ""],				// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
+	},					
 }
 
 const { defaultState } = exportVar
@@ -11,6 +17,13 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES':
+			var textboxValues = {...state.textboxValues, ...action.textboxValues}
+			
+			return {
+				...state,
+				textboxValues
+			}
 		case "UPDATE_SONG_MOOD_MODAL_VALUE":
 			var discoverNumber = action.discoverNumber
 
