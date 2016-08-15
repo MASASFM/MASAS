@@ -2144,7 +2144,16 @@ input[type=range].MASAS-slider {
     text-transform: uppercase;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.6); }
-  .profile--wrapper .profile-info--wrapper .social--wrapper {
+  .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); }
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper.hidden {
+    display: none; }
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
     display: flex;
     justify-content: space-around;
     position: absolute;
@@ -2154,14 +2163,14 @@ input[type=range].MASAS-slider {
     height: 4rem;
     align-items: center;
     flex: 1; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper img {
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
     width: 1.5rem;
     max-height: 1.5rem; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
     width: 4.5rem;
     display: flex;
     justify-content: space-between; }
-  .profile--wrapper .profile-info--wrapper .social--wrapper .occupation--wrapper .occupation {
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation {
     padding-bottom: 0.5rem; }
   .profile--wrapper .social-stats--wrapper {
     height: 0rem;
@@ -2198,34 +2207,39 @@ input[type=range].MASAS-slider {
     display: none; }
   .profile--wrapper .song-list--wrapper {
     display: flex;
+    flex-direction: column;
     flex: 1;
-    justify-content: center;
     width: 100%;
     position: relative;
     overflow: none; }
-  .profile--wrapper .song-list--wrapper .no-songs--wrapper {
-    display: flex;
-    flex: 1;
-    max-width: 13rem;
-    flex-direction: column;
-    justify-content: center; }
-  .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
-    width: 3rem; }
-  .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
-    align-self: center;
-    width: 100%;
-    padding-top: 0.5rem; }
-  .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
-    display: flex;
-    justify-content: space-between; }
-  .profile--wrapper .song-list--wrapper .track-table--wrapper {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    position: absolute;
-    left: 0;
-    height: 100%;
-    right: 0; }
+    .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
+      display: flex;
+      flex-direction: column; }
+    .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper.hidden {
+      display: none; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper {
+      display: flex;
+      flex: 1;
+      max-width: 13rem;
+      flex-direction: column;
+      justify-content: center; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
+      width: 3rem; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
+      align-self: center;
+      width: 100%;
+      padding-top: 0.5rem; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
+      display: flex;
+      justify-content: space-between; }
+    .profile--wrapper .song-list--wrapper .track-table--wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      height: 100%;
+      right: 0; }
 
 @media screen and (min-width: 992px) {
   #app-body--profile {
@@ -2243,11 +2257,22 @@ input[type=range].MASAS-slider {
     display: flex;
     justify-content: flex-start;
     position: inherit; }
+    .profile--wrapper .profile-info--wrapper .profile-picture {
+      margin-right: 1rem;
+      width: 8rem;
+      height: 8rem;
+      border: 2px solid white; }
     .profile--wrapper .profile-info--wrapper .text--wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
       height: 90%; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper {
+        position: inherit; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop.hidden {
+        display: none; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .tab--wrapper {
+        display: none; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop {
         display: flex;
         flex-direction: column;
@@ -2267,30 +2292,22 @@ input[type=range].MASAS-slider {
             padding-bottom: 0.2rem; }
           .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .occupation {
             color: rgba(255, 255, 255, 0.8); }
-    .profile--wrapper .profile-info--wrapper .profile-picture {
-      margin-right: 1rem;
-      width: 8rem;
-      height: 8rem;
-      border: 2px solid white; }
-    .profile--wrapper .profile-info--wrapper .tab--wrapper {
-      display: none; }
-    .profile--wrapper .profile-info--wrapper .occupation--wrapper {
-      display: none; }
-    .profile--wrapper .profile-info--wrapper .social--wrapper {
-      background-color: transparent;
-      max-width: 10rem; }
-    .profile--wrapper .profile-info--wrapper .social--wrapper {
-      align-self: center;
-      display: flex;
-      position: inherit;
-      align-items: flex-end; }
-    .profile--wrapper .profile-info--wrapper .social--wrapper .social-links {
-      flex-grow: 1;
-      justify-content: space-around; }
-    .profile--wrapper .profile-info--wrapper .social--wrapper img {
-      width: 1rem;
-      max-height: 1rem;
-      padding-right: 0.15rem; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .occupation--wrapper {
+        display: none; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
+        background-color: transparent;
+        max-width: 10rem;
+        align-self: center;
+        display: flex;
+        position: inherit;
+        align-items: flex-end; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
+        flex-grow: 1;
+        justify-content: space-around; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
+        width: 1rem;
+        max-height: 1rem;
+        padding-right: 0.15rem; }
   .profile--wrapper .social-stats--wrapper {
     background-color: transparent;
     padding-bottom: 0.5rem;
@@ -2303,9 +2320,11 @@ input[type=range].MASAS-slider {
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     overflow-y: scroll; }
-  .profile--wrapper .song-list--wrapper .track-table--wrapper {
-    padding: 1rem;
-    overflow: none; } }
+    .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
+      display: none; }
+    .profile--wrapper .song-list--wrapper .track-table--wrapper {
+      padding: 1rem;
+      overflow: none; } }
 .navbar-player--wrapper {
   display: flex;
   flex: 1;

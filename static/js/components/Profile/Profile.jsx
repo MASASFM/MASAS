@@ -12,13 +12,17 @@ var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
 var Header = require("../Header/Header.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var TrackItem = require("../Profile/TrackItem.jsx")
+var ProfileEditLinks = require("./ProfileEditLinks.jsx")
+var ProfileEdit = require("./ProfileEdit.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
-var { Button, Body } = require("../UI/UI.jsx")
+var { Button, Body, Textbox } = require("../UI/UI.jsx")
 
 
 var Profile = React.createClass({
 	propTypes: {
+		isEditingProfile: React.PropTypes.bool,
+		toggleEditingProfile: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -45,7 +49,8 @@ var Profile = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		this.getSCinfo()
+		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
+			this.getSCinfo()
 	},
 
 	// shouldComponentUpdate: function(newProps, newState) {
@@ -112,7 +117,7 @@ var Profile = React.createClass({
 				<ProfileWrapper>
 					<div className="main--wrapper">
 						<div className="profile-info--wrapper">
-							<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+							<img onClick={ this.props.toggleEditingProfile } src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
 							<div className="tab--wrapper">
 								<div className="tab" style={{ borderBottom: '4px solid white'}}>
 									info
@@ -122,7 +127,7 @@ var Profile = React.createClass({
 								</div>
 							</div>
 							<div className="text--wrapper">
-								<div className="user-info-desktop">
+								<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
 									<span className="username">
 										{this.props.userData.username}
 									</span>
@@ -135,7 +140,7 @@ var Profile = React.createClass({
 										</span>
 									</div>
 								</div>
-								<div className="social--wrapper">
+								<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
 									<div className="social-links right">
 										<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
 										<img src="/static/img/MASAS_logo_world.svg" alt="soundcloud" />
@@ -158,6 +163,9 @@ var Profile = React.createClass({
 										<img src="/static/img/twitter.svg" alt="soundcloud" />
 										<img src="/static/img/facebook.svg" alt="soundcloud" />
 									</div>
+								</div>
+								<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
+									<ProfileEdit />
 								</div>
 							</div>
 						</div>
@@ -186,6 +194,9 @@ var Profile = React.createClass({
 						</div>
 					</div>
 					<div className="song-list--wrapper">
+						<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
+							<ProfileEditLinks />
+						</div>
 						<div>
 						{ this.displaySongs() }
 						</div>

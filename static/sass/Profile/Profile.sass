@@ -52,31 +52,43 @@
 				box-sizing: border-box
 				background-color: rgba(0,0,0,0.6)
 
-		.social--wrapper
-			display: flex
-			justify-content: space-around
-			position: absolute
-			bottom: 0
-			width: 100%
-			background-color: rgba(0,0,0,0.6)
-			height: 4rem
-			align-items: center
-			flex: 1
-
-		.social--wrapper
-			img
-				width: 1.5rem
-				max-height: 1.5rem
-				// padding-left: 2rem
-
-			.social-links
-				width: 4.5rem
+		.text--wrapper
+			.edit-profile--wrapper
+				width: 100%
 				display: flex
-				justify-content: space-between
+				flex-direction: column
+				position: absolute
+				bottom: 0
+				background-color: rgba(0, 0, 0, 0.6)
 
-			.occupation--wrapper
-				.occupation
-					padding-bottom: 0.5rem
+			.social--wrapper.hidden
+				display: none
+
+			.social--wrapper
+				display: flex
+				justify-content: space-around
+				position: absolute
+				bottom: 0
+				width: 100%
+				background-color: rgba(0,0,0,0.6)
+				height: 4rem
+				align-items: center
+				flex: 1
+
+			.social--wrapper
+				img
+					width: 1.5rem
+					max-height: 1.5rem
+					// padding-left: 2rem
+
+				.social-links
+					width: 4.5rem
+					display: flex
+					justify-content: space-between
+
+				.occupation--wrapper
+					.occupation
+						padding-bottom: 0.5rem
 
 	.social-stats--wrapper
 		height: 0rem
@@ -121,13 +133,19 @@
 
 	.song-list--wrapper
 		display: flex
+		flex-direction: column
 		flex: 1
-		justify-content: center
 		width: 100%
 		position: relative
 		overflow: none
 
-	.song-list--wrapper
+		.edit-social-mobile--wrapper
+			display: flex
+			flex-direction: column			
+
+		.edit-social-mobile--wrapper.hidden
+			display: none
+
 		.no-songs--wrapper
 			display: flex
 			flex: 1
@@ -179,11 +197,26 @@
 			justify-content: flex-start
 			position: inherit
 
+			.profile-picture
+				margin-right: 1rem
+				width: $info-wrapper-height
+				height: $info-wrapper-height
+				border: 2px solid white
+
 			.text--wrapper
 				display: flex
 				flex-direction: column
 				justify-content: center
 				height: 90%
+
+				.edit-profile--wrapper
+					position: inherit
+
+				.user-info-desktop.hidden
+					display: none
+
+				.tab--wrapper
+					display: none
 
 				.user-info-desktop
 					display: flex
@@ -209,37 +242,27 @@
 						.occupation
 							color: rgba(255,255,255,0.8)
 
-			.profile-picture
-				margin-right: 1rem
-				width: $info-wrapper-height
-				height: $info-wrapper-height
-				border: 2px solid white
 
-			.tab--wrapper
-				display: none
+				.occupation--wrapper
+					display: none
 
-			.occupation--wrapper
-				display: none
+				.social--wrapper
+					background-color: rgba(0,0,0,0)
+					max-width: 10rem
+					align-self: center
+					display: flex
+					position: inherit
+					align-items: flex-end
 
-			.social--wrapper
-				background-color: rgba(0,0,0,0)
-				max-width: 10rem
+				.social--wrapper
+					.social-links
+						flex-grow: 1
+						justify-content: space-around
 
-			.social--wrapper
-				align-self: center
-				display: flex
-				position: inherit
-				align-items: flex-end
-
-			.social--wrapper
-				.social-links
-					flex-grow: 1
-					justify-content: space-around
-
-				img
-					width: 1rem
-					max-height: 1rem
-					padding-right: 0.15rem
+					img
+						width: 1rem
+						max-height: 1rem
+						padding-right: 0.15rem
 
 		.social-stats--wrapper
 			background-color: rgba(0,0,0,0)
@@ -260,7 +283,9 @@
 			width: 100%
 			overflow-y: scroll
 
-		.song-list--wrapper
+			.edit-social-mobile--wrapper
+				display: none
+
 			.track-table--wrapper
 				padding: 1rem
 				overflow: none
