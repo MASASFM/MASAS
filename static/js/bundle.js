@@ -61064,7 +61064,7 @@ var exportVar = {};
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
 	changeSongMoodValue: 0, // (int) in [1,6], discover number on modal called when changing discover number for a song
-	isEditingProfile: true };
+	isEditingProfile: false };
 
 // (bool) is user editing profile
 var defaultState = exportVar.defaultState;

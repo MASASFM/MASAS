@@ -3,7 +3,7 @@ let exportVar = {}
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
 	changeSongMoodValue: 0,				// (int) in [1,6], discover number on modal called when changing discover number for a song 
-	isEditingProfile: true,					// (bool) is user editing profile
+	isEditingProfile: false,					// (bool) is user editing profile
 }
 
 const { defaultState } = exportVar
