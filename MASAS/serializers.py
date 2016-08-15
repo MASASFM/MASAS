@@ -100,8 +100,6 @@ class StatusListSerializer(StatusSerializer):
 
 
 class LinkSerializer(serializers.HyperlinkedModelSerializer):
-    link_url = serializers.CharField(source='url')
-
     class Meta:
         model = Link
         fields = (
@@ -109,7 +107,7 @@ class LinkSerializer(serializers.HyperlinkedModelSerializer):
             'pk',
             'user',
             'name',
-            'link_url',
+            'link',
         )
 
 
