@@ -20,11 +20,12 @@ var ProfileEdit = React.createClass({
 
 	render: function() {
 		return (
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<Textbox />
-				<Textbox />
-				<Textbox />
-				<Textbox />
+			<div className="profile-edit--wrapper">
+				<div className="personal-info">
+					<Textbox id="stage-name">Stage Name</Textbox><br/>
+					<Textbox id="city">City</Textbox><br />
+					<Textbox id="occupation">Occupation</Textbox><br />
+				</div>
 			</div>
 		)
 	}

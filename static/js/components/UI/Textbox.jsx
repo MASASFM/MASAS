@@ -36,7 +36,8 @@ var Textbox = React.createClass({
 	render: function() {
 		return (
 			<div className="MASAS-textbox">
-				<div className={"wrapper" + (this.props.error ? " error" : "")}>
+				<div className={"MASAS-textbox--wrapper" + (this.props.error ? " error" : "")}>
+					<input id={this.props.id} value={ this.state.input } onChange={ this.onInputChange } className="MASAS-text-input" type="text" />
 					<label className="MASAS-label" htmlFor={this.props.id}>
 						{ this.props.error ?
 							this.props.labelError 
@@ -44,7 +45,6 @@ var Textbox = React.createClass({
 							this.props.children 
 						}
 					</label>
-					<input id={this.props.id} value={ this.state.input } onChange={ this.onInputChange } className="MASAS-text-input" type="text" />
 				</div>
 			</div>
 		)

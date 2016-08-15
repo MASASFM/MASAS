@@ -2,22 +2,30 @@
 	width: 100%
 
 .MASAS-textbox
-	.wrapper
+	.MASAS-textbox--wrapper
 		display: flex
-		flex-direction: column
+		flex-direction: column-reverse
 
 	.MASAS-label
-		color: white
+		color: rgba(255,255,255,0.5)
 		font-size: $labelFontSize
 
 	.MASAS-text-input
 		height: $inputHeight
 		background-color: rgba(255,255,255,0.16)
-		color: white
+		color: rgba(255,255,255,0.5)
 		font-family: Lato-Semibold
 		border: none
 		margin-top: $inputMarginTop
 		padding-left: 1rem
+		border: 1px solid rgba(255,255,255,0.2)
+
+	.MASAS-text-input:focus
+		color: white
+		border: 1px solid rgba(255,255,255,0.5)
+
+	.MASAS-text-input:focus + .MASAS-label
+		color: white
 
 	.error
 		.MASAS-label

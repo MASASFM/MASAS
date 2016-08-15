@@ -121,20 +121,26 @@
 .MASAS-textbox {
   width: 100%; }
 
-.MASAS-textbox .wrapper {
+.MASAS-textbox .MASAS-textbox--wrapper {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column-reverse; }
 .MASAS-textbox .MASAS-label {
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.7rem; }
 .MASAS-textbox .MASAS-text-input {
   height: 1.25rem;
   background-color: rgba(255, 255, 255, 0.16);
-  color: white;
+  color: rgba(255, 255, 255, 0.5);
   font-family: Lato-Semibold;
   border: none;
   margin-top: 0.5rem;
-  padding-left: 1rem; }
+  padding-left: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2); }
+.MASAS-textbox .MASAS-text-input:focus {
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5); }
+.MASAS-textbox .MASAS-text-input:focus + .MASAS-label {
+  color: white; }
 .MASAS-textbox .error .MASAS-label {
   color: red; }
 .MASAS-textbox .error .MASAS-text-input {
@@ -2151,6 +2157,17 @@ input[type=range].MASAS-slider {
     position: absolute;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6); }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper {
+      padding: 0.5rem 2rem; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info {
+        display: flex;
+        flex-direction: column;
+        width: 80%; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #stage-name {
+          height: 2rem;
+          font-size: 2rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #city, .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #occupation {
+          width: 80%; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper.hidden {
     display: none; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {

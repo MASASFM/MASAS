@@ -58305,11 +58305,29 @@ var ProfileEdit = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ style: { display: 'flex', flexDirection: 'column' } },
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null)
+			{ className: "profile-edit--wrapper" },
+			React.createElement(
+				"div",
+				{ className: "personal-info" },
+				React.createElement(
+					Textbox,
+					{ id: "stage-name" },
+					"Stage Name"
+				),
+				React.createElement("br", null),
+				React.createElement(
+					Textbox,
+					{ id: "city" },
+					"City"
+				),
+				React.createElement("br", null),
+				React.createElement(
+					Textbox,
+					{ id: "occupation" },
+					"Occupation"
+				),
+				React.createElement("br", null)
+			)
 		);
 	}
 });
@@ -59513,13 +59531,13 @@ var Textbox = React.createClass({
 			{ className: "MASAS-textbox" },
 			React.createElement(
 				"div",
-				{ className: "wrapper" + (this.props.error ? " error" : "") },
+				{ className: "MASAS-textbox--wrapper" + (this.props.error ? " error" : "") },
+				React.createElement("input", { id: this.props.id, value: this.state.input, onChange: this.onInputChange, className: "MASAS-text-input", type: "text" }),
 				React.createElement(
 					"label",
 					{ className: "MASAS-label", htmlFor: this.props.id },
 					this.props.error ? this.props.labelError : this.props.children
-				),
-				React.createElement("input", { id: this.props.id, value: this.state.input, onChange: this.onInputChange, className: "MASAS-text-input", type: "text" })
+				)
 			)
 		);
 	}
