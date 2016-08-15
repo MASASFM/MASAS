@@ -2214,7 +2214,21 @@ input[type=range].MASAS-slider {
     overflow: none; }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      padding: 0 2rem; }
+      .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem; }
+        .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper .link-edit {
+          display: flex;
+          margin-top: 1rem; }
+          .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper .link-edit img {
+            height: 1.3rem;
+            width: 1.3rem;
+            padding-right: 1rem; }
+          .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
+            margin: 0; }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper.hidden {
       display: none; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper {

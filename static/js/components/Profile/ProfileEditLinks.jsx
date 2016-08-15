@@ -20,11 +20,23 @@ var ProfileEditLinks = React.createClass({
 
 	render: function() {
 		return (
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				<Textbox />
-				<Textbox />
-				<Textbox />
-				<Textbox />
+			<div className="links-edit--wrapper">
+				<div className="link-edit">
+					<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+					<Textbox />
+				</div>
+				<div className="link-edit">
+					<img src="/static/img/twitter.svg" alt="twitter" />
+					<Textbox />
+				</div>
+				<div className="link-edit">
+					<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
+					<Textbox />
+				</div>
+				<div className="link-edit">
+					<img src="/static/img/facebook.svg" alt="facebook" />
+					<Textbox />
+				</div>
 			</div>
 		)
 	}

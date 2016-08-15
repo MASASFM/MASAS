@@ -58152,7 +58152,7 @@ var Profile = React.createClass({
 									"div",
 									{ className: "social-links right" },
 									React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
-									React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "soundcloud" })
+									React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" })
 								),
 								React.createElement(
 									"div",
@@ -58181,8 +58181,8 @@ var Profile = React.createClass({
 								React.createElement(
 									"div",
 									{ className: "social-links left" },
-									React.createElement("img", { src: "/static/img/twitter.svg", alt: "soundcloud" }),
-									React.createElement("img", { src: "/static/img/facebook.svg", alt: "soundcloud" })
+									React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
+									React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" })
 								)
 							),
 							React.createElement(
@@ -58349,11 +58349,31 @@ var ProfileEditLinks = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ style: { display: 'flex', flexDirection: 'column' } },
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null),
-			React.createElement(Textbox, null)
+			{ className: "links-edit--wrapper" },
+			React.createElement(
+				"div",
+				{ className: "link-edit" },
+				React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
+				React.createElement(Textbox, null)
+			),
+			React.createElement(
+				"div",
+				{ className: "link-edit" },
+				React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
+				React.createElement(Textbox, null)
+			),
+			React.createElement(
+				"div",
+				{ className: "link-edit" },
+				React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" }),
+				React.createElement(Textbox, null)
+			),
+			React.createElement(
+				"div",
+				{ className: "link-edit" },
+				React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" }),
+				React.createElement(Textbox, null)
+			)
 		);
 	}
 });
@@ -61064,7 +61084,7 @@ var exportVar = {};
 exportVar.defaultState = {
 	// profileInfo: {},						// user MASAS profile Info
 	changeSongMoodValue: 0, // (int) in [1,6], discover number on modal called when changing discover number for a song
-	isEditingProfile: false };
+	isEditingProfile: true };
 
 // (bool) is user editing profile
 var defaultState = exportVar.defaultState;

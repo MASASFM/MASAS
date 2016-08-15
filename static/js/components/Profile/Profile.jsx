@@ -143,7 +143,7 @@ var Profile = React.createClass({
 								<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
 									<div className="social-links right">
 										<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-										<img src="/static/img/MASAS_logo_world.svg" alt="soundcloud" />
+										<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
 									</div>
 									<div className="occupation--wrapper">
 										<div className="occupation">
@@ -160,8 +160,8 @@ var Profile = React.createClass({
 										</div>
 									</div>
 									<div className="social-links left">
-										<img src="/static/img/twitter.svg" alt="soundcloud" />
-										<img src="/static/img/facebook.svg" alt="soundcloud" />
+										<img src="/static/img/twitter.svg" alt="twitter" />
+										<img src="/static/img/facebook.svg" alt="facebook" />
 									</div>
 								</div>
 								<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
