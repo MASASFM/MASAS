@@ -27,21 +27,8 @@ var LikesArtworks = React.createClass({
 		if (!songs)
 			return (<div>NO SONGS</div>)
 		else {
-			var compareFn = (a, b) => {
-				var dateA = new Date(a.dateUploaded)
-				var dateB = new Date(b.dateUploaded)
-
-				if (dateA > dateB) {
-					return 1
-				}
-				if (dateB > dateA) {
-					return -1
-				}
-					return 0
-			}
-
-			songs.sort(compareFn)
-			// console.log(songs)
+			// // sort by uploaded time
+			// songs.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
 
 			var songList =  songs.map((song) => { 
 				var MASAS_songInfo = this.props.userData.likes.filter((like) => {

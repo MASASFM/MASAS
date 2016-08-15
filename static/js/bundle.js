@@ -55756,6 +55756,16 @@ var Likes = React.createClass({
 				if (MASAS_songInfo.length === 1) return [MASAS_songInfo, song];else return 0;
 			});
 
+			// filter out zeros
+			songList = songList.filter(function (a) {
+				return a !== 0;
+			});
+
+			// sort by uploaded time
+			songList.sort(function (a, b) {
+				return Date.parse(a[0][0].created) < Date.parse(b[0][0].created);
+			});
+
 			var radioTimeString = function radioTimeString(timeIntervalURL) {
 				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
 
@@ -55910,21 +55920,8 @@ var LikesArtworks = React.createClass({
 			null,
 			"NO SONGS"
 		);else {
-			var compareFn = function compareFn(a, b) {
-				var dateA = new Date(a.dateUploaded);
-				var dateB = new Date(b.dateUploaded);
-
-				if (dateA > dateB) {
-					return 1;
-				}
-				if (dateB > dateA) {
-					return -1;
-				}
-				return 0;
-			};
-
-			songs.sort(compareFn);
-			// console.log(songs)
+			// // sort by uploaded time
+			// songs.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
 
 			var songList = songs.map(function (song) {
 				var MASAS_songInfo = _this.props.userData.likes.filter(function (like) {

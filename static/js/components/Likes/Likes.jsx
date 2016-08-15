@@ -71,6 +71,12 @@ var Likes = React.createClass({
 					return 0
 			})
 
+			// filter out zeros
+			songList = songList.filter((a) => a !== 0)
+
+			// sort by uploaded time
+			songList.sort((a,b) => { return Date.parse(a[0][0].created) < Date.parse(b[0][0].created) })
+
 			var radioTimeString = (timeIntervalURL) => {
 				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
 			
