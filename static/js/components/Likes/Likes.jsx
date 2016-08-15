@@ -141,13 +141,18 @@ var Likes = React.createClass({
 		this.props.toogleHashtag(hashtagNumber)
 	},
 
+	updateSearchInput: function(searchInput) {
+		console.log("++++++++", searchInput)
+		this.props.updateSearchInput(searchInput)
+	},
+
 	render: function() {
 		// console.log("PROPS => ", this.props)
 		return (
 			<LikesWrapper>
 				<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
 					<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
-					<Textbox id="likes--search-textbox" actionString="UPDATE_LIKES_SEARCH_INPUT" actionParamName="input" />
+					<Textbox id="likes--search-textbox" value={ this.props.searchInput } onChange={ this.updateSearchInput } />
 					<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" />
 				</div>
 				<div className="filters--wrapper">

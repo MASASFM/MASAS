@@ -24,6 +24,7 @@ Likes.mapDispatchToProps = function(dispatch) {
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
 		toogleHashtag: (hashtagNumber) => dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber }),
+		updateSearchInput: (input) => dispatch({ type: "UPDATE_LIKES_SEARCH_INPUT", input })
 	}
 }
 

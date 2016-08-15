@@ -24,11 +24,11 @@ var Textbox = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		if(typeof(this.props.actionString) !== "undefined") {
-			var dispatchObject = { type: this.props.actionString }
-			dispatchObject[this.props.actionParamName] = this.state.input
-			dispatch(dispatchObject) 
-		}
+		// if(typeof(this.props.actionString) !== "undefined") {
+		// 	var dispatchObject = { type: this.props.actionString }
+		// 	dispatchObject[this.props.actionParamName] = this.state.input
+		// 	dispatch(dispatchObject) 
+		// }
 	},
 
 	onInputChange: function(e) {

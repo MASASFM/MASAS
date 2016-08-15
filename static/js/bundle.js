@@ -55830,6 +55830,11 @@ var Likes = React.createClass({
 		this.props.toogleHashtag(hashtagNumber);
 	},
 
+	updateSearchInput: function updateSearchInput(searchInput) {
+		console.log("++++++++", searchInput);
+		this.props.updateSearchInput(searchInput);
+	},
+
 	render: function render() {
 		// console.log("PROPS => ", this.props)
 		return React.createElement(
@@ -55839,7 +55844,7 @@ var Likes = React.createClass({
 				"div",
 				{ className: "likes-searchbar--wrapper", id: "likes-searchbar-wrapper" },
 				React.createElement("img", { src: "/static/img/MASAS_search.svg", alt: "serach-icon" }),
-				React.createElement(Textbox, { id: "likes--search-textbox", actionString: "UPDATE_LIKES_SEARCH_INPUT", actionParamName: "input" }),
+				React.createElement(Textbox, { id: "likes--search-textbox", value: this.props.searchInput, onChange: this.updateSearchInput }),
 				React.createElement("img", { onClick: this.openFiltersModal, className: "filter-icon", alt: "filter-songs", src: "/static/img/MASAS_icon_trash.svg" })
 			),
 			React.createElement(
@@ -56398,6 +56403,9 @@ Likes.mapDispatchToProps = function (dispatch) {
 		},
 		toogleHashtag: function toogleHashtag(hashtagNumber) {
 			return dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber: hashtagNumber });
+		},
+		updateSearchInput: function updateSearchInput(input) {
+			return dispatch({ type: "UPDATE_LIKES_SEARCH_INPUT", input: input });
 		}
 	};
 };
@@ -59622,11 +59630,11 @@ var Textbox = React.createClass({
 	componentWillMount: function componentWillMount() {},
 
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-		if (typeof this.props.actionString !== "undefined") {
-			var dispatchObject = { type: this.props.actionString };
-			dispatchObject[this.props.actionParamName] = this.state.input;
-			dispatch(dispatchObject);
-		}
+		// if(typeof(this.props.actionString) !== "undefined") {
+		// 	var dispatchObject = { type: this.props.actionString }
+		// 	dispatchObject[this.props.actionParamName] = this.state.input
+		// 	dispatch(dispatchObject)
+		// }
 	},
 
 	onInputChange: function onInputChange(e) {
