@@ -76,16 +76,19 @@ var Player = React.createClass({
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, (event) => {
 			console.log('BUFFERING =>', event)
-			this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+			
+			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
+				this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, (event) => {
 			console.log('STALLED =>', event)
-			this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
+
+			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
+				this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, (event) => {
 			console.log('STOP BUFFERING =>', event)
-			// $('.player-button').trigger('click')
-			// $('.player-button').trigger('click')
+			
 			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
 			
 		})

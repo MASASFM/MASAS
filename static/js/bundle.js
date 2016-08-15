@@ -57444,16 +57444,17 @@ var Player = React.createClass({
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, function (event) {
 			console.log('BUFFERING =>', event);
-			_this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
+
+			if ($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3") _this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
 		});
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, function (event) {
 			console.log('STALLED =>', event);
-			_this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
+
+			if ($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3") _this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
 		});
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, function (event) {
 			console.log('STOP BUFFERING =>', event);
-			// $('.player-button').trigger('click')
-			// $('.player-button').trigger('click')
+
 			_this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' });
 		});
 
