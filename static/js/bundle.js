@@ -58121,7 +58121,7 @@ var Profile = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "text--wrapper" },
+							{ className: "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") },
 							React.createElement(
 								"div",
 								{ className: "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") },
@@ -58291,6 +58291,8 @@ var _require2 = require("../UI/UI.jsx");
 
 var Textbox = _require2.Textbox;
 
+var ProfileEditLinks = require("./ProfileEditLinks.jsx");
+
 // var ProfileEdit = (props) => {
 
 // }
@@ -58314,19 +58316,21 @@ var ProfileEdit = React.createClass({
 					{ id: "stage-name" },
 					"Stage Name"
 				),
-				React.createElement("br", null),
 				React.createElement(
 					Textbox,
 					{ id: "city" },
 					"City"
 				),
-				React.createElement("br", null),
 				React.createElement(
 					Textbox,
 					{ id: "occupation" },
 					"Occupation"
-				),
-				React.createElement("br", null)
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "links-info" },
+				React.createElement(ProfileEditLinks, null)
 			)
 		);
 	}
@@ -58334,7 +58338,7 @@ var ProfileEdit = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ProfileEdit);
 
-},{"../UI/UI.jsx":377,"./containers/ProfileEdit.jsx":362,"react":279,"react-dom":80,"react-redux":84}],355:[function(require,module,exports){
+},{"../UI/UI.jsx":377,"./ProfileEditLinks.jsx":355,"./containers/ProfileEdit.jsx":362,"react":279,"react-dom":80,"react-redux":84}],355:[function(require,module,exports){
 "use strict";
 
 var React = require("react");

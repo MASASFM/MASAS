@@ -126,7 +126,7 @@ var Profile = React.createClass({
 									post
 								</div>
 							</div>
-							<div className="text--wrapper">
+							<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
 								<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
 									<span className="username">
 										{this.props.userData.username}

@@ -2158,7 +2158,9 @@ input[type=range].MASAS-slider {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6); }
     .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper {
-      padding: 0.5rem 2rem; }
+      padding: 0.5rem 2rem;
+      display: flex;
+      flex-direction: row; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info {
         display: flex;
         flex-direction: column;
@@ -2168,6 +2170,40 @@ input[type=range].MASAS-slider {
           font-size: 2rem; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #city, .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #occupation {
           width: 80%; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info .MASAS-textbox {
+          margin-bottom: 0.5rem; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info {
+        display: none; }
+    @media screen and (min-width: 992px) {
+      .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info {
+        width: 50%; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #stage-name {
+          height: 2rem;
+          font-size: 2rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info .MASAS-textbox .MASAS-text-input {
+          margin-top: 0.2rem;
+          height: 0.8rem; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info {
+        display: flex;
+        flex: 1;
+        margin-left: 2rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper {
+          display: flex;
+          flex-direction: column;
+          padding-bottom: 1rem; }
+          .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit {
+            display: flex;
+            margin-top: 1rem; }
+            .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit img {
+              height: 1.3rem;
+              width: 1.3rem;
+              padding-right: 1rem; }
+            .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
+              margin: 0; } }
+  @media screen and (min-width: 992px) and (min-width: 992px) {
+    .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .links-info .links-edit--wrapper {
+      flex: 1; } }
+
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper.hidden {
     display: none; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
@@ -2196,7 +2232,8 @@ input[type=range].MASAS-slider {
     background-color: black;
     justify-content: space-around;
     align-items: center;
-    width: 100%; }
+    width: 100%;
+    display: none; }
   .profile--wrapper .social-stats--wrapper .section {
     display: flex;
     align-items: center;
@@ -2246,6 +2283,9 @@ input[type=range].MASAS-slider {
             padding-right: 1rem; }
           .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper .link-edit .MASAS-textbox .MASAS-text-input {
             margin: 0; }
+      @media screen and (min-width: 992px) {
+        .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper .links-edit--wrapper {
+          flex: 1; } }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper.hidden {
       display: none; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper {
@@ -2293,13 +2333,17 @@ input[type=range].MASAS-slider {
       width: 8rem;
       height: 8rem;
       border: 2px solid white; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper.is-editing-profile {
+      height: 120%; }
     .profile--wrapper .profile-info--wrapper .text--wrapper {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: 90%; }
+      align-items: flex-start;
+      height: 90%;
+      flex: 1; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper {
-        position: inherit; }
+        position: inherit;
+        background-color: transparent; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop.hidden {
         display: none; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .tab--wrapper {
@@ -2328,7 +2372,6 @@ input[type=range].MASAS-slider {
       .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
         background-color: transparent;
         max-width: 10rem;
-        align-self: center;
         display: flex;
         position: inherit;
         align-items: flex-end; }

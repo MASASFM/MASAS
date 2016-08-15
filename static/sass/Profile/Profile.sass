@@ -100,6 +100,7 @@
 		justify-content: space-around
 		align-items: center
 		width: 100%
+		display: none
 
 	.social-stats--wrapper
 		.section
@@ -208,14 +209,19 @@
 				height: $info-wrapper-height
 				border: 2px solid white
 
+			.text--wrapper.is-editing-profile
+				height: 120%
+
 			.text--wrapper
 				display: flex
 				flex-direction: column
-				justify-content: center
+				align-items: flex-start
 				height: 90%
+				flex: 1
 
 				.edit-profile--wrapper
 					position: inherit
+					background-color: rgba(0,0,0,0)
 
 				.user-info-desktop.hidden
 					display: none
@@ -254,7 +260,6 @@
 				.social--wrapper
 					background-color: rgba(0,0,0,0)
 					max-width: 10rem
-					align-self: center
 					display: flex
 					position: inherit
 					align-items: flex-end

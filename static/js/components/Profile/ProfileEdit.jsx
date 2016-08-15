@@ -6,6 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEdit.
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Textbox } = require("../UI/UI.jsx")
+var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 
 // var ProfileEdit = (props) => {
 
@@ -22,9 +23,12 @@ var ProfileEdit = React.createClass({
 		return (
 			<div className="profile-edit--wrapper">
 				<div className="personal-info">
-					<Textbox id="stage-name">Stage Name</Textbox><br/>
-					<Textbox id="city">City</Textbox><br />
-					<Textbox id="occupation">Occupation</Textbox><br />
+					<Textbox id="stage-name">Stage Name</Textbox>
+					<Textbox id="city">City</Textbox>
+					<Textbox id="occupation">Occupation</Textbox>
+				</div>
+				<div className="links-info">
+					<ProfileEditLinks />
 				</div>
 			</div>
 		)

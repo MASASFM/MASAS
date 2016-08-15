@@ -1,5 +1,7 @@
 .profile-edit--wrapper
 	padding: 0.5rem 2rem
+	display: flex
+	flex-direction: row
 
 	.personal-info
 		display: flex
@@ -12,3 +14,32 @@
 
 		#city, #occupation
 			width: 80%
+
+		.MASAS-textbox
+			margin-bottom: 0.5rem
+
+	.links-info
+		display: none
+
+@media screen and (min-width: $desktop-min-width)
+	.profile-edit--wrapper
+		.personal-info
+			width: 50%
+
+			#stage-name
+				height: 2rem
+				font-size: 2rem
+
+			#city, #occupation
+
+			.MASAS-textbox
+				.MASAS-text-input
+					margin-top: 0.2rem
+					height: 0.8rem
+
+		.links-info
+			display: flex
+			flex: 1
+			margin-left: 2rem
+
+			@import './ProfileEditLinks'
