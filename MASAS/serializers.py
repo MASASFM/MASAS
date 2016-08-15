@@ -8,6 +8,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
+from cities_light.models import City
 from cities_light.contrib.restframework3 import CitySerializer
 
 from models import Status, Play, Song, User, UserStep, Link, TimeInterval
@@ -148,3 +149,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'dislikes',
             'usersteps',
         )
+
+
+class UserEditSerializer(UserSerializer):
+    city = serializers.HyperlinkedRelatedField(
+        view_name='cities-light-api-city-detail',
+        queryset=City.objects.all(),
+    )

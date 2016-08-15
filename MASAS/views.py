@@ -45,6 +45,7 @@ from serializers import (
     StatusListSerializer,
     PlaySerializer,
     SongSerializer,
+    UserEditSerializer,
     UserSerializer,
     UserStepSerializer,
     LinkSerializer,
@@ -95,6 +96,11 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
     )
     queryset = User.objects.prefetch_related('link_set')
     serializer_class = UserSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return UserSerializer
+        return UserEditSerializer
 
 
 class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
