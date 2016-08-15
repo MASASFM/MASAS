@@ -24,7 +24,12 @@ var LikesItem = React.createClass({
 
 	playTrack: function() {
 		//this.props.playNewSong(this.props.MASASinfo.url)
-		var playlist = this.props.userData.likes.map((like) => {
+		// var playlist = this.props.userData.likes.map((like) => {
+		// 	return like.song.url
+		// })
+		var playlist = [].concat(this.props.userData.likes)
+		playlist.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
+		playlist = playlist.map((like) => {
 			return like.song.url
 		})
 
