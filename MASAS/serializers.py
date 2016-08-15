@@ -91,7 +91,7 @@ class StatusSerializer(CreateOnlyForMyUserMixin,
 
     class Meta:
         model = Status
-        fields = ('pk', 'url', 'user', 'song', 'status')
+        fields = ('pk', 'url', 'user', 'song', 'status', 'created')
 
 
 class StatusListSerializer(StatusSerializer):
