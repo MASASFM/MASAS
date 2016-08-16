@@ -115,6 +115,11 @@ var Profile = React.createClass({
 		const header = "Bearer " + this.props.userToken
 		var csrftoken = getCookie("csrftoken")
 
+		var textboxValues = { ...this.props.textboxValues }
+		var links = textboxValues.link_set
+		delete textboxValues.link_set
+		textboxValues.city = "http://localhost:8000/api/cities/" + textboxValues.city + "/"
+
 		$.ajax({
 			type: "PATCH",
 			url: this.props.userData.url,
@@ -123,7 +128,7 @@ var Profile = React.createClass({
 				"X-CSRFToken": csrftoken
 			},
 			contentType: "application/json",
-			data: JSON.stringify(this.props.textboxValues), 
+			data: JSON.stringify(textboxValues), 
 			success: (r) => {
 				updateNotificationBar('Profile updated !')
 				updateProfileInfo()
@@ -136,6 +141,10 @@ var Profile = React.createClass({
 		})
 	},
 
+	cancelEdit: function() {
+		this.props.toggleEditingProfile()	
+	},
+
 	render: function() {
 		return (
 			<div style={{display: 'flex', flex: 1}}>
@@ -145,7 +154,7 @@ var Profile = React.createClass({
 						<div className="profile-info--wrapper">
 							<div className="edit-profile-icon--wrapper">
 								{ this.props.isEditingProfile ?
-										<span onClick={ this.saveProfile }>save</span>
+										<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
 									:
 										<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
 								}
@@ -162,14 +171,29 @@ var Profile = React.createClass({
 							<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
 								<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
 									<span className="username">
-										{this.props.userData.username}
+										{
+											this.props.userData.name ? 
+												this.props.userData.name 
+											:
+												this.props.userData.username
+										}
 									</span>
 									<div className="occupation--wrapper">
 										<span className="location">
-											Amsterdam - Holland
+											{ 
+												this.props.userData.city ?
+													this.props.userData.city.display_name.replace( /,.*?,/, ',' )
+												:
+													""
+											}
 										</span>
 										<span className="occupation">
-											DJ & Music Producer
+											{ 
+												this.props.userData.occupation ?
+													this.props.userData.occupation
+												:
+													""
+											}
 										</span>
 									</div>
 								</div>
@@ -180,15 +204,30 @@ var Profile = React.createClass({
 									</div>
 									<div className="occupation--wrapper">
 										<div className="occupation">
-											DJ & Music Producer
+											{ 
+												this.props.userData.occupation ?
+													this.props.userData.occupation
+												:
+													""
+											}
 										</div>
 										<div className="location">
 											<span className="city">
-												Amsterdam
+												{ 
+													this.props.userData.city ?
+														this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+													:
+														""
+												}
 											</span>
 											-
 											<span className="country">
-												Holland
+												{ 
+													this.props.userData.city ?
+														this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+													:
+														""
+												}
 											</span>
 										</div>
 									</div>

@@ -55831,12 +55831,10 @@ var Likes = React.createClass({
 	},
 
 	updateSearchInput: function updateSearchInput(searchInput) {
-		console.log("++++++++", searchInput);
 		this.props.updateSearchInput(searchInput);
 	},
 
 	render: function render() {
-		// console.log("PROPS => ", this.props)
 		return React.createElement(
 			LikesWrapper,
 			null,
@@ -57970,6 +57968,8 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ChangeM
 },{"../../MASAS_functions.jsx":293,"../UI/UI.jsx":377,"./containers/ChangeMoodModal.jsx":360,"react":279,"react-dom":80,"react-redux":84}],353:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 // STATEFUL COMPONENT => CHANGE !!!! (integrate w/ redux states)
 
 var React = require("react");
@@ -58114,6 +58114,11 @@ var Profile = React.createClass({
 		var header = "Bearer " + this.props.userToken;
 		var csrftoken = getCookie("csrftoken");
 
+		var textboxValues = _extends({}, this.props.textboxValues);
+		var links = textboxValues.link_set;
+		delete textboxValues.link_set;
+		textboxValues.city = "http://localhost:8000/api/cities/" + textboxValues.city + "/";
+
 		$.ajax({
 			type: "PATCH",
 			url: this.props.userData.url,
@@ -58122,7 +58127,7 @@ var Profile = React.createClass({
 				"X-CSRFToken": csrftoken
 			},
 			contentType: "application/json",
-			data: JSON.stringify(this.props.textboxValues),
+			data: JSON.stringify(textboxValues),
 			success: function success(r) {
 				updateNotificationBar('Profile updated !');
 				updateProfileInfo();
@@ -58133,6 +58138,10 @@ var Profile = React.createClass({
 				_this3.props.toggleEditingProfile();
 			}
 		});
+	},
+
+	cancelEdit: function cancelEdit() {
+		this.props.toggleEditingProfile();
 	},
 
 	render: function render() {
@@ -58152,9 +58161,18 @@ var Profile = React.createClass({
 							"div",
 							{ className: "edit-profile-icon--wrapper" },
 							this.props.isEditingProfile ? React.createElement(
-								"span",
-								{ onClick: this.saveProfile },
-								"save"
+								"div",
+								null,
+								React.createElement(
+									"span",
+									{ onClick: this.cancelEdit, style: { paddingRight: "0.5rem" } },
+									"cancel"
+								),
+								React.createElement(
+									"span",
+									{ onClick: this.saveProfile },
+									"save"
+								)
 							) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
 						),
 						React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
@@ -58181,7 +58199,7 @@ var Profile = React.createClass({
 								React.createElement(
 									"span",
 									{ className: "username" },
-									this.props.userData.username
+									this.props.userData.name ? this.props.userData.name : this.props.userData.username
 								),
 								React.createElement(
 									"div",
@@ -58189,12 +58207,12 @@ var Profile = React.createClass({
 									React.createElement(
 										"span",
 										{ className: "location" },
-										"Amsterdam - Holland"
+										this.props.userData.city ? this.props.userData.city.display_name.replace(/,.*?,/, ',') : ""
 									),
 									React.createElement(
 										"span",
 										{ className: "occupation" },
-										"DJ & Music Producer"
+										this.props.userData.occupation ? this.props.userData.occupation : ""
 									)
 								)
 							),
@@ -58213,7 +58231,7 @@ var Profile = React.createClass({
 									React.createElement(
 										"div",
 										{ className: "occupation" },
-										"DJ & Music Producer"
+										this.props.userData.occupation ? this.props.userData.occupation : ""
 									),
 									React.createElement(
 										"div",
@@ -58221,13 +58239,13 @@ var Profile = React.createClass({
 										React.createElement(
 											"span",
 											{ className: "city" },
-											"Amsterdam"
+											this.props.userData.city ? this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " : ""
 										),
 										"-",
 										React.createElement(
 											"span",
 											{ className: "country" },
-											"Holland"
+											this.props.userData.city ? this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) : ""
 										)
 									)
 								),

@@ -142,12 +142,10 @@ var Likes = React.createClass({
 	},
 
 	updateSearchInput: function(searchInput) {
-		console.log("++++++++", searchInput)
 		this.props.updateSearchInput(searchInput)
 	},
 
 	render: function() {
-		// console.log("PROPS => ", this.props)
 		return (
 			<LikesWrapper>
 				<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
