@@ -252,6 +252,10 @@ SOUNDCLOUD = {
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['tbinetruy@gmail.com']
 
+CITIES_LIGHT_CITY_SOURCES = [
+    'http://download.geonames.org/export/dump/cities5000.zip'
+]
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
