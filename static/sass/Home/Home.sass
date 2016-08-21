@@ -8,7 +8,6 @@
 	align-items: center
 	justify-content: space-around
 	flex-direction: column
-	margin: 0.7rem 28px			// margin same as hamburger menu
 	position: relative
 
 	.page-up--wrapper
@@ -41,14 +40,17 @@
 	// 	font-size: 1.8rem
 
 	.multiPage--wrapper
-		overflow: hidden
+		overflow-y: scroll
+		overflow-x: hidden
 		display: flex
 		flex: 1
 		flex-direction: column
 		position: relative
 		width: 100%
 
-	.multiPage--wrapper
+		.page 
+			min-height: calc(100vh - #{$phone-header-height} - #{$phone-footer-height} - #{$phone-header-top-decoration2} - #{$phone-header-top-decoration})
+
 		.title
 			width: 100%
 			display: flex
@@ -94,9 +96,7 @@
 			align-items: center
 			flex: 1
 			position: relative
-			justify-content: space-between
-			margin-top: 20%
-			padding-bottom: 2rem
+			justify-content: center
 
 			@import "./UnsplashControls"
 
@@ -112,13 +112,12 @@
 
 			.logo
 				display: flex
-				flex: 1
 				width: 100%
 				display: flex
 				// flex: 1
 				// padding-bottom: 2.5rem
-				height: -webkit-min-content
-				height: min-content
+				// height: 10rem
+				padding-bottom: 4rem
 				justify-content: center
 				min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
 
@@ -167,122 +166,8 @@
 						display: flex
 						justify-content: center
 
-		// #homepage-description--musicLover
-		// 	display: flex
-		// 	flex: 1
-		// 	max-width: 62rem
-		// 	color: black
-
-		// 	h1
-		// 		color: black
-		// 		border-bottom: 1px solid black
-
-		// 	.text--wrapper
-		// 		display: flex
-		// 		flex-direction: column
-		// 		align-items: center
-		// 		justify-content: center
-		// 		justify-content: space-between
-		// 		align-items: flex-start
-
-		// 		img
-		// 			width: 70%
-
-		// 		.button
-		// 			min-width: 12rem
-		// 			width: 100%
-
-		// #homepage-description--developpers
-		// 	display: flex
-		// 	overflow: auto
-		// 	flex: 1
-
-		// 	.scroll--wrapper
-		// 		// min-height: min-content
-		// 		display: flex
-		// 		flex-direction: column
-		// 		justify-content: space-between
-
-		// 		.founders-info--wrapper
-		// 			display: flex
-		// 			flex-wrap: wrap
-		// 			justify-content: space-around
-		// 			align-items: center
-		// 			flex: 1
-
-		// 			.founder-info--wrapper
-		// 				display: flex
-		// 				flex-direction: column
-		// 				align-items: center
-
-		// 				img
-		// 					width: 4.5rem
-		// 					margin-bottom: 1.5rem
-
-		// 				.text--wrapper
-		// 					display: flex
-		// 					flex-direction: column
-		// 					align-content: center
-		// 					align-items: center
-
-		// 					.founder-name--wrapper
-		// 						width: min-content
-		// 						display: flex
-		// 						flex-direction: row
-		// 						justify-content: space-around
-
-		// 						.name1, .name2, .job
-		// 							text-align: center
-
-		// 						.name1, .name2
-		// 							text-transform: uppercase
-		// 							font-size: 0.6rem
-		// 							letter-spacing: 0.1rem
-
-		// 						.name1
-		// 							padding-right: 0.5rem
-
-		// 						.name2
-		// 							white-space: pre
-
-		// 					hr
-		// 						width: 100%
-
-		// 					.job
-		// 						opacity: 0.3
-		// 						font-size: 0.7rem
-
-		// 		.description
-		// 			text-align: center
-		// 			padding: 2rem 0
-
-		// 		.social-buttons
-		// 			display: flex
-		// 			justify-content: space-between
-		// 			margin-bottom: 1.5rem
-		// 			width: 100%
-
-		// 			.twitter, .facebook
-		// 				padding: 0.55rem
-
-		// 			.twitter
-		// 				background-color: rgb(93,168, 220)
-
-		// 			.twitter::before
-		// 				background-image: url("/static/img/twitter.svg")
-		// 				content: ""
-
-		// 			.facebook
-		// 				background-color: rgb(72,90,150)
-
-		// 			.facebook::before
-		// 				content: ""
-		// 				background-image: url("/static/img/twitter.svg")
-
-
 @media screen and (min-width: $desktop-min-width)
 	.home--wrapper
-		margin: 0.7rem 0
 
 		.page-up--wrapper
 			img
@@ -293,7 +178,9 @@
 		.multiPage--wrapper
 
 
-		.multiPage--wrapper
+		.page 
+			min-height: calc(100vh - #{$desktop-header-height} - #{$desktop-footer-height})
+
 			h1
 
 
@@ -309,9 +196,6 @@
 
 
 			#homepage-login
-				padding-top: 5rem
-				// padding-bottom: 5rem
-				margin-top: 0				// because margin needed on phone and padding used here (so it doesn't add up)
 
 				.arrow-icon
 

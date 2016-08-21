@@ -294,11 +294,14 @@ var HomeCountdown = React.createClass({
 			left: this.attributes.loginButtonPosition.x - 0, 
 			top: this.attributes.loginButtonPosition.y - 20,
 			width: '6rem'
-		};
+		}
+
+		var pageHeight = $(window).height()
+		var logoHeight = pageHeight * 0.35
 
 		return (
 			<div className="HomeCountdown--wrapper1">
-				<div id='masasLoaderContainer' style={{ position: 'relative', height: '300px' }} className={ "HomeCountdown--wrapper2" + (this.props.user ? ' logged-in' : '') }>
+				<div id='masasLoaderContainer' style={{ position: 'relative', height: logoHeight + 'px' }} className={ "HomeCountdown--wrapper2" + (this.props.user ? ' logged-in' : '') }>
 					<div style={positionLinks}>
 							{ this.props.user ?
 								<Button 

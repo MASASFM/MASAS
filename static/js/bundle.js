@@ -54179,7 +54179,7 @@ var Home = React.createClass({
 				{ className: "multiPage--wrapper" },
 				React.createElement(
 					"div",
-					{ className: "page" + (currentPage === 1 ? "1" : "2") + "--wrapper", id: "homepage-login" },
+					{ className: "page " + (currentPage === 1 ? "1" : "2") + "--wrapper", id: "homepage-login" },
 					React.createElement(UnsplashControls, null),
 					React.createElement(
 						"div",
@@ -54194,156 +54194,46 @@ var Home = React.createClass({
 							buttonTitle: "Request an Invitation",
 							subtitle: "via Facebook" })
 					),
-					React.createElement("img", { onClick: this.props.goToPage.bind(null, 2, pageCount), src: "/static/img/puff_loader_slow.svg", alt: "down arrow", className: "arrow-icon" })
-				),
-				React.createElement(
-					"div",
-					{ className: "homepage-description page" + (currentPage === 2 ? "1" : "2") + "--wrapper", id: "homepage-description--artist" },
 					React.createElement(
-						"div",
-						{ className: "text--wrapper" },
-						React.createElement(
-							"div",
-							{ className: "image--wrapper" },
-							React.createElement("img", { src: "/static/img/MASAS_icon_Mixer.svg", alt: "stars" })
-						),
-						React.createElement(
-							"div",
-							{ className: "side-content" },
-							React.createElement(
-								"div",
-								{ className: "title" },
-								React.createElement(
-									"h1",
-									{ onClick: this.goToPage1 },
-									"i'm an artist"
-								)
-							),
-							React.createElement(
-								"p",
-								null,
-								"Music transcends the boundaries of language and culture, it is a beautiful outburst of the soul that brings joy and happiness; and this is exactly why you should share yours. Plus, you know, music lovers from all over the world will listen to you music."
-							),
-							React.createElement(
-								"div",
-								{ className: "button", style: { width: '70%' } },
-								this.props.user ? React.createElement(
-									Button,
-									{ onClick: goToURL.bind('null', '/sc-sync') },
-									"Start Uploading"
-								) : React.createElement(LoginForm, {
-									fullForm: false,
-									buttonTitle: "Start Uploading",
-									subtitle: "via Soundcloud" })
-							)
-						)
+						Button,
+						{ isBigButton: true, isSecondaryAction: true },
+						"Learn more"
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "homepage-description page" + (currentPage === 3 ? "1" : "2") + "--wrapper", id: "homepage-description--musicLover" },
+					{ className: "page " + (currentPage === 1 ? "1" : "2") + "--wrapper", id: "homepage-login" },
 					React.createElement(
 						"div",
-						{ className: "text--wrapper" },
-						React.createElement("div", { style: { position: 'fixed', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(255,255,255,0)', zIndex: -1 } }),
-						React.createElement(
-							"div",
-							{ className: "image--wrapper" },
-							React.createElement("img", { src: "/static/img/MASAS_icon_vinyl.svg", alt: "stars" })
-						),
-						React.createElement(
-							"div",
-							{ className: "side-content" },
-							React.createElement(
-								"div",
-								{ className: "title" },
-								React.createElement(
-									"h1",
-									{ onClick: this.goToPage1 },
-									"i'm a music lover"
-								)
-							),
-							React.createElement(
-								"p",
-								null,
-								"Music has a universal capacity to positively influence our moods in the midst of our daily routine. Music is incredible, but it is even better when we share it together. On MASAS, everyone collaborates together to Discover new tunes and create a better Radio."
-							),
-							React.createElement(
-								"div",
-								{ className: "button", style: { width: '70%' } },
-								this.props.user ? React.createElement(
-									Button,
-									{ onClick: goToURL.bind('null', '/profile') },
-									"My Profile"
-								) : React.createElement(LoginForm, {
-									fullForm: false,
-									buttonTitle: "Request and Invitation",
-									subtitle: "via Facebook" })
-							)
-						)
+						{ className: "logo" },
+						React.createElement(HomeCountdown, { user: this.props.user })
+					),
+					React.createElement(
+						"div",
+						{ style: { visibility: this.props.user ? 'hidden' : 'visible' } },
+						React.createElement(LoginForm, {
+							fullForm: false,
+							buttonTitle: "Request an Invitation",
+							subtitle: "via Facebook" })
 					)
 				),
 				React.createElement(
 					"div",
-					{ className: "page" + (currentPage === 4 ? "1" : "2") + "--wrapper", id: "homepage-description--developpers" },
+					{ className: "page " + (currentPage === 1 ? "1" : "2") + "--wrapper", id: "homepage-login" },
 					React.createElement(
 						"div",
-						{ className: "scroll--wrapper" },
-						React.createElement(
-							"h1",
-							null,
-							"founders"
-						),
-						React.createElement(
-							"div",
-							{ className: "founders-info--wrapper" },
-							React.createElement(FounderInfoBox, {
-								url: "/static/img/founders.png",
-								name1: "Victor",
-								name2: "Binétruy-Pic",
-								job: "Front-end Developper" }),
-							React.createElement(FounderInfoBox, {
-								url: "/static/img/founders.png",
-								name1: "Thomas",
-								name2: "Binétruy-Pic",
-								job: "Front-end Developper" }),
-							React.createElement(FounderInfoBox, {
-								url: "/static/img/founders.png",
-								name1: "Micka",
-								name2: "Touillaud",
-								job: "Product Designer " }),
-							React.createElement(FounderInfoBox, {
-								url: "/static/img/founders.png",
-								name1: "James",
-								name2: "Pic",
-								job: "Back-end Engineer" })
-						),
-						React.createElement(
-							"div",
-							{ className: "description" },
-							"With MASAS, we hope to nurture the true essence of an ever-expanding grassroots movement. Be part of the evolution by simply… sharing."
-						),
-						React.createElement(
-							"div",
-							{ className: "social-buttons" },
-							React.createElement(
-								"div",
-								{ className: "facebook" },
-								"Invite a friend"
-							),
-							React.createElement(
-								"div",
-								{ className: "twitter" },
-								"Invite a friend"
-							)
-						)
+						{ className: "logo" },
+						React.createElement(HomeCountdown, { user: this.props.user })
+					),
+					React.createElement(
+						"div",
+						{ style: { visibility: this.props.user ? 'hidden' : 'visible' } },
+						React.createElement(LoginForm, {
+							fullForm: false,
+							buttonTitle: "Request an Invitation",
+							subtitle: "via Facebook" })
 					)
 				)
-			),
-			React.createElement(
-				"div",
-				{ className: "page-down--wrapper", style: { display: currentPage !== pageCount && currentPage !== 1 ? 'flex' : 'none' } },
-				React.createElement("img", { onClick: this.props.goToPage.bind(null, currentPage + 1, pageCount), src: "/static/img/MASAS_arrow_down.svg", alt: "down icon", className: "page-down-icon" })
 			)
 		);
 	}
@@ -54642,12 +54532,15 @@ var HomeCountdown = React.createClass({
 			width: '6rem'
 		};
 
+		var pageHeight = $(window).height();
+		var logoHeight = pageHeight * 0.35;
+
 		return React.createElement(
 			"div",
 			{ className: "HomeCountdown--wrapper1" },
 			React.createElement(
 				"div",
-				{ id: "masasLoaderContainer", style: { position: 'relative', height: '300px' }, className: "HomeCountdown--wrapper2" + (this.props.user ? ' logged-in' : '') },
+				{ id: "masasLoaderContainer", style: { position: 'relative', height: logoHeight + 'px' }, className: "HomeCountdown--wrapper2" + (this.props.user ? ' logged-in' : '') },
 				React.createElement(
 					"div",
 					{ style: positionLinks },

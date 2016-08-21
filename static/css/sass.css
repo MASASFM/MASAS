@@ -542,13 +542,10 @@ input[type=range].MASAS-slider {
   align-items: center; }
   .HomeCountdown--wrapper1 .HomeCountdown--wrapper2 {
     display: none;
-    position: relative;
-    height: 300px; }
+    position: relative; }
   .HomeCountdown--wrapper1 .mobile-logo {
     display: flex;
     justify-content: center; }
-  .HomeCountdown--wrapper1 .mobile-logo img {
-    height: 15rem; }
   .HomeCountdown--wrapper1 .home-countdown-button {
     padding: 0.5rem;
     font-size: 0.8rem;
@@ -561,8 +558,6 @@ input[type=range].MASAS-slider {
     display: flex; }
   .HomeCountdown--wrapper1 .mobile-logo {
     display: none; }
-    .HomeCountdown--wrapper1 .mobile-logo img {
-      height: 290px; }
   .HomeCountdown--wrapper1 .mobile-logo.logged-out {
     display: flex; } }
 .home--wrapper {
@@ -572,7 +567,6 @@ input[type=range].MASAS-slider {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 0.7rem 28px;
   position: relative; }
   .home--wrapper .page-up--wrapper {
     display: flex;
@@ -594,153 +588,149 @@ input[type=range].MASAS-slider {
     .home--wrapper .page-down--wrapper img {
       height: 0.8rem; }
   .home--wrapper .multiPage--wrapper {
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex: 1;
     flex-direction: column;
     position: relative;
     width: 100%; }
-  .home--wrapper .multiPage--wrapper .title {
-    width: 100%;
-    display: flex;
-    justify-content: center; }
-    .home--wrapper .multiPage--wrapper .title h1 {
-      font-family: Lato-Semibold;
-      font-size: 1.3rem;
-      border-bottom: 1px solid white;
-      padding-bottom: 1.2rem;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.35rem;
-      width: min-content;
-      white-space: pre; }
-  .home--wrapper .multiPage--wrapper p {
-    font-size: 0.85rem;
-    text-align: justify;
-    padding-bottom: 2rem;
-    line-height: 1.1rem;
-    width: 80%; }
-  .home--wrapper .multiPage--wrapper .page1--wrapper, .home--wrapper .multiPage--wrapper .page2--wrapper {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0; }
-  .home--wrapper .multiPage--wrapper .page1--wrapper {
-    opacity: 1;
-    z-index: 1;
-    align-items: center; }
-  .home--wrapper .multiPage--wrapper .page2--wrapper {
-    opacity: 0;
-    z-index: -1; }
-  .home--wrapper .multiPage--wrapper #homepage-login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    position: relative;
-    justify-content: space-between;
-    margin-top: 20%;
-    padding-bottom: 2rem; }
-    .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
-      display: none;
-      justify-content: space-between;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1rem 1.7rem; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls .artist-controls {
-        display: flex;
-        align-items: center; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a {
-        text-transform: uppercase;
-        font-family: Lato-Semibold;
-        font-size: 0.6rem;
-        letter-spacing: 0.2rem;
-        opacity: 0.5;
-        cursor: pointer; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a:hover {
-        opacity: 1; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
-        width: 1.2rem;
-        padding-left: 1rem; }
-    @media screen and (min-width: 992px) {
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
-        display: flex; } }
-    .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
-      height: 2rem;
-      animation: Floating 3s infinite ease-in-out;
-      cursor: pointer;
-      z-index: 2; }
-    .home--wrapper .multiPage--wrapper #homepage-login .logo {
-      display: flex;
-      flex: 1;
+    .home--wrapper .multiPage--wrapper .page {
+      min-height: calc(100vh - 3rem - 4rem - 0.3rem - 0.8rem); }
+    .home--wrapper .multiPage--wrapper .title {
       width: 100%;
       display: flex;
-      height: -webkit-min-content;
-      height: min-content;
-      justify-content: center;
-      min-height: 1rem; }
-    .home--wrapper .multiPage--wrapper #homepage-login .login-container {
-      display: none; }
-      .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
-        color: white;
-        align-self: center; }
-  .home--wrapper .multiPage--wrapper .homepage-description {
-    display: flex;
-    flex: 1; }
-    .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper {
+      justify-content: center; }
+      .home--wrapper .multiPage--wrapper .title h1 {
+        font-family: Lato-Semibold;
+        font-size: 1.3rem;
+        border-bottom: 1px solid white;
+        padding-bottom: 1.2rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.35rem;
+        width: min-content;
+        white-space: pre; }
+    .home--wrapper .multiPage--wrapper p {
+      font-size: 0.85rem;
+      text-align: justify;
+      padding-bottom: 2rem;
+      line-height: 1.1rem;
+      width: 80%; }
+    .home--wrapper .multiPage--wrapper .page1--wrapper, .home--wrapper .multiPage--wrapper .page2--wrapper {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0; }
+    .home--wrapper .multiPage--wrapper .page1--wrapper {
+      opacity: 1;
+      z-index: 1;
+      align-items: center; }
+    .home--wrapper .multiPage--wrapper .page2--wrapper {
+      opacity: 0;
+      z-index: -1; }
+    .home--wrapper .multiPage--wrapper #homepage-login {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      justify-content: space-between; }
-      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper img {
-        height: 6rem;
-        padding-bottom: 1rem; }
-      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content {
+      flex: 1;
+      position: relative;
+      justify-content: center; }
+      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
+        display: none;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 1.7rem; }
+        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls .artist-controls {
+          display: flex;
+          align-items: center; }
+        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a {
+          text-transform: uppercase;
+          font-family: Lato-Semibold;
+          font-size: 0.6rem;
+          letter-spacing: 0.2rem;
+          opacity: 0.5;
+          cursor: pointer; }
+        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a:hover {
+          opacity: 1; }
+        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
+          width: 1.2rem;
+          padding-left: 1rem; }
+      @media screen and (min-width: 992px) {
+        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
+          display: flex; } }
+      .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
+        height: 2rem;
+        animation: Floating 3s infinite ease-in-out;
+        cursor: pointer;
+        z-index: 2; }
+      .home--wrapper .multiPage--wrapper #homepage-login .logo {
+        display: flex;
+        width: 100%;
+        display: flex;
+        padding-bottom: 4rem;
+        justify-content: center;
+        min-height: 1rem; }
+      .home--wrapper .multiPage--wrapper #homepage-login .login-container {
+        display: none; }
+        .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
+          color: white;
+          align-self: center; }
+    .home--wrapper .multiPage--wrapper .homepage-description {
+      display: flex;
+      flex: 1; }
+      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper {
         display: flex;
         flex-direction: column;
-        align-items: center; }
-        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content .button {
-          min-width: 12rem;
-          width: 100%;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-between; }
+        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper img {
+          height: 6rem;
+          padding-bottom: 1rem; }
+        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content {
           display: flex;
-          justify-content: center; }
+          flex-direction: column;
+          align-items: center; }
+          .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content .button {
+            min-width: 12rem;
+            width: 100%;
+            display: flex;
+            justify-content: center; }
 
 @media screen and (min-width: 992px) {
-  .home--wrapper {
-    margin: 0.7rem 0; }
-    .home--wrapper .multiPage--wrapper #homepage-login {
-      padding-top: 5rem;
-      margin-top: 0; }
-      .home--wrapper .multiPage--wrapper #homepage-login .login-container {
-        display: flex; }
-    .home--wrapper .multiPage--wrapper .homepage-description {
+  .home--wrapper .page {
+    min-height: calc(100vh - 4.2rem - 2.6rem); }
+    .home--wrapper .page #homepage-login .login-container {
+      display: flex; }
+    .home--wrapper .page .homepage-description {
       padding: 0 15rem; }
-      .home--wrapper .multiPage--wrapper .homepage-description .title {
+      .home--wrapper .page .homepage-description .title {
         width: inherit; }
-        .home--wrapper .multiPage--wrapper .homepage-description .title h1 {
+        .home--wrapper .page .homepage-description .title h1 {
           font-size: 1.8rem; }
-      .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper {
+      .home--wrapper .page .homepage-description .text--wrapper {
         flex-direction: row; }
-        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper {
+        .home--wrapper .page .homepage-description .text--wrapper .image--wrapper {
           display: flex;
           flex: 1;
           justify-content: flex-end; }
-          .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .image--wrapper img {
+          .home--wrapper .page .homepage-description .text--wrapper .image--wrapper img {
             height: 16rem;
             padding: 0; }
-        .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content {
+        .home--wrapper .page .homepage-description .text--wrapper .side-content {
           align-items: flex-start;
           padding-left: 7rem;
           flex: 1; }
-          .home--wrapper .multiPage--wrapper .homepage-description .text--wrapper .side-content p {
+          .home--wrapper .page .homepage-description .text--wrapper .side-content p {
             width: 100%; }
-    .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper {
+    .home--wrapper .page #homepage-description--musicLover .text--wrapper {
       flex-direction: row-reverse; }
-      .home--wrapper .multiPage--wrapper #homepage-description--musicLover .text--wrapper .side-content {
+      .home--wrapper .page #homepage-description--musicLover .text--wrapper .side-content {
         padding-left: 0;
         padding-right: 7rem; } }
 .login-form--wrapper1 {
@@ -1150,7 +1140,7 @@ input[type=range].MASAS-slider {
     .header .desktop-header {
       display: flex;
       background-color: rgba(0, 0, 0, 0.7);
-      height: 3.3rem;
+      height: 4.2rem;
       margin: 0;
       justify-content: center; }
     .header .desktop-header .links--wrapper {
@@ -3030,7 +3020,8 @@ html {
   z-index: -1;
   transition-property: all;
   transition-duration: 1s;
-  transition-timing-function: ease-in-out; }
+  transition-timing-function: ease-in-out;
+  opacity: 0.6; }
 
 .body--background.artist-page-bg > .bg-image {
   -webkit-filter: blur(6px) saturate(0%);

@@ -66,11 +66,11 @@ $B: 0
 		display: flex
 
 	.desktop-header
-		display: none
+		display: none		
 
 	.phone-header
 		background-color: rgba($R,$G,$B,$opacity)
-		height: 3rem
+		height: $phone-header-height
 		margin: 0
 
 	.phone-header
@@ -106,14 +106,14 @@ $B: 0
 				width: 14px
 
 	.top-decoration
-		height: 0.8rem
+		height: $phone-header-top-decoration
 		box-sizing: border-box
-		border: 0.3rem solid black
+		border: $phone-header-top-decoration2 solid black
 		border-color: rgb($R,$G,$B)
 		opacity: $opacity
 
 	.top-decoration--top-border
-		height: 0.3rem
+		height: $phone-header-top-decoration2
 		background-color: rgba($R,$G,$B,$opacity)
 
 	@media screen and (min-width: $desktop-min-width)
@@ -140,7 +140,7 @@ $B: 0
 		.desktop-header
 			display: flex
 			background-color: rgba($R, $G, $B, $opacity)
-			height: 3.3rem
+			height: $desktop-header-height
 			margin: 0
 			justify-content: center
 
