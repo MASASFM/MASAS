@@ -7,6 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEdit.
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
+var CountryAutocomplete = require("./CountryAutocomplete.jsx")
 
 // var ProfileEdit = (props) => {
 
@@ -40,6 +41,7 @@ var ProfileEdit = React.createClass({
 					<Textbox onChange={ this.updateName } value={ this.props.textboxValues.name } id="stage-name">Stage Name</Textbox>
 					<Textbox onChange={ this.updateCity } value={ this.props.textboxValues.city } id="city">City</Textbox>
 					<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
+					<CountryAutocomplete />
 				</div>
 				<div className="links-info">
 					<ProfileEditLinks />

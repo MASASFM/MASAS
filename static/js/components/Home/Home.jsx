@@ -7,7 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
-var { Button, Link } = require("../UI/UI.jsx")
+var { Button, Link, TimePicker, RankingInfoIcon } = require("../UI/UI.jsx")
 var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
@@ -89,7 +89,7 @@ var Home = React.createClass({
 
 				<div className="multiPage--wrapper">
 
-					<div className={ "page " + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
+					<div className="page" id="homepage-login">
 						<UnsplashControls />
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
@@ -105,31 +105,51 @@ var Home = React.createClass({
 						<Button isBigButton={ true } isSecondaryAction={ true }>Learn more</Button> 
 					</div>
 
-					<div className={ "page " + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
-						<div className="logo">
-							<HomeCountdown user={this.props.user} />
+					<div className="page" id="masas-info--wrapper">
+						<div className="abstract">
+							<img src="/static/img/MASAS_icon_metronome.svg" alt="deco" />
+							<p>
+								Together, with MASAS, we can bring the radio back to its truest form. With no comercials. No biases choice, and accessible by all.
+							</p>
 						</div>
-						
-						<div style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>
-							<LoginForm 
-								fullForm={false} 
-								buttonTitle="Request an Invitation" 
-								subtitle="via Facebook"/>
-						</div>
-					</div>
+						<div className="explanation">
+							<h1>make a sound and share</h1>
 
-					<div className={ "page " + (currentPage === 1 ? "1" : "2") + "--wrapper" } id="homepage-login">
-						<div className="logo">
-							<HomeCountdown user={this.props.user} />
+							<h2><span className="bullet">1</span>Discover</h2>
+							<div className="time-picker--wrapper" style={{ height: '90px', width: '150px' }}>
+								<TimePicker className="time-picker" showHashtag={ false } initialDiscover={ 2 } canvasId="time-picker" wrapperClassName="timePicker--wrapper" />
+							</div>
+							<p>
+								MASAS members are continusly selecting the best trending indie music to gather you the finest tunes. From our joyful <em>#EarlyMorning</em> to our mystic <em>#Night</em> discover them through the time of the day.
+							</p>
+
+							<h2><span className="bullet">2</span>Select</h2>
+							<div className="RankingInfoIcon--wrapper">
+								<RankingInfoIcon ranking={ 0.8 } />
+							</div>
+							<p>
+								Once a sound is upload by the Artist, MASAS members rates them, what we are doing is just to take off the unliked onces and showcase the best rated on <em>Popular</em>.
+							</p>
+
+							<h2><span className="bullet">3</span>Experience</h2>
+							<p>
+								At MASAS we all want to <em>Discover</em> new tasty music. We are building the finest algorithm and designing the best music experience to <em>match your desires with the newest sounds</em>.
+							</p>
+							<br /><br />
+							<p>
+								<em>You can be part of the community.</em>
+							</p>
+
+							<div className="login-form--wrapper" style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>
+								<img src="/static/img/MASAS_logo-M.svg" alt="masas-logo" />
+								<LoginForm 
+									fullForm={false} 
+									buttonTitle="Request an Invitation" 
+									subtitle="via Facebook"/>
+							</div>
 						</div>
-						
-						<div style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>
-							<LoginForm 
-								fullForm={false} 
-								buttonTitle="Request an Invitation" 
-								subtitle="via Facebook"/>
-						</div>
-					</div>
+					</div>	
+
 
 				</div>
 			</div>

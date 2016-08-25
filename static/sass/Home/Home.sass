@@ -48,7 +48,7 @@
 		position: relative
 		width: 100%
 
-		.page 
+		#homepage-login
 			min-height: calc(100vh - #{$phone-header-height} - #{$phone-footer-height} - #{$phone-header-top-decoration2} - #{$phone-header-top-decoration})
 
 		.title
@@ -70,9 +70,10 @@
 		p
 			font-size: 0.85rem
 			text-align: justify
-			padding-bottom: 2rem
+			// padding-bottom: 2rem
 			line-height: 1.1rem
 			width: 80%
+			font-family: Lato-Thin
 
 		.page1--wrapper, .page2--wrapper
 			position: absolute
@@ -124,23 +125,86 @@
 				img
 					height: 15rem
 
-			// .login-container
-			// 	width: 100%
-			// 	max-width: 20rem
-			// 	display: flex
-			// 	flex-direction: column
-			// 	height: 6rem
-			// 	justify-content: space-around
-			// 	align-items: center
-			// 	height: 5rem
-			// 	font-size: 0.85rem
-			// 	letter-spacing: 0.1rem
 
 			.login-container
 				display: none
 				.signup-text
 					color: white
 					align-self: center
+
+		#masas-info--wrapper
+			p
+				text-align: center
+				line-height: 1.4rem
+				font-size: 1.1rem
+
+				em
+					font-family: Lato-Semibold
+
+			h1
+				text-align: center
+				font-family: Anders, sans-serif
+				border-bottom: 1px solid white
+				padding-bottom: 0.7rem
+				// margin-bottom: 4rem
+				margin-top: 4.5rem
+
+			h2
+				font-family: Lato-Regular, sans-serif
+				margin: 4rem 0
+				font-size: 1.3rem
+				letter-spacing: 0.24rem
+				display: flex
+				align-items: center
+
+				.bullet
+					border: 2px solid white
+					margin-right: 1.5rem
+					height: 2rem
+					width: 2rem
+					display: flex
+					align-items: center
+					justify-content: center
+					padding-left: 0.15rem
+
+			.abstract
+				background-color: black
+				display: flex
+				justify-content: center
+				flex-direction: column
+				align-items: center
+				padding: 2rem
+
+				img
+					height: 3rem
+					padding-bottom: 2rem
+
+			.explanation
+				display: flex
+				flex-direction: column
+				align-items: center
+				background-image: url("/static/img/masas_background_home_explanation.jpg")
+				background-size: cover
+				masas_background_home_explanation_desktop
+
+				.time-picker--wrapper
+					height: 90px
+					width: 150px
+					margin-bottom: 1rem
+
+				.RankingInfoIcon--wrapper
+					width: 15rem
+					margin-bottom: 1rem
+
+				.login-form--wrapper
+					display: flex
+					flex-direction: column
+					align-items: center
+					margin: 5rem 0 
+
+					img
+						height: 5rem
+						margin: 2rem
 
 		.homepage-description
 			display: flex
@@ -180,9 +244,36 @@
 
 		.multiPage--wrapper
 
+			#homepage-login
+				min-height: calc(100vh - #{$desktop-header-height} - #{$desktop-footer-height})
+
+			#masas-info--wrapper
+				.abstract
+					padding: 5rem 0
+					
+				.explanation
+					background-image: url("/static/img/masas_background_home_explanation_desktop.jpg")
+
+					.timePicker-slider--wrapper
+						bottom: 0
+
+					h1
+						font-size: 1.5rem
+						letter-spacing: 0.25rem
+						margin-top: 7rem
+
+					h2
+						margin-top: 6rem
+						font-size: 1.5rem
+
+						.bullet
+							height: 2.5rem
+							width: 2.5rem
+
+				p
+					max-width: 25rem
 
 		.page 
-			min-height: calc(100vh - #{$desktop-header-height} - #{$desktop-footer-height})
 
 			h1
 
@@ -212,7 +303,7 @@
 				.login-container
 					.signup-text
 
-
+				
 
 			.homepage-description
 				padding: 0 15rem

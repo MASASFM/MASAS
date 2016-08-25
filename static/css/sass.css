@@ -4,6 +4,11 @@
   font-weight: normal;
   src: url(./../fonts/Lato/Lato-Regular.ttf); }
 @font-face {
+  font-family: Lato-Thin;
+  font-style: 500;
+  font-weight: normal;
+  src: url(./../fonts/Lato/Lato-Thin.ttf); }
+@font-face {
   font-family: Lato-Light;
   font-style: 500;
   font-weight: normal;
@@ -220,13 +225,13 @@
 
 input[type=range].MASAS-slider {
   -webkit-appearance: none;
-  margin: 12px 0;
+  margin: 8px 0;
   width: 100%; }
   input[type=range].MASAS-slider:focus {
     outline: none; }
   input[type=range].MASAS-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 3px;
+    height: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
@@ -236,18 +241,18 @@ input[type=range].MASAS-slider {
   input[type=range].MASAS-slider::-webkit-slider-thumb {
     box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
     border: 1px solid #fff;
-    height: 24px;
-    width: 24px;
-    border-radius: 12px;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
     background: #FFF;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -10.5px; }
+    margin-top: -7px; }
   input[type=range].MASAS-slider:focus::-webkit-slider-runnable-track {
     background: white; }
   input[type=range].MASAS-slider::-moz-range-track {
     width: 100%;
-    height: 3px;
+    height: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
@@ -257,19 +262,19 @@ input[type=range].MASAS-slider {
   input[type=range].MASAS-slider::-moz-range-thumb {
     box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
     border: 1px solid #fff;
-    height: 24px;
-    width: 24px;
-    border-radius: 12px;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
     background: #FFF;
     cursor: pointer; }
   input[type=range].MASAS-slider::-ms-track {
     width: 100%;
-    height: 3px;
+    height: 2px;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
     border-color: transparent;
-    border-width: 24px 0;
+    border-width: 16px 0;
     color: transparent; }
   input[type=range].MASAS-slider::-ms-fill-lower {
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
@@ -284,9 +289,9 @@ input[type=range].MASAS-slider {
   input[type=range].MASAS-slider::-ms-thumb {
     box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
     border: 1px solid #fff;
-    height: 24px;
-    width: 24px;
-    border-radius: 12px;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
     background: #FFF;
     cursor: pointer; }
   input[type=range].MASAS-slider:focus::-ms-fill-lower {
@@ -595,7 +600,7 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     position: relative;
     width: 100%; }
-    .home--wrapper .multiPage--wrapper .page {
+    .home--wrapper .multiPage--wrapper #homepage-login {
       min-height: calc(100vh - 3rem - 4rem - 0.3rem - 0.8rem); }
     .home--wrapper .multiPage--wrapper .title {
       width: 100%;
@@ -614,9 +619,9 @@ input[type=range].MASAS-slider {
     .home--wrapper .multiPage--wrapper p {
       font-size: 0.85rem;
       text-align: justify;
-      padding-bottom: 2rem;
       line-height: 1.1rem;
-      width: 80%; }
+      width: 80%;
+      font-family: Lato-Thin; }
     .home--wrapper .multiPage--wrapper .page1--wrapper, .home--wrapper .multiPage--wrapper .page2--wrapper {
       position: absolute;
       top: 0;
@@ -683,6 +688,65 @@ input[type=range].MASAS-slider {
         .home--wrapper .multiPage--wrapper #homepage-login .login-container .signup-text {
           color: white;
           align-self: center; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper p {
+      text-align: center;
+      line-height: 1.4rem;
+      font-size: 1.1rem; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper p em {
+        font-family: Lato-Semibold; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper h1 {
+      text-align: center;
+      font-family: Anders, sans-serif;
+      border-bottom: 1px solid white;
+      padding-bottom: 0.7rem;
+      margin-top: 4.5rem; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper h2 {
+      font-family: Lato-Regular, sans-serif;
+      margin: 4rem 0;
+      font-size: 1.3rem;
+      letter-spacing: 0.24rem;
+      display: flex;
+      align-items: center; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper h2 .bullet {
+        border: 2px solid white;
+        margin-right: 1.5rem;
+        height: 2rem;
+        width: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0.15rem; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper .abstract {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper .abstract img {
+        height: 3rem;
+        padding-bottom: 2rem; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url("/static/img/masas_background_home_explanation.jpg");
+      background-size: cover; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation .time-picker--wrapper {
+        height: 90px;
+        width: 150px;
+        margin-bottom: 1rem; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation .RankingInfoIcon--wrapper {
+        width: 15rem;
+        margin-bottom: 1rem; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation .login-form--wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 5rem 0; }
+        .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation .login-form--wrapper img {
+          height: 5rem;
+          margin: 2rem; }
     .home--wrapper .multiPage--wrapper .homepage-description {
       display: flex;
       flex: 1; }
@@ -706,36 +770,54 @@ input[type=range].MASAS-slider {
             justify-content: center; }
 
 @media screen and (min-width: 992px) {
-  .home--wrapper .page {
+  .home--wrapper .multiPage--wrapper #homepage-login {
     min-height: calc(100vh - 4.2rem - 2.6rem); }
-    .home--wrapper .page #homepage-login .login-container {
-      display: flex; }
-    .home--wrapper .page .homepage-description {
-      padding: 0 15rem; }
-      .home--wrapper .page .homepage-description .title {
-        width: inherit; }
-        .home--wrapper .page .homepage-description .title h1 {
-          font-size: 1.8rem; }
-      .home--wrapper .page .homepage-description .text--wrapper {
-        flex-direction: row; }
-        .home--wrapper .page .homepage-description .text--wrapper .image--wrapper {
-          display: flex;
-          flex: 1;
-          justify-content: flex-end; }
-          .home--wrapper .page .homepage-description .text--wrapper .image--wrapper img {
-            height: 16rem;
-            padding: 0; }
-        .home--wrapper .page .homepage-description .text--wrapper .side-content {
-          align-items: flex-start;
-          padding-left: 7rem;
-          flex: 1; }
-          .home--wrapper .page .homepage-description .text--wrapper .side-content p {
-            width: 100%; }
-    .home--wrapper .page #homepage-description--musicLover .text--wrapper {
-      flex-direction: row-reverse; }
-      .home--wrapper .page #homepage-description--musicLover .text--wrapper .side-content {
-        padding-left: 0;
-        padding-right: 7rem; } }
+  .home--wrapper .multiPage--wrapper #masas-info--wrapper .abstract {
+    padding: 5rem 0; }
+  .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation {
+    background-image: url("/static/img/masas_background_home_explanation_desktop.jpg"); }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation .timePicker-slider--wrapper {
+      bottom: 0; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation h1 {
+      font-size: 1.5rem;
+      letter-spacing: 0.25rem;
+      margin-top: 7rem; }
+    .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation h2 {
+      margin-top: 6rem;
+      font-size: 1.5rem; }
+      .home--wrapper .multiPage--wrapper #masas-info--wrapper .explanation h2 .bullet {
+        height: 2.5rem;
+        width: 2.5rem; }
+  .home--wrapper .multiPage--wrapper #masas-info--wrapper p {
+    max-width: 25rem; }
+  .home--wrapper .page #homepage-login .login-container {
+    display: flex; }
+  .home--wrapper .page .homepage-description {
+    padding: 0 15rem; }
+    .home--wrapper .page .homepage-description .title {
+      width: inherit; }
+      .home--wrapper .page .homepage-description .title h1 {
+        font-size: 1.8rem; }
+    .home--wrapper .page .homepage-description .text--wrapper {
+      flex-direction: row; }
+      .home--wrapper .page .homepage-description .text--wrapper .image--wrapper {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end; }
+        .home--wrapper .page .homepage-description .text--wrapper .image--wrapper img {
+          height: 16rem;
+          padding: 0; }
+      .home--wrapper .page .homepage-description .text--wrapper .side-content {
+        align-items: flex-start;
+        padding-left: 7rem;
+        flex: 1; }
+        .home--wrapper .page .homepage-description .text--wrapper .side-content p {
+          width: 100%; }
+  .home--wrapper .page #homepage-description--musicLover .text--wrapper {
+    flex-direction: row-reverse; }
+    .home--wrapper .page #homepage-description--musicLover .text--wrapper .side-content {
+      padding-left: 0;
+      padding-right: 7rem; } }
 .login-form--wrapper1 {
   display: flex;
   flex: 1;
