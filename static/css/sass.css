@@ -2187,6 +2187,31 @@ input[type=range].MASAS-slider {
       cursor: pointer; }
     .profile-modal--wrapper .cancel-button:active {
       font-family: Lato-Semibold, sans-serif; } }
+.country-autocomplete--wrapper .item {
+  padding: 2px 6px;
+  cursor: default;
+  color: green; }
+.country-autocomplete--wrapper .highlightedItem {
+  color: red;
+  background: #4095bf;
+  padding: 2px 6px;
+  cursor: default; }
+.country-autocomplete--wrapper .menu {
+  border: solid 1px #ccc; }
+.country-autocomplete--wrapper .menuStyle {
+  borderRadius: 3px;
+  boxShadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 0;
+  fontSize: 90%;
+  position: absolute;
+  overflow: auto;
+  maxHeight: 200px;
+  top: 100%;
+  left: 0; }
+.country-autocomplete--wrapper .wrapperStyle {
+  display: flex; }
+
 #app-body--profile {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
