@@ -18,6 +18,22 @@ var ProfileEditLinks = React.createClass({
 	},
 
 	componentWillMount: function() {
+		this.props.userData.link_set.map(({ link }) => {
+			// using set timeout to give time to update app state after each map iteration
+			window.setTimeout(() => {
+				if(link.includes("soundcloud.com"))
+					this.updateLink1(link)
+
+				if(link.includes("twitter.com"))
+					this.updateLink2(link)
+
+				if(link.includes(".com") && !(link.includes("soundcloud.com")) && !(link.includes("facebook.com"))&& !(link.includes("twitter.com")))
+					this.updateLink3(link)
+
+				if(link.includes("facebook.com"))
+					this.updateLink4(link)
+			},0)
+		})
 	},
 
 	updateLink1: function(url) {

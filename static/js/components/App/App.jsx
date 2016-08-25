@@ -10,7 +10,7 @@ var Radium = require("radium")
 var StyleRoot = Radium.StyleRoot
 
 var Header = require("../Header/Header.jsx")
-// var Body = require("../containers/UI/Body.jsx")
+
 var { Modal, Body } = require("../UI/UI.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var Home = require("../Home/Home.jsx")
@@ -159,10 +159,7 @@ var App = React.createClass({
 
 var styles = {
 	container: {
-		// minHeight: '100vh',
-		// maxHeight: '100vh',
 		height: window.innerHeight + 'px',
-		// height: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 	}

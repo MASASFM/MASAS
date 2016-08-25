@@ -47,11 +47,6 @@ var Home = React.createClass({
 		this.props.goToPage(1, 4)
 	},
 
-	// <div className="login-container" style={{ display: (this.props.user ? 'none' : 'flex') }}>
-	// 						<LoginForm fullForm={false} buttonTitle="Request an Invitation" />
-	// 						<div>via Facebook</div>
-	// 					</div>
-
 	render: function() {
 		const currentPage = this.props.currentPage
 		const pageCount = 4

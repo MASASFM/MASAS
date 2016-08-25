@@ -4,14 +4,9 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEdit.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var CountryAutocomplete = require("./CountryAutocomplete.jsx")
-
-// var ProfileEdit = (props) => {
-
-// }
 
 var ProfileEdit = React.createClass({
 	propTypes: {

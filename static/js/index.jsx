@@ -20,7 +20,7 @@ var Likes = require("./components/Likes/Likes.jsx")
 var Discover = require("./components/Discover/Discover.jsx")
 var Legals = require("./components/Legals/LegalsHome.jsx")
 
-// <Route path="*" component={NoMatch}/>      // 404
+
 ReactDOM.render((
        <ReactRedux.Provider store={store}>
                <Router history={browserHistory}>

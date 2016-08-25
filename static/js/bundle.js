@@ -53309,7 +53309,6 @@ var Radium = require("radium");
 var StyleRoot = Radium.StyleRoot;
 
 var Header = require("../Header/Header.jsx");
-// var Body = require("../containers/UI/Body.jsx")
 
 var _require2 = require("../UI/UI.jsx");
 
@@ -53465,10 +53464,7 @@ var App = React.createClass({
 
 var styles = {
 	container: {
-		// minHeight: '100vh',
-		// maxHeight: '100vh',
 		height: window.innerHeight + 'px',
-		// height: '100%',
 		display: 'flex',
 		flexDirection: 'column'
 	}
@@ -55072,11 +55068,6 @@ var Home = React.createClass({
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
 	},
-
-	// <div className="login-container" style={{ display: (this.props.user ? 'none' : 'flex') }}>
-	// 						<LoginForm fullForm={false} buttonTitle="Request an Invitation" />
-	// 						<div>via Facebook</div>
-	// 					</div>
 
 	render: function render() {
 		var currentPage = this.props.currentPage;
@@ -59092,7 +59083,6 @@ var Profile = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			// userInfo: null,				// user entry in REST API
 			userSCSongs: [] };
 	},
 
@@ -59120,10 +59110,6 @@ var Profile = React.createClass({
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
 		if (JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs)) this.getSCinfo();
 	},
-
-	// shouldComponentUpdate: function(newProps, newState) {
-	// 		return false
-	// },
 
 	displaySongs: function displaySongs() {
 		var _this2 = this;
@@ -59196,6 +59182,7 @@ var Profile = React.createClass({
 		delete textboxValues.link_set;
 		textboxValues.city = textboxValues.city;
 
+		// UPDATE PROFILE PART I (everything but links)
 		$.ajax({
 			type: "PATCH",
 			url: this.props.userData.url,
@@ -59212,7 +59199,66 @@ var Profile = React.createClass({
 			},
 			error: function error(e) {
 				updateNotificationBar("Error updating profile...");
-				_this3.props.toggleEditingProfile();
+				// this.props.toggleEditingProfile()
+			}
+		});
+
+		// UPDATE PROFILE LINKS
+
+		// link user entered doesn't exist, we create it
+		this.props.textboxValues.link_set.map(function (textboxLink) {
+			var match = _this3.props.userData.link_set.filter(function (userLink) {
+				return textboxLink === userLink.link;
+			});
+
+			// new link => POST
+			if (match.length === 0 && textboxLink !== "") {
+				$.ajax({
+					type: "POST",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					},
+					url: "/api/links/",
+					contentType: "application/json",
+					data: JSON.stringify({
+						link: textboxLink,
+						user: _this3.props.userData.url
+					}),
+					success: function success(r) {
+						updateProfileInfo();
+						console.log(r);
+					},
+					error: function error(e) {
+						console.log(e);
+					}
+				});
+			}
+		});
+
+		// link user has in DB isn't in textboxes user has entered, we delete link in DB
+		this.props.userData.link_set.map(function (userLink) {
+			var match = _this3.props.textboxValues.link_set.filter(function (textboxLink) {
+				return userLink.link === textboxLink;
+			});
+
+			// new link => DELETE
+			if (match.length === 0) {
+				$.ajax({
+					type: "DELETE",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					},
+					url: userLink.url,
+					success: function success(r) {
+						updateProfileInfo();
+						console.log(r);
+					},
+					error: function error(e) {
+						console.log(e);
+					}
+				});
 			}
 		});
 	},
@@ -59421,8 +59467,6 @@ var Profile = React.createClass({
 
 var styles = {
 	container: {
-		// minHeight: '100vh',
-		// maxHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column'
 	}
@@ -59443,18 +59487,12 @@ var _require = require("./containers/ProfileEdit.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-
 var _require2 = require("../UI/UI.jsx");
 
 var Textbox = _require2.Textbox;
 
 var ProfileEditLinks = require("./ProfileEditLinks.jsx");
 var CountryAutocomplete = require("./CountryAutocomplete.jsx");
-
-// var ProfileEdit = (props) => {
-
-// }
 
 var ProfileEdit = React.createClass({
 	displayName: "ProfileEdit",
@@ -59550,7 +59588,24 @@ var ProfileEditLinks = React.createClass({
 		updateTextboxValues: React.PropTypes.func
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		this.props.userData.link_set.map(function (_ref) {
+			var link = _ref.link;
+
+			// using set timeout to give time to update app state after each map iteration
+			window.setTimeout(function () {
+				if (link.includes("soundcloud.com")) _this.updateLink1(link);
+
+				if (link.includes("twitter.com")) _this.updateLink2(link);
+
+				if (link.includes(".com") && !link.includes("soundcloud.com") && !link.includes("facebook.com") && !link.includes("twitter.com")) _this.updateLink3(link);
+
+				if (link.includes("facebook.com")) _this.updateLink4(link);
+			}, 0);
+		});
+	},
 
 	updateLink1: function updateLink1(url) {
 		var link_set = [].concat(_toConsumableArray(this.props.textboxValues.link_set));
@@ -60074,14 +60129,12 @@ module.exports = ChangeMoodModal;
 
 var CountryAutocomplete = {};
 
-// Which part of the Redux global state does our component want to receive as props?
 CountryAutocomplete.mapStateToProps = function (state) {
 	return {
 		userCity: state.appReducer.userData.city
 	};
 };
 
-// Which action creators does it want to receive by props?
 CountryAutocomplete.mapDispatchToProps = function (dispatch) {
 	return {};
 };
@@ -60128,7 +60181,6 @@ module.exports = Profile;
 
 var ProfileEdit = {};
 
-// Which part of the Redux global state does our component want to receive as props?
 ProfileEdit.mapStateToProps = function (state) {
 	return {
 		textboxValues: state.profileReducer.textboxValues,
@@ -60136,7 +60188,6 @@ ProfileEdit.mapStateToProps = function (state) {
 	};
 };
 
-// Which action creators does it want to receive by props?
 ProfileEdit.mapDispatchToProps = function (dispatch) {
 	return {
 		updateTextboxValues: function updateTextboxValues(textboxValues) {
@@ -60155,7 +60206,8 @@ var ProfileEditLinks = {};
 // Which part of the Redux global state does our component want to receive as props?
 ProfileEditLinks.mapStateToProps = function (state) {
 	return {
-		textboxValues: state.profileReducer.textboxValues
+		textboxValues: state.profileReducer.textboxValues,
+		userData: state.appReducer.userData
 	};
 };
 
@@ -61766,7 +61818,6 @@ var Likes = require("./components/Likes/Likes.jsx");
 var Discover = require("./components/Discover/Discover.jsx");
 var Legals = require("./components/Legals/LegalsHome.jsx");
 
-// <Route path="*" component={NoMatch}/>      // 404
 ReactDOM.render(React.createElement(
         ReactRedux.Provider,
         { store: store },

@@ -5,6 +5,7 @@ var ProfileEditLinks = {}
 ProfileEditLinks.mapStateToProps = function(state) {
 	return {
 		textboxValues: state.profileReducer.textboxValues,
+		userData: state.appReducer.userData,
 	}
 }
 

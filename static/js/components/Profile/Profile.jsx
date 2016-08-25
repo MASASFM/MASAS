@@ -28,7 +28,6 @@ var Profile = React.createClass({
 
 	getInitialState: function() {
 		return {
-			// userInfo: null,				// user entry in REST API
 			userSCSongs: [],			// song info from SC using songs from user entry
 		}
 	},
@@ -53,10 +52,6 @@ var Profile = React.createClass({
 		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
 			this.getSCinfo()
 	},
-
-	// shouldComponentUpdate: function(newProps, newState) {
-	// 		return false
-	// },
 
 	displaySongs: function() {
 		var songs = this.props.userData.songs
@@ -120,6 +115,7 @@ var Profile = React.createClass({
 		delete textboxValues.link_set
 		textboxValues.city = textboxValues.city
 
+		// UPDATE PROFILE PART I (everything but links)
 		$.ajax({
 			type: "PATCH",
 			url: this.props.userData.url,
@@ -136,9 +132,69 @@ var Profile = React.createClass({
 			},
 			error: (e) => {
 				updateNotificationBar("Error updating profile...")
-				this.props.toggleEditingProfile()
+				// this.props.toggleEditingProfile()
 			}
 		})
+
+		// UPDATE PROFILE LINKS
+
+		// link user entered doesn't exist, we create it
+		this.props.textboxValues.link_set.map((textboxLink) => {
+			var match = this.props.userData.link_set.filter((userLink) => {
+				return textboxLink === userLink.link
+			})
+
+			// new link => POST
+			if(match.length === 0 && textboxLink !== "") {
+				$.ajax({
+					type: "POST",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					},
+					url: "/api/links/",
+					contentType: "application/json",
+					data: JSON.stringify({
+						link: textboxLink,
+						user: this.props.userData.url
+					}),
+					success: (r) => {
+						updateProfileInfo()
+						console.log(r)
+					},
+					error: (e) => {
+						console.log(e)
+					}
+				})
+			}
+		})
+
+		// link user has in DB isn't in textboxes user has entered, we delete link in DB
+		this.props.userData.link_set.map((userLink) => {
+			var match = this.props.textboxValues.link_set.filter((textboxLink) => {
+				return userLink.link === textboxLink
+			})
+
+			// new link => DELETE
+			if(match.length === 0) {
+				$.ajax({
+					type: "DELETE",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					},
+					url: userLink.url,
+					success: (r) => {
+						updateProfileInfo()
+						console.log(r)
+					},
+					error: (e) => {
+						console.log(e)
+					}
+				})
+			}
+		})
+
 	},
 
 	cancelEdit: function() {
@@ -295,8 +351,6 @@ var Profile = React.createClass({
 
 var styles = {
 	container: {
-		// minHeight: '100vh',
-		// maxHeight: '100vh',
 		display: 'flex',
 		flexDirection: 'column',
 	}
