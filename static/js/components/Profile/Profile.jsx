@@ -146,142 +146,146 @@ var Profile = React.createClass({
 	},
 
 	render: function() {
-		return (
-			<div style={{display: 'flex', flex: 1}}>
-			{ this.props.userData ?
-				<ProfileWrapper>
-					<div className="main--wrapper">
-						<div className="profile-info--wrapper">
-							<div className="edit-profile-icon--wrapper">
-								{ this.props.isEditingProfile ?
-										<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
-									:
-										<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
-								}
-							</div>
-							<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
-							<div className="tab--wrapper">
-								<div className="tab" style={{ borderBottom: '4px solid white'}}>
-									info
+		var testVar = (Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object )
+		console.log(testVar)
+		if(testVar) {
+			return (
+				<div style={{display: 'flex', flex: 1}}>
+					<ProfileWrapper>
+						<div className="main--wrapper">
+							<div className="profile-info--wrapper">
+								<div className="edit-profile-icon--wrapper">
+									{ this.props.isEditingProfile ?
+											<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
+										:
+											<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
+									}
 								</div>
-								<div className="tab">
-									post
-								</div>
-							</div>
-							<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
-								<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
-									<span className="username">
-										{
-											this.props.userData.name ? 
-												this.props.userData.name 
-											:
-												this.props.userData.username
-										}
-									</span>
-									<div className="occupation--wrapper">
-										<span className="location">
-											{ 
-												this.props.userData.city ?
-													this.props.userData.city.display_name.replace( /,.*?,/, ',' )
-												:
-													""
-											}
-										</span>
-										<span className="occupation">
-											{ 
-												this.props.userData.occupation ?
-													this.props.userData.occupation
-												:
-													""
-											}
-										</span>
+								<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+								<div className="tab--wrapper">
+									<div className="tab" style={{ borderBottom: '4px solid white'}}>
+										info
+									</div>
+									<div className="tab">
+										post
 									</div>
 								</div>
-								<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
-									<div className="social-links right">
-										<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-										<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
-									</div>
-									<div className="occupation--wrapper">
-										<div className="occupation">
-											{ 
-												this.props.userData.occupation ?
-													this.props.userData.occupation
+								<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
+									<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
+										<span className="username">
+											{
+												this.props.userData.name ? 
+													this.props.userData.name 
 												:
-													""
+													this.props.userData.username
 											}
-										</div>
-										<div className="location">
-											<span className="city">
+										</span>
+										<div className="occupation--wrapper">
+											<span className="location">
 												{ 
 													this.props.userData.city ?
-														this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+														this.props.userData.city.display_name.replace( /,.*?,/, ',' )
 													:
 														""
 												}
 											</span>
-											-
-											<span className="country">
+											<span className="occupation">
 												{ 
-													this.props.userData.city ?
-														this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+													this.props.userData.occupation ?
+														this.props.userData.occupation
 													:
 														""
 												}
 											</span>
 										</div>
 									</div>
-									<div className="social-links left">
-										<img src="/static/img/twitter.svg" alt="twitter" />
-										<img src="/static/img/facebook.svg" alt="facebook" />
+									<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
+										<div className="social-links right">
+											<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+											<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
+										</div>
+										<div className="occupation--wrapper">
+											<div className="occupation">
+												{ 
+													this.props.userData.occupation ?
+														this.props.userData.occupation
+													:
+														""
+												}
+											</div>
+											<div className="location">
+												<span className="city">
+													{ 
+														this.props.userData.city ?
+															this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+														:
+															""
+													}
+												</span>
+												-
+												<span className="country">
+													{ 
+														this.props.userData.city ?
+															this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+														:
+															""
+													}
+												</span>
+											</div>
+										</div>
+										<div className="social-links left">
+											<img src="/static/img/twitter.svg" alt="twitter" />
+											<img src="/static/img/facebook.svg" alt="facebook" />
+										</div>
+									</div>
+									<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
+										<ProfileEdit />
 									</div>
 								</div>
-								<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
-									<ProfileEdit />
+							</div>
+							<div className="social-stats--wrapper">
+								<div className="section" style={{borderRight: '1px solid white'}}>
+									<div className="section-title">
+										<img src="/static/img/MASAS_followers.svg" alt="soundcloud" />
+										Followers
+									</div>
+									<span className="number">1240</span>
+								</div>
+								<div className="section total-plays" style={{borderRight: '1px solid white'}}>
+									<div className="section-title">
+										<img src="/static/img/MASAS_logo_tunes.svg" alt="total plays" />
+										Total plays
+									</div>
+									<span className="number">1240</span>
+								</div>
+								<div className="section">
+									<div className="section-title">
+										<img src="/static/img/MASAS_logo_tunes.svg" alt="soundcloud" />
+										Following
+									</div>
+									<span className="number">1240</span>
 								</div>
 							</div>
 						</div>
-						<div className="social-stats--wrapper">
-							<div className="section" style={{borderRight: '1px solid white'}}>
-								<div className="section-title">
-									<img src="/static/img/MASAS_followers.svg" alt="soundcloud" />
-									Followers
-								</div>
-								<span className="number">1240</span>
+						<div className="song-list--wrapper">
+							<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
+								<ProfileEditLinks />
 							</div>
-							<div className="section total-plays" style={{borderRight: '1px solid white'}}>
-								<div className="section-title">
-									<img src="/static/img/MASAS_logo_tunes.svg" alt="total plays" />
-									Total plays
-								</div>
-								<span className="number">1240</span>
-							</div>
-							<div className="section">
-								<div className="section-title">
-									<img src="/static/img/MASAS_logo_tunes.svg" alt="soundcloud" />
-									Following
-								</div>
-								<span className="number">1240</span>
+							<div>
+							{ this.displaySongs() }
 							</div>
 						</div>
-					</div>
-					<div className="song-list--wrapper">
-						<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
-							<ProfileEditLinks />
-						</div>
-						<div>
-						{ this.displaySongs() }
-						</div>
-					</div>
 
-
-
-				</ProfileWrapper>
-			:
-				<ProfileWrapper/>
-			}
-			</div>
-		)
+					</ProfileWrapper>
+				</div>
+			)
+		} else {
+			return (
+				<div style={{display: 'flex', flex: 1}}>
+					<ProfileWrapper/>
+				</div>
+			)
+		}
 	}
 })
 

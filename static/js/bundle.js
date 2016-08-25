@@ -59016,6 +59016,7 @@ var CountryAutocomplete = React.createClass({
 				onChange: function onChange(event, value) {
 					_this2.setState({ value: value, loading: true });
 					_this2.getCities();
+					_this2.props.onChange("");
 				},
 				renderItem: function renderItem(item, isHighlighted) {
 					return React.createElement(
@@ -59218,190 +59219,200 @@ var Profile = React.createClass({
 	},
 
 	render: function render() {
-		return React.createElement(
-			"div",
-			{ style: { display: 'flex', flex: 1 } },
-			this.props.userData ? React.createElement(
-				ProfileWrapper,
-				null,
+		var testVar = Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object;
+		console.log(testVar);
+		if (testVar) {
+			return React.createElement(
+				"div",
+				{ style: { display: 'flex', flex: 1 } },
 				React.createElement(
-					"div",
-					{ className: "main--wrapper" },
+					ProfileWrapper,
+					null,
 					React.createElement(
 						"div",
-						{ className: "profile-info--wrapper" },
+						{ className: "main--wrapper" },
 						React.createElement(
 							"div",
-							{ className: "edit-profile-icon--wrapper" },
-							this.props.isEditingProfile ? React.createElement(
-								"div",
-								null,
-								React.createElement(
-									"span",
-									{ onClick: this.cancelEdit, style: { paddingRight: "0.5rem" } },
-									"cancel"
-								),
-								React.createElement(
-									"span",
-									{ onClick: this.saveProfile },
-									"save"
-								)
-							) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
-						),
-						React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
-						React.createElement(
-							"div",
-							{ className: "tab--wrapper" },
+							{ className: "profile-info--wrapper" },
 							React.createElement(
 								"div",
-								{ className: "tab", style: { borderBottom: '4px solid white' } },
-								"info"
-							),
-							React.createElement(
-								"div",
-								{ className: "tab" },
-								"post"
-							)
-						),
-						React.createElement(
-							"div",
-							{ className: "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") },
-							React.createElement(
-								"div",
-								{ className: "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") },
-								React.createElement(
-									"span",
-									{ className: "username" },
-									this.props.userData.name ? this.props.userData.name : this.props.userData.username
-								),
-								React.createElement(
+								{ className: "edit-profile-icon--wrapper" },
+								this.props.isEditingProfile ? React.createElement(
 									"div",
-									{ className: "occupation--wrapper" },
+									null,
 									React.createElement(
 										"span",
-										{ className: "location" },
-										this.props.userData.city ? this.props.userData.city.display_name.replace(/,.*?,/, ',') : ""
+										{ onClick: this.cancelEdit, style: { paddingRight: "0.5rem" } },
+										"cancel"
 									),
 									React.createElement(
 										"span",
-										{ className: "occupation" },
-										this.props.userData.occupation ? this.props.userData.occupation : ""
+										{ onClick: this.saveProfile },
+										"save"
 									)
+								) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
+							),
+							React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
+							React.createElement(
+								"div",
+								{ className: "tab--wrapper" },
+								React.createElement(
+									"div",
+									{ className: "tab", style: { borderBottom: '4px solid white' } },
+									"info"
+								),
+								React.createElement(
+									"div",
+									{ className: "tab" },
+									"post"
 								)
 							),
 							React.createElement(
 								"div",
-								{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") },
+								{ className: "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") },
 								React.createElement(
 									"div",
-									{ className: "social-links right" },
-									React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
-									React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" })
-								),
-								React.createElement(
-									"div",
-									{ className: "occupation--wrapper" },
+									{ className: "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") },
 									React.createElement(
-										"div",
-										{ className: "occupation" },
-										this.props.userData.occupation ? this.props.userData.occupation : ""
+										"span",
+										{ className: "username" },
+										this.props.userData.name ? this.props.userData.name : this.props.userData.username
 									),
 									React.createElement(
 										"div",
-										{ className: "location" },
+										{ className: "occupation--wrapper" },
 										React.createElement(
 											"span",
-											{ className: "city" },
-											this.props.userData.city ? this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " : ""
+											{ className: "location" },
+											this.props.userData.city ? this.props.userData.city.display_name.replace(/,.*?,/, ',') : ""
 										),
-										"-",
 										React.createElement(
 											"span",
-											{ className: "country" },
-											this.props.userData.city ? this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) : ""
+											{ className: "occupation" },
+											this.props.userData.occupation ? this.props.userData.occupation : ""
 										)
 									)
 								),
 								React.createElement(
 									"div",
-									{ className: "social-links left" },
-									React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
-									React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" })
+									{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") },
+									React.createElement(
+										"div",
+										{ className: "social-links right" },
+										React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
+										React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" })
+									),
+									React.createElement(
+										"div",
+										{ className: "occupation--wrapper" },
+										React.createElement(
+											"div",
+											{ className: "occupation" },
+											this.props.userData.occupation ? this.props.userData.occupation : ""
+										),
+										React.createElement(
+											"div",
+											{ className: "location" },
+											React.createElement(
+												"span",
+												{ className: "city" },
+												this.props.userData.city ? this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " : ""
+											),
+											"-",
+											React.createElement(
+												"span",
+												{ className: "country" },
+												this.props.userData.city ? this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) : ""
+											)
+										)
+									),
+									React.createElement(
+										"div",
+										{ className: "social-links left" },
+										React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
+										React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" })
+									)
+								),
+								React.createElement(
+									"div",
+									{ className: "edit-profile--wrapper", style: { display: this.props.isEditingProfile ? "flex" : "none" } },
+									React.createElement(ProfileEdit, null)
+								)
+							)
+						),
+						React.createElement(
+							"div",
+							{ className: "social-stats--wrapper" },
+							React.createElement(
+								"div",
+								{ className: "section", style: { borderRight: '1px solid white' } },
+								React.createElement(
+									"div",
+									{ className: "section-title" },
+									React.createElement("img", { src: "/static/img/MASAS_followers.svg", alt: "soundcloud" }),
+									"Followers"
+								),
+								React.createElement(
+									"span",
+									{ className: "number" },
+									"1240"
 								)
 							),
 							React.createElement(
 								"div",
-								{ className: "edit-profile--wrapper", style: { display: this.props.isEditingProfile ? "flex" : "none" } },
-								React.createElement(ProfileEdit, null)
+								{ className: "section total-plays", style: { borderRight: '1px solid white' } },
+								React.createElement(
+									"div",
+									{ className: "section-title" },
+									React.createElement("img", { src: "/static/img/MASAS_logo_tunes.svg", alt: "total plays" }),
+									"Total plays"
+								),
+								React.createElement(
+									"span",
+									{ className: "number" },
+									"1240"
+								)
+							),
+							React.createElement(
+								"div",
+								{ className: "section" },
+								React.createElement(
+									"div",
+									{ className: "section-title" },
+									React.createElement("img", { src: "/static/img/MASAS_logo_tunes.svg", alt: "soundcloud" }),
+									"Following"
+								),
+								React.createElement(
+									"span",
+									{ className: "number" },
+									"1240"
+								)
 							)
 						)
 					),
 					React.createElement(
 						"div",
-						{ className: "social-stats--wrapper" },
+						{ className: "song-list--wrapper" },
 						React.createElement(
 							"div",
-							{ className: "section", style: { borderRight: '1px solid white' } },
-							React.createElement(
-								"div",
-								{ className: "section-title" },
-								React.createElement("img", { src: "/static/img/MASAS_followers.svg", alt: "soundcloud" }),
-								"Followers"
-							),
-							React.createElement(
-								"span",
-								{ className: "number" },
-								"1240"
-							)
+							{ className: "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "") },
+							React.createElement(ProfileEditLinks, null)
 						),
 						React.createElement(
 							"div",
-							{ className: "section total-plays", style: { borderRight: '1px solid white' } },
-							React.createElement(
-								"div",
-								{ className: "section-title" },
-								React.createElement("img", { src: "/static/img/MASAS_logo_tunes.svg", alt: "total plays" }),
-								"Total plays"
-							),
-							React.createElement(
-								"span",
-								{ className: "number" },
-								"1240"
-							)
-						),
-						React.createElement(
-							"div",
-							{ className: "section" },
-							React.createElement(
-								"div",
-								{ className: "section-title" },
-								React.createElement("img", { src: "/static/img/MASAS_logo_tunes.svg", alt: "soundcloud" }),
-								"Following"
-							),
-							React.createElement(
-								"span",
-								{ className: "number" },
-								"1240"
-							)
+							null,
+							this.displaySongs()
 						)
-					)
-				),
-				React.createElement(
-					"div",
-					{ className: "song-list--wrapper" },
-					React.createElement(
-						"div",
-						{ className: "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "") },
-						React.createElement(ProfileEditLinks, null)
-					),
-					React.createElement(
-						"div",
-						null,
-						this.displaySongs()
 					)
 				)
-			) : React.createElement(ProfileWrapper, null)
-		);
+			);
+		} else {
+			return React.createElement(
+				"div",
+				{ style: { display: 'flex', flex: 1 } },
+				React.createElement(ProfileWrapper, null)
+			);
+		}
 	}
 });
 
@@ -59447,10 +59458,19 @@ var ProfileEdit = React.createClass({
 
 	propTypes: {
 		textboxValues: React.PropTypes.object,
-		updateTextboxValues: React.PropTypes.func
+		updateTextboxValues: React.PropTypes.func,
+		userData: React.PropTypes.object
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentDidMount: function componentDidMount() {
+		// if(typeof(this.props.userData) !== "undefined") {
+		if (typeof this.props.userData.city.url !== "undefined") this.props.updateTextboxValues({ city: this.props.userData.city.name_ascii });
+
+		if (this.props.userData.name !== "") this.props.updateTextboxValues({ name: this.props.userData.name });
+
+		if (this.props.userData.occupation !== "") this.props.updateTextboxValues({ occupation: this.props.userData.occupation });
+		// }
+	},
 
 	updateName: function updateName(name) {
 		this.props.updateTextboxValues({ name: name });
@@ -60089,7 +60109,8 @@ var ProfileEdit = {};
 // Which part of the Redux global state does our component want to receive as props?
 ProfileEdit.mapStateToProps = function (state) {
 	return {
-		textboxValues: state.profileReducer.textboxValues
+		textboxValues: state.profileReducer.textboxValues,
+		userData: state.appReducer.userData
 	};
 };
 

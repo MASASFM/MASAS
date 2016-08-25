@@ -17,9 +17,20 @@ var ProfileEdit = React.createClass({
 	propTypes: {
 		textboxValues: React.PropTypes.object,
 		updateTextboxValues: React.PropTypes.func,
+		userData: React.PropTypes.object,
 	},
 
-	componentWillMount: function() {
+	componentDidMount: function() {
+		// if(typeof(this.props.userData) !== "undefined") {
+			if(typeof(this.props.userData.city.url) !== "undefined")
+				this.props.updateTextboxValues({ city: this.props.userData.city.name_ascii })
+
+			if(this.props.userData.name !== "")
+				this.props.updateTextboxValues({ name: this.props.userData.name })
+
+			if(this.props.userData.occupation !== "")
+				this.props.updateTextboxValues({ occupation: this.props.userData.occupation })
+		// }
 	},
 
 	updateName: function(name) {

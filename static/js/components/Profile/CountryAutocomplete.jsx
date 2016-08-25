@@ -92,11 +92,11 @@ var CountryAutocomplete = React.createClass({
 					ref="autocomplete"
 					value={ this.state.value }
 					items={ this.state.cities }
-					getItemValue={ (item) => item.name_ascii}
+					getItemValue={ (item) => item.name_ascii }
 					menuStyle={ styles.menuStyle }
 					inputProps={{ 
 						className: "MASAS-text-input",
-						id: "city"
+						id: "city",
 					}}
 					wrapperProps={{
 						className: "MASAS-textbox--wrapper"
@@ -109,6 +109,7 @@ var CountryAutocomplete = React.createClass({
 					onChange={ (event, value) => {
 						this.setState({ value, loading: true })
 						this.getCities()
+						this.props.onChange("")
 					}}
 					renderItem={ (item, isHighlighted ) => (
 						<div
