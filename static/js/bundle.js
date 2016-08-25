@@ -58984,7 +58984,7 @@ var CountryAutocomplete = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: "MASAS-textbox", style: { position: 'relative' } },
+			{ className: "MASAS-textbox country-autocomplete--wrapper", style: { position: 'relative' } },
 			React.createElement(
 				"label",
 				{ htmlFor: "cities-autocomplete", className: "MASAS-label" },
@@ -58997,17 +58997,24 @@ var CountryAutocomplete = React.createClass({
 				items: this.state.cities,
 				getItemValue: function getItemValue(item) {
 					return item.name_ascii;
+				}
+				// menuStyle={ styles.menuStyle }
+				, renderMenu: function renderMenu(items, value, style) {
+					return React.createElement(
+						"div",
+						{ className: "menu-style" },
+						items
+					);
 				},
-				menuStyle: styles.menuStyle,
 				inputProps: {
 					className: "MASAS-text-input",
 					id: "city"
 				},
 				wrapperProps: {
-					className: "MASAS-textbox--wrapper"
-				},
-				wrapperStyle: styles.wrapperStyle,
-				onSelect: function onSelect(value, item) {
+					className: "MASAS-textbox--wrapper wrapper-style"
+				}
+				// wrapperStyle={ styles.wrapperStyle }
+				, onSelect: function onSelect(value, item) {
 					_this2.setState({ value: item.display_name, cities: [item] });
 					_this2.props.onChange(item.url);
 				},
@@ -59020,7 +59027,7 @@ var CountryAutocomplete = React.createClass({
 					return React.createElement(
 						"div",
 						{
-							style: isHighlighted ? styles.highlightedItem : styles.item,
+							className: isHighlighted ? "highlighted-item" : 'item',
 							key: item.geoname_id,
 							id: item.geoname_id },
 						item.display_name

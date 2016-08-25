@@ -89,7 +89,7 @@ var CountryAutocomplete = React.createClass({
 		}
 
 		return (
-			<div className="MASAS-textbox" style={{ position: 'relative' }}>
+			<div className="MASAS-textbox country-autocomplete--wrapper" style={{ position: 'relative' }}>
 				<label htmlFor="cities-autocomplete" className="MASAS-label">City</label>
 				<Autocomplete
 					inputProps={{ name: 'cities', id: 'cities-autocomplete' }}
@@ -97,15 +97,18 @@ var CountryAutocomplete = React.createClass({
 					value={ this.state.value }
 					items={ this.state.cities }
 					getItemValue={ (item) => item.name_ascii }
-					menuStyle={ styles.menuStyle }
+					// menuStyle={ styles.menuStyle }
+					renderMenu={ (items, value, style) => {
+						return <div className="menu-style">{ items }</div>
+					}}
 					inputProps={{ 
 						className: "MASAS-text-input",
 						id: "city",
 					}}
 					wrapperProps={{
-						className: "MASAS-textbox--wrapper"
+						className: "MASAS-textbox--wrapper wrapper-style"
 					}}
-					wrapperStyle={ styles.wrapperStyle }
+					// wrapperStyle={ styles.wrapperStyle }
 					onSelect={ (value, item) => {
 						this.setState({ value: item.display_name, cities: [ item ]})
 						this.props.onChange(item.url)
@@ -117,7 +120,7 @@ var CountryAutocomplete = React.createClass({
 					}}
 					renderItem={ (item, isHighlighted ) => (
 						<div
-							  style={isHighlighted ? styles.highlightedItem : styles.item}
+							  className={isHighlighted ? "highlighted-item" : 'item'}
 							  key={item.geoname_id}
 							  id={item.geoname_id}>
 							  {item.display_name}

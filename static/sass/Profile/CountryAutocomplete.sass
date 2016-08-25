@@ -1,29 +1,49 @@
 .country-autocomplete--wrapper
-	.item
-		padding: 2px 6px
-		cursor: default
-		color: green
+	display: flex
+	flex-direction: column
 
-	.highlightedItem
-		color: red
-		background: hsl(200, 50%, 50%)
+	.item, .highlighted-item
 		padding: 2px 6px
 		cursor: default
+		color: white
+		height: 2rem
+		display: flex
+		align-items: center
+
+	.highlighted-item
+		color: black
+		// background: hsl(200, 50%, 50%)
+		background: rgba(255,255,255, 0.9)
+
 
 	.menu
 		border: solid 1px #ccc
 
-	.menuStyle
+	.menu-style
 		borderRadius: 3px
-		boxShadow: 0 2px 12px rgba(0, 0, 0, 0.1)
-		background: rgba(255, 255, 255, 0.9)
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1)
+		background: rgba(0,0,0, 0.9)
 		padding: 2px 0
-		fontSize: 90%
+		font-size: 90%
 		position: absolute
 		overflow: auto
-		maxHeight: 200px
+		max-height: 200px
 		top: 100%
 		left: 0
+		width: 90%
 
-	.wrapperStyle
+	.wrapper-style
 		display: flex
+
+@media screen and (min-width: $desktop-min-width)
+	.country-autocomplete--wrapper
+		
+		.item
+
+		.highlighted-item
+
+		.menu
+
+		.menu-style
+
+		.wrapper-style
