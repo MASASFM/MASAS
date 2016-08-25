@@ -15,6 +15,7 @@ var Autocomplete = require('react-autocomplete')
 
 var CountryAutocomplete = React.createClass({
 	propTypes: {
+		onChange: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -103,6 +104,7 @@ var CountryAutocomplete = React.createClass({
 					wrapperStyle={ styles.wrapperStyle }
 					onSelect={ (value, item) => {
 						this.setState({ value: item.display_name, cities: [ item ]})
+						this.props.onChange(item.url)
 					}}
 					onChange={ (event, value) => {
 						this.setState({ value, loading: true })

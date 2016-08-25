@@ -58908,7 +58908,9 @@ var Autocomplete = require('react-autocomplete');
 var CountryAutocomplete = React.createClass({
 	displayName: "CountryAutocomplete",
 
-	propTypes: {},
+	propTypes: {
+		onChange: React.PropTypes.func
+	},
 
 	getInitialState: function getInitialState() {
 		var city = [];
@@ -59009,6 +59011,7 @@ var CountryAutocomplete = React.createClass({
 				wrapperStyle: styles.wrapperStyle,
 				onSelect: function onSelect(value, item) {
 					_this2.setState({ value: item.display_name, cities: [item] });
+					_this2.props.onChange(item.url);
 				},
 				onChange: function onChange(event, value) {
 					_this2.setState({ value: value, loading: true });
@@ -59187,7 +59190,7 @@ var Profile = React.createClass({
 		var textboxValues = _extends({}, this.props.textboxValues);
 		var links = textboxValues.link_set;
 		delete textboxValues.link_set;
-		textboxValues.city = "http://localhost:8000/api/cities/" + textboxValues.city + "/";
+		textboxValues.city = textboxValues.city;
 
 		$.ajax({
 			type: "PATCH",
@@ -59473,12 +59476,7 @@ var ProfileEdit = React.createClass({
 					{ onChange: this.updateName, value: this.props.textboxValues.name, id: "stage-name" },
 					"Stage Name"
 				),
-				React.createElement(
-					Textbox,
-					{ onChange: this.updateCity, value: this.props.textboxValues.city, id: "city" },
-					"City"
-				),
-				React.createElement(CountryAutocomplete, null),
+				React.createElement(CountryAutocomplete, { onChange: this.updateCity }),
 				React.createElement(
 					Textbox,
 					{ onChange: this.updateOccupation, value: this.props.textboxValues.occupation, id: "occupation" },

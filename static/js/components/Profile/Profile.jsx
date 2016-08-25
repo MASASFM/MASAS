@@ -118,7 +118,7 @@ var Profile = React.createClass({
 		var textboxValues = { ...this.props.textboxValues }
 		var links = textboxValues.link_set
 		delete textboxValues.link_set
-		textboxValues.city = "http://localhost:8000/api/cities/" + textboxValues.city + "/"
+		textboxValues.city = textboxValues.city
 
 		$.ajax({
 			type: "PATCH",

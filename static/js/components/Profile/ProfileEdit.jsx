@@ -39,8 +39,7 @@ var ProfileEdit = React.createClass({
 			<div className="profile-edit--wrapper">
 				<div className="personal-info">
 					<Textbox onChange={ this.updateName } value={ this.props.textboxValues.name } id="stage-name">Stage Name</Textbox>
-					<Textbox onChange={ this.updateCity } value={ this.props.textboxValues.city } id="city">City</Textbox>
-					<CountryAutocomplete />
+					<CountryAutocomplete onChange={ this.updateCity }/>
 					<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
 				</div>
 				<div className="links-info">
