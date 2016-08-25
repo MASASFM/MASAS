@@ -42,7 +42,7 @@ var CountryAutocomplete = React.createClass({
 			url: '/api/cities/?q=' + this.state.value,
 			success: ({ results }) => {
 				this.setState({
-					cities: results
+					cities: results.splice(0,15)
 				})
 			},
 			error: (e) => {

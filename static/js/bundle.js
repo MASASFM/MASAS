@@ -58934,7 +58934,7 @@ var CountryAutocomplete = React.createClass({
 				var results = _ref.results;
 
 				_this.setState({
-					cities: results
+					cities: results.splice(0, 15)
 				});
 			},
 			error: function error(e) {
