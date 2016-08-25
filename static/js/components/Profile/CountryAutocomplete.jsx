@@ -63,17 +63,44 @@ var CountryAutocomplete = React.createClass({
 
 			menu: {
 				border: 'solid 1px #ccc'
+			},
+
+			menuStyle: {
+				borderRadius: '3px',
+				boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+				background: 'rgba(255, 255, 255, 0.9)',
+				padding: '2px 0',
+				fontSize: '90%',
+				position: 'absolute',
+				overflow: 'auto',
+				maxHeight: 200 + 'px',
+				top: '100%',
+				left: 0,
+			},
+
+			wrapperStyle: {
+				display: 'flex'
 			}
 		}
 
 		return (
-			<div>
+			<div className="MASAS-textbox" style={{ position: 'relative' }}>
+				<label htmlFor="cities-autocomplete" className="MASAS-label">City</label>
 				<Autocomplete
-					inputProps={{ name: 'cities', id: 'cities-autocomplete'}}
+					inputProps={{ name: 'cities', id: 'cities-autocomplete' }}
 					ref="autocomplete"
 					value={ this.state.value }
 					items={ this.state.cities }
 					getItemValue={ (item) => item.name_ascii}
+					menuStyle={ styles.menuStyle }
+					inputProps={{ 
+						className: "MASAS-text-input",
+						id: "city"
+					}}
+					wrapperProps={{
+						className: "MASAS-textbox--wrapper"
+					}}
+					wrapperStyle={ styles.wrapperStyle }
 					onSelect={ (value, item) => {
 						this.setState({ value: item.display_name, cities: [ item ]})
 					}}

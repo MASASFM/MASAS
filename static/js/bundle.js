@@ -58962,12 +58962,34 @@ var CountryAutocomplete = React.createClass({
 
 			menu: {
 				border: 'solid 1px #ccc'
+			},
+
+			menuStyle: {
+				borderRadius: '3px',
+				boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+				background: 'rgba(255, 255, 255, 0.9)',
+				padding: '2px 0',
+				fontSize: '90%',
+				position: 'absolute',
+				overflow: 'auto',
+				maxHeight: 200 + 'px',
+				top: '100%',
+				left: 0
+			},
+
+			wrapperStyle: {
+				display: 'flex'
 			}
 		};
 
 		return React.createElement(
 			"div",
-			null,
+			{ className: "MASAS-textbox", style: { position: 'relative' } },
+			React.createElement(
+				"label",
+				{ htmlFor: "cities-autocomplete", className: "MASAS-label" },
+				"City"
+			),
 			React.createElement(Autocomplete, {
 				inputProps: { name: 'cities', id: 'cities-autocomplete' },
 				ref: "autocomplete",
@@ -58976,6 +58998,15 @@ var CountryAutocomplete = React.createClass({
 				getItemValue: function getItemValue(item) {
 					return item.name_ascii;
 				},
+				menuStyle: styles.menuStyle,
+				inputProps: {
+					className: "MASAS-text-input",
+					id: "city"
+				},
+				wrapperProps: {
+					className: "MASAS-textbox--wrapper"
+				},
+				wrapperStyle: styles.wrapperStyle,
 				onSelect: function onSelect(value, item) {
 					_this2.setState({ value: item.display_name, cities: [item] });
 				},
@@ -59447,12 +59478,12 @@ var ProfileEdit = React.createClass({
 					{ onChange: this.updateCity, value: this.props.textboxValues.city, id: "city" },
 					"City"
 				),
+				React.createElement(CountryAutocomplete, null),
 				React.createElement(
 					Textbox,
 					{ onChange: this.updateOccupation, value: this.props.textboxValues.occupation, id: "occupation" },
 					"Occupation"
-				),
-				React.createElement(CountryAutocomplete, null)
+				)
 			),
 			React.createElement(
 				"div",

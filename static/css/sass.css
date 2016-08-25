@@ -2243,7 +2243,8 @@ input[type=range].MASAS-slider {
     .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper {
       padding: 0.5rem 2rem;
       display: flex;
-      flex-direction: row; }
+      flex-direction: row;
+      z-index: 2; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info {
         display: flex;
         flex-direction: column;
