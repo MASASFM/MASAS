@@ -70,7 +70,7 @@ let Marquee = React.createClass({
 
 		return (
 			<div className={ (this.props.className ? this.props.className : "") + " MASAS_marquee"} ref="wrapper">
-				<div className="wrapper2">
+				<div className="MASAS_marquee--wrapper2" style={ this.state.overflow ? { display: 'block' } : {} }>
 					<span ref="text" style={{ animationDelay: (animationDelay ? animationDelay : '0s') }} className={ "textBis" + ( this.state.overflow ? " text" : "" ) }>{ this.props.children }</span>
 				</div>
 			</div>

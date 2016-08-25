@@ -16,7 +16,7 @@ var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
 
 var { goToURL, getCookie, updateNotificationBar, updateProfileInfo } = require("../../MASAS_functions.jsx")
-var { Button, Body, Textbox } = require("../UI/UI.jsx")
+var { Button, Body, Textbox, Marquee } = require("../UI/UI.jsx")
 
 
 var Profile = React.createClass({
@@ -201,6 +201,28 @@ var Profile = React.createClass({
 		this.props.toggleEditingProfile()	
 	},
 
+	checkLink: function(url) {
+		var checkVar = this.props.userData.link_set.filter(({ link }) => {
+			return link.includes(url)
+		})
+
+		if(checkVar.length)
+			return checkVar[0].link
+		else
+			return ""
+	},
+
+	checkPersonalWebsite: function() {
+		var checkVar = this.props.userData.link_set.filter(({ link }) => {
+			return !link.includes("facebook.com") && !link.includes("twitter.com") && !link.includes("soundcloud.com")
+		})
+
+		if(checkVar.length)
+			return checkVar[0].link
+		else
+			return ""
+	},
+
 	render: function() {
 		var testVar = (Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object )
 
@@ -227,71 +249,93 @@ var Profile = React.createClass({
 									</div>
 								</div>
 								<div className={ "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") }>
-									<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
-										<span className="username">
-											{
-												this.props.userData.name ? 
-													this.props.userData.name 
-												:
-													this.props.userData.username
-											}
-										</span>
-										<div className="occupation--wrapper">
-											<span className="location">
-												{ 
-													this.props.userData.city ?
-														this.props.userData.city.display_name.replace( /,.*?,/, ',' )
+									<div className="text--wrapper2" style={{ display: "flex", flexDirection: "column" }}>
+										<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
+											<span className="username">
+												{
+													this.props.userData.name ? 
+														<Marquee>{ this.props.userData.name }</Marquee>
 													:
-														""
+														<Marquee>{ this.props.userData.username }</Marquee>
 												}
 											</span>
-											<span className="occupation">
-												{ 
-													this.props.userData.occupation ?
-														this.props.userData.occupation
-													:
-														""
-												}
-											</span>
-										</div>
-									</div>
-									<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
-										<div className="social-links right">
-											<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-											<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
-										</div>
-										<div className="occupation--wrapper">
-											<div className="occupation">
-												{ 
-													this.props.userData.occupation ?
-														this.props.userData.occupation
-													:
-														""
-												}
-											</div>
-											<div className="location">
-												<span className="city">
+											<div className="occupation--wrapper">
+												<span className="location">
 													{ 
 														this.props.userData.city ?
-															this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+															<Marquee>{ this.props.userData.city.display_name.replace( /,.*?,/, ',' ) }</Marquee>
 														:
 															""
 													}
 												</span>
-												-
-												<span className="country">
+												<span className="occupation">
 													{ 
-														this.props.userData.city ?
-															this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+														this.props.userData.occupation ?
+															<Marquee>{ this.props.userData.occupation }</Marquee>
 														:
 															""
 													}
 												</span>
 											</div>
 										</div>
-										<div className="social-links left">
-											<img src="/static/img/twitter.svg" alt="twitter" />
-											<img src="/static/img/facebook.svg" alt="facebook" />
+										<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
+											<div className="social-links right">
+												{
+													this.checkLink("soundcloud.com") !== "" ?
+														<a href={ this.checkLink("soundcloud.com") } target="_blank">
+															<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+														</a> : ""
+	 											}
+	 											{
+													this.checkPersonalWebsite() !== "" ?
+														<a href={ this.checkPersonalWebsite() } target="_blank">
+															<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
+														</a> : ""
+	 											}
+											</div>
+											<div className="occupation--wrapper">
+												<div className="occupation">
+													{ 
+														this.props.userData.occupation ?
+															<Marquee>{ this.props.userData.occupation }</Marquee>
+														:
+															""
+													}
+												</div>
+												<div className="location">
+													<span className="city">
+														{ 
+															this.props.userData.city ?
+																<Marquee>{ this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " }</Marquee>
+															:
+																""
+														}
+													</span>
+													-
+													<span className="country">
+														{ 
+															this.props.userData.city ?
+																<Marquee>{ this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) }</Marquee>
+															:
+																""
+														}
+													</span>
+												</div>
+											</div>
+											<div className="social-links left">
+												{
+													this.checkLink("twitter.com") !== "" ?
+														<a href={ this.checkLink("twitter.com") } target="_blank">
+															<img src="/static/img/twitter.svg" alt="twitter" />
+														</a> : ""
+	 											}
+	 											{
+													this.checkLink("facebook.com") !== "" ?
+														<a href={ this.checkLink("facebook.com") } target="_blank">
+															<img src="/static/img/facebook.svg" alt="facebook" />
+														</a> : ""
+	 											}
+											</div>
 										</div>
 									</div>
 									<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>

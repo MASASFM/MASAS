@@ -380,8 +380,10 @@ input[type=range].MASAS-slider {
   text-overflow: ellipsis;
   overflow: hidden;
   height: 100%;
-  width: 100%; }
-  .MASAS_marquee .wrapper2 {
+  width: 100%;
+  position: relative;
+  height: 1rem; }
+  .MASAS_marquee .MASAS_marquee--wrapper2 {
     position: absolute;
     left: 0;
     right: 0;
@@ -390,7 +392,7 @@ input[type=range].MASAS-slider {
     white-space: pre;
     text-overflow: ellipsis;
     overflow: hidden; }
-    .MASAS_marquee .wrapper2 .text {
+    .MASAS_marquee .MASAS_marquee--wrapper2 .text {
       width: min-content;
       animation-delay: -5s; }
 
@@ -2306,9 +2308,32 @@ input[type=range].MASAS-slider {
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
     width: 4.5rem;
     display: flex;
-    justify-content: space-between; }
-  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation {
-    padding-bottom: 0.5rem; }
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 1rem; }
+  .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation {
+      padding-bottom: 0.5rem; }
+      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation .MASAS_marquee--wrapper2 {
+        display: flex;
+        justify-content: center; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .location .city .MASAS_marquee--wrapper2 {
+      display: flex;
+      justify-content: flex-end; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .location .country .MASAS_marquee--wrapper2 {
+      display: flex;
+      justify-content: flex-start; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation, .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .location, .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .country, .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .city {
+      display: flex;
+      justify-content: center;
+      display: flex;
+      flex: 1;
+      width: 100%; }
   .profile--wrapper .social-stats--wrapper {
     height: 0rem;
     visibility: hidden;
@@ -2442,32 +2467,46 @@ input[type=range].MASAS-slider {
         height: 5rem; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .username {
           font-family: Lato-Semibold;
-          padding-bottom: 0.5rem; }
+          padding-bottom: 0.5rem;
+          width: 100%; }
+          .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .username .MASAS_marquee--wrapper2 {
+            display: flex;
+            justify-content: center; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper {
           display: flex;
           flex-direction: column;
-          align-items: center; }
+          align-items: center;
+          width: 100%; }
           .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .location {
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.8rem;
-            padding-bottom: 0.2rem; }
+            padding-bottom: 0.2rem;
+            width: 100%; }
+            .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .location .MASAS_marquee--wrapper2 {
+              display: flex;
+              justify-content: center; }
           .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .occupation {
-            color: rgba(255, 255, 255, 0.8); }
-      .profile--wrapper .profile-info--wrapper .text--wrapper .occupation--wrapper {
-        display: none; }
+            color: rgba(255, 255, 255, 0.8);
+            width: 100%; }
+            .profile--wrapper .profile-info--wrapper .text--wrapper .user-info-desktop .occupation--wrapper .occupation .MASAS_marquee--wrapper2 {
+              display: flex;
+              justify-content: center; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
         background-color: transparent;
         max-width: 10rem;
         display: flex;
         position: inherit;
         align-items: flex-end; }
-      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
-        flex-grow: 1;
-        justify-content: space-around; }
-      .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
-        width: 1rem;
-        max-height: 1rem;
-        padding-right: 0.15rem; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper {
+          display: none; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
+          flex-grow: 1;
+          justify-content: space-around;
+          margin: 0; }
+        .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
+          width: 1rem;
+          max-height: 1rem;
+          padding-right: 0.15rem; }
   .profile--wrapper .social-stats--wrapper {
     background-color: transparent;
     padding-bottom: 0.5rem;

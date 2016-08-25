@@ -27,7 +27,7 @@ var ProfileEditLinks = React.createClass({
 				if(link.includes("twitter.com"))
 					this.updateLink2(link)
 
-				if(link.includes(".com") && !(link.includes("soundcloud.com")) && !(link.includes("facebook.com"))&& !(link.includes("twitter.com")))
+				if(link.includes(".") && !(link.includes("soundcloud.com")) && !(link.includes("facebook.com"))&& !(link.includes("twitter.com")))
 					this.updateLink3(link)
 
 				if(link.includes("facebook.com"))

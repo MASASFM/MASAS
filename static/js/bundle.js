@@ -59071,6 +59071,7 @@ var _require3 = require("../UI/UI.jsx");
 var Button = _require3.Button;
 var Body = _require3.Body;
 var Textbox = _require3.Textbox;
+var Marquee = _require3.Marquee;
 
 var Profile = React.createClass({
 	displayName: "Profile",
@@ -59267,6 +59268,26 @@ var Profile = React.createClass({
 		this.props.toggleEditingProfile();
 	},
 
+	checkLink: function checkLink(url) {
+		var checkVar = this.props.userData.link_set.filter(function (_ref) {
+			var link = _ref.link;
+
+			return link.includes(url);
+		});
+
+		if (checkVar.length) return checkVar[0].link;else return "";
+	},
+
+	checkPersonalWebsite: function checkPersonalWebsite() {
+		var checkVar = this.props.userData.link_set.filter(function (_ref2) {
+			var link = _ref2.link;
+
+			return !link.includes("facebook.com") && !link.includes("twitter.com") && !link.includes("soundcloud.com");
+		});
+
+		if (checkVar.length) return checkVar[0].link;else return "";
+	},
+
 	render: function render() {
 		var testVar = Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object;
 
@@ -59321,65 +59342,113 @@ var Profile = React.createClass({
 								{ className: "text--wrapper " + (this.props.isEditingProfile ? "is-editing-profile" : "") },
 								React.createElement(
 									"div",
-									{ className: "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") },
-									React.createElement(
-										"span",
-										{ className: "username" },
-										this.props.userData.name ? this.props.userData.name : this.props.userData.username
-									),
+									{ className: "text--wrapper2", style: { display: "flex", flexDirection: "column" } },
 									React.createElement(
 										"div",
-										{ className: "occupation--wrapper" },
+										{ className: "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") },
 										React.createElement(
 											"span",
-											{ className: "location" },
-											this.props.userData.city ? this.props.userData.city.display_name.replace(/,.*?,/, ',') : ""
-										),
-										React.createElement(
-											"span",
-											{ className: "occupation" },
-											this.props.userData.occupation ? this.props.userData.occupation : ""
-										)
-									)
-								),
-								React.createElement(
-									"div",
-									{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") },
-									React.createElement(
-										"div",
-										{ className: "social-links right" },
-										React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" }),
-										React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" })
-									),
-									React.createElement(
-										"div",
-										{ className: "occupation--wrapper" },
-										React.createElement(
-											"div",
-											{ className: "occupation" },
-											this.props.userData.occupation ? this.props.userData.occupation : ""
+											{ className: "username" },
+											this.props.userData.name ? React.createElement(
+												Marquee,
+												null,
+												this.props.userData.name
+											) : React.createElement(
+												Marquee,
+												null,
+												this.props.userData.username
+											)
 										),
 										React.createElement(
 											"div",
-											{ className: "location" },
+											{ className: "occupation--wrapper" },
 											React.createElement(
 												"span",
-												{ className: "city" },
-												this.props.userData.city ? this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " : ""
+												{ className: "location" },
+												this.props.userData.city ? React.createElement(
+													Marquee,
+													null,
+													this.props.userData.city.display_name.replace(/,.*?,/, ',')
+												) : ""
 											),
-											"-",
 											React.createElement(
 												"span",
-												{ className: "country" },
-												this.props.userData.city ? this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) : ""
+												{ className: "occupation" },
+												this.props.userData.occupation ? React.createElement(
+													Marquee,
+													null,
+													this.props.userData.occupation
+												) : ""
 											)
 										)
 									),
 									React.createElement(
 										"div",
-										{ className: "social-links left" },
-										React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" }),
-										React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" })
+										{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") },
+										React.createElement(
+											"div",
+											{ className: "social-links right" },
+											this.checkLink("soundcloud.com") !== "" ? React.createElement(
+												"a",
+												{ href: this.checkLink("soundcloud.com"), target: "_blank" },
+												React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud" })
+											) : "",
+											this.checkPersonalWebsite() !== "" ? React.createElement(
+												"a",
+												{ href: this.checkPersonalWebsite(), target: "_blank" },
+												React.createElement("img", { src: "/static/img/MASAS_logo_world.svg", alt: "personal page" })
+											) : ""
+										),
+										React.createElement(
+											"div",
+											{ className: "occupation--wrapper" },
+											React.createElement(
+												"div",
+												{ className: "occupation" },
+												this.props.userData.occupation ? React.createElement(
+													Marquee,
+													null,
+													this.props.userData.occupation
+												) : ""
+											),
+											React.createElement(
+												"div",
+												{ className: "location" },
+												React.createElement(
+													"span",
+													{ className: "city" },
+													this.props.userData.city ? React.createElement(
+														Marquee,
+														null,
+														this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+													) : ""
+												),
+												"-",
+												React.createElement(
+													"span",
+													{ className: "country" },
+													this.props.userData.city ? React.createElement(
+														Marquee,
+														null,
+														this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+													) : ""
+												)
+											)
+										),
+										React.createElement(
+											"div",
+											{ className: "social-links left" },
+											this.checkLink("twitter.com") !== "" ? React.createElement(
+												"a",
+												{ href: this.checkLink("twitter.com"), target: "_blank" },
+												React.createElement("img", { src: "/static/img/twitter.svg", alt: "twitter" })
+											) : "",
+											this.checkLink("facebook.com") !== "" ? React.createElement(
+												"a",
+												{ href: this.checkLink("facebook.com"), target: "_blank" },
+												React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" })
+											) : ""
+										)
 									)
 								),
 								React.createElement(
@@ -59600,7 +59669,7 @@ var ProfileEditLinks = React.createClass({
 
 				if (link.includes("twitter.com")) _this.updateLink2(link);
 
-				if (link.includes(".com") && !link.includes("soundcloud.com") && !link.includes("facebook.com") && !link.includes("twitter.com")) _this.updateLink3(link);
+				if (link.includes(".") && !link.includes("soundcloud.com") && !link.includes("facebook.com") && !link.includes("twitter.com")) _this.updateLink3(link);
 
 				if (link.includes("facebook.com")) _this.updateLink4(link);
 			}, 0);
@@ -60600,7 +60669,7 @@ var Marquee = React.createClass({
 			{ className: (this.props.className ? this.props.className : "") + " MASAS_marquee", ref: "wrapper" },
 			React.createElement(
 				"div",
-				{ className: "wrapper2" },
+				{ className: "MASAS_marquee--wrapper2", style: this.state.overflow ? { display: 'block' } : {} },
 				React.createElement(
 					"span",
 					{ ref: "text", style: { animationDelay: animationDelay ? animationDelay : '0s' }, className: "textBis" + (this.state.overflow ? " text" : "") },

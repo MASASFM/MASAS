@@ -96,11 +96,41 @@
 				.social-links
 					width: 4.5rem
 					display: flex
+					align-items: center
 					justify-content: space-between
+					margin: 0 1rem
 
 				.occupation--wrapper
+					display: flex
+					flex: 1
+					flex-direction: column
+					justify-content: center
+					align-items: center
+
 					.occupation
 						padding-bottom: 0.5rem
+
+						.MASAS_marquee--wrapper2
+							display: flex
+							justify-content: center
+
+					.location
+						.city
+							.MASAS_marquee--wrapper2
+								display: flex
+								justify-content: flex-end
+
+						.country
+							.MASAS_marquee--wrapper2
+								display: flex
+								justify-content: flex-start
+						
+					.occupation, .location, .country, .city
+						display: flex
+						justify-content: center
+						display: flex
+						flex: 1
+						width: 100%
 
 	.social-stats--wrapper
 		height: 0rem
@@ -253,23 +283,36 @@
 					.username
 						font-family: Lato-Semibold
 						padding-bottom: 0.5rem
+						width: 100%
+
+						.MASAS_marquee--wrapper2
+							display: flex
+							justify-content: center
 
 					.occupation--wrapper
 						display: flex
 						flex-direction: column
 						align-items: center
+						width: 100%
 
 						.location
 							color: rgba(255,255,255,0.8)
 							font-size: 0.8rem
 							padding-bottom: 0.2rem
+							width: 100%
+
+							.MASAS_marquee--wrapper2
+								display: flex
+								justify-content: center
 
 						.occupation
 							color: rgba(255,255,255,0.8)
+							width: 100%
 
+							.MASAS_marquee--wrapper2
+								display: flex
+								justify-content: center
 
-				.occupation--wrapper
-					display: none
 
 				.social--wrapper
 					background-color: rgba(0,0,0,0)
@@ -278,10 +321,13 @@
 					position: inherit
 					align-items: flex-end
 
-				.social--wrapper
+					.occupation--wrapper
+						display: none
+
 					.social-links
 						flex-grow: 1
 						justify-content: space-around
+						margin: 0
 
 					img
 						width: 1rem
