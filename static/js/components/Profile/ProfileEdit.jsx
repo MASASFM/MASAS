@@ -21,16 +21,16 @@ var ProfileEdit = React.createClass({
 	},
 
 	componentDidMount: function() {
-		// if(typeof(this.props.userData) !== "undefined") {
-			if(typeof(this.props.userData.city.url) !== "undefined")
-				this.props.updateTextboxValues({ city: this.props.userData.city.name_ascii })
+		console.log("mounting")
+		console.log(this.props.userData)
+		if(typeof(this.props.userData.city.url) !== "undefined")
+			this.props.updateTextboxValues({ city: this.props.userData.city.url })
 
-			if(this.props.userData.name !== "")
-				this.props.updateTextboxValues({ name: this.props.userData.name })
+		if(this.props.userData.name !== "")
+			this.props.updateTextboxValues({ name: this.props.userData.name })
 
-			if(this.props.userData.occupation !== "")
-				this.props.updateTextboxValues({ occupation: this.props.userData.occupation })
-		// }
+		if(this.props.userData.occupation !== "")
+			this.props.updateTextboxValues({ occupation: this.props.userData.occupation })
 	},
 
 	updateName: function(name) {

@@ -1,8 +1,8 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
-// var ReactRedux = require("react-redux")
-// var { mapStateToProps, mapDispatchToProps } = require("./containers/CountryAutocomplete.jsx")
+var ReactRedux = require("react-redux")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/CountryAutocomplete.jsx")
 
 var Autocomplete = require('react-autocomplete')
 
@@ -16,6 +16,7 @@ var Autocomplete = require('react-autocomplete')
 var CountryAutocomplete = React.createClass({
 	propTypes: {
 		onChange: React.PropTypes.func,
+		userCity: React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -30,6 +31,9 @@ var CountryAutocomplete = React.createClass({
 
 	componentDidMount: function() {
 		this.getCities()
+
+		if(typeof(this.props.userCity.url) !== "undefined")
+			this.setState({ value: this.props.userCity.display_name})
 	},
 
 	getCities: function() {
@@ -125,8 +129,7 @@ var CountryAutocomplete = React.createClass({
 	}
 })
 
-module.exports = CountryAutocomplete
-// ReactRedux.connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(CountryAutocomplete)
+module.exports = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CountryAutocomplete)

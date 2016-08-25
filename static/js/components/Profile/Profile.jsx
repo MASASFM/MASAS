@@ -147,7 +147,7 @@ var Profile = React.createClass({
 
 	render: function() {
 		var testVar = (Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object )
-		console.log(testVar)
+
 		if(testVar) {
 			return (
 				<div style={{display: 'flex', flex: 1}}>
@@ -239,7 +239,11 @@ var Profile = React.createClass({
 										</div>
 									</div>
 									<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
-										<ProfileEdit />
+										{ this.props.isEditingProfile ? 
+											<ProfileEdit />
+											:
+											""
+										}
 									</div>
 								</div>
 							</div>
