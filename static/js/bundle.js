@@ -59151,6 +59151,8 @@ var Profile = React.createClass({
 	displaySongs: function displaySongs() {
 		var _this3 = this;
 
+		var songs = {};
+
 		if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
 
 		if (!songs.length) return React.createElement(
@@ -59177,7 +59179,9 @@ var Profile = React.createClass({
 				)
 			)
 		);else {
-			var songs = this.props.userData.songs;
+			var songs = {};
+
+			if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
 
 			var compareFn = function compareFn(a, b) {
 				var dateA = new Date(a.dateUploaded);
@@ -59330,7 +59334,11 @@ var Profile = React.createClass({
 	},
 
 	checkLink: function checkLink(url) {
-		var checkVar = this.props.userData.link_set.filter(function (_ref) {
+		var link_set = [];
+
+		if (isObjectEmpty(this.props.publicProfileInfo)) link_set = this.props.userData.link_set;else link_set = this.props.publicProfileInfo.link_set;
+
+		var checkVar = link_set.filter(function (_ref) {
 			var link = _ref.link;
 
 			return link.includes(url);
@@ -59340,7 +59348,11 @@ var Profile = React.createClass({
 	},
 
 	checkPersonalWebsite: function checkPersonalWebsite() {
-		var checkVar = this.props.userData.link_set.filter(function (_ref2) {
+		var link_set = [];
+
+		if (isObjectEmpty(this.props.publicProfileInfo)) link_set = this.props.userData.link_set;else link_set = this.props.publicProfileInfo.link_set;
+
+		var checkVar = link_set.filter(function (_ref2) {
 			var link = _ref2.link;
 
 			return !link.includes("facebook.com") && !link.includes("twitter.com") && !link.includes("soundcloud.com");
@@ -59350,9 +59362,33 @@ var Profile = React.createClass({
 	},
 
 	render: function render() {
-		var testVar = Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object;
+		var link_set = [];
+		var showProfile = false;
+		var avatar_url = "";
+		var name = "";
+		var username = "";
+		var city = "";
+		var occupation = "";
 
-		if (testVar) {
+		if (isObjectEmpty(this.props.publicProfileInfo)) {
+			showProfile = !isObjectEmpty(this.props.userData);
+			link_set = this.props.userData.link_set;
+			avatar_url = this.props.userData.avatar_url;
+			name = this.props.userData.name;
+			username = this.props.userData.username;
+			city = this.props.userData.city;
+			occupation = this.props.userData.occupation;
+		} else {
+			showProfile = !isObjectEmpty(this.props.publicProfileInfo);
+			link_set = this.props.publicProfileInfo.link_set;
+			avatar_url = this.props.publicProfileInfo.avatar_url;
+			name = this.props.publicProfileInfo.name;
+			username = this.props.publicProfileInfo.username;
+			city = this.props.publicProfileInfo.city;
+			occupation = this.props.publicProfileInfo.occupation;
+		}
+
+		if (showProfile) {
 			return React.createElement(
 				"div",
 				{ style: { display: 'flex', flex: 1 } },
@@ -59383,7 +59419,7 @@ var Profile = React.createClass({
 									)
 								) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
 							),
-							React.createElement("img", { src: this.props.userData.avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
+							React.createElement("img", { src: avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
 							React.createElement(
 								"div",
 								{ className: "tab--wrapper" },
@@ -59410,14 +59446,14 @@ var Profile = React.createClass({
 										React.createElement(
 											"span",
 											{ className: "username" },
-											this.props.userData.name ? React.createElement(
+											name ? React.createElement(
 												Marquee,
 												null,
-												this.props.userData.name
+												name
 											) : React.createElement(
 												Marquee,
 												null,
-												this.props.userData.username
+												username
 											)
 										),
 										React.createElement(
@@ -59426,19 +59462,19 @@ var Profile = React.createClass({
 											React.createElement(
 												"span",
 												{ className: "location" },
-												this.props.userData.city ? React.createElement(
+												city ? React.createElement(
 													Marquee,
 													null,
-													this.props.userData.city.display_name.replace(/,.*?,/, ',')
+													city.display_name.replace(/,.*?,/, ',')
 												) : ""
 											),
 											React.createElement(
 												"span",
 												{ className: "occupation" },
-												this.props.userData.occupation ? React.createElement(
+												occupation ? React.createElement(
 													Marquee,
 													null,
-													this.props.userData.occupation
+													occupation
 												) : ""
 											)
 										)
@@ -59466,10 +59502,10 @@ var Profile = React.createClass({
 											React.createElement(
 												"div",
 												{ className: "occupation" },
-												this.props.userData.occupation ? React.createElement(
+												occupation ? React.createElement(
 													Marquee,
 													null,
-													this.props.userData.occupation
+													occupation
 												) : ""
 											),
 											React.createElement(
@@ -59478,20 +59514,20 @@ var Profile = React.createClass({
 												React.createElement(
 													"span",
 													{ className: "city" },
-													this.props.userData.city ? React.createElement(
+													city ? React.createElement(
 														Marquee,
 														null,
-														this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " "
+														city.display_name.substring(0, city.display_name.indexOf(',')) + " "
 													) : ""
 												),
 												"-",
 												React.createElement(
 													"span",
 													{ className: "country" },
-													this.props.userData.city ? React.createElement(
+													city ? React.createElement(
 														Marquee,
 														null,
-														this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length)
+														city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length)
 													) : ""
 												)
 											)
@@ -59717,7 +59753,7 @@ var ProfileEditLinks = React.createClass({
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
-		this.props.userData.link_set.map(function (_ref) {
+		if (this.props.show) this.props.userData.link_set.map(function (_ref) {
 			var link = _ref.link;
 
 			// using set timeout to give time to update app state after each map iteration

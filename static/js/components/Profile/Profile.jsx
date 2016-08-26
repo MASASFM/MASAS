@@ -80,6 +80,8 @@ var Profile = React.createClass({
 	},
 
 	displaySongs: function() {
+		var songs = {}
+
 		if(isObjectEmpty(this.props.publicProfileInfo))
 			songs = this.props.userData.songs
 		else
@@ -103,7 +105,12 @@ var Profile = React.createClass({
 				</div>
 				)
 		else {
-			var songs = this.props.userData.songs
+			var songs = {}
+
+			if(isObjectEmpty(this.props.publicProfileInfo))
+				songs = this.props.userData.songs
+			else
+				songs = this.props.publicProfileInfo.songs
 
 			var compareFn = (a, b) => {
 				var dateA = new Date(a.dateUploaded)
@@ -257,7 +264,14 @@ var Profile = React.createClass({
 	},
 
 	checkLink: function(url) {
-		var checkVar = this.props.userData.link_set.filter(({ link }) => {
+		var link_set = []
+
+		if(isObjectEmpty(this.props.publicProfileInfo))
+			link_set = this.props.userData.link_set
+		else
+			link_set = this.props.publicProfileInfo.link_set
+
+		var checkVar = link_set.filter(({ link }) => {
 			return link.includes(url)
 		})
 
@@ -268,7 +282,14 @@ var Profile = React.createClass({
 	},
 
 	checkPersonalWebsite: function() {
-		var checkVar = this.props.userData.link_set.filter(({ link }) => {
+		var link_set = []
+
+		if(isObjectEmpty(this.props.publicProfileInfo))
+			link_set = this.props.userData.link_set
+		else
+			link_set = this.props.publicProfileInfo.link_set
+
+		var checkVar = link_set.filter(({ link }) => {
 			return !link.includes("facebook.com") && !link.includes("twitter.com") && !link.includes("soundcloud.com")
 		})
 
@@ -279,9 +300,35 @@ var Profile = React.createClass({
 	},
 
 	render: function() {
-		var testVar = (Object.keys(this.props.userData).length !== 0 && this.props.userData.constructor === Object )
+		var link_set = []
+		var showProfile = false
+		var avatar_url = ""
+		var name = ""
+		var username = ""
+		var city = ""
+		var occupation = ""
 
-		if(testVar) {
+		if(isObjectEmpty(this.props.publicProfileInfo)) {
+			showProfile = !isObjectEmpty(this.props.userData)
+			link_set = this.props.userData.link_set
+			avatar_url = this.props.userData.avatar_url
+			name = this.props.userData.name
+			username = this.props.userData.username
+			city = this.props.userData.city
+			occupation = this.props.userData.occupation
+		} else {
+			showProfile = !isObjectEmpty(this.props.publicProfileInfo)
+			link_set = this.props.publicProfileInfo.link_set
+			avatar_url = this.props.publicProfileInfo.avatar_url
+			name = this.props.publicProfileInfo.name
+			username = this.props.publicProfileInfo.username
+			city = this.props.publicProfileInfo.city
+			occupation = this.props.publicProfileInfo.occupation
+		}
+
+		 
+
+		if(showProfile) {
 			return (
 				<div style={{display: 'flex', flex: 1}}>
 					<ProfileWrapper>
@@ -298,7 +345,7 @@ var Profile = React.createClass({
 										}
 									</div>
 								}
-								<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+								<img src={ avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
 								<div className="tab--wrapper">
 									<div className="tab" style={{ borderBottom: '4px solid white'}}>
 										info
@@ -312,25 +359,25 @@ var Profile = React.createClass({
 										<div className={ "user-info-desktop " + (this.props.isEditingProfile ? "hidden" : "") } >
 											<span className="username">
 												{
-													this.props.userData.name ? 
-														<Marquee>{ this.props.userData.name }</Marquee>
+													name ? 
+														<Marquee>{ name }</Marquee>
 													:
-														<Marquee>{ this.props.userData.username }</Marquee>
+														<Marquee>{ username }</Marquee>
 												}
 											</span>
 											<div className="occupation--wrapper">
 												<span className="location">
 													{ 
-														this.props.userData.city ?
-															<Marquee>{ this.props.userData.city.display_name.replace( /,.*?,/, ',' ) }</Marquee>
+														city ?
+															<Marquee>{ city.display_name.replace( /,.*?,/, ',' ) }</Marquee>
 														:
 															""
 													}
 												</span>
 												<span className="occupation">
 													{ 
-														this.props.userData.occupation ?
-															<Marquee>{ this.props.userData.occupation }</Marquee>
+														occupation ?
+															<Marquee>{ occupation }</Marquee>
 														:
 															""
 													}
@@ -355,8 +402,8 @@ var Profile = React.createClass({
 											<div className="occupation--wrapper">
 												<div className="occupation">
 													{ 
-														this.props.userData.occupation ?
-															<Marquee>{ this.props.userData.occupation }</Marquee>
+														occupation ?
+															<Marquee>{ occupation }</Marquee>
 														:
 															""
 													}
@@ -364,8 +411,8 @@ var Profile = React.createClass({
 												<div className="location">
 													<span className="city">
 														{ 
-															this.props.userData.city ?
-																<Marquee>{ this.props.userData.city.display_name.substring(0, this.props.userData.city.display_name.indexOf(',')) + " " }</Marquee>
+															city ?
+																<Marquee>{ city.display_name.substring(0, city.display_name.indexOf(',')) + " " }</Marquee>
 															:
 																""
 														}
@@ -373,8 +420,8 @@ var Profile = React.createClass({
 													-
 													<span className="country">
 														{ 
-															this.props.userData.city ?
-																<Marquee>{ this.props.userData.city.display_name.substring(this.props.userData.city.display_name.lastIndexOf(',') + 1, this.props.userData.city.display_name.length) }</Marquee>
+															city ?
+																<Marquee>{ city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length) }</Marquee>
 															:
 																""
 														}
