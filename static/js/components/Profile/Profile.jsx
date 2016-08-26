@@ -42,7 +42,7 @@ var Profile = React.createClass({
 		if(typeof(this.props.routeParams.username) !== "undefined")
 			$.ajax({
 				type: 'GET',
-				url: "http://localhost:8000/api/users/" + this.props.routeParams.username + "/",
+				url: "/api/users/" + this.props.routeParams.username + "/",
 				success: (r) => {
 					this.props.updatePublicProfileInfo(r)
 					
