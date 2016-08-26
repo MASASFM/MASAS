@@ -19,7 +19,7 @@ var ProfileEdit = React.createClass({
 	componentDidMount: function() {
 		console.log("mounting")
 		console.log(this.props.userData)
-		if(typeof(this.props.userData.city.url) !== "undefined")
+		if(this.props.userData.city !== null)
 			this.props.updateTextboxValues({ city: this.props.userData.city.url })
 
 		if(this.props.userData.name !== "")
