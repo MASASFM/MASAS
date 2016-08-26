@@ -4,17 +4,13 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEditLinks.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
 var { Textbox } = require("../UI/UI.jsx")
-
-// var ProfileEditLinks = (props) => {
-
-// }
 
 var ProfileEditLinks = React.createClass({
 	propTypes: {
 		textboxValues: React.PropTypes.object,
 		updateTextboxValues: React.PropTypes.func,
+		show: React.PropTypes.bool.isRequired,		// should comp be shown
 	},
 
 	componentWillMount: function() {
@@ -61,26 +57,29 @@ var ProfileEditLinks = React.createClass({
 	},
 
 	render: function() {
-		return (
-			<div className="links-edit--wrapper">
-				<div className="link-edit">
-					<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
-					<Textbox onChange={ this.updateLink1 } value={ this.props.textboxValues.link_set[0] } />
+		if(this.props.show)
+			return (
+				<div className="links-edit--wrapper">
+					<div className="link-edit">
+						<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
+						<Textbox onChange={ this.updateLink1 } value={ this.props.textboxValues.link_set[0] } />
+					</div>
+					<div className="link-edit">
+						<img src="/static/img/twitter.svg" alt="twitter" />
+						<Textbox onChange={ this.updateLink2 } value={ this.props.textboxValues.link_set[1] } />
+					</div>
+					<div className="link-edit">
+						<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
+						<Textbox onChange={ this.updateLink3 } value={ this.props.textboxValues.link_set[2] } />
+					</div>
+					<div className="link-edit">
+						<img src="/static/img/facebook.svg" alt="facebook" />
+						<Textbox onChange={ this.updateLink4 } value={ this.props.textboxValues.link_set[3] } />
+					</div>
 				</div>
-				<div className="link-edit">
-					<img src="/static/img/twitter.svg" alt="twitter" />
-					<Textbox onChange={ this.updateLink2 } value={ this.props.textboxValues.link_set[1] } />
-				</div>
-				<div className="link-edit">
-					<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
-					<Textbox onChange={ this.updateLink3 } value={ this.props.textboxValues.link_set[2] } />
-				</div>
-				<div className="link-edit">
-					<img src="/static/img/facebook.svg" alt="facebook" />
-					<Textbox onChange={ this.updateLink4 } value={ this.props.textboxValues.link_set[3] } />
-				</div>
-			</div>
-		)
+			)
+		else
+			return <div></div>
 	}
 })
 

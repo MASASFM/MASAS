@@ -17,6 +17,7 @@ var TrackItem = React.createClass({
 		userData: React.PropTypes.object,
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
+		allowOpen: React.PropTypes.bool, 			// should allow open song tray
 	},
 
 	componentWillMount: function() {
@@ -108,7 +109,7 @@ var TrackItem = React.createClass({
 							{ this.renderPlayerControlButton() }
 						</div>
 					</div>
-					<div className="song-info--wrapper" onClick={ this.toggleOpenTray }>
+					<div className="song-info--wrapper" onClick={ this.props.allowOpen ? this.toggleOpenTray : () => {} } style={ !this.props.allowOpen ? { cursor: 'default'} : {} }>
 						<div className="song-stats-1">
 							<div className="song-name">
 								<div className="title">
@@ -129,14 +130,18 @@ var TrackItem = React.createClass({
 						</div>
 					</div>
 				</div>
-				<div className="hidden-info">
-					<div className="RankingInfoIcon--wrapper"><RankingInfoIcon ranking={ 0.5 }/></div>
-					<div className="icon--wrapper">
-						{ this.props.MASAS_songInfo.like_count }<img className="like-icon" src="/static/img/MASAS_liked.svg" alt="# of likes" />
-						<img onClick={ this.openChangeMoodModal } className="hidden-mobile" src="/static/img/MASAS_icon_changemood.svg" alt="change mood" />
-						<img onClick={ this.openRemoveSongModal } className="hidden-mobile" src="/static/img/MASAS_icon_trash.svg" alt="delete song" />
+				{ this.props.allowOpen ?
+					<div className="hidden-info">
+						<div className="RankingInfoIcon--wrapper"><RankingInfoIcon ranking={ 0.5 }/></div>
+						<div className="icon--wrapper">
+							{ this.props.MASAS_songInfo.like_count }<img className="like-icon" src="/static/img/MASAS_liked.svg" alt="# of likes" />
+							<img onClick={ this.openChangeMoodModal } className="hidden-mobile" src="/static/img/MASAS_icon_changemood.svg" alt="change mood" />
+							<img onClick={ this.openRemoveSongModal } className="hidden-mobile" src="/static/img/MASAS_icon_trash.svg" alt="delete song" />
+						</div>
 					</div>
-				</div>
+					:
+					<div></div>
+				}
 			</div>
 		)
 	}

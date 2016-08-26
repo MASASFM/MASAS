@@ -95,7 +95,7 @@ var Profile = React.createClass({
 				if(SC_songInfo === undefined)
 					return
 
-				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song}/>
+				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song} allowOpen={ !this.props.route.publicProfile }/>
 			})
 
 			return (
@@ -193,7 +193,7 @@ var Profile = React.createClass({
 			// new link => DELETE
 			if(match.length === 0) {
 				counterTotal = counterTotal + 1
-				
+
 				$.ajax({
 					type: "DELETE",
 					headers: {
@@ -254,13 +254,17 @@ var Profile = React.createClass({
 					<ProfileWrapper>
 						<div className="main--wrapper">
 							<div className="profile-info--wrapper">
-								<div className="edit-profile-icon--wrapper">
-									{ this.props.isEditingProfile ?
-											<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
-										:
-											<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
-									}
-								</div>
+								{ this.props.route.publicProfile ?
+									<div></div>
+									:
+									<div className="edit-profile-icon--wrapper">
+										{ this.props.isEditingProfile ?
+												<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
+											:
+												<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
+										}
+									</div>
+								}
 								<img src={ this.props.userData.avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
 								<div className="tab--wrapper">
 									<div className="tab" style={{ borderBottom: '4px solid white'}}>
@@ -362,7 +366,7 @@ var Profile = React.createClass({
 									</div>
 									<div className="edit-profile--wrapper" style={{ display: (this.props.isEditingProfile ? "flex" : "none") }}>
 										{ this.props.isEditingProfile ? 
-											<ProfileEdit />
+											<ProfileEdit show={ !this.props.route.publicProfile } />
 											:
 											""
 										}
@@ -395,7 +399,7 @@ var Profile = React.createClass({
 						</div>
 						<div className="song-list--wrapper">
 							<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
-								<ProfileEditLinks />
+								<ProfileEditLinks show={ !this.props.route.publicProfile } />
 							</div>
 							<div>
 							{ this.displaySongs() }

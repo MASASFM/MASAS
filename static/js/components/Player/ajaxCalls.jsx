@@ -116,7 +116,7 @@ ajaxCalls.updateLikeButton = function(MASAS_songInfo, SC_songInfo, props) {
 	var header = "Bearer " + props.MASASuser
 	$.ajax({
 		type: "GET",
-		url: 'api/users/'+ props.userPk+'/',	
+		url: '/api/users/'+ props.userPk+'/',	
 		headers: {
 			"Authorization": header,
 		},

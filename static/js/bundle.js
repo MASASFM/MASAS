@@ -58655,7 +58655,7 @@ ajaxCalls.updateLikeButton = function (MASAS_songInfo, SC_songInfo, props) {
 	var header = "Bearer " + props.MASASuser;
 	$.ajax({
 		type: "GET",
-		url: 'api/users/' + props.userPk + '/',
+		url: '/api/users/' + props.userPk + '/',
 		headers: {
 			"Authorization": header
 		},
@@ -59168,7 +59168,7 @@ var Profile = React.createClass({
 				// return nothing if song no longer exists on soundcloud
 				if (SC_songInfo === undefined) return;
 
-				return React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song });
+				return React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song, allowOpen: !_this2.props.route.publicProfile });
 			});
 
 			return React.createElement(
@@ -59332,7 +59332,7 @@ var Profile = React.createClass({
 						React.createElement(
 							"div",
 							{ className: "profile-info--wrapper" },
-							React.createElement(
+							this.props.route.publicProfile ? React.createElement("div", null) : React.createElement(
 								"div",
 								{ className: "edit-profile-icon--wrapper" },
 								this.props.isEditingProfile ? React.createElement(
@@ -59482,7 +59482,7 @@ var Profile = React.createClass({
 								React.createElement(
 									"div",
 									{ className: "edit-profile--wrapper", style: { display: this.props.isEditingProfile ? "flex" : "none" } },
-									this.props.isEditingProfile ? React.createElement(ProfileEdit, null) : ""
+									this.props.isEditingProfile ? React.createElement(ProfileEdit, { show: !this.props.route.publicProfile }) : ""
 								)
 							)
 						),
@@ -59542,7 +59542,7 @@ var Profile = React.createClass({
 						React.createElement(
 							"div",
 							{ className: "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "") },
-							React.createElement(ProfileEditLinks, null)
+							React.createElement(ProfileEditLinks, { show: !this.props.route.publicProfile })
 						),
 						React.createElement(
 							"div",
@@ -59597,9 +59597,10 @@ var ProfileEdit = React.createClass({
 	propTypes: {
 		textboxValues: React.PropTypes.object,
 		updateTextboxValues: React.PropTypes.func,
-		userData: React.PropTypes.object
-	},
+		userData: React.PropTypes.object,
+		show: React.PropTypes.bool.isRequired },
 
+	// should comp be shown
 	componentDidMount: function componentDidMount() {
 		console.log("mounting");
 		console.log(this.props.userData);
@@ -59623,7 +59624,7 @@ var ProfileEdit = React.createClass({
 	},
 
 	render: function render() {
-		return React.createElement(
+		if (this.props.show) return React.createElement(
 			"div",
 			{ className: "profile-edit--wrapper" },
 			React.createElement(
@@ -59644,9 +59645,9 @@ var ProfileEdit = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "links-info" },
-				React.createElement(ProfileEditLinks, null)
+				React.createElement(ProfileEditLinks, { show: this.props.show })
 			)
-		);
+		);else return React.createElement("div", null);
 	}
 });
 
@@ -59667,24 +59668,19 @@ var _require = require("./containers/ProfileEditLinks.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-
 var _require2 = require("../UI/UI.jsx");
 
 var Textbox = _require2.Textbox;
-
-// var ProfileEditLinks = (props) => {
-
-// }
 
 var ProfileEditLinks = React.createClass({
 	displayName: "ProfileEditLinks",
 
 	propTypes: {
 		textboxValues: React.PropTypes.object,
-		updateTextboxValues: React.PropTypes.func
-	},
+		updateTextboxValues: React.PropTypes.func,
+		show: React.PropTypes.bool.isRequired },
 
+	// should comp be shown
 	componentWillMount: function componentWillMount() {
 		var _this = this;
 
@@ -59729,7 +59725,7 @@ var ProfileEditLinks = React.createClass({
 	},
 
 	render: function render() {
-		return React.createElement(
+		if (this.props.show) return React.createElement(
 			"div",
 			{ className: "links-edit--wrapper" },
 			React.createElement(
@@ -59756,7 +59752,7 @@ var ProfileEditLinks = React.createClass({
 				React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook" }),
 				React.createElement(Textbox, { onChange: this.updateLink4, value: this.props.textboxValues.link_set[3] })
 			)
-		);
+		);else return React.createElement("div", null);
 	}
 });
 
@@ -59996,9 +59992,10 @@ var TrackItem = React.createClass({
 		loadPlaylist: React.PropTypes.func,
 		userData: React.PropTypes.object,
 		toogleModal: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func
-	},
+		updateModalContent: React.PropTypes.func,
+		allowOpen: React.PropTypes.bool },
 
+	// should allow open song tray
 	componentWillMount: function componentWillMount() {},
 
 	componentDidMount: function componentDidMount() {},
@@ -60088,7 +60085,7 @@ var TrackItem = React.createClass({
 				),
 				React.createElement(
 					"div",
-					{ className: "song-info--wrapper", onClick: this.toggleOpenTray },
+					{ className: "song-info--wrapper", onClick: this.props.allowOpen ? this.toggleOpenTray : function () {}, style: !this.props.allowOpen ? { cursor: 'default' } : {} },
 					React.createElement(
 						"div",
 						{ className: "song-stats-1" },
@@ -60133,7 +60130,7 @@ var TrackItem = React.createClass({
 					)
 				)
 			),
-			React.createElement(
+			this.props.allowOpen ? React.createElement(
 				"div",
 				{ className: "hidden-info" },
 				React.createElement(
@@ -60149,7 +60146,7 @@ var TrackItem = React.createClass({
 					React.createElement("img", { onClick: this.openChangeMoodModal, className: "hidden-mobile", src: "/static/img/MASAS_icon_changemood.svg", alt: "change mood" }),
 					React.createElement("img", { onClick: this.openRemoveSongModal, className: "hidden-mobile", src: "/static/img/MASAS_icon_trash.svg", alt: "delete song" })
 				)
-			)
+			) : React.createElement("div", null)
 		);
 	}
 });
@@ -61928,7 +61925,8 @@ ReactDOM.render(React.createElement(
                         React.createElement(Route, { path: "login", component: Login }),
                         React.createElement(Route, { path: "sign-up", component: SignUp }),
                         React.createElement(Route, { path: "upload", component: UploadSC }),
-                        React.createElement(Route, { path: "profile", component: Profile }),
+                        React.createElement(Route, { path: "profile", publicProfile: false, component: Profile }),
+                        React.createElement(Route, { path: "/user/:name", publicProfile: true, component: Profile }),
                         React.createElement(Route, { path: "likes", component: Likes }),
                         React.createElement(Route, { path: "legals", component: Legals }),
                         React.createElement(Route, { path: "pending", component: InvitationPending })

@@ -13,6 +13,7 @@ var ProfileEdit = React.createClass({
 		textboxValues: React.PropTypes.object,
 		updateTextboxValues: React.PropTypes.func,
 		userData: React.PropTypes.object,
+		show: React.PropTypes.bool.isRequired,		// should comp be shown
 	},
 
 	componentDidMount: function() {
@@ -41,18 +42,21 @@ var ProfileEdit = React.createClass({
 	},
 
 	render: function() {
-		return (
-			<div className="profile-edit--wrapper">
-				<div className="personal-info">
-					<Textbox onChange={ this.updateName } value={ this.props.textboxValues.name } id="stage-name">Stage Name</Textbox>
-					<CountryAutocomplete onChange={ this.updateCity }/>
-					<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
+		if(this.props.show)
+			return (
+				<div className="profile-edit--wrapper">
+					<div className="personal-info">
+						<Textbox onChange={ this.updateName } value={ this.props.textboxValues.name } id="stage-name">Stage Name</Textbox>
+						<CountryAutocomplete onChange={ this.updateCity }/>
+						<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
+					</div>
+					<div className="links-info">
+						<ProfileEditLinks show={ this.props.show } />
+					</div>
 				</div>
-				<div className="links-info">
-					<ProfileEditLinks />
-				</div>
-			</div>
-		)
+			)
+		else
+			return <div></div>
 	}
 })
 
