@@ -58921,7 +58921,7 @@ var CountryAutocomplete = React.createClass({
 	componentDidMount: function componentDidMount() {
 		this.getCities();
 
-		if (typeof this.props.userCity.url !== "undefined") this.setState({ value: this.props.userCity.display_name });
+		if (this.props.userCity !== null) this.setState({ value: this.props.userCity.display_name });
 	},
 
 	getCities: function getCities() {
