@@ -115,6 +115,10 @@ var Profile = React.createClass({
 		delete textboxValues.link_set
 		textboxValues.city = textboxValues.city
 
+		// counter used to know how many ajax calls are made
+		var counterTotal = 1
+		var counterSuccess = 0
+
 		// UPDATE PROFILE PART I (everything but links)
 		$.ajax({
 			type: "PATCH",
@@ -126,13 +130,17 @@ var Profile = React.createClass({
 			contentType: "application/json",
 			data: JSON.stringify(textboxValues), 
 			success: (r) => {
-				updateNotificationBar('Profile updated !')
-				updateProfileInfo()
-				this.props.toggleEditingProfile()
+				counterSuccess = counterSuccess + 1
+
+				if(counterSuccess === counterTotal) {
+					updateProfileInfo()
+					updateNotificationBar('Profile updated !')
+					this.props.toggleEditingProfile()
+				}
+				
 			},
 			error: (e) => {
 				updateNotificationBar("Error updating profile...")
-				// this.props.toggleEditingProfile()
 			}
 		})
 
@@ -146,6 +154,8 @@ var Profile = React.createClass({
 
 			// new link => POST
 			if(match.length === 0 && textboxLink !== "") {
+				counterTotal = counterTotal + 1
+
 				$.ajax({
 					type: "POST",
 					headers: {
@@ -159,11 +169,16 @@ var Profile = React.createClass({
 						user: this.props.userData.url
 					}),
 					success: (r) => {
-						updateProfileInfo()
-						console.log(r)
+						counterSuccess = counterSuccess + 1
+
+						if(counterSuccess === counterTotal) {
+							updateProfileInfo()
+							updateNotificationBar('Profile updated !')
+							this.props.toggleEditingProfile()
+						}
 					},
 					error: (e) => {
-						console.log(e)
+						updateNotificationBar("Error updating profile...")
 					}
 				})
 			}
@@ -177,6 +192,8 @@ var Profile = React.createClass({
 
 			// new link => DELETE
 			if(match.length === 0) {
+				counterTotal = counterTotal + 1
+				
 				$.ajax({
 					type: "DELETE",
 					headers: {
@@ -185,11 +202,16 @@ var Profile = React.createClass({
 					},
 					url: userLink.url,
 					success: (r) => {
-						updateProfileInfo()
-						console.log(r)
+						counterSuccess = counterSuccess + 1
+
+						if(counterSuccess === counterTotal) {
+							updateProfileInfo()
+							updateNotificationBar('Profile updated !')
+							this.props.toggleEditingProfile()
+						}
 					},
 					error: (e) => {
-						console.log(e)
+						updateNotificationBar("Error updating profile...")
 					}
 				})
 			}

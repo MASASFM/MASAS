@@ -5,7 +5,7 @@ exportVar.defaultState = {
 	changeSongMoodValue: 0,				// (int) in [1,6], discover number on modal called when changing discover number for a song 
 	isEditingProfile: false,					// (bool) is user editing profile
 	textboxValues: {					// (obj) values of textboxes when editing profile info
-		name: "hi",
+		name: "",
 		city: "",
 		occupation: "",
 		link_set: ["", "", "", ""],				// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
