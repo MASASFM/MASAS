@@ -39,12 +39,19 @@ var Profile = React.createClass({
 
 		this.getSCinfo()
 
-		if(typeof(this.props.routeParams.username) !== "undefined")
+		this.getPublicProfileInfo()
+	},
+
+	getPublicProfileInfo: function(props = null) {
+		if(props === null)
+			props = this.props
+
+		if(typeof(props.routeParams.username) !== "undefined")
 			$.ajax({
 				type: 'GET',
-				url: "/api/users/" + this.props.routeParams.username + "/",
+				url: "/api/users/" + props.routeParams.username + "/",
 				success: (r) => {
-					this.props.updatePublicProfileInfo(r)
+					props.updatePublicProfileInfo(r)
 					
 					// forcing get soundcloud info after updating public profile
 					setTimeout(() => {
@@ -55,6 +62,22 @@ var Profile = React.createClass({
 					console.log(e)
 				}
 			})
+	},
+
+	componentWillUnmount: function() {
+		if(Object.keys(this.props.publicProfileInfo).length !== 0)
+			this.props.updatePublicProfileInfo({})
+	},
+
+	// componentWillReceiveProps: function(nextProps, nextState) {
+	componentWillReceiveProps: function(nextProps, nextState) {
+		if(nextProps.route.publicProfile !== this.props.route.publicProfile) {
+			if(nextProps.route.publicProfile)
+				this.getPublicProfileInfo(nextProps)
+			else
+				this.props.updatePublicProfileInfo({})
+			window.setTimeout(() => this.getSCinfo(), 0)
+		}
 	},
 
 	getSCinfo: function() {
