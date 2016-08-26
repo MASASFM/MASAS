@@ -60051,6 +60051,10 @@ var RankingInfoIcon = _require2.RankingInfoIcon;
 var ChangeMoodModal = require("./ChangeMoodModal.jsx");
 var RemoveSongModal = require("./RemoveSongModal.jsx");
 
+var _require3 = require("../../MASAS_functions.jsx");
+
+var isObjectEmpty = _require3.isObjectEmpty;
+
 var TrackItem = React.createClass({
 	displayName: "TrackItem",
 
@@ -60062,17 +60066,20 @@ var TrackItem = React.createClass({
 		userData: React.PropTypes.object,
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
-		allowOpen: React.PropTypes.bool },
+		allowOpen: React.PropTypes.bool, // should allow open song tray
+		publicProfileInfo: React.PropTypes.object
+	},
 
-	// should allow open song tray
 	componentWillMount: function componentWillMount() {},
 
 	componentDidMount: function componentDidMount() {},
 
 	playTrack: function playTrack() {
-		// console.log("======"+this.props.MASAS_songInfo.url+"======")
-		// this.props.playNewSong(this.props.MASAS_songInfo.url)
-		var playlist = this.props.userData.songs.map(function (song) {
+		var songs = {};
+
+		if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
+
+		var playlist = songs.map(function (song) {
 			return song.url;
 		});
 
@@ -60222,7 +60229,7 @@ var TrackItem = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TrackItem);
 
-},{"../UI/UI.jsx":384,"./ChangeMoodModal.jsx":357,"./RemoveSongModal.jsx":363,"./containers/TrackItem.jsx":373,"react":284,"react-dom":85,"react-redux":89}],365:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":298,"../UI/UI.jsx":384,"./ChangeMoodModal.jsx":357,"./RemoveSongModal.jsx":363,"./containers/TrackItem.jsx":373,"react":284,"react-dom":85,"react-redux":89}],365:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -60442,8 +60449,8 @@ TrackItem.mapStateToProps = function (state) {
 	return {
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
-		userData: state.appReducer.userData
-
+		userData: state.appReducer.userData,
+		publicProfileInfo: state.profileReducer.publicProfileInfo
 	};
 };
 

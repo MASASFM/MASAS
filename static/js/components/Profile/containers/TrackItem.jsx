@@ -9,7 +9,7 @@ TrackItem.mapStateToProps = function(state) {
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
 		userData: state.appReducer.userData,
-
+		publicProfileInfo: state.profileReducer.publicProfileInfo,
 	}
 }
 

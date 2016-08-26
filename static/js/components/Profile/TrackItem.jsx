@@ -7,6 +7,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/TrackItem.js
 var { Marquee, RankingInfoIcon } = require("../UI/UI.jsx")
 var ChangeMoodModal = require("./ChangeMoodModal.jsx")
 var RemoveSongModal = require("./RemoveSongModal.jsx")
+var { isObjectEmpty } = require("../../MASAS_functions.jsx")
 
 var TrackItem = React.createClass({
 	propTypes: {
@@ -18,6 +19,7 @@ var TrackItem = React.createClass({
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		allowOpen: React.PropTypes.bool, 			// should allow open song tray
+		publicProfileInfo: React.PropTypes.object,
 	},
 
 	componentWillMount: function() {
@@ -27,9 +29,14 @@ var TrackItem = React.createClass({
 	},
 
 	playTrack: function() {
-		// console.log("======"+this.props.MASAS_songInfo.url+"======")
-		// this.props.playNewSong(this.props.MASAS_songInfo.url)
-		var playlist = this.props.userData.songs.map((song) => {
+		var songs = {}
+
+		if(isObjectEmpty(this.props.publicProfileInfo))
+			songs = this.props.userData.songs
+		else
+			songs = this.props.publicProfileInfo.songs
+
+		var playlist = songs.map((song) => {
 			return song.url
 		})
 
