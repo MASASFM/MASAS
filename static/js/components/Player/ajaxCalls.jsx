@@ -16,20 +16,17 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 
 	$.ajax({
 		type: "GET",
-		url: newProps.songPlaying, //'http://localhost:8000/api/song/'+songId+'/',	
+		url: newProps.songPlaying,
 		headers: {
 			// "Authorization": header,
 		},
 		success: (data) => {
-			console.log("RESP 1 = >", data)
 			SC.get('/tracks/' + data.SC_ID).then((response) => {
-				console.log("RESP 12 = >", response)
 				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3" 
 				// console.log(streamURL)
 
 				// reinit player with new media url
 				if($("#jquery_jplayer_1").data("jPlayer") === undefined) {
-					console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$")
 					$("#jquery_jplayer_1").jPlayer({
 						ready: function(	) {
 							console.log("INIT JPLAYER= >", streamURL)
@@ -38,13 +35,6 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 								m4a: streamURL,
 								oga: streamURL
 							}).jPlayer('play')
-
-							// var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
-							// var kickoff = function () {
-							// 	$("#jquery_jplayer_1").jPlayer("play")
-							// 	document.documentElement.removeEventListener(click, kickoff, true)
-							// }
-							// document.documentElement.addEventListener(click, kickoff, true)
 						},
 
 						keyBindings: {

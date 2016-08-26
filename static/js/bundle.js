@@ -52837,20 +52837,16 @@ MASAS_functions.isObjectEmpty = function (obj) {
 };
 
 MASAS_functions.logout = function () {
-	// console.log("logout ===>", dispatch)
 	Cookie.remove("MASAS_authToken");
 
 	dispatch({ type: "LOGOUT" });
 
 	FB.logout(function (response) {
-		console.log("logged out from FB");
-		// dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Logged out !"})
 		MASAS_functions.updateNotificationBar("Logged out !");
 	});
 };
 
 MASAS_functions.updateNotificationBar = function (notificationText) {
-	// console.log("logout ===>", dispatch)
 	var currentText = document.getElementById("notification-text");
 	if (currentText != notificationText) {
 		dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
@@ -53014,9 +53010,7 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
 			}
 		},
-		error: function error(e) {
-			console.warn(err);
-		}
+		error: function error(e) {}
 	});
 };
 
@@ -53113,11 +53107,9 @@ MASAS_functions.playRandomSong = function (MASASuser) {
 		},
 		data: {},
 		success: function success(data) {
-			console.log("/api/test !!! => ", data);
 			MASAS_functions.playNewSong(data.url);
 		},
 		error: function error(err) {
-			console.log(err);
 			if (err.status === 401) MASAS_functions.updateNotificationBar("Login to play music !");
 		}
 	});
@@ -53143,7 +53135,7 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
 	$.ajax({
 		type: "GET",
-		url: "api/check-user/",
+		url: "/api/check-user/",
 		headers: {
 			"Authorization": header
 		},
@@ -53152,7 +53144,7 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 			// GET USER LIKES FROM USER.PK
 			$.ajax({
 				type: "GET",
-				url: "api/users/" + data.userPk + "/",
+				url: "/api/users/" + data.userPk + "/",
 				headers: {
 					"Authorization": header
 				},
@@ -53162,19 +53154,15 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 					var updateProfileInfo = _require3.updateProfileInfo;
 
 					var likes = user.likes;
-					console.log("like ===>", likes);
 
 					var isSongLiked = user.likes.filter(function (like) {
-						console.log(like.song.url, songId);
 						return like.song.url === songId;
 					});
-					console.log(isSongLiked);
 
 					// song not liked yet
 					if (isSongLiked.length === 0) {
 						$.ajax({
 							type: "POST",
-							// url: "/api/likes/",	
 							url: "/api/statuses/",
 							headers: {
 								"Authorization": header,
@@ -58560,20 +58548,17 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 
 	$.ajax({
 		type: "GET",
-		url: newProps.songPlaying, //'http://localhost:8000/api/song/'+songId+'/',	
+		url: newProps.songPlaying,
 		headers: {
 			// "Authorization": header,
 		},
 		success: function success(data) {
-			console.log("RESP 1 = >", data);
 			SC.get('/tracks/' + data.SC_ID).then(function (response) {
-				console.log("RESP 12 = >", response);
 				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3";
 				// console.log(streamURL)
 
 				// reinit player with new media url
 				if ($("#jquery_jplayer_1").data("jPlayer") === undefined) {
-					console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$");
 					$("#jquery_jplayer_1").jPlayer({
 						ready: function ready() {
 							console.log("INIT JPLAYER= >", streamURL);
@@ -58582,13 +58567,6 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 								m4a: streamURL,
 								oga: streamURL
 							}).jPlayer('play');
-
-							// var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
-							// var kickoff = function () {
-							// 	$("#jquery_jplayer_1").jPlayer("play")
-							// 	document.documentElement.removeEventListener(click, kickoff, true)
-							// }
-							// document.documentElement.addEventListener(click, kickoff, true)
 						},
 
 						keyBindings: {

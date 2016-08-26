@@ -10,21 +10,17 @@ var MASAS_functions = {}
 MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
 MASAS_functions.logout = () => {
-	// console.log("logout ===>", dispatch)
 	Cookie.remove("MASAS_authToken")
 
 	dispatch({type: "LOGOUT"})
 
 	FB.logout(function(response) {
-		console.log("logged out from FB")
-		// dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Logged out !"})
 		MASAS_functions.updateNotificationBar("Logged out !")
 	})
 
 }
 
 MASAS_functions.updateNotificationBar = (notificationText) => {
-	// console.log("logout ===>", dispatch)
 	const currentText = document.getElementById("notification-text")
 	if(currentText != notificationText) {
 		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
@@ -181,7 +177,6 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			}
 		},
 		error: (e) => {
-			console.warn(err)
 		}
 	})
 }
@@ -279,11 +274,9 @@ MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 			
 		},
 		success: (data) => {
-			console.log("/api/test !!! => ", data)
 			MASAS_functions.playNewSong(data.url)
 		},
 		error: (err) => {
-			console.log(err)
 			if(err.status === 401)
 				MASAS_functions.updateNotificationBar("Login to play music !")
 		},
@@ -311,7 +304,7 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
 	$.ajax({
 		type: "GET",
-		url: "api/check-user/",	
+		url: "/api/check-user/",	
 		headers: {
 			"Authorization": header,
 		},
@@ -320,7 +313,7 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 			// GET USER LIKES FROM USER.PK
 			$.ajax({
 				type: "GET",
-				url: "api/users/" + data.userPk + "/",	
+				url: "/api/users/" + data.userPk + "/",	
 				headers: {
 					"Authorization": header,
 				},
@@ -328,19 +321,15 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 					const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
 
 					var likes = user.likes
-					console.log("like ===>", likes)
 
 					var isSongLiked = user.likes.filter( (like) => {
-						console.log(like.song.url, songId)
 						return like.song.url === songId
 					})
-					console.log(isSongLiked)
 
 					// song not liked yet
 					if(isSongLiked.length === 0) {
 						$.ajax({
 							type: "POST",
-							// url: "/api/likes/",	
 							url: "/api/statuses/",	
 							headers: {
 								"Authorization": header,
