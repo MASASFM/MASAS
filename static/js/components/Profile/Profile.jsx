@@ -15,7 +15,7 @@ var TrackItem = require("../Profile/TrackItem.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
 
-var { goToURL, getCookie, updateNotificationBar, updateProfileInfo } = require("../../MASAS_functions.jsx")
+var { goToURL, getCookie, updateNotificationBar, updateProfileInfo, isObjectEmpty } = require("../../MASAS_functions.jsx")
 var { Button, Body, Textbox, Marquee } = require("../UI/UI.jsx")
 
 
@@ -24,6 +24,8 @@ var Profile = React.createClass({
 		isEditingProfile: React.PropTypes.bool,
 		toggleEditingProfile: React.PropTypes.func,
 		textboxValues: React.PropTypes.object,
+		updatePublicProfileInfo: React.PropTypes.func,
+		publicProfileInfo: React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -36,11 +38,35 @@ var Profile = React.createClass({
 		this.props.updateTitle('My Profile', '0')		// 0 = menu icon; 1 = arrow back
 
 		this.getSCinfo()
+
+		if(typeof(this.props.routeParams.username) !== "undefined")
+			$.ajax({
+				type: 'GET',
+				url: "http://localhost:8000/api/users/" + this.props.routeParams.username + "/",
+				success: (r) => {
+					this.props.updatePublicProfileInfo(r)
+					
+					// forcing get soundcloud info after updating public profile
+					setTimeout(() => {
+						this.getSCinfo()
+					}, 0)
+				},
+				error: (e) => {
+					console.log(e)
+				}
+			})
 	},
 
 	getSCinfo: function() {
-		if(typeof(this.props.userData.songs) !== "undefined") {
-			var idString = this.props.userData.songs.map((song) => {return song.SC_ID}).join()
+		var songs = {}
+
+		if(isObjectEmpty(this.props.publicProfileInfo))
+			songs = this.props.userData.songs
+		else
+			songs = this.props.publicProfileInfo.songs
+
+		if(typeof(songs) !== "undefined") {
+			var idString = songs.map((song) => {return song.SC_ID}).join()
 
 			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
 				this.setState({ userSCSongs: response })
@@ -54,9 +80,12 @@ var Profile = React.createClass({
 	},
 
 	displaySongs: function() {
-		var songs = this.props.userData.songs
+		if(isObjectEmpty(this.props.publicProfileInfo))
+			songs = this.props.userData.songs
+		else
+			songs = this.props.publicProfileInfo.songs
 
-		if (!songs) 
+		if (!songs.length) 
 			return (
 				<div className="no-songs--wrapper">
 					<div className="image--wrapper">
@@ -65,7 +94,11 @@ var Profile = React.createClass({
 						<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
 					</div>
 					<div className="upload-button">
-						<Button onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
+						{ isObjectEmpty(this.props.publicProfileInfo) ?
+							<Button onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
+							:
+							<div>This user has no sounds</div>
+						}
 					</div>
 				</div>
 				)

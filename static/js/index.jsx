@@ -30,7 +30,7 @@ ReactDOM.render((
                                <Route path="sign-up" component={SignUp} />
                                <Route path="upload" component={UploadSC} />
                                <Route path="profile" publicProfile={false} component={Profile} />
-                               <Route path="/user/:name" publicProfile={true} component={Profile} />
+                               <Route path="/user/:username" publicProfile={true} component={Profile} />
                                <Route path="likes" component={Likes} />
                                <Route path="legals" component={Legals} />
                                <Route path="pending" component={InvitationPending} />

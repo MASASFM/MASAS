@@ -9,7 +9,8 @@ exportVar.defaultState = {
 		city: "",
 		occupation: "",
 		link_set: ["", "", "", ""],				// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
-	},					
+	},		
+	publicProfileInfo: {},					// (obj) public info profile on /user/:username		
 }
 
 const { defaultState } = exportVar
@@ -17,6 +18,11 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_PUBLIC_PROFILE_INFO':
+			return {
+				...state,
+				publicProfileInfo: action.publicProfileInfo
+			}
 		case 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES':
 			var textboxValues = {...state.textboxValues, ...action.textboxValues}
 			

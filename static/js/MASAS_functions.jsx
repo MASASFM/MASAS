@@ -7,6 +7,8 @@ var Cookie = require("js-cookie")
 
 var MASAS_functions = {}
 
+MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
+
 MASAS_functions.logout = () => {
 	// console.log("logout ===>", dispatch)
 	Cookie.remove("MASAS_authToken")
