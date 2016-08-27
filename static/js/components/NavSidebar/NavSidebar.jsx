@@ -43,7 +43,7 @@ var NavSidebar = React.createClass({
 							""
 						}
 						<div className="content">
-							<div className="search-input" style={ this.props.MASASuser !== "" ? { visibility: "hidden" } : {} }>
+							<div className="search-input" style={ this.props.MASASuser === "" ? { visibility: "hidden" } : {} }>
 								<Textbox />
 							</div>
 							<div className="nav-links">
