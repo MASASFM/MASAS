@@ -59,7 +59,6 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 
 					delete_cookie("MASAS_authToken")
 				} else {
-					console.log(data)
 					var pk = data.userPk
 
 					MASAS_functions.updateUserInfo(pk, userToken)
@@ -70,7 +69,6 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
 		},
 		error: (err) => {
-			console.log(err)
 			// render app
 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText})
@@ -86,7 +84,6 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 	if(typeof(FB) !== "undefined") {
 		FB.api("/me", { locale: "en_US", fields: "name, email" },
 			function({ email }) {
-				console.log(email)
 
 				// update email if user email not defined yet
 				if(email && !userData.email)
@@ -101,10 +98,8 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 							email,
 						}),
 						success: (resp) => {
-							console.log(resp)
 						},
 						error: (err) => {
-							console.warn(err)
 						}
 					})
 			}
@@ -114,9 +109,6 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 
 // (obj) userDict => userDict.userToken, userDict.userPk, and userDict.userData
 MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
-	console.log("============")
-	const header = "Bearer " + userToken
-	console.log("BEARER =>", header)
 
 	if(typeof(FB) !== "undefined") {
 		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picturee"
@@ -134,10 +126,8 @@ MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
 					avatar_url,
 				}),
 				success: (resp) => {
-					console.log(resp)
 				},
 				error: (err) => {
-					console.warn(err)
 				}
 			})
 	}
@@ -200,7 +190,6 @@ MASAS_functions.getCookie = (name) => {
 
 // pause player
 MASAS_functions.pausePlayer = () => {
-	console.log("pausing")
 	// pause player
 	$("#jquery_jplayer_1").jPlayer("pause")
 	
@@ -214,21 +203,17 @@ MASAS_functions.playPreviousSong = (discoverHistory) => {
 	dispatch({ type: "POP_SONG_FROM_HISTORY" })
 
 	// PLAY LATEST SONG IN HISTORY
-	console.log("SONG_URL =>", discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url)
 	dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
 }
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
 MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
-	console.log("PLAY NEW SONG")
 	// PLAY NEW SONG
 	dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId})
 
 	// STORE NEW SONG IN HISTORY if addToHistory = true
 	// fetch MASAS song info
-	// console.log("HEY HEY =>", addToHistory)
-	// console.log("MASAS_songId =>", MASAS_songId)
 	if(addToHistory)
 		$.ajax({
 			type: "GET",
@@ -242,11 +227,9 @@ MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
 						SC_songInfo
 					})
 				}).catch( (err) => {
-					console.warn(err)
 				})
 			},
 			error: (err) => {
-				console.warn(err)
 			},
 		})
 
@@ -256,7 +239,6 @@ MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
 
 // gets song based on timeInteral and play song
 MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
-	console.log(MASASuser)
 	var URL = "/api/play/"
 	if(timeInterval)
 		URL = URL + "?time_interval_id=" + timeInterval
@@ -309,7 +291,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 			"Authorization": header,
 		},
 		success: (data) => {
-			console.log(data)
 			// GET USER LIKES FROM USER.PK
 			$.ajax({
 				type: "GET",
@@ -351,7 +332,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 								updateProfileInfo()
 							},
 							error: (err) => {
-								console.log(err)
 							},
 						})
 					} else {
@@ -368,7 +348,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 									"X-CSRFToken": csrftoken,
 								},
 								success: (data) => {
-									console.log(data)
 									// update UI
 									dispatch({type: "UNLIKE_SONG"})
 									dispatch({type: "REFETCH_LIKES"})
@@ -379,7 +358,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 									updateProfileInfo()
 								},
 								error: (err) => {
-									console.log(err)
 								},
 							})
 						}
@@ -387,13 +365,11 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 					}
 				},
 				error: (err) => {
-					console.log(err)
 				},
 			})
 
 		},
 		error: (err) => {
-			console.log(err)
 		},
 	})
 }
@@ -408,7 +384,6 @@ MASAS_functions.isSubsequence = (sequence, string) => {
 
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
-	console.log(timeIntervalURL)
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 

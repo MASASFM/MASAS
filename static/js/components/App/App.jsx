@@ -68,7 +68,6 @@ var App = React.createClass({
 		$("#jquery_jplayer_1").jPlayer({
 			ready: function(	) {
 				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3"
-				console.log("INIT JPLAYER= >", streamURL)
 				$(this).jPlayer("setMedia", {
 					mp3: streamURL,
 					oga: ""

@@ -52884,7 +52884,6 @@ MASAS_functions.logInWithToken = function (removeVariable, userToken) {
 
 					delete_cookie("MASAS_authToken");
 				} else {
-					console.log(data);
 					var pk = data.userPk;
 
 					MASAS_functions.updateUserInfo(pk, userToken);
@@ -52895,7 +52894,6 @@ MASAS_functions.logInWithToken = function (removeVariable, userToken) {
 			dispatch({ type: "DONE_PROCESSING_AUTH_COOKIE" });
 		},
 		error: function error(err) {
-			console.log(err);
 			// render app
 			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
 			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText });
@@ -52915,8 +52913,6 @@ MASAS_functions.updateUserEmail = function (_ref) {
 		FB.api("/me", { locale: "en_US", fields: "name, email" }, function (_ref2) {
 			var email = _ref2.email;
 
-			console.log(email);
-
 			// update email if user email not defined yet
 			if (email && !userData.email) $.ajax({
 				type: "PATCH",
@@ -52928,12 +52924,8 @@ MASAS_functions.updateUserEmail = function (_ref) {
 				data: JSON.stringify({
 					email: email
 				}),
-				success: function success(resp) {
-					console.log(resp);
-				},
-				error: function error(err) {
-					console.warn(err);
-				}
+				success: function success(resp) {},
+				error: function error(err) {}
 			});
 		});
 	}
@@ -52944,10 +52936,6 @@ MASAS_functions.updateProfilePicture = function (_ref3) {
 	var userPk = _ref3.userPk;
 	var userToken = _ref3.userToken;
 	var userData = _ref3.userData;
-
-	console.log("============");
-	var header = "Bearer " + userToken;
-	console.log("BEARER =>", header);
 
 	if (typeof FB !== "undefined") {
 		var avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picturee";
@@ -52963,12 +52951,8 @@ MASAS_functions.updateProfilePicture = function (_ref3) {
 			data: JSON.stringify({
 				avatar_url: avatar_url
 			}),
-			success: function success(resp) {
-				console.log(resp);
-			},
-			error: function error(err) {
-				console.warn(err);
-			}
+			success: function success(resp) {},
+			error: function error(err) {}
 		});
 	}
 };
@@ -53033,7 +53017,6 @@ MASAS_functions.getCookie = function (name) {
 
 // pause player
 MASAS_functions.pausePlayer = function () {
-	console.log("pausing");
 	// pause player
 	$("#jquery_jplayer_1").jPlayer("pause");
 
@@ -53047,7 +53030,6 @@ MASAS_functions.playPreviousSong = function (discoverHistory) {
 	dispatch({ type: "POP_SONG_FROM_HISTORY" });
 
 	// PLAY LATEST SONG IN HISTORY
-	console.log("SONG_URL =>", discoverHistory.all[discoverHistory.all.length - 1].MASAS_songInfo.url);
 	dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length - 1].MASAS_songInfo.url });
 };
 
@@ -53056,14 +53038,11 @@ MASAS_functions.playPreviousSong = function (discoverHistory) {
 MASAS_functions.playNewSong = function (MASAS_songId) {
 	var addToHistory = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
-	console.log("PLAY NEW SONG");
 	// PLAY NEW SONG
 	dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId });
 
 	// STORE NEW SONG IN HISTORY if addToHistory = true
 	// fetch MASAS song info
-	// console.log("HEY HEY =>", addToHistory)
-	// console.log("MASAS_songId =>", MASAS_songId)
 	if (addToHistory) $.ajax({
 		type: "GET",
 		url: MASAS_songId,
@@ -53075,13 +53054,9 @@ MASAS_functions.playNewSong = function (MASAS_songId) {
 					MASAS_songInfo: MASAS_songInfo,
 					SC_songInfo: SC_songInfo
 				});
-			}).catch(function (err) {
-				console.warn(err);
-			});
+			}).catch(function (err) {});
 		},
-		error: function error(err) {
-			console.warn(err);
-		}
+		error: function error(err) {}
 	});
 
 	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
@@ -53092,7 +53067,6 @@ MASAS_functions.playNewSong = function (MASAS_songId) {
 MASAS_functions.playRandomSong = function (MASASuser) {
 	var timeInterval = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 
-	console.log(MASASuser);
 	var URL = "/api/play/";
 	if (timeInterval) URL = URL + "?time_interval_id=" + timeInterval;
 
@@ -53140,7 +53114,6 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 			"Authorization": header
 		},
 		success: function success(data) {
-			console.log(data);
 			// GET USER LIKES FROM USER.PK
 			$.ajax({
 				type: "GET",
@@ -53183,9 +53156,7 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 								// update user profile data
 								updateProfileInfo();
 							},
-							error: function error(err) {
-								console.log(err);
-							}
+							error: function error(err) {}
 						});
 					} else {
 
@@ -53203,7 +53174,6 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 									"X-CSRFToken": csrftoken
 								},
 								success: function success(data) {
-									console.log(data);
 									// update UI
 									dispatch({ type: "UNLIKE_SONG" });
 									dispatch({ type: "REFETCH_LIKES" });
@@ -53213,21 +53183,15 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 									// update user profile data
 									updateProfileInfo();
 								},
-								error: function error(err) {
-									console.log(err);
-								}
+								error: function error(err) {}
 							});
 						}
 					}
 				},
-				error: function error(err) {
-					console.log(err);
-				}
+				error: function error(err) {}
 			});
 		},
-		error: function error(err) {
-			console.log(err);
-		}
+		error: function error(err) {}
 	});
 };
 
@@ -53238,7 +53202,6 @@ MASAS_functions.isSubsequence = function (sequence, string) {
 
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
-	console.log(timeIntervalURL);
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1));
 };
 
@@ -53359,7 +53322,6 @@ var App = React.createClass({
 		$("#jquery_jplayer_1").jPlayer({
 			ready: function ready() {
 				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3";
-				console.log("INIT JPLAYER= >", streamURL);
 				$(this).jPlayer("setMedia", {
 					mp3: streamURL,
 					oga: ""
@@ -54599,7 +54561,6 @@ var Header = React.createClass({
 	render: function render() {
 		var _this = this;
 
-		console.log("BACK ARROW FUNC => ", this.props.backArrowFunc);
 		return React.createElement(
 			"nav",
 			{ className: "header" },
@@ -55322,7 +55283,6 @@ var HomeCountdown = React.createClass({
 
 	updateDimensions: function updateDimensions() {
 		this.setState({ width: window.innerWidth });
-		// console.log(this.state.width)
 		this.drawLine();
 	},
 
@@ -55342,12 +55302,10 @@ var HomeCountdown = React.createClass({
 
 		// Get a reference to the canvas object
 		var canvas = document.getElementById('myCanvas');
-		console.log('canvas width:' + canvas.height);
 
 		// SUBTRACTION NEEDED BECAUSE OF DO-WHILE LOOP
 		// variable will change because of sections of the logo with no intersections. We therefore store state.height into new variable (that will increase when no intersection at state.height)
 		var stateHeight = this.state.height; // - 0.01;  
-		console.log('STATE HEIGHT 1 =>', stateHeight);
 
 		// INIT VAR
 		var rightMostPoint = null; // right most intersection of level line and logo
@@ -55368,7 +55326,6 @@ var HomeCountdown = React.createClass({
 			// handle bottom boundary
 			if (stateHeight < 0.02) stateHeight = 0.02;
 
-			console.log('STATE HEIGHT = >', stateHeight);
 			// Create paper.js canvas
 			paper.setup(canvas);
 
@@ -55449,8 +55406,6 @@ var HomeCountdown = React.createClass({
 
 				return rightMostPoint;
 			};
-			console.log('RIGHT MOST POINT =>', rightMostPoint);
-			console.log('INTERSECTIONS', intersections);
 			var rightMostPoint = getRightMostPoint(intersections);
 
 			// DRAW HORIZONTAL LINE FROM RIGHT OF LOGO (also scale length of line)
@@ -55706,22 +55661,9 @@ ajaxCalls.getSongCount = function (successFunc) {
 		type: "GET",
 		url: "/api/songs/",
 		success: function success(response) {
-			console.log(response);
 			successFunc(response);
 		},
-		error: function (_error) {
-			function error(_x) {
-				return _error.apply(this, arguments);
-			}
-
-			error.toString = function () {
-				return _error.toString();
-			};
-
-			return error;
-		}(function (e) {
-			console.log(error);
-		})
+		error: function error(e) {}
 	});
 };
 
@@ -58332,7 +58274,6 @@ var Player = React.createClass({
 				var MASASuser = getState().appReducer.MASASuser;
 
 				var currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL);
-				console.log('NEXT SONG');
 
 				if (_this.props.isPlaylistPlaying) {
 					_this.props.playNewSongFromPlaylist(_this.props.playlistPosition + 1);
@@ -58344,31 +58285,26 @@ var Player = React.createClass({
 
 		// update player UI on start play
 		$("#jquery_jplayer_1").bind($.jPlayer.event.play, function (event) {
-			console.log('PLAY SONG');
 			_this.props.dispatch({ type: 'PLAY' });
 			_this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' });
 		});
 
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, function (event) {
-			console.log('BUFFERING =>', event);
 
 			if ($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3") _this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
 		});
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, function (event) {
-			console.log('STALLED =>', event);
 
 			if ($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3") _this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' });
 		});
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, function (event) {
-			console.log('STOP BUFFERING =>', event);
 
 			_this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' });
 		});
 
 		// update player UI on start play
 		$("#jquery_jplayer_1").bind($.jPlayer.event.pause, function (event) {
-			console.log('PAUSE SONG');
 			_this.props.dispatch({ type: 'PAUSE' });
 		});
 	},
@@ -62300,7 +62236,6 @@ exportVar.headerReducer = function () {
 				username: action.username
 			});
 		case 'UPDATE_NOTIFICATION_TEXT':
-			console.log("===$$$$=====>", action.notificationText);
 			return _extends({}, state, {
 				notificationText: action.notificationText
 			});

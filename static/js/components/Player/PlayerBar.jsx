@@ -56,7 +56,6 @@ var Player = React.createClass({
 				const MASASuser = getState().appReducer.MASASuser
 
 				const currentTimeInterval = getTimeIntervalFromURL(currentTimeIntervalURL)
-				console.log('NEXT SONG')
 				
 				if(this.props.isPlaylistPlaying) {
 					this.props.playNewSongFromPlaylist(this.props.playlistPosition + 1)
@@ -68,26 +67,22 @@ var Player = React.createClass({
 
 		// update player UI on start play
 		$("#jquery_jplayer_1").bind($.jPlayer.event.play, (event) => {
-			console.log('PLAY SONG')
 			this.props.dispatch({ type: 'PLAY' })
 			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
 		})
 
 		// test buffering
 		$("#jquery_jplayer_1").bind($.jPlayer.event.waiting, (event) => {
-			console.log('BUFFERING =>', event)
 			
 			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
 				this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.stalled, (event) => {
-			console.log('STALLED =>', event)
 
 			if($("#jquery_jplayer_1").data("jPlayer").status.src !== "http://www.xamuel.com/blank-mp3-files/point1sec.mp3")
 				this.props.dispatch({ type: 'SET_IS_BUFFERING_TRUE' })
 		})
 		$("#jquery_jplayer_1").bind($.jPlayer.event.canplay, (event) => {
-			console.log('STOP BUFFERING =>', event)
 			
 			this.props.dispatch({ type: 'SET_IS_BUFFERING_FALSE' })
 			
@@ -95,7 +90,6 @@ var Player = React.createClass({
 
 		// update player UI on start play
 		$("#jquery_jplayer_1").bind($.jPlayer.event.pause, (event) => {
-			console.log('PAUSE SONG')
 			this.props.dispatch({ type: 'PAUSE' })
 		})
 	},

@@ -7,11 +7,9 @@ ajaxCalls.getSongCount = (successFunc) => {
 		type: "GET",
 		url: "/api/songs/",
 		success: (response) => {
-			console.log(response)
 			successFunc(response)
 		},
 		error: (e) => {
-			console.log(error)
 		}
 	})
 	

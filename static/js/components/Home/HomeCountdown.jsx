@@ -69,7 +69,6 @@ var HomeCountdown = React.createClass({
 
 	updateDimensions: function() {
 		this.setState({width: window.innerWidth})
-		// console.log(this.state.width)
 		this.drawLine()
 	},
 
@@ -90,13 +89,11 @@ var HomeCountdown = React.createClass({
 
 		// Get a reference to the canvas object
 		var canvas = document.getElementById('myCanvas')
-		console.log('canvas width:' + canvas.height)
 
 
 		// SUBTRACTION NEEDED BECAUSE OF DO-WHILE LOOP
 		// variable will change because of sections of the logo with no intersections. We therefore store state.height into new variable (that will increase when no intersection at state.height)
 		var stateHeight = this.state.height // - 0.01;   
-		console.log('STATE HEIGHT 1 =>', stateHeight)
 
 		// INIT VAR
 		var rightMostPoint = null      // right most intersection of level line and logo
@@ -123,7 +120,6 @@ var HomeCountdown = React.createClass({
 			if(stateHeight < 0.02)
 				stateHeight = 0.02
 
-			console.log('STATE HEIGHT = >', stateHeight)
 			// Create paper.js canvas
 			paper.setup(canvas)
 
@@ -209,8 +205,6 @@ var HomeCountdown = React.createClass({
 
 				return rightMostPoint
 			}
-			console.log('RIGHT MOST POINT =>', rightMostPoint)
-			console.log('INTERSECTIONS', intersections)
 			var rightMostPoint = getRightMostPoint(intersections)
 
 			// DRAW HORIZONTAL LINE FROM RIGHT OF LOGO (also scale length of line)

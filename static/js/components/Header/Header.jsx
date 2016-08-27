@@ -14,7 +14,6 @@ var Link = require("../UI/Link.jsx")
 var Header = React.createClass({
 
 	render: function() {
-		console.log("BACK ARROW FUNC => ", this.props.backArrowFunc)
 		return (
 			<nav  className="header">
 				<div className="ajax-loader--wrapper">
