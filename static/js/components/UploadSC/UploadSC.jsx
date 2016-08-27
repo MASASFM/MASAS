@@ -62,8 +62,6 @@ var UploadSC = React.createClass({
 				// get user track (first from MASAS API (requires log in) and then from SC API)
 				this.getUserTracks()
 			}).catch((err) => {
-				console.log(err)
-				// this.setState({SCusername: null})
 				this.props.updateSCusername(null)
 			})
 			this.getUserTracks()
