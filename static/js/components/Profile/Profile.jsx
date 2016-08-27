@@ -365,7 +365,7 @@ var Profile = React.createClass({
 		 var isProfileEmpty = false
 
 		 if(showProfile)
-			 if(link_set.length === 0 && city === null && occupation === null)
+			 if(link_set.length === 0 && (city === null || city === "") && (occupation === null || occupation === ""))
 			 	isProfileEmpty = true
 
 		if(showProfile) {
