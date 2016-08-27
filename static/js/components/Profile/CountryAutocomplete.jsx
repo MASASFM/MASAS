@@ -48,7 +48,6 @@ var CountryAutocomplete = React.createClass({
 				})
 			},
 			error: (e) => {
-				console.log(e)
 			}
 		})
 	},

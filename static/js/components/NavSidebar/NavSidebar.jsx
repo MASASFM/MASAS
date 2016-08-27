@@ -12,10 +12,14 @@ import Sidebar from "react-sidebar"
 
 var NavSidebar = React.createClass({
 	propTypes: {
+		navSiderbarOpen: React.PropTypes.bool.isRequired,
+		MASASuser: React.PropTypes.string.isRequired,
+		userData: React.PropTypes.object.isRequired,
+		toogleSidebar: React.PropTypes.func.isRequired,
+		logout: React.PropTypes.func.isRequired,
 	},
 
 	componentWillMount: function() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
 	goToProfile: function() {
@@ -30,12 +34,16 @@ var NavSidebar = React.createClass({
 
 	render: function() {
 		var sidebarContent = <div className="navSidebar--wrapper">
-						<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
-							<img src={this.props.userData.avatar_url + "?width=300"}alt="profile-picture" className="profile-picture" />
-							<span className="username">{this.props.userData.username}</span>
-						</div>
+						{ this.props.MASASuser !== "" ?
+							<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
+								<img src={this.props.userData.avatar_url + "?width=300"}alt="profile-picture" className="profile-picture" />
+								<span className="username">{this.props.userData.username}</span>
+							</div>
+							:
+							""
+						}
 						<div className="content">
-							<div className="search-input">
+							<div className="search-input" style={ this.props.MASASuser !== "" ? { visibility: "hidden" } : {} }>
 								<Textbox />
 							</div>
 							<div className="nav-links">

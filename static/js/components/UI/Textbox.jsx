@@ -14,6 +14,12 @@ var Textbox = React.createClass({
 		value: React.PropTypes.string,				// value of input field
 	},
 
+	getDefaultProps: function() {
+		return {
+			onChange: () => {},
+		}
+	},
+
 	getInitialState: function() {
 		return {
 			input: "", 
@@ -24,11 +30,6 @@ var Textbox = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
-		// if(typeof(this.props.actionString) !== "undefined") {
-		// 	var dispatchObject = { type: this.props.actionString }
-		// 	dispatchObject[this.props.actionParamName] = this.state.input
-		// 	dispatch(dispatchObject) 
-		// }
 	},
 
 	onInputChange: function(e) {

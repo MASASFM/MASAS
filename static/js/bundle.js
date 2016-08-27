@@ -57988,11 +57988,15 @@ var goToURL = _require3.goToURL;
 var NavSidebar = React.createClass({
 	displayName: "NavSidebar",
 
-	propTypes: {},
-
-	componentWillMount: function componentWillMount() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
+	propTypes: {
+		navSiderbarOpen: React.PropTypes.bool.isRequired,
+		MASASuser: React.PropTypes.string.isRequired,
+		userData: React.PropTypes.object.isRequired,
+		toogleSidebar: React.PropTypes.func.isRequired,
+		logout: React.PropTypes.func.isRequired
 	},
+
+	componentWillMount: function componentWillMount() {},
 
 	goToProfile: function goToProfile() {
 		goToURL("/profile");
@@ -58008,7 +58012,7 @@ var NavSidebar = React.createClass({
 		var sidebarContent = React.createElement(
 			"div",
 			{ className: "navSidebar--wrapper" },
-			React.createElement(
+			this.props.MASASuser !== "" ? React.createElement(
 				"div",
 				{ className: "profile-picture--wrapper", onClick: this.goToProfile },
 				React.createElement("img", { src: this.props.userData.avatar_url + "?width=300", alt: "profile-picture", className: "profile-picture" }),
@@ -58017,13 +58021,13 @@ var NavSidebar = React.createClass({
 					{ className: "username" },
 					this.props.userData.username
 				)
-			),
+			) : "",
 			React.createElement(
 				"div",
 				{ className: "content" },
 				React.createElement(
 					"div",
-					{ className: "search-input" },
+					{ className: "search-input", style: this.props.MASASuser !== "" ? { visibility: "hidden" } : {} },
 					React.createElement(Textbox, null)
 				),
 				React.createElement(
@@ -58849,9 +58853,7 @@ var CountryAutocomplete = React.createClass({
 					cities: results.splice(0, 15)
 				});
 			},
-			error: function error(e) {
-				console.log(e);
-			}
+			error: function error(e) {}
 		});
 	},
 
@@ -60905,6 +60907,12 @@ var Textbox = React.createClass({
 		value: React.PropTypes.string },
 
 	// value of input field
+	getDefaultProps: function getDefaultProps() {
+		return {
+			onChange: function onChange() {}
+		};
+	},
+
 	getInitialState: function getInitialState() {
 		return {
 			input: ""
@@ -60913,13 +60921,7 @@ var Textbox = React.createClass({
 
 	componentWillMount: function componentWillMount() {},
 
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-		// if(typeof(this.props.actionString) !== "undefined") {
-		// 	var dispatchObject = { type: this.props.actionString }
-		// 	dispatchObject[this.props.actionParamName] = this.state.input
-		// 	dispatch(dispatchObject)
-		// }
-	},
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {},
 
 	onInputChange: function onInputChange(e) {
 		this.props.onChange(e.target.value);
