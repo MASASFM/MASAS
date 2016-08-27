@@ -38,12 +38,12 @@ var HeaderDropdown = React.createClass({
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">
 						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
-						<span className="username" id="username-header">{this.props.userData.username}</span>
+						<span className="username" id="username-header">{this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
 					</div>
 					<div className="dropdown-content">
 						<MenuLink src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>
 						<hr />
-						<MenuLink src='/static/img/MASAS_logo_world.svg' URL="/">Legals</MenuLink>
+						<MenuLink src='/static/img/MASAS_logo_world.svg' URL="/legals">Legals</MenuLink>
 						<hr />
 						<MenuLink src='/static/img/MASAS_settings.svg' URL="/">Account Settings</MenuLink>
 						<hr />

@@ -4,12 +4,7 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsContent.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
 var { Body } = require("../UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
 
 var LegalsContent = React.createClass({
 	propTypes: {

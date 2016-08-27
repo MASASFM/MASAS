@@ -54769,7 +54769,7 @@ var HeaderDropdown = React.createClass({
 					React.createElement(
 						"span",
 						{ className: "username", id: "username-header" },
-						this.props.userData.username
+						this.props.userData.name ? this.props.userData.name : this.props.userData.username
 					)
 				),
 				React.createElement(
@@ -54783,7 +54783,7 @@ var HeaderDropdown = React.createClass({
 					React.createElement("hr", null),
 					React.createElement(
 						MenuLink,
-						{ src: "/static/img/MASAS_logo_world.svg", URL: "/" },
+						{ src: "/static/img/MASAS_logo_world.svg", URL: "/legals" },
 						"Legals"
 					),
 					React.createElement("hr", null),
@@ -55853,15 +55853,9 @@ var _require = require("./containers/LegalsContent.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-
 var _require2 = require("../UI/UI.jsx");
 
 var Body = _require2.Body;
-
-// var Template = (props) => {
-
-// }
 
 var LegalsContent = React.createClass({
 	displayName: "LegalsContent",
