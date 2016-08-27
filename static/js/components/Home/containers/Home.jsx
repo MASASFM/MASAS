@@ -6,7 +6,8 @@ var Home = {}
 Home.mapStateToProps = function(state) {
 	return {
 		user: state.appReducer.MASASuser,
-		currentPage: state.homeReducer.currentPage
+		currentPage: state.homeReducer.currentPage,
+		demoTimePickerNumer: state.homeReducer.timePickerDemo,
 	}
 }
 
@@ -19,7 +20,8 @@ Home.mapDispatchToProps = function(dispatch) {
 		goToLogin: () => {
 				browserHistory.push('/login')
 			},
-		goToPage: (pageNumber, totalNumberPages) => { dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber, totalNumberPages}) }
+		goToPage: (pageNumber, totalNumberPages) => { dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber, totalNumberPages}) },
+		updateTimePickerNumber: (number) => { dispatch({ type: "CHANGE_TIME_PICKER_DEMO", timePickerDemo: number })}
 	}
 }
 

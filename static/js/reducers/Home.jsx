@@ -5,13 +5,18 @@ exportVar.defaultState = {
 	unsplashArtistUsername: "jeromeprax",				// (string) unsplash username  to look up backgrounds against
 	unsplashArtistName: "Jérome Prax", 					// (string) unsplash name to display
 	backgroundURL: "https://source.unsplash.com/user/jeromeprax/1600x900",							// (string) unsplash URL of bg
+	timePickerDemo: 2,							// (int) discover number on TimePicker on Home page info part
 }
 const{ defaultState } = exportVar
 
 exportVar.homeReducer = function(state = defaultState, action) {
 	switch(action.type) {
+		case 'CHANGE_TIME_PICKER_DEMO':
+			return {
+				...state,
+				timePickerDemo: action.currentDiscover
+			}
 		case 'CHANGE_HOME_PAGE_NUMBER':
-			console.log(action)
 			// action.pageNumber: page to go to
 			// action.totalNumberPages: total pages on home page (passed as arg for now)
 			let pageNumber = action.pageNumber

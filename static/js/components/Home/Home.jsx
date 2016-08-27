@@ -12,25 +12,17 @@ var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
 
-
-const FounderInfoBox = (props) => {
-	return (
-			<div className="founder-info--wrapper">
-				<img src={ props.url } alt="founder picture" />
-				<div className="text--wrapper">
-					<div className="founder-name--wrapper">
-						<span className="name1">{ props.name1 }</span>
-						<span className="name2">{ props.name2 }</span>
-					</div>
-					<hr />
-					<span className="job">{ props.job }</span>
-				</div>
-			</div>
-		)
-}
-
-
 var Home = React.createClass({
+	propTypes: {
+		updateTimePickerNumber: React.PropTypes.func,
+		goToPage: React.PropTypes.func,
+		goToLogin: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		demoTimePickerNumber: React.PropTypes.number,
+		currentPage: React.PropTypes.number,
+		user: React.PropTypes.string,
+	},
+
 	getInitialState: function() {
 		return {
 			pageNumber: 1, 		// page number
@@ -39,12 +31,16 @@ var Home = React.createClass({
 
 	componentWillMount: function() {
 
-		this.props.updateTitle('', '0')		// 0 = menu icon; 1 = arrow back
+		this.props.updateTitle('Home', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
 	componentWillUnmount: function () {
 		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)
+	},
+
+	scrollToInfo: function() {
+		$("#multiPage--wrapper").animate({ scrollTop: $("#homepage-login").height() }, '500')
 	},
 
 	render: function() {
@@ -82,7 +78,7 @@ var Home = React.createClass({
 						""
 				}
 
-				<div className="multiPage--wrapper">
+				<div className="multiPage--wrapper" id="multiPage--wrapper">
 
 					<div className="page" id="homepage-login">
 						<UnsplashControls />
@@ -97,7 +93,7 @@ var Home = React.createClass({
 								subtitle="via Facebook"/>
 						</div>
 						
-						<Button isBigButton={ true } isSecondaryAction={ true }>Learn more</Button> 
+						<Button onClick={ this.scrollToInfo } isBigButton={ true } isSecondaryAction={ true }>Learn more</Button> 
 					</div>
 
 					<div className="page" id="masas-info--wrapper">
@@ -112,7 +108,14 @@ var Home = React.createClass({
 
 							<h2><span className="bullet">1</span>Discover</h2>
 							<div className="time-picker--wrapper" style={{ height: '90px', width: '150px' }}>
-								<TimePicker className="time-picker" showHashtag={ false } initialDiscover={ 2 } canvasId="time-picker" wrapperClassName="timePicker--wrapper" />
+								<TimePicker 
+									className="time-picker" 
+									currentDiscover={ this.props.demoTimePickerNumer }
+									onSliderChange={ this.props.updateTimePickerNumber }
+									showHashtag={ true }
+									initialDiscover={ 2 } 
+									canvasId="time-picker" 
+									wrapperClassName="timePicker--wrapper" />
 							</div>
 							<p>
 								MASAS members are continusly selecting the best trending indie music to gather you the finest tunes. From our joyful <em>#EarlyMorning</em> to our mystic <em>#Night</em> discover them through the time of the day.

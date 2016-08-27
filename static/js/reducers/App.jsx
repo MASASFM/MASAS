@@ -3,7 +3,7 @@ var React = require('react')
 let exportVar = {} 
 
 exportVar.defaultState = {
-	MASASuser: 0, 	// user login token
+	MASASuser: "", 	// user login token
 	MASASuserPk: null, 	
 	userData: {},	// user data (pk, username, email etc)
 	pageTitle: 'home', 
@@ -64,7 +64,6 @@ exportVar.appReducer = function(state = defaultState, action) {
 				MASASuserPk: action.pk
 			}
 		case 'LOGOUT':
-		console.log('LOGOUT!!')
 			return {
 				...state,
 				MASASuser: null,
@@ -72,7 +71,6 @@ exportVar.appReducer = function(state = defaultState, action) {
 				userData: {}
 			}
 		case 'UPDATE_PAGE_TITLE':
-			console.log(action.backArrowFunc)
 			// HANDLE PAGE TYPE
 			let pageType = action.pageType
 			if(typeof(pageType) !== "number")

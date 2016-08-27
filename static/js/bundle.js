@@ -55010,40 +55010,18 @@ var UnsplashControls = require("./UnsplashControls.jsx");
 
 var HomeCountdown = require("./HomeCountdown.jsx");
 
-var FounderInfoBox = function FounderInfoBox(props) {
-	return React.createElement(
-		"div",
-		{ className: "founder-info--wrapper" },
-		React.createElement("img", { src: props.url, alt: "founder picture" }),
-		React.createElement(
-			"div",
-			{ className: "text--wrapper" },
-			React.createElement(
-				"div",
-				{ className: "founder-name--wrapper" },
-				React.createElement(
-					"span",
-					{ className: "name1" },
-					props.name1
-				),
-				React.createElement(
-					"span",
-					{ className: "name2" },
-					props.name2
-				)
-			),
-			React.createElement("hr", null),
-			React.createElement(
-				"span",
-				{ className: "job" },
-				props.job
-			)
-		)
-	);
-};
-
 var Home = React.createClass({
 	displayName: "Home",
+
+	propTypes: {
+		updateTimePickerNumber: React.PropTypes.func,
+		goToPage: React.PropTypes.func,
+		goToLogin: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		demoTimePickerNumber: React.PropTypes.number,
+		currentPage: React.PropTypes.number,
+		user: React.PropTypes.string
+	},
 
 	getInitialState: function getInitialState() {
 		return {
@@ -55053,12 +55031,16 @@ var Home = React.createClass({
 	// page number
 	componentWillMount: function componentWillMount() {
 
-		this.props.updateTitle('', '0'); // 0 = menu icon; 1 = arrow back
+		this.props.updateTitle('Home', '0'); // 0 = menu icon; 1 = arrow back
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
+	},
+
+	scrollToInfo: function scrollToInfo() {
+		(0, _jquery2.default)("#multiPage--wrapper").animate({ scrollTop: (0, _jquery2.default)("#homepage-login").height() }, '500');
 	},
 
 	render: function render() {
@@ -55094,7 +55076,7 @@ var Home = React.createClass({
 			) : "",
 			React.createElement(
 				"div",
-				{ className: "multiPage--wrapper" },
+				{ className: "multiPage--wrapper", id: "multiPage--wrapper" },
 				React.createElement(
 					"div",
 					{ className: "page", id: "homepage-login" },
@@ -55114,7 +55096,7 @@ var Home = React.createClass({
 					),
 					React.createElement(
 						Button,
-						{ isBigButton: true, isSecondaryAction: true },
+						{ onClick: this.scrollToInfo, isBigButton: true, isSecondaryAction: true },
 						"Learn more"
 					)
 				),
@@ -55152,7 +55134,14 @@ var Home = React.createClass({
 						React.createElement(
 							"div",
 							{ className: "time-picker--wrapper", style: { height: '90px', width: '150px' } },
-							React.createElement(TimePicker, { className: "time-picker", showHashtag: false, initialDiscover: 2, canvasId: "time-picker", wrapperClassName: "timePicker--wrapper" })
+							React.createElement(TimePicker, {
+								className: "time-picker",
+								currentDiscover: this.props.demoTimePickerNumer,
+								onSliderChange: this.props.updateTimePickerNumber,
+								showHashtag: true,
+								initialDiscover: 2,
+								canvasId: "time-picker",
+								wrapperClassName: "timePicker--wrapper" })
 						),
 						React.createElement(
 							"p",
@@ -55751,7 +55740,8 @@ var Home = {};
 Home.mapStateToProps = function (state) {
 	return {
 		user: state.appReducer.MASASuser,
-		currentPage: state.homeReducer.currentPage
+		currentPage: state.homeReducer.currentPage,
+		demoTimePickerNumer: state.homeReducer.timePickerDemo
 	};
 };
 
@@ -55766,6 +55756,9 @@ Home.mapDispatchToProps = function (dispatch) {
 		},
 		goToPage: function goToPage(pageNumber, totalNumberPages) {
 			dispatch({ type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: pageNumber, totalNumberPages: totalNumberPages });
+		},
+		updateTimePickerNumber: function updateTimePickerNumber(number) {
+			dispatch({ type: "CHANGE_TIME_PICKER_DEMO", timePickerDemo: number });
 		}
 	};
 };
@@ -62038,7 +62031,7 @@ var React = require('react');
 var exportVar = {};
 
 exportVar.defaultState = {
-	MASASuser: 0, // user login token
+	MASASuser: "", // user login token
 	MASASuserPk: null,
 	userData: {}, // user data (pk, username, email etc)
 	pageTitle: 'home',
@@ -62093,14 +62086,12 @@ exportVar.appReducer = function () {
 				MASASuserPk: action.pk
 			});
 		case 'LOGOUT':
-			console.log('LOGOUT!!');
 			return _extends({}, state, {
 				MASASuser: null,
 				MASASuserPk: null,
 				userData: {}
 			});
 		case 'UPDATE_PAGE_TITLE':
-			console.log(action.backArrowFunc);
 			// HANDLE PAGE TYPE
 			var pageType = action.pageType;
 			if (typeof pageType !== "number") pageType = 0;
@@ -62331,8 +62322,9 @@ exportVar.defaultState = {
 	currentPage: 1, // (int) current page on the home page
 	unsplashArtistUsername: "jeromeprax", // (string) unsplash username  to look up backgrounds against
 	unsplashArtistName: "Jérome Prax", // (string) unsplash name to display
-	backgroundURL: "https://source.unsplash.com/user/jeromeprax/1600x900" };
-// (string) unsplash URL of bg
+	backgroundURL: "https://source.unsplash.com/user/jeromeprax/1600x900", // (string) unsplash URL of bg
+	timePickerDemo: 2 };
+// (int) discover number on TimePicker on Home page info part
 var defaultState = exportVar.defaultState;
 
 exportVar.homeReducer = function () {
@@ -62340,8 +62332,11 @@ exportVar.homeReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'CHANGE_TIME_PICKER_DEMO':
+			return _extends({}, state, {
+				timePickerDemo: action.currentDiscover
+			});
 		case 'CHANGE_HOME_PAGE_NUMBER':
-			console.log(action);
 			// action.pageNumber: page to go to
 			// action.totalNumberPages: total pages on home page (passed as arg for now)
 			var pageNumber = action.pageNumber;
