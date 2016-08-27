@@ -14,6 +14,8 @@ var Autocomplete = require('react-autocomplete')
 // }
 
 var CountryAutocomplete = React.createClass({
+	counter: 0,
+
 	propTypes: {
 		onChange: React.PropTypes.func,
 		userCity: React.PropTypes.object,
@@ -49,6 +51,21 @@ var CountryAutocomplete = React.createClass({
 				console.log(e)
 			}
 		})
+	},
+
+	onChange: function(event, value) {
+		this.counter = this.counter + 1
+		var { counter } = this
+
+		this.setState({ value })
+
+		window.setTimeout(() => {
+			if(counter === this.counter) {
+				this.setState({ loading: true })
+				this.getCities()
+				this.props.onChange("")
+			}
+		}, 500)
 	},
 
 	render: function() {
@@ -113,11 +130,7 @@ var CountryAutocomplete = React.createClass({
 						this.setState({ value: item.display_name, cities: [ item ]})
 						this.props.onChange(item.url)
 					}}
-					onChange={ (event, value) => {
-						this.setState({ value, loading: true })
-						this.getCities()
-						this.props.onChange("")
-					}}
+					onChange={ this.onChange }
 					renderItem={ (item, isHighlighted ) => (
 						<div
 							  className={isHighlighted ? "highlighted-item" : 'item'}

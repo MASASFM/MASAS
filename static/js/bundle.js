@@ -58885,6 +58885,8 @@ var Autocomplete = require('react-autocomplete');
 var CountryAutocomplete = React.createClass({
 	displayName: "CountryAutocomplete",
 
+	counter: 0,
+
 	propTypes: {
 		onChange: React.PropTypes.func,
 		userCity: React.PropTypes.object
@@ -58925,8 +58927,25 @@ var CountryAutocomplete = React.createClass({
 		});
 	},
 
-	render: function render() {
+	onChange: function onChange(event, value) {
 		var _this2 = this;
+
+		this.counter = this.counter + 1;
+		var counter = this.counter;
+
+		this.setState({ value: value });
+
+		window.setTimeout(function () {
+			if (counter === _this2.counter) {
+				_this2.setState({ loading: true });
+				_this2.getCities();
+				_this2.props.onChange("");
+			}
+		}, 500);
+	},
+
+	render: function render() {
+		var _this3 = this;
 
 		var styles = {
 			item: {
@@ -58997,14 +59016,10 @@ var CountryAutocomplete = React.createClass({
 				}
 				// wrapperStyle={ styles.wrapperStyle }
 				, onSelect: function onSelect(value, item) {
-					_this2.setState({ value: item.display_name, cities: [item] });
-					_this2.props.onChange(item.url);
+					_this3.setState({ value: item.display_name, cities: [item] });
+					_this3.props.onChange(item.url);
 				},
-				onChange: function onChange(event, value) {
-					_this2.setState({ value: value, loading: true });
-					_this2.getCities();
-					_this2.props.onChange("");
-				},
+				onChange: this.onChange,
 				renderItem: function renderItem(item, isHighlighted) {
 					return React.createElement(
 						"div",
