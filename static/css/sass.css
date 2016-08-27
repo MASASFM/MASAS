@@ -3182,9 +3182,6 @@ html {
   right: 0;
   position: absolute;
   z-index: -1;
-  transition-property: all;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
   opacity: 0.6; }
 
 .body--background.artist-page-bg > .bg-image {
