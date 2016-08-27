@@ -57399,7 +57399,7 @@ var LoginForm = React.createClass({
 	},
 
 	componentWillMount: function componentWillMount() {
-		this.props.updateTitle('Login', '0');
+		if (this.props.route !== undefined) if (this.props.route.path === "login") this.props.updateTitle('Login', '0');
 	},
 
 	render: function render() {

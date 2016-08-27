@@ -11,7 +11,7 @@ var LoginForm = require("./LoginForm.jsx")
 
 // var Login = (props) => {
 var Login = React.createClass({
-	componentWillMount: function() {
+	componentDidMount: function() {
 		this.props.updateTitle()
 	},
 
