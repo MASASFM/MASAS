@@ -26,7 +26,7 @@ var Button = React.createClass({
 
 	render: function() {
 		return (
-			<div className={"MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") +  (this.props.noBorders ? " no-borders " : "") } onClick={ !this.props.disabled ? this.props.onClick : ( () => {} ) }>
+			<div className={"MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") +  (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : "")} onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }>
 				<div className={"wrapper"}>
 					{this.props.children}
 				</div>

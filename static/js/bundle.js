@@ -59193,7 +59193,7 @@ var Profile = React.createClass({
 				{ className: "upload-button" },
 				React.createElement(
 					Button,
-					{ onClick: goToURL.bind(null, "/upload"), isSecondaryAction: true, isDisabled: true },
+					{ onClick: function onClick() {}, isSecondaryAction: true, isDisabled: true },
 					"This user has no sounds"
 				)
 			)
@@ -60606,7 +60606,7 @@ var Button = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : ""), onClick: !this.props.disabled ? this.props.onClick : function () {} },
+			{ className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : ""), onClick: !this.props.isDisabled ? this.props.onClick : function () {} },
 			React.createElement(
 				"div",
 				{ className: "wrapper" },

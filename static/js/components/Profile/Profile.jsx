@@ -134,7 +134,7 @@ var Profile = React.createClass({
 					:
 					<div className="no-songs--wrapper">
 						<div className="upload-button">
-							<Button onClick={goToURL.bind(null, "/upload")} isSecondaryAction={ true } isDisabled={ true }>This user has no sounds</Button>
+							<Button onClick={ () => {} } isSecondaryAction={ true } isDisabled={ true }>This user has no sounds</Button>
 						</div>
 					</div>
 				)
