@@ -179,7 +179,6 @@ var TimePicker = React.createClass({
 	},
 
 	render: function() {
-		console.log(this.props)
 		if(!this.renderNumber)
 			this.renderNumber = 1
 		else if(this.renderNumber < 5)

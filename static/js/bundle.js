@@ -54653,7 +54653,7 @@ var Header = React.createClass({
 						"div",
 						{ className: "box" },
 						this.props.pageType === 0 ? React.createElement("img", { onClick: this.props.onSetNavSidebarOpen, src: "/static/img/MASAS_hamburger_menu.svg", atl: "menu", className: "menu-icon" }) : React.createElement("img", { onClick: function onClick() {
-								console.log('clock');_this.props.backArrowFunc();
+								_this.props.backArrowFunc();
 							}, src: "/static/img/MASAS_arrow_left.svg", atl: "back", className: "menu-icon" })
 					)
 				),
@@ -57944,7 +57944,6 @@ var MASAS_mixins = {};
 
 MASAS_mixins.MobileBlurBackground = {
 	componentDidMount: function componentDidMount() {
-		console.log("hey");
 
 		// add blur class to background
 		(0, _jquery2.default)('#body--background').addClass('blurred-mobile');
@@ -61124,7 +61123,6 @@ var TimePicker = React.createClass({
 	},
 
 	render: function render() {
-		console.log(this.props);
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
 		// accounting for sun icon size

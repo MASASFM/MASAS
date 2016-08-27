@@ -4,7 +4,6 @@ let MASAS_mixins = {}
 
 MASAS_mixins.MobileBlurBackground = {
 	componentDidMount: function() {
-		console.log("hey")
 
 		// add blur class to background
 		$('#body--background').addClass('blurred-mobile')
