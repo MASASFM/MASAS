@@ -57753,7 +57753,6 @@ ajaxCalls.updateProfilePicture = function (userDict) {
 	var userPk = userDict.userPk;
 
 	var header = "Bearer " + userToken;
-	console.log("BEARER =>", header);
 
 	if (typeof FB !== "undefined") $.ajax({
 		type: 'PATCH',
@@ -57765,12 +57764,8 @@ ajaxCalls.updateProfilePicture = function (userDict) {
 		data: JSON.stringify({
 			avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
 		}),
-		success: function success(resp) {
-			console.log(resp);
-		},
-		error: function error(err) {
-			console.warn(err);
-		}
+		success: function success(resp) {},
+		error: function error(err) {}
 	});
 };
 
@@ -57786,15 +57781,12 @@ ajaxCalls.convertToken = function (token) {
 			token: FB.getAccessToken()
 		},
 		success: function success(data) {
-			console.log(data);
-
 			logInWithToken(dispatch, data.access_token);
 			browserHistory.push('/');
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture);
 			updateAuthCookie(data.access_token);
 		},
 		error: function error(err) {
-			console.log(err);
 			dispatch({ type: 'LOGOUT' });
 		}
 	});
@@ -57811,16 +57803,13 @@ ajaxCalls.getUserPk = function (userToken) {
 			"Authorization": header
 		},
 		success: function success(data) {
-			console.log(data);
 			var pk = data.userPk;
 
 			dispatch({ type: 'UPDATE_USER_PK', pk: pk });
 
 			if (callbackFunc) callbackFunc({ userToken: userToken, userPk: data.userPk });
 		},
-		error: function error(err) {
-			console.log(err);
-		}
+		error: function error(err) {}
 	});
 };
 
@@ -58027,7 +58016,7 @@ var NavSidebar = React.createClass({
 				{ className: "content" },
 				React.createElement(
 					"div",
-					{ className: "search-input", style: this.props.MASASuser !== "" ? { visibility: "hidden" } : {} },
+					{ className: "search-input", style: this.props.MASASuser === "" ? { visibility: "hidden" } : {} },
 					React.createElement(Textbox, null)
 				),
 				React.createElement(
@@ -62010,8 +61999,8 @@ exportVar.appReducer = function () {
 			});
 		case 'LOGOUT':
 			return _extends({}, state, {
-				MASASuser: null,
-				MASASuserPk: null,
+				MASASuser: defaultState.MASASuser,
+				MASASuserPk: defaultState.MASASuser,
 				userData: {}
 			});
 		case 'UPDATE_PAGE_TITLE':

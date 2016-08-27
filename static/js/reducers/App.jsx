@@ -66,8 +66,8 @@ exportVar.appReducer = function(state = defaultState, action) {
 		case 'LOGOUT':
 			return {
 				...state,
-				MASASuser: null,
-				MASASuserPk: null,
+				MASASuser: defaultState.MASASuser,
+				MASASuserPk: defaultState.MASASuser,
 				userData: {}
 			}
 		case 'UPDATE_PAGE_TITLE':
