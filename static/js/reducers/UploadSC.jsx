@@ -3,8 +3,6 @@ var SC = require('soundcloud')
 let exportVar = {}
 
 exportVar.defaultState = {
-	// choosingTime: {},
-	// isConnectedSoundcloud: true,
 	choosingTime: null,				// (object)  song info from SC (if not null => show picking time screen)
 	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT

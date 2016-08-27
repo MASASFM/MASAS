@@ -36,14 +36,11 @@ var UploadSC = React.createClass({
 
 	getUserTracks: function() {
 		var success =  (data) => {
-				console.log(data)
-
 				this.props.updateMasasUserTracks(data.songs)
 				this.getUserSCTracks()
 			}
 
 		var error = (err) => {
-				console.warn(err)
 			}
 
 		this.props.getUserTracks(this.props.userPk, success, error)

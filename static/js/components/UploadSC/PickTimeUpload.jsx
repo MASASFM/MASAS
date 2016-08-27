@@ -39,7 +39,6 @@ var PickTimeUpload = React.createClass({
 				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.pickTimeUpload + "/"
 			},
 			success: (data) => {
-				console.log(data)
 				this.props.emitNotification('song synced ;)')
 				// CLOSE MODAL 
 				this.props.toogleModal()
@@ -49,7 +48,6 @@ var PickTimeUpload = React.createClass({
 
 			},
 			error: (err) => {
-				console.log(err)
 				// CLOSE MODAL 
 				this.props.toogleModal()
 

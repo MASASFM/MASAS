@@ -6,9 +6,6 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/ModalContent
 
 var { Link, Checkbox, Button } = require("../UI/UI.jsx")
 
-// var Template = (props) => {
-
-// }
 
 var ModalContent = React.createClass({
 	propTypes: {
@@ -19,7 +16,6 @@ var ModalContent = React.createClass({
 	},
 
 	render: function() {
-		console.log((this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked))
 		return (
 			<div className="confirm-ownership--wrapper">
 				<div className="lock-icon--wrapper">

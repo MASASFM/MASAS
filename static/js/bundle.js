@@ -61209,10 +61209,6 @@ var Link = _require2.Link;
 var Checkbox = _require2.Checkbox;
 var Button = _require2.Button;
 
-// var Template = (props) => {
-
-// }
-
 var ModalContent = React.createClass({
 	displayName: "ModalContent",
 
@@ -61223,7 +61219,6 @@ var ModalContent = React.createClass({
 	componentWillMount: function componentWillMount() {},
 
 	render: function render() {
-		console.log(this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked);
 		return React.createElement(
 			"div",
 			{ className: "confirm-ownership--wrapper" },
@@ -61348,7 +61343,6 @@ var PickTimeUpload = React.createClass({
 				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.pickTimeUpload + "/"
 			},
 			success: function success(data) {
-				console.log(data);
 				_this.props.emitNotification('song synced ;)');
 				// CLOSE MODAL
 				_this.props.toogleModal();
@@ -61357,7 +61351,6 @@ var PickTimeUpload = React.createClass({
 				_this.props.closeWindow();
 			},
 			error: function error(err) {
-				console.log(err);
 				// CLOSE MODAL
 				_this.props.toogleModal();
 
@@ -61482,15 +61475,11 @@ var UploadSC = React.createClass({
 		var _this = this;
 
 		var success = function success(data) {
-			console.log(data);
-
 			_this.props.updateMasasUserTracks(data.songs);
 			_this.getUserSCTracks();
 		};
 
-		var error = function error(err) {
-			console.warn(err);
-		};
+		var error = function error(err) {};
 
 		this.props.getUserTracks(this.props.userPk, success, error);
 	},
@@ -61728,8 +61717,6 @@ ajaxCalls.getUserTracks = function (userPk, success, error) {
 	$.ajax({
 		type: "GET",
 		url: 'api/users/' + userPk + '/',
-
-		// -u"<client_id>:<client_secret>"
 		success: success,
 		error: error
 	});
@@ -62550,8 +62537,6 @@ var SC = require('soundcloud');
 var exportVar = {};
 
 exportVar.defaultState = {
-	// choosingTime: {},
-	// isConnectedSoundcloud: true,
 	choosingTime: null, // (object)  song info from SC (if not null => show picking time screen)
 	isConnectedSoundcloud: SC.isConnected(), // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
