@@ -38,7 +38,6 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 	const userPk = userDict.userPk
 
 	var header = "Bearer " + userToken
-	console.log("BEARER =>", header)
 
 	if(typeof(FB) !== "undefined")
 		$.ajax({
@@ -52,10 +51,8 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 				avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture",
 			}),
 			success: (resp) => {
-				console.log(resp)
 			},
 			error: (err) => {
-				console.warn(err)
 			}
 		})
 }
@@ -74,15 +71,12 @@ ajaxCalls.convertToken = (token) => {
 			token: FB.getAccessToken(),
 		},
 		success: (data) => { 
-			console.log(data)
-
 			logInWithToken(dispatch, data.access_token)
 			browserHistory.push('/')
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture)	
 			updateAuthCookie(data.access_token)
 		},
 		error: (err) => { 
-			console.log(err) 
 			dispatch({type:'LOGOUT'})
 		}
 	})
@@ -97,7 +91,6 @@ ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 			"Authorization": header,
 		},
 		success: (data) => {
-			console.log(data)
 			var pk = data.userPk
 
 			dispatch({type: 'UPDATE_USER_PK', pk: pk})
@@ -106,7 +99,6 @@ ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 				callbackFunc({ userToken, userPk: data.userPk})
 		},
 		error: (err) => {
-			console.log(err)
 		},
 	})
 }
