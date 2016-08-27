@@ -1,10 +1,11 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+var ReactRedux = require("react-redux")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/Body.jsx")
 
 var Body = React.createClass({
 	componentWillMount: function() {
-		// this.props.updateTitle()
 	},
 
 	render: function() {
@@ -50,4 +51,7 @@ var Body = React.createClass({
 })
 
 
-module.exports = Body
+module.exports = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Body)
