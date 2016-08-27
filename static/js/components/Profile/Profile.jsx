@@ -55,6 +55,10 @@ var Profile = React.createClass({
 					
 					// forcing get soundcloud info after updating public profile
 					setTimeout(() => {
+						if(this.props.publicProfileInfo.name)
+							this.props.updateTitle(this.props.publicProfileInfo.name + "'s profile", '0')
+						else
+							this.props.updateTitle(this.props.publicProfileInfo.username + "'s profile", '0')
 						this.getSCinfo()
 					}, 0)
 				},
@@ -62,6 +66,8 @@ var Profile = React.createClass({
 					console.log(e)
 				}
 			})
+		else
+			this.props.updateTitle('My Profile', '0')
 	},
 
 	componentWillUnmount: function() {
@@ -112,20 +118,25 @@ var Profile = React.createClass({
 
 		if (!songs.length) 
 			return (
-				<div className="no-songs--wrapper">
-					<div className="image--wrapper">
-						<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
-						<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
-						<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
-					</div>
-					<div className="upload-button">
-						{ isObjectEmpty(this.props.publicProfileInfo) ?
+				isObjectEmpty(this.props.publicProfileInfo) ?
+					<div className="no-songs--wrapper">
+						 {/*
+						 <div className="image--wrapper">
+							<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
+							<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
+							<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
+						</div>
+						*/}
+						<div className="upload-button">
 							<Button onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
-							:
-							<div>This user has no sounds</div>
-						}
+						</div>
 					</div>
-				</div>
+					:
+					<div className="no-songs--wrapper">
+						<div className="upload-button">
+							<Button onClick={goToURL.bind(null, "/upload")} isSecondaryAction={ true } isDisabled={ true }>This user has no sounds</Button>
+						</div>
+					</div>
 				)
 		else {
 			var songs = {}
@@ -162,8 +173,10 @@ var Profile = React.createClass({
 			})
 
 			return (
-				<div className="track-table--wrapper">
-					{songList}
+				<div>
+					<div className="track-table--wrapper">
+						{songList}
+					</div>
 				</div>
 				)
 		}
@@ -349,7 +362,11 @@ var Profile = React.createClass({
 			occupation = this.props.publicProfileInfo.occupation
 		}
 
-		 
+		 var isProfileEmpty = false
+
+		 if(showProfile)
+			 if(link_set.length === 0 && city === null && occupation === null)
+			 	isProfileEmpty = true
 
 		if(showProfile) {
 			return (
@@ -368,7 +385,11 @@ var Profile = React.createClass({
 										}
 									</div>
 								}
-								<img src={ avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+								{ avatar_url ?
+									<img src={ avatar_url + "?width=400" } alt="profile picture" className="profile-picture" />
+									:
+									<div className="profile-picture" ></div>
+								}
 								<div className="tab--wrapper">
 									<div className="tab" style={{ borderBottom: '4px solid white'}}>
 										info
@@ -407,7 +428,7 @@ var Profile = React.createClass({
 												</span>
 											</div>
 										</div>
-										<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") }>
+										<div className={ "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") } style={ isProfileEmpty ? { display: "none" } : {} }>
 											<div className="social-links right">
 												{
 													this.checkLink("soundcloud.com") !== "" ?
@@ -435,20 +456,12 @@ var Profile = React.createClass({
 													<span className="city">
 														{ 
 															city ?
-																<Marquee>{ city.display_name.substring(0, city.display_name.indexOf(',')) + " " }</Marquee>
+																<Marquee>{ city.display_name.substring(0, city.display_name.indexOf(',')) + " - " + city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length) }</Marquee>
 															:
 																""
 														}
 													</span>
-													-
-													<span className="country">
-														{ 
-															city ?
-																<Marquee>{ city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length) }</Marquee>
-															:
-																""
-														}
-													</span>
+											
 												</div>
 											</div>
 											<div className="social-links left">
@@ -504,9 +517,7 @@ var Profile = React.createClass({
 							<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
 								<ProfileEditLinks show={ !this.props.route.publicProfile } />
 							</div>
-							<div>
 							{ this.displaySongs() }
-							</div>
 						</div>
 
 					</ProfileWrapper>

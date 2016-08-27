@@ -59103,13 +59103,14 @@ var Profile = React.createClass({
 
 				// forcing get soundcloud info after updating public profile
 				setTimeout(function () {
+					if (_this.props.publicProfileInfo.name) _this.props.updateTitle(_this.props.publicProfileInfo.name + "'s profile", '0');else _this.props.updateTitle(_this.props.publicProfileInfo.username + "'s profile", '0');
 					_this.getSCinfo();
 				}, 0);
 			},
 			error: function error(e) {
 				console.log(e);
 			}
-		});
+		});else this.props.updateTitle('My Profile', '0');
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
@@ -59157,26 +59158,27 @@ var Profile = React.createClass({
 
 		if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
 
-		if (!songs.length) return React.createElement(
+		if (!songs.length) return isObjectEmpty(this.props.publicProfileInfo) ? React.createElement(
 			"div",
 			{ className: "no-songs--wrapper" },
 			React.createElement(
 				"div",
-				{ className: "image--wrapper" },
-				React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", className: "SC-logo", alt: "soundcloud sync" }),
-				React.createElement("img", { src: "/static/img/MASAS_icon_synch_separator.svg", className: "sync-icon", alt: "soundcloud sync" }),
-				React.createElement("img", { src: "/static/img/MASAS_logo-M.svg", className: "MASAS-logo", alt: "soundcloud sync" })
-			),
-			React.createElement(
-				"div",
 				{ className: "upload-button" },
-				isObjectEmpty(this.props.publicProfileInfo) ? React.createElement(
+				React.createElement(
 					Button,
 					{ onClick: goToURL.bind(null, "/upload") },
 					"Upload my first sound"
-				) : React.createElement(
-					"div",
-					null,
+				)
+			)
+		) : React.createElement(
+			"div",
+			{ className: "no-songs--wrapper" },
+			React.createElement(
+				"div",
+				{ className: "upload-button" },
+				React.createElement(
+					Button,
+					{ onClick: goToURL.bind(null, "/upload"), isSecondaryAction: true, isDisabled: true },
 					"This user has no sounds"
 				)
 			)
@@ -59212,8 +59214,12 @@ var Profile = React.createClass({
 
 			return React.createElement(
 				"div",
-				{ className: "track-table--wrapper" },
-				songList
+				null,
+				React.createElement(
+					"div",
+					{ className: "track-table--wrapper" },
+					songList
+				)
 			);
 		}
 	},
@@ -59390,6 +59396,10 @@ var Profile = React.createClass({
 			occupation = this.props.publicProfileInfo.occupation;
 		}
 
+		var isProfileEmpty = false;
+
+		if (showProfile) if (link_set.length === 0 && city === null && occupation === null) isProfileEmpty = true;
+
 		if (showProfile) {
 			return React.createElement(
 				"div",
@@ -59421,7 +59431,7 @@ var Profile = React.createClass({
 									)
 								) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
 							),
-							React.createElement("img", { src: avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }),
+							avatar_url ? React.createElement("img", { src: avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }) : React.createElement("div", { className: "profile-picture" }),
 							React.createElement(
 								"div",
 								{ className: "tab--wrapper" },
@@ -59483,7 +59493,7 @@ var Profile = React.createClass({
 									),
 									React.createElement(
 										"div",
-										{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : "") },
+										{ className: "social--wrapper " + (this.props.isEditingProfile ? "hidden" : ""), style: isProfileEmpty ? { display: "none" } : {} },
 										React.createElement(
 											"div",
 											{ className: "social-links right" },
@@ -59519,17 +59529,7 @@ var Profile = React.createClass({
 													city ? React.createElement(
 														Marquee,
 														null,
-														city.display_name.substring(0, city.display_name.indexOf(',')) + " "
-													) : ""
-												),
-												"-",
-												React.createElement(
-													"span",
-													{ className: "country" },
-													city ? React.createElement(
-														Marquee,
-														null,
-														city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length)
+														city.display_name.substring(0, city.display_name.indexOf(',')) + " - " + city.display_name.substring(city.display_name.lastIndexOf(',') + 1, city.display_name.length)
 													) : ""
 												)
 											)
@@ -59615,11 +59615,7 @@ var Profile = React.createClass({
 							{ className: "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "") },
 							React.createElement(ProfileEditLinks, { show: !this.props.route.publicProfile })
 						),
-						React.createElement(
-							"div",
-							null,
-							this.displaySongs()
-						)
+						this.displaySongs()
 					)
 				)
 			);

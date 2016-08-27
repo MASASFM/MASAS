@@ -18,6 +18,7 @@
 	.profile-picture
 		height: 10rem
 		width: 10rem
+		background-color: rgba(0,0,0,0.5)
 
 	.profile-info--wrapper
 		position: relative
@@ -119,7 +120,7 @@
 						.city
 							.MASAS_marquee--wrapper2
 								display: flex
-								justify-content: flex-end
+								justify-content: center
 
 						.country
 							.MASAS_marquee--wrapper2
@@ -196,9 +197,10 @@
 		.no-songs--wrapper
 			display: flex
 			flex: 1
-			max-width: 13rem
+			// max-width: 13rem
 			flex-direction: column
 			justify-content: center
+			align-items: center
 
 		.no-songs--wrapper
 			img
@@ -206,7 +208,6 @@
 
 			.upload-button
 				align-self: center
-				width: 100%
 				padding-top: 0.5rem
 
 			.image--wrapper
@@ -253,6 +254,7 @@
 				width: $info-wrapper-height
 				height: $info-wrapper-height
 				border: 2px solid white
+				background-color: rgba(0,0,0,0.7)
 
 			.text--wrapper.is-editing-profile
 				height: 120%
@@ -280,6 +282,7 @@
 					align-items: center
 					justify-content: space-around
 					height: 5rem
+					width: 10rem
 
 					.username
 						font-family: Lato-Semibold
