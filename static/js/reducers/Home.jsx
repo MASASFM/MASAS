@@ -14,7 +14,7 @@ exportVar.homeReducer = function(state = defaultState, action) {
 		case 'CHANGE_TIME_PICKER_DEMO':
 			return {
 				...state,
-				timePickerDemo: action.currentDiscover
+				timePickerDemo: action.timePickerDemo
 			}
 		case 'CHANGE_HOME_PAGE_NUMBER':
 			// action.pageNumber: page to go to

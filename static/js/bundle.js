@@ -61138,6 +61138,7 @@ var TimePicker = React.createClass({
 	},
 
 	render: function render() {
+		console.log(this.props);
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
 		// accounting for sun icon size
@@ -62269,7 +62270,7 @@ exportVar.homeReducer = function () {
 	switch (action.type) {
 		case 'CHANGE_TIME_PICKER_DEMO':
 			return _extends({}, state, {
-				timePickerDemo: action.currentDiscover
+				timePickerDemo: action.timePickerDemo
 			});
 		case 'CHANGE_HOME_PAGE_NUMBER':
 			// action.pageNumber: page to go to
