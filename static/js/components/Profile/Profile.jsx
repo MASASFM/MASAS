@@ -63,7 +63,6 @@ var Profile = React.createClass({
 					}, 0)
 				},
 				error: (e) => {
-					console.log(e)
 				}
 			})
 		else

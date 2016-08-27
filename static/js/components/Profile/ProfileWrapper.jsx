@@ -10,8 +10,6 @@ var ProfileWrapper = React.createClass({
 	mixins: [ MobileBlurBackground ],
 
 	componentWillMount: function() {
-		// this.props.updateTitle()
-		console.log(MobileBlurBackground)
 	},
 
 	render: function() {

@@ -38,7 +38,6 @@ var RemoveSongModal = React.createClass({
 			},
 			error: (e) => {
 				updateNotificationBar("Error")
-				console.log(e)
 			}
 		})
 	},

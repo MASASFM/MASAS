@@ -80,13 +80,12 @@ var TrackItem = React.createClass({
 
 	toggleOpenTray: function() {
 		var el = this.refs.trackWrapper
-		console.log(el.className)
+
 		if(el.className.includes(" open")) {
 			el.className = el.className.replace(" open", "")
 		} else {
 			el.className = el.className + " open"
 		}
-		console.log(el.className)
 	},
 
 	openChangeMoodModal: function() {

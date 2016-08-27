@@ -9,8 +9,6 @@ ajaxCalls.updateProfileInfo = () => {
 
 	const header = "Bearer " + MASASuser
 
-	console.log("user data: =>", userData)
-
 	$.ajax({
 		type: 'GET',
 		url: userData.url,
@@ -19,10 +17,8 @@ ajaxCalls.updateProfileInfo = () => {
 		},
 		success: (userData) => {
 			dispatch({ type: 'UPDATE_USER_DATA', userData })
-			console.log(userData)
 		},
 		error: (e) => {
-			console.warn(e)
 		}
 	})
 }

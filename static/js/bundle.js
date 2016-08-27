@@ -59051,9 +59051,7 @@ var Profile = React.createClass({
 					_this.getSCinfo();
 				}, 0);
 			},
-			error: function error(e) {
-				console.log(e);
-			}
+			error: function error(e) {}
 		});else this.props.updateTitle('My Profile', '0');
 	},
 
@@ -59613,8 +59611,6 @@ var ProfileEdit = React.createClass({
 
 	// should comp be shown
 	componentDidMount: function componentDidMount() {
-		console.log("mounting");
-		console.log(this.props.userData);
 		if (this.props.userData.city !== null) this.props.updateTextboxValues({ city: this.props.userData.city.url });
 
 		if (this.props.userData.name !== "") this.props.updateTextboxValues({ name: this.props.userData.name });
@@ -59789,10 +59785,7 @@ var ProfileWrapper = React.createClass({
 
 	mixins: [_MASAS_mixins.MobileBlurBackground],
 
-	componentWillMount: function componentWillMount() {
-		// this.props.updateTitle()
-		console.log(_MASAS_mixins.MobileBlurBackground);
-	},
+	componentWillMount: function componentWillMount() {},
 
 	render: function render() {
 		var marginHeight = '4rem';
@@ -59921,7 +59914,6 @@ var RemoveSongModal = React.createClass({
 			},
 			error: function error(e) {
 				updateNotificationBar("Error");
-				console.log(e);
 			}
 		});
 	},
@@ -60061,13 +60053,12 @@ var TrackItem = React.createClass({
 
 	toggleOpenTray: function toggleOpenTray() {
 		var el = this.refs.trackWrapper;
-		console.log(el.className);
+
 		if (el.className.includes(" open")) {
 			el.className = el.className.replace(" open", "");
 		} else {
 			el.className = el.className + " open";
 		}
-		console.log(el.className);
 	},
 
 	openChangeMoodModal: function openChangeMoodModal() {
@@ -60192,8 +60183,6 @@ ajaxCalls.updateProfileInfo = function () {
 
 	var header = "Bearer " + MASASuser;
 
-	console.log("user data: =>", userData);
-
 	$.ajax({
 		type: 'GET',
 		url: userData.url,
@@ -60202,11 +60191,8 @@ ajaxCalls.updateProfileInfo = function () {
 		},
 		success: function success(userData) {
 			dispatch({ type: 'UPDATE_USER_DATA', userData: userData });
-			console.log(userData);
 		},
-		error: function error(e) {
-			console.warn(e);
-		}
+		error: function error(e) {}
 	});
 };
 
