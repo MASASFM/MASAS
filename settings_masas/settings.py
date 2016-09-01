@@ -247,6 +247,10 @@ SOUNDCLOUD = {
         'SOUNDCLOUD_REDIRECT_URI',
         'http://dev2-masas.rhcloud.com/sc-callback',
     ),
+    'FETCH_URI': os.environ.get(
+        'SOUNDCLOUD_FETCH_URI',
+        'me/favorites'
+        )
 }
 
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
