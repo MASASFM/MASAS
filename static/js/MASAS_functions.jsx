@@ -143,7 +143,7 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
 			if(hasAcceptedTerms) {
-				if(canLogIn) {
+				//if(canLogIn) {		//		no checking for 'invitation pending'
 					// update profile picture
 					// MASAS_functions.updateUserEmail({ userToken, userPk, userData })
 					MASAS_functions.updateProfilePicture({ userToken, userPk, userData })
@@ -153,12 +153,12 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 					dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
-				} else {
-					// show invitation pending component
-					var InvitationPending = require("./components/Login/InvitationPending.jsx")
-					dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <InvitationPending /> })
-					dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-				}
+				// } else {
+				// 	// show invitation pending component
+				// 	var InvitationPending = require("./components/Login/InvitationPending.jsx")
+				// 	dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <InvitationPending /> })
+				// 	dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
+				// }
 			} else {
 				// show terms and conditions form
 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx")
