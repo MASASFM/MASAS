@@ -86,7 +86,7 @@ ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
-		url: 'api/check-user/',	
+		url: '/api/check-user/',	
 		headers: {
 			"Authorization": header,
 		},
