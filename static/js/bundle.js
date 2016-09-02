@@ -61165,9 +61165,10 @@ var Button = React.createClass({
 		isBigButton: React.PropTypes.bool, // is it a big button
 		isSecondaryAction: React.PropTypes.bool, // is it a secondary button
 		onClick: React.PropTypes.func.isRequired, // what to do when user clicks on button
-		isDisabled: React.PropTypes.bool },
+		isDisabled: React.PropTypes.bool, // is button disabled
+		wrapperStyle: React.PropTypes.object },
 
-	// is button disabled
+	// styles associated with button wrapper
 	componentWillMount: function componentWillMount() {},
 
 	getDefaultProps: function getDefaultProps() {
@@ -61180,7 +61181,10 @@ var Button = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : ""), onClick: !this.props.isDisabled ? this.props.onClick : function () {} },
+			{
+				className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : ""),
+				onClick: !this.props.isDisabled ? this.props.onClick : function () {},
+				style: this.props.wrapperStyle },
 			React.createElement(
 				"div",
 				{ className: "wrapper" },
@@ -61915,10 +61919,7 @@ var ModalContent = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "lock-icon--wrapper" },
-				this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked ? React.createElement("img", {
-					src: "/static/img/MASAS_icon_unlock.svg",
-					className: "lock-icon",
-					alt: "lock icon" }) : React.createElement("img", {
+				React.createElement("img", {
 					src: "/static/img/MASAS_icon_lock.svg",
 					className: "lock-icon",
 					alt: "lock icon" })
@@ -61927,33 +61928,28 @@ var ModalContent = React.createClass({
 				"div",
 				{ className: "checkbox--wrapper" },
 				React.createElement(
-					Checkbox,
-					{
-						initChecked: this.props.checkbox1_checked,
-						className: "checkbox-row",
-						onChange: this.props.toogleCheckbox1 },
-					"I certify that I have the explicit permission from all right-holders of this sound to aggree to the ",
+					"p",
+					null,
+					"I certify that:",
 					React.createElement(
-						Link,
-						{ to: "/" },
-						"terms of uses"
+						"ul",
+						{ className: "bullets", type: "disc" },
+						React.createElement(
+							"li",
+							null,
+							"I have the explicit permission from all right-holders of this sound to aggree to the terms of uses"
+						),
+						React.createElement(
+							"li",
+							null,
+							"this track is not a spam or commercial"
+						),
+						React.createElement(
+							"li",
+							null,
+							"no royalties will be paid to any of the right-holders of this sound"
+						)
 					)
-				),
-				React.createElement(
-					Checkbox,
-					{
-						initChecked: this.props.checkbox2_checked,
-						className: "checkbox-row",
-						onChange: this.props.toogleCheckbox2 },
-					"I certify that this track is not a spam or commercial"
-				),
-				React.createElement(
-					Checkbox,
-					{
-						initChecked: this.props.checkbox3_checked,
-						className: "checkbox-row",
-						onChange: this.props.toogleCheckbox3 },
-					"I certify that no royalties will be paid to any of the right-holders of this sound"
 				),
 				React.createElement(
 					"div",
@@ -61961,12 +61957,21 @@ var ModalContent = React.createClass({
 					React.createElement(
 						Button,
 						{
-							isDisabled: this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked ? false : true,
 							isBigButton: true,
-							isSecondaryAction: this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked ? false : true,
+							isSecondaryAction: true,
+							wrapperStyle: { marginRight: '1rem' },
+							onClick: this.props.toogleIsModalOpened,
+							className: "submit" },
+						"Cancel"
+					),
+					React.createElement(
+						Button,
+						{
+							isBigButton: true,
+							isSecondaryAction: false,
 							onClick: this.props.onSubmit,
 							className: "submit" },
-						"Upload my sound on MASAS"
+						"Upload"
 					)
 				)
 			)
@@ -62419,25 +62424,14 @@ var ModalContent = {};
 
 // Which part of the Redux global state does our component want to receive as props?
 ModalContent.mapStateToProps = function (state) {
-	return {
-		checkbox1_checked: state.uploadSCReducer.checkbox1_checked,
-		checkbox2_checked: state.uploadSCReducer.checkbox2_checked,
-		checkbox3_checked: state.uploadSCReducer.checkbox3_checked
-	};
+	return {};
 };
 
 // Which action creators does it want to receive by props?
 ModalContent.mapDispatchToProps = function (dispatch) {
 	return {
-
-		toogleCheckbox1: function toogleCheckbox1() {
-			return dispatch({ type: 'TOOGLE_CHECKBOX_1' });
-		},
-		toogleCheckbox2: function toogleCheckbox2() {
-			return dispatch({ type: 'TOOGLE_CHECKBOX_2' });
-		},
-		toogleCheckbox3: function toogleCheckbox3() {
-			return dispatch({ type: 'TOOGLE_CHECKBOX_3' });
+		toogleIsModalOpened: function toogleIsModalOpened() {
+			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
 		}
 	};
 };

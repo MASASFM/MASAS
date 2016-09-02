@@ -19,47 +19,35 @@ var ModalContent = React.createClass({
 		return (
 			<div className="confirm-ownership--wrapper">
 				<div className="lock-icon--wrapper">
-					{ 
-						(this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked) ? 
-							<img 
-								src="/static/img/MASAS_icon_unlock.svg" 
-								className="lock-icon"
-								alt="lock icon"/>
-						: 
-							<img 
-								src="/static/img/MASAS_icon_lock.svg" 
-								className="lock-icon"
-								alt="lock icon"/>
-
-					}
+					<img 
+						src="/static/img/MASAS_icon_lock.svg" 
+						className="lock-icon"
+						alt="lock icon"/>
 				</div>
 				<div className="checkbox--wrapper">
-					<Checkbox 
-						initChecked={ this.props.checkbox1_checked }
-						className="checkbox-row" 
-						onChange={ this.props.toogleCheckbox1 }>
-						I certify that I have the explicit permission from all right-holders of this sound to aggree to the <Link to="/">terms of uses</Link>
-					</Checkbox>
-					<Checkbox 
-						initChecked={ this.props.checkbox2_checked }
-						className="checkbox-row" 
-						onChange={ this.props.toogleCheckbox2 }>
-						I certify that this track is not a spam or commercial
-					</Checkbox>
-					<Checkbox 
-						initChecked={ this.props.checkbox3_checked }
-						className="checkbox-row" 
-						onChange={ this.props.toogleCheckbox3 }>
-						I certify that no royalties will be paid to any of the right-holders of this sound
-					</Checkbox>
+					<p>
+					I certify that:
+						<ul className="bullets" type="disc">
+							<li>I have the explicit permission from all right-holders of this sound to aggree to the terms of uses</li>
+							<li>this track is not a spam or commercial</li>
+							<li>no royalties will be paid to any of the right-holders of this sound</li>
+						</ul>
+					</p>
 					<div className="submit--wrapper">
 						<Button 
-							isDisabled={ (this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked) ? false : true }
 							isBigButton={ true }
-							isSecondaryAction={ (this.props.checkbox1_checked && this.props.checkbox2_checked && this.props.checkbox3_checked) ? false : true }
+							isSecondaryAction={ true }
+							wrapperStyle={{ marginRight: '1rem' }}
+							onClick={ this.props.toogleIsModalOpened }
+							className="submit">
+							Cancel
+						</Button>
+						<Button 
+							isBigButton={ true }
+							isSecondaryAction={ false }
 							onClick={this.props.onSubmit}
 							className="submit">
-							Upload my sound on MASAS
+							Upload
 						</Button>
 					</div>
 				</div>

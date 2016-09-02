@@ -511,8 +511,7 @@ input[type=range].MASAS-slider {
       right: 0;
       bottom: 0;
       left: 0;
-      padding: 2rem;
-      display: flex; }
+      padding: 2rem; }
 
 .MASAS-modal.closed {
   display: none;
@@ -1749,8 +1748,7 @@ input[type=range].MASAS-slider {
   flex-direction: column;
   flex: 1;
   height: 100%;
-  justify-content: space-around;
-  align-items: center; }
+  justify-content: space-around; }
   .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper {
     display: flex;
     justify-content: center;
@@ -1763,8 +1761,12 @@ input[type=range].MASAS-slider {
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 4rem;
     padding-bottom: 2rem; }
+    .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets {
+      font-family: Lato-Light;
+      margin-left: 2rem; }
+      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
+        margin-bottom: 1rem; }
     .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .checkbox-row {
       display: flex;
       justify-content: space-between; }
