@@ -1776,10 +1776,19 @@ input[type=range].MASAS-slider {
       justify-content: center; }
 
 @media screen and (min-width: 992px) {
-  .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
-    width: 3.7rem; }
-  .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
-    width: 66%; } }
+  .MASAS-modal .confirm-ownership--wrapper {
+    align-items: center; }
+    .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper {
+      flex: 0.5; }
+      .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
+        width: 3.7rem; }
+    .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
+      width: 66%;
+      padding-bottom: 0; }
+      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .paragraph {
+        padding-bottom: 1rem; }
+      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
+        margin-bottom: 0.5rem; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;

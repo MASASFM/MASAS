@@ -61929,26 +61929,26 @@ var ModalContent = React.createClass({
 				{ className: "checkbox--wrapper" },
 				React.createElement(
 					"p",
-					null,
-					"I certify that:",
+					{ className: "paragraph" },
+					"I certify that:"
+				),
+				React.createElement(
+					"ul",
+					{ className: "bullets", type: "disc" },
 					React.createElement(
-						"ul",
-						{ className: "bullets", type: "disc" },
-						React.createElement(
-							"li",
-							null,
-							"I have the explicit permission from all right-holders of this sound to aggree to the terms of uses"
-						),
-						React.createElement(
-							"li",
-							null,
-							"this track is not a spam or commercial"
-						),
-						React.createElement(
-							"li",
-							null,
-							"no royalties will be paid to any of the right-holders of this sound"
-						)
+						"li",
+						null,
+						"I have the explicit permission from all right-holders of this sound to aggree to the terms of uses"
+					),
+					React.createElement(
+						"li",
+						null,
+						"this track is not a spam or commercial"
+					),
+					React.createElement(
+						"li",
+						null,
+						"no royalties will be paid to any of the right-holders of this sound"
 					)
 				),
 				React.createElement(

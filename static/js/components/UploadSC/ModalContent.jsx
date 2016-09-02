@@ -25,14 +25,14 @@ var ModalContent = React.createClass({
 						alt="lock icon"/>
 				</div>
 				<div className="checkbox--wrapper">
-					<p>
+					<p className="paragraph">
 					I certify that:
-						<ul className="bullets" type="disc">
-							<li>I have the explicit permission from all right-holders of this sound to aggree to the terms of uses</li>
-							<li>this track is not a spam or commercial</li>
-							<li>no royalties will be paid to any of the right-holders of this sound</li>
-						</ul>
 					</p>
+					<ul className="bullets" type="disc">
+						<li>I have the explicit permission from all right-holders of this sound to aggree to the terms of uses</li>
+						<li>this track is not a spam or commercial</li>
+						<li>no royalties will be paid to any of the right-holders of this sound</li>
+					</ul>
 					<div className="submit--wrapper">
 						<Button 
 							isBigButton={ true }
