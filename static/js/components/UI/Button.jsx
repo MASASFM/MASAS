@@ -12,6 +12,7 @@ var Button = React.createClass({
 		isSecondaryAction: React.PropTypes.bool,		// is it a secondary button
 		onClick: React.PropTypes.func.isRequired,		// what to do when user clicks on button
 		isDisabled: React.PropTypes.bool,			// is button disabled
+		wrapperStyle: React.PropTypes.object,		// styles associated with button wrapper
 	},
 
 	componentWillMount: function() {
@@ -26,7 +27,10 @@ var Button = React.createClass({
 
 	render: function() {
 		return (
-			<div className={"MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") +  (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : "")} onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }>
+			<div 
+				className={"MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") +  (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : "")} 
+				onClick={ !this.props.isDisabled ? this.props.onClick : ( () => {} ) }
+				style={ this.props.wrapperStyle }>
 				<div className={"wrapper"}>
 					{this.props.children}
 				</div>
