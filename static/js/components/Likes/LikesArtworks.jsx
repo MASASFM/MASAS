@@ -4,8 +4,8 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
+var { goToURL } = require("../../MASAS_functions.jsx")
+var { Button } = require("../UI/UI.jsx")
 
 var LikesItem = require("./LikesItem.jsx")
 
@@ -19,16 +19,32 @@ var LikesArtworks = React.createClass({
 	},
 
 	renderLikes: function() {
-		// console.log("RENDER LIKES")
-		
 		var songs = this.props.SCinfo
-		// console.log('render liked songs => ', songs)
 
-		if (!songs)
-			return (<div>NO SONGS</div>)
-		else {
+		if (!songs) {
+			$('#body--background').removeClass('blurred-mobile')
+			$('#body--background').addClass('blurred')
+
+			return (
+				<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+					<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem'}}>
+						<img src="/static/img/MASAS_no_likes.svg" alt="like icon" />
+						<p style={{ fontSize: '1.2rem'}}>
+							You haven't liked any sounds yet
+						</p>
+						<Button 
+							isBigButton={ true } 
+							isSecondaryAction={ false } 
+							onClick={ () => { $('#body--background').removeClass('blurred'); goToURL('/discover') } }>
+							Start discovering new music
+						</Button>
+					</div>
+				</div>
+			)
+		} else {
+			$('#body--background').removeClass('blurred')
+			$('#body--background').addClass('blurred-mobile')
 			// // sort by uploaded time
-			// songs.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
 
 			var songList =  songs.map((song) => { 
 				var MASAS_songInfo = this.props.userData.likes.filter((like) => {
@@ -103,8 +119,6 @@ var LikesArtworks = React.createClass({
 		for(let i = 0; i < n_lastLine; i++) {
 			divArray.push(<div key={ i } className="filler-artwork" style={{ height: 0, width: artworkWidth }}></div>)
 		}
-
-		// console.log("DIV ARRAY ======> ", divArray)
 
 		return divArray
 	},

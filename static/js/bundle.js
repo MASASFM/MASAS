@@ -52971,9 +52971,6 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 			}).length;
 
 			if (hasAcceptedTerms) {
-				//if(canLogIn) {		//		no checking for 'invitation pending'
-				// update profile picture
-				// MASAS_functions.updateUserEmail({ userToken, userPk, userData })
 				MASAS_functions.updateProfilePicture({ userToken: userToken, userPk: userPk, userData: userData });
 
 				// log in user
@@ -52981,18 +52978,12 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 				dispatch({ type: "LOGIN", token: userToken, userData: userData, pk: userPk });
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
-				// } else {
-				// 	// show invitation pending component
-				// 	var InvitationPending = require("./components/Login/InvitationPending.jsx")
-				// 	dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: <InvitationPending /> })
-				// 	dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
-				// }
 			} else {
-					// show terms and conditions form
-					var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
-					dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: React.createElement(TermsAndCond, { userPk: parseInt(userPk), userToken: userToken, userData: userData }) });
-					dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
-				}
+				// show terms and conditions form
+				var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
+				dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: React.createElement(TermsAndCond, { userPk: parseInt(userPk), userToken: userToken, userData: userData }) });
+				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
+			}
 		},
 		error: function error(e) {}
 	});
@@ -54995,6 +54986,14 @@ var Home = React.createClass({
 		this.props.updateTitle('Home', '0'); // 0 = menu icon; 1 = arrow back
 	},
 
+	componentDidMount: function componentDidMount() {
+		var marginBottom = (0, _jquery2.default)(window).height() / 2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight / 2;
+
+		var loginForm = document.getElementsByClassName('login-form--wrapper')[0];
+
+		loginForm.style.marginBottom = marginBottom + "px";
+	},
+
 	componentWillUnmount: function componentWillUnmount() {
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
@@ -55071,7 +55070,7 @@ var Home = React.createClass({
 						React.createElement(
 							"p",
 							null,
-							"Together, with MASAS, we can bring the radio back to its truest form. With no comercials. No biases choice, and accessible by all."
+							"Get Discovered as an Artist, Discover new tunes as a Music Lover.  Do it all for Free!"
 						)
 					),
 					React.createElement(
@@ -55090,7 +55089,7 @@ var Home = React.createClass({
 								{ className: "bullet" },
 								"1"
 							),
-							"Discover"
+							"Moods"
 						),
 						React.createElement(
 							"div",
@@ -55107,19 +55106,7 @@ var Home = React.createClass({
 						React.createElement(
 							"p",
 							null,
-							"MASAS members are continusly selecting the best trending indie music to gather you the finest tunes. From our joyful ",
-							React.createElement(
-								"em",
-								null,
-								"#EarlyMorning"
-							),
-							" to our mystic ",
-							React.createElement(
-								"em",
-								null,
-								"#Night"
-							),
-							" discover them through the time of the day."
+							"Listen to music that fits your mood by dragging the sun around"
 						),
 						React.createElement(
 							"h2",
@@ -55129,23 +55116,16 @@ var Home = React.createClass({
 								{ className: "bullet" },
 								"2"
 							),
-							"Select"
+							"Discover"
 						),
-						React.createElement(
-							"div",
-							{ className: "RankingInfoIcon--wrapper" },
-							React.createElement(RankingInfoIcon, { ranking: 0.8 })
-						),
+						React.createElement("img", {
+							src: "/static/img/MASAS_liked.svg",
+							alt: "likes_icon",
+							style: { width: '4rem', marginBottom: '2rem' } }),
 						React.createElement(
 							"p",
 							null,
-							"Once a sound is upload by the Artist, MASAS members rates them, what we are doing is just to take off the unliked onces and showcase the best rated on ",
-							React.createElement(
-								"em",
-								null,
-								"Popular"
-							),
-							"."
+							"Discover and save your next favorite tunes, at any time, by hitting the diamond."
 						),
 						React.createElement(
 							"h2",
@@ -55155,24 +55135,23 @@ var Home = React.createClass({
 								{ className: "bullet" },
 								"3"
 							),
-							"Experience"
+							"Popular"
+						),
+						React.createElement(
+							"div",
+							{ className: "RankingInfoIcon--wrapper" },
+							React.createElement(RankingInfoIcon, { ranking: 0.8 })
 						),
 						React.createElement(
 							"p",
 							null,
-							"At MASAS we all want to ",
+							"All of your music is great, but only the most loved ones will get to play on ",
 							React.createElement(
 								"em",
 								null,
-								"Discover"
+								"Popular"
 							),
-							" new tasty music. We are building the finest algorithm and designing the best music experience to ",
-							React.createElement(
-								"em",
-								null,
-								"match your desires with the newest sounds"
-							),
-							"."
+							". For each of our six moods."
 						),
 						React.createElement("br", null),
 						React.createElement("br", null),
@@ -55182,12 +55161,12 @@ var Home = React.createClass({
 							React.createElement(
 								"em",
 								null,
-								"You can be part of the community."
+								"Be part of the evolution be part of the family, by simply sharing."
 							)
 						),
 						React.createElement(
 							"div",
-							{ className: "login-form--wrapper", style: { visibility: this.props.user ? 'hidden' : 'visible' } },
+							{ className: "login-form--wrapper", style: { display: this.props.user ? 'none' : 'flex' } },
 							React.createElement("img", { src: "/static/img/MASAS_logo-M.svg", alt: "masas-logo" }),
 							React.createElement(LoginForm, {
 								fullForm: false,
@@ -57190,6 +57169,7 @@ var LikesArtworks = require("./LikesArtworks.jsx");
 var _require2 = require("../UI/UI.jsx");
 
 var Textbox = _require2.Textbox;
+var Button = _require2.Button;
 
 var FiltersModal = require("./FiltersModal.jsx");
 var InfiniteScroll = require('react-infinite-scroll')(React);
@@ -57239,7 +57219,7 @@ var Likes = React.createClass({
 				_this.props.updateLikes(response);
 			});
 		} else {
-			this.props.updateLikes(null);
+			this.props.updateLikes([]);
 		}
 	},
 
@@ -57250,7 +57230,7 @@ var Likes = React.createClass({
 	filterLikes: function filterLikes() {
 		var _this2 = this;
 
-		if (this.props.SCinfo !== null) {
+		if (this.props.SCinfo.length) {
 			var songs = this.props.SCinfo;
 			var songList = songs.map(function (song) {
 				var MASAS_songInfo = _this2.props.userData.likes.filter(function (like) {
@@ -57339,6 +57319,7 @@ var Likes = React.createClass({
 	},
 
 	render: function render() {
+		console.log(this.props.SCinfo);
 		return React.createElement(
 			LikesWrapper,
 			null,
@@ -57399,8 +57380,13 @@ var ReactDOM = require("react-dom");
 var ReactRedux = require("react-redux");
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
+var _require = require("../../MASAS_functions.jsx");
+
+var goToURL = _require.goToURL;
+
+var _require2 = require("../UI/UI.jsx");
+
+var Button = _require2.Button;
 
 var LikesItem = require("./LikesItem.jsx");
 
@@ -57417,18 +57403,40 @@ var LikesArtworks = React.createClass({
 	renderLikes: function renderLikes() {
 		var _this = this;
 
-		// console.log("RENDER LIKES")
-
 		var songs = this.props.SCinfo;
-		// console.log('render liked songs => ', songs)
 
-		if (!songs) return React.createElement(
-			"div",
-			null,
-			"NO SONGS"
-		);else {
+		if (!songs) {
+			$('#body--background').removeClass('blurred-mobile');
+			$('#body--background').addClass('blurred');
+
+			return React.createElement(
+				"div",
+				{ className: "no-like--wrapper", style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 } },
+				React.createElement(
+					"div",
+					{ style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem' } },
+					React.createElement("img", { src: "/static/img/MASAS_no_likes.svg", alt: "like icon" }),
+					React.createElement(
+						"p",
+						{ style: { fontSize: '1.2rem' } },
+						"You haven't liked any sounds yet"
+					),
+					React.createElement(
+						Button,
+						{
+							isBigButton: true,
+							isSecondaryAction: false,
+							onClick: function onClick() {
+								$('#body--background').removeClass('blurred');goToURL('/discover');
+							} },
+						"Start discovering new music"
+					)
+				)
+			);
+		} else {
+			$('#body--background').removeClass('blurred');
+			$('#body--background').addClass('blurred-mobile');
 			// // sort by uploaded time
-			// songs.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
 
 			var songList = songs.map(function (song) {
 				var MASAS_songInfo = _this.props.userData.likes.filter(function (like) {
@@ -57501,8 +57509,6 @@ var LikesArtworks = React.createClass({
 			divArray.push(React.createElement("div", { key: i, className: "filler-artwork", style: { height: 0, width: artworkWidth } }));
 		}
 
-		// console.log("DIV ARRAY ======> ", divArray)
-
 		return divArray;
 	},
 
@@ -57518,7 +57524,7 @@ var LikesArtworks = React.createClass({
 
 module.exports = LikesArtworks;
 
-},{"./LikesItem.jsx":336,"react":284,"react-dom":85,"react-redux":89}],336:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":298,"../UI/UI.jsx":384,"./LikesItem.jsx":336,"react":284,"react-dom":85,"react-redux":89}],336:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -57715,12 +57721,7 @@ var LikesWrapper = React.createClass({
 
 		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
 
-		//$('.box.page-content')[0].scrollTop = 44
-		console.log($('.box.page-content')[0].scrollTop);
-
 		$('.box.page-content')[0].scrollTop = this.scrollOffset;
-
-		console.log(node.scrollTop, this.scrollOffset, $('.box.page-content')[0].scrollTop);
 	},
 
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
@@ -57961,7 +57962,8 @@ var LikesWrapper = {};
 // Which part of the Redux global state does our component want to receive as props?
 LikesWrapper.mapStateToProps = function (state) {
 	return {
-		title: state.appReducer.pageTitle
+		title: state.appReducer.pageTitle,
+		SCinfo: state.likesReducer.SCinfo
 	};
 };
 
@@ -58446,7 +58448,7 @@ ajaxCalls.convertToken = function (token) {
 		},
 		success: function success(data) {
 			logInWithToken(dispatch, data.access_token);
-			browserHistory.push('/');
+			browserHistory.push('/discover');
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture);
 			updateAuthCookie(data.access_token);
 		},
@@ -62981,7 +62983,7 @@ var exportVar = {};
 
 exportVar.defaultState = {
 	userLikes: null, // user likes from MASAS API
-	SCinfo: null, // song info corresponding to these likes from SCinfo
+	SCinfo: [], // song info corresponding to these likes from SCinfo
 	reFetch: 0, // rerender when new likes come in
 	searchInput: "", // (string) search textbox input
 	hashtagFilter: [false, false, false, false, false, false], // (array) 1 = include in search. 1st entry = #EarlyMorning

@@ -5,6 +5,7 @@ var LikesWrapper = {}
 LikesWrapper.mapStateToProps = function(state) {
 	return {
 		title: state.appReducer.pageTitle,
+		SCinfo: state.likesReducer.SCinfo,
 	}
 }
 

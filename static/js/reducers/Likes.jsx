@@ -2,7 +2,7 @@ let exportVar = {}
 
 exportVar.defaultState = {
 	userLikes: null,											// user likes from MASAS API
-	SCinfo: null,												// song info corresponding to these likes from SCinfo
+	SCinfo: [],												// song info corresponding to these likes from SCinfo
 	reFetch: 0,													// rerender when new likes come in
 	searchInput: "", 											// (string) search textbox input
 	hashtagFilter: [false,false,false,false,false,false],		// (array) 1 = include in search. 1st entry = #EarlyMorning

@@ -72,7 +72,7 @@ ajaxCalls.convertToken = (token) => {
 		},
 		success: (data) => { 
 			logInWithToken(dispatch, data.access_token)
-			browserHistory.push('/')
+			browserHistory.push('/discover')
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture)	
 			updateAuthCookie(data.access_token)
 		},

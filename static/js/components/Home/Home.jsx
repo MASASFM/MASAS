@@ -34,6 +34,14 @@ var Home = React.createClass({
 		this.props.updateTitle('Home', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
+	componentDidMount: function() {
+		const marginBottom = $(window).height()/2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight/2
+
+		const loginForm = document.getElementsByClassName('login-form--wrapper')[0]
+
+		loginForm.style.marginBottom = marginBottom + "px"
+	},
+
 	componentWillUnmount: function () {
 		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)
@@ -100,13 +108,13 @@ var Home = React.createClass({
 						<div className="abstract">
 							<img src="/static/img/MASAS_icon_metronome.svg" alt="deco" />
 							<p>
-								Together, with MASAS, we can bring the radio back to its truest form. With no comercials. No biases choice, and accessible by all.
+								Get Discovered as an Artist, Discover new tunes as a Music Lover.  Do it all for Free!
 							</p>
 						</div>
 						<div className="explanation">
 							<h1>make a sound and share</h1>
 
-							<h2><span className="bullet">1</span>Discover</h2>
+							<h2><span className="bullet">1</span>Moods</h2>
 							<div className="time-picker--wrapper" style={{ height: '90px', width: '150px' }}>
 								<TimePicker 
 									className="time-picker" 
@@ -118,27 +126,31 @@ var Home = React.createClass({
 									wrapperClassName="timePicker--wrapper" />
 							</div>
 							<p>
-								MASAS members are continusly selecting the best trending indie music to gather you the finest tunes. From our joyful <em>#EarlyMorning</em> to our mystic <em>#Night</em> discover them through the time of the day.
+								Listen to music that fits your mood by dragging the sun around
 							</p>
 
-							<h2><span className="bullet">2</span>Select</h2>
+							<h2><span className="bullet">2</span>Discover</h2>
+								<img 
+									src="/static/img/MASAS_liked.svg" 
+									alt="likes_icon" 
+									style={{ width: '4rem', marginBottom: '2rem' }}/>
+							<p>
+								Discover and save your next favorite tunes, at any time, by hitting the diamond.
+							</p>
+
+							<h2><span className="bullet">3</span>Popular</h2>
 							<div className="RankingInfoIcon--wrapper">
 								<RankingInfoIcon ranking={ 0.8 } />
 							</div>
 							<p>
-								Once a sound is upload by the Artist, MASAS members rates them, what we are doing is just to take off the unliked onces and showcase the best rated on <em>Popular</em>.
-							</p>
-
-							<h2><span className="bullet">3</span>Experience</h2>
-							<p>
-								At MASAS we all want to <em>Discover</em> new tasty music. We are building the finest algorithm and designing the best music experience to <em>match your desires with the newest sounds</em>.
+								All of your music is great, but only the most loved ones will get to play on <em>Popular</em>. For each of our six moods.
 							</p>
 							<br /><br />
 							<p>
-								<em>You can be part of the community.</em>
+								<em>Be part of the evolution be part of the family, by simply sharing.</em>
 							</p>
 
-							<div className="login-form--wrapper" style={{ visibility: ( this.props.user ? 'hidden' : 'visible') }}>
+							<div className="login-form--wrapper" style={{ display: ( this.props.user ? 'none' : 'flex') }}>
 								<img src="/static/img/MASAS_logo-M.svg" alt="masas-logo" />
 								<LoginForm 
 									fullForm={false} 

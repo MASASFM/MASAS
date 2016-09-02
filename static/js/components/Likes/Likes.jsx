@@ -5,7 +5,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Likes.jsx")
 
 var LikesWrapper = require("./LikesWrapper.jsx")
 var LikesArtworks = require("./LikesArtworks.jsx")
-var { Textbox } = require("../UI/UI.jsx")
+var { Textbox, Button } = require("../UI/UI.jsx")
 var FiltersModal = require("./FiltersModal.jsx")
 var InfiniteScroll = require('react-infinite-scroll')(React)
 
@@ -48,7 +48,7 @@ var Likes = React.createClass({
 				this.props.updateLikes(response)
 			})
 		} else {
-			this.props.updateLikes(null)
+			this.props.updateLikes([])
 		}
 	},
 
@@ -58,7 +58,7 @@ var Likes = React.createClass({
 	},
 
 	filterLikes: function() {
-		if(this.props.SCinfo !== null) {
+		if(this.props.SCinfo.length) {
 			var songs = this.props.SCinfo
 			var songList =  songs.map((song) => { 
 				var MASAS_songInfo = this.props.userData.likes.filter((like) => {
@@ -146,22 +146,24 @@ var Likes = React.createClass({
 	},
 
 	render: function() {
+		console.log(this.props.SCinfo)
 		return (
 			<LikesWrapper>
-				<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
-					<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
-					<Textbox id="likes--search-textbox" value={ this.props.searchInput } onChange={ this.updateSearchInput } />
-					<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" />
-				</div>
-				<div className="filters--wrapper">
-					<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
-					<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ "tag-filter " + ( this.props.hashtagFilter[1] ? "enable" : "" )}>#LateMorning</div>
-					<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[2] ? "enable" : "" )}>#EarlyAfternoon</div>
-					<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateAfternoon</div>
-					<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ "tag-filter " + ( this.props.hashtagFilter[4] ? "enable" : "" )}>#EarlyEvening</div>
-					<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateEvening</div>
-				</div>
-				<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
+					<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
+						<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
+						<Textbox id="likes--search-textbox" value={ this.props.searchInput } onChange={ this.updateSearchInput } />
+						<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" />
+					</div>
+					<div className="filters--wrapper">
+						<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>
+						<div onClick={ this.toggleFilter.bind(this, 1) } id="filter-late-morning" className={ "tag-filter " + ( this.props.hashtagFilter[1] ? "enable" : "" )}>#LateMorning</div>
+						<div onClick={ this.toggleFilter.bind(this, 2) } id="filter-early-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[2] ? "enable" : "" )}>#EarlyAfternoon</div>
+						<div onClick={ this.toggleFilter.bind(this, 3) } id="filter-late-afternoon" className={ "tag-filter " + ( this.props.hashtagFilter[3] ? "enable" : "" )}>#LateAfternoon</div>
+						<div onClick={ this.toggleFilter.bind(this, 4) } id="filter-early-evening" className={ "tag-filter " + ( this.props.hashtagFilter[4] ? "enable" : "" )}>#EarlyEvening</div>
+						<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateEvening</div>
+					</div>
+
+					<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
 				
 			</LikesWrapper>
 		)
