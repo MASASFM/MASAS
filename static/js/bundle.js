@@ -61584,7 +61584,7 @@ var Modal = React.createClass({
 			React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", className: "close-icon", alt: "close modal" }),
 			React.createElement(
 				"div",
-				{ className: "", onClick: this.props.closeModalFunc },
+				{ className: "" },
 				this.props.children
 			)
 		);

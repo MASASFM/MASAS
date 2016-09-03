@@ -60,7 +60,7 @@ let Modal = React.createClass({
 			return (
 				<div className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" className="close-icon" alt="close modal" />
-					<div className="" onClick={ this.props.closeModalFunc }>
+					<div className="">
 							{ this.props.children }
 					</div>
 				</div>
