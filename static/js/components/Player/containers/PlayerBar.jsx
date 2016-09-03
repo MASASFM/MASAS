@@ -8,6 +8,7 @@ var Player = {}
 Player.mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
 		playerAtTime: state.playerReducer.playerAtTime,
@@ -19,7 +20,9 @@ Player.mapStateToProps = function(state) {
 		discoverHistory: state.discoverReducer.history,
 		playlist: state.playerReducer.playlist,
 		playlistPosition: state.playerReducer.playlistPosition,
-		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
 	}
 }
 

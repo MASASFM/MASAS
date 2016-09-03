@@ -59231,6 +59231,7 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../../MASAS_functions.jsx");
 
 var getTimeIntervalFromURL = _require2.getTimeIntervalFromURL;
+var isObjectNotEmpty = _require2.isObjectNotEmpty;
 
 var _require3 = require("../UI/UI.jsx");
 
@@ -59351,9 +59352,22 @@ var Player = React.createClass({
 	},
 
 	renderLikeIcon: function renderLikeIcon() {
-		// var isSongLiked = !!this.props.isSongPlayingLiked.likedBy.filter((user) => {
-		// 			return user.url === "http://localhost:8000/api/users/" + this.props.userPk + "/"
-		// 		})
+		if (this.props.isModalOpened && this.props.modalType === 2) {
+			if (isObjectNotEmpty(this.props.userData)) {
+				// if user has not dismissed tips yet
+				var didUserSeeSecondTip = this.props.userData.usersteps.filter(function (_ref) {
+					var step = _ref.step;
+					return step === 6;
+				}).length ? true : false;
+
+				if (!didUserSeeSecondTip) return React.createElement("img", {
+					src: "/static/img/dynamic_like_icon.gif",
+					alt: "like icon",
+					className: "like-icon",
+					onClick: this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying),
+					style: { height: '1.8rem' } });
+			}
+		}
 
 		if (this.props.isSongPlayingLiked) return React.createElement("img", { src: "/static/img/MASAS_liked.svg", alt: "like icon", className: "like-icon", onClick: this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying) });else return React.createElement("img", { src: "/static/img/MASAS_like_shadow.svg", alt: "like icon", className: "like-icon", onClick: this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying) });
 	},
@@ -59625,6 +59639,7 @@ var Player = {};
 Player.mapStateToProps = function (state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
 		playerAtTime: state.playerReducer.playerAtTime,
@@ -59636,7 +59651,9 @@ Player.mapStateToProps = function (state) {
 		discoverHistory: state.discoverReducer.history,
 		playlist: state.playerReducer.playlist,
 		playlistPosition: state.playerReducer.playlistPosition,
-		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying
+		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType
 	};
 };
 

@@ -5,7 +5,7 @@ var jPlayer = require("jplayer")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.jsx")
 
-var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
 var Player = React.createClass({
@@ -127,9 +127,21 @@ var Player = React.createClass({
 	},
 
 	renderLikeIcon: function() {
-		// var isSongLiked = !!this.props.isSongPlayingLiked.likedBy.filter((user) => {
-		// 			return user.url === "http://localhost:8000/api/users/" + this.props.userPk + "/"
-		// 		})
+		if(this.props.isModalOpened && this.props.modalType === 2) {
+			if(isObjectNotEmpty(this.props.userData)) {
+				// if user has not dismissed tips yet
+				const didUserSeeSecondTip = this.props.userData.usersteps.filter(({ step }) => step === 6).length ? true : false
+
+				if(!didUserSeeSecondTip)
+					return <img 
+							src="/static/img/dynamic_like_icon.gif" 
+							alt="like icon" 
+							className="like-icon" 
+							onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}
+							style={{ height: '1.8rem' }}/>
+			
+			}
+		}
 
 		if(this.props.isSongPlayingLiked)
 			return <img src="/static/img/MASAS_liked.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}/>
