@@ -55983,13 +55983,13 @@ var UnsplashControls = React.createClass({
 				{ className: "artist-controls" },
 				React.createElement(
 					"a",
-					{ href: "https://unsplash.com/" + this.props.unsplashArtistUsername, target: "_blank" },
-					this.props.unsplashArtistName
+					{ onClick: this.updateUnsplashArtist },
+					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
 				),
 				React.createElement(
 					"a",
-					{ onClick: this.updateUnsplashArtist },
-					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
+					{ href: "https://unsplash.com/" + this.props.unsplashArtistUsername, target: "_blank" },
+					this.props.unsplashArtistName
 				)
 			),
 			React.createElement(

@@ -697,7 +697,8 @@ input[type=range].MASAS-slider {
           font-size: 0.6rem;
           letter-spacing: 0.2rem;
           opacity: 0.5;
-          cursor: pointer; }
+          cursor: pointer;
+          margin-right: 1rem; }
         .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a:hover {
           opacity: 1; }
         .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
