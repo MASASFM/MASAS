@@ -14,6 +14,8 @@ ArtworkLine.mapStateToProps = function(state) {
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userToken: state.appReducer.MASASuser,
 		isFooterOpened: state.footerReducer.isOpened,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
 	}
 }
 

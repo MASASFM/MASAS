@@ -11,6 +11,13 @@ var ArtworkLine = React.createClass({
 		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
 		toggleIsFooterOpened: React.PropTypes.func,
+		renderForUITip: React.PropTypes.bool,					
+	},
+
+	getDefaultProps: function() {
+		return {
+			renderForUITip: false,
+		}
 	},
 
 	componentDidMount: function() {
@@ -27,6 +34,7 @@ var ArtworkLine = React.createClass({
 	},
  
  	render: function() {
+ 		let { renderForUITip, isModalOpened, modalType } = this.props
 
 		let history = this.props.history.all.filter( ({MASAS_songInfo}) => {
 			return parseInt(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1)) === this.props.discoverNumber
@@ -37,12 +45,20 @@ var ArtworkLine = React.createClass({
 			return (
 				
 				<div className="artwork-line--wrapper">
-					<div className="left-side">
+					<div 
+						className="left-side"
+						style={{
+							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+						}}>
 						<div className="artwork-line" ref="artworkLine">
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
-					<div className="artwork-playing--wrapper">	
+					<div 
+						className="artwork-playing--wrapper"
+						style={{
+							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+						}}>	
 						<div className="artwork-playing">	
 							<div 
 								onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)}
@@ -75,7 +91,11 @@ var ArtworkLine = React.createClass({
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 				 }
 				return (
-					<div className="artwork--wrapper" key={ key_ID }>
+					<div 
+						className="artwork--wrapper" key={ key_ID }
+						style={{
+							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+						}}>
 						<div className="artwork--wrapper2">
 							{ artworkURL ?
 									<img src={ artworkURL } alt="artwork" className="artwork"/>
@@ -134,7 +154,11 @@ var ArtworkLine = React.createClass({
 							<div className="empty-artwork" style={{ visibility: 'hidden' }}></div>
 						</div>
 					</div>
-					<div className="artwork-playing--wrapper">	
+					<div 
+						className="artwork-playing--wrapper"
+						style={{
+							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+						}}>	
 						<div className="artwork-playing">	
 							{ artworkPlayingURL ?
 									<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
@@ -180,7 +204,11 @@ var ArtworkLine = React.createClass({
 							</div>
 						</div>
 					</div>
-					<div className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') }>
+					<div 
+						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') }
+						style={{
+							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+						}}>
 						<img
 							onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
 							className="next-song"

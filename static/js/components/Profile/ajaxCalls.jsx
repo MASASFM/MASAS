@@ -4,7 +4,7 @@ const { dispatch, getState } = require('../../reducers/reducers.js')
 
 var ajaxCalls = {}
 
-ajaxCalls.updateProfileInfo = () => {
+ajaxCalls.updateProfileInfo = (callback) => {
 	const { MASASuser, userData } = getState().appReducer
 
 	const header = "Bearer " + MASASuser
@@ -17,6 +17,8 @@ ajaxCalls.updateProfileInfo = () => {
 		},
 		success: (userData) => {
 			dispatch({ type: 'UPDATE_USER_DATA', userData })
+			if(callback)
+				callback()
 		},
 		error: (e) => {
 		}

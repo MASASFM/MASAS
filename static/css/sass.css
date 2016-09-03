@@ -466,6 +466,17 @@ input[type=range].MASAS-slider {
     bottom: 2.5rem; } }
 .MASAS-modal.type2 {
   top: 4.1rem; }
+  .MASAS-modal.type2 .close-icon {
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: Lato-Semibold;
+    opacity: 0.5;
+    font-size: 0.7rem;
+    letter-spacing: 0.12rem; }
+    .MASAS-modal.type2 .close-icon img {
+      margin-right: 1rem; }
 
 .MASAS-modal {
   position: fixed;
@@ -2855,12 +2866,22 @@ input[type=range].MASAS-slider {
   flex-direction: column;
   align-items: center; }
   .teach-modal--wrapper p {
-    letter-spacing: 0.24rem;
-    font-size: 2rem;
-    max-width: 30rem;
+    letter-spacing: 0.13rem;
+    font-size: 1.1rem;
+    max-width: 25rem;
     margin-bottom: 2rem;
     text-align: center;
-    line-height: 1.25; }
+    line-height: 1.4;
+    font-family: Lato-Light; }
+  .teach-modal--wrapper .bold {
+    font-family: Lato-Semibold;
+    margin-bottom: 0.6rem; }
+
+.teach-modal--wrapper.like-UI-info {
+  position: absolute;
+  bottom: 1rem;
+  left: 234px;
+  align-items: flex-start; }
 
 .discover--wrapper {
   display: flex;

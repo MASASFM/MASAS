@@ -93,8 +93,13 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(
 
 		render: function() {
 			return (
-				<div className="teach-modal--wrapper">
-					BAR
+				<div className="teach-modal--wrapper like-UI-info">
+					<p className="bold">
+						Like your favorite discoveries
+					</p>
+					<p>
+						or press L for quick action
+					</p>
 					<Button 
 						isBigButton={false}
 						onClick={ this.updateUserStep }>Got it!</Button>

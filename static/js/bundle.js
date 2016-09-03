@@ -52835,6 +52835,9 @@ var MASAS_functions = {};
 MASAS_functions.isObjectEmpty = function (obj) {
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
+MASAS_functions.isObjectNotEmpty = function (obj) {
+	return Object.keys(obj).length !== 0 && obj.constructor === Object;
+};
 
 MASAS_functions.logout = function () {
 	Cookie.remove("MASAS_authToken");
@@ -53499,7 +53502,14 @@ var ArtworkLine = React.createClass({
 	propTypes: {
 		discoverNumber: React.PropTypes.number.isRequired, // artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
-		toggleIsFooterOpened: React.PropTypes.func
+		toggleIsFooterOpened: React.PropTypes.func,
+		renderForUITip: React.PropTypes.bool
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			renderForUITip: false
+		};
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -53518,6 +53528,11 @@ var ArtworkLine = React.createClass({
 	render: function render() {
 		var _this = this;
 
+		var _props = this.props;
+		var renderForUITip = _props.renderForUITip;
+		var isModalOpened = _props.isModalOpened;
+		var modalType = _props.modalType;
+
 		var history = this.props.history.all.filter(function (_ref) {
 			var MASAS_songInfo = _ref.MASAS_songInfo;
 
@@ -53530,7 +53545,11 @@ var ArtworkLine = React.createClass({
 			{ className: "artwork-line--wrapper" },
 			React.createElement(
 				"div",
-				{ className: "left-side" },
+				{
+					className: "left-side",
+					style: {
+						visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+					} },
 				React.createElement(
 					"div",
 					{ className: "artwork-line", ref: "artworkLine" },
@@ -53539,7 +53558,11 @@ var ArtworkLine = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "artwork-playing--wrapper" },
+				{
+					className: "artwork-playing--wrapper",
+					style: {
+						visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+					} },
 				React.createElement(
 					"div",
 					{ className: "artwork-playing" },
@@ -53584,7 +53607,11 @@ var ArtworkLine = React.createClass({
 					}
 					return React.createElement(
 						"div",
-						{ className: "artwork--wrapper", key: key_ID },
+						{
+							className: "artwork--wrapper", key: key_ID,
+							style: {
+								visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+							} },
 						React.createElement(
 							"div",
 							{ className: "artwork--wrapper2" },
@@ -53653,7 +53680,11 @@ var ArtworkLine = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "artwork-playing--wrapper" },
+							{
+								className: "artwork-playing--wrapper",
+								style: {
+									visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+								} },
 							React.createElement(
 								"div",
 								{ className: "artwork-playing" },
@@ -53708,7 +53739,11 @@ var ArtworkLine = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "button " + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') },
+							{
+								className: "button " + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : ''),
+								style: {
+									visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
+								} },
 							React.createElement("img", {
 								onClick: _this.props.playRandomSong.bind(_this, _this.props.MASASuser, _this.props.discoverNumber),
 								className: "next-song",
@@ -53739,6 +53774,8 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Artwork
 },{"../UI/UI.jsx":386,"./containers/ArtworkLine.jsx":305,"react":284,"react-dom":85,"react-redux":89}],303:[function(require,module,exports){
 "use strict";
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var React = require("react");
 var ReactDOM = require("react-dom");
 
@@ -53752,6 +53789,8 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../../MASAS_functions.jsx");
 
 var getTimeIntervalFromURL = _require2.getTimeIntervalFromURL;
+var isObjectEmpty = _require2.isObjectEmpty;
+var isObjectNotEmpty = _require2.isObjectNotEmpty;
 
 var ArtworkLine = require("./ArtworkLine.jsx");
 
@@ -53766,6 +53805,9 @@ var TeachDiscoverModal2 = _require4.TeachDiscoverModal2;
 
 var Discover = React.createClass({
 	displayName: "Discover",
+
+	showArtwork: false,
+	showSlider: false,
 
 	propTypes: {},
 
@@ -53786,10 +53828,36 @@ var Discover = React.createClass({
 		this.props.closeModal();
 	},
 
-	componentDidMount: function componentDidMount() {
-		this.props.updateModalType(2);
-		this.props.updateModalContent(React.createElement(TeachDiscoverModal1, null));
-		this.props.toogleModal();
+	componentDidMount: function componentDidMount() {},
+
+	checkUserStep: function checkUserStep() {
+		// if user data is available
+		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+			// if user has not dismissed tips yet
+			var usersteps = [].concat(_toConsumableArray(this.props.userData.usersteps));
+			var didUserDismissTips = usersteps.filter(function (_ref) {
+				var step = _ref.step;
+				return step === 4;
+			}).length ? true : false;
+			var didUserSeeFirstTip = usersteps.filter(function (_ref2) {
+				var step = _ref2.step;
+				return step === 5;
+			}).length ? true : false;
+			var didUserSeeSecondTip = usersteps.filter(function (_ref3) {
+				var step = _ref3.step;
+				return step === 6;
+			}).length ? true : false;
+
+			if (!didUserDismissTips && !didUserSeeFirstTip) {
+				this.props.updateModalType(2);
+				this.props.updateModalContent(React.createElement(TeachDiscoverModal1, null));
+				this.props.toogleModal();
+			} else if (!didUserDismissTips && !didUserSeeSecondTip) {
+				this.props.updateModalType(2);
+				this.props.updateModalContent(React.createElement(TeachDiscoverModal2, null));
+				this.props.toogleModal();
+			}
+		}
 	},
 
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
@@ -53807,9 +53875,50 @@ var Discover = React.createClass({
 		}
 	},
 
+	renderForUITip: function renderForUITip() {
+
+		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+			// if user has not dismissed tips yet
+			var usersteps = [].concat(_toConsumableArray(this.props.userData.usersteps));
+			var didUserDismissTips = usersteps.filter(function (_ref4) {
+				var step = _ref4.step;
+				return step === 4;
+			}).length ? true : false;
+			var didUserSeeFirstTip = usersteps.filter(function (_ref5) {
+				var step = _ref5.step;
+				return step === 5;
+			}).length ? true : false;
+			var didUserSeeSecondTip = usersteps.filter(function (_ref6) {
+				var step = _ref6.step;
+				return step === 6;
+			}).length ? true : false;
+
+			if (!didUserDismissTips && !didUserSeeFirstTip && this.props.modalType === 2) this.showSlider = true;else if (!didUserDismissTips && didUserSeeFirstTip && !didUserSeeSecondTip && this.props.modalType === 2) {
+				this.showSlider = false;
+				this.showArtwork = true;
+			} else {
+				this.showSlider = false;
+				this.showArtwork = false;
+			}
+		}
+	},
+
 	render: function render() {
+		var _this2 = this;
+
 		var sliderInitDiscover = null;
 		if (this.props.MASAS_songInfo) sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval);
+
+		var showArtwork = this.showArtwork;
+		var showSlider = this.showSlider;
+
+		// changing state in this.checkUserStep, delaying it until after this.render()
+
+		window.setTimeout(function () {
+			return _this2.checkUserStep();
+		}, 0);
+
+		this.renderForUITip();
 
 		return React.createElement(
 			"div",
@@ -53819,17 +53928,21 @@ var Discover = React.createClass({
 				{
 					className: "multi-page--wrapper",
 					style: {
-						visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible'
+						//visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
 					} },
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 1 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#EarlyMorning"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 1 })
 				),
 				React.createElement(
@@ -53837,10 +53950,14 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 2 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#LateMorning"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 2 })
 				),
 				React.createElement(
@@ -53848,10 +53965,14 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 3 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#EarlyAfternoon"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 3 })
 				),
 				React.createElement(
@@ -53859,10 +53980,14 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 4 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#LateAfternoon"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 4 })
 				),
 				React.createElement(
@@ -53870,10 +53995,14 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 5 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#EarlyEvening"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 5 })
 				),
 				React.createElement(
@@ -53881,16 +54010,24 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 6 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						null,
+						{
+							style: {
+								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+							} },
 						"#LateEvening"
 					),
 					React.createElement(ArtworkLine, {
+						renderForUITip: showArtwork,
 						discoverNumber: 6 })
 				)
 			),
 			React.createElement(
 				"div",
-				{ className: "time-picker--wrapper" },
+				{
+					className: "time-picker--wrapper",
+					style: {
+						visibility: !showSlider && this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+					} },
 				React.createElement(TimePicker, {
 					canvasId: "timePicker--canvas",
 					wrapperClassName: "timePicker--wrapper",
@@ -53920,11 +54057,14 @@ var _require = require("./containers/TeachDiscoverModals.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var _require2 = require("../../MASAS_functions.jsx");
 
-var _require2 = require("../UI/UI.jsx");
+var getCookie = _require2.getCookie;
+var updateProfileInfo = _require2.updateProfileInfo;
 
-var Button = _require2.Button;
+var _require3 = require("../UI/UI.jsx");
+
+var Button = _require3.Button;
 
 var TeachDiscoverModals = {};
 
@@ -53935,18 +54075,50 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, ma
 
 	componentWillMount: function componentWillMount() {},
 
+	updateUserStep: function updateUserStep() {
+		var _this = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 5
+			},
+			success: function success(r) {
+				updateProfileInfo(_this.props.toogleIsModalOpened);
+				console.log(r);
+			},
+			error: function error(e) {
+				return console.log(e);
+			}
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
 			"div",
 			{ className: "teach-modal--wrapper" },
 			React.createElement(
 				"p",
+				{ className: "bold" },
+				"Hey, Meet the Discovery Slider"
+			),
+			React.createElement(
+				"p",
 				null,
-				"Discover music in other moods through the time of the day with the slider"
+				"It's your new friend! Match your daily journey with 6 different moods"
 			),
 			React.createElement(
 				Button,
-				{ onClick: function onClick() {} },
+				{
+					isBigButton: false,
+					onClick: this.updateUserStep },
 				"Yeah!"
 			)
 		);
@@ -53960,18 +54132,59 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, ma
 
 	componentWillMount: function componentWillMount() {},
 
+	updateUserStep: function updateUserStep() {
+		var _this2 = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 6
+			},
+			success: function success(r) {
+				updateProfileInfo(_this2.props.toogleIsModalOpened);
+				console.log(r);
+			},
+			error: function error(e) {
+				return console.log(e);
+			}
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "teach-modal--wrapper" },
-			"BAR"
+			{ className: "teach-modal--wrapper like-UI-info" },
+			React.createElement(
+				"p",
+				{ className: "bold" },
+				"Like your favorite discoveries"
+			),
+			React.createElement(
+				"p",
+				null,
+				"or press L for quick action"
+			),
+			React.createElement(
+				Button,
+				{
+					isBigButton: false,
+					onClick: this.updateUserStep },
+				"Got it!"
+			)
 		);
 	}
 }));
 
 module.exports = TeachDiscoverModals;
 
-},{"../UI/UI.jsx":386,"./containers/TeachDiscoverModals.jsx":307,"react":284,"react-dom":85,"react-redux":89}],305:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":298,"../UI/UI.jsx":386,"./containers/TeachDiscoverModals.jsx":307,"react":284,"react-dom":85,"react-redux":89}],305:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -53994,7 +54207,9 @@ ArtworkLine.mapStateToProps = function (state) {
 		isPlayerPaused: state.playerReducer.isPaused,
 		isSongPlayingLiked: state.playerReducer.isSongPlayingLiked,
 		userToken: state.appReducer.MASASuser,
-		isFooterOpened: state.footerReducer.isOpened
+		isFooterOpened: state.footerReducer.isOpened,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType
 	};
 };
 
@@ -54042,7 +54257,8 @@ Discover.mapStateToProps = function (state) {
 		userToken: state.appReducer.MASASuser,
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		modalType: state.appReducer.modalType,
-		isModalOpened: state.appReducer.isModalOpened
+		isModalOpened: state.appReducer.isModalOpened,
+		userData: state.appReducer.userData
 	};
 };
 
@@ -54073,16 +54289,23 @@ Discover.mapDispatchToProps = function (dispatch) {
 module.exports = Discover;
 
 },{"../../../MASAS_functions.jsx":298}],307:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var TeachDiscoverModals = {};
 
 TeachDiscoverModals.mapStateToProps = function (state) {
-	return {};
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData
+	};
 };
 
 TeachDiscoverModals.mapDispatchToProps = function (dispatch) {
-	return {};
+	return {
+		toogleIsModalOpened: function toogleIsModalOpened() {
+			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+		}
+	};
 };
 
 module.exports = TeachDiscoverModals;
@@ -60966,7 +61189,7 @@ var getState = _require2.getState;
 
 var ajaxCalls = {};
 
-ajaxCalls.updateProfileInfo = function () {
+ajaxCalls.updateProfileInfo = function (callback) {
 	var _getState$appReducer = getState().appReducer;
 	var MASASuser = _getState$appReducer.MASASuser;
 	var userData = _getState$appReducer.userData;
@@ -60981,6 +61204,7 @@ ajaxCalls.updateProfileInfo = function () {
 		},
 		success: function success(userData) {
 			dispatch({ type: 'UPDATE_USER_DATA', userData: userData });
+			if (callback) callback();
 		},
 		error: function error(e) {}
 	});
@@ -61235,7 +61459,11 @@ var Body = React.createClass({
 				),
 				React.createElement(
 					"div",
-					{ className: "col-md-8 page-title--wrapper" },
+					{
+						style: {
+							visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+						},
+						className: "col-md-8 page-title--wrapper" },
 					React.createElement(
 						"div",
 						{ className: "box page-title" },
@@ -61581,7 +61809,12 @@ var Modal = React.createClass({
 		);else if (this.props.type === 2) return React.createElement(
 			"div",
 			{ className: "MASAS-modal type2" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
-			React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", className: "close-icon", alt: "close modal" }),
+			React.createElement(
+				"div",
+				{ className: "close-icon" },
+				React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", alt: "close modal" }),
+				"dismiss tips"
+			),
 			React.createElement(
 				"div",
 				{ className: "" },
@@ -61817,7 +62050,8 @@ var TimePicker = React.createClass({
 	getDefaultProps: function getDefaultProps() {
 		return {
 			showHashtag: true,
-			sliderValue: -1
+			sliderValue: -1,
+			renderForUITip: false
 		};
 	},
 
@@ -62026,7 +62260,9 @@ var Body = {};
 // Which part of the Redux global state does our component want to receive as props?
 Body.mapStateToProps = function (state) {
 	return {
-		title: state.appReducer.pageTitle
+		title: state.appReducer.pageTitle,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened
 	};
 };
 

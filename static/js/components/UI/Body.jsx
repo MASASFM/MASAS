@@ -20,7 +20,11 @@ var Body = React.createClass({
 					<div className="col-md-2">
 						<div className="box"></div>
 					</div>
-					<div className="col-md-8 page-title--wrapper">
+					<div 
+						style={{
+							visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
+						}}
+						className="col-md-8 page-title--wrapper">
 						<div className="box page-title">{ this.props.title }</div>
 						<hr />
 					</div>

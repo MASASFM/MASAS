@@ -5,6 +5,8 @@ var Body = {}
 Body.mapStateToProps = function(state) {
 	return {
 		title: state.appReducer.pageTitle,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened,
 	}
 }
 

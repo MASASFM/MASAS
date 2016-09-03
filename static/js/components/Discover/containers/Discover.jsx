@@ -9,7 +9,8 @@ Discover.mapStateToProps = function(state) {
 		userToken: state.appReducer.MASASuser,
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		modalType: state.appReducer.modalType,
-		isModalOpened: state.appReducer.isModalOpened
+		isModalOpened: state.appReducer.isModalOpened,
+		userData: state.appReducer.userData,
 	}
 }
 

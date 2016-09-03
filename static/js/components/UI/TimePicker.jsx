@@ -43,6 +43,7 @@ var TimePicker = React.createClass({
 		return {
 			showHashtag: true,
 			sliderValue: -1,
+			renderForUITip: false,
 		}
 	},
 
