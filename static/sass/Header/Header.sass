@@ -72,6 +72,7 @@ $B: 0
 		background-color: rgba($R,$G,$B,$opacity)
 		height: $phone-header-height
 		margin: 0
+		position: relative
 
 	.phone-header
 		.header-login-button--wrapper
@@ -80,6 +81,9 @@ $B: 0
 				width: 13rem
 				font-size: 0.9rem
 				letter-spacing: 0.13rem
+				position: absolute
+				top: calc( ( #{$phone-header-height} / 2 - 0.7rem ) / 2 )
+				right: 1rem
 
 		.menu-icon
 			height: 1rem

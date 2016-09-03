@@ -1219,12 +1219,16 @@ input[type=range].MASAS-slider {
   .header .phone-header {
     background-color: rgba(0, 0, 0, 0.8);
     height: 3rem;
-    margin: 0; }
+    margin: 0;
+    position: relative; }
   .header .phone-header .header-login-button--wrapper .MASAS-button {
     height: 0.7rem;
     width: 13rem;
     font-size: 0.9rem;
-    letter-spacing: 0.13rem; }
+    letter-spacing: 0.13rem;
+    position: absolute;
+    top: calc( ( 3rem / 2 - 0.7rem ) / 2 );
+    right: 1rem; }
   .header .phone-header .menu-icon {
     height: 1rem;
     margin-left: 1rem;
