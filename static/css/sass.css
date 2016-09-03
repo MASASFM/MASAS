@@ -464,6 +464,15 @@ input[type=range].MASAS-slider {
 @media screen and (min-width: 992px) {
   .timePicker--wrapper .timePicker-slider--wrapper {
     bottom: 2.5rem; } }
+.MASAS-modal.type2 {
+  top: 4.1rem; }
+  .MASAS-modal.type2 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+    margin-top: 1rem; }
+
 .MASAS-modal {
   position: fixed;
   top: 0;
@@ -518,6 +527,9 @@ input[type=range].MASAS-slider {
   z-index: -4; }
 
 @media screen and (min-width: 992px) {
+  .MASAS-modal.type2 {
+    top: 4.2rem; }
+
   .MASAS-modal .modal-content--wrapper {
     width: 50%;
     height: 50%;

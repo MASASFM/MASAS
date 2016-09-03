@@ -1,3 +1,13 @@
+.MASAS-modal.type2
+	top: $phone-header-height--total
+
+	img
+		position: absolute
+		top: 0
+		left: 0
+		margin-left: 1rem
+		margin-top: 1rem
+
 .MASAS-modal
 	position: fixed
 	top: 0
@@ -59,6 +69,10 @@
 	z-index: -4
 
 @media screen and (min-width: $desktop-min-width)
+	.MASAS-modal.type2
+		top: $desktop-header-height
+		
+
 	.MASAS-modal
 
 		.modal-overlay

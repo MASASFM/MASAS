@@ -61492,7 +61492,7 @@ var Modal = React.createClass({
 			)
 		);else if (this.props.type === 2) return React.createElement(
 			"div",
-			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
+			{ className: "MASAS-modal type2" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
 			React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", className: "close-icon", alt: "close modal" }),
 			React.createElement(
 				"div",
