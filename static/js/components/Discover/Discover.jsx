@@ -23,6 +23,16 @@ var Discover = React.createClass({
 
 	},
 
+	componentDidMount: function() {
+		this.props.updateModalType(2)
+		this.props.updateModalContent(
+			<div>
+				bla
+			</div>
+			)
+		this.props.toogleModal()
+	},
+
 	componentWillReceiveProps: function(nextProps) {
 	},
 
@@ -33,7 +43,11 @@ var Discover = React.createClass({
 
 		return (
 			<div className="discover--wrapper">
-				<div className="multi-page--wrapper">
+				<div 
+					className="multi-page--wrapper" 
+					style={{ 
+						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
+					}}>
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
 						<h1>#EarlyMorning</h1>
 						<ArtworkLine 

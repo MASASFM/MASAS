@@ -120,7 +120,7 @@ var App = React.createClass({
 							<div className="bg-image" id="app-bg-image"></div>
 						</div>
 						<Header />
-							<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened ? " blurred" : "" )}>
+							<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}>
 								{this.props.children ? 
 										this.props.children
 									:
@@ -133,7 +133,8 @@ var App = React.createClass({
 					<div id="jquery_jplayer_1"></div>
 					<Modal 
 						isOpened={ this.props.isModalOpened }
-						closeModalFunc={ this.props.toogleModal }>
+						closeModalFunc={ this.props.toogleModal }
+						type={ this.props.modalType }>
 						{ this.props.modalContent }
 					</Modal>
 				</NavSidebar>

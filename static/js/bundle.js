@@ -53371,7 +53371,7 @@ var App = React.createClass({
 				React.createElement(Header, null),
 				React.createElement(
 					"div",
-					{ className: "modal-blur--wrapper" + (this.props.isModalOpened ? " blurred" : "") },
+					{ className: "modal-blur--wrapper" + (this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "") },
 					this.props.children ? this.props.children : React.createElement(Home, null)
 				),
 				React.createElement(Footer, null)
@@ -53381,7 +53381,8 @@ var App = React.createClass({
 				Modal,
 				{
 					isOpened: this.props.isModalOpened,
-					closeModalFunc: this.props.toogleModal },
+					closeModalFunc: this.props.toogleModal,
+					type: this.props.modalType },
 				this.props.modalContent
 			)
 		);else return React.createElement(
@@ -53436,7 +53437,8 @@ App.mapStateToProps = function (state) {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		processingAuthCookie: state.appReducer.processingAuthCookie,
 		isModalOpened: state.appReducer.isModalOpened,
-		modalContent: state.appReducer.modalContent
+		modalContent: state.appReducer.modalContent,
+		modalType: state.appReducer.modalType
 	};
 };
 
@@ -53770,6 +53772,16 @@ var Discover = React.createClass({
 		if (this.props.MASAS_songInfo) this.props.handleTimePickerChange(getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval));
 	},
 
+	componentDidMount: function componentDidMount() {
+		this.props.updateModalType(2);
+		this.props.updateModalContent(React.createElement(
+			"div",
+			null,
+			"bla"
+		));
+		this.props.toogleModal();
+	},
+
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
 
 	render: function render() {
@@ -53781,7 +53793,11 @@ var Discover = React.createClass({
 			{ className: "discover--wrapper" },
 			React.createElement(
 				"div",
-				{ className: "multi-page--wrapper" },
+				{
+					className: "multi-page--wrapper",
+					style: {
+						visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible'
+					} },
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 1 ? "page1" : "page2" },
@@ -53935,7 +53951,9 @@ Discover.mapStateToProps = function (state) {
 	return {
 		discoverNumber: state.discoverReducer.discoverNumber,
 		userToken: state.appReducer.MASASuser,
-		MASAS_songInfo: state.playerReducer.MASAS_songInfo
+		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		modalType: state.appReducer.modalType,
+		isModalOpened: state.appReducer.isModalOpened
 	};
 };
 
@@ -53947,6 +53965,15 @@ Discover.mapDispatchToProps = function (dispatch) {
 		},
 		handleTimePickerChange: function handleTimePickerChange(discoverNumber) {
 			return dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber: discoverNumber });
+		},
+		toogleModal: function toogleModal() {
+			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+		},
+		updateModalContent: function updateModalContent(modalContent) {
+			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+		},
+		updateModalType: function updateModalType(modalType) {
+			return dispatch({ type: 'UPDATE_MODAL_TYPE', modalType: modalType });
 		}
 	};
 };
@@ -61393,15 +61420,17 @@ var Modal = React.createClass({
 
 	propTypes: {
 		isOpened: React.PropTypes.bool, // is modal shown
-		closeModalFunc: React.PropTypes.func },
+		closeModalFunc: React.PropTypes.func, // what to execute when clicking on close modal area (arrow or overlay)
+		type: React.PropTypes.number },
 
-	// what to execute when clicking on close modal area (arrow or overlay)
+	// what type the modal is
 	getDefaultProps: function getDefaultProps() {
 		return {
 			isOpened: false,
 			closeModalFunc: function closeModalFunc() {
 				return console.log('no closing function attached to modal');
-			}
+			},
+			type: 1
 		};
 	},
 
@@ -61411,10 +61440,21 @@ var Modal = React.createClass({
 
 	componentDidUpdate: function componentDidUpdate() {},
 
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		if (nextProps.isOpened === false) {
+			// remove background blur
+			$('#body--background').removeClass('blurred');
+		} else if (nextProps.isOpened === true && nextProps.type === 1) {
+			// put background blur on
+			$('#body--background').addClass('blurred');
+		} else if (nextProps.isOpened === true && nextProps.type === 2) {
+			$('#body--background').addClass('blurred');
+			$('#body--background').removeClass('saturated');
+		}
+	},
 
 	render: function render() {
-		return React.createElement(
+		if (this.props.type === 1) return React.createElement(
 			"div",
 			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed") },
 			React.createElement("div", { className: "modal-overlay", onClick: this.props.closeModalFunc }),
@@ -61427,6 +61467,15 @@ var Modal = React.createClass({
 					{ className: "modal-content" },
 					this.props.children
 				)
+			)
+		);else if (this.props.type === 2) return React.createElement(
+			"div",
+			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed") },
+			React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", className: "close-icon", alt: "close modal" }),
+			React.createElement(
+				"div",
+				{ className: "", onClick: this.props.closeModalFunc },
+				this.props.children
 			)
 		);
 	}
@@ -62626,9 +62675,10 @@ exportVar.defaultState = {
 	}, // (func) what happens when user clicks on back arrow
 	isAppFetching: false, // (bool)
 	isModalOpened: false, // (bool) is modal opened
-	modalContent: React.createElement('div', null) };
+	modalContent: React.createElement('div', null), // (obj) modal content
+	modalType: 1 };
 
-// (obj) modal content
+// (int) how the modal looks like. 1 for default
 var defaultState = exportVar.defaultState;
 
 exportVar.appReducer = function () {
@@ -62640,6 +62690,10 @@ exportVar.appReducer = function () {
 			return _extends({}, state, {
 				userData: _extends({}, state.userData, action.userData)
 			});
+		case 'UPDATE_MODAL_TYPE':
+			return _extends({}, state, {
+				modalType: action.modalType
+			});
 		case 'TOOGLE_IS_MODAL_OPENED':
 			// empty modal content on closing
 			var modalContent = state.modalContent;
@@ -62647,8 +62701,9 @@ exportVar.appReducer = function () {
 
 			return _extends({}, state, {
 				isModalOpened: !state.isModalOpened,
-				modalContent: modalContent
-			});
+				modalContent: modalContent,
+				modalType: !state.isModalOpened ? state.modalType : 1 });
+		// reset type to 1 if closing modal
 		case 'CHANGE_MODAL_CONTENT':
 			return _extends({}, state, {
 				modalContent: action.modalContent

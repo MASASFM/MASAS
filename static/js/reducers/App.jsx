@@ -14,6 +14,7 @@ exportVar.defaultState = {
 	isAppFetching: false,				// (bool)
 	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
+	modalType: 1,					// (int) how the modal looks like. 1 for default
 }
 
 const { defaultState } = exportVar
@@ -29,6 +30,11 @@ exportVar.appReducer = function(state = defaultState, action) {
 					...action.userData,
 				}
 			}
+		case 'UPDATE_MODAL_TYPE':
+			return {
+				...state,
+				modalType: action.modalType,
+			}
 		case 'TOOGLE_IS_MODAL_OPENED':
 			// empty modal content on closing
 			var modalContent = state.modalContent
@@ -38,7 +44,8 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				isModalOpened: !state.isModalOpened,
-				modalContent
+				modalContent,
+				modalType: !state.isModalOpened ? state.modalType : 1,		// reset type to 1 if closing modal
 			}
 		case 'CHANGE_MODAL_CONTENT':
 			return {
