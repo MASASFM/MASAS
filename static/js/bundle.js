@@ -55965,7 +55965,7 @@ var UnsplashControls = React.createClass({
 				React.createElement(
 					"a",
 					{ onClick: this.updateUnsplashArtist },
-					React.createElement("img", { src: "/static/img/MASAS_icon_change_unsplash_user.svg", alt: "random-artist" })
+					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
 				)
 			),
 			React.createElement(
@@ -55974,7 +55974,7 @@ var UnsplashControls = React.createClass({
 				React.createElement(
 					"a",
 					{ onClick: this.getNewBackground },
-					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-background" })
+					React.createElement("img", { src: "/static/img/MASAS_icon_change_unsplash_user.svg", alt: "random-background" })
 				)
 			)
 		);

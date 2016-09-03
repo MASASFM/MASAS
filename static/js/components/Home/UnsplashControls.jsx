@@ -66,12 +66,12 @@ var UnsplashControls = React.createClass({
 				<div className="artist-controls">
 					<a href={ "https://unsplash.com/" + this.props.unsplashArtistUsername } target="_blank">{ this.props.unsplashArtistName }</a>
 					<a onClick={ this.updateUnsplashArtist }>
-						<img src="/static/img/MASAS_icon_change_unsplash_user.svg" alt="random-artist"/>
+						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-artist"/>
 					</a>
 				</div>
 				<div className="background-controls">
 					<a onClick={ this.getNewBackground }>
-						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-background"/>
+						<img src="/static/img/MASAS_icon_change_unsplash_user.svg" alt="random-background"/>
 					</a>
 				</div>
 			</div>
