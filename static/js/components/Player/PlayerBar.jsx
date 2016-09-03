@@ -130,9 +130,9 @@ var Player = React.createClass({
 		if(this.props.isModalOpened && this.props.modalType === 2) {
 			if(isObjectNotEmpty(this.props.userData)) {
 				// if user has not dismissed tips yet
-				const didUserSeeSecondTip = this.props.userData.usersteps.filter(({ step }) => step === 6).length ? true : false
+				const didUserSeeFirstTip = this.props.userData.usersteps.filter(({ step }) => step === 5).length ? true : false
 
-				if(!didUserSeeSecondTip)
+				if(didUserSeeFirstTip)
 					return <img 
 							src="/static/img/dynamic_like_icon.gif" 
 							alt="like icon" 

@@ -59355,12 +59355,12 @@ var Player = React.createClass({
 		if (this.props.isModalOpened && this.props.modalType === 2) {
 			if (isObjectNotEmpty(this.props.userData)) {
 				// if user has not dismissed tips yet
-				var didUserSeeSecondTip = this.props.userData.usersteps.filter(function (_ref) {
+				var didUserSeeFirstTip = this.props.userData.usersteps.filter(function (_ref) {
 					var step = _ref.step;
-					return step === 6;
+					return step === 5;
 				}).length ? true : false;
 
-				if (!didUserSeeSecondTip) return React.createElement("img", {
+				if (didUserSeeFirstTip) return React.createElement("img", {
 					src: "/static/img/dynamic_like_icon.gif",
 					alt: "like icon",
 					className: "like-icon",
