@@ -119,6 +119,10 @@ class User(AbstractUser):
     def dislikes(self):
         return self.status_set.filter(user=self, status=-1)
 
+    @property
+    def user_steps(self):
+        return self.status_set.filter(user=self)
+
 
 class UserStep(models.Model):
     STEP_CHOICES = (
