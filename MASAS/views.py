@@ -104,10 +104,6 @@ class UserViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
 
 
 class UserStepViewSet(BaseModelViewSetMixin, viewsets.ModelViewSet):
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly,
-        IsUserOrReadOnly
-    )
     queryset = UserStep.objects.all()
     serializer_class = UserStepSerializer
 
