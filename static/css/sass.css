@@ -2286,6 +2286,8 @@ input[type=range].MASAS-slider {
     position: relative;
     width: 100%;
     height: 22rem; }
+  .profile--wrapper .profile-info--wrapper.no-songs {
+    height: 12rem; }
   .profile--wrapper .profile-info--wrapper .edit-profile-icon--wrapper {
     position: absolute;
     right: 28px;
@@ -2487,8 +2489,24 @@ input[type=range].MASAS-slider {
     .profile--wrapper .song-list--wrapper .no-songs--wrapper img {
       width: 3rem; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button {
-      align-self: center;
-      padding-top: 0.5rem; }
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0.5rem;
+      padding: 0 1rem; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
+        text-align: center;
+        font-family: Lato-Light;
+        margin-bottom: 1.5rem;
+        line-height: 1.2; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p.bold {
+        font-family: Lato-Semibold;
+        font-size: 1.2rem;
+        line-height: 1.3; }
+      .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button .MASAS-button {
+        margin-bottom: 1rem; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper .image--wrapper {
       display: flex;
       justify-content: space-between; }
@@ -2511,6 +2529,8 @@ input[type=range].MASAS-slider {
     flex-direction: row;
     height: 8rem;
     margin-bottom: 1.5rem; }
+  .profile--wrapper .profile-info--wrapper.no-songs {
+    height: 100%; }
   .profile--wrapper .profile-info--wrapper {
     height: 100%;
     align-items: center;
@@ -2601,6 +2621,8 @@ input[type=range].MASAS-slider {
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     overflow-y: scroll; }
+    .profile--wrapper .song-list--wrapper .no-songs--wrapper .upload-button p {
+      max-width: 20rem; }
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper {
       display: none; }
     .profile--wrapper .song-list--wrapper .track-table--wrapper {

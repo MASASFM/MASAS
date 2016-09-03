@@ -127,7 +127,17 @@ var Profile = React.createClass({
 						</div>
 						*/}
 						<div className="upload-button">
-							<Button onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
+							<p className="bold">
+								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
+							</p>
+							<p>
+								This is your new profile, all your uplaoded sounds will be shown here.
+							</p>
+							<p>
+								What would you prefer to do now
+							</p>
+							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
+							<Button onClick={goToURL.bind(null, "/discover")}>Start discovering new music</Button>
 						</div>
 					</div>
 					:
@@ -372,7 +382,7 @@ var Profile = React.createClass({
 				<div style={{display: 'flex', flex: 1}}>
 					<ProfileWrapper>
 						<div className="main--wrapper">
-							<div className="profile-info--wrapper">
+							<div className={ "profile-info--wrapper " + (!this.props.userData.songs.length ?  "no-songs" : "") }>
 								{ this.props.route.publicProfile ?
 									<div></div>
 									:

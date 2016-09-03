@@ -60137,9 +60137,31 @@ var Profile = React.createClass({
 				"div",
 				{ className: "upload-button" },
 				React.createElement(
+					"p",
+					{ className: "bold" },
+					"Congratulation ",
+					this.props.userData.name ? this.props.userData.name : this.props.userData.username,
+					", you're now part of the familly"
+				),
+				React.createElement(
+					"p",
+					null,
+					"This is your new profile, all your uplaoded sounds will be shown here."
+				),
+				React.createElement(
+					"p",
+					null,
+					"What would you prefer to do now"
+				),
+				React.createElement(
 					Button,
-					{ onClick: goToURL.bind(null, "/upload") },
+					{ isSecondaryAction: true, onClick: goToURL.bind(null, "/upload") },
 					"Upload my first sound"
+				),
+				React.createElement(
+					Button,
+					{ onClick: goToURL.bind(null, "/discover") },
+					"Start discovering new music"
 				)
 			)
 		) : React.createElement(
@@ -60384,7 +60406,7 @@ var Profile = React.createClass({
 						{ className: "main--wrapper" },
 						React.createElement(
 							"div",
-							{ className: "profile-info--wrapper" },
+							{ className: "profile-info--wrapper " + (!this.props.userData.songs.length ? "no-songs" : "") },
 							this.props.route.publicProfile ? React.createElement("div", null) : React.createElement(
 								"div",
 								{ className: "edit-profile-icon--wrapper" },
