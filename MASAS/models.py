@@ -128,6 +128,10 @@ class UserStep(models.Model):
     STEP_CHOICES = (
         (1, 'Accepted terms and conditions'),
         (2, 'Can log in'),
+        (3, 'redirect to discover on login'),
+        (4, 'Dismissed all tips'),
+        (5, 'Read 1st UI tip'),
+        (6, 'Read 2nd UI tip'),
     )
 
     user = models.ForeignKey('User', related_name='usersteps')
