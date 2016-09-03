@@ -466,12 +466,6 @@ input[type=range].MASAS-slider {
     bottom: 2.5rem; } }
 .MASAS-modal.type2 {
   top: 4.1rem; }
-  .MASAS-modal.type2 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: 1rem;
-    margin-top: 1rem; }
 
 .MASAS-modal {
   position: fixed;
@@ -485,6 +479,19 @@ input[type=range].MASAS-slider {
   flex: 1;
   justify-content: center;
   align-items: center; }
+  .MASAS-modal .close-icon {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2rem;
+    cursor: pointer;
+    height: 1.4rem;
+    opacity: 0.6; }
+  .MASAS-modal .close-icon:hover {
+    opacity: 0.8; }
+  .MASAS-modal .close-icon:active {
+    opacity: 1; }
   .MASAS-modal .modal-overlay {
     position: absolute;
     top: 0;
@@ -501,19 +508,6 @@ input[type=range].MASAS-slider {
     display: flex;
     justify-content: center;
     align-items: center; }
-    .MASAS-modal .modal-content--wrapper .close-icon {
-      z-index: 3;
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 2rem;
-      cursor: pointer;
-      height: 1.4rem;
-      opacity: 0.6; }
-    .MASAS-modal .modal-content--wrapper .close-icon:hover {
-      opacity: 0.8; }
-    .MASAS-modal .modal-content--wrapper .close-icon:active {
-      opacity: 1; }
     .MASAS-modal .modal-content--wrapper .modal-content {
       position: absolute;
       top: 0;

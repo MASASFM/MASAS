@@ -1,13 +1,6 @@
 .MASAS-modal.type2
 	top: $phone-header-height--total
 
-	img
-		position: absolute
-		top: 0
-		left: 0
-		margin-left: 1rem
-		margin-top: 1rem
-
 .MASAS-modal
 	position: fixed
 	top: 0
@@ -20,6 +13,22 @@
 	flex: 1
 	justify-content: center
 	align-items: center
+
+	.close-icon
+		z-index: 3
+		position: absolute
+		top: 0
+		left:  0
+		padding: 2rem
+		cursor: pointer
+		height: 1.4rem
+		opacity: 0.6
+
+	.close-icon:hover
+		opacity: 0.8
+
+	.close-icon:active
+		opacity: 1
 
 	.modal-overlay
 		position: absolute
@@ -38,22 +47,6 @@
 		display: flex
 		justify-content: center
 		align-items: center
-
-		.close-icon
-			z-index: 3
-			position: absolute
-			top: 0
-			left:  0
-			padding: 2rem
-			cursor: pointer
-			height: 1.4rem
-			opacity: 0.6
-
-		.close-icon:hover
-			opacity: 0.8
-
-		.close-icon:active
-			opacity: 1
 
 		.modal-content
 			position: absolute

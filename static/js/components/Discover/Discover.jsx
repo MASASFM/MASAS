@@ -20,13 +20,16 @@ var Discover = React.createClass({
 	},
 
 	componentWillMount: function() {
-		console.log('componentWillMount')
 		this.props.updateTitle('Discover', '0')		// 0 = menu icon; 1 = arrow back
 
 		// check what discover is playing
 		if(this.props.MASAS_songInfo)
 			this.props.handleTimePickerChange(getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval))
 
+	},
+
+	componentWillUnmount: function() {
+		this.props.closeModal()
 	},
 
 	componentDidMount: function() {

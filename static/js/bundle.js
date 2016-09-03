@@ -53771,11 +53771,14 @@ var Discover = React.createClass({
 	},
 
 	componentWillMount: function componentWillMount() {
-		console.log('componentWillMount');
 		this.props.updateTitle('Discover', '0'); // 0 = menu icon; 1 = arrow back
 
 		// check what discover is playing
 		if (this.props.MASAS_songInfo) this.props.handleTimePickerChange(getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval));
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		this.props.closeModal();
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -53995,6 +53998,9 @@ Discover.mapDispatchToProps = function (dispatch) {
 		},
 		updateModalType: function updateModalType(modalType) {
 			return dispatch({ type: 'UPDATE_MODAL_TYPE', modalType: modalType });
+		},
+		closeModal: function closeModal() {
+			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
 		}
 	};
 };
@@ -62730,6 +62736,12 @@ exportVar.appReducer = function () {
 				modalContent: modalContent,
 				modalType: !state.isModalOpened ? state.modalType : 1 });
 		// reset type to 1 if closing modal
+		case 'CLOSE_AND_EMPTY_MAIN_MODAL':
+			return _extends({}, state, {
+				isModalOpened: defaultState.isModalOpened,
+				modalContent: defaultState.modalContent,
+				modalType: defaultState.modalType
+			});
 		case 'CHANGE_MODAL_CONTENT':
 			return _extends({}, state, {
 				modalContent: action.modalContent

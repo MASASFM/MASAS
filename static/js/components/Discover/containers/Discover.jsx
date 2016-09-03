@@ -21,6 +21,7 @@ Discover.mapDispatchToProps = function(dispatch) {
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
 		updateModalType: (modalType) => dispatch({ type: 'UPDATE_MODAL_TYPE', modalType }),
+		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' })
 	}
 }
 
