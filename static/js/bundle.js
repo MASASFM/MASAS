@@ -61828,14 +61828,18 @@ var Modal = React.createClass({
 			{ className: "MASAS-modal type2" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
 			React.createElement(
 				"div",
-				{ className: "close-icon" },
-				React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", alt: "close modal" }),
-				"dismiss tips"
-			),
-			React.createElement(
-				"div",
-				{ className: "" },
-				this.props.children
+				{ className: "modal-type-2--wrapper" },
+				React.createElement(
+					"div",
+					{ className: "close-icon" },
+					React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", alt: "close modal" }),
+					"dismiss tips"
+				),
+				React.createElement(
+					"div",
+					{ className: "" },
+					this.props.children
+				)
 			)
 		);
 	}

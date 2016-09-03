@@ -59,12 +59,14 @@ let Modal = React.createClass({
 		else if(this.props.type === 2)
 			return (
 				<div className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
-					<div className="close-icon">
-						<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" /> 
-						dismiss tips
-					</div>
-					<div className="">
-							{ this.props.children }
+					<div className="modal-type-2--wrapper">
+						<div className="close-icon">
+							<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" /> 
+							dismiss tips
+						</div>
+						<div className="">
+								{ this.props.children }
+						</div>
 					</div>
 				</div>
 				)
