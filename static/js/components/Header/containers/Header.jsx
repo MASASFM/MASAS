@@ -14,6 +14,7 @@ Header.mapStateToProps = function(state) {
 		notificationText: state.headerReducer.notificationText,
 		isAppFetching: state.appReducer.isAppFetching,
 		songPlaying: state.playerReducer.songPlaying,
+		MASASuser: state.appReducer.MASASuser,
 	}
 }
 

@@ -6,10 +6,12 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Header.jsx")
 
 var Radium = require("radium")
 
-var {goToURL} = require("../../MASAS_functions.jsx")
+var { goToURL } = require("../../MASAS_functions.jsx")
 var Header = require("../Header/Header.jsx")
 var HeaderDropdown = require("./HeaderDropdown.jsx")
 var Link = require("../UI/Link.jsx")
+var { Button } = require("../UI/UI.jsx")
+var { browserHistory } = require('react-router')
 
 var Header = React.createClass({
 
@@ -64,15 +66,27 @@ var Header = React.createClass({
 						</div>
 					</div>
 					<div className="col-xs-6">
-						<div className="box title">{ this.props.pageTitle }</div>
+						{ this.props.MASASuser === "" ?
+							<div></div>
+							:
+							<div className="box title">{ this.props.pageTitle }</div>
+						}
 					</div>
 					<div className="col-xs-3">
 						<div className="box tray-icon--wrapper">
-							<div 
-								className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
-								onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} } 
-								style={ !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} } >
-							</div>
+							{ this.props.MASASuser === "" ?
+								<div className="header-login-button--wrapper">
+									<Button
+										isBigButton={ true }
+										onClick={ () => { browserHistory.push('/login') } }>Request an invitation</Button>
+								</div>
+								:
+								<div 
+									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
+									onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} } 
+									style={ !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} } >
+								</div>
+							}
 						</div>
 					</div>
 				</div>

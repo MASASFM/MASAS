@@ -1113,6 +1113,11 @@ input[type=range].MASAS-slider {
   min-height: 4.2rem;
   position: relative;
   z-index: 2; }
+  .header .dropdown--wrapper .MASAS-button {
+    height: 0.75rem;
+    width: 13rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.13rem; }
   .header .dropdown--wrapper .username.login {
     font-size: 0.9rem;
     padding-left: 2rem; }
@@ -1215,6 +1220,11 @@ input[type=range].MASAS-slider {
     background-color: rgba(0, 0, 0, 0.8);
     height: 3rem;
     margin: 0; }
+  .header .phone-header .header-login-button--wrapper .MASAS-button {
+    height: 0.7rem;
+    width: 13rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.13rem; }
   .header .phone-header .menu-icon {
     height: 1rem;
     margin-left: 1rem;

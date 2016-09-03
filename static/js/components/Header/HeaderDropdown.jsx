@@ -4,8 +4,8 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/HeaderDropdown.jsx")
 
-var { Link } = require("../UI/UI.jsx")
-// const { getUsername } = require('./ajaxCalls.jsx')
+var { Button, Link } = require("../UI/UI.jsx")
+var { browserHistory } = require('react-router')
 
 var MenuLink = (props) => {
 	return (
@@ -21,11 +21,9 @@ var HeaderDropdown = React.createClass({
 	},
 
 	componentWillMount: function() {
-		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	componentWillReceiveProps: function(nextProps) {
-		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
 	},
 
 	logout: function() {
@@ -54,7 +52,9 @@ var HeaderDropdown = React.createClass({
 		} else
 			return (
 				<div className="dropdown--wrapper" >
-					<Link to="/login" ref="loginLink"><span className="username login">Log In</span></Link>
+					<Button
+						isBigButton={ true }
+						onClick={ () => { browserHistory.push('/login') } }>Request an invitation</Button>
 				</div>
 				)
 	}

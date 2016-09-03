@@ -54904,6 +54904,14 @@ var Header = require("../Header/Header.jsx");
 var HeaderDropdown = require("./HeaderDropdown.jsx");
 var Link = require("../UI/Link.jsx");
 
+var _require3 = require("../UI/UI.jsx");
+
+var Button = _require3.Button;
+
+var _require4 = require('react-router');
+
+var browserHistory = _require4.browserHistory;
+
 var Header = React.createClass({
 	displayName: "Header",
 
@@ -55009,7 +55017,7 @@ var Header = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "col-xs-6" },
-					React.createElement(
+					this.props.MASASuser === "" ? React.createElement("div", null) : React.createElement(
 						"div",
 						{ className: "box title" },
 						this.props.pageTitle
@@ -55021,7 +55029,19 @@ var Header = React.createClass({
 					React.createElement(
 						"div",
 						{ className: "box tray-icon--wrapper" },
-						React.createElement("div", {
+						this.props.MASASuser === "" ? React.createElement(
+							"div",
+							{ className: "header-login-button--wrapper" },
+							React.createElement(
+								Button,
+								{
+									isBigButton: true,
+									onClick: function onClick() {
+										browserHistory.push('/login');
+									} },
+								"Request an invitation"
+							)
+						) : React.createElement("div", {
 							className: "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : ""),
 							onClick: this.props.songPlaying ? this.props.toogleIsOpened : function () {},
 							style: !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} })
@@ -55058,7 +55078,7 @@ var styles = {
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../../MASAS_functions.jsx":298,"../Header/Header.jsx":313,"../UI/Link.jsx":379,"./HeaderDropdown.jsx":314,"./containers/Header.jsx":316,"radium":47,"react":284,"react-dom":85,"react-redux":89}],314:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":298,"../Header/Header.jsx":313,"../UI/Link.jsx":379,"../UI/UI.jsx":386,"./HeaderDropdown.jsx":314,"./containers/Header.jsx":316,"radium":47,"react":284,"react-dom":85,"react-redux":89,"react-router":123}],314:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -55073,8 +55093,12 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 
 var _require2 = require("../UI/UI.jsx");
 
+var Button = _require2.Button;
 var Link = _require2.Link;
-// const { getUsername } = require('./ajaxCalls.jsx')
+
+var _require3 = require('react-router');
+
+var browserHistory = _require3.browserHistory;
 
 var MenuLink = function MenuLink(props) {
 	return React.createElement(
@@ -55094,13 +55118,9 @@ var HeaderDropdown = React.createClass({
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
-		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
-	},
+	componentWillMount: function componentWillMount() {},
 
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		// this.props.getUsername(this.props.dispatch, this.props.MASASuser)
-	},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
 
 	logout: function logout() {
 		this.props.logout();
@@ -55153,13 +55173,13 @@ var HeaderDropdown = React.createClass({
 			"div",
 			{ className: "dropdown--wrapper" },
 			React.createElement(
-				Link,
-				{ to: "/login", ref: "loginLink" },
-				React.createElement(
-					"span",
-					{ className: "username login" },
-					"Log In"
-				)
+				Button,
+				{
+					isBigButton: true,
+					onClick: function onClick() {
+						browserHistory.push('/login');
+					} },
+				"Request an invitation"
 			)
 		);
 	}
@@ -55167,7 +55187,7 @@ var HeaderDropdown = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);
 
-},{"../UI/UI.jsx":386,"./containers/HeaderDropdown.jsx":317,"react":284,"react-dom":85,"react-redux":89}],315:[function(require,module,exports){
+},{"../UI/UI.jsx":386,"./containers/HeaderDropdown.jsx":317,"react":284,"react-dom":85,"react-redux":89,"react-router":123}],315:[function(require,module,exports){
 "use strict";
 
 var ajaxCalls = {};
@@ -55222,7 +55242,8 @@ Header.mapStateToProps = function (state) {
 		backArrowFunc: state.appReducer.backArrowFunc,
 		notificationText: state.headerReducer.notificationText,
 		isAppFetching: state.appReducer.isAppFetching,
-		songPlaying: state.playerReducer.songPlaying
+		songPlaying: state.playerReducer.songPlaying,
+		MASASuser: state.appReducer.MASASuser
 	};
 };
 
