@@ -154,28 +154,30 @@ var TimePicker = React.createClass({
 		return { x: x / pixelRatio(), y: y / pixelRatio() }
 	},
 
-	getHashtag: function(switchVar) {
+	getHashtag: function(value) {
 		// used because component initially renders twice (once before componentDidMount
 		// and once after the canvas is resized
-		if(this.renderNumber <= 2 )
-			switchVar = this.props.initialDiscover
+		// if(this.renderNumber <= 2 )
+		// 	switchVar = this.props.initialDiscover
 
-		switch(switchVar) {
-			case 1:
-				return	"#EarlyMorning"
-			case 2:
-				return	"#LateMorning"
-			case 3:
-				return	"#EarlyAfternoon"
-			case 4:
-				return	"#LateAfternoon"
-			case 5:
-				return	"#EarlyEvening"
-			case 6:
-				return	"#LateEvening"
-			default:
-				return
-		}
+		if(value < 0)
+			value = 0
+
+		if(value > 100)
+			value = 100
+
+		if(value >= 0 && value < 100/6)
+			return "#EarlyMorning"
+		else if(value >= 100/6 && value < 2*100/6)
+			return "#LateMorning"
+		else if(value >= 2*100/6 && value < 3*100/6)
+			return "#EarlyAfternoon"
+		else if(value >= 3*100/6 && value < 4*100/6)
+			return "#LateAfternoon"
+		else if(value >= 4*100/6 && value < 5*100/6)
+			return "#EarlyEvening"
+		else if(value >= 5*100/6 && value <= 100)
+			return "#LateEvening"
 	},
 
 	componentDidUpdate: function() {
@@ -226,7 +228,7 @@ var TimePicker = React.createClass({
 					<div className="timeRange-hashtag">
 						{ 
 							this.props.showHashtag ?
-								this.getHashtag(this.props.currentDiscover) 
+								this.getHashtag(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue) 
 							:
 								""
 						}

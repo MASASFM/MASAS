@@ -3,9 +3,6 @@ var ReactDOM = require("react-dom")
 
 var Button = React.createClass({
 	propTypes: {
-		// caps: React.PropTypes.bool,				// should button text be in all caps
-		white: React.PropTypes.bool,				// should button text be in all caps
-		// small: React.PropTypes.bool,				// should button be in small version
 		noBorders: React.PropTypes.bool,				// should button have borders
 		className: React.PropTypes.string,				// class names
 		isBigButton: React.PropTypes.bool, 			// is it a big button
@@ -20,8 +17,13 @@ var Button = React.createClass({
 
 	getDefaultProps: function() {
 		return {
+				noBorders: true,
 				className: "",
 				isDisabled: false,
+				isSecondaryAction: false,
+				isBigButton: true,
+				isDisabled: false,
+				wrapperStyle: {},
 			}
 	},
 

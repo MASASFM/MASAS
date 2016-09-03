@@ -8,6 +8,7 @@ var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
+var { TeachDiscoverModal1, TeachDiscoverModal2 } = require("./TeachDiscoverModals.jsx")
 
 var Discover = React.createClass({
 	propTypes: {
@@ -34,11 +35,7 @@ var Discover = React.createClass({
 
 	componentDidMount: function() {
 		this.props.updateModalType(2)
-		this.props.updateModalContent(
-			<div>
-				bla
-			</div>
-			)
+		this.props.updateModalContent(<TeachDiscoverModal1 />)
 		this.props.toogleModal()
 	},
 
@@ -49,8 +46,8 @@ var Discover = React.createClass({
 				const sliderValue = (2*event.pageX-$(window).width()/2)/$(window).width() *100
 				this.setState({ sliderValue })
 			})
-		} else if(!nextProps.isModalOpened) {			
-			$(target).mousemove((event) => { })
+		} else if(!nextProps.isModalOpened || nextProps.modalType === 1) {			
+			$(target).off('mousemove')
 			this.setState({ sliderValue: -1 })
 		}
 	},
@@ -106,7 +103,7 @@ var Discover = React.createClass({
 						onSliderChange={ (this.props.modalType === 2 && this.props.isModalOpened) ? () => {} : this.props.handleTimePickerChange } 
 						initialDiscover={ sliderInitDiscover ? sliderInitDiscover : 1 }
 						currentDiscover={ this.props.discoverNumber }
-						showHashtag={ false } 
+						showHashtag={ true } 
 						sliderValue={ this.state.sliderValue }
 						/>
 				</div>
