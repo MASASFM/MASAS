@@ -11,6 +11,7 @@ Discover.mapStateToProps = function(state) {
 		modalType: state.appReducer.modalType,
 		isModalOpened: state.appReducer.isModalOpened,
 		userData: state.appReducer.userData,
+		songPlaying: state.playerReducer.songPlaying,
 	}
 }
 

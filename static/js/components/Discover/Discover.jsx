@@ -103,7 +103,8 @@ var Discover = React.createClass({
 		const { showSlider } = this
 
 		// changing state in this.checkUserStep, delaying it until after this.render()
-		window.setTimeout(() => this.checkUserStep(), 0)
+		if(this.props.songPlaying)
+			window.setTimeout(() => this.checkUserStep(), 5000)
 		
 		this.renderForUITip()
 

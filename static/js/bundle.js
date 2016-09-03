@@ -53914,9 +53914,9 @@ var Discover = React.createClass({
 
 		// changing state in this.checkUserStep, delaying it until after this.render()
 
-		window.setTimeout(function () {
+		if (this.props.songPlaying) window.setTimeout(function () {
 			return _this2.checkUserStep();
-		}, 0);
+		}, 5000);
 
 		this.renderForUITip();
 
@@ -54258,7 +54258,8 @@ Discover.mapStateToProps = function (state) {
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
 		modalType: state.appReducer.modalType,
 		isModalOpened: state.appReducer.isModalOpened,
-		userData: state.appReducer.userData
+		userData: state.appReducer.userData,
+		songPlaying: state.playerReducer.songPlaying
 	};
 };
 
