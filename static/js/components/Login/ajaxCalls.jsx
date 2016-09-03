@@ -24,6 +24,8 @@ ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
 			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
 			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
 			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+			
+			browserHistory.push('/profile')
 		},
 		error: (e) => {
 			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
@@ -72,7 +74,6 @@ ajaxCalls.convertToken = (token) => {
 		},
 		success: (data) => { 
 			logInWithToken(dispatch, data.access_token)
-			browserHistory.push('/discover')
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture)	
 			updateAuthCookie(data.access_token)
 		},
