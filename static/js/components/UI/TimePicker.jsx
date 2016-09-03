@@ -24,6 +24,7 @@ var TimePicker = React.createClass({
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
+		sliderValue: React.PropTypes.number,					// slider value affecting sun position
 	},
 
 	getInitialState: function() {
@@ -40,7 +41,8 @@ var TimePicker = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			showHashtag: true
+			showHashtag: true,
+			sliderValue: -1,
 		}
 	},
 
@@ -139,6 +141,11 @@ var TimePicker = React.createClass({
 	getSunCoords: function(sliderValue) {
 		var { sqrt, pow } = Math
 
+		if(sliderValue > 100) 
+			sliderValue = 100
+		else if(sliderValue < 0)
+			sliderValue = 0
+		
 		var R = this.state.arcRadius
 		var C = this.state.arcCenterCoords
 		var x = sliderValue / 100 * this.state.canvasWidth
@@ -186,7 +193,7 @@ var TimePicker = React.createClass({
 
 		// accounting for sun icon size
 		var sunIconSize = 45	// px
-		var sunCoords = this.getSunCoords(this.state.rangePercent)
+		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 		var top = sunCoords.y - sunIconSize / 2
 		var left = sunCoords.x - sunIconSize / 2
 		var height = sunIconSize + "px"
@@ -213,7 +220,7 @@ var TimePicker = React.createClass({
 					<input 
 						type="range" 
 						ref="slider"
-						value={ this.state.rangePercent } 
+						value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
 						onChange={ this.handleSliderChange } 
 						className="MASAS-slider" />
 					<div className="timeRange-hashtag">

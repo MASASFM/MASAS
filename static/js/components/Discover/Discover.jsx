@@ -13,6 +13,12 @@ var Discover = React.createClass({
 	propTypes: {
 	},
 
+	getInitialState: function() {
+		return {
+			sliderValue: -1,
+		}
+	},
+
 	componentWillMount: function() {
 		console.log('componentWillMount')
 		this.props.updateTitle('Discover', '0')		// 0 = menu icon; 1 = arrow back
@@ -34,6 +40,16 @@ var Discover = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
+		const target = "#MASAS-modal"
+		if(nextProps.modalType === 2 && nextProps.isModalOpened) {
+			$(target).mousemove((event) => {
+				const sliderValue = (2*event.pageX-$(window).width()/2)/$(window).width() *100
+				this.setState({ sliderValue })
+			})
+		} else if(!nextProps.isModalOpened) {			
+			$(target).mousemove((event) => { })
+			this.setState({ sliderValue: -1 })
+		}
 	},
 
 	render: function() {
@@ -84,10 +100,12 @@ var Discover = React.createClass({
 					<TimePicker 
 						canvasId="timePicker--canvas" 
 						wrapperClassName="timePicker--wrapper" 
-						onSliderChange={ this.props.handleTimePickerChange } 
+						onSliderChange={ (this.props.modalType === 2 && this.props.isModalOpened) ? () => {} : this.props.handleTimePickerChange } 
 						initialDiscover={ sliderInitDiscover ? sliderInitDiscover : 1 }
 						currentDiscover={ this.props.discoverNumber }
-						showHashtag={ false } />
+						showHashtag={ false } 
+						sliderValue={ this.state.sliderValue }
+						/>
 				</div>
 			</div>
 		)

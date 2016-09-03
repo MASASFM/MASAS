@@ -53764,6 +53764,12 @@ var Discover = React.createClass({
 
 	propTypes: {},
 
+	getInitialState: function getInitialState() {
+		return {
+			sliderValue: -1
+		};
+	},
+
 	componentWillMount: function componentWillMount() {
 		console.log('componentWillMount');
 		this.props.updateTitle('Discover', '0'); // 0 = menu icon; 1 = arrow back
@@ -53782,7 +53788,20 @@ var Discover = React.createClass({
 		this.props.toogleModal();
 	},
 
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		var _this = this;
+
+		var target = "#MASAS-modal";
+		if (nextProps.modalType === 2 && nextProps.isModalOpened) {
+			$(target).mousemove(function (event) {
+				var sliderValue = (2 * event.pageX - $(window).width() / 2) / $(window).width() * 100;
+				_this.setState({ sliderValue: sliderValue });
+			});
+		} else if (!nextProps.isModalOpened) {
+			$(target).mousemove(function (event) {});
+			this.setState({ sliderValue: -1 });
+		}
+	},
 
 	render: function render() {
 		var sliderInitDiscover = null;
@@ -53871,10 +53890,12 @@ var Discover = React.createClass({
 				React.createElement(TimePicker, {
 					canvasId: "timePicker--canvas",
 					wrapperClassName: "timePicker--wrapper",
-					onSliderChange: this.props.handleTimePickerChange,
+					onSliderChange: this.props.modalType === 2 && this.props.isModalOpened ? function () {} : this.props.handleTimePickerChange,
 					initialDiscover: sliderInitDiscover ? sliderInitDiscover : 1,
 					currentDiscover: this.props.discoverNumber,
-					showHashtag: false })
+					showHashtag: false,
+					sliderValue: this.state.sliderValue
+				})
 			)
 		);
 	}
@@ -61441,6 +61462,7 @@ var Modal = React.createClass({
 	componentDidUpdate: function componentDidUpdate() {},
 
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		// update background blur on modal appear/dissapear
 		if (nextProps.isOpened === false) {
 			// remove background blur
 			$('#body--background').removeClass('blurred');
@@ -61456,7 +61478,7 @@ var Modal = React.createClass({
 	render: function render() {
 		if (this.props.type === 1) return React.createElement(
 			"div",
-			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed") },
+			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
 			React.createElement("div", { className: "modal-overlay", onClick: this.props.closeModalFunc }),
 			React.createElement(
 				"div",
@@ -61470,7 +61492,7 @@ var Modal = React.createClass({
 			)
 		);else if (this.props.type === 2) return React.createElement(
 			"div",
-			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed") },
+			{ className: "MASAS-modal" + (this.props.isOpened ? "" : " closed"), id: "MASAS-modal" },
 			React.createElement("img", { onClick: this.props.closeModalFunc, src: "/static/img/MASAS_close_icon.svg", className: "close-icon", alt: "close modal" }),
 			React.createElement(
 				"div",
@@ -61688,9 +61710,10 @@ var TimePicker = React.createClass({
 		onSliderChange: React.PropTypes.func.isRequired, // callback called when slider changes
 		wrapperClassName: React.PropTypes.string, // class used to size TimePicker
 		canvasId: React.PropTypes.string, // canvas id used for drawing
-		showHashtag: React.PropTypes.bool },
+		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
+		sliderValue: React.PropTypes.number },
 
-	// should hashtag be shown for current slider position
+	// slider value affecting sun position
 	getInitialState: function getInitialState() {
 		var rangePercent = (this.props.initialDiscover - 0.5) * 100 / 6;
 		return {
@@ -61705,7 +61728,8 @@ var TimePicker = React.createClass({
 
 	getDefaultProps: function getDefaultProps() {
 		return {
-			showHashtag: true
+			showHashtag: true,
+			sliderValue: -1
 		};
 	},
 
@@ -61800,6 +61824,8 @@ var TimePicker = React.createClass({
 		var sqrt = _Math.sqrt;
 		var pow = _Math.pow;
 
+		if (sliderValue > 100) sliderValue = 100;else if (sliderValue < 0) sliderValue = 0;
+
 		var R = this.state.arcRadius;
 		var C = this.state.arcCenterCoords;
 		var x = sliderValue / 100 * this.state.canvasWidth;
@@ -61842,7 +61868,7 @@ var TimePicker = React.createClass({
 
 		// accounting for sun icon size
 		var sunIconSize = 45; // px
-		var sunCoords = this.getSunCoords(this.state.rangePercent);
+		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue);
 		var top = sunCoords.y - sunIconSize / 2;
 		var left = sunCoords.x - sunIconSize / 2;
 		var height = sunIconSize + "px";
@@ -61869,7 +61895,7 @@ var TimePicker = React.createClass({
 				React.createElement("input", {
 					type: "range",
 					ref: "slider",
-					value: this.state.rangePercent,
+					value: this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue,
 					onChange: this.handleSliderChange,
 					className: "MASAS-slider" }),
 				React.createElement(

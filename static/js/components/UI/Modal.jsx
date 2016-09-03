@@ -28,6 +28,7 @@ let Modal = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps) {
+		// update background blur on modal appear/dissapear
 		if(nextProps.isOpened === false) {
 			// remove background blur
 			$('#body--background').removeClass('blurred')
@@ -43,7 +44,7 @@ let Modal = React.createClass({
 	render: function() {
 		if(this.props.type === 1)
 			return (
-				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") }>
+				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<div className="modal-overlay" onClick={ this.props.closeModalFunc }>
 						
 					</div>
@@ -57,7 +58,7 @@ let Modal = React.createClass({
 				)
 		else if(this.props.type === 2)
 			return (
-				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") }>
+				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" className="close-icon" alt="close modal" />
 					<div className="" onClick={ this.props.closeModalFunc }>
 							{ this.props.children }
