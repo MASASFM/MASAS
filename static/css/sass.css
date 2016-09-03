@@ -2930,9 +2930,12 @@ input[type=range].MASAS-slider {
 .teach-modal--wrapper.like-UI-info {
   position: absolute;
   bottom: 1rem;
-  left: 234px;
+  left: 2rem;
   align-items: flex-start; }
 
+@media screen and (min-width: 992px) {
+  .teach-modal--wrapper.like-UI-info {
+    left: 234px; } }
 .discover--wrapper {
   display: flex;
   flex-direction: column;
@@ -2975,6 +2978,10 @@ input[type=range].MASAS-slider {
         position: relative; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .button {
           display: none; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
+          visibility: hidden; }
+        .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper.hide-content, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper.hide-content {
+          visibility: hidden; }
         .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
           position: absolute;
           top: 50%;
@@ -3105,6 +3112,8 @@ input[type=range].MASAS-slider {
       display: flex;
       flex-direction: row-reverse;
       align-items: center; }
+    .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
+      visibility: visible; }
     .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper {
       max-width: 16rem; }
       .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {

@@ -155,10 +155,7 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div 
-						className="artwork-playing--wrapper"
-						style={{
-							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>	
+						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
 						<div className="artwork-playing">	
 							{ artworkPlayingURL ?
 									<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
@@ -205,7 +202,7 @@ var ArtworkLine = React.createClass({
 						</div>
 					</div>
 					<div 
-						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : '') }
+						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }
 						style={{
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>

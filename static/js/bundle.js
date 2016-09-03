@@ -53683,10 +53683,7 @@ var ArtworkLine = React.createClass({
 						React.createElement(
 							"div",
 							{
-								className: "artwork-playing--wrapper",
-								style: {
-									visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-								} },
+								className: "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') },
 							React.createElement(
 								"div",
 								{ className: "artwork-playing" },
@@ -53742,7 +53739,7 @@ var ArtworkLine = React.createClass({
 						React.createElement(
 							"div",
 							{
-								className: "button " + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? 'show' : ''),
+								className: "button " + (_this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : ''),
 								style: {
 									visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 								} },
