@@ -1895,7 +1895,8 @@ input[type=range].MASAS-slider {
 .upload-sc--wrapper .upload-sc-items--wrapper {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  flex: 1; }
+  flex: 1;
+  animation: fadein-menu 1s linear; }
 .upload-sc--wrapper .logout--wrapper {
   display: flex;
   justify-content: center;
@@ -2550,7 +2551,8 @@ input[type=range].MASAS-slider {
       position: absolute;
       left: 0;
       height: 100%;
-      right: 0; }
+      right: 0;
+      animation: fadein-menu 1s linear; }
 
 @media screen and (min-width: 992px) {
   #app-body--profile {
@@ -2750,7 +2752,8 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     width: 100%;
     flex-wrap: nowrap;
-    align-content: flex-start; }
+    align-content: flex-start;
+    animation: fadein-menu 1s linear; }
 
 @media screen and (min-width: 992px) {
   .likes-scroll--wrapper {
@@ -2758,7 +2761,8 @@ input[type=range].MASAS-slider {
     .likes-scroll--wrapper .likes--wrapper {
       flex-wrap: wrap;
       justify-content: space-between;
-      background-color: transparent; } }
+      background-color: transparent;
+      flex-direction: row; } }
 .likes-item--wrapper {
   display: flex;
   min-height: 8rem;
