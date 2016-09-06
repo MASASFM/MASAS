@@ -215,18 +215,42 @@ var TimePicker = React.createClass({
 				zIndex: 1
 			}
 		else
-			sunIconStyle = {}
+			sunIconStyle = {
+				left: 0
+			}
 
 		return (
 			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="canvasWrapper">
 				<canvas id={this.props.canvasId} ref="canvas"></canvas>
 				<div className="timePicker-slider--wrapper">
-					<input 
-						type="range" 
-						ref="slider"
-						value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
-						onChange={ this.handleSliderChange } 
-						className="MASAS-slider" />
+					<div style={{
+						position: "relative",
+						width: "100%",
+						height: "100%" }}>
+						<input 
+							type="range" 
+							ref="slider"
+							value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
+							onChange={ this.handleSliderChange } 
+							className="MASAS-slider" />
+						<hr style={{
+							position: "absolute",
+							right: 0,
+							left: 0,
+							bottom: "1rem",
+							zIndex: "-2"
+						}}/>
+						<img 
+							src="/static/img/MASAS_slider_thumb_icon.svg"
+							style={{
+								position: "absolute",
+								bottom: "1rem",
+								left: sunIconStyle.left,
+								transform: "translateY(37%)",
+								zIndex: "-1"
+							}} 
+							alt="slider thumb icon"/>
+					</div>
 					<div className="timeRange-hashtag">
 						{ 
 							this.props.showHashtag ?

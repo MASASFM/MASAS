@@ -62291,7 +62291,9 @@ var TimePicker = React.createClass({
 			height: height,
 			width: width,
 			zIndex: 1
-		};else sunIconStyle = {};
+		};else sunIconStyle = {
+			left: 0
+		};
 
 		return React.createElement(
 			"div",
@@ -62300,12 +62302,36 @@ var TimePicker = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "timePicker-slider--wrapper" },
-				React.createElement("input", {
-					type: "range",
-					ref: "slider",
-					value: this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue,
-					onChange: this.handleSliderChange,
-					className: "MASAS-slider" }),
+				React.createElement(
+					"div",
+					{ style: {
+							position: "relative",
+							width: "100%",
+							height: "100%" } },
+					React.createElement("input", {
+						type: "range",
+						ref: "slider",
+						value: this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue,
+						onChange: this.handleSliderChange,
+						className: "MASAS-slider" }),
+					React.createElement("hr", { style: {
+							position: "absolute",
+							right: 0,
+							left: 0,
+							bottom: "1rem",
+							zIndex: "-2"
+						} }),
+					React.createElement("img", {
+						src: "/static/img/MASAS_slider_thumb_icon.svg",
+						style: {
+							position: "absolute",
+							bottom: "1rem",
+							left: sunIconStyle.left,
+							transform: "translateY(37%)",
+							zIndex: "-1"
+						},
+						alt: "slider thumb icon" })
+				),
 				React.createElement(
 					"div",
 					{ className: "timeRange-hashtag" },

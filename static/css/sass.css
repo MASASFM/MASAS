@@ -265,83 +265,86 @@
   font-family: Lato-Light; }
 
 input[type=range].MASAS-slider {
+  background-color: transparent;
+  height: 100%;
   -webkit-appearance: none;
-  margin: 8px 0;
+  margin: 0px 0;
   width: 100%; }
   input[type=range].MASAS-slider:focus {
     outline: none; }
   input[type=range].MASAS-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 2px;
+    height: 100%;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-    background: #FFF;
-    border: 0px solid #000;
+    background: transparent;
+    border: 2px solid transparent;
     border-radius: 1.5px; }
   input[type=range].MASAS-slider::-webkit-slider-thumb {
-    box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-    border: 1px solid #fff;
-    height: 16px;
-    width: 16px;
-    border-radius: 8px;
+    box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+    border: 0px solid #fff;
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
     background: #FFF;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -7px; }
+    margin-top: 0; }
   input[type=range].MASAS-slider:focus::-webkit-slider-runnable-track {
-    background: white; }
+    background: rgba(13, 13, 13, 0); }
   input[type=range].MASAS-slider::-moz-range-track {
     width: 100%;
-    height: 2px;
+    height: 100%;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-    background: #FFF;
-    border: 0px solid #000;
+    background: transparent;
+    border: 2px solid transparent;
     border-radius: 1.5px; }
   input[type=range].MASAS-slider::-moz-range-thumb {
-    box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-    border: 1px solid #fff;
-    height: 16px;
-    width: 16px;
-    border-radius: 8px;
+    box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+    border: 0px solid #fff;
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
     background: #FFF;
     cursor: pointer; }
   input[type=range].MASAS-slider::-ms-track {
     width: 100%;
-    height: 2px;
+    height: 100%;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
     border-color: transparent;
-    border-width: 16px 0;
+    border-width: 0px 0;
     color: transparent; }
   input[type=range].MASAS-slider::-ms-fill-lower {
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-    background: #f2f2f2;
-    border: 0px solid #000;
+    background: transparent;
+    border: 2px solid transparent;
     border-radius: 3px; }
   input[type=range].MASAS-slider::-ms-fill-upper {
     box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-    background: #FFF;
-    border: 0px solid #000;
+    background: transparent;
+    border: 2px solid transparent;
     border-radius: 3px; }
   input[type=range].MASAS-slider::-ms-thumb {
-    box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-    border: 1px solid #fff;
-    height: 16px;
-    width: 16px;
-    border-radius: 8px;
+    box-shadow: 0px 0px 0px #111, 0 0 0px #1e1e1e;
+    border: 0px solid #fff;
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
     background: #FFF;
     cursor: pointer; }
   input[type=range].MASAS-slider:focus::-ms-fill-lower {
-    background: #FFF; }
+    background: transparent; }
   input[type=range].MASAS-slider:focus::-ms-fill-upper {
-    background: white; }
+    background: rgba(13, 13, 13, 0); }
 
 @media screen and (min-width: 992px) {
   input[type=range].MASAS-slider {
+    background-color: transparent;
     -webkit-appearance: none;
     margin: 8px 0;
     width: 100%; }
@@ -353,8 +356,8 @@ input[type=range].MASAS-slider {
       cursor: pointer;
       transition: all 0.2s ease;
       box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-      background: #FFF;
-      border: 0px solid #000;
+      background: transparent;
+      border: 40px solid transparent;
       border-radius: 1.5px; }
     input[type=range].MASAS-slider::-webkit-slider-thumb {
       box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
@@ -365,17 +368,17 @@ input[type=range].MASAS-slider {
       background: #FFF;
       cursor: pointer;
       -webkit-appearance: none;
-      margin-top: -6.5px; }
+      margin-top: 0; }
     input[type=range].MASAS-slider:focus::-webkit-slider-runnable-track {
-      background: white; }
+      background: rgba(13, 13, 13, 0); }
     input[type=range].MASAS-slider::-moz-range-track {
       width: 100%;
       height: 3px;
       cursor: pointer;
       transition: all 0.2s ease;
       box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-      background: #FFF;
-      border: 0px solid #000;
+      background: transparent;
+      border: 40px solid transparent;
       border-radius: 1.5px; }
     input[type=range].MASAS-slider::-moz-range-thumb {
       box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
@@ -396,13 +399,13 @@ input[type=range].MASAS-slider {
       color: transparent; }
     input[type=range].MASAS-slider::-ms-fill-lower {
       box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-      background: #f2f2f2;
-      border: 0px solid #000;
+      background: transparent;
+      border: 40px solid transparent;
       border-radius: 3px; }
     input[type=range].MASAS-slider::-ms-fill-upper {
       box-shadow: 4px 4px 4px transparent, 0 0 4px rgba(13, 13, 13, 0);
-      background: #FFF;
-      border: 0px solid #000;
+      background: transparent;
+      border: 40px solid transparent;
       border-radius: 3px; }
     input[type=range].MASAS-slider::-ms-thumb {
       box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
@@ -413,9 +416,9 @@ input[type=range].MASAS-slider {
       background: #FFF;
       cursor: pointer; }
     input[type=range].MASAS-slider:focus::-ms-fill-lower {
-      background: #FFF; }
+      background: transparent; }
     input[type=range].MASAS-slider:focus::-ms-fill-upper {
-      background: white; } }
+      background: rgba(13, 13, 13, 0); } }
 .MASAS_marquee {
   white-space: pre;
   text-overflow: ellipsis;
@@ -479,9 +482,8 @@ input[type=range].MASAS-slider {
     width: 100%; }
   .MASAS-time-picker .timePicker-slider--wrapper {
     position: absolute;
-    height: 3.5rem;
-    bottom: 1.5rem;
     left: 0;
+    top: 0;
     bottom: 0;
     width: 100%;
     z-index: 2;

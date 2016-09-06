@@ -1,23 +1,26 @@
-input[type=range].MASAS-slider
-	$track-color: #FFF
+input[type=range].MASAS-slider //::-webkit-slider-thumb 
+	background-color: rgba(0,0,0,0)
+	height: 100%
+
+	$track-color: rgba(0,0,0,0)
 	$thumb-color: #FFF
 
-	$thumb-radius: 8px
-	$thumb-height: 16px
-	$thumb-width: 16px
-	$thumb-shadow-size: 2px
-	$thumb-shadow-blur: 4px
+	$thumb-radius: 0px //16px
+	$thumb-height: 0px //16px
+	$thumb-width: 0px //16px
+	$thumb-shadow-size: 0px //2px
+	$thumb-shadow-blur: 0px //4px
 	$thumb-shadow-color: #111
-	$thumb-border-width: 1px
+	$thumb-border-width: 0px //1px
 	$thumb-border-color: #fff
 
 	$track-width: 100%
-	$track-height: 2px
+	$track-height: 100%
 	$track-shadow-size: 4px
 	$track-shadow-blur: 4px
 	$track-shadow-color: rgba(0,0,0,0)
-	$track-border-width: 0px
-	$track-border-color: #000
+	$track-border-width: 2px
+	$track-border-color: rgba(0,0,0,0)
 
 	$track-radius: 1.5px
 	$contrast: 5%
@@ -60,7 +63,7 @@ input[type=range].MASAS-slider
 	&::-webkit-slider-thumb 
 		@include thumb()
 		-webkit-appearance: none
-		margin-top: ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2)
+		margin-top: 0 //((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2)
 
 
 	&:focus::-webkit-slider-runnable-track 
@@ -116,8 +119,9 @@ input[type=range].MASAS-slider
 
 @media screen and (min-width: $desktop-min-width)
 	input[type=range].MASAS-slider
+		background-color: rgba(0,0,0,0)
 
-		$track-color: #FFF
+		$track-color: rgba(0,0,0,0)
 		$thumb-color: #FFF
 
 		$thumb-radius: 8px
@@ -134,8 +138,8 @@ input[type=range].MASAS-slider
 		$track-shadow-size: 4px
 		$track-shadow-blur: 4px
 		$track-shadow-color: rgba(0,0,0,0)
-		$track-border-width: 0px
-		$track-border-color: #000
+		$track-border-width: 40px
+		$track-border-color: rgba(0,0,0,0)
 
 		$track-radius: 1.5px
 		$contrast: 5%
@@ -178,7 +182,7 @@ input[type=range].MASAS-slider
 		&::-webkit-slider-thumb 
 			@include thumb()
 			-webkit-appearance: none
-			margin-top: ((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2)
+			margin-top: 0 //((-$track-border-width * 2 + $track-height) / 2) - ($thumb-height / 2)
 
 
 		&:focus::-webkit-slider-runnable-track 
