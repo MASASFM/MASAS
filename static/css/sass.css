@@ -2806,9 +2806,11 @@ input[type=range].MASAS-slider {
       transition: none;
       position: relative;
       right: 0;
-      padding-right: 0; }
+      padding-right: 0;
+      padding-left: 0.8rem; }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
-      display: block; }
+      display: block;
+      opacity: 1; }
     .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
       display: none; } }
 .likes-scroll--wrapper {
