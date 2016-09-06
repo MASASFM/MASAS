@@ -165,12 +165,14 @@ var Home = React.createClass({
 								<em>Be part of the evolution be part of the family, by simply sharing.</em>
 							</p>
 
-							<div className="login-form--wrapper" style={{ display: ( this.props.user ? 'none' : 'flex') }}>
+							<div 
+								className="login-form--wrapper" 
+								style={{ display: ( this.props.user ? 'none' : 'flex'),fontSize: '1rem', letterSpacing: '0.13rem' }}>
 								<img src="/static/img/MASAS_logo-M.svg" alt="masas-logo" />
-								<LoginForm 
-									fullForm={false} 
-									buttonTitle="Request an Invitation" 
-									subtitle="via Facebook"/>
+								<Button 
+									onClick={ () => goToURL('login') }>Request an invitation</Button>
+							</div>
+							<div style={{ display: ( this.props.user ? 'flex' : 'none'), height: '15rem' }}>
 							</div>
 						</div>
 					</div>	

@@ -55561,13 +55561,20 @@ var Home = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "login-form--wrapper", style: { display: this.props.user ? 'none' : 'flex' } },
+							{
+								className: "login-form--wrapper",
+								style: { display: this.props.user ? 'none' : 'flex', fontSize: '1rem', letterSpacing: '0.13rem' } },
 							React.createElement("img", { src: "/static/img/MASAS_logo-M.svg", alt: "masas-logo" }),
-							React.createElement(LoginForm, {
-								fullForm: false,
-								buttonTitle: "Request an Invitation",
-								subtitle: "via Facebook" })
-						)
+							React.createElement(
+								Button,
+								{
+									onClick: function onClick() {
+										return goToURL('login');
+									} },
+								"Request an invitation"
+							)
+						),
+						React.createElement("div", { style: { display: this.props.user ? 'flex' : 'none', height: '15rem' } })
 					)
 				)
 			)
