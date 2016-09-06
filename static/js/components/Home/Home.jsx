@@ -26,6 +26,7 @@ var Home = React.createClass({
 	getInitialState: function() {
 		return {
 			pageNumber: 1, 		// page number
+			value: 0
 		}
 	},
 
@@ -40,11 +41,25 @@ var Home = React.createClass({
 		const loginForm = document.getElementsByClassName('login-form--wrapper')[0]
 
 		loginForm.style.marginBottom = marginBottom + "px"
+
+		$('#multiPage--wrapper').scroll( () => {
+			const topBound = $(window).height() - 70
+			const bottomBound = 10
+			if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
+				this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
+			} else if($('#time-picker-home').offset().top > topBound)  {
+				this.setState({ value: 0 })
+			} else {
+				this.setState({ value: 100 })
+			}
+		})
 	},
 
 	componentWillUnmount: function () {
 		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)
+
+		$('#multiPage--wrapper').unbind("scroll")
 	},
 
 	scrollToInfo: function() {
@@ -119,10 +134,10 @@ var Home = React.createClass({
 								<TimePicker 
 									className="time-picker" 
 									currentDiscover={ this.props.demoTimePickerNumer }
-									onSliderChange={ this.props.updateTimePickerNumber }
 									showHashtag={ true }
 									initialDiscover={ 2 } 
-									canvasId="time-picker" 
+									canvasId="time-picker-home" 
+									sliderValue={ this.state.value }
 									wrapperClassName="timePicker--wrapper" />
 							</div>
 							<p>

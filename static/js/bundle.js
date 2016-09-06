@@ -55355,26 +55355,43 @@ var Home = React.createClass({
 
 	getInitialState: function getInitialState() {
 		return {
-			pageNumber: 1 };
+			pageNumber: 1, // page number
+			value: 0
+		};
 	},
 
-	// page number
 	componentWillMount: function componentWillMount() {
 
 		this.props.updateTitle('Home', '0'); // 0 = menu icon; 1 = arrow back
 	},
 
 	componentDidMount: function componentDidMount() {
+		var _this = this;
+
 		var marginBottom = (0, _jquery2.default)(window).height() / 2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight / 2;
 
 		var loginForm = document.getElementsByClassName('login-form--wrapper')[0];
 
 		loginForm.style.marginBottom = marginBottom + "px";
+
+		(0, _jquery2.default)('#multiPage--wrapper').scroll(function () {
+			var topBound = (0, _jquery2.default)(window).height() - 70;
+			var bottomBound = 10;
+			if ((0, _jquery2.default)('#time-picker-home').offset().top < topBound && (0, _jquery2.default)('#time-picker-home').offset().top > bottomBound) {
+				_this.setState({ value: (topBound - (0, _jquery2.default)('#time-picker-home').offset().top) / topBound * 100 });
+			} else if ((0, _jquery2.default)('#time-picker-home').offset().top > topBound) {
+				_this.setState({ value: 0 });
+			} else {
+				_this.setState({ value: 100 });
+			}
+		});
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
+
+		(0, _jquery2.default)('#multiPage--wrapper').unbind("scroll");
 	},
 
 	scrollToInfo: function scrollToInfo() {
@@ -55475,10 +55492,10 @@ var Home = React.createClass({
 							React.createElement(TimePicker, {
 								className: "time-picker",
 								currentDiscover: this.props.demoTimePickerNumer,
-								onSliderChange: this.props.updateTimePickerNumber,
 								showHashtag: true,
 								initialDiscover: 2,
-								canvasId: "time-picker",
+								canvasId: "time-picker-home",
+								sliderValue: this.state.value,
 								wrapperClassName: "timePicker--wrapper" })
 						),
 						React.createElement(
@@ -62093,7 +62110,7 @@ var TimePicker = React.createClass({
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, // 1-6 starting slider position	
 		currentDiscover: React.PropTypes.number.isRequired, // 1-6 used to check if necessary to call onChange calback
-		onSliderChange: React.PropTypes.func.isRequired, // callback called when slider changes
+		onSliderChange: React.PropTypes.func, // callback called when slider changes
 		wrapperClassName: React.PropTypes.string, // class used to size TimePicker
 		canvasId: React.PropTypes.string, // canvas id used for drawing
 		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
@@ -62108,15 +62125,16 @@ var TimePicker = React.createClass({
 			canvasHeight: 0, // (number) sun arc path center
 			canvasWidth: 0, // (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 }, // (object) center of arc circle coord
-			arcRadius: 0 // (number) sun arc path radius
-		};
+			arcRadius: 0 };
 	},
 
+	// (number) sun arc path radius
 	getDefaultProps: function getDefaultProps() {
 		return {
 			showHashtag: true,
 			sliderValue: -1,
-			renderForUITip: false
+			renderForUITip: false,
+			onSliderChange: function onSliderChange() {}
 		};
 	},
 

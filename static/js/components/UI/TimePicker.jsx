@@ -20,7 +20,7 @@ var TimePicker = React.createClass({
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
-		onSliderChange: React.PropTypes.func.isRequired, 			// callback called when slider changes
+		onSliderChange: React.PropTypes.func,	 			// callback called when slider changes
 		wrapperClassName: React.PropTypes.string,				// class used to size TimePicker
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
@@ -35,7 +35,7 @@ var TimePicker = React.createClass({
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
-			arcRadius: 0						// (number) sun arc path radius
+			arcRadius: 0,						// (number) sun arc path radius
 		}
 	},
 
@@ -44,6 +44,7 @@ var TimePicker = React.createClass({
 			showHashtag: true,
 			sliderValue: -1,
 			renderForUITip: false,
+			onSliderChange: () => {}
 		}
 	},
 
