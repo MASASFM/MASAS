@@ -2793,6 +2793,8 @@ input[type=range].MASAS-slider {
   .navbar-player--wrapper {
     padding: 0; }
 
+  .navbar-player--wrapper .song-info--wrapper {
+    animation-name: none; }
   .navbar-player--wrapper .tray-icon {
     height: 0.6rem;
     width: 0.6rem; }
