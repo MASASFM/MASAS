@@ -122,15 +122,21 @@
 	.footer--wrapper
 		.slider--wrapper.opened
 			#player-play-button
-				animation-name: none
 				position: relative
 				transform: translate(0,0)
 				right: 0
 				margin-right: 0rem
+				padding-right: 0
 
 			.song-info--wrapper2
 				animation-name: none
 				opacity: 1
+
+			.player-controls--wrapper
+				animation-name: none
+				position: relative
+				right: 0
+				transform: translate(0%, 0%)
 
 	.navbar-player--wrapper
 		padding: 0
@@ -150,12 +156,19 @@
 			height: 1rem
 
 		.player-controls--wrapper
+			transition: none
+			position: relative
+
 			.player-button
 				height: 2rem
 				transition: none
 				position: relative
 				right: 0
+				padding-right: 0
 
 			.previous-song-icon
 				display: block
+
+			.next-song-icon
+				display: none
 
