@@ -54457,12 +54457,12 @@ var Footer = React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-10 col-md-8 player--wrapper" },
+							{ className: "col-xs-9 col-md-8 player--wrapper" },
 							React.createElement(Player, null)
 						),
 						React.createElement(
 							"div",
-							{ className: "col-xs-2 col-md-2 col-display-none-sm extra-controls--wrapper" },
+							{ className: "col-xs-3 col-md-2 col-display-none-sm extra-controls--wrapper" },
 							React.createElement(
 								"div",
 								{ className: "box nextSong--wrapper" },
@@ -55375,8 +55375,8 @@ var Home = React.createClass({
 		loginForm.style.marginBottom = marginBottom + "px";
 
 		(0, _jquery2.default)('#multiPage--wrapper').scroll(function () {
-			var topBound = (0, _jquery2.default)(window).height() - 70;
-			var bottomBound = 10;
+			var topBound = (0, _jquery2.default)(window).height() - 120;
+			var bottomBound = 50;
 			if ((0, _jquery2.default)('#time-picker-home').offset().top < topBound && (0, _jquery2.default)('#time-picker-home').offset().top > bottomBound) {
 				_this.setState({ value: (topBound - (0, _jquery2.default)('#time-picker-home').offset().top) / topBound * 100 });
 			} else if ((0, _jquery2.default)('#time-picker-home').offset().top > topBound) {
@@ -59385,16 +59385,16 @@ var Player = React.createClass({
 
 	getControlButtons: function getControlButtons() {
 		// show loader if fetching song info
-		if (this.props.isFetchingSong) return React.createElement("img", { src: "/static/img/puff_loader.svg", alt: "loading", className: "player-button" });
+		if (this.props.isFetchingSong) return React.createElement("img", { src: "/static/img/puff_loader.svg", alt: "loading", className: "player-button", id: "player-play-button" });
 
 		// pause on click if song playing is not paused
-		if (this.props.songPlaying !== null && this.props.isPaused === false) return React.createElement("img", { onClick: this.props.pause, src: "/static/img/MASAS_player_pause.svg", alt: "pause button", className: "player-button" });
+		if (this.props.songPlaying !== null && this.props.isPaused === false) return React.createElement("img", { onClick: this.props.pause, src: "/static/img/MASAS_player_pause.svg", alt: "pause button", className: "player-button", id: "player-play-button" });
 
 		// if nothing is playing, play random song on play icon
-		if (!this.props.songPlaying) return React.createElement("img", { onClick: this.props.playRandomSong.bind(this, this.props.MASASuser, 0), src: "/static/img/MASAS_player_play.svg", alt: "play button", className: "player-button" });
+		if (!this.props.songPlaying) return React.createElement("img", { onClick: this.props.playRandomSong.bind(this, this.props.MASASuser, 0), src: "/static/img/MASAS_player_play.svg", alt: "play button", className: "player-button", id: "player-play-button" });
 
 		// else, click play to unpause
-		return React.createElement("img", { onClick: this.props.play, src: "/static/img/MASAS_player_play.svg", alt: "play button", className: "player-button" });
+		return React.createElement("img", { onClick: this.props.play, src: "/static/img/MASAS_player_play.svg", alt: "play button", className: "player-button", id: "player-play-button" });
 	},
 
 	renderLikeIcon: function renderLikeIcon() {
@@ -59440,7 +59440,7 @@ var Player = React.createClass({
 
 	getPreviousSongIcon: function getPreviousSongIcon() {
 		if (this.props.isPlaylistPlaying) {
-			if (this.props.playlistPosition === 0) return;else return React.createElement("img", {
+			if (this.props.playlistPosition === 0) return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "previous-song-icon" });else return React.createElement("img", {
 				src: "/static/img/MASAS_next.svg",
 				onClick: this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition - 1),
 				alt: "pevious song",
@@ -59453,7 +59453,17 @@ var Player = React.createClass({
 				alt: "previous song",
 				className: "previous-song-icon",
 				style: { visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }
-			});else return;
+			});else return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "previous-song-icon" });
+		}
+	},
+
+	getNextSongIcon: function getNextSongIcon() {
+		if (this.props.songPlaying) {
+			if (this.props.isPlaylistPlaying) {
+				if (this.props.playlistPosition < this.props.playlist.length - 1) return React.createElement("img", { onClick: this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition + 1), src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-song-icon" });else return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "next-song-icon" });
+			} else return React.createElement("img", { onClick: this.props.playRandomSong, src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-song-icon" });
+		} else {
+			return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "next-song-icon" });
 		}
 	},
 
@@ -59518,7 +59528,8 @@ var Player = React.createClass({
 				"div",
 				{ className: "player-controls--wrapper" },
 				this.getPreviousSongIcon(),
-				this.getControlButtons()
+				this.getControlButtons(),
+				this.getNextSongIcon()
 			)
 		);
 	}
@@ -60192,12 +60203,7 @@ var Profile = React.createClass({
 				React.createElement(
 					"p",
 					null,
-					"This is your new profile, all your uplaoded sounds will be shown here."
-				),
-				React.createElement(
-					"p",
-					null,
-					"What would you prefer to do now"
+					"This is your new profile, all your uploaded sounds will be shown here."
 				),
 				React.createElement(
 					Button,

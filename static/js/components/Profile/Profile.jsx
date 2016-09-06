@@ -131,10 +131,7 @@ var Profile = React.createClass({
 								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
 							</p>
 							<p>
-								This is your new profile, all your uplaoded sounds will be shown here.
-							</p>
-							<p>
-								What would you prefer to do now
+								This is your new profile, all your uploaded sounds will be shown here.
 							</p>
 							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
 							<Button onClick={goToURL.bind(null, "/discover")}>Start discovering new music</Button>

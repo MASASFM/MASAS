@@ -112,18 +112,18 @@ var Player = React.createClass({
 	getControlButtons() {
 		// show loader if fetching song info
 		if(this.props.isFetchingSong)
-			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button" />
+			return <img src="/static/img/puff_loader.svg" alt="loading" className="player-button"  id="player-play-button"/>
 
 		// pause on click if song playing is not paused
 		if(this.props.songPlaying !== null && this.props.isPaused === false)
-			return <img onClick={this.props.pause} src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button" />
+			return <img onClick={this.props.pause} src="/static/img/MASAS_player_pause.svg" alt="pause button" className="player-button"  id="player-play-button"/>
 
 		// if nothing is playing, play random song on play icon
 		if(!this.props.songPlaying)
-			return <img onClick={this.props.playRandomSong.bind(this, this.props.MASASuser, 0)} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
+			return <img onClick={this.props.playRandomSong.bind(this, this.props.MASASuser, 0)} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button"/>
 
 		// else, click play to unpause
-		return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button" />
+		return <img onClick={this.props.play} src="/static/img/MASAS_player_play.svg" alt="play button" className="player-button"  id="player-play-button" />
 	},
 
 	renderLikeIcon: function() {
@@ -172,7 +172,7 @@ var Player = React.createClass({
 	getPreviousSongIcon: function() {
 		if(this.props.isPlaylistPlaying) {
 			if(this.props.playlistPosition === 0)
-				return
+				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
 			else
 				return <img 
 					src="/static/img/MASAS_next.svg" 
@@ -190,7 +190,21 @@ var Player = React.createClass({
 					style={{ visibility: this.props.discoverHistory.all.length > 1 ? 'visible' : 'hidden' }}
 					/>
 			else
-				return
+				return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="previous-song-icon"  />
+		}
+	},
+
+	getNextSongIcon: function() {
+		if(this.props.songPlaying) {
+			if(this.props.isPlaylistPlaying) {
+				if(this.props.playlistPosition < this.props.playlist.length - 1)
+					return <img onClick={this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition + 1)} src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
+				else
+					return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
+			} else
+				return <img onClick={this.props.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
+		} else {
+			return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
 		}
 	},
 
@@ -233,6 +247,7 @@ var Player = React.createClass({
 				<div className="player-controls--wrapper">
 					{ this.getPreviousSongIcon() }
 					{ this.getControlButtons() }
+					{ this.getNextSongIcon() }
 				</div>
 			</div>
 		)

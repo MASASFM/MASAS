@@ -43,8 +43,8 @@ var Home = React.createClass({
 		loginForm.style.marginBottom = marginBottom + "px"
 
 		$('#multiPage--wrapper').scroll( () => {
-			const topBound = $(window).height() - 70
-			const bottomBound = 10
+			const topBound = $(window).height() - 120
+			const bottomBound = 50
 			if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
 				this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
 			} else if($('#time-picker-home').offset().top > topBound)  {

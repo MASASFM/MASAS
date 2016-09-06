@@ -1,3 +1,24 @@
+.footer--wrapper
+	.slider--wrapper.opened
+		.player-controls--wrapper
+			position: absolute
+			right: 50%
+			transform: translate(50%, 0%)
+
+		#player-play-button
+			padding-left: 0.8rem
+			padding-right: 0.8rem
+			
+		.song-info--wrapper2
+			animation: fadeout 0.5s linear
+			opacity: 0
+
+		.previous-song-icon
+			opacity: 1
+
+		.next-song-icon
+			opacity: 1
+
 .navbar-player--wrapper
 	display: flex
 	flex: 1
@@ -25,11 +46,13 @@
 			display: flex
 			align-content: flex-start
 			flex: 1
+			animation: fadein-menu 0.5s linear
 
 			.text-info
 				display: flex
 				flex: 1
 				flex-direction: column
+				max-width: 10rem
 
 			.radio-info 
 				position: relative
@@ -73,20 +96,42 @@
 	.player-controls--wrapper
 		display: flex
 		align-items: center
+		position: absolute
+		right: 0rem
+		transition: 0.3s linear 
+		transform: translate(0, 0%)
 
 		.previous-song-icon
 			transform: rotate(180deg)
 			height: 1rem
+			opacity: 0
+			transition: opacity 0.3s linear
 
 		.player-button
 			height: 2.5rem
-			padding-left: 0.8rem
 
+		.next-song-icon
+			height: 1rem
+			opacity: 0
+			transition: opacity 0.3s linear
 
 
 
 
 @media screen and (min-width: $desktop-min-width)
+	.footer--wrapper
+		.slider--wrapper.opened
+			#player-play-button
+				animation-name: none
+				position: relative
+				transform: translate(0,0)
+				right: 0
+				margin-right: 0rem
+
+			.song-info--wrapper2
+				animation-name: none
+				opacity: 1
+
 	.navbar-player--wrapper
 		padding: 0
 
@@ -107,4 +152,10 @@
 		.player-controls--wrapper
 			.player-button
 				height: 2rem
+				transition: none
+				position: relative
+				right: 0
+
+			.previous-song-icon
+				display: block
 

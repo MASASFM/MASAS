@@ -122,10 +122,10 @@ var Footer = React.createClass({
 									</div>
 								</div>
 							</div>
-							<div className="col-xs-10 col-md-8 player--wrapper">
+							<div className="col-xs-9 col-md-8 player--wrapper">
 								<Player />
 							</div>
-							<div className="col-xs-2 col-md-2 col-display-none-sm extra-controls--wrapper">
+							<div className="col-xs-3 col-md-2 col-display-none-sm extra-controls--wrapper">
 								<div className="box nextSong--wrapper">
 									{ this.getNextSongIcon() }
 								</div>
