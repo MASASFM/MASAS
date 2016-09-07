@@ -360,12 +360,12 @@ input[type=range].MASAS-slider {
       border: 40px solid transparent;
       border-radius: 1.5px; }
     input[type=range].MASAS-slider::-webkit-slider-thumb {
-      box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-      border: 1px solid #fff;
+      box-shadow: 2px 2px 4px transparent, 0 0 2px rgba(13, 13, 13, 0);
+      border: 1px solid transparent;
       height: 16px;
       width: 16px;
       border-radius: 8px;
-      background: #FFF;
+      background: transparent;
       cursor: pointer;
       -webkit-appearance: none;
       margin-top: 0; }
@@ -381,12 +381,12 @@ input[type=range].MASAS-slider {
       border: 40px solid transparent;
       border-radius: 1.5px; }
     input[type=range].MASAS-slider::-moz-range-thumb {
-      box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-      border: 1px solid #fff;
+      box-shadow: 2px 2px 4px transparent, 0 0 2px rgba(13, 13, 13, 0);
+      border: 1px solid transparent;
       height: 16px;
       width: 16px;
       border-radius: 8px;
-      background: #FFF;
+      background: transparent;
       cursor: pointer; }
     input[type=range].MASAS-slider::-ms-track {
       width: 100%;
@@ -408,12 +408,12 @@ input[type=range].MASAS-slider {
       border: 40px solid transparent;
       border-radius: 3px; }
     input[type=range].MASAS-slider::-ms-thumb {
-      box-shadow: 2px 2px 4px #111, 0 0 2px #1e1e1e;
-      border: 1px solid #fff;
+      box-shadow: 2px 2px 4px transparent, 0 0 2px rgba(13, 13, 13, 0);
+      border: 1px solid transparent;
       height: 16px;
       width: 16px;
       border-radius: 8px;
-      background: #FFF;
+      background: transparent;
       cursor: pointer; }
     input[type=range].MASAS-slider:focus::-ms-fill-lower {
       background: transparent; }
@@ -1498,8 +1498,7 @@ input[type=range].MASAS-slider {
           width: 300px;
           height: 100px; }
         .footer-modal--wrapper .footer-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
-          bottom: 0rem;
-          height: 2.8rem; }
+          bottom: 0rem; }
     .footer-modal--wrapper .cancel-button {
       display: block;
       font-size: 0.7rem;
