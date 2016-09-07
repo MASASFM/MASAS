@@ -2001,12 +2001,17 @@ input[type=range].MASAS-slider {
   flex-direction: column;
   align-items: center;
   height: 15rem;
-  justify-content: space-between;
-  text-transform: uppercase;
+  text-transform: capitalize;
   width: 10rem;
-  align-self: center; }
+  align-self: center;
+  flex: 1;
+  justify-content: center;
+  letter-spacing: 0.05rem;
+  font-family: Lato-Light; }
 .navSidebar--wrapper .content .nav-links .link {
-  align-self: flex-start; }
+  align-self: flex-start;
+  padding-bottom: 1.9rem;
+  padding-left: 1.8rem; }
 .navSidebar--wrapper .content .nav-links .link .MASAS-link {
   display: flex;
   flex-direction: row;
@@ -2024,16 +2029,19 @@ input[type=range].MASAS-slider {
 .navSidebar--wrapper .profile-picture--wrapper .username {
   position: absolute;
   bottom: 0;
-  padding-left: 0.5rem;
-  padding-bottom: 0.2rem; }
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem; }
 .navSidebar--wrapper .profile-picture--wrapper .profile-picture {
   object-fit: cover;
-  height: 7rem; }
+  height: 10rem; }
 .navSidebar--wrapper .navSidebar-footer {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.7rem;
-  font-size: 0.7rem; }
+  font-size: 0.8rem;
+  font-family: Lato-Semibold;
+  margin: 1rem 0.5rem; }
 
 .profile--wrapper {
   display: flex;

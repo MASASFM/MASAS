@@ -37,43 +37,40 @@ var NavSidebar = React.createClass({
 						{ this.props.MASASuser !== "" ?
 							<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
 								<img src={this.props.userData.avatar_url + "?width=300"}alt="profile-picture" className="profile-picture" />
-								<span className="username">{this.props.userData.username}</span>
+								<span className="username">{/* this.props.userData.username */}My Profile</span>
 							</div>
 							:
 							""
 						}
 						<div className="content">
-							<div className="search-input" style={ this.props.MASASuser === "" ? { visibility: "hidden" } : {} }>
-								<Textbox />
-							</div>
 							<div className="nav-links">
 								<div className="link">
 									<Link to="/" onClick={this.props.toogleSidebar}>
-										<img src="/static/img/MASAS_logo-M.svg" alt="radio icon" />
+										{ /* <img src="/static/img/MASAS_logo-M.svg" alt="radio icon" /> */}
 										home
 									</Link>
 								</div>
 								<div className="link">
 									<Link disabled={true}>
-										<img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />
+										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										popular
 									</Link>
 								</div>
 								<div className="link">
 									<Link to='/discover' disabled={ !this.props.MASASuser ? true : false } onClick={this.props.toogleSidebar}>
-										<img src="/static/img/MASAS_icon_Discover.svg" alt="radio icon" />
+										{ /* <img src="/static/img/MASAS_icon_Discover.svg" alt="radio icon" />*/}
 										discover
 									</Link>
 								</div>
 								<div className="link">
 									<Link disabled={ !this.props.MASASuser ? true : false } to="/upload" onClick={this.props.toogleSidebar}>
-										<img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />
+										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
 										upload
 									</Link>
 								</div>
 								<div className="link">
 									<Link disabled={ !this.props.MASASuser ? true : false } to="/likes" onClick={this.props.toogleSidebar}>
-										<img src="/static/img/MASAS_liked.svg" alt="radio icon" />
+										{ /* <img src="/static/img/MASAS_liked.svg" alt="radio icon" />*/}
 										likes
 									</Link>
 								</div>

@@ -59077,17 +59077,12 @@ var NavSidebar = React.createClass({
 				React.createElement(
 					"span",
 					{ className: "username" },
-					this.props.userData.username
+					"My Profile"
 				)
 			) : "",
 			React.createElement(
 				"div",
 				{ className: "content" },
-				React.createElement(
-					"div",
-					{ className: "search-input", style: this.props.MASASuser === "" ? { visibility: "hidden" } : {} },
-					React.createElement(Textbox, null)
-				),
 				React.createElement(
 					"div",
 					{ className: "nav-links" },
@@ -59097,7 +59092,6 @@ var NavSidebar = React.createClass({
 						React.createElement(
 							Link,
 							{ to: "/", onClick: this.props.toogleSidebar },
-							React.createElement("img", { src: "/static/img/MASAS_logo-M.svg", alt: "radio icon" }),
 							"home"
 						)
 					),
@@ -59107,7 +59101,6 @@ var NavSidebar = React.createClass({
 						React.createElement(
 							Link,
 							{ disabled: true },
-							React.createElement("img", { src: "/static/img/MASAS_icon_Radio.svg", alt: "radio icon" }),
 							"popular"
 						)
 					),
@@ -59117,7 +59110,6 @@ var NavSidebar = React.createClass({
 						React.createElement(
 							Link,
 							{ to: "/discover", disabled: !this.props.MASASuser ? true : false, onClick: this.props.toogleSidebar },
-							React.createElement("img", { src: "/static/img/MASAS_icon_Discover.svg", alt: "radio icon" }),
 							"discover"
 						)
 					),
@@ -59127,7 +59119,6 @@ var NavSidebar = React.createClass({
 						React.createElement(
 							Link,
 							{ disabled: !this.props.MASASuser ? true : false, to: "/upload", onClick: this.props.toogleSidebar },
-							React.createElement("img", { src: "/static/img/MASAS_icon_Upload.svg", alt: "radio icon" }),
 							"upload"
 						)
 					),
@@ -59137,7 +59128,6 @@ var NavSidebar = React.createClass({
 						React.createElement(
 							Link,
 							{ disabled: !this.props.MASASuser ? true : false, to: "/likes", onClick: this.props.toogleSidebar },
-							React.createElement("img", { src: "/static/img/MASAS_liked.svg", alt: "radio icon" }),
 							"likes"
 						)
 					)
