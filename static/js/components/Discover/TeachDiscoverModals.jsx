@@ -51,7 +51,7 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(
 					</p>
 					<Button 
 						isBigButton={false}
-						onClick={ this.updateUserStep }>Yeah!</Button>
+						onClick={ this.updateUserStep }>Next tip</Button>
 
 				</div>
 			)

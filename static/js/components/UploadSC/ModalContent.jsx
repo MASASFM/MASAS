@@ -20,28 +20,20 @@ var ModalContent = React.createClass({
 			<div className="confirm-ownership--wrapper">
 				<div className="lock-icon--wrapper">
 					<img 
-						src="/static/img/MASAS_icon_lock.svg" 
+						src="/static/img/MASAS_icon_i_certify.svg" 
 						className="lock-icon"
-						alt="lock icon"/>
+						alt="i certify icon"/>
 				</div>
 				<div className="checkbox--wrapper">
 					<p className="paragraph">
-					I certify that:
+					Before you get Discovered on MASAS, you have to certify that:
 					</p>
 					<ul className="bullets" type="disc">
-						<li>I have the explicit permission from all right-holders of this sound to aggree to the terms of uses</li>
-						<li>this track is not a spam or commercial</li>
-						<li>no royalties will be paid to any of the right-holders of this sound</li>
+						<li>You have the explicit permission from all right-holders of this sound to agree to the Terms of Use.</li>
+						<li>This track is NOT a “Spam” or “Commercial”.</li>
+						<li>No royalties will be paid to any of the right-holders of this sound for this upload.</li>
 					</ul>
 					<div className="submit--wrapper">
-						<Button 
-							isBigButton={ true }
-							isSecondaryAction={ true }
-							wrapperStyle={{ marginRight: '1rem' }}
-							onClick={ this.props.toogleIsModalOpened }
-							className="submit">
-							Cancel
-						</Button>
 						<Button 
 							isBigButton={ true }
 							isSecondaryAction={ false }

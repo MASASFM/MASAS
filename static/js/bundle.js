@@ -56240,7 +56240,7 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, ma
 				{
 					isBigButton: false,
 					onClick: this.updateUserStep },
-				"Yeah!"
+				"Next tip"
 			)
 		);
 	}
@@ -65620,9 +65620,9 @@ var ModalContent = React.createClass({
 				"div",
 				{ className: "lock-icon--wrapper" },
 				React.createElement("img", {
-					src: "/static/img/MASAS_icon_lock.svg",
+					src: "/static/img/MASAS_icon_i_certify.svg",
 					className: "lock-icon",
-					alt: "lock icon" })
+					alt: "i certify icon" })
 			),
 			React.createElement(
 				"div",
@@ -65630,7 +65630,7 @@ var ModalContent = React.createClass({
 				React.createElement(
 					"p",
 					{ className: "paragraph" },
-					"I certify that:"
+					"Before you get Discovered on MASAS, you have to certify that:"
 				),
 				React.createElement(
 					"ul",
@@ -65638,32 +65638,22 @@ var ModalContent = React.createClass({
 					React.createElement(
 						"li",
 						null,
-						"I have the explicit permission from all right-holders of this sound to aggree to the terms of uses"
+						"You have the explicit permission from all right-holders of this sound to agree to the Terms of Use."
 					),
 					React.createElement(
 						"li",
 						null,
-						"this track is not a spam or commercial"
+						"This track is NOT a “Spam” or “Commercial”."
 					),
 					React.createElement(
 						"li",
 						null,
-						"no royalties will be paid to any of the right-holders of this sound"
+						"No royalties will be paid to any of the right-holders of this sound for this upload."
 					)
 				),
 				React.createElement(
 					"div",
 					{ className: "submit--wrapper" },
-					React.createElement(
-						Button,
-						{
-							isBigButton: true,
-							isSecondaryAction: true,
-							wrapperStyle: { marginRight: '1rem' },
-							onClick: this.props.toogleIsModalOpened,
-							className: "submit" },
-						"Cancel"
-					),
 					React.createElement(
 						Button,
 						{

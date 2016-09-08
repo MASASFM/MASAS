@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: Lato-Regular;
   font-style: 500;
@@ -1852,25 +1853,37 @@ input[type=range].MASAS-slider {
   flex-direction: column;
   flex: 1;
   height: 100%;
-  justify-content: space-around; }
+  justify-content: center;
+  flex-direction: column; }
   .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 0.7; }
+    flex: 0.3; }
     .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
-      width: 5rem; }
+      width: 8rem; }
   .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 2rem; }
+    padding-bottom: 2rem;
+    max-height: 17rem; }
+    .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .paragraph {
+      font-size: 1.1rem;
+      font-family: Lato-Light;
+      line-height: 1.5rem; }
     .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets {
       font-family: Lato-Light;
       margin-left: 2rem; }
       .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
-        margin-bottom: 1rem; }
+        margin-bottom: 1rem;
+        opacity: 0.7; }
+      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li:before {
+        content: "— ";
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em; }
     .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .checkbox-row {
       display: flex;
       justify-content: space-between; }
@@ -1883,16 +1896,21 @@ input[type=range].MASAS-slider {
   .MASAS-modal .confirm-ownership--wrapper {
     align-items: center; }
     .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper {
-      flex: 0.5; }
+      flex: 0.5;
+      align-items: flex-start; }
       .MASAS-modal .confirm-ownership--wrapper .lock-icon--wrapper .lock-icon {
-        width: 3.7rem; }
+        width: 6rem; }
     .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper {
       width: 66%;
       padding-bottom: 0; }
       .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .paragraph {
-        padding-bottom: 1rem; }
-      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
-        margin-bottom: 0.5rem; } }
+        padding-bottom: 1rem;
+        font-size: 1rem; }
+      .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets {
+        padding-right: 1rem; }
+        .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
+          margin-bottom: 0.5rem;
+          font-size: 0.9rem; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;
