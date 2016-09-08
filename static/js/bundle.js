@@ -61575,7 +61575,7 @@ var LoginForm = React.createClass({
 						{ className: "fb-login" },
 						React.createElement(
 							Button,
-							{ isBigButton: true, isSecondaryAction: false, onClick: this.props.logInFB },
+							{ isBigButton: true, isSecondaryAction: false, onClick: this.props.logInFB, facebook: true },
 							this.props.buttonTitle
 						)
 					),
@@ -61622,7 +61622,10 @@ var LoginForm = React.createClass({
 						{ className: "login-button" },
 						React.createElement(
 							Button,
-							{ isBigButton: false, isSecondaryAction: false, onClick: function onClick() {
+							{
+								isBigButton: false,
+								isSecondaryAction: false,
+								onClick: function onClick() {
 									return;
 								} },
 							"Log In"
@@ -61635,7 +61638,11 @@ var LoginForm = React.createClass({
 			{ className: "login-container" },
 			React.createElement(
 				Button,
-				{ isBigButton: true, isSecondaryAction: false, onClick: this.props.logInFB },
+				{
+					isBigButton: true,
+					isSecondaryAction: false,
+					onClick: this.props.logInFB,
+					facebook: true },
 				this.props.buttonTitle
 			),
 			React.createElement(
@@ -64685,9 +64692,11 @@ var Button = React.createClass({
 		isSecondaryAction: React.PropTypes.bool, // is it a secondary button
 		onClick: React.PropTypes.func.isRequired, // what to do when user clicks on button
 		isDisabled: React.PropTypes.bool, // is button disabled
-		wrapperStyle: React.PropTypes.object },
+		wrapperStyle: React.PropTypes.object, // styles associated with button wrapper
+		soundcloud: React.PropTypes.bool, // is button style for SC login
+		facebook: React.PropTypes.bool },
 
-	// styles associated with button wrapper
+	// is button style for FB login
 	componentWillMount: function componentWillMount() {},
 
 	getDefaultProps: function getDefaultProps() {
@@ -64698,7 +64707,9 @@ var Button = React.createClass({
 			isSecondaryAction: false,
 			isBigButton: true,
 			isDisabled: false,
-			wrapperStyle: {}
+			wrapperStyle: {},
+			soundcloud: false,
+			facebook: false
 		};
 	},
 
@@ -64706,12 +64717,14 @@ var Button = React.createClass({
 		return React.createElement(
 			"div",
 			{
-				className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : ""),
+				className: "MASAS-button" + (this.props.isSecondaryAction ? " secondary-button " : "") + (" " + this.props.className + " ") + (this.props.isBigButton ? "MASAS-big-button " : "") + (this.props.noBorders ? " no-borders " : "") + (this.props.isDisabled ? " disabled " : "") + (this.props.soundcloud ? " soundcloud-login-button" : "") + (this.props.facebook ? " facebook-login-button" : ""),
 				onClick: !this.props.isDisabled ? this.props.onClick : function () {},
 				style: this.props.wrapperStyle },
 			React.createElement(
 				"div",
 				{ className: "wrapper" },
+				this.props.soundcloud ? React.createElement("img", { src: "/static/img/MASAS_logo_soundcloud.svg", alt: "soundcloud login" }) : "",
+				this.props.facebook ? React.createElement("img", { src: "/static/img/facebook.svg", alt: "facebook login" }) : "",
 				this.props.children
 			)
 		);
@@ -65992,7 +66005,10 @@ var UploadSC = React.createClass({
 						{ className: "connect-button" },
 						React.createElement(
 							Button,
-							{ onClick: this.connectToSC, isBigButton: true },
+							{
+								onClick: this.connectToSC,
+								isBigButton: true,
+								soundcloud: true },
 							"Connect to SoundCloud"
 						)
 					)

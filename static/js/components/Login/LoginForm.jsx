@@ -41,7 +41,7 @@ var LoginForm = React.createClass({
 						</div>
 						<div className="login-form--wrapper2">
 							<div className="fb-login">
-								<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>{ this.props.buttonTitle }</Button>
+								<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB} facebook={ true }>{ this.props.buttonTitle }</Button>
 							</div>
 							<div style={{ display: 'none' }}>
 								<div className="divider">
@@ -58,7 +58,10 @@ var LoginForm = React.createClass({
 						</div>
 						<div style={{ display: 'none' }}>
 							<div className="login-button">
-								<Button isBigButton={false} isSecondaryAction={false} onClick={ () => { return } }>Log In</Button>
+								<Button 
+									isBigButton={false} 
+									isSecondaryAction={false} 
+									onClick={ () => { return } }>Log In</Button>
 							</div>
 						</div>
 					</div>
@@ -67,7 +70,11 @@ var LoginForm = React.createClass({
 		else
 			return (
 				<div className="login-container">
-					<Button isBigButton={true} isSecondaryAction={false} onClick={this.props.logInFB}>{ this.props.buttonTitle }</Button>
+					<Button 
+						isBigButton={ true } 
+						isSecondaryAction={ false } 
+						onClick={ this.props.logInFB }
+						facebook={ true }>{ this.props.buttonTitle }</Button>
 					<div className="subtitle">
 						{ this.props.subtitle }
 					</div>

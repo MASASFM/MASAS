@@ -102,6 +102,27 @@
   background-color: white;
   color: black; }
 
+.MASAS-button.soundcloud-login-button, .MASAS-button.facebook-login-button {
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 5px;
+  color: white; }
+  .MASAS-button.soundcloud-login-button img, .MASAS-button.facebook-login-button img {
+    height: 1rem;
+    padding-right: 1rem;
+    border-right: 1px solid white;
+    margin-right: 1rem; }
+
+.MASAS-button.MASAS-big-button.soundcloud-login-button, .MASAS-button.MASAS-big-button.facebook-login-button {
+  width: auto; }
+
+.MASAS-button.soundcloud-login-button {
+  background-color: orange; }
+
+.MASAS-button.facebook-login-button {
+  background-color: #3b5997; }
+
 .MASAS-button.disabled {
   cursor: default; }
 
