@@ -43,19 +43,24 @@ var TimePickerWrapper = React.createClass({
 		// don't rerender if current discover changes
 		if(nextProps.currentDiscover !== this.props.currentDiscover)
 			return false
+
+		return true
 	},
 
 	render: function() {
+		const startValue = (this.props.initialDiscover-0.5)*100/6
+
 		return (
 			<div className="time-picker-wrapper-comp">
 				<NoUISlider 
 					range={{ min: 0, max: 100}}
-					start={[this.props.currentDiscover]} 
+					start={[startValue]} 
 					onUpdate={ this.updateCanvas }
 					/>
 				<TimePickerInside 
 					{ ...this.props }
-					ref="canvas" />
+					ref="canvas"
+					rangePercent={ startValue } />
 			</div>
 		)
 	}

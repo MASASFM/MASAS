@@ -63150,7 +63150,9 @@ var Profile = React.createClass({
 		toggleEditingProfile: React.PropTypes.func,
 		textboxValues: React.PropTypes.object,
 		updatePublicProfileInfo: React.PropTypes.func,
-		publicProfileInfo: React.PropTypes.object
+		publicProfileInfo: React.PropTypes.object,
+		updateUserSCSongs: React.PropTypes.func,
+		userSCSongs: React.PropTypes.array
 	},
 
 	getInitialState: function getInitialState() {
@@ -63219,7 +63221,8 @@ var Profile = React.createClass({
 			}).join();
 
 			SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
-				_this3.setState({ userSCSongs: response });
+				// this.setState({ userSCSongs: response })
+				_this3.props.updateUserSCSongs(response);
 			});
 		}
 	},
@@ -63296,7 +63299,7 @@ var Profile = React.createClass({
 			songs.sort(compareFn);
 
 			var songList = songs.map(function (song) {
-				var SC_songInfo = _this4.state.userSCSongs.filter(function (el) {
+				var SC_songInfo = _this4.props.userSCSongs.filter(function (el) {
 					return el.id === song.SC_ID;
 				})[0];
 
@@ -64409,7 +64412,8 @@ Profile.mapStateToProps = function (state) {
 		userData: state.appReducer.userData,
 		isEditingProfile: state.profileReducer.isEditingProfile,
 		textboxValues: state.profileReducer.textboxValues,
-		publicProfileInfo: state.profileReducer.publicProfileInfo
+		publicProfileInfo: state.profileReducer.publicProfileInfo,
+		userSCSongs: state.profileReducer.userSCSongs
 	};
 };
 
@@ -64425,6 +64429,9 @@ Profile.mapDispatchToProps = function (dispatch) {
 		},
 		updatePublicProfileInfo: function updatePublicProfileInfo(publicProfileInfo) {
 			return dispatch({ type: "UPDATE_PUBLIC_PROFILE_INFO", publicProfileInfo: publicProfileInfo });
+		},
+		updateUserSCSongs: function updateUserSCSongs(userSCSongs) {
+			return dispatch({ type: 'UPDATE_USER_SC_SONGS', userSCSongs: userSCSongs });
 		}
 	};
 };
@@ -65199,19 +65206,24 @@ var TimePickerWrapper = React.createClass({
 	shouldComponentUpdate: function shouldComponentUpdate(nextProps, nextState) {
 		// don't rerender if current discover changes
 		if (nextProps.currentDiscover !== this.props.currentDiscover) return false;
+
+		return true;
 	},
 
 	render: function render() {
+		var startValue = (this.props.initialDiscover - 0.5) * 100 / 6;
+
 		return React.createElement(
 			"div",
 			{ className: "time-picker-wrapper-comp" },
 			React.createElement(NoUISlider, {
 				range: { min: 0, max: 100 },
-				start: [this.props.currentDiscover],
+				start: [startValue],
 				onUpdate: this.updateCanvas
 			}),
 			React.createElement(TimePickerInside, _extends({}, this.props, {
-				ref: "canvas" }))
+				ref: "canvas",
+				rangePercent: startValue }))
 		);
 	}
 });
@@ -65253,9 +65265,10 @@ var TimePicker = React.createClass({
 
 	// slider value affecting sun position
 	getInitialState: function getInitialState() {
-		var rangePercent = (this.props.initialDiscover - 0.5) * 100 / 6;
+		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
+		// const rangePercent = this.props.rangePercent
 		return {
-			rangePercent: rangePercent, // (number) 0-100, slider value
+			rangePercent: this.rangePercent, // (number) 0-100, slider value
 			sunCoords: { x: 0, y: 0 }, // (obj) sun coordinates
 			canvasHeight: 0, // (number) sun arc path center
 			canvasWidth: 0, // (number) sun arc path radius
@@ -65394,6 +65407,8 @@ var TimePicker = React.createClass({
 	},
 
 	render: function render() {
+		var _this = this;
+
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
 		// accounting for sun icon size
@@ -65419,7 +65434,9 @@ var TimePicker = React.createClass({
 
 		var newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover);
 		if (newDiscover !== 0) {
-			this.props.onSliderChange(newDiscover);
+			window.setTimeout(function () {
+				return _this.props.onSliderChange(newDiscover);
+			}, 0);
 		}
 
 		return React.createElement(
@@ -66837,9 +66854,10 @@ exportVar.defaultState = {
 		occupation: "",
 		link_set: ["", "", "", ""] },
 	// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
-	publicProfileInfo: {} };
+	publicProfileInfo: {}, // (obj) public info profile on /user/:username		
+	userSCSongs: []
+};
 
-// (obj) public info profile on /user/:username		
 var defaultState = exportVar.defaultState;
 
 exportVar.profileReducer = function () {
@@ -66847,6 +66865,10 @@ exportVar.profileReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'UPDATE_USER_SC_SONGS':
+			return _extends({}, state, {
+				userSCSongs: action.userSCSongs
+			});
 		case 'UPDATE_PUBLIC_PROFILE_INFO':
 			return _extends({}, state, {
 				publicProfileInfo: action.publicProfileInfo

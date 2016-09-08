@@ -11,6 +11,7 @@ Profile.mapStateToProps = function(state) {
 		isEditingProfile: state.profileReducer.isEditingProfile,
 		textboxValues: state.profileReducer.textboxValues,
 		publicProfileInfo: state.profileReducer.publicProfileInfo,
+		userSCSongs: state.profileReducer.userSCSongs
 	}
 }
 
@@ -20,7 +21,8 @@ Profile.mapDispatchToProps = function(dispatch) {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		updateProfileInfo,
 		toggleEditingProfile: () => dispatch({ type: "TOGGLE_EDITING_PROFILE" }),
-		updatePublicProfileInfo: (publicProfileInfo) => dispatch({ type: "UPDATE_PUBLIC_PROFILE_INFO" , publicProfileInfo})
+		updatePublicProfileInfo: (publicProfileInfo) => dispatch({ type: "UPDATE_PUBLIC_PROFILE_INFO" , publicProfileInfo}),
+		updateUserSCSongs: (userSCSongs) => dispatch({ type:'UPDATE_USER_SC_SONGS', userSCSongs}),
 	}
 }
 

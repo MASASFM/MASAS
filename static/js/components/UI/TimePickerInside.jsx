@@ -19,6 +19,7 @@ var pixelRatio = () => {
 }
 
 var TimePicker = React.createClass({
+
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
 		currentDiscover: React.PropTypes.number.isRequired, 		// 1-6 used to check if necessary to call onChange calback
@@ -30,9 +31,10 @@ var TimePicker = React.createClass({
 	},
 
 	getInitialState: function() {
-		const rangePercent = (this.props.initialDiscover-0.5)*100/6
+		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
+		// const rangePercent = this.props.rangePercent
 		return {
-			rangePercent,						// (number) 0-100, slider value
+			rangePercent: this.rangePercent,			// (number) 0-100, slider value
 			sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
@@ -223,7 +225,7 @@ var TimePicker = React.createClass({
 
 		const newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover)
 		if(newDiscover !== 0) {
-			this.props.onSliderChange(newDiscover)
+			window.setTimeout(() => this.props.onSliderChange(newDiscover), 0)
 		}
 
 		return (

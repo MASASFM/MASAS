@@ -11,6 +11,7 @@ exportVar.defaultState = {
 		link_set: ["", "", "", ""],				// (array) length = 4, [0] = SC, [1] = Twitter, [2] = perso, [3] = facebook
 	},		
 	publicProfileInfo: {},					// (obj) public info profile on /user/:username		
+	userSCSongs: [],
 }
 
 const { defaultState } = exportVar
@@ -18,6 +19,11 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_USER_SC_SONGS':
+			return {
+				...state,
+				userSCSongs: action.userSCSongs
+			}
 		case 'UPDATE_PUBLIC_PROFILE_INFO':
 			return {
 				...state,

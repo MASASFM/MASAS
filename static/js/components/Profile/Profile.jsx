@@ -26,6 +26,8 @@ var Profile = React.createClass({
 		textboxValues: React.PropTypes.object,
 		updatePublicProfileInfo: React.PropTypes.func,
 		publicProfileInfo: React.PropTypes.object,
+		updateUserSCSongs: React.PropTypes.func,
+		userSCSongs: React.PropTypes.array,
 	},
 
 	getInitialState: function() {
@@ -97,7 +99,8 @@ var Profile = React.createClass({
 			var idString = songs.map((song) => {return song.SC_ID}).join()
 
 			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-				this.setState({ userSCSongs: response })
+				// this.setState({ userSCSongs: response })
+				this.props.updateUserSCSongs(response)
 			})
 		}
 	},
@@ -167,7 +170,7 @@ var Profile = React.createClass({
 			songs.sort(compareFn)
 
 			var songList =  songs.map((song) => { 
-				var SC_songInfo = this.state.userSCSongs.filter((el) => {
+				var SC_songInfo = this.props.userSCSongs.filter((el) => {
 					return el.id === song.SC_ID
 				})[0]
 
