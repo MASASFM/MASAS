@@ -24,6 +24,7 @@
     "react-dom": "^0.14.6",
     "react-infinite-scroll": "^0.1.5",
     "react-komposer": "^1.3.0",
+    "react-nouislider": "^1.14.0",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
     "react-sidebar": "^2.1.1",

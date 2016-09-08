@@ -474,7 +474,8 @@ input[type=range].MASAS-slider {
   0% {
     left: 100%; } }
 .time-picker-wrapper-comp {
-  position: relative; }
+  position: relative;
+  height: 100%; }
   .time-picker-wrapper-comp .noUi-target {
     z-index: 3;
     position: absolute;
@@ -2311,8 +2312,7 @@ input[type=range].MASAS-slider {
           width: 300px;
           height: 100px; }
         .profile-modal--wrapper .profile-modal-content .suggest-time-modal--wrapper .timePicker-slider--wrapper {
-          bottom: 0rem;
-          height: 2.8rem; }
+          bottom: 0rem; }
     .profile-modal--wrapper .cancel-button {
       display: block;
       font-size: 0.7rem;
