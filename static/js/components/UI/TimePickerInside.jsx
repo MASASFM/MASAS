@@ -6,6 +6,7 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+
 var $ = require("jquery")
 var NoUISlider = require("react-nouislider")
 
@@ -40,6 +41,7 @@ var TimePicker = React.createClass({
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
 			arcRadius: 0,						// (number) sun arc path radius
+			currentDiscover: this.props.currentDiscover,		// (number) current discover
 		}
 	},
 
@@ -125,6 +127,7 @@ var TimePicker = React.createClass({
 			newDiscover = 0
 
 		if(newDiscover !== currentDiscover){
+			window.setTimeout( () => this.setState({ currentDiscover: newDiscover }), 0)
 			return newDiscover
 		}
 		else{
@@ -136,7 +139,7 @@ var TimePicker = React.createClass({
 		var sunCoords = this.getSunCoords(parseFloat(e))
 		
 		// check if need to update redux state
-		const newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover)
+		const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
 		if(newDiscover !== 0)
 			this.props.onSliderChange(newDiscover)
 
@@ -223,7 +226,7 @@ var TimePicker = React.createClass({
 				left: 0
 			}
 
-		const newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover)
+		const newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.state.currentDiscover)
 		if(newDiscover !== 0) {
 			window.setTimeout(() => this.props.onSliderChange(newDiscover), 0)
 		}

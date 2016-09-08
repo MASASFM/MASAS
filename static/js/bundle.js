@@ -63221,7 +63221,6 @@ var Profile = React.createClass({
 			}).join();
 
 			SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
-				// this.setState({ userSCSongs: response })
 				_this3.props.updateUserSCSongs(response);
 			});
 		}
@@ -65273,10 +65272,11 @@ var TimePicker = React.createClass({
 			canvasHeight: 0, // (number) sun arc path center
 			canvasWidth: 0, // (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 }, // (object) center of arc circle coord
-			arcRadius: 0 };
+			arcRadius: 0, // (number) sun arc path radius
+			currentDiscover: this.props.currentDiscover };
 	},
 
-	// (number) sun arc path radius
+	// (number) current discover
 	getDefaultProps: function getDefaultProps() {
 		return {
 			showHashtag: true,
@@ -65349,12 +65349,17 @@ var TimePicker = React.createClass({
 	},
 
 	handleTimePickerChange: function handleTimePickerChange(rangeValue, currentDiscover) {
+		var _this = this;
+
 		var newDiscover = Math.floor(rangeValue / 100 * 6) + 1;
 
 		if (newDiscover > 6) newDiscover = 6;
 		if (newDiscover < 0) newDiscover = 0;
 
 		if (newDiscover !== currentDiscover) {
+			window.setTimeout(function () {
+				return _this.setState({ currentDiscover: newDiscover });
+			}, 0);
 			return newDiscover;
 		} else {
 			return 0;
@@ -65365,7 +65370,7 @@ var TimePicker = React.createClass({
 		var sunCoords = this.getSunCoords(parseFloat(e));
 
 		// check if need to update redux state
-		var newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover);
+		var newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover);
 		if (newDiscover !== 0) this.props.onSliderChange(newDiscover);
 
 		// update local state
@@ -65407,7 +65412,7 @@ var TimePicker = React.createClass({
 	},
 
 	render: function render() {
-		var _this = this;
+		var _this2 = this;
 
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
@@ -65432,10 +65437,10 @@ var TimePicker = React.createClass({
 			left: 0
 		};
 
-		var newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover);
+		var newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.state.currentDiscover);
 		if (newDiscover !== 0) {
 			window.setTimeout(function () {
-				return _this.props.onSliderChange(newDiscover);
+				return _this2.props.onSliderChange(newDiscover);
 			}, 0);
 		}
 

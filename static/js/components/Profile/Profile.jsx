@@ -99,7 +99,6 @@ var Profile = React.createClass({
 			var idString = songs.map((song) => {return song.SC_ID}).join()
 
 			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-				// this.setState({ userSCSongs: response })
 				this.props.updateUserSCSongs(response)
 			})
 		}
