@@ -10,6 +10,7 @@ var MASAS_functions = {}
 MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 MASAS_functions.isObjectNotEmpty = (obj) => Object.keys(obj).length !== 0 && obj.constructor === Object
 
+// https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
 MASAS_functions.makePromiseCancelable = (promise) => {
 	let hasCanceled_ = false;
 

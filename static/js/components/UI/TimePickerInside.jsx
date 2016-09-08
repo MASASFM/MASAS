@@ -38,7 +38,7 @@ var TimePicker = React.createClass({
 		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
 		// const rangePercent = this.props.rangePercent
 		return {
-			rangePercent: this.rangePercent,			// (number) 0-100, slider value
+			rangePercent: this.props.rangePercent,		// (number) 0-100, slider value
 			sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
