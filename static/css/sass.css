@@ -473,6 +473,29 @@ input[type=range].MASAS-slider {
     left: 0; }
   0% {
     left: 100%; } }
+.time-picker-wrapper-comp {
+  position: relative; }
+  .time-picker-wrapper-comp .noUi-target {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    height: 100%; }
+    .time-picker-wrapper-comp .noUi-target .noUi-base .noUi-handle {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      height: 100%;
+      width: 100px;
+      transform: translateX(-35%); }
+    .time-picker-wrapper-comp .noUi-target .noUi-base .noUi-handle:after, .time-picker-wrapper-comp .noUi-target .noUi-base .noUi-handle:before {
+      background-color: transparent; }
+
 .MASAS-time-picker {
   height: 100%;
   width: 100%;
@@ -3307,13 +3330,16 @@ input[type=range].MASAS-slider {
       padding-bottom: 1rem;
       padding-left: 2rem;
       padding-top: 2.5rem; }
-    .legals-content--wrapper .legals-content ol {
-      list-style-type: upper-roman;
-      padding-left: 3rem;
-      line-height: 1.4rem;
-      text-align: justify; }
-      .legals-content--wrapper .legals-content ol li {
-        padding-bottom: 0.8rem; }
+  .legals-content--wrapper ol {
+    list-style-type: upper-roman; }
+  .legals-content--wrapper ul {
+    list-style-type: disc; }
+  .legals-content--wrapper ol, .legals-content--wrapper ul {
+    padding-left: 3rem;
+    line-height: 1.4rem;
+    text-align: justify; }
+    .legals-content--wrapper ol li, .legals-content--wrapper ul li {
+      padding-bottom: 0.8rem; }
 
 @media screen and (min-width: 992px) {
   .legals-content--wrapper {
@@ -3322,7 +3348,7 @@ input[type=range].MASAS-slider {
       display: block; }
     .legals-content--wrapper .legals-content p {
       font-size: 0.7rem; }
-    .legals-content--wrapper .legals-content ol {
+    .legals-content--wrapper .legals-content ol, .legals-content--wrapper .legals-content ul {
       font-size: 0.7rem; } }
 .legals--wrapper {
   display: flex;

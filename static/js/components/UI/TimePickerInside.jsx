@@ -237,12 +237,6 @@ var TimePicker = React.createClass({
 							value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
 							onChange={ this.handleSliderChange } 
 							className="MASAS-slider" />*/}
-						<NoUISlider 
-							range={{ min: 0, max: 100}}
-							start={[this.state.rangePercent]}
-							
-							
-							/>
 						<hr style={{
 							position: "absolute",
 							right: 0,
