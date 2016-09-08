@@ -98,7 +98,6 @@ var FooterModal = React.createClass({
 	},
 
 	render: function() {
-		console.log("this.state => ", this.state)
 		return (
 			<div className="footer-modal--wrapper">
 				<div className="song-info--wrapper">

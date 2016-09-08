@@ -56772,7 +56772,6 @@ var FooterModal = React.createClass({
 	},
 
 	render: function render() {
-		console.log("this.state => ", this.state);
 		return React.createElement(
 			"div",
 			{ className: "footer-modal--wrapper" },
@@ -62625,8 +62624,6 @@ var ajaxCalls = {};
 // caled when state.playerReducer.songPlaying changes
 ajaxCalls.playNewSong = function (newProps, addToHistory) {
 	var songId = newProps.songPlaying;
-	console.log('new props =>', songId);
-	console.log('new props real =>', newProps);
 
 	// set loading state
 	dispatch({ type: 'SET_SONG_IS_FETCHING_TRUE' });
@@ -62640,13 +62637,11 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 		success: function success(data) {
 			SC.get('/tracks/' + data.SC_ID).then(function (response) {
 				var streamURL = response.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3";
-				// console.log(streamURL)
 
 				// reinit player with new media url
 				if ($("#jquery_jplayer_1").data("jPlayer") === undefined) {
 					$("#jquery_jplayer_1").jPlayer({
 						ready: function ready() {
-							console.log("INIT JPLAYER= >", streamURL);
 							$(this).jPlayer("setMedia", {
 								mp3: streamURL,
 								m4a: streamURL,
@@ -62698,7 +62693,6 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 				// end loading state
 				dispatch({ type: 'SET_SONG_IS_FETCHING_FALSE' });
 			}).catch(function (err) {
-				console.log(err);
 
 				// end loading state
 				dispatch({ type: 'SET_SONG_IS_FETCHING_FALSE' });
@@ -62708,7 +62702,6 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 			});
 		},
 		error: function error(err) {
-			console.log(err);
 
 			// end loading state
 			dispatch('SET_SONG_IS_FETCHING_FALSE');
@@ -62735,9 +62728,7 @@ ajaxCalls.updateLikeButton = function (MASAS_songInfo, SC_songInfo, props) {
 			// update player state
 			if (isSongLiked.length === 0) dispatch({ type: 'UNLIKE_SONG' });else dispatch({ type: 'LIKE_SONG' });
 		},
-		error: function error(err) {
-			console.log(err);
-		}
+		error: function error(err) {}
 	});
 };
 
@@ -66563,7 +66554,6 @@ exportVar.footerReducer = function () {
 			});
 		case 'TOOGLE_IS_FOOTER_OPENED':
 			// not tested
-			console.log('hey');
 			return _extends({}, state, {
 				isOpened: !state.isOpened
 			});
