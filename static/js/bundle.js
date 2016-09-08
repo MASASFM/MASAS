@@ -65196,13 +65196,18 @@ var TimePickerWrapper = React.createClass({
 		if (this.refs.canvas !== undefined) this.refs.canvas.setState({ rangePercent: parseFloat(e) });
 	},
 
+	shouldComponentUpdate: function shouldComponentUpdate(nextProps, nextState) {
+		// don't rerender if current discover changes
+		if (nextProps.currentDiscover !== this.props.currentDiscover) return false;
+	},
+
 	render: function render() {
 		return React.createElement(
 			"div",
 			{ className: "time-picker-wrapper-comp" },
 			React.createElement(NoUISlider, {
 				range: { min: 0, max: 100 },
-				start: [0],
+				start: [this.props.currentDiscover],
 				onUpdate: this.updateCanvas
 			}),
 			React.createElement(TimePickerInside, _extends({}, this.props, {
@@ -65344,16 +65349,14 @@ var TimePicker = React.createClass({
 	},
 
 	handleSliderChange: function handleSliderChange(e) {
-		if (parseFloat(e) !== this.state.rangePercent) {
-			var sunCoords = this.getSunCoords(parseFloat(e));
+		var sunCoords = this.getSunCoords(parseFloat(e));
 
-			// check if need to update redux state
-			var newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover);
-			if (newDiscover !== 0) this.props.onSliderChange(newDiscover);
+		// check if need to update redux state
+		var newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover);
+		if (newDiscover !== 0) this.props.onSliderChange(newDiscover);
 
-			// update local state
-			this.setState({ rangePercent: parseFloat(e), sunCoords: sunCoords });
-		}
+		// update local state
+		// this.setState({ rangePercent: parseFloat(e), sunCoords })
 	},
 
 	getSunCoords: function getSunCoords(sliderValue) {
@@ -65413,6 +65416,11 @@ var TimePicker = React.createClass({
 		};else sunIconStyle = {
 			left: 0
 		};
+
+		var newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover);
+		if (newDiscover !== 0) {
+			this.props.onSliderChange(newDiscover);
+		}
 
 		return React.createElement(
 			"div",

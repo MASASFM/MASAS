@@ -131,17 +131,15 @@ var TimePicker = React.createClass({
 	},
 
 	handleSliderChange: function(e) {
-		if(parseFloat(e) !== this.state.rangePercent) {
-			var sunCoords = this.getSunCoords(parseFloat(e))
-			
-			// check if need to update redux state
-			const newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover)
-			if(newDiscover !== 0)
-				this.props.onSliderChange(newDiscover)
+		var sunCoords = this.getSunCoords(parseFloat(e))
+		
+		// check if need to update redux state
+		const newDiscover = this.handleTimePickerChange(parseFloat(e), this.props.currentDiscover)
+		if(newDiscover !== 0)
+			this.props.onSliderChange(newDiscover)
 
-			// update local state
-			this.setState({ rangePercent: parseFloat(e), sunCoords })
-		}
+		// update local state
+		// this.setState({ rangePercent: parseFloat(e), sunCoords })
 	},
 
 	getSunCoords: function(sliderValue) {
@@ -222,6 +220,11 @@ var TimePicker = React.createClass({
 			sunIconStyle = {
 				left: 0
 			}
+
+		const newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.props.currentDiscover)
+		if(newDiscover !== 0) {
+			this.props.onSliderChange(newDiscover)
+		}
 
 		return (
 			<div className={ "MASAS-time-picker " + this.props.wrapperClassName} ref="canvasWrapper">
