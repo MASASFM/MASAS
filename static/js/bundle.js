@@ -54939,6 +54939,27 @@ MASAS_functions.isObjectNotEmpty = function (obj) {
 	return Object.keys(obj).length !== 0 && obj.constructor === Object;
 };
 
+MASAS_functions.makePromiseCancelable = function (promise) {
+	var hasCanceled_ = false;
+
+	var wrappedPromise = new Promise(function (resolve, reject) {
+		promise.then(function (val) {
+			return hasCanceled_ ? reject({ isCanceled: true }) : resolve(val);
+		});
+
+		promise.catch(function (error) {
+			return hasCanceled_ ? reject({ isCanceled: true }) : reject(error);
+		});
+	});
+
+	return {
+		promise: wrappedPromise,
+		cancel: function cancel() {
+			hasCanceled_ = true;
+		}
+	};
+};
+
 MASAS_functions.logout = function () {
 	Cookie.remove("MASAS_authToken");
 
@@ -65243,7 +65264,12 @@ var ReactDOM = require("react-dom");
 var $ = require("jquery");
 var NoUISlider = require("react-nouislider");
 
+var _require = require("../../MASAS_functions.jsx");
+
+var makePromiseCancelable = _require.makePromiseCancelable;
+
 // maps the slider value to sun coordinates
+
 var mapSliderToHeight = function mapSliderToHeight(x) {};
 
 var pixelRatio = function pixelRatio() {
@@ -65252,6 +65278,8 @@ var pixelRatio = function pixelRatio() {
 
 var TimePicker = React.createClass({
 	displayName: "TimePicker",
+
+	cancelablePromise: makePromiseCancelable(new Promise(function () {})),
 
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, // 1-6 starting slider position	
@@ -65297,6 +65325,7 @@ var TimePicker = React.createClass({
 
 	componentWillUnmount: function componentWillUnmount() {
 		$(window).unbind('resize', this.updateCanvasDim);
+		this.cancelablePromise.cancel();
 	},
 
 	setupPaperJS: function setupPaperJS() {
@@ -65358,7 +65387,9 @@ var TimePicker = React.createClass({
 
 		if (newDiscover !== currentDiscover) {
 			window.setTimeout(function () {
-				return _this.setState({ currentDiscover: newDiscover });
+				if (!_this.cancelablePromise.hasCanceled_) _this.cancelablePromise = makePromiseCancelable(new Promise(function (r) {
+					return _this.setState({ currentDiscover: newDiscover });
+				}));
 			}, 0);
 			return newDiscover;
 		} else {
@@ -65488,7 +65519,7 @@ var TimePicker = React.createClass({
 
 module.exports = TimePicker;
 
-},{"jquery":33,"react":286,"react-dom":86,"react-nouislider":88}],389:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"jquery":33,"react":286,"react-dom":86,"react-nouislider":88}],389:[function(require,module,exports){
 'use strict';
 
 var Body = require('./Body.jsx');

@@ -10,6 +10,8 @@ var ReactDOM = require("react-dom")
 var $ = require("jquery")
 var NoUISlider = require("react-nouislider")
 
+var { makePromiseCancelable } = require("../../MASAS_functions.jsx")
+
 // maps the slider value to sun coordinates
 var mapSliderToHeight =  function(x) {
 
@@ -20,6 +22,7 @@ var pixelRatio = () => {
 }
 
 var TimePicker = React.createClass({
+	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
 
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
@@ -65,6 +68,7 @@ var TimePicker = React.createClass({
 
 	componentWillUnmount: function() {
 		$(window).unbind('resize', this.updateCanvasDim)
+		this.cancelablePromise.cancel()		
 	},
 
 	setupPaperJS: function() {
@@ -127,7 +131,12 @@ var TimePicker = React.createClass({
 			newDiscover = 0
 
 		if(newDiscover !== currentDiscover){
-			window.setTimeout( () => this.setState({ currentDiscover: newDiscover }), 0)
+			window.setTimeout( () => {
+				if(!this.cancelablePromise.hasCanceled_)
+					this.cancelablePromise = makePromiseCancelable(
+						new Promise(r => this.setState({ currentDiscover: newDiscover }) )
+					)
+			}, 0)
 			return newDiscover
 		}
 		else{

@@ -10,6 +10,27 @@ var MASAS_functions = {}
 MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 MASAS_functions.isObjectNotEmpty = (obj) => Object.keys(obj).length !== 0 && obj.constructor === Object
 
+MASAS_functions.makePromiseCancelable = (promise) => {
+	let hasCanceled_ = false;
+
+	const wrappedPromise = new Promise((resolve, reject) => {
+		promise.then((val) =>
+			hasCanceled_ ? reject({isCanceled: true}) : resolve(val)
+		)
+
+		promise.catch((error) =>
+			hasCanceled_ ? reject({isCanceled: true}) : reject(error)
+		)
+	})
+
+	return {
+		promise: wrappedPromise,
+		cancel() {
+			hasCanceled_ = true
+		},
+	}
+}
+
 MASAS_functions.logout = () => {
 	Cookie.remove("MASAS_authToken")
 
