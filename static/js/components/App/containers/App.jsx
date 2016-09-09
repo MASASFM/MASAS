@@ -28,6 +28,7 @@ App.mapDispatchToProps = function(dispatch) {
 		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'}),
 		showAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_TRUE' }),
 		hideAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_FALSE' }),
+		updateUnsplashArtist: (name, username, url) => dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url }),
 	}
 }
 
