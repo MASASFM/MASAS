@@ -2,7 +2,7 @@ var React = require("react")
 var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/TimePickerWrapper.jsx")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/TimePickerInside.jsx")
 
 var TimePickerInside = require("./TimePickerInside.jsx")
 var NoUISlider = require("react-nouislider")
