@@ -61,7 +61,7 @@ var Header = React.createClass({
 							{ this.props.pageType === 0 ?
 								<img onClick={this.props.onSetNavSidebarOpen} src="/static/img/MASAS_hamburger_menu.svg" atl="menu" className="menu-icon"/>
 								:
-								<img onClick={ () => { this.props.backArrowFunc() } } src="/static/img/MASAS_arrow_left.svg" atl="back" className="menu-icon"/>
+								<img onClick={ () => { this.props.backArrowFunc(); this.props.closeModal() } } src="/static/img/MASAS_arrow_left.svg" atl="back" className="menu-icon"/>
 							}
 						</div>
 					</div>

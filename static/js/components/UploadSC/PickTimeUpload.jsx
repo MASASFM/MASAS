@@ -6,12 +6,14 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUplo
 
 var { Button, Checkbox, Link, TimePicker } = require("../UI/UI.jsx")
 var { getCookie } = require("../../MASAS_functions.jsx")
-// var TimePicker = require("./TimePicker.jsx")
+
 var ModalContent = require("./ModalContent.jsx")
 
 
 var PickTimeUpload = React.createClass({
 	propTypes: {
+		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary 
+		visible: React.PropTypes.bool,				// is cancel button visible
 	},
 
 	componentWillMount: function() {
@@ -19,6 +21,8 @@ var PickTimeUpload = React.createClass({
 
 		if(!$("#body--background").hasClass('blurred'))
 			$("#body--background").addClass('blurred')
+
+		this.props.checkUserStep()
 	},
 
 	submitSong: function() {
@@ -61,6 +65,7 @@ var PickTimeUpload = React.createClass({
 		$("#body--background").removeClass('blurred')
 	},
 
+
 	openModal: function() {
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this
@@ -97,7 +102,14 @@ var PickTimeUpload = React.createClass({
 				</div>
 				<div className="button--wrapper">
 					<Button className="submit" small={true} white={true} onClick={this.openModal}>Submit</Button>
-					<Link to="/upload" className="cancel-button" onClick={this.props.closeWindow}>cancel</Link>
+					<Link 
+						to="/upload" 
+						className="cancel-button" 
+						onClick={this.props.closeWindow}>
+						<span style={{
+							visibility: this.props.visible ? 'visible' : 'hidden'
+						}}>cancel</span>
+					</Link>
 				</div>
 			</div>
 		)

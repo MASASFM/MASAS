@@ -4,12 +4,14 @@ var ReactDOM = require("react-dom")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { goToURL } = require("../../MASAS_functions.jsx")
+var { goToURL, isObjectEmpty, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
-var { Button, Body } = require("../UI/UI.jsx")
+var { Button, Body, TimePicker } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
+var TeachUploadModals = require("./TeachUploadModals.jsx")
+var TeachUploadModal1 = TeachUploadModals.TeachUploadModal1
 
 
 var UploadSC = React.createClass({
@@ -25,6 +27,9 @@ var UploadSC = React.createClass({
 			this.getUserTracks()
 	},
 
+	componentDidMount: function() {
+	},
+
 	componentWillReceiveProps: function(nextProps) {
 		if(this.props.choosingTime !== nextProps.choosingTime && nextProps.choosingTime === null)
 			this.props.updateTitle('Upload', '0')
@@ -32,6 +37,24 @@ var UploadSC = React.createClass({
 		// update masas user track prop to have the sync icon updatd in real time
 		if(this.props.choosingTime !== nextProps.choosingTime)
 			this.getUserTracks()
+	},
+
+	checkUserStep: function() {
+		// if user data is available
+		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+			// if user has not dismissed tips yet
+			let usersteps = [ ...this.props.userData.usersteps ]
+			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
+			const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
+
+			if(!didUserDismissTips && !didUserSeeFirstTip) {
+				window.setTimeout(() => {
+					this.props.updateModalType(2)
+					this.props.updateModalContent(<TeachUploadModal1 />)
+					this.props.toogleModal()
+				}, 3000)
+			}
+		}
 	},
 
 	getUserTracks: function() {
@@ -86,8 +109,23 @@ var UploadSC = React.createClass({
 	},
 
 	render: function() {
+		// if(this.props.modalType === 2 && this.props.isModalOpened)
+		// 	return <div style={{ visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'}}>
+		// 			<Body><PickTimeUpload /></Body>
+		// 		</div>
+
 		if(this.props.choosingTime)
-			return <Body><PickTimeUpload /></Body>
+			return <div style={{ 
+					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
+					display: 'flex',
+					flex: '1',
+					}}>
+					<Body>
+						<PickTimeUpload 
+							checkUserStep={ this.checkUserStep }
+							visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
+					</Body>
+				</div>
 
 		if(this.props.isConnectedSoundcloud) 
 			return (
