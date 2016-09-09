@@ -116,7 +116,7 @@ var Home = React.createClass({
 								subtitle="via Facebook"/>
 						</div>
 						
-						<Button onClick={ this.scrollToInfo } isBigButton={ true } isSecondaryAction={ true }>Learn more</Button> 
+						<Button onClick={ this.scrollToInfo } isBigButton={ true } isSecondaryAction={ true }>Learn the basic</Button> 
 					</div>
 
 					<div className="page" id="masas-info--wrapper">

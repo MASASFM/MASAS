@@ -57599,7 +57599,7 @@ var Home = React.createClass({
 					React.createElement(
 						Button,
 						{ onClick: this.scrollToInfo, isBigButton: true, isSecondaryAction: true },
-						"Learn more"
+						"Learn the basic"
 					)
 				),
 				React.createElement(
@@ -63309,7 +63309,7 @@ var Profile = React.createClass({
 				React.createElement(
 					Button,
 					{ onClick: goToURL.bind(null, "/discover") },
-					"Start discovering new music"
+					"Discover music"
 				)
 			)
 		) : React.createElement(
