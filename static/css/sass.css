@@ -1935,7 +1935,8 @@ input[type=range].MASAS-slider {
 .teach-modal--wrapper .teach-modal-pickTime--wrapper {
   display: flex;
   width: 220px !important;
-  height: 100px !important; }
+  height: 100px !important;
+  padding-bottom: 1rem; }
   .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
     width: 220px !important;
     height: 100px !important; }

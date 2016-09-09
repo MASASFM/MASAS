@@ -65843,7 +65843,7 @@ var PickTimeUpload = React.createClass({
 					"div",
 					{ className: "canvas" },
 					React.createElement(TimePicker, {
-						initialDiscover: 1,
+						initialDiscover: 2,
 						currentDiscover: this.props.pickTimeUpload,
 						onSliderChange: this.props.handleTimePickerChange })
 				)
@@ -65948,18 +65948,13 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 				null,
 				"It's your new friend! Match your daily journey with 6 different moods"
 			),
-			React.createElement(
-				"div",
-				{ className: "teach-modal-pickTime--wrapper", style: { height: '90px', width: '150px' } },
-				React.createElement(TimePicker, {
-					onSliderChange: function onSliderChange() {},
-					initialDiscover: 3,
-					currentDiscover: 1,
-					wrapperClassName: "teach-modal-pickTime--wrapper",
-					canvasId: "teach-modal-pickTime--canvas",
-					showHashtag: false,
-					sliderValue: 50 })
-			),
+			React.createElement(TimePicker, {
+				onSliderChange: this.props.handleTimePickerChange,
+				initialDiscover: 2,
+				currentDiscover: this.props.pickTimeUpload,
+				wrapperClassName: "teach-modal-pickTime--wrapper",
+				canvasId: "teach-modal-pickTime--canvas",
+				showHashtag: true }),
 			React.createElement(
 				Button,
 				{
@@ -66401,7 +66396,8 @@ var TeachUploadModals = {};
 TeachUploadModals.mapStateToProps = function (state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
-		userData: state.appReducer.userData
+		userData: state.appReducer.userData,
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload
 	};
 };
 
@@ -66412,6 +66408,9 @@ TeachUploadModals.mapDispatchToProps = function (dispatch) {
 		},
 		closeModal: function closeModal() {
 			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+		},
+		handleTimePickerChange: function handleTimePickerChange(newDiscover) {
+			return dispatch({ type: 'HANDLE_PICK_TIME_UPLOAD', newDiscover: newDiscover });
 		}
 	};
 };

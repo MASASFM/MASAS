@@ -95,7 +95,7 @@ var PickTimeUpload = React.createClass({
 				<div className="pickTime--wrapper">
 					<div className="canvas">
 						<TimePicker 
-							initialDiscover={ 1 }
+							initialDiscover={ 2 }
 							currentDiscover={ this.props.pickTimeUpload } 
 							onSliderChange={ this.props.handleTimePickerChange } />
 					</div>

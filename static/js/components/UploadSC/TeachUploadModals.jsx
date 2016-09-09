@@ -49,16 +49,13 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 					<p>
 						It's your new friend! Match your daily journey with 6 different moods
 					</p>
-					<div className="teach-modal-pickTime--wrapper"  style={{ height: '90px', width: '150px' }}>
 						<TimePicker 
-							onSliderChange={ () => {} }
-							initialDiscover={ 3 } 
-							currentDiscover={ 1 } 
+							onSliderChange={ this.props.handleTimePickerChange }
+							initialDiscover={ 2 } 
+							currentDiscover={ this.props.pickTimeUpload }
 							wrapperClassName="teach-modal-pickTime--wrapper"
 							canvasId="teach-modal-pickTime--canvas" 
-							showHashtag={ false }
-							sliderValue={ 50 }/>
-					</div>
+							showHashtag={ true } />
 					<Button 
 						isBigButton={ false }
 						onClick={ this.props.closeModal }>Close tip</Button>
