@@ -119,9 +119,6 @@ class User(AbstractUser):
     def dislikes(self):
         return self.status_set.filter(user=self, status=-1)
 
-# Monkey patch to disable active by default
-User._meta.get_field_by_name('is_active')[0].default = False
-
 
 class UserStep(models.Model):
     STEP_CHOICES = (
