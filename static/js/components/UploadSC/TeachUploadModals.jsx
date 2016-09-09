@@ -5,7 +5,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TeachUploadModals.jsx")
 
 var { getCookie, updateProfileInfo } = require("../../MASAS_functions.jsx")
-var { Button } = require("../UI/UI.jsx")
+var { Button, TimePicker } = require("../UI/UI.jsx")
 
 var TeachUploadModals = {}
 
@@ -49,8 +49,18 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 					<p>
 						It's your new friend! Match your daily journey with 6 different moods
 					</p>
+					<div className="teach-modal-pickTime--wrapper"  style={{ height: '90px', width: '150px' }}>
+						<TimePicker 
+							onSliderChange={ () => {} }
+							initialDiscover={ 3 } 
+							currentDiscover={ 1 } 
+							wrapperClassName="teach-modal-pickTime--wrapper"
+							canvasId="teach-modal-pickTime--canvas" 
+							showHashtag={ false }
+							sliderValue={ 50 }/>
+					</div>
 					<Button 
-						isBigButton={false}
+						isBigButton={ false }
 						onClick={ this.props.closeModal }>Close tip</Button>
 
 				</div>

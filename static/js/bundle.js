@@ -65257,7 +65257,8 @@ var TimePickerWrapper = React.createClass({
 	getDefaultProps: function getDefaultProps() {
 		return {
 			initialDiscover: 1,
-			currentDiscover: 1
+			currentDiscover: 1,
+			onSliderChange: function onSliderChange() {}
 		};
 	},
 
@@ -65332,9 +65333,10 @@ var TimePicker = React.createClass({
 		wrapperClassName: React.PropTypes.string, // class used to size TimePicker
 		canvasId: React.PropTypes.string, // canvas id used for drawing
 		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
-		sliderValue: React.PropTypes.number },
+		sliderValue: React.PropTypes.number, // slider value affecting sun position
+		renderForUITip: React.PropTypes.bool
+	},
 
-	// slider value affecting sun position
 	getInitialState: function getInitialState() {
 		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
 		// const rangePercent = this.props.rangePercent
@@ -65391,6 +65393,8 @@ var TimePicker = React.createClass({
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width;
 		canvasHeight = parseInt(canvasHeight.split("p")[0]);
 		canvasWidth = parseInt(canvasWidth.split("p")[0]);
+
+		console.log(canvasHeight, canvasWidth);
 
 		// update canvas size
 		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight);
@@ -65894,6 +65898,7 @@ var updateProfileInfo = _require2.updateProfileInfo;
 var _require3 = require("../UI/UI.jsx");
 
 var Button = _require3.Button;
+var TimePicker = _require3.TimePicker;
 
 var TeachUploadModals = {};
 
@@ -65942,6 +65947,18 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 				"p",
 				null,
 				"It's your new friend! Match your daily journey with 6 different moods"
+			),
+			React.createElement(
+				"div",
+				{ className: "teach-modal-pickTime--wrapper", style: { height: '90px', width: '150px' } },
+				React.createElement(TimePicker, {
+					onSliderChange: function onSliderChange() {},
+					initialDiscover: 3,
+					currentDiscover: 1,
+					wrapperClassName: "teach-modal-pickTime--wrapper",
+					canvasId: "teach-modal-pickTime--canvas",
+					showHashtag: false,
+					sliderValue: 50 })
 			),
 			React.createElement(
 				Button,
@@ -66029,7 +66046,7 @@ var UploadSC = React.createClass({
 				return step === 5;
 			}).length ? true : false;
 
-			if (!didUserDismissTips && !didUserSeeFirstTip) {
+			if (!didUserDismissTips && didUserSeeFirstTip) {
 				window.setTimeout(function () {
 					_this.props.updateModalType(2);
 					_this.props.updateModalContent(React.createElement(TeachUploadModal1, null));
@@ -67176,8 +67193,8 @@ var SC = require('soundcloud');
 var exportVar = {};
 
 exportVar.defaultState = {
-	choosingTime: null, // (object)  song info from SC (if not null => show picking time screen)
-	isConnectedSoundcloud: SC.isConnected(), // IS USER CONNECTED TO SOUNDCLOUD
+	choosingTime: true, //null,				// (object)  song info from SC (if not null => show picking time screen)
+	isConnectedSoundcloud: true, //SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
 	masasUserTracks: null,
 	SCusername: null,

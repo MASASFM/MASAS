@@ -28,6 +28,7 @@ var TimePickerWrapper = React.createClass({
 		return {
 			initialDiscover: 1,
 			currentDiscover: 1,
+			onSliderChange: () => {},
 		}
 	},
 

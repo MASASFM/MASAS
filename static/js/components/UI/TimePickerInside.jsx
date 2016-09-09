@@ -32,6 +32,7 @@ var TimePicker = React.createClass({
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
+		renderForUITip: React.PropTypes.bool,
 	},
 
 	getInitialState: function() {
@@ -91,6 +92,8 @@ var TimePicker = React.createClass({
 		var canvasWidth = window.getComputedStyle(canvasWrapper).width
 		canvasHeight = parseInt(canvasHeight.split("p")[0])
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
+
+		console.log(canvasHeight, canvasWidth)
 		
 			// update canvas size
 		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight)
