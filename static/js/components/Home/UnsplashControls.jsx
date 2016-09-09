@@ -21,7 +21,28 @@ var UnsplashControls = React.createClass({
 	},
 
 	componentWillMount: function() {
-		
+		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
+
+		$.ajax({
+			type: "GET",
+			// url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
+			url: "https://api.unsplash.com/users/masas/likes/",
+			data: {
+				client_id: unsplashClientID,
+				per_page: 30
+			},
+			success: (r) => {
+				const likeNumber = Math.floor(Math.random() * r.length) - 1
+
+				if(likeNumber > -1 && likeNumber < r.length) {
+					const like = r[likeNumber]
+					this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular)
+				}
+			},
+			error: (e) => {
+				console.log(e)
+			}
+		})
 	},
 
 	updateUnsplashArtist: function() {

@@ -58074,10 +58074,35 @@ var UnsplashControls = React.createClass({
 		updateBackgroundURL: React.PropTypes.func
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function componentWillMount() {
+		var _this = this;
+
+		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
+
+		$.ajax({
+			type: "GET",
+			// url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
+			url: "https://api.unsplash.com/users/masas/likes/",
+			data: {
+				client_id: unsplashClientID,
+				per_page: 30
+			},
+			success: function success(r) {
+				var likeNumber = Math.floor(Math.random() * r.length) - 1;
+
+				if (likeNumber > -1 && likeNumber < r.length) {
+					var like = r[likeNumber];
+					_this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular);
+				}
+			},
+			error: function error(e) {
+				console.log(e);
+			}
+		});
+	},
 
 	updateUnsplashArtist: function updateUnsplashArtist() {
-		var _this = this;
+		var _this2 = this;
 
 		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
 
@@ -58086,7 +58111,7 @@ var UnsplashControls = React.createClass({
 			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
 			success: function success(r) {
 				console.log(r);
-				_this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
+				_this2.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
 			},
 			error: function error(e) {
 				console.log(e);
@@ -58095,7 +58120,7 @@ var UnsplashControls = React.createClass({
 	},
 
 	getNewBackground: function getNewBackground() {
-		var _this2 = this;
+		var _this3 = this;
 
 		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
 
@@ -58104,7 +58129,7 @@ var UnsplashControls = React.createClass({
 			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
 			success: function success(r) {
 				console.log(r);
-				_this2.props.updateBackgroundURL(r.urls.regular);
+				_this3.props.updateBackgroundURL(r.urls.regular);
 			},
 			error: function error(e) {
 				console.log(e);
