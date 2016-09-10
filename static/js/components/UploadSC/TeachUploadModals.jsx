@@ -48,7 +48,7 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 		},
 
 		render: function() {
-			if(!this.hasMovedSlider && this.props.pickTimeUpload !== this.sliderInitValue)
+			if(!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue)
 				this.hasMovedSlider = true
 
 			return (

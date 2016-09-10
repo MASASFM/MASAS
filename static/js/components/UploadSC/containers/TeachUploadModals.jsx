@@ -5,6 +5,7 @@ TeachUploadModals.mapStateToProps = function(state) {
 		MASASuser: state.appReducer.MASASuser,
 		userData: state.appReducer.userData,
 		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		tipTimePickerValue: state.uploadSCReducer.tipTimePickerValue,
 	}
 }
 

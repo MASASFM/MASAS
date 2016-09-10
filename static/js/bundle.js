@@ -65946,7 +65946,7 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 	},
 
 	render: function render() {
-		if (!this.hasMovedSlider && this.props.pickTimeUpload !== this.sliderInitValue) this.hasMovedSlider = true;
+		if (!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue) this.hasMovedSlider = true;
 
 		return React.createElement(
 			"div",
@@ -66421,7 +66421,8 @@ TeachUploadModals.mapStateToProps = function (state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
 		userData: state.appReducer.userData,
-		pickTimeUpload: state.uploadSCReducer.pickTimeUpload
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		tipTimePickerValue: state.uploadSCReducer.tipTimePickerValue
 	};
 };
 
