@@ -67249,11 +67249,13 @@ module.exports = exportVar;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var SC = require('soundcloud');
+
 var exportVar = {};
 
 exportVar.defaultState = {
-	choosingTime: true, //null,				// (object)  song info from SC (if not null => show picking time screen)
-	isConnectedSoundcloud: true, //SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
+	choosingTime: null, // (object)  song info from SC (if not null => show picking time screen)
+	isConnectedSoundcloud: SC.isConnected(), // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
 	masasUserTracks: null,
 	SCusername: null,
@@ -67333,7 +67335,7 @@ exportVar.uploadSCReducer = function () {
 
 module.exports = exportVar;
 
-},{}],416:[function(require,module,exports){
+},{"soundcloud":299}],416:[function(require,module,exports){
 "use strict";
 
 var _reduxThunk = require("redux-thunk");
