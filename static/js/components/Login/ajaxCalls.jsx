@@ -1,6 +1,6 @@
-var { browserHistory } = require('react-router')
+var { browserHistory } = require("react-router")
 
-const { dispatch } = require('../../reducers/reducers.js')
+const { dispatch } = require("../../reducers/reducers.js")
 var { updateAuthCookie, logInWithToken } = require("../../MASAS_functions.jsx")
 
 var ajaxCalls = {}
@@ -9,8 +9,8 @@ ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
 	var header = "Bearer " + userToken
 
 	$.ajax({
-		type: 'POST',
-		url: '/api/usersteps/',
+		type: "POST",
+		url: "/api/usersteps/",
 		headers: {
 			"Authorization": header,
 		},
@@ -18,18 +18,18 @@ ajaxCalls.acceptTerms = (userToken, userData, userPk) => {
 			user: userData.url,
 			step: 1,
 		},
-		success: (r) => {
-			dispatch({ type: 'UPDATE_USER_PK', pk: userPk })
-			dispatch({ type: 'LOGIN', token: userToken, userData , pk: userPk })
-			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' })
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+		success: () => {
+			dispatch({ type: "UPDATE_USER_PK", pk: userPk })
+			dispatch({ type: "LOGIN", token: userToken, userData , pk: userPk })
+			dispatch({ type: "TOOGLE_IS_MODAL_OPENED" })
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
 			
-			browserHistory.push('/profile')
+			browserHistory.push("/profile")
 		},
-		error: (e) => {
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" })
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" })
+		error: () => {
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
 		}
 	})
 }
@@ -43,8 +43,8 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 
 	if(typeof(FB) !== "undefined")
 		$.ajax({
-			type: 'PATCH',
-			url: '/api/users/' + userPk + "/",
+			type: "PATCH",
+			url: "/api/users/" + userPk + "/",
 			headers: {
 				"Authorization": header,
 				"Content-Type": "application/json"
@@ -52,16 +52,14 @@ ajaxCalls.updateProfilePicture = (userDict) => {
 			data: JSON.stringify({
 				avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture",
 			}),
-			success: (resp) => {
-			},
-			error: (err) => {
-			}
+			success: () => { },
+			error: () => { }
 		})
 }
 
 
 
-ajaxCalls.convertToken = (token) => {
+ajaxCalls.convertToken = () => {
 	$.ajax({
 		type: "POST",
 		url: "/auth/convert-token/",
@@ -77,8 +75,8 @@ ajaxCalls.convertToken = (token) => {
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture)	
 			updateAuthCookie(data.access_token)
 		},
-		error: (err) => { 
-			dispatch({type:'LOGOUT'})
+		error: () => { 
+			dispatch({type:"LOGOUT"})
 		}
 	})
 }
@@ -87,19 +85,19 @@ ajaxCalls.getUserPk = (userToken, callbackFunc = null) => {
 	var header = "Bearer " + userToken
 	$.ajax({
 		type: "GET",
-		url: '/api/check-user/',	
+		url: "/api/check-user/",	
 		headers: {
 			"Authorization": header,
 		},
 		success: (data) => {
 			var pk = data.userPk
 
-			dispatch({type: 'UPDATE_USER_PK', pk: pk})
+			dispatch({type: "UPDATE_USER_PK", pk: pk})
 
 			if(callbackFunc)
 				callbackFunc({ userToken, userPk: data.userPk})
 		},
-		error: (err) => {
+		error: () => {
 		},
 	})
 }

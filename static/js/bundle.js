@@ -61883,13 +61883,13 @@ var TermsAndCond = React.createClass({
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TermsAndCond);
 
 },{"../Legals/Terms.jsx":334,"../UI/UI.jsx":389,"./ajaxCalls.jsx":351,"./containers/TermsAndCond.jsx":354,"react":286,"react-dom":86,"react-redux":91}],351:[function(require,module,exports){
-'use strict';
+"use strict";
 
-var _require = require('react-router');
+var _require = require("react-router");
 
 var browserHistory = _require.browserHistory;
 
-var _require2 = require('../../reducers/reducers.js');
+var _require2 = require("../../reducers/reducers.js");
 
 var dispatch = _require2.dispatch;
 
@@ -61904,8 +61904,8 @@ ajaxCalls.acceptTerms = function (userToken, userData, userPk) {
 	var header = "Bearer " + userToken;
 
 	$.ajax({
-		type: 'POST',
-		url: '/api/usersteps/',
+		type: "POST",
+		url: "/api/usersteps/",
 		headers: {
 			"Authorization": header
 		},
@@ -61913,18 +61913,18 @@ ajaxCalls.acceptTerms = function (userToken, userData, userPk) {
 			user: userData.url,
 			step: 1
 		},
-		success: function success(r) {
-			dispatch({ type: 'UPDATE_USER_PK', pk: userPk });
-			dispatch({ type: 'LOGIN', token: userToken, userData: userData, pk: userPk });
-			dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" });
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" });
+		success: function success() {
+			dispatch({ type: "UPDATE_USER_PK", pk: userPk });
+			dispatch({ type: "LOGIN", token: userToken, userData: userData, pk: userPk });
+			dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
 
-			browserHistory.push('/profile');
+			browserHistory.push("/profile");
 		},
-		error: function error(e) {
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "" });
-			dispatch({ type: 'UPDATE_NOTIFICATION_TEXT', notificationText: "Welcome !" });
+		error: function error() {
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
 		}
 	});
 };
@@ -61937,8 +61937,8 @@ ajaxCalls.updateProfilePicture = function (userDict) {
 	var header = "Bearer " + userToken;
 
 	if (typeof FB !== "undefined") $.ajax({
-		type: 'PATCH',
-		url: '/api/users/' + userPk + "/",
+		type: "PATCH",
+		url: "/api/users/" + userPk + "/",
 		headers: {
 			"Authorization": header,
 			"Content-Type": "application/json"
@@ -61946,12 +61946,12 @@ ajaxCalls.updateProfilePicture = function (userDict) {
 		data: JSON.stringify({
 			avatar_url: "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
 		}),
-		success: function success(resp) {},
-		error: function error(err) {}
+		success: function success() {},
+		error: function error() {}
 	});
 };
 
-ajaxCalls.convertToken = function (token) {
+ajaxCalls.convertToken = function () {
 	$.ajax({
 		type: "POST",
 		url: "/auth/convert-token/",
@@ -61967,8 +61967,8 @@ ajaxCalls.convertToken = function (token) {
 			ajaxCalls.getUserPk(data.access_token, ajaxCalls.updateProfilePicture);
 			updateAuthCookie(data.access_token);
 		},
-		error: function error(err) {
-			dispatch({ type: 'LOGOUT' });
+		error: function error() {
+			dispatch({ type: "LOGOUT" });
 		}
 	});
 };
@@ -61979,18 +61979,18 @@ ajaxCalls.getUserPk = function (userToken) {
 	var header = "Bearer " + userToken;
 	$.ajax({
 		type: "GET",
-		url: '/api/check-user/',
+		url: "/api/check-user/",
 		headers: {
 			"Authorization": header
 		},
 		success: function success(data) {
 			var pk = data.userPk;
 
-			dispatch({ type: 'UPDATE_USER_PK', pk: pk });
+			dispatch({ type: "UPDATE_USER_PK", pk: pk });
 
 			if (callbackFunc) callbackFunc({ userToken: userToken, userPk: data.userPk });
 		},
-		error: function error(err) {}
+		error: function error() {}
 	});
 };
 
