@@ -1,15 +1,14 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
 
-var Radium = require("radium")
-
 var FooterModal = require("./FooterModals.jsx")
+var UnsplashControls = require("./UnsplashControls.jsx")
 
 var Player = require("../Player/PlayerBar.jsx")
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
+
 
 var Footer = React.createClass({
 	propTypes: {
@@ -95,6 +94,9 @@ var Footer = React.createClass({
 	render: function() {
 		return (
 			<div className="footer--wrapper">
+				
+				<UnsplashControls />
+
 				<div className={ "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") }>
 					<div 
 						className="select-range" 

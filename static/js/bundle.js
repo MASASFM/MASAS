@@ -55569,7 +55569,7 @@ var styles = {
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
 // module.exports = App
 
-},{"../Footer/Footer.jsx":310,"../Header/Header.jsx":315,"../Home/Home.jsx":320,"../NavSidebar/NavSidebar.jsx":356,"../UI/UI.jsx":389,"./containers/App.jsx":303,"js-cookie":34,"radium":48,"react":286,"react-dom":86,"react-redux":91,"soundcloud":299}],303:[function(require,module,exports){
+},{"../Footer/Footer.jsx":310,"../Header/Header.jsx":317,"../Home/Home.jsx":322,"../NavSidebar/NavSidebar.jsx":356,"../UI/UI.jsx":389,"./containers/App.jsx":303,"js-cookie":34,"radium":48,"react":286,"react-dom":86,"react-redux":91,"soundcloud":299}],303:[function(require,module,exports){
 'use strict';
 
 // var ReactRedux = require("react-redux")
@@ -56474,7 +56474,6 @@ module.exports = TeachDiscoverModals;
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -56483,9 +56482,8 @@ var _require = require("./containers/Footer.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var Radium = require("radium");
-
 var FooterModal = require("./FooterModals.jsx");
+var UnsplashControls = require("./UnsplashControls.jsx");
 
 var Player = require("../Player/PlayerBar.jsx");
 
@@ -56572,6 +56570,7 @@ var Footer = React.createClass({
 		return React.createElement(
 			"div",
 			{ className: "footer--wrapper" },
+			React.createElement(UnsplashControls, null),
 			React.createElement(
 				"div",
 				{ className: "slider--wrapper " + (this.props.isPlayerBarOpened ? "opened" : "") },
@@ -56683,7 +56682,7 @@ var Footer = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../../MASAS_functions.jsx":300,"../Player/PlayerBar.jsx":358,"./FooterModals.jsx":311,"./containers/Footer.jsx":313,"radium":48,"react":286,"react-dom":86,"react-redux":91}],311:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Player/PlayerBar.jsx":358,"./FooterModals.jsx":311,"./UnsplashControls.jsx":312,"./containers/Footer.jsx":314,"react":286,"react-redux":91}],311:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -56839,7 +56838,113 @@ var FooterModal = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(FooterModal);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/FooterModals.jsx":314,"react":286,"react-dom":86,"react-redux":91}],312:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/FooterModals.jsx":315,"react":286,"react-dom":86,"react-redux":91}],312:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+var ReactDOM = require("react-dom");
+
+var ReactRedux = require("react-redux");
+
+var _require = require("./containers/UnsplashControls.jsx");
+
+var mapStateToProps = _require.mapStateToProps;
+var mapDispatchToProps = _require.mapDispatchToProps;
+
+// var {goToURL} = require("../../MASAS_functions.jsx")
+// var { Link } = require("../UI/UI.jsx")
+
+// var Template = (props) => {
+
+// }
+
+var UnsplashControls = React.createClass({
+	displayName: "UnsplashControls",
+
+	propTypes: {
+		unsplashArtistName: React.PropTypes.string,
+		unsplashArtistUsername: React.PropTypes.string,
+		backgroundURL: React.PropTypes.string,
+		updateUnsplashArtist: React.PropTypes.func,
+		updateBackgroundURL: React.PropTypes.func
+	},
+
+	componentWillMount: function componentWillMount() {},
+
+	updateUnsplashArtist: function updateUnsplashArtist() {
+		var _this = this;
+
+		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
+
+		$.ajax({
+			type: "GET",
+			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
+			success: function success(r) {
+				console.log(r);
+				_this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
+			},
+			error: function error(e) {
+				console.log(e);
+			}
+		});
+	},
+
+	getNewBackground: function getNewBackground() {
+		var _this2 = this;
+
+		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
+
+		$.ajax({
+			type: "GET",
+			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
+			success: function success(r) {
+				console.log(r);
+				_this2.props.updateBackgroundURL(r.urls.regular);
+			},
+			error: function error(e) {
+				console.log(e);
+			}
+		});
+	},
+
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
+	},
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "unsplash-controls" },
+			React.createElement(
+				"div",
+				{ className: "artist-controls" },
+				React.createElement(
+					"a",
+					{ onClick: this.updateUnsplashArtist },
+					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
+				),
+				React.createElement(
+					"a",
+					{ href: "https://unsplash.com/" + this.props.unsplashArtistUsername, target: "_blank" },
+					this.props.unsplashArtistName
+				)
+			),
+			React.createElement(
+				"div",
+				{ className: "background-controls" },
+				React.createElement(
+					"a",
+					{ onClick: this.getNewBackground },
+					React.createElement("img", { src: "/static/img/MASAS_icon_change_unsplash_user.svg", alt: "random-background" })
+				)
+			)
+		);
+	}
+});
+
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UnsplashControls);
+
+},{"./containers/UnsplashControls.jsx":316,"react":286,"react-dom":86,"react-redux":91}],313:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -56946,7 +57051,7 @@ ajaxCalls.reportCopyright = function () {
 
 module.exports = ajaxCalls;
 
-},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],313:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],314:[function(require,module,exports){
 'use strict';
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -57003,7 +57108,7 @@ Footer.mapDispatchToProps = function (dispatch) {
 
 module.exports = Footer;
 
-},{"../../../MASAS_functions.jsx":300}],314:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],315:[function(require,module,exports){
 'use strict';
 
 var _require = require('../ajaxCalls.jsx');
@@ -57039,7 +57144,35 @@ FooterModal.mapDispatchToProps = function (dispatch) {
 
 module.exports = FooterModal;
 
-},{"../ajaxCalls.jsx":312}],315:[function(require,module,exports){
+},{"../ajaxCalls.jsx":313}],316:[function(require,module,exports){
+'use strict';
+
+var UnsplashControls = {};
+
+// Which part of the Redux global state does our component want to receive as props?
+UnsplashControls.mapStateToProps = function (state) {
+	return {
+		unsplashArtistUsername: state.homeReducer.unsplashArtistUsername,
+		unsplashArtistName: state.homeReducer.unsplashArtistName,
+		backgroundURL: state.homeReducer.backgroundURL
+	};
+};
+
+// Which action creators does it want to receive by props?
+UnsplashControls.mapDispatchToProps = function (dispatch) {
+	return {
+		updateUnsplashArtist: function updateUnsplashArtist(name, username, url) {
+			return dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url });
+		},
+		updateBackgroundURL: function updateBackgroundURL(url) {
+			return dispatch({ type: 'CHANGE_BACKGROUND', backgroundURL: url });
+		}
+	};
+};
+
+module.exports = UnsplashControls;
+
+},{}],317:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -57236,7 +57369,7 @@ var styles = {
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../../MASAS_functions.jsx":300,"../Header/Header.jsx":315,"../UI/Link.jsx":381,"../UI/UI.jsx":389,"./HeaderDropdown.jsx":316,"./containers/Header.jsx":318,"radium":48,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],316:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Header/Header.jsx":317,"../UI/Link.jsx":381,"../UI/UI.jsx":389,"./HeaderDropdown.jsx":318,"./containers/Header.jsx":320,"radium":48,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],318:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -57345,7 +57478,7 @@ var HeaderDropdown = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);
 
-},{"../UI/UI.jsx":389,"./containers/HeaderDropdown.jsx":319,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],317:[function(require,module,exports){
+},{"../UI/UI.jsx":389,"./containers/HeaderDropdown.jsx":321,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],319:[function(require,module,exports){
 "use strict";
 
 var ajaxCalls = {};
@@ -57380,7 +57513,7 @@ ajaxCalls.getUsername = function (dispatch, MASASuser) {
 
 module.exports = ajaxCalls;
 
-},{"jquery":33}],318:[function(require,module,exports){
+},{"jquery":33}],320:[function(require,module,exports){
 'use strict';
 
 var ReactRedux = require("react-redux");
@@ -57425,7 +57558,7 @@ Header.mapDispatchToProps = function (dispatch) {
 
 module.exports = Header;
 
-},{"react-redux":91,"react-router":125}],319:[function(require,module,exports){
+},{"react-redux":91,"react-router":125}],321:[function(require,module,exports){
 'use strict';
 
 var ReactRedux = require("react-redux");
@@ -57466,7 +57599,7 @@ HeaderDropdown.mapDispatchToProps = function (dispatch) {
 
 module.exports = HeaderDropdown;
 
-},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":317,"react-redux":91,"react-router":125}],320:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":319,"react-redux":91,"react-router":125}],322:[function(require,module,exports){
 "use strict";
 
 var _jquery = require("jquery");
@@ -57476,7 +57609,6 @@ var _jquery2 = _interopRequireDefault(_jquery);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -57494,11 +57626,9 @@ var LoginForm = require("../Login/LoginForm.jsx");
 var _require3 = require("../UI/UI.jsx");
 
 var Button = _require3.Button;
-var Link = _require3.Link;
 var TimePicker = _require3.TimePicker;
 var RankingInfoIcon = _require3.RankingInfoIcon;
-
-var UnsplashControls = require("./UnsplashControls.jsx");
+// var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx");
 
@@ -57597,7 +57727,6 @@ var Home = React.createClass({
 				React.createElement(
 					"div",
 					{ className: "page", id: "homepage-login" },
-					React.createElement(UnsplashControls, null),
 					React.createElement(
 						"div",
 						{ className: "logo" },
@@ -57746,7 +57875,7 @@ var Home = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 
-},{"../../MASAS_functions.jsx":300,"../Login/LoginForm.jsx":348,"../UI/UI.jsx":389,"./HomeCountdown.jsx":321,"./UnsplashControls.jsx":322,"./containers/Home.jsx":324,"jquery":33,"react":286,"react-dom":86,"react-redux":91}],321:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Login/LoginForm.jsx":348,"../UI/UI.jsx":389,"./HomeCountdown.jsx":323,"./containers/Home.jsx":325,"jquery":33,"react":286,"react-redux":91}],323:[function(require,module,exports){
 "use strict";
 
 // HACK NECESSARY TO HANDLE INTERVALS (magic numbers)
@@ -58084,113 +58213,7 @@ var HomeCountdown = React.createClass({
 
 module.exports = HomeCountdown;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ajaxCalls.jsx":323,"react":286,"react-dom":86}],322:[function(require,module,exports){
-"use strict";
-
-var React = require("react");
-var ReactDOM = require("react-dom");
-
-var ReactRedux = require("react-redux");
-
-var _require = require("./containers/UnsplashControls.jsx");
-
-var mapStateToProps = _require.mapStateToProps;
-var mapDispatchToProps = _require.mapDispatchToProps;
-
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// var { Link } = require("../UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
-
-var UnsplashControls = React.createClass({
-	displayName: "UnsplashControls",
-
-	propTypes: {
-		unsplashArtistName: React.PropTypes.string,
-		unsplashArtistUsername: React.PropTypes.string,
-		backgroundURL: React.PropTypes.string,
-		updateUnsplashArtist: React.PropTypes.func,
-		updateBackgroundURL: React.PropTypes.func
-	},
-
-	componentWillMount: function componentWillMount() {},
-
-	updateUnsplashArtist: function updateUnsplashArtist() {
-		var _this = this;
-
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
-			success: function success(r) {
-				console.log(r);
-				_this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
-			},
-			error: function error(e) {
-				console.log(e);
-			}
-		});
-	},
-
-	getNewBackground: function getNewBackground() {
-		var _this2 = this;
-
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
-			success: function success(r) {
-				console.log(r);
-				_this2.props.updateBackgroundURL(r.urls.regular);
-			},
-			error: function error(e) {
-				console.log(e);
-			}
-		});
-	},
-
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-		document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
-	},
-
-	render: function render() {
-		return React.createElement(
-			"div",
-			{ className: "unsplash-controls" },
-			React.createElement(
-				"div",
-				{ className: "artist-controls" },
-				React.createElement(
-					"a",
-					{ onClick: this.updateUnsplashArtist },
-					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
-				),
-				React.createElement(
-					"a",
-					{ href: "https://unsplash.com/" + this.props.unsplashArtistUsername, target: "_blank" },
-					this.props.unsplashArtistName
-				)
-			),
-			React.createElement(
-				"div",
-				{ className: "background-controls" },
-				React.createElement(
-					"a",
-					{ onClick: this.getNewBackground },
-					React.createElement("img", { src: "/static/img/MASAS_icon_change_unsplash_user.svg", alt: "random-background" })
-				)
-			)
-		);
-	}
-});
-
-module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UnsplashControls);
-
-},{"./containers/UnsplashControls.jsx":325,"react":286,"react-dom":86,"react-redux":91}],323:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ajaxCalls.jsx":324,"react":286,"react-dom":86}],324:[function(require,module,exports){
 "use strict";
 
 var _require = require('../../reducers/reducers.js');
@@ -58212,7 +58235,7 @@ ajaxCalls.getSongCount = function (successFunc) {
 
 module.exports = ajaxCalls;
 
-},{"../../reducers/reducers.js":416}],324:[function(require,module,exports){
+},{"../../reducers/reducers.js":416}],325:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -58250,35 +58273,7 @@ Home.mapDispatchToProps = function (dispatch) {
 
 module.exports = Home;
 
-},{"react-router":125}],325:[function(require,module,exports){
-'use strict';
-
-var UnsplashControls = {};
-
-// Which part of the Redux global state does our component want to receive as props?
-UnsplashControls.mapStateToProps = function (state) {
-	return {
-		unsplashArtistUsername: state.homeReducer.unsplashArtistUsername,
-		unsplashArtistName: state.homeReducer.unsplashArtistName,
-		backgroundURL: state.homeReducer.backgroundURL
-	};
-};
-
-// Which action creators does it want to receive by props?
-UnsplashControls.mapDispatchToProps = function (dispatch) {
-	return {
-		updateUnsplashArtist: function updateUnsplashArtist(name, username, url) {
-			return dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url });
-		},
-		updateBackgroundURL: function updateBackgroundURL(url) {
-			return dispatch({ type: 'CHANGE_BACKGROUND', backgroundURL: url });
-		}
-	};
-};
-
-module.exports = UnsplashControls;
-
-},{}],326:[function(require,module,exports){
+},{"react-router":125}],326:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -63795,7 +63790,7 @@ var styles = {
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Profile);
 
-},{"../../MASAS_functions.jsx":300,"../Footer/Footer.jsx":310,"../Header/Header.jsx":315,"../NavSidebar/NavSidebar.jsx":356,"../Profile/TrackItem.jsx":368,"../UI/UI.jsx":389,"./ProfileEdit.jsx":364,"./ProfileEditLinks.jsx":365,"./ProfileWrapper.jsx":366,"./containers/Profile.jsx":372,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],364:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Footer/Footer.jsx":310,"../Header/Header.jsx":317,"../NavSidebar/NavSidebar.jsx":356,"../Profile/TrackItem.jsx":368,"../UI/UI.jsx":389,"./ProfileEdit.jsx":364,"./ProfileEditLinks.jsx":365,"./ProfileWrapper.jsx":366,"./containers/Profile.jsx":372,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],364:[function(require,module,exports){
 "use strict";
 
 var React = require("react");

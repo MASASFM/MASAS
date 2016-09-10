@@ -18,8 +18,8 @@ Home.mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		goToLogin: () => {
-				browserHistory.push('/login')
-			},
+			browserHistory.push('/login')
+		},
 		goToPage: (pageNumber, totalNumberPages) => { dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber, totalNumberPages}) },
 		updateTimePickerNumber: (number) => { dispatch({ type: "CHANGE_TIME_PICKER_DEMO", timePickerDemo: number })}
 	}

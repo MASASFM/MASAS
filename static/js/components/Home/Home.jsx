@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 import $ from "jquery"
 
 var ReactRedux = require("react-redux")
@@ -7,8 +6,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
-var { Button, Link, TimePicker, RankingInfoIcon } = require("../UI/UI.jsx")
-var UnsplashControls = require("./UnsplashControls.jsx")
+var { Button, TimePicker, RankingInfoIcon } = require("../UI/UI.jsx")
+// var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx")
 
@@ -104,7 +103,7 @@ var Home = React.createClass({
 				<div className="multiPage--wrapper" id="multiPage--wrapper">
 
 					<div className="page" id="homepage-login">
-						<UnsplashControls />
+						{ /* <UnsplashControls /> */ }
 						<div className="logo">
 							<HomeCountdown user={this.props.user} />
 						</div>

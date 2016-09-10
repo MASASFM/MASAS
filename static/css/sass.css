@@ -752,33 +752,6 @@ input[type=range].MASAS-slider {
       flex: 1;
       position: relative;
       justify-content: center; }
-      .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
-        display: none;
-        justify-content: space-between;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 1rem 1.7rem; }
-        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls .artist-controls {
-          display: flex;
-          align-items: center; }
-        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a {
-          text-transform: uppercase;
-          font-family: Lato-Semibold;
-          font-size: 0.6rem;
-          letter-spacing: 0.2rem;
-          opacity: 0.5;
-          cursor: pointer;
-          margin-right: 1rem; }
-        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls a:hover {
-          opacity: 1; }
-        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls img {
-          width: 1.2rem;
-          padding-left: 1rem; }
-      @media screen and (min-width: 992px) {
-        .home--wrapper .multiPage--wrapper #homepage-login .unsplash-controls {
-          display: flex; } }
       .home--wrapper .multiPage--wrapper #homepage-login .arrow-icon {
         height: 2rem;
         animation: Floating 3s infinite ease-in-out;
@@ -1557,6 +1530,33 @@ input[type=range].MASAS-slider {
   height: 4rem;
   position: relative;
   z-index: 4; }
+  .footer--wrapper .unsplash-controls {
+    display: none;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.7rem; }
+    .footer--wrapper .unsplash-controls .artist-controls {
+      display: flex;
+      align-items: center; }
+    .footer--wrapper .unsplash-controls a {
+      text-transform: uppercase;
+      font-family: Lato-Semibold;
+      font-size: 0.6rem;
+      letter-spacing: 0.2rem;
+      opacity: 0.5;
+      cursor: pointer;
+      margin-right: 1rem; }
+    .footer--wrapper .unsplash-controls a:hover {
+      opacity: 1; }
+    .footer--wrapper .unsplash-controls img {
+      width: 1.2rem;
+      padding-left: 1rem; }
+  @media screen and (min-width: 992px) {
+    .footer--wrapper .unsplash-controls {
+      display: flex; } }
   .footer--wrapper .select-range {
     height: 10px;
     transform: translateY(-50%);
