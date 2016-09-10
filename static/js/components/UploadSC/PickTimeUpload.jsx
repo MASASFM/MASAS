@@ -1,10 +1,9 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUpload.jsx")
 
-var { Button, Checkbox, Link, TimePicker } = require("../UI/UI.jsx")
+var { Button, Link, TimePicker } = require("../UI/UI.jsx")
 var { getCookie } = require("../../MASAS_functions.jsx")
 
 var ModalContent = require("./ModalContent.jsx")
@@ -12,8 +11,21 @@ var ModalContent = require("./ModalContent.jsx")
 
 var PickTimeUpload = React.createClass({
 	propTypes: {
-		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary 
+		// NONE REDUX
 		visible: React.PropTypes.bool,				// is cancel button visible
+		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary 
+		track: React.PropTypes.array,				// array containing track information
+
+		// REDUX
+		MASASuser: React.PropTypes.string,
+		pickTimeUpload: React.PropTypes.number,
+
+		updateTitle: React.PropTypes.func,
+		emitNotification: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		closeWindow: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -42,7 +54,7 @@ var PickTimeUpload = React.createClass({
 				SC_ID: this.props.track.id,
 				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.pickTimeUpload + "/"
 			},
-			success: (data) => {
+			success: () => {
 				this.props.emitNotification('song synced ;)')
 				// CLOSE MODAL 
 				this.props.toogleModal()
@@ -97,7 +109,9 @@ var PickTimeUpload = React.createClass({
 						<TimePicker 
 							initialDiscover={ 2 }
 							currentDiscover={ this.props.pickTimeUpload } 
-							onSliderChange={ this.props.handleTimePickerChange } />
+							onSliderChange={ this.props.handleTimePickerChange } 
+							wrapperClassName="timePicker--pick-time-upload--wrapper"
+							canvasId="timePicker--pick-time-upload--id" />
 					</div>
 				</div>
 				<div className="button--wrapper">

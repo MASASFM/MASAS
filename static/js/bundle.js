@@ -65304,18 +65304,12 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TimePic
 // triggered.
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var $ = require("jquery");
-var NoUISlider = require("react-nouislider");
 
 var _require = require("../../MASAS_functions.jsx");
 
 var makePromiseCancelable = _require.makePromiseCancelable;
-
-// maps the slider value to sun coordinates
-
-var mapSliderToHeight = function mapSliderToHeight(x) {};
 
 var pixelRatio = function pixelRatio() {
 	return 1; // paper.view.pixelRatio
@@ -65326,6 +65320,8 @@ var TimePicker = React.createClass({
 
 	cancelablePromise: makePromiseCancelable(new Promise(function () {})),
 
+	paper: new paper.PaperScope(),
+
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, // 1-6 starting slider position	
 		currentDiscover: React.PropTypes.number.isRequired, // 1-6 used to check if necessary to call onChange calback
@@ -65334,9 +65330,10 @@ var TimePicker = React.createClass({
 		canvasId: React.PropTypes.string, // canvas id used for drawing
 		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number, // slider value affecting sun position
-		renderForUITip: React.PropTypes.bool
-	},
+		renderForUITip: React.PropTypes.bool, // slider controlled by mouse.onMove
+		rangePercent: React.PropTypes.number },
 
+	// slider value
 	getInitialState: function getInitialState() {
 		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
 		// const rangePercent = this.props.rangePercent
@@ -65367,6 +65364,7 @@ var TimePicker = React.createClass({
 		// get canvas dim on initial render
 		this.setupPaperJS();
 		this.updateCanvasDim();
+		this.renderSunArcPath();
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
@@ -65378,14 +65376,11 @@ var TimePicker = React.createClass({
 		var canvas = this.refs.canvas;
 
 		// SETUP PAPER JS
-		paper.setup(canvas);
+		this.paper.setup(canvas);
 	},
 
 	updateCanvasDim: function updateCanvasDim() {
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
-		// var canvas = document.getElementById(this.props.canvasId)
-		// var canvasWrapper = document.getElementsByClassName(this.props.wrapperClassName)[0]
-		var canvas = this.refs.canvas;
 		var canvasWrapper = this.refs.canvasWrapper;
 
 		// get canvas dimensions from styles
@@ -65394,10 +65389,8 @@ var TimePicker = React.createClass({
 		canvasHeight = parseInt(canvasHeight.split("p")[0]);
 		canvasWidth = parseInt(canvasWidth.split("p")[0]);
 
-		console.log(canvasHeight, canvasWidth);
-
 		// update canvas size
-		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight);
+		this.paper.view.viewSize = new this.paper.Size(canvasWidth, canvasHeight);
 
 		// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9;
@@ -65408,12 +65401,13 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function renderSunArcPath() {
-		this.setupPaperJS();
+		console.log(this.paper._id);
+		// this.setupPaperJS()
 
 		//DRAW AND STYLE ARC CIRCLE
 		// draw arc from circle radius and center
-		var center = new paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y);
-		var path = new paper.Path.Circle(center, this.state.arcRadius);
+		var center = new this.paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y);
+		var path = new this.paper.Path.Circle(center, this.state.arcRadius);
 
 		// style path
 		path.strokeColor = 'white';
@@ -65422,7 +65416,8 @@ var TimePicker = React.createClass({
 		path.strokeWidth = 2;
 
 		// DRAW PATH ON CANVAS
-		paper.view.draw();
+		// this.paper.activate()
+		this.paper.view.draw();
 	},
 
 	handleTimePickerChange: function handleTimePickerChange(rangeValue, currentDiscover) {
@@ -65435,7 +65430,7 @@ var TimePicker = React.createClass({
 
 		if (newDiscover !== currentDiscover) {
 			window.setTimeout(function () {
-				if (!_this.cancelablePromise.hasCanceled_) _this.cancelablePromise = makePromiseCancelable(new Promise(function (r) {
+				if (!_this.cancelablePromise.hasCanceled_) _this.cancelablePromise = makePromiseCancelable(new Promise(function () {
 					return _this.setState({ currentDiscover: newDiscover });
 				}));
 			}, 0);
@@ -65446,8 +65441,6 @@ var TimePicker = React.createClass({
 	},
 
 	handleSliderChange: function handleSliderChange(e) {
-		var sunCoords = this.getSunCoords(parseFloat(e));
-
 		// check if need to update redux state
 		var newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover);
 		if (newDiscover !== 0) this.props.onSliderChange(newDiscover);
@@ -65472,10 +65465,6 @@ var TimePicker = React.createClass({
 	},
 
 	getHashtag: function getHashtag(value) {
-		// used because component initially renders twice (once before componentDidMount
-		// and once after the canvas is resized
-		// if(this.renderNumber <= 2 )
-		// 	switchVar = this.props.initialDiscover
 
 		if (value < 0) value = 0;
 
@@ -65484,10 +65473,9 @@ var TimePicker = React.createClass({
 		if (value >= 0 && value < 100 / 6) return "#EarlyMorning";else if (value >= 100 / 6 && value < 2 * 100 / 6) return "#LateMorning";else if (value >= 2 * 100 / 6 && value < 3 * 100 / 6) return "#EarlyAfternoon";else if (value >= 3 * 100 / 6 && value < 4 * 100 / 6) return "#LateAfternoon";else if (value >= 4 * 100 / 6 && value < 5 * 100 / 6) return "#EarlyEvening";else if (value >= 5 * 100 / 6 && value <= 100) return "#LateEvening";
 	},
 
-	componentDidUpdate: function componentDidUpdate() {
-		// var canvas = document.getElementById(this.props.canvasId)
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
 		var canvas = this.refs.canvas;
-		if (canvas) this.renderSunArcPath();
+		if (canvas && (prevState.arcCenterCoords.x !== this.state.arcCenterCoords.x || prevState.arcCenterCoords.y !== this.state.arcCenterCoords.y)) this.renderSunArcPath();
 	},
 
 	render: function render() {
@@ -65496,7 +65484,7 @@ var TimePicker = React.createClass({
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
 		// accounting for sun icon size
-		var sunIconSize = 45; // px
+		var sunIconSize = 45;
 		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue);
 		var top = sunCoords.y - sunIconSize / 2;
 		var left = sunCoords.x - sunIconSize / 2;
@@ -65567,7 +65555,7 @@ var TimePicker = React.createClass({
 
 module.exports = TimePicker;
 
-},{"../../MASAS_functions.jsx":300,"jquery":33,"react":286,"react-dom":86,"react-nouislider":88}],389:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"jquery":33,"react":286}],389:[function(require,module,exports){
 'use strict';
 
 var Body = require('./Body.jsx');
@@ -65731,7 +65719,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ModalCo
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -65743,7 +65730,6 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../UI/UI.jsx");
 
 var Button = _require2.Button;
-var Checkbox = _require2.Checkbox;
 var Link = _require2.Link;
 var TimePicker = _require2.TimePicker;
 
@@ -65757,10 +65743,23 @@ var PickTimeUpload = React.createClass({
 	displayName: "PickTimeUpload",
 
 	propTypes: {
+		// NONE REDUX
+		visible: React.PropTypes.bool, // is cancel button visible
 		checkUserStep: React.PropTypes.func, // check user step and show tip modal if necessary
-		visible: React.PropTypes.bool },
+		track: React.PropTypes.array, // array containing track information
 
-	// is cancel button visible
+		// REDUX
+		MASASuser: React.PropTypes.string,
+		pickTimeUpload: React.PropTypes.number,
+
+		updateTitle: React.PropTypes.func,
+		emitNotification: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		closeWindow: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func
+	},
+
 	componentWillMount: function componentWillMount() {
 		this.props.updateTitle('Upload', 1); // 0 = menu icon; 1 = arrow back
 
@@ -65787,7 +65786,7 @@ var PickTimeUpload = React.createClass({
 				SC_ID: this.props.track.id,
 				timeInterval: "http://localhost:8000/api/time-intervals/" + this.props.pickTimeUpload + "/"
 			},
-			success: function success(data) {
+			success: function success() {
 				_this.props.emitNotification('song synced ;)');
 				// CLOSE MODAL
 				_this.props.toogleModal();
@@ -65845,7 +65844,9 @@ var PickTimeUpload = React.createClass({
 					React.createElement(TimePicker, {
 						initialDiscover: 2,
 						currentDiscover: this.props.pickTimeUpload,
-						onSliderChange: this.props.handleTimePickerChange })
+						onSliderChange: this.props.handleTimePickerChange,
+						wrapperClassName: "timePicker--pick-time-upload--wrapper",
+						canvasId: "timePicker--pick-time-upload--id" })
 				)
 			),
 			React.createElement(
@@ -65877,11 +65878,10 @@ var PickTimeUpload = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(PickTimeUpload);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ModalContent.jsx":392,"./containers/PickTimeUpload.jsx":399,"react":286,"react-dom":86,"react-redux":91}],394:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ModalContent.jsx":392,"./containers/PickTimeUpload.jsx":399,"react":286,"react-redux":91}],394:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -65892,7 +65892,6 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 
 var _require2 = require("../../MASAS_functions.jsx");
 
-var getCookie = _require2.getCookie;
 var updateProfileInfo = _require2.updateProfileInfo;
 
 var _require3 = require("../UI/UI.jsx");
@@ -65905,9 +65904,22 @@ var TeachUploadModals = {};
 TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
 	displayName: "TeachUploadModal1",
 
-	propTypes: {},
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+		pickTimeUpload: React.PropTypes.number,
+		tipTimePickerValue: React.PropTypes.number,
 
-	componentWillMount: function componentWillMount() {},
+		toogleIsModalOpened: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
+		updateTipTimePickerValue: React.PropTypes.func
+	},
+
+	componentWillMount: function componentWillMount() {
+		this.sliderInitValue = this.props.tipTimePickerValue;
+		this.hasMovedSlider = false;
+	},
 
 	updateUserStep: function updateUserStep() {
 		var _this = this;
@@ -65924,17 +65936,18 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 				user: this.props.userData.url,
 				step: 5
 			},
-			success: function success(r) {
-				updateProfileInfo(_this.props.toogleIsModalOpened);
-				console.log(r);
+			success: function success() {
+				return updateProfileInfo(_this.props.toogleIsModalOpened);
 			},
 			error: function error(e) {
-				return console.log(e);
+				return e;
 			}
 		});
 	},
 
 	render: function render() {
+		if (!this.hasMovedSlider && this.props.pickTimeUpload !== this.sliderInitValue) this.hasMovedSlider = true;
+
 		return React.createElement(
 			"div",
 			{ className: "teach-modal--wrapper" },
@@ -65949,15 +65962,16 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 				"It's your new friend! Match your daily journey with 6 different moods"
 			),
 			React.createElement(TimePicker, {
-				onSliderChange: this.props.handleTimePickerChange,
-				initialDiscover: 2,
-				currentDiscover: this.props.pickTimeUpload,
+				onSliderChange: this.props.updateTipTimePickerValue,
+				initialDiscover: this.props.tipTimePickerValue,
+				currentDiscover: this.props.tipTimePickerValue,
 				wrapperClassName: "teach-modal-pickTime--wrapper",
 				canvasId: "teach-modal-pickTime--canvas",
 				showHashtag: true }),
 			React.createElement(
 				Button,
 				{
+					isDisabled: !this.hasMovedSlider,
 					isBigButton: false,
 					onClick: this.props.closeModal },
 				"Close tip"
@@ -65968,7 +65982,7 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 
 module.exports = TeachUploadModals;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachUploadModals.jsx":400,"react":286,"react-dom":86,"react-redux":91}],395:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachUploadModals.jsx":400,"react":286,"react-redux":91}],395:[function(require,module,exports){
 "use strict";
 
 var _MASAS_mixins = require("../MASAS_mixins.jsx");
@@ -65976,7 +65990,6 @@ var _MASAS_mixins = require("../MASAS_mixins.jsx");
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -65987,15 +66000,12 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 
 var _require2 = require("../../MASAS_functions.jsx");
 
-var goToURL = _require2.goToURL;
-var isObjectEmpty = _require2.isObjectEmpty;
 var isObjectNotEmpty = _require2.isObjectNotEmpty;
 
 var _require3 = require("../UI/UI.jsx");
 
 var Button = _require3.Button;
 var Body = _require3.Body;
-var TimePicker = _require3.TimePicker;
 
 var UploadSCItem = require("./UploadSCItem.jsx");
 var PickTimeUpload = require("./PickTimeUpload.jsx");
@@ -66008,7 +66018,26 @@ var UploadSC = React.createClass({
 	mixins: [_MASAS_mixins.MobileBlurBackground],
 
 	propTypes: {
-		// choosingTime: React.PropTypes.object
+		isConnectedSoundcloud: React.PropTypes.bool,
+		choosingTime: React.PropTypes.bool,
+		isModalOpened: React.PropTypes.bool,
+		userData: React.PropTypes.object,
+		userPk: React.PropTypes.string,
+		masasUserTracks: React.PropTypes.array,
+		modalType: React.PropTypes.number,
+		SCusername: React.PropTypes.string,
+		soundcloudUserTracks: React.PropTypes.array,
+
+		updateTitle: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateMasasUserTracks: React.PropTypes.func,
+		updateSCusername: React.PropTypes.func,
+		getUserSCTracks: React.PropTypes.func,
+		getUserTracks: React.PropTypes.func,
+		updateSoundcloudUserTracks: React.PropTypes.func,
+		updateIsConnectedSC: React.PropTypes.func
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -66046,7 +66075,7 @@ var UploadSC = React.createClass({
 					_this.props.updateModalType(2);
 					_this.props.updateModalContent(React.createElement(TeachUploadModal1, null));
 					_this.props.toogleModal();
-				}, 3000);
+				}, 1000);
 			}
 		}
 	},
@@ -66059,7 +66088,7 @@ var UploadSC = React.createClass({
 			_this2.getUserSCTracks();
 		};
 
-		var error = function error(err) {};
+		var error = function error() {};
 
 		this.props.getUserTracks(this.props.userPk, success, error);
 	},
@@ -66084,12 +66113,12 @@ var UploadSC = React.createClass({
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
 				_this4.getUserTracks();
-			}).catch(function (err) {
+			}).catch(function () {
 				_this4.props.updateSCusername(null);
 			});
 			_this4.getUserTracks();
 		}).catch(function (error) {
-			alert('Error: ' + error.message);
+			return alert('Error: ' + error.message);
 		});
 	},
 
@@ -66111,11 +66140,6 @@ var UploadSC = React.createClass({
 	},
 
 	render: function render() {
-		// if(this.props.modalType === 2 && this.props.isModalOpened)
-		// 	return <div style={{ visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'}}>
-		// 			<Body><PickTimeUpload /></Body>
-		// 		</div>
-
 		if (this.props.choosingTime) return React.createElement(
 			"div",
 			{ style: {
@@ -66217,7 +66241,7 @@ var UploadSC = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UploadSC);
 
-},{"../../MASAS_functions.jsx":300,"../MASAS_mixins.jsx":355,"../UI/UI.jsx":389,"./PickTimeUpload.jsx":393,"./TeachUploadModals.jsx":394,"./UploadSCItem.jsx":396,"./containers/UploadSC.jsx":401,"react":286,"react-dom":86,"react-redux":91}],396:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../MASAS_mixins.jsx":355,"../UI/UI.jsx":389,"./PickTimeUpload.jsx":393,"./TeachUploadModals.jsx":394,"./UploadSCItem.jsx":396,"./containers/UploadSC.jsx":401,"react":286,"react-redux":91}],396:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -66411,6 +66435,9 @@ TeachUploadModals.mapDispatchToProps = function (dispatch) {
 		},
 		handleTimePickerChange: function handleTimePickerChange(newDiscover) {
 			return dispatch({ type: 'HANDLE_PICK_TIME_UPLOAD', newDiscover: newDiscover });
+		},
+		updateTipTimePickerValue: function updateTipTimePickerValue(tipTimePickerValue) {
+			return dispatch({ type: 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE', tipTimePickerValue: tipTimePickerValue });
 		}
 	};
 };
@@ -67187,8 +67214,6 @@ module.exports = exportVar;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var SC = require('soundcloud');
-
 var exportVar = {};
 
 exportVar.defaultState = {
@@ -67201,9 +67226,10 @@ exportVar.defaultState = {
 	pickTimeSliderValue: 10, // (int) 0 - 100 __ [ slider controls pickTimeUpload ]
 	checkbox1_checked: false, // (bool) checkbox values for song ownership conf checkboxes
 	checkbox2_checked: false,
-	checkbox3_checked: false
+	checkbox3_checked: false,
+	tipTimePickerValue: 2 };
+// (int) \in [1,6], slider hashtag on tip modal
 
-};
 var defaultState = exportVar.defaultState;
 
 exportVar.uploadSCReducer = function () {
@@ -67211,6 +67237,16 @@ exportVar.uploadSCReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE':
+			var tipTimePickerValue = action.tipTimePickerValue;
+
+			if (tipTimePickerValue < 0) tipTimePickerValue = 0;
+
+			if (tipTimePickerValue > 100) tipTimePickerValue = 100;
+
+			return _extends({}, state, {
+				tipTimePickerValue: tipTimePickerValue
+			});
 		case 'TOOGLE_CHECKBOX_1':
 			return _extends({}, state, {
 				checkbox1_checked: !state.checkbox1_checked
@@ -67262,7 +67298,7 @@ exportVar.uploadSCReducer = function () {
 
 module.exports = exportVar;
 
-},{"soundcloud":299}],416:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 "use strict";
 
 var _reduxThunk = require("redux-thunk");

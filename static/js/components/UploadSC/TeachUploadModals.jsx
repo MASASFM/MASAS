@@ -1,10 +1,9 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TeachUploadModals.jsx")
 
-var { getCookie, updateProfileInfo } = require("../../MASAS_functions.jsx")
+var { updateProfileInfo } = require("../../MASAS_functions.jsx")
 var { Button, TimePicker } = require("../UI/UI.jsx")
 
 var TeachUploadModals = {}
@@ -14,9 +13,20 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 		mapDispatchToProps
 	)(React.createClass({
 		propTypes: {
+			MASASuser: React.PropTypes.string,
+			userData: React.PropTypes.object,
+			pickTimeUpload: React.PropTypes.number,
+			tipTimePickerValue: React.PropTypes.number,
+
+			toogleIsModalOpened: React.PropTypes.func,
+			handleTimePickerChange: React.PropTypes.func,
+			closeModal: React.PropTypes.func,
+			updateTipTimePickerValue: React.PropTypes.func,
 		},
 
 		componentWillMount: function() {
+			this.sliderInitValue = this.props.tipTimePickerValue
+			this.hasMovedSlider = false
 		},
 
 		updateUserStep: function() {
@@ -32,15 +42,15 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 					user: this.props.userData.url,
 					step: 5,
 				},
-				success: (r) => {
-					updateProfileInfo(this.props.toogleIsModalOpened)
-					console.log(r)
-				},
-				error: (e) => console.log(e),
+				success: () => updateProfileInfo(this.props.toogleIsModalOpened),
+				error: (e) => e,
 			})
 		},
 
 		render: function() {
+			if(!this.hasMovedSlider && this.props.pickTimeUpload !== this.sliderInitValue)
+				this.hasMovedSlider = true
+
 			return (
 				<div className="teach-modal--wrapper">
 					<p className="bold">
@@ -50,13 +60,14 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 						It's your new friend! Match your daily journey with 6 different moods
 					</p>
 						<TimePicker 
-							onSliderChange={ this.props.handleTimePickerChange }
-							initialDiscover={ 2 } 
-							currentDiscover={ this.props.pickTimeUpload }
+							onSliderChange={ this.props.updateTipTimePickerValue }
+							initialDiscover={ this.props.tipTimePickerValue } 
+							currentDiscover={ this.props.tipTimePickerValue }
 							wrapperClassName="teach-modal-pickTime--wrapper"
 							canvasId="teach-modal-pickTime--canvas" 
 							showHashtag={ true } />
 					<Button 
+						isDisabled={ !this.hasMovedSlider }
 						isBigButton={ false }
 						onClick={ this.props.closeModal }>Close tip</Button>
 

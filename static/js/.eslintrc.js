@@ -28,6 +28,8 @@ module.exports = {
         "require": true,
         "module": true,
         "Promise": true,
+        "SC": true,
+        "FB": true,
     },
 
     // react: https://github.com/yannickcr/eslint-plugin-react/blob/master/index.js
