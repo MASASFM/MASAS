@@ -23,7 +23,6 @@
 
 
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
 var { getSongCount } = require("./ajaxCalls.jsx")
@@ -53,7 +52,7 @@ var HomeCountdown = React.createClass({
 			if(songCount > songCountGoal)
 				songCount = songCountGoal
 
-			this.setState({ height: songCount/songCountGoal})
+			this.setState({ height: songCount/songCountGoal })
 		}
 
 		getSongCount(successFunc)
@@ -312,8 +311,14 @@ var HomeCountdown = React.createClass({
 							}
 					</div>
 
-					<canvas id="myCanvas">
-					</canvas>
+					<div style={{ position: "relative" }}>
+						<canvas id="myCanvas">
+						</canvas>
+
+						{/* point is to cover canvas because it dissapears on mouse over sometimes. no idea why. */}
+						<div style={{ position: "absolute", top: 0, bottom: 0, left: 0, right: 0 }}>
+						</div>
+					</div>
 
 					<svg id='svg' style={{display: 'none', height: '236px'}}>
 						<path xmlns="http://www.w3.org/2000/svg" id="mLogo" className="M-logo" d="M19 375.5l-24.5-49.3-24 49.3m18.4-11l-19.5-38.3-24.1 49.3m45.3-41.1l21.1 41.1m-42.3-49.3l25.4 49.3" />
