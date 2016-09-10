@@ -7,6 +7,8 @@ UnsplashControls.mapStateToProps = function(state) {
 		unsplashArtistUsername: state.homeReducer.unsplashArtistUsername,
 		unsplashArtistName: state.homeReducer.unsplashArtistName,
 		backgroundURL: state.homeReducer.backgroundURL,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType,
 	}
 }
 

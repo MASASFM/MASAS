@@ -56842,7 +56842,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(FooterM
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -56865,6 +56864,9 @@ var UnsplashControls = React.createClass({
 		unsplashArtistName: React.PropTypes.string,
 		unsplashArtistUsername: React.PropTypes.string,
 		backgroundURL: React.PropTypes.string,
+		modalType: React.PropTypes.number,
+		isModalOpened: React.PropTypes.bool,
+
 		updateUnsplashArtist: React.PropTypes.func,
 		updateBackgroundURL: React.PropTypes.func
 	},
@@ -56880,12 +56882,9 @@ var UnsplashControls = React.createClass({
 			type: "GET",
 			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
 			success: function success(r) {
-				console.log(r);
 				_this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
 			},
-			error: function error(e) {
-				console.log(e);
-			}
+			error: function error() {}
 		});
 	},
 
@@ -56898,23 +56897,20 @@ var UnsplashControls = React.createClass({
 			type: "GET",
 			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
 			success: function success(r) {
-				console.log(r);
 				_this2.props.updateBackgroundURL(r.urls.regular);
 			},
-			error: function error(e) {
-				console.log(e);
-			}
+			error: function error() {}
 		});
 	},
 
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate: function componentDidUpdate() {
 		document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
 	},
 
 	render: function render() {
 		return React.createElement(
 			"div",
-			{ className: "unsplash-controls" },
+			{ className: "unsplash-controls " + (this.props.modalType === 2 && this.props.isModalOpened ? "hidden" : "") },
 			React.createElement(
 				"div",
 				{ className: "artist-controls" },
@@ -56944,7 +56940,7 @@ var UnsplashControls = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UnsplashControls);
 
-},{"./containers/UnsplashControls.jsx":316,"react":286,"react-dom":86,"react-redux":91}],313:[function(require,module,exports){
+},{"./containers/UnsplashControls.jsx":316,"react":286,"react-redux":91}],313:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -57154,7 +57150,9 @@ UnsplashControls.mapStateToProps = function (state) {
 	return {
 		unsplashArtistUsername: state.homeReducer.unsplashArtistUsername,
 		unsplashArtistName: state.homeReducer.unsplashArtistName,
-		backgroundURL: state.homeReducer.backgroundURL
+		backgroundURL: state.homeReducer.backgroundURL,
+		isModalOpened: state.appReducer.isModalOpened,
+		modalType: state.appReducer.modalType
 	};
 };
 
@@ -57743,7 +57741,7 @@ var Home = React.createClass({
 					React.createElement(
 						Button,
 						{ onClick: this.scrollToInfo, isBigButton: true, isSecondaryAction: true },
-						"Learn the basic"
+						"Learn the basics"
 					)
 				),
 				React.createElement(
@@ -57901,7 +57899,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 // 	stateHeight = 0.02
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var _require = require("../../MASAS_functions.jsx");
 
@@ -57950,7 +57947,7 @@ var HomeCountdown = React.createClass({
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
-		window.removeEventListener("resize", this.updateDimensions);
+		window.removeEventListener("resize", this.positionButtons);
 	},
 
 	updateDimensions: function updateDimensions() {
@@ -57959,7 +57956,7 @@ var HomeCountdown = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		window.addEventListener("resize", this.updateDimensions);
+		window.addEventListener("resize", this.positionButtons);
 		this.drawLine();
 	},
 
@@ -58190,7 +58187,12 @@ var HomeCountdown = React.createClass({
 						"Get Early Access"
 					)
 				),
-				React.createElement("canvas", { id: "myCanvas" }),
+				React.createElement(
+					"div",
+					{ style: { position: "relative" } },
+					React.createElement("canvas", { id: "myCanvas" }),
+					React.createElement("div", { style: { position: "absolute", top: 0, bottom: 0, left: 0, right: 0 } })
+				),
 				React.createElement(
 					"svg",
 					{ id: "svg", style: { display: 'none', height: '236px' } },
@@ -58213,7 +58215,7 @@ var HomeCountdown = React.createClass({
 
 module.exports = HomeCountdown;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ajaxCalls.jsx":324,"react":286,"react-dom":86}],324:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ajaxCalls.jsx":324,"react":286}],324:[function(require,module,exports){
 "use strict";
 
 var _require = require('../../reducers/reducers.js');

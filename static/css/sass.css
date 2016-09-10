@@ -1534,7 +1534,7 @@ input[type=range].MASAS-slider {
     display: none;
     justify-content: space-between;
     position: absolute;
-    bottom: 0;
+    bottom: 100%;
     left: 0;
     right: 0;
     padding: 1rem 1.7rem; }
@@ -1556,7 +1556,9 @@ input[type=range].MASAS-slider {
       padding-left: 1rem; }
   @media screen and (min-width: 992px) {
     .footer--wrapper .unsplash-controls {
-      display: flex; } }
+      display: flex; }
+    .footer--wrapper .unsplash-controls.hidden {
+      display: none; } }
   .footer--wrapper .select-range {
     height: 10px;
     transform: translateY(-50%);

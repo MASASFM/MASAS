@@ -63,7 +63,7 @@ var HomeCountdown = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		window.removeEventListener("resize", this.updateDimensions)
+		window.removeEventListener("resize", this.positionButtons)
 	},
 
 	updateDimensions: function() {
@@ -72,7 +72,7 @@ var HomeCountdown = React.createClass({
 	},
 
 	componentDidMount: function() {
-		window.addEventListener("resize", this.updateDimensions)
+		window.addEventListener("resize", this.positionButtons)
 		this.drawLine()
 	},
 
