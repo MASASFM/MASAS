@@ -60,7 +60,9 @@ var TimePicker = React.createClass({
 		// get canvas dim on initial render
 		this.setupPaperJS()
 		this.updateCanvasDim()
-		this.renderSunArcPath()
+
+		// render sun arc path once states from this.updateCanvasDim have udpated
+		window.setTimeout(() => this.renderSunArcPath(), 0)
 	},
 
 	componentWillUnmount: function() {
@@ -98,9 +100,8 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function() {
-		console.log(this.paper._id)
-		// this.setupPaperJS()
-
+		this.paper.project.clear()
+		this.setupPaperJS()
 		//DRAW AND STYLE ARC CIRCLE
 			// draw arc from circle radius and center
 		var center = new this.paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y)
@@ -113,7 +114,8 @@ var TimePicker = React.createClass({
 		path.strokeWidth = 2
 
 		// DRAW PATH ON CANVAS
-		// this.paper.activate()
+		this.paper.activate()
+
 		this.paper.view.draw()
 
 	},
@@ -188,9 +190,9 @@ var TimePicker = React.createClass({
 			return "#LateEvening"
 	},
 
-	componentDidUpdate: function(prevProps, prevState) {
+	componentDidUpdate: function() {
 		var canvas = this.refs.canvas
-		if(canvas && (prevState.arcCenterCoords.x !== this.state.arcCenterCoords.x || prevState.arcCenterCoords.y !== this.state.arcCenterCoords.y))
+		if(canvas)
 			this.renderSunArcPath()
 	},
 

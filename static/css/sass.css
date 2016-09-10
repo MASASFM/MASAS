@@ -1862,6 +1862,8 @@ input[type=range].MASAS-slider {
   .pick-time-sc-sync .pickTime--wrapper {
     height: 155px;
     width: 400px; }
+    .pick-time-sc-sync .pickTime--wrapper .timePicker-slider--wrapper {
+      bottom: 0rem; }
   .pick-time-sc-sync .button--wrapper {
     width: 7rem;
     min-height: 4.5rem; }

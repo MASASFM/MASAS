@@ -47,6 +47,26 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 			})
 		},
 
+		closeTip: function() {
+			var header = "Bearer " + this.props.MASASuser
+
+			$.ajax({
+				type: 'POST',
+				url: '/api/usersteps/',
+				headers: {
+					"Authorization": header,
+				},
+				data: {
+					user: this.props.userData.url,
+					step: 5,
+				},
+				success: () => {
+					updateProfileInfo(this.props.closeModal)
+				},
+				error: () => {},
+			})
+		},
+
 		render: function() {
 			if(!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue)
 				this.hasMovedSlider = true
@@ -54,11 +74,12 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 			return (
 				<div className="teach-modal--wrapper">
 					<p className="bold">
-						Hey, Meet the Discovery Slider
+						To upload this song,
 					</p>
 					<p>
-						It's your new friend! Match your daily journey with 6 different moods
+						Drag the sun around the arc to select a category for your song to be discoverable from.
 					</p>
+					<div style={{ marginBottom: '2rem' }}>
 						<TimePicker 
 							onSliderChange={ this.props.updateTipTimePickerValue }
 							initialDiscover={ this.props.tipTimePickerValue } 
@@ -66,10 +87,17 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 							wrapperClassName="teach-modal-pickTime--wrapper"
 							canvasId="teach-modal-pickTime--canvas" 
 							showHashtag={ true } />
+					</div>
 					<Button 
 						isDisabled={ !this.hasMovedSlider }
 						isBigButton={ false }
-						onClick={ this.props.closeModal }>Close tip</Button>
+						onClick={ this.closeTip }>
+							{ !this.hasMovedSlider ?
+								"Move the sun to close this tip"
+								:
+								"Close tip"
+							}
+						</Button>
 
 				</div>
 			)

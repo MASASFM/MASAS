@@ -56195,7 +56195,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Discove
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -56206,7 +56205,6 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 
 var _require2 = require("../../MASAS_functions.jsx");
 
-var getCookie = _require2.getCookie;
 var updateProfileInfo = _require2.updateProfileInfo;
 
 var _require3 = require("../UI/UI.jsx");
@@ -56218,7 +56216,12 @@ var TeachDiscoverModals = {};
 TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
 	displayName: "TeachDiscoverModal1",
 
-	propTypes: {},
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		toogleIsModalOpened: React.PropTypes.func
+	},
 
 	componentWillMount: function componentWillMount() {},
 
@@ -56237,13 +56240,10 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, ma
 				user: this.props.userData.url,
 				step: 5
 			},
-			success: function success(r) {
+			success: function success() {
 				updateProfileInfo(_this.props.toogleIsModalOpened);
-				console.log(r);
 			},
-			error: function error(e) {
-				return console.log(e);
-			}
+			error: function error() {}
 		});
 	},
 
@@ -56275,7 +56275,12 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, ma
 TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
 	displayName: "TeachDiscoverModal2",
 
-	propTypes: {},
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		toogleIsModalOpened: React.PropTypes.func
+	},
 
 	componentWillMount: function componentWillMount() {},
 
@@ -56294,13 +56299,10 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, ma
 				user: this.props.userData.url,
 				step: 6
 			},
-			success: function success(r) {
+			success: function success() {
 				updateProfileInfo(_this2.props.toogleIsModalOpened);
-				console.log(r);
 			},
-			error: function error(e) {
-				return console.log(e);
-			}
+			error: function error() {}
 		});
 	},
 
@@ -56331,7 +56333,7 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, ma
 
 module.exports = TeachDiscoverModals;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachDiscoverModals.jsx":309,"react":286,"react-dom":86,"react-redux":91}],307:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachDiscoverModals.jsx":309,"react":286,"react-redux":91}],307:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -65358,13 +65360,19 @@ var TimePicker = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
+		var _this = this;
+
 		// add event to get new canvas dimensions on resize
 		$(window).bind('resize', this.updateCanvasDim);
 
 		// get canvas dim on initial render
 		this.setupPaperJS();
 		this.updateCanvasDim();
-		this.renderSunArcPath();
+
+		// render sun arc path once states from this.updateCanvasDim have udpated
+		window.setTimeout(function () {
+			return _this.renderSunArcPath();
+		}, 0);
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
@@ -65401,9 +65409,8 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function renderSunArcPath() {
-		console.log(this.paper._id);
-		// this.setupPaperJS()
-
+		this.paper.project.clear();
+		this.setupPaperJS();
 		//DRAW AND STYLE ARC CIRCLE
 		// draw arc from circle radius and center
 		var center = new this.paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y);
@@ -65416,12 +65423,13 @@ var TimePicker = React.createClass({
 		path.strokeWidth = 2;
 
 		// DRAW PATH ON CANVAS
-		// this.paper.activate()
+		this.paper.activate();
+
 		this.paper.view.draw();
 	},
 
 	handleTimePickerChange: function handleTimePickerChange(rangeValue, currentDiscover) {
-		var _this = this;
+		var _this2 = this;
 
 		var newDiscover = Math.floor(rangeValue / 100 * 6) + 1;
 
@@ -65430,8 +65438,8 @@ var TimePicker = React.createClass({
 
 		if (newDiscover !== currentDiscover) {
 			window.setTimeout(function () {
-				if (!_this.cancelablePromise.hasCanceled_) _this.cancelablePromise = makePromiseCancelable(new Promise(function () {
-					return _this.setState({ currentDiscover: newDiscover });
+				if (!_this2.cancelablePromise.hasCanceled_) _this2.cancelablePromise = makePromiseCancelable(new Promise(function () {
+					return _this2.setState({ currentDiscover: newDiscover });
 				}));
 			}, 0);
 			return newDiscover;
@@ -65473,13 +65481,13 @@ var TimePicker = React.createClass({
 		if (value >= 0 && value < 100 / 6) return "#EarlyMorning";else if (value >= 100 / 6 && value < 2 * 100 / 6) return "#LateMorning";else if (value >= 2 * 100 / 6 && value < 3 * 100 / 6) return "#EarlyAfternoon";else if (value >= 3 * 100 / 6 && value < 4 * 100 / 6) return "#LateAfternoon";else if (value >= 4 * 100 / 6 && value < 5 * 100 / 6) return "#EarlyEvening";else if (value >= 5 * 100 / 6 && value <= 100) return "#LateEvening";
 	},
 
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate: function componentDidUpdate() {
 		var canvas = this.refs.canvas;
-		if (canvas && (prevState.arcCenterCoords.x !== this.state.arcCenterCoords.x || prevState.arcCenterCoords.y !== this.state.arcCenterCoords.y)) this.renderSunArcPath();
+		if (canvas) this.renderSunArcPath();
 	},
 
 	render: function render() {
-		var _this2 = this;
+		var _this3 = this;
 
 		if (!this.renderNumber) this.renderNumber = 1;else if (this.renderNumber < 5) this.renderNumber = this.renderNumber + 1;
 
@@ -65507,7 +65515,7 @@ var TimePicker = React.createClass({
 		var newDiscover = this.handleTimePickerChange(this.state.rangePercent, this.state.currentDiscover);
 		if (newDiscover !== 0) {
 			window.setTimeout(function () {
-				return _this2.props.onSliderChange(newDiscover);
+				return _this3.props.onSliderChange(newDiscover);
 			}, 0);
 		}
 
@@ -65945,6 +65953,28 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 		});
 	},
 
+	closeTip: function closeTip() {
+		var _this2 = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 5
+			},
+			success: function success() {
+				updateProfileInfo(_this2.props.closeModal);
+			},
+			error: function error() {}
+		});
+	},
+
 	render: function render() {
 		if (!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue) this.hasMovedSlider = true;
 
@@ -65954,27 +65984,31 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDis
 			React.createElement(
 				"p",
 				{ className: "bold" },
-				"Hey, Meet the Discovery Slider"
+				"To upload this song,"
 			),
 			React.createElement(
 				"p",
 				null,
-				"It's your new friend! Match your daily journey with 6 different moods"
+				"Drag the sun around the arc to select a category for your song to be discoverable from."
 			),
-			React.createElement(TimePicker, {
-				onSliderChange: this.props.updateTipTimePickerValue,
-				initialDiscover: this.props.tipTimePickerValue,
-				currentDiscover: this.props.tipTimePickerValue,
-				wrapperClassName: "teach-modal-pickTime--wrapper",
-				canvasId: "teach-modal-pickTime--canvas",
-				showHashtag: true }),
+			React.createElement(
+				"div",
+				{ style: { marginBottom: '2rem' } },
+				React.createElement(TimePicker, {
+					onSliderChange: this.props.updateTipTimePickerValue,
+					initialDiscover: this.props.tipTimePickerValue,
+					currentDiscover: this.props.tipTimePickerValue,
+					wrapperClassName: "teach-modal-pickTime--wrapper",
+					canvasId: "teach-modal-pickTime--canvas",
+					showHashtag: true })
+			),
 			React.createElement(
 				Button,
 				{
 					isDisabled: !this.hasMovedSlider,
 					isBigButton: false,
-					onClick: this.props.closeModal },
-				"Close tip"
+					onClick: this.closeTip },
+				!this.hasMovedSlider ? "Move the sun to close this tip" : "Close tip"
 			)
 		);
 	}
@@ -66070,7 +66104,7 @@ var UploadSC = React.createClass({
 				return step === 5;
 			}).length ? true : false;
 
-			if (!didUserDismissTips && didUserSeeFirstTip) {
+			if (!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(function () {
 					_this.props.updateModalType(2);
 					_this.props.updateModalContent(React.createElement(TeachUploadModal1, null));

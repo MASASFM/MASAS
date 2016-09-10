@@ -65,7 +65,7 @@ var UploadSC = React.createClass({
 			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
 			const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
 
-			if(!didUserDismissTips && didUserSeeFirstTip) {
+			if(!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(() => {
 					this.props.updateModalType(2)
 					this.props.updateModalContent(<TeachUploadModal1 />)
