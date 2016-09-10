@@ -1,10 +1,9 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TeachDiscoverModals.jsx")
 
-var { getCookie, updateProfileInfo } = require("../../MASAS_functions.jsx")
+var { updateProfileInfo } = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
 
 var TeachDiscoverModals = {}
@@ -14,6 +13,10 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(
 		mapDispatchToProps
 	)(React.createClass({
 		propTypes: {
+			MASASuser: React.PropTypes.string,
+			userData: React.PropTypes.object,
+
+			toogleIsModalOpened: React.PropTypes.func,
 		},
 
 		componentWillMount: function() {
@@ -32,11 +35,10 @@ TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(
 					user: this.props.userData.url,
 					step: 5,
 				},
-				success: (r) => {
+				success: () => {
 					updateProfileInfo(this.props.toogleIsModalOpened)
-					console.log(r)
 				},
-				error: (e) => console.log(e),
+				error: () => {},
 			})
 		},
 
@@ -65,6 +67,10 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(
 		mapDispatchToProps
 	)(React.createClass({
 		propTypes: {
+			MASASuser: React.PropTypes.string,
+			userData: React.PropTypes.object,
+
+			toogleIsModalOpened: React.PropTypes.func,
 		},
 
 		componentWillMount: function() {
@@ -83,11 +89,10 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(
 					user: this.props.userData.url,
 					step: 6,
 				},
-				success: (r) => {
+				success: () => {
 					updateProfileInfo(this.props.toogleIsModalOpened)
-					console.log(r)
 				},
-				error: (e) => console.log(e),
+				error: () => {},
 			})
 		},
 

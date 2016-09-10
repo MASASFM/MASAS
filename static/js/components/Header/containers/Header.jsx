@@ -23,7 +23,8 @@ Header.mapDispatchToProps = function(dispatch) {
 	return {
 		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
 		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
-		goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4})
+		goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4}),
+		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' })
 	}
 }
 

@@ -1,28 +1,51 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { goToURL } = require("../../MASAS_functions.jsx")
+var { isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
 var { Button, Body } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
+var TeachUploadModals = require("./TeachUploadModals.jsx")
+var TeachUploadModal1 = TeachUploadModals.TeachUploadModal1
 
 
 var UploadSC = React.createClass({
 	mixins: [ MobileBlurBackground ],
 	
 	propTypes: {
-		// choosingTime: React.PropTypes.object
+		isConnectedSoundcloud: React.PropTypes.bool,
+		choosingTime: React.PropTypes.bool,
+		isModalOpened: React.PropTypes.bool,
+		userData: React.PropTypes.object,
+		userPk: React.PropTypes.string,
+		masasUserTracks: React.PropTypes.array,
+		modalType: React.PropTypes.number,
+		SCusername: React.PropTypes.string,
+		soundcloudUserTracks: React.PropTypes.array,
+
+		updateTitle: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateMasasUserTracks: React.PropTypes.func,
+		updateSCusername: React.PropTypes.func,
+		getUserSCTracks: React.PropTypes.func,
+		getUserTracks: React.PropTypes.func,
+		updateSoundcloudUserTracks: React.PropTypes.func,
+		updateIsConnectedSC: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', '0')
 		if(this.props.isConnectedSoundcloud)
 			this.getUserTracks()
+	},
+
+	componentDidMount: function() {
 	},
 
 	componentWillReceiveProps: function(nextProps) {
@@ -34,14 +57,32 @@ var UploadSC = React.createClass({
 			this.getUserTracks()
 	},
 
+	checkUserStep: function() {
+		// if user data is available
+		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+			// if user has not dismissed tips yet
+			let usersteps = [ ...this.props.userData.usersteps ]
+			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
+			const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
+
+			if(!didUserDismissTips && !didUserSeeFirstTip) {
+				window.setTimeout(() => {
+					this.props.updateModalType(2)
+					this.props.updateModalContent(<TeachUploadModal1 />)
+					this.props.toogleModal()
+				}, 1000)
+			}
+		}
+	},
+
 	getUserTracks: function() {
 		var success =  (data) => {
-				this.props.updateMasasUserTracks(data.songs)
-				this.getUserSCTracks()
-			}
+			this.props.updateMasasUserTracks(data.songs)
+			this.getUserSCTracks()
+		}
 
-		var error = (err) => {
-			}
+		var error = () => {
+		}
 
 		this.props.getUserTracks(this.props.userPk, success, error)
 	},
@@ -55,19 +96,17 @@ var UploadSC = React.createClass({
 	connectToSC: function() {
 		SC.connect().then( () => {
 			this.props.updateIsConnectedSC(true)
-			SC.get('/me').then((r) => {
+			SC.get('/me').then( (r) => {
 				// store suername for mobile
 				this.props.updateSCusername(r.username)
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
 				this.getUserTracks()
-			}).catch((err) => {
+			}).catch( () => {
 				this.props.updateSCusername(null)
 			})
 			this.getUserTracks()
-		}).catch(function(error){
-			  alert('Error: ' + error.message)
-		})
+		}).catch( (error) => alert('Error: ' + error.message) )
 	},
 
 	tracksTable: function() {
@@ -87,7 +126,19 @@ var UploadSC = React.createClass({
 
 	render: function() {
 		if(this.props.choosingTime)
-			return <Body><PickTimeUpload /></Body>
+			return (
+				<div style={{ 
+					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
+					display: 'flex',
+					flex: '1',
+				}}>
+					<Body>
+						<PickTimeUpload 
+							checkUserStep={ this.checkUserStep }
+							visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
+					</Body>
+				</div>
+			)
 
 		if(this.props.isConnectedSoundcloud) 
 			return (

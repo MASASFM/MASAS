@@ -4,18 +4,10 @@
 // triggered.
 
 var React = require("react")
-var ReactDOM = require("react-dom")
-
 
 var $ = require("jquery")
-var NoUISlider = require("react-nouislider")
 
 var { makePromiseCancelable } = require("../../MASAS_functions.jsx")
-
-// maps the slider value to sun coordinates
-var mapSliderToHeight =  function(x) {
-
-}
 
 var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio
@@ -23,6 +15,8 @@ var pixelRatio = () => {
 
 var TimePicker = React.createClass({
 	cancelablePromise: makePromiseCancelable(new Promise( () => {} )),
+
+	paper: new paper.PaperScope(),
 
 	propTypes: {
 		initialDiscover: React.PropTypes.number.isRequired, 			// 1-6 starting slider position	
@@ -32,6 +26,8 @@ var TimePicker = React.createClass({
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
+		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
+		rangePercent: React.PropTypes.number,				// slider value
 	},
 
 	getInitialState: function() {
@@ -64,6 +60,9 @@ var TimePicker = React.createClass({
 		// get canvas dim on initial render
 		this.setupPaperJS()
 		this.updateCanvasDim()
+
+		// render sun arc path once states from this.updateCanvasDim have udpated
+		window.setTimeout(() => this.renderSunArcPath(), 0)
 	},
 
 	componentWillUnmount: function() {
@@ -75,14 +74,11 @@ var TimePicker = React.createClass({
 		var canvas = this.refs.canvas
 
 		// SETUP PAPER JS
-		paper.setup(canvas)
+		this.paper.setup(canvas)
 	},
 
 	updateCanvasDim: function() {
 		// GET CANVAS DIMENSIONS AND RESIZE IF NECESSARY
-		// var canvas = document.getElementById(this.props.canvasId)
-		// var canvasWrapper = document.getElementsByClassName(this.props.wrapperClassName)[0]
-		var canvas = this.refs.canvas
 		var canvasWrapper = this.refs.canvasWrapper
 
 
@@ -93,7 +89,7 @@ var TimePicker = React.createClass({
 		canvasWidth = parseInt(canvasWidth.split("p")[0])
 		
 			// update canvas size
-		paper.view.viewSize = new paper.Size(canvasWidth, canvasHeight)
+		this.paper.view.viewSize = new this.paper.Size(canvasWidth, canvasHeight)
 
 			// define sun arc path center and radius (magic numbers used for ajusting curves)
 		var arcRadius = canvasWidth / 1.9
@@ -104,12 +100,12 @@ var TimePicker = React.createClass({
 	},
 
 	renderSunArcPath: function() {
+		this.paper.project.clear()
 		this.setupPaperJS()
-
 		//DRAW AND STYLE ARC CIRCLE
 			// draw arc from circle radius and center
-		var center = new paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y)
-		var path = new paper.Path.Circle(center, this.state.arcRadius)
+		var center = new this.paper.Point(this.state.arcCenterCoords.x, this.state.arcCenterCoords.y)
+		var path = new this.paper.Path.Circle(center, this.state.arcRadius)
 		
 			// style path
 		path.strokeColor = 'white'
@@ -118,7 +114,9 @@ var TimePicker = React.createClass({
 		path.strokeWidth = 2
 
 		// DRAW PATH ON CANVAS
-		paper.view.draw()
+		this.paper.activate()
+
+		this.paper.view.draw()
 
 	},
 
@@ -134,7 +132,7 @@ var TimePicker = React.createClass({
 			window.setTimeout( () => {
 				if(!this.cancelablePromise.hasCanceled_)
 					this.cancelablePromise = makePromiseCancelable(
-						new Promise(r => this.setState({ currentDiscover: newDiscover }) )
+						new Promise(() => this.setState({ currentDiscover: newDiscover }) )
 					)
 			}, 0)
 			return newDiscover
@@ -145,8 +143,6 @@ var TimePicker = React.createClass({
 	},
 
 	handleSliderChange: function(e) {
-		var sunCoords = this.getSunCoords(parseFloat(e))
-		
 		// check if need to update redux state
 		const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
 		if(newDiscover !== 0)
@@ -173,10 +169,6 @@ var TimePicker = React.createClass({
 	},
 
 	getHashtag: function(value) {
-		// used because component initially renders twice (once before componentDidMount
-		// and once after the canvas is resized
-		// if(this.renderNumber <= 2 )
-		// 	switchVar = this.props.initialDiscover
 
 		if(value < 0)
 			value = 0
@@ -199,7 +191,6 @@ var TimePicker = React.createClass({
 	},
 
 	componentDidUpdate: function() {
-		// var canvas = document.getElementById(this.props.canvasId)
 		var canvas = this.refs.canvas
 		if(canvas)
 			this.renderSunArcPath()
@@ -212,7 +203,7 @@ var TimePicker = React.createClass({
 			this.renderNumber = this.renderNumber + 1
 
 		// accounting for sun icon size
-		var sunIconSize = 45	// px
+		var sunIconSize = 45	
 		var sunCoords = this.getSunCoords(this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue)
 		var top = sunCoords.y - sunIconSize / 2
 		var left = sunCoords.x - sunIconSize / 2
@@ -248,12 +239,6 @@ var TimePicker = React.createClass({
 						position: "relative",
 						width: "100%",
 						height: "100%" }}>
-						{/*<input 
-							type="range" 
-							ref="slider"
-							value={ this.props.sliderValue === -1 ? this.state.rangePercent : this.props.sliderValue } 
-							onChange={ this.handleSliderChange } 
-							className="MASAS-slider" />*/}
 						<hr style={{
 							position: "absolute",
 							right: 0,

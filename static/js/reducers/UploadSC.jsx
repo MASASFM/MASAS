@@ -1,10 +1,8 @@
-var SC = require('soundcloud')
-
 let exportVar = {}
 
 exportVar.defaultState = {
-	choosingTime: null,				// (object)  song info from SC (if not null => show picking time screen)
-	isConnectedSoundcloud: SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
+	choosingTime: true, //null,				// (object)  song info from SC (if not null => show picking time screen)
+	isConnectedSoundcloud: true, //SC.isConnected(),    // IS USER CONNECTED TO SOUNDCLOUD
 	soundcloudUserTracks: null, // ['LOADING'],      // SOUNDCLOUD USER TRACK TABLE CONTENT
 	masasUserTracks: null,
 	SCusername: null,	
@@ -13,6 +11,7 @@ exportVar.defaultState = {
 	checkbox1_checked: false,			// (bool) checkbox values for song ownership conf checkboxes
 	checkbox2_checked: false,
 	checkbox3_checked: false,
+	tipTimePickerValue: 2,				// (int) \in [1,6], slider hashtag on tip modal
 
 }
 const { defaultState } = exportVar
@@ -20,6 +19,19 @@ const { defaultState } = exportVar
 exportVar.uploadSCReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE':
+			var tipTimePickerValue = action.tipTimePickerValue
+
+			if(tipTimePickerValue < 0)
+				tipTimePickerValue = 0
+
+			if(tipTimePickerValue > 100)
+				tipTimePickerValue = 100
+
+			return {
+				...state,
+				tipTimePickerValue,
+			}
 		case 'TOOGLE_CHECKBOX_1':
 			return {
 				...state,
