@@ -10,7 +10,7 @@ var { Button, Body } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
 var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx")
-var TeachSliderModals1 = TeachSliderModals.TeachSliderModals1
+var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 
 var UploadSC = React.createClass({
@@ -68,7 +68,7 @@ var UploadSC = React.createClass({
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(() => {
 					this.props.updateModalType(2)
-					this.props.updateModalContent(<TeachSliderModals1 />)
+					this.props.updateModalContent(<TeachSliderModal1 />)
 					this.props.toogleModal()
 				}, 1000)
 			}

@@ -1937,22 +1937,26 @@ input[type=range].MASAS-slider {
         .MASAS-modal .confirm-ownership--wrapper .checkbox--wrapper .bullets li {
           margin-bottom: 0.5rem;
           font-size: 0.9rem; } }
-.teach-modal--wrapper .teach-modal-pickTime--wrapper {
-  display: flex;
-  width: 220px !important;
-  height: 100px !important;
-  padding-bottom: 1rem; }
-  .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
+.teach-modal--wrapper {
+  padding: 0 2rem; }
+  .teach-modal--wrapper .teach-modal-pickTime--wrapper {
+    display: flex;
     width: 220px !important;
-    height: 100px !important; }
+    height: 85px !important;
+    padding-bottom: 1rem; }
+    .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
+      width: 220px !important;
+      height: 85px !important; }
 
 @media screen and (min-width: 992px) {
-  .teach-modal--wrapper .teach-modal-pickTime--wrapper {
-    width: 300px !important;
-    height: 100px !important; }
-    .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
+  .teach-modal--wrapper {
+    padding: 0; }
+    .teach-modal--wrapper .teach-modal-pickTime--wrapper {
       width: 300px !important;
-      height: 100px !important; } }
+      height: 100px !important; }
+      .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
+        width: 300px !important;
+        height: 100px !important; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;

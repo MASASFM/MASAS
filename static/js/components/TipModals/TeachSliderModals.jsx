@@ -8,11 +8,16 @@ var { Button, TimePicker } = require("../UI/UI.jsx")
 
 var TeachSliderModals = {  }
 
-TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
+TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 		mapStateToProps,
 		mapDispatchToProps
 	)(React.createClass({
 		propTypes: {
+			title: React.PropTypes.string,
+			paragraph: React.PropTypes.string,
+			requireSunDrag: React.PropTypes.bool,
+
+			// redux
 			MASASuser: React.PropTypes.string,
 			userData: React.PropTypes.object,
 			pickTimeUpload: React.PropTypes.number,
@@ -22,6 +27,21 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
 			handleTimePickerChange: React.PropTypes.func,
 			closeModal: React.PropTypes.func,
 			updateTipTimePickerValue: React.PropTypes.func,
+		},
+
+		getDefaultProps: function() {
+			return {
+				title: "To upload this song,",
+				paragraph: "Drag the sun around the arc to select a category for your song to be discoverable from.",
+				requireSunDrag: true,
+			}
+		},
+
+		getInitialState: function() {
+			return {
+				paragraph: this.props.paragraph,
+				title: this.props.title,
+			}
 		},
 
 		componentWillMount: function() {
@@ -48,23 +68,27 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
 		},
 
 		closeTip: function() {
-			var header = "Bearer " + this.props.MASASuser
+			if(this.hasMovedSlider) {
+				var header = "Bearer " + this.props.MASASuser
 
-			$.ajax({
-				type: 'POST',
-				url: '/api/usersteps/',
-				headers: {
-					"Authorization": header,
-				},
-				data: {
-					user: this.props.userData.url,
-					step: 5,
-				},
-				success: () => {
-					updateProfileInfo(this.props.closeModal)
-				},
-				error: () => {},
-			})
+				$.ajax({
+					type: 'POST',
+					url: '/api/usersteps/',
+					headers: {
+						"Authorization": header,
+					},
+					data: {
+						user: this.props.userData.url,
+						step: 5,
+					},
+					success: () => {
+						updateProfileInfo(this.props.closeModal)
+					},
+					error: () => {},
+				})
+			} else {
+				this.setState({ title: "Drag the sun around to close this tip!", paragraph: "" })
+			}
 		},
 
 		render: function() {
@@ -74,10 +98,10 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
 			return (
 				<div className="teach-modal--wrapper">
 					<p className="bold">
-						To upload this song,
+						{ this.state.title }
 					</p>
 					<p>
-						Drag the sun around the arc to select a category for your song to be discoverable from.
+						{ this.state.paragraph }
 					</p>
 					<div style={{ marginBottom: '2rem' }}>
 						<TimePicker 
@@ -89,14 +113,9 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
 							showHashtag={ true } />
 					</div>
 					<Button 
-						isDisabled={ !this.hasMovedSlider }
 						isBigButton={ false }
 						onClick={ this.closeTip }>
-							{ !this.hasMovedSlider ?
-								"Move the sun to close this tip"
-								:
-								"Close tip"
-							}
+							Close tip
 						</Button>
 
 				</div>

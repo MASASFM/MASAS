@@ -55945,8 +55945,10 @@ var TimePicker = _require3.TimePicker;
 
 var _require4 = require("./../TipModals/TeachDiscoverModals.jsx");
 
-var TeachDiscoverModal1 = _require4.TeachDiscoverModal1;
 var TeachDiscoverModal2 = _require4.TeachDiscoverModal2;
+
+var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx");
+var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1;
 
 var Discover = React.createClass({
 	displayName: "Discover",
@@ -55960,7 +55962,7 @@ var Discover = React.createClass({
 		modalType: React.PropTypes.number,
 		isModalOpened: React.PropTypes.bool,
 		discoverNumber: React.PropTypes.number,
-		songPlaying: React.PropTypes.bool,
+		songPlaying: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
 
 		updateTitle: React.PropTypes.func,
@@ -56010,7 +56012,10 @@ var Discover = React.createClass({
 
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
 				this.props.updateModalType(2);
-				this.props.updateModalContent(React.createElement(TeachDiscoverModal1, null));
+
+				this.props.updateModalContent(React.createElement(TeachSliderModal1, {
+					title: "Welcome to Discover,",
+					paragraph: "Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." }));
 				this.props.toogleModal();
 			} else if (!didUserDismissTips && !didUserSeeSecondTip) {
 				this.props.updateModalType(2);
@@ -56076,9 +56081,9 @@ var Discover = React.createClass({
 
 		if (this.props.songPlaying) window.setTimeout(function () {
 			return _this2.checkUserStep();
-		}, 5000);
+		}, 500);
 
-		this.renderForUITip();
+		// this.renderForUITip()
 
 		return React.createElement(
 			"div",
@@ -56088,17 +56093,14 @@ var Discover = React.createClass({
 				{
 					className: "multi-page--wrapper",
 					style: {
-						//visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
+						visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible'
 					} },
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 1 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#EarlyMorning"
 					),
 					React.createElement(ArtworkLine, {
@@ -56110,10 +56112,7 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 2 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#LateMorning"
 					),
 					React.createElement(ArtworkLine, {
@@ -56125,10 +56124,7 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 3 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#EarlyAfternoon"
 					),
 					React.createElement(ArtworkLine, {
@@ -56140,10 +56136,7 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 4 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#LateAfternoon"
 					),
 					React.createElement(ArtworkLine, {
@@ -56155,10 +56148,7 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 5 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#EarlyEvening"
 					),
 					React.createElement(ArtworkLine, {
@@ -56170,10 +56160,7 @@ var Discover = React.createClass({
 					{ className: this.props.discoverNumber === 6 ? "page1" : "page2" },
 					React.createElement(
 						"h1",
-						{
-							style: {
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							} },
+						null,
 						"#LateEvening"
 					),
 					React.createElement(ArtworkLine, {
@@ -56204,7 +56191,7 @@ var Discover = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Discover);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./../TipModals/TeachDiscoverModals.jsx":376,"./ArtworkLine.jsx":304,"./containers/Discover.jsx":307,"react":286,"react-redux":91}],306:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./../TipModals/TeachDiscoverModals.jsx":376,"./../TipModals/TeachSliderModals.jsx":377,"./ArtworkLine.jsx":304,"./containers/Discover.jsx":307,"react":286,"react-redux":91}],306:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -64635,10 +64622,15 @@ var TimePicker = _require3.TimePicker;
 
 var TeachSliderModals = {};
 
-TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
-	displayName: "TeachSliderModals1",
+TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
+	displayName: "TeachSliderModal1",
 
 	propTypes: {
+		title: React.PropTypes.string,
+		paragraph: React.PropTypes.string,
+		requireSunDrag: React.PropTypes.bool,
+
+		// redux
 		MASASuser: React.PropTypes.string,
 		userData: React.PropTypes.object,
 		pickTimeUpload: React.PropTypes.number,
@@ -64648,6 +64640,21 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDi
 		handleTimePickerChange: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
 		updateTipTimePickerValue: React.PropTypes.func
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			title: "To upload this song,",
+			paragraph: "Drag the sun around the arc to select a category for your song to be discoverable from.",
+			requireSunDrag: true
+		};
+	},
+
+	getInitialState: function getInitialState() {
+		return {
+			paragraph: this.props.paragraph,
+			title: this.props.title
+		};
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -64682,23 +64689,27 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDi
 	closeTip: function closeTip() {
 		var _this2 = this;
 
-		var header = "Bearer " + this.props.MASASuser;
+		if (this.hasMovedSlider) {
+			var header = "Bearer " + this.props.MASASuser;
 
-		$.ajax({
-			type: 'POST',
-			url: '/api/usersteps/',
-			headers: {
-				"Authorization": header
-			},
-			data: {
-				user: this.props.userData.url,
-				step: 5
-			},
-			success: function success() {
-				updateProfileInfo(_this2.props.closeModal);
-			},
-			error: function error() {}
-		});
+			$.ajax({
+				type: 'POST',
+				url: '/api/usersteps/',
+				headers: {
+					"Authorization": header
+				},
+				data: {
+					user: this.props.userData.url,
+					step: 5
+				},
+				success: function success() {
+					updateProfileInfo(_this2.props.closeModal);
+				},
+				error: function error() {}
+			});
+		} else {
+			this.setState({ title: "Drag the sun around to close this tip!", paragraph: "" });
+		}
 	},
 
 	render: function render() {
@@ -64710,12 +64721,12 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDi
 			React.createElement(
 				"p",
 				{ className: "bold" },
-				"To upload this song,"
+				this.state.title
 			),
 			React.createElement(
 				"p",
 				null,
-				"Drag the sun around the arc to select a category for your song to be discoverable from."
+				this.state.paragraph
 			),
 			React.createElement(
 				"div",
@@ -64731,10 +64742,9 @@ TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDi
 			React.createElement(
 				Button,
 				{
-					isDisabled: !this.hasMovedSlider,
 					isBigButton: false,
 					onClick: this.closeTip },
-				!this.hasMovedSlider ? "Move the sun to close this tip" : "Close tip"
+				"Close tip"
 			)
 		);
 	}
@@ -66083,7 +66093,7 @@ var Body = _require3.Body;
 var UploadSCItem = require("./UploadSCItem.jsx");
 var PickTimeUpload = require("./PickTimeUpload.jsx");
 var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx");
-var TeachSliderModals1 = TeachSliderModals.TeachSliderModals1;
+var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1;
 
 var UploadSC = React.createClass({
 	displayName: "UploadSC",
@@ -66146,7 +66156,7 @@ var UploadSC = React.createClass({
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(function () {
 					_this.props.updateModalType(2);
-					_this.props.updateModalContent(React.createElement(TeachSliderModals1, null));
+					_this.props.updateModalContent(React.createElement(TeachSliderModal1, null));
 					_this.props.toogleModal();
 				}, 1000);
 			}

@@ -7,7 +7,9 @@ var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_function
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
-var { TeachDiscoverModal1, TeachDiscoverModal2 } = require("./../TipModals/TeachDiscoverModals.jsx")
+var { TeachDiscoverModal2 } = require("./../TipModals/TeachDiscoverModals.jsx")
+var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx")
+var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 var Discover = React.createClass({
 	showArtwork: false,
@@ -19,7 +21,7 @@ var Discover = React.createClass({
 		modalType: React.PropTypes.number,
 		isModalOpened: React.PropTypes.bool,
 		discoverNumber: React.PropTypes.number,
-		songPlaying: React.PropTypes.bool,
+		songPlaying: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
 
 		updateTitle: React.PropTypes.func,
@@ -63,7 +65,13 @@ var Discover = React.createClass({
 
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
 				this.props.updateModalType(2)
-				this.props.updateModalContent(<TeachDiscoverModal1 />)
+				
+
+				this.props.updateModalContent(
+					<TeachSliderModal1 
+						title="Welcome to Discover,"
+						paragraph="Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." />
+				)
 				this.props.toogleModal()
 			} else if(!didUserDismissTips && !didUserSeeSecondTip) {
 				this.props.updateModalType(2)
@@ -117,22 +125,19 @@ var Discover = React.createClass({
 
 		// changing state in this.checkUserStep, delaying it until after this.render()
 		if(this.props.songPlaying)
-			window.setTimeout(() => this.checkUserStep(), 5000)
+			window.setTimeout(() => this.checkUserStep(), 500)
 		
-		this.renderForUITip()
+		// this.renderForUITip()
 
 		return (
 			<div className="discover--wrapper">
 				<div 
 					className="multi-page--wrapper" 
 					style={{ 
-						//visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
+						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
 					}}>
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#EarlyMorning
 						</h1>
 						<ArtworkLine 
@@ -140,10 +145,7 @@ var Discover = React.createClass({
 							discoverNumber={1} />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#LateMorning
 						</h1>
 						<ArtworkLine 
@@ -151,10 +153,7 @@ var Discover = React.createClass({
 							discoverNumber={2} />
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#EarlyAfternoon
 						</h1>
 						<ArtworkLine
@@ -162,10 +161,7 @@ var Discover = React.createClass({
 							discoverNumber={3} />
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#LateAfternoon
 						</h1>
 						<ArtworkLine
@@ -173,10 +169,7 @@ var Discover = React.createClass({
 							discoverNumber={4} />
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#EarlyEvening
 						</h1>
 						<ArtworkLine 
@@ -184,10 +177,7 @@ var Discover = React.createClass({
 							discoverNumber={5} />
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
-						<h1
-							style={{
-								visibility: this.props.isModalOpened && this.props.modalType === 2 ? 'hidden' : 'visible'
-							}}>
+						<h1>
 							#LateEvening
 						</h1>
 						<ArtworkLine 
