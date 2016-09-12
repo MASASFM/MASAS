@@ -1,10 +1,9 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { getTimeIntervalFromURL, isObjectEmpty, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
@@ -15,6 +14,20 @@ var Discover = React.createClass({
 	showSlider: false,
 
 	propTypes: {
+		userToken: React.PropTypes.string,
+		userData: React.PropTypes.object,
+		modalType: React.PropTypes.number,
+		isModalOpened: React.PropTypes.bool,
+		discoverNumber: React.PropTypes.number,
+		songPlaying: React.PropTypes.bool,
+		MASAS_songInfo: React.PropTypes.object,
+
+		updateTitle: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func,
 	},
 
 	getInitialState: function() {

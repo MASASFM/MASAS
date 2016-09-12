@@ -55924,7 +55924,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Artwork
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -55936,7 +55935,6 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../../MASAS_functions.jsx");
 
 var getTimeIntervalFromURL = _require2.getTimeIntervalFromURL;
-var isObjectEmpty = _require2.isObjectEmpty;
 var isObjectNotEmpty = _require2.isObjectNotEmpty;
 
 var ArtworkLine = require("./ArtworkLine.jsx");
@@ -55956,7 +55954,22 @@ var Discover = React.createClass({
 	showArtwork: false,
 	showSlider: false,
 
-	propTypes: {},
+	propTypes: {
+		userToken: React.PropTypes.string,
+		userData: React.PropTypes.object,
+		modalType: React.PropTypes.number,
+		isModalOpened: React.PropTypes.bool,
+		discoverNumber: React.PropTypes.number,
+		songPlaying: React.PropTypes.bool,
+		MASAS_songInfo: React.PropTypes.object,
+
+		updateTitle: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateModalType: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func
+	},
 
 	getInitialState: function getInitialState() {
 		return {
@@ -56191,7 +56204,7 @@ var Discover = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Discover);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./../TipModals/TeachDiscoverModals.jsx":376,"./ArtworkLine.jsx":304,"./containers/Discover.jsx":307,"react":286,"react-dom":86,"react-redux":91}],306:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./../TipModals/TeachDiscoverModals.jsx":376,"./ArtworkLine.jsx":304,"./containers/Discover.jsx":307,"react":286,"react-redux":91}],306:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -56251,10 +56264,6 @@ module.exports = ArtworkLine;
 },{"../../../MASAS_functions.jsx":300}],307:[function(require,module,exports){
 'use strict';
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var toggleSongLike = _require.toggleSongLike;
-
 var Discover = {};
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -56306,7 +56315,7 @@ Discover.mapDispatchToProps = function (dispatch) {
 
 module.exports = Discover;
 
-},{"../../../MASAS_functions.jsx":300}],308:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 "use strict";
 
 var React = require("react");

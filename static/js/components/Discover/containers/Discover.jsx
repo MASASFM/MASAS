@@ -1,5 +1,3 @@
-var { toggleSongLike } = require("../../../MASAS_functions.jsx")
-
 var Discover = {}
 
 // Which part of the Redux global state does our component want to receive as props?
