@@ -1,14 +1,14 @@
 var React = require("react")
 
 var ReactRedux = require("react-redux")
-var { mapStateToProps, mapDispatchToProps } = require("./containers/TeachUploadModals.jsx")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/TeachSliderModals.jsx")
 
 var { updateProfileInfo } = require("../../MASAS_functions.jsx")
 var { Button, TimePicker } = require("../UI/UI.jsx")
 
-var TeachUploadModals = {}
+var TeachSliderModals = {  }
 
-TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
+TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(
 		mapStateToProps,
 		mapDispatchToProps
 	)(React.createClass({
@@ -106,4 +106,4 @@ TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(
 )
 
 
-module.exports = TeachUploadModals
+module.exports = TeachSliderModals

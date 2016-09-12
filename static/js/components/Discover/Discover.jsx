@@ -8,7 +8,7 @@ var { getTimeIntervalFromURL, isObjectEmpty, isObjectNotEmpty } = require("../..
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
-var { TeachDiscoverModal1, TeachDiscoverModal2 } = require("./TeachDiscoverModals.jsx")
+var { TeachDiscoverModal1, TeachDiscoverModal2 } = require("./../TipModals/TeachDiscoverModals.jsx")
 
 var Discover = React.createClass({
 	showArtwork: false,

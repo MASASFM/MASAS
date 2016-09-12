@@ -55331,7 +55331,7 @@ MASAS_functions.updateProfileInfo = updateProfileInfo;
 
 module.exports = MASAS_functions;
 
-},{"./components/Login/TermsAndCond.jsx":350,"./components/Profile/ajaxCalls.jsx":369,"./reducers/reducers.js":416,"js-cookie":34,"react":286,"react-router":125}],301:[function(require,module,exports){
+},{"./components/Login/TermsAndCond.jsx":348,"./components/Profile/ajaxCalls.jsx":367,"./reducers/reducers.js":416,"js-cookie":34,"react":286,"react-router":125}],301:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -55569,7 +55569,7 @@ var styles = {
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
 // module.exports = App
 
-},{"../Footer/Footer.jsx":310,"../Header/Header.jsx":317,"../Home/Home.jsx":322,"../NavSidebar/NavSidebar.jsx":356,"../UI/UI.jsx":389,"./containers/App.jsx":303,"js-cookie":34,"radium":48,"react":286,"react-dom":86,"react-redux":91,"soundcloud":299}],303:[function(require,module,exports){
+},{"../Footer/Footer.jsx":308,"../Header/Header.jsx":315,"../Home/Home.jsx":320,"../NavSidebar/NavSidebar.jsx":354,"../UI/UI.jsx":391,"./containers/App.jsx":303,"js-cookie":34,"radium":48,"react":286,"react-dom":86,"react-redux":91,"soundcloud":299}],303:[function(require,module,exports){
 'use strict';
 
 // var ReactRedux = require("react-redux")
@@ -55918,7 +55918,7 @@ var ArtworkLine = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ArtworkLine);
 
-},{"../UI/UI.jsx":389,"./containers/ArtworkLine.jsx":307,"react":286,"react-dom":86,"react-redux":91}],305:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/ArtworkLine.jsx":306,"react":286,"react-dom":86,"react-redux":91}],305:[function(require,module,exports){
 "use strict";
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -55945,7 +55945,7 @@ var _require3 = require("../UI/UI.jsx");
 
 var TimePicker = _require3.TimePicker;
 
-var _require4 = require("./TeachDiscoverModals.jsx");
+var _require4 = require("./../TipModals/TeachDiscoverModals.jsx");
 
 var TeachDiscoverModal1 = _require4.TeachDiscoverModal1;
 var TeachDiscoverModal2 = _require4.TeachDiscoverModal2;
@@ -56191,149 +56191,7 @@ var Discover = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Discover);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ArtworkLine.jsx":304,"./TeachDiscoverModals.jsx":306,"./containers/Discover.jsx":308,"react":286,"react-dom":86,"react-redux":91}],306:[function(require,module,exports){
-"use strict";
-
-var React = require("react");
-
-var ReactRedux = require("react-redux");
-
-var _require = require("./containers/TeachDiscoverModals.jsx");
-
-var mapStateToProps = _require.mapStateToProps;
-var mapDispatchToProps = _require.mapDispatchToProps;
-
-var _require2 = require("../../MASAS_functions.jsx");
-
-var updateProfileInfo = _require2.updateProfileInfo;
-
-var _require3 = require("../UI/UI.jsx");
-
-var Button = _require3.Button;
-
-var TeachDiscoverModals = {};
-
-TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
-	displayName: "TeachDiscoverModal1",
-
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		userData: React.PropTypes.object,
-
-		toogleIsModalOpened: React.PropTypes.func
-	},
-
-	componentWillMount: function componentWillMount() {},
-
-	updateUserStep: function updateUserStep() {
-		var _this = this;
-
-		var header = "Bearer " + this.props.MASASuser;
-
-		$.ajax({
-			type: 'POST',
-			url: '/api/usersteps/',
-			headers: {
-				"Authorization": header
-			},
-			data: {
-				user: this.props.userData.url,
-				step: 5
-			},
-			success: function success() {
-				updateProfileInfo(_this.props.toogleIsModalOpened);
-			},
-			error: function error() {}
-		});
-	},
-
-	render: function render() {
-		return React.createElement(
-			"div",
-			{ className: "teach-modal--wrapper" },
-			React.createElement(
-				"p",
-				{ className: "bold" },
-				"Hey, Meet the Discovery Slider"
-			),
-			React.createElement(
-				"p",
-				null,
-				"It's your new friend! Match your daily journey with 6 different moods"
-			),
-			React.createElement(
-				Button,
-				{
-					isBigButton: false,
-					onClick: this.updateUserStep },
-				"Next tip"
-			)
-		);
-	}
-}));
-
-TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
-	displayName: "TeachDiscoverModal2",
-
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		userData: React.PropTypes.object,
-
-		toogleIsModalOpened: React.PropTypes.func
-	},
-
-	componentWillMount: function componentWillMount() {},
-
-	updateUserStep: function updateUserStep() {
-		var _this2 = this;
-
-		var header = "Bearer " + this.props.MASASuser;
-
-		$.ajax({
-			type: 'POST',
-			url: '/api/usersteps/',
-			headers: {
-				"Authorization": header
-			},
-			data: {
-				user: this.props.userData.url,
-				step: 6
-			},
-			success: function success() {
-				updateProfileInfo(_this2.props.toogleIsModalOpened);
-			},
-			error: function error() {}
-		});
-	},
-
-	render: function render() {
-		return React.createElement(
-			"div",
-			{ className: "teach-modal--wrapper like-UI-info" },
-			React.createElement(
-				"p",
-				{ className: "bold" },
-				"Like your favorite discoveries"
-			),
-			React.createElement(
-				"p",
-				null,
-				"or press L for quick action"
-			),
-			React.createElement(
-				Button,
-				{
-					isBigButton: false,
-					onClick: this.updateUserStep },
-				"Got it!"
-			)
-		);
-	}
-}));
-
-module.exports = TeachDiscoverModals;
-
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachDiscoverModals.jsx":309,"react":286,"react-redux":91}],307:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./../TipModals/TeachDiscoverModals.jsx":376,"./ArtworkLine.jsx":304,"./containers/Discover.jsx":307,"react":286,"react-dom":86,"react-redux":91}],306:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -56390,7 +56248,7 @@ ArtworkLine.mapDispatchToProps = function (dispatch) {
 
 module.exports = ArtworkLine;
 
-},{"../../../MASAS_functions.jsx":300}],308:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],307:[function(require,module,exports){
 'use strict';
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -56448,29 +56306,7 @@ Discover.mapDispatchToProps = function (dispatch) {
 
 module.exports = Discover;
 
-},{"../../../MASAS_functions.jsx":300}],309:[function(require,module,exports){
-'use strict';
-
-var TeachDiscoverModals = {};
-
-TeachDiscoverModals.mapStateToProps = function (state) {
-	return {
-		MASASuser: state.appReducer.MASASuser,
-		userData: state.appReducer.userData
-	};
-};
-
-TeachDiscoverModals.mapDispatchToProps = function (dispatch) {
-	return {
-		toogleIsModalOpened: function toogleIsModalOpened() {
-			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
-		}
-	};
-};
-
-module.exports = TeachDiscoverModals;
-
-},{}],310:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],308:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -56682,7 +56518,7 @@ var Footer = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../../MASAS_functions.jsx":300,"../Player/PlayerBar.jsx":358,"./FooterModals.jsx":311,"./UnsplashControls.jsx":312,"./containers/Footer.jsx":314,"react":286,"react-redux":91}],311:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Player/PlayerBar.jsx":356,"./FooterModals.jsx":309,"./UnsplashControls.jsx":310,"./containers/Footer.jsx":312,"react":286,"react-redux":91}],309:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -56838,7 +56674,7 @@ var FooterModal = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(FooterModal);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/FooterModals.jsx":315,"react":286,"react-dom":86,"react-redux":91}],312:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/FooterModals.jsx":313,"react":286,"react-dom":86,"react-redux":91}],310:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -56940,7 +56776,7 @@ var UnsplashControls = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UnsplashControls);
 
-},{"./containers/UnsplashControls.jsx":316,"react":286,"react-redux":91}],313:[function(require,module,exports){
+},{"./containers/UnsplashControls.jsx":314,"react":286,"react-redux":91}],311:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -57047,7 +56883,7 @@ ajaxCalls.reportCopyright = function () {
 
 module.exports = ajaxCalls;
 
-},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],314:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],312:[function(require,module,exports){
 'use strict';
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -57104,7 +56940,7 @@ Footer.mapDispatchToProps = function (dispatch) {
 
 module.exports = Footer;
 
-},{"../../../MASAS_functions.jsx":300}],315:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],313:[function(require,module,exports){
 'use strict';
 
 var _require = require('../ajaxCalls.jsx');
@@ -57140,7 +56976,7 @@ FooterModal.mapDispatchToProps = function (dispatch) {
 
 module.exports = FooterModal;
 
-},{"../ajaxCalls.jsx":313}],316:[function(require,module,exports){
+},{"../ajaxCalls.jsx":311}],314:[function(require,module,exports){
 'use strict';
 
 var UnsplashControls = {};
@@ -57170,7 +57006,7 @@ UnsplashControls.mapDispatchToProps = function (dispatch) {
 
 module.exports = UnsplashControls;
 
-},{}],317:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -57367,7 +57203,7 @@ var styles = {
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../../MASAS_functions.jsx":300,"../Header/Header.jsx":317,"../UI/Link.jsx":381,"../UI/UI.jsx":389,"./HeaderDropdown.jsx":318,"./containers/Header.jsx":320,"radium":48,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],318:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Header/Header.jsx":315,"../UI/Link.jsx":383,"../UI/UI.jsx":391,"./HeaderDropdown.jsx":316,"./containers/Header.jsx":318,"radium":48,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],316:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -57476,7 +57312,7 @@ var HeaderDropdown = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);
 
-},{"../UI/UI.jsx":389,"./containers/HeaderDropdown.jsx":321,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],319:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/HeaderDropdown.jsx":319,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],317:[function(require,module,exports){
 "use strict";
 
 var ajaxCalls = {};
@@ -57511,7 +57347,7 @@ ajaxCalls.getUsername = function (dispatch, MASASuser) {
 
 module.exports = ajaxCalls;
 
-},{"jquery":33}],320:[function(require,module,exports){
+},{"jquery":33}],318:[function(require,module,exports){
 'use strict';
 
 var ReactRedux = require("react-redux");
@@ -57556,7 +57392,7 @@ Header.mapDispatchToProps = function (dispatch) {
 
 module.exports = Header;
 
-},{"react-redux":91,"react-router":125}],321:[function(require,module,exports){
+},{"react-redux":91,"react-router":125}],319:[function(require,module,exports){
 'use strict';
 
 var ReactRedux = require("react-redux");
@@ -57597,7 +57433,7 @@ HeaderDropdown.mapDispatchToProps = function (dispatch) {
 
 module.exports = HeaderDropdown;
 
-},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":319,"react-redux":91,"react-router":125}],322:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":317,"react-redux":91,"react-router":125}],320:[function(require,module,exports){
 "use strict";
 
 var _jquery = require("jquery");
@@ -57873,7 +57709,7 @@ var Home = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 
-},{"../../MASAS_functions.jsx":300,"../Login/LoginForm.jsx":348,"../UI/UI.jsx":389,"./HomeCountdown.jsx":323,"./containers/Home.jsx":325,"jquery":33,"react":286,"react-redux":91}],323:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Login/LoginForm.jsx":346,"../UI/UI.jsx":391,"./HomeCountdown.jsx":321,"./containers/Home.jsx":323,"jquery":33,"react":286,"react-redux":91}],321:[function(require,module,exports){
 "use strict";
 
 // HACK NECESSARY TO HANDLE INTERVALS (magic numbers)
@@ -58215,7 +58051,7 @@ var HomeCountdown = React.createClass({
 
 module.exports = HomeCountdown;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ajaxCalls.jsx":324,"react":286}],324:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./ajaxCalls.jsx":322,"react":286}],322:[function(require,module,exports){
 "use strict";
 
 var _require = require('../../reducers/reducers.js');
@@ -58237,7 +58073,7 @@ ajaxCalls.getSongCount = function (successFunc) {
 
 module.exports = ajaxCalls;
 
-},{"../../reducers/reducers.js":416}],325:[function(require,module,exports){
+},{"../../reducers/reducers.js":416}],323:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -58275,7 +58111,7 @@ Home.mapDispatchToProps = function (dispatch) {
 
 module.exports = Home;
 
-},{"react-router":125}],326:[function(require,module,exports){
+},{"react-router":125}],324:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -58310,7 +58146,7 @@ var EnforcementGuidelines = React.createClass({
 
 module.exports = EnforcementGuidelines;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],327:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],325:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -58345,7 +58181,7 @@ var Guidelines = React.createClass({
 
 module.exports = Guidelines;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],328:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],326:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -58380,7 +58216,7 @@ var LearnCopyright = React.createClass({
 
 module.exports = LearnCopyright;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],329:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],327:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -58430,7 +58266,7 @@ var LegalsContent = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LegalsContent);
 
-},{"../UI/UI.jsx":389,"./containers/LegalsContent.jsx":335,"react":286,"react-dom":86,"react-redux":91}],330:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/LegalsContent.jsx":333,"react":286,"react-dom":86,"react-redux":91}],328:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -58569,7 +58405,7 @@ var LegalsHome = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LegalsHome);
 
-},{"../UI/UI.jsx":389,"./EnforcementGuidelines.jsx":326,"./Guidelines.jsx":327,"./LearnCopyright.jsx":328,"./LegalsContent.jsx":329,"./Privacy.jsx":331,"./ReportCopyright.jsx":332,"./Rest.jsx":333,"./Terms.jsx":334,"./containers/LegalsHome.jsx":336,"react":286,"react-dom":86,"react-redux":91}],331:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./EnforcementGuidelines.jsx":324,"./Guidelines.jsx":325,"./LearnCopyright.jsx":326,"./LegalsContent.jsx":327,"./Privacy.jsx":329,"./ReportCopyright.jsx":330,"./Rest.jsx":331,"./Terms.jsx":332,"./containers/LegalsHome.jsx":334,"react":286,"react-dom":86,"react-redux":91}],329:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -59357,7 +59193,7 @@ var Privacy = React.createClass({
 
 module.exports = Privacy;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],332:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],330:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -59392,7 +59228,7 @@ var ReportCopyright = React.createClass({
 
 module.exports = ReportCopyright;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],333:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],331:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -59611,7 +59447,7 @@ var Rest = React.createClass({
 
 module.exports = Rest;
 
-},{"./LegalsContent.jsx":329,"react":286,"react-dom":86}],334:[function(require,module,exports){
+},{"./LegalsContent.jsx":327,"react":286,"react-dom":86}],332:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -60539,7 +60375,7 @@ var Terms = React.createClass({
 
 module.exports = Terms;
 
-},{"react":286,"react-dom":86}],335:[function(require,module,exports){
+},{"react":286,"react-dom":86}],333:[function(require,module,exports){
 'use strict';
 
 var LegalsContent = {};
@@ -60563,7 +60399,7 @@ LegalsContent.mapDispatchToProps = function (dispatch) {
 
 module.exports = LegalsContent;
 
-},{}],336:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 'use strict';
 
 var LegalsHome = {};
@@ -60589,7 +60425,7 @@ LegalsHome.mapDispatchToProps = function (dispatch) {
 
 module.exports = LegalsHome;
 
-},{}],337:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -60670,7 +60506,7 @@ var FiltersModal = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(FiltersModal);
 
-},{"./containers/FiltersModal.jsx":343,"react":286,"react-dom":86,"react-redux":91}],338:[function(require,module,exports){
+},{"./containers/FiltersModal.jsx":341,"react":286,"react-dom":86,"react-redux":91}],336:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -60890,7 +60726,7 @@ var Likes = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Likes);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./FiltersModal.jsx":337,"./LikesArtworks.jsx":339,"./LikesWrapper.jsx":341,"./containers/Likes.jsx":344,"react":286,"react-infinite-scroll":87,"react-redux":91}],339:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./FiltersModal.jsx":335,"./LikesArtworks.jsx":337,"./LikesWrapper.jsx":339,"./containers/Likes.jsx":342,"react":286,"react-infinite-scroll":87,"react-redux":91}],337:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61043,7 +60879,7 @@ var LikesArtworks = React.createClass({
 
 module.exports = LikesArtworks;
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./LikesItem.jsx":340,"react":286,"react-dom":86,"react-redux":91}],340:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./LikesItem.jsx":338,"react":286,"react-dom":86,"react-redux":91}],338:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61208,7 +61044,7 @@ var LikesItem = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesItem);
 
-},{"../UI/UI.jsx":389,"./containers/LikesItem.jsx":345,"react":286,"react-dom":86,"react-redux":91}],341:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/LikesItem.jsx":343,"react":286,"react-dom":86,"react-redux":91}],339:[function(require,module,exports){
 "use strict";
 
 var _MASAS_mixins = require("../MASAS_mixins.jsx");
@@ -61313,7 +61149,7 @@ var LikesWrapper = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesWrapper);
 
-},{"../MASAS_mixins.jsx":355,"./containers/LikesWrapper.jsx":346,"react":286,"react-dom":86,"react-redux":91}],342:[function(require,module,exports){
+},{"../MASAS_mixins.jsx":353,"./containers/LikesWrapper.jsx":344,"react":286,"react-dom":86,"react-redux":91}],340:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -61354,7 +61190,7 @@ var ajaxCalls = {};
 
 module.exports = ajaxCalls;
 
-},{"../../reducers/reducers.js":416,"react-router":125}],343:[function(require,module,exports){
+},{"../../reducers/reducers.js":416,"react-router":125}],341:[function(require,module,exports){
 'use strict';
 
 var FiltersModal = {};
@@ -61383,7 +61219,7 @@ FiltersModal.mapDispatchToProps = function (dispatch) {
 
 module.exports = FiltersModal;
 
-},{}],344:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 'use strict';
 
 var _require = require('../ajaxCalls.jsx');
@@ -61434,7 +61270,7 @@ Likes.mapDispatchToProps = function (dispatch) {
 
 module.exports = Likes;
 
-},{"../ajaxCalls.jsx":342}],345:[function(require,module,exports){
+},{"../ajaxCalls.jsx":340}],343:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -61473,7 +61309,7 @@ LikesItem.mapDispatchToProps = function (dispatch) {
 
 module.exports = LikesItem;
 
-},{"../../../MASAS_functions.jsx":300}],346:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],344:[function(require,module,exports){
 "use strict";
 
 var LikesWrapper = {};
@@ -61493,7 +61329,7 @@ LikesWrapper.mapDispatchToProps = function (dispatch) {
 
 module.exports = LikesWrapper;
 
-},{}],347:[function(require,module,exports){
+},{}],345:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61545,7 +61381,7 @@ var InvitationPending = React.createClass({
 
 module.exports = InvitationPending;
 
-},{"../UI/UI.jsx":389,"react":286,"react-dom":86,"react-redux":91}],348:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"react":286,"react-dom":86,"react-redux":91}],346:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61694,7 +61530,7 @@ var LoginForm = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
-},{"../UI/UI.jsx":389,"./containers/LoginForm.jsx":352,"react":286,"react-dom":86,"react-redux":91}],349:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/LoginForm.jsx":350,"react":286,"react-dom":86,"react-redux":91}],347:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61818,7 +61654,7 @@ var SignUpForm = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
 
-},{"../UI/UI.jsx":389,"./containers/SignUp.jsx":353,"react":286,"react-dom":86,"react-redux":91}],350:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/SignUp.jsx":351,"react":286,"react-dom":86,"react-redux":91}],348:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -61894,7 +61730,7 @@ var TermsAndCond = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TermsAndCond);
 
-},{"../Legals/Terms.jsx":334,"../UI/UI.jsx":389,"./ajaxCalls.jsx":351,"./containers/TermsAndCond.jsx":354,"react":286,"react-dom":86,"react-redux":91}],351:[function(require,module,exports){
+},{"../Legals/Terms.jsx":332,"../UI/UI.jsx":391,"./ajaxCalls.jsx":349,"./containers/TermsAndCond.jsx":352,"react":286,"react-dom":86,"react-redux":91}],349:[function(require,module,exports){
 "use strict";
 
 var _require = require("react-router");
@@ -62008,7 +61844,7 @@ ajaxCalls.getUserPk = function (userToken) {
 
 module.exports = ajaxCalls;
 
-},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],352:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],350:[function(require,module,exports){
 'use strict';
 
 var Cookie = require('js-cookie');
@@ -62071,7 +61907,7 @@ LoginForm.mapDispatchToProps = function (dispatch) {
 // login: login.bind(null,dispatch),
 module.exports = LoginForm;
 
-},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":351,"js-cookie":34,"react-router":125}],353:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":349,"js-cookie":34,"react-router":125}],351:[function(require,module,exports){
 'use strict';
 
 var SignUpForm = {};
@@ -62092,7 +61928,7 @@ SignUpForm.mapDispatchToProps = function (dispatch) {
 
 module.exports = SignUpForm;
 
-},{}],354:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 'use strict';
 
 var TermsAndCond = {};
@@ -62113,7 +61949,7 @@ TermsAndCond.mapDispatchToProps = function (dispatch) {
 
 module.exports = TermsAndCond;
 
-},{}],355:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -62139,7 +61975,7 @@ MASAS_mixins.MobileBlurBackground = {
 
 module.exports = MASAS_mixins;
 
-},{"jquery":33}],356:[function(require,module,exports){
+},{"jquery":33}],354:[function(require,module,exports){
 "use strict";
 
 var _reactSidebar = require("react-sidebar");
@@ -62344,7 +62180,7 @@ var NavSidebar = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NavSidebar);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/NavSidebar.jsx":357,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],357:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/NavSidebar.jsx":355,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],355:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -62374,7 +62210,7 @@ NavSidebar.mapDispatchToProps = function (dispatch) {
 
 module.exports = NavSidebar;
 
-},{"../../../MASAS_functions.jsx":300}],358:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],356:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -62651,7 +62487,7 @@ var Player = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Player);
 
-},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"../UI/UI.jsx":389,"./containers/PlayerBar.jsx":360,"jplayer":31,"react":286,"react-dom":86,"react-redux":91}],359:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"../UI/UI.jsx":391,"./containers/PlayerBar.jsx":358,"jplayer":31,"react":286,"react-dom":86,"react-redux":91}],357:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -62779,7 +62615,7 @@ ajaxCalls.updateLikeButton = function (MASAS_songInfo, SC_songInfo, props) {
 
 module.exports = ajaxCalls;
 
-},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],360:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../../reducers/reducers.js":416,"react-router":125}],358:[function(require,module,exports){
 "use strict";
 
 var _require = require("../ajaxCalls.jsx");
@@ -62858,7 +62694,7 @@ Player.mapDispatchToProps = function (dispatch) {
 
 module.exports = Player;
 
-},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":359}],361:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":357}],359:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -62984,7 +62820,7 @@ var ChangeMoodModal = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ChangeMoodModal);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/ChangeMoodModal.jsx":370,"react":286,"react-dom":86,"react-redux":91}],362:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/ChangeMoodModal.jsx":368,"react":286,"react-dom":86,"react-redux":91}],360:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -63159,7 +62995,7 @@ var CountryAutocomplete = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(CountryAutocomplete);
 
-},{"./containers/CountryAutocomplete.jsx":371,"react":286,"react-autocomplete":85,"react-dom":86,"react-redux":91}],363:[function(require,module,exports){
+},{"./containers/CountryAutocomplete.jsx":369,"react":286,"react-autocomplete":85,"react-dom":86,"react-redux":91}],361:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -63792,7 +63628,7 @@ var styles = {
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Profile);
 
-},{"../../MASAS_functions.jsx":300,"../Footer/Footer.jsx":310,"../Header/Header.jsx":317,"../NavSidebar/NavSidebar.jsx":356,"../Profile/TrackItem.jsx":368,"../UI/UI.jsx":389,"./ProfileEdit.jsx":364,"./ProfileEditLinks.jsx":365,"./ProfileWrapper.jsx":366,"./containers/Profile.jsx":372,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],364:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../Footer/Footer.jsx":308,"../Header/Header.jsx":315,"../NavSidebar/NavSidebar.jsx":354,"../Profile/TrackItem.jsx":366,"../UI/UI.jsx":391,"./ProfileEdit.jsx":362,"./ProfileEditLinks.jsx":363,"./ProfileWrapper.jsx":364,"./containers/Profile.jsx":370,"react":286,"react-dom":86,"react-redux":91,"react-sidebar":156}],362:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -63872,7 +63708,7 @@ var ProfileEdit = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ProfileEdit);
 
-},{"../UI/UI.jsx":389,"./CountryAutocomplete.jsx":362,"./ProfileEditLinks.jsx":365,"./containers/ProfileEdit.jsx":373,"react":286,"react-dom":86,"react-redux":91}],365:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./CountryAutocomplete.jsx":360,"./ProfileEditLinks.jsx":363,"./containers/ProfileEdit.jsx":371,"react":286,"react-dom":86,"react-redux":91}],363:[function(require,module,exports){
 "use strict";
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -63977,7 +63813,7 @@ var ProfileEditLinks = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ProfileEditLinks);
 
-},{"../UI/UI.jsx":389,"./containers/ProfileEditLinks.jsx":374,"react":286,"react-dom":86,"react-redux":91}],366:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/ProfileEditLinks.jsx":372,"react":286,"react-dom":86,"react-redux":91}],364:[function(require,module,exports){
 "use strict";
 
 var _MASAS_mixins = require("../MASAS_mixins.jsx");
@@ -64071,7 +63907,7 @@ var ProfileWrapper = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ProfileWrapper);
 
-},{"../MASAS_mixins.jsx":355,"./containers/ProfileWrapper.jsx":375,"react":286,"react-dom":86,"react-redux":91}],367:[function(require,module,exports){
+},{"../MASAS_mixins.jsx":353,"./containers/ProfileWrapper.jsx":373,"react":286,"react-dom":86,"react-redux":91}],365:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64176,7 +64012,7 @@ var RemoveSongModal = React.createClass({
 });
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(RemoveSongModal);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/RemoveSongModal.jsx":376,"react":286,"react-dom":86,"react-redux":91}],368:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/RemoveSongModal.jsx":374,"react":286,"react-dom":86,"react-redux":91}],366:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64374,7 +64210,7 @@ var TrackItem = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TrackItem);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ChangeMoodModal.jsx":361,"./RemoveSongModal.jsx":367,"./containers/TrackItem.jsx":377,"react":286,"react-dom":86,"react-redux":91}],369:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./ChangeMoodModal.jsx":359,"./RemoveSongModal.jsx":365,"./containers/TrackItem.jsx":375,"react":286,"react-dom":86,"react-redux":91}],367:[function(require,module,exports){
 'use strict';
 
 var _require = require('react-router');
@@ -64411,7 +64247,7 @@ ajaxCalls.updateProfileInfo = function (callback) {
 
 module.exports = ajaxCalls;
 
-},{"../../reducers/reducers.js":416,"react-router":125}],370:[function(require,module,exports){
+},{"../../reducers/reducers.js":416,"react-router":125}],368:[function(require,module,exports){
 'use strict';
 
 var ChangeMoodModal = {};
@@ -64435,7 +64271,7 @@ ChangeMoodModal.mapDispatchToProps = function (dispatch) {
 
 module.exports = ChangeMoodModal;
 
-},{}],371:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 "use strict";
 
 var CountryAutocomplete = {};
@@ -64452,7 +64288,7 @@ CountryAutocomplete.mapDispatchToProps = function (dispatch) {
 
 module.exports = CountryAutocomplete;
 
-},{}],372:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 'use strict';
 
 var _require = require('../ajaxCalls.jsx');
@@ -64495,7 +64331,7 @@ Profile.mapDispatchToProps = function (dispatch) {
 
 module.exports = Profile;
 
-},{"../ajaxCalls.jsx":369}],373:[function(require,module,exports){
+},{"../ajaxCalls.jsx":367}],371:[function(require,module,exports){
 "use strict";
 
 var ProfileEdit = {};
@@ -64517,7 +64353,7 @@ ProfileEdit.mapDispatchToProps = function (dispatch) {
 
 module.exports = ProfileEdit;
 
-},{}],374:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
 "use strict";
 
 var ProfileEditLinks = {};
@@ -64541,7 +64377,7 @@ ProfileEditLinks.mapDispatchToProps = function (dispatch) {
 
 module.exports = ProfileEditLinks;
 
-},{}],375:[function(require,module,exports){
+},{}],373:[function(require,module,exports){
 "use strict";
 
 var ProfileWrapper = {};
@@ -64561,7 +64397,7 @@ ProfileWrapper.mapDispatchToProps = function (dispatch) {
 
 module.exports = ProfileWrapper;
 
-},{}],376:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 "use strict";
 
 var RemoveSongModal = {};
@@ -64580,7 +64416,7 @@ RemoveSongModal.mapDispatchToProps = function (dispatch) {
 
 module.exports = RemoveSongModal;
 
-},{}],377:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 "use strict";
 
 var _require = require("../../../MASAS_functions.jsx");
@@ -64625,7 +64461,334 @@ TrackItem.mapDispatchToProps = function (dispatch) {
 
 module.exports = TrackItem;
 
-},{"../../../MASAS_functions.jsx":300}],378:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":300}],376:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+
+var ReactRedux = require("react-redux");
+
+var _require = require("./containers/TeachDiscoverModals.jsx");
+
+var mapStateToProps = _require.mapStateToProps;
+var mapDispatchToProps = _require.mapDispatchToProps;
+
+var _require2 = require("../../MASAS_functions.jsx");
+
+var updateProfileInfo = _require2.updateProfileInfo;
+
+var _require3 = require("../UI/UI.jsx");
+
+var Button = _require3.Button;
+
+var TeachDiscoverModals = {};
+
+TeachDiscoverModals.TeachDiscoverModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
+	displayName: "TeachDiscoverModal1",
+
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		toogleIsModalOpened: React.PropTypes.func
+	},
+
+	componentWillMount: function componentWillMount() {},
+
+	updateUserStep: function updateUserStep() {
+		var _this = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 5
+			},
+			success: function success() {
+				updateProfileInfo(_this.props.toogleIsModalOpened);
+			},
+			error: function error() {}
+		});
+	},
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "teach-modal--wrapper" },
+			React.createElement(
+				"p",
+				{ className: "bold" },
+				"Hey, Meet the Discovery Slider"
+			),
+			React.createElement(
+				"p",
+				null,
+				"It's your new friend! Match your daily journey with 6 different moods"
+			),
+			React.createElement(
+				Button,
+				{
+					isBigButton: false,
+					onClick: this.updateUserStep },
+				"Next tip"
+			)
+		);
+	}
+}));
+
+TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
+	displayName: "TeachDiscoverModal2",
+
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		toogleIsModalOpened: React.PropTypes.func
+	},
+
+	componentWillMount: function componentWillMount() {},
+
+	updateUserStep: function updateUserStep() {
+		var _this2 = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 6
+			},
+			success: function success() {
+				updateProfileInfo(_this2.props.toogleIsModalOpened);
+			},
+			error: function error() {}
+		});
+	},
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "teach-modal--wrapper like-UI-info" },
+			React.createElement(
+				"p",
+				{ className: "bold" },
+				"Like your favorite discoveries"
+			),
+			React.createElement(
+				"p",
+				null,
+				"or press L for quick action"
+			),
+			React.createElement(
+				Button,
+				{
+					isBigButton: false,
+					onClick: this.updateUserStep },
+				"Got it!"
+			)
+		);
+	}
+}));
+
+module.exports = TeachDiscoverModals;
+
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/TeachDiscoverModals.jsx":378,"react":286,"react-redux":91}],377:[function(require,module,exports){
+"use strict";
+
+var React = require("react");
+
+var ReactRedux = require("react-redux");
+
+var _require = require("./containers/TeachSliderModals.jsx");
+
+var mapStateToProps = _require.mapStateToProps;
+var mapDispatchToProps = _require.mapDispatchToProps;
+
+var _require2 = require("../../MASAS_functions.jsx");
+
+var updateProfileInfo = _require2.updateProfileInfo;
+
+var _require3 = require("../UI/UI.jsx");
+
+var Button = _require3.Button;
+var TimePicker = _require3.TimePicker;
+
+var TeachSliderModals = {};
+
+TeachSliderModals.TeachSliderModals1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
+	displayName: "TeachSliderModals1",
+
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+		pickTimeUpload: React.PropTypes.number,
+		tipTimePickerValue: React.PropTypes.number,
+
+		toogleIsModalOpened: React.PropTypes.func,
+		handleTimePickerChange: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
+		updateTipTimePickerValue: React.PropTypes.func
+	},
+
+	componentWillMount: function componentWillMount() {
+		this.sliderInitValue = this.props.tipTimePickerValue;
+		this.hasMovedSlider = false;
+	},
+
+	updateUserStep: function updateUserStep() {
+		var _this = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 5
+			},
+			success: function success() {
+				return updateProfileInfo(_this.props.toogleIsModalOpened);
+			},
+			error: function error(e) {
+				return e;
+			}
+		});
+	},
+
+	closeTip: function closeTip() {
+		var _this2 = this;
+
+		var header = "Bearer " + this.props.MASASuser;
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header
+			},
+			data: {
+				user: this.props.userData.url,
+				step: 5
+			},
+			success: function success() {
+				updateProfileInfo(_this2.props.closeModal);
+			},
+			error: function error() {}
+		});
+	},
+
+	render: function render() {
+		if (!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue) this.hasMovedSlider = true;
+
+		return React.createElement(
+			"div",
+			{ className: "teach-modal--wrapper" },
+			React.createElement(
+				"p",
+				{ className: "bold" },
+				"To upload this song,"
+			),
+			React.createElement(
+				"p",
+				null,
+				"Drag the sun around the arc to select a category for your song to be discoverable from."
+			),
+			React.createElement(
+				"div",
+				{ style: { marginBottom: '2rem' } },
+				React.createElement(TimePicker, {
+					onSliderChange: this.props.updateTipTimePickerValue,
+					initialDiscover: this.props.tipTimePickerValue,
+					currentDiscover: this.props.tipTimePickerValue,
+					wrapperClassName: "teach-modal-pickTime--wrapper",
+					canvasId: "teach-modal-pickTime--canvas",
+					showHashtag: true })
+			),
+			React.createElement(
+				Button,
+				{
+					isDisabled: !this.hasMovedSlider,
+					isBigButton: false,
+					onClick: this.closeTip },
+				!this.hasMovedSlider ? "Move the sun to close this tip" : "Close tip"
+			)
+		);
+	}
+}));
+
+module.exports = TeachSliderModals;
+
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./containers/TeachSliderModals.jsx":379,"react":286,"react-redux":91}],378:[function(require,module,exports){
+'use strict';
+
+var TeachDiscoverModals = {};
+
+TeachDiscoverModals.mapStateToProps = function (state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData
+	};
+};
+
+TeachDiscoverModals.mapDispatchToProps = function (dispatch) {
+	return {
+		toogleIsModalOpened: function toogleIsModalOpened() {
+			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+		}
+	};
+};
+
+module.exports = TeachDiscoverModals;
+
+},{}],379:[function(require,module,exports){
+'use strict';
+
+var TeachUploadModals = {};
+
+TeachUploadModals.mapStateToProps = function (state) {
+	return {
+		MASASuser: state.appReducer.MASASuser,
+		userData: state.appReducer.userData,
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		tipTimePickerValue: state.uploadSCReducer.tipTimePickerValue
+	};
+};
+
+TeachUploadModals.mapDispatchToProps = function (dispatch) {
+	return {
+		toogleIsModalOpened: function toogleIsModalOpened() {
+			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+		},
+		closeModal: function closeModal() {
+			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+		},
+		handleTimePickerChange: function handleTimePickerChange(newDiscover) {
+			return dispatch({ type: 'HANDLE_PICK_TIME_UPLOAD', newDiscover: newDiscover });
+		},
+		updateTipTimePickerValue: function updateTipTimePickerValue(tipTimePickerValue) {
+			return dispatch({ type: 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE', tipTimePickerValue: tipTimePickerValue });
+		}
+	};
+};
+
+module.exports = TeachUploadModals;
+
+},{}],380:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64714,7 +64877,7 @@ var Body = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Body);
 
-},{"./containers/Body.jsx":390,"react":286,"react-dom":86,"react-redux":91}],379:[function(require,module,exports){
+},{"./containers/Body.jsx":392,"react":286,"react-dom":86,"react-redux":91}],381:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64771,7 +64934,7 @@ var Button = React.createClass({
 
 module.exports = Button;
 
-},{"react":286,"react-dom":86}],380:[function(require,module,exports){
+},{"react":286,"react-dom":86}],382:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64822,7 +64985,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"react":286,"react-dom":86}],381:[function(require,module,exports){
+},{"react":286,"react-dom":86}],383:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -64863,7 +65026,7 @@ var Link = React.createClass({
 
 module.exports = Link;
 
-},{"react":286,"react-dom":86,"react-router":125}],382:[function(require,module,exports){
+},{"react":286,"react-dom":86,"react-router":125}],384:[function(require,module,exports){
 "use strict";
 
 // NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
@@ -64953,7 +65116,7 @@ var Marquee = React.createClass({
 
 module.exports = Marquee;
 
-},{"react":286,"react-dom":86}],383:[function(require,module,exports){
+},{"react":286,"react-dom":86}],385:[function(require,module,exports){
 "use strict";
 
 // NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
@@ -65039,7 +65202,7 @@ var Modal = React.createClass({
 
 module.exports = Modal;
 
-},{"react":286,"react-dom":86}],384:[function(require,module,exports){
+},{"react":286,"react-dom":86}],386:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -65076,7 +65239,7 @@ var Password = React.createClass({
 
 module.exports = Password;
 
-},{"react":286,"react-dom":86}],385:[function(require,module,exports){
+},{"react":286,"react-dom":86}],387:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -65151,7 +65314,7 @@ var RankingInfoIcon = React.createClass({
 
 module.exports = RankingInfoIcon;
 
-},{"react":286,"react-dom":86,"react-redux":91}],386:[function(require,module,exports){
+},{"react":286,"react-dom":86,"react-redux":91}],388:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -65216,7 +65379,7 @@ var Textbox = React.createClass({
 
 module.exports = Textbox;
 
-},{"../../reducers/reducers.js":416,"react":286,"react-dom":86}],387:[function(require,module,exports){
+},{"../../reducers/reducers.js":416,"react":286,"react-dom":86}],389:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -65294,7 +65457,7 @@ var TimePickerWrapper = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TimePickerWrapper);
 
-},{"./TimePickerInside.jsx":388,"./containers/TimePickerInside.jsx":391,"react":286,"react-dom":86,"react-nouislider":88,"react-redux":91}],388:[function(require,module,exports){
+},{"./TimePickerInside.jsx":390,"./containers/TimePickerInside.jsx":393,"react":286,"react-dom":86,"react-nouislider":88,"react-redux":91}],390:[function(require,module,exports){
 "use strict";
 
 // STATEFULL COMPONENT
@@ -65560,7 +65723,7 @@ var TimePicker = React.createClass({
 
 module.exports = TimePicker;
 
-},{"../../MASAS_functions.jsx":300,"jquery":33,"react":286}],389:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"jquery":33,"react":286}],391:[function(require,module,exports){
 'use strict';
 
 var Body = require('./Body.jsx');
@@ -65589,7 +65752,7 @@ UI.RankingInfoIcon = RankingInfoIcon;
 
 module.exports = UI;
 
-},{"./Body.jsx":378,"./Button.jsx":379,"./Checkbox.jsx":380,"./Link.jsx":381,"./Marquee.jsx":382,"./Modal.jsx":383,"./Password.jsx":384,"./RankingInfoIcon.jsx":385,"./Textbox.jsx":386,"./TimePicker.jsx":387}],390:[function(require,module,exports){
+},{"./Body.jsx":380,"./Button.jsx":381,"./Checkbox.jsx":382,"./Link.jsx":383,"./Marquee.jsx":384,"./Modal.jsx":385,"./Password.jsx":386,"./RankingInfoIcon.jsx":387,"./Textbox.jsx":388,"./TimePicker.jsx":389}],392:[function(require,module,exports){
 "use strict";
 
 var Body = {};
@@ -65612,7 +65775,7 @@ Body.mapDispatchToProps = function (dispatch) {
 
 module.exports = Body;
 
-},{}],391:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 'use strict';
 
 var Template = {};
@@ -65633,7 +65796,7 @@ Template.mapDispatchToProps = function (dispatch) {
 
 module.exports = Template;
 
-},{}],392:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -65720,7 +65883,7 @@ var ModalContent = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ModalContent);
 
-},{"../UI/UI.jsx":389,"./containers/ModalContent.jsx":398,"react":286,"react-dom":86,"react-redux":91}],393:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/ModalContent.jsx":399,"react":286,"react-dom":86,"react-redux":91}],395:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -65883,137 +66046,7 @@ var PickTimeUpload = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(PickTimeUpload);
 
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./ModalContent.jsx":392,"./containers/PickTimeUpload.jsx":399,"react":286,"react-redux":91}],394:[function(require,module,exports){
-"use strict";
-
-var React = require("react");
-
-var ReactRedux = require("react-redux");
-
-var _require = require("./containers/TeachUploadModals.jsx");
-
-var mapStateToProps = _require.mapStateToProps;
-var mapDispatchToProps = _require.mapDispatchToProps;
-
-var _require2 = require("../../MASAS_functions.jsx");
-
-var updateProfileInfo = _require2.updateProfileInfo;
-
-var _require3 = require("../UI/UI.jsx");
-
-var Button = _require3.Button;
-var TimePicker = _require3.TimePicker;
-
-var TeachUploadModals = {};
-
-TeachUploadModals.TeachUploadModal1 = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(React.createClass({
-	displayName: "TeachUploadModal1",
-
-	propTypes: {
-		MASASuser: React.PropTypes.string,
-		userData: React.PropTypes.object,
-		pickTimeUpload: React.PropTypes.number,
-		tipTimePickerValue: React.PropTypes.number,
-
-		toogleIsModalOpened: React.PropTypes.func,
-		handleTimePickerChange: React.PropTypes.func,
-		closeModal: React.PropTypes.func,
-		updateTipTimePickerValue: React.PropTypes.func
-	},
-
-	componentWillMount: function componentWillMount() {
-		this.sliderInitValue = this.props.tipTimePickerValue;
-		this.hasMovedSlider = false;
-	},
-
-	updateUserStep: function updateUserStep() {
-		var _this = this;
-
-		var header = "Bearer " + this.props.MASASuser;
-
-		$.ajax({
-			type: 'POST',
-			url: '/api/usersteps/',
-			headers: {
-				"Authorization": header
-			},
-			data: {
-				user: this.props.userData.url,
-				step: 5
-			},
-			success: function success() {
-				return updateProfileInfo(_this.props.toogleIsModalOpened);
-			},
-			error: function error(e) {
-				return e;
-			}
-		});
-	},
-
-	closeTip: function closeTip() {
-		var _this2 = this;
-
-		var header = "Bearer " + this.props.MASASuser;
-
-		$.ajax({
-			type: 'POST',
-			url: '/api/usersteps/',
-			headers: {
-				"Authorization": header
-			},
-			data: {
-				user: this.props.userData.url,
-				step: 5
-			},
-			success: function success() {
-				updateProfileInfo(_this2.props.closeModal);
-			},
-			error: function error() {}
-		});
-	},
-
-	render: function render() {
-		if (!this.hasMovedSlider && this.props.tipTimePickerValue !== this.sliderInitValue) this.hasMovedSlider = true;
-
-		return React.createElement(
-			"div",
-			{ className: "teach-modal--wrapper" },
-			React.createElement(
-				"p",
-				{ className: "bold" },
-				"To upload this song,"
-			),
-			React.createElement(
-				"p",
-				null,
-				"Drag the sun around the arc to select a category for your song to be discoverable from."
-			),
-			React.createElement(
-				"div",
-				{ style: { marginBottom: '2rem' } },
-				React.createElement(TimePicker, {
-					onSliderChange: this.props.updateTipTimePickerValue,
-					initialDiscover: this.props.tipTimePickerValue,
-					currentDiscover: this.props.tipTimePickerValue,
-					wrapperClassName: "teach-modal-pickTime--wrapper",
-					canvasId: "teach-modal-pickTime--canvas",
-					showHashtag: true })
-			),
-			React.createElement(
-				Button,
-				{
-					isDisabled: !this.hasMovedSlider,
-					isBigButton: false,
-					onClick: this.closeTip },
-				!this.hasMovedSlider ? "Move the sun to close this tip" : "Close tip"
-			)
-		);
-	}
-}));
-
-module.exports = TeachUploadModals;
-
-},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":389,"./containers/TeachUploadModals.jsx":400,"react":286,"react-redux":91}],395:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../UI/UI.jsx":391,"./ModalContent.jsx":394,"./containers/PickTimeUpload.jsx":400,"react":286,"react-redux":91}],396:[function(require,module,exports){
 "use strict";
 
 var _MASAS_mixins = require("../MASAS_mixins.jsx");
@@ -66040,8 +66073,8 @@ var Body = _require3.Body;
 
 var UploadSCItem = require("./UploadSCItem.jsx");
 var PickTimeUpload = require("./PickTimeUpload.jsx");
-var TeachUploadModals = require("./TeachUploadModals.jsx");
-var TeachUploadModal1 = TeachUploadModals.TeachUploadModal1;
+var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx");
+var TeachSliderModals1 = TeachSliderModals.TeachSliderModals1;
 
 var UploadSC = React.createClass({
 	displayName: "UploadSC",
@@ -66104,7 +66137,7 @@ var UploadSC = React.createClass({
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(function () {
 					_this.props.updateModalType(2);
-					_this.props.updateModalContent(React.createElement(TeachUploadModal1, null));
+					_this.props.updateModalContent(React.createElement(TeachSliderModals1, null));
 					_this.props.toogleModal();
 				}, 1000);
 			}
@@ -66272,7 +66305,7 @@ var UploadSC = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UploadSC);
 
-},{"../../MASAS_functions.jsx":300,"../MASAS_mixins.jsx":355,"../UI/UI.jsx":389,"./PickTimeUpload.jsx":393,"./TeachUploadModals.jsx":394,"./UploadSCItem.jsx":396,"./containers/UploadSC.jsx":401,"react":286,"react-redux":91}],396:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":300,"../MASAS_mixins.jsx":353,"../UI/UI.jsx":391,"./../TipModals/TeachSliderModals.jsx":377,"./PickTimeUpload.jsx":395,"./UploadSCItem.jsx":397,"./containers/UploadSC.jsx":401,"react":286,"react-redux":91}],397:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -66357,7 +66390,7 @@ var UploadSCItem = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(UploadSCItem);
 
-},{"../UI/UI.jsx":389,"./containers/UploadSCItem.jsx":402,"react":286,"react-dom":86,"react-redux":91}],397:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/UploadSCItem.jsx":402,"react":286,"react-dom":86,"react-redux":91}],398:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -66375,7 +66408,7 @@ ajaxCalls.getUserTracks = function (userPk, success, error) {
 
 module.exports = ajaxCalls;
 
-},{"jquery":33}],398:[function(require,module,exports){
+},{"jquery":33}],399:[function(require,module,exports){
 'use strict';
 
 var ModalContent = {};
@@ -66396,7 +66429,7 @@ ModalContent.mapDispatchToProps = function (dispatch) {
 
 module.exports = ModalContent;
 
-},{}],399:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 'use strict';
 
 var PickTimeUpload = {};
@@ -66442,39 +66475,6 @@ PickTimeUpload.mapDispatchToProps = function (dispatch) {
 };
 
 module.exports = PickTimeUpload;
-
-},{}],400:[function(require,module,exports){
-'use strict';
-
-var TeachUploadModals = {};
-
-TeachUploadModals.mapStateToProps = function (state) {
-	return {
-		MASASuser: state.appReducer.MASASuser,
-		userData: state.appReducer.userData,
-		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
-		tipTimePickerValue: state.uploadSCReducer.tipTimePickerValue
-	};
-};
-
-TeachUploadModals.mapDispatchToProps = function (dispatch) {
-	return {
-		toogleIsModalOpened: function toogleIsModalOpened() {
-			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
-		},
-		closeModal: function closeModal() {
-			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
-		},
-		handleTimePickerChange: function handleTimePickerChange(newDiscover) {
-			return dispatch({ type: 'HANDLE_PICK_TIME_UPLOAD', newDiscover: newDiscover });
-		},
-		updateTipTimePickerValue: function updateTipTimePickerValue(tipTimePickerValue) {
-			return dispatch({ type: 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE', tipTimePickerValue: tipTimePickerValue });
-		}
-	};
-};
-
-module.exports = TeachUploadModals;
 
 },{}],401:[function(require,module,exports){
 'use strict';
@@ -66549,7 +66549,7 @@ UploadSC.mapDispatchToProps = function (dispatch) {
 // other state updates
 module.exports = UploadSC;
 
-},{"../ajaxCalls.jsx":397}],402:[function(require,module,exports){
+},{"../ajaxCalls.jsx":398}],402:[function(require,module,exports){
 'use strict';
 
 var UploadSCItem = {};
@@ -66618,7 +66618,7 @@ ReactDOM.render(React.createElement(
         )
 ), document.getElementById("content"));
 
-},{"./SoundcloudCallback.jsx":301,"./components/App/App.jsx":302,"./components/Discover/Discover.jsx":305,"./components/Legals/LegalsHome.jsx":330,"./components/Likes/Likes.jsx":338,"./components/Login/InvitationPending.jsx":347,"./components/Login/LoginForm.jsx":348,"./components/Login/SignUp.jsx":349,"./components/Profile/Profile.jsx":363,"./components/UploadSC/UploadSC.jsx":395,"./reducers/reducers.js":416,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],404:[function(require,module,exports){
+},{"./SoundcloudCallback.jsx":301,"./components/App/App.jsx":302,"./components/Discover/Discover.jsx":305,"./components/Legals/LegalsHome.jsx":328,"./components/Likes/Likes.jsx":336,"./components/Login/InvitationPending.jsx":345,"./components/Login/LoginForm.jsx":346,"./components/Login/SignUp.jsx":347,"./components/Profile/Profile.jsx":361,"./components/UploadSC/UploadSC.jsx":396,"./reducers/reducers.js":416,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],404:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
