@@ -94,7 +94,14 @@ var LegalsHome = React.createClass({
 						</Body>
 					)
 				else 
-					return indexLinks
+					return (
+						<div className="text--wrapper">
+							<p>
+								Please, carefully read the following documents because logging in will constitute your approval of:
+							</p>
+							{ indexLinks }
+						</div>
+						)
 		}
 	}
 })

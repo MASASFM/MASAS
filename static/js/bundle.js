@@ -55535,7 +55535,16 @@ var LegalsHome = React.createClass({
 						),
 						indexLinks
 					)
-				);else return indexLinks;
+				);else return React.createElement(
+					"div",
+					{ className: "text--wrapper" },
+					React.createElement(
+						"p",
+						null,
+						"Please, carefully read the following documents because logging in will constitute your approval of:"
+					),
+					indexLinks
+				);
 		}
 	}
 });

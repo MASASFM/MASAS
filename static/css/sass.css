@@ -774,7 +774,21 @@ input[type=range].MASAS-slider {
       font-size: 0.9rem; }
     .splash-screen--wrapper .main-swiper-container .third-slide {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      justify-content: space-around; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
+          max-height: 14rem;
+          font-size: 0.8rem;
+          align-items: flex-start; }
+          .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
+            padding-bottom: 1rem; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
+          font-size: 1rem;
+          padding-bottom: 2rem; }
 
 .HomeCountdown--wrapper1 {
   display: flex;
