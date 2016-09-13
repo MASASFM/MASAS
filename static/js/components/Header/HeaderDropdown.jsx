@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/HeaderDropdown.jsx")
@@ -10,20 +9,30 @@ var { browserHistory } = require('react-router')
 var MenuLink = (props) => {
 	return (
 		<div className="menu-link" onClick={props.onClick}>
-			<img src={props.src} atl="icon"/>
+			<img src={props.src} atl="profile pic"/>
 			<Link to={props.URL}>{props.children}</Link>
 		</div>
 	)
 }
 
+MenuLink.PropTypes = {
+	onClick: React.PropTypes.func,
+	src: React.PropTypes.string,
+}
+
 var HeaderDropdown = React.createClass({
 	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		dispatch: React.PropTypes.func,
+		logout: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
 	},
 
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps: function() {
 	},
 
 	logout: function() {

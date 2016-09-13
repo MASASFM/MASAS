@@ -56993,7 +56993,6 @@ module.exports = UnsplashControls;
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -57002,26 +57001,38 @@ var _require = require("./containers/Header.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var Radium = require("radium");
+// var { goToURL } = require("../../MASAS_functions.jsx")
 
-var _require2 = require("../../MASAS_functions.jsx");
-
-var goToURL = _require2.goToURL;
-
-var Header = require("../Header/Header.jsx");
 var HeaderDropdown = require("./HeaderDropdown.jsx");
 var Link = require("../UI/Link.jsx");
 
-var _require3 = require("../UI/UI.jsx");
+var _require2 = require("../UI/UI.jsx");
 
-var Button = _require3.Button;
+var Button = _require2.Button;
 
-var _require4 = require('react-router');
+var _require3 = require('react-router');
 
-var browserHistory = _require4.browserHistory;
+var browserHistory = _require3.browserHistory;
 
 var Header = React.createClass({
 	displayName: "Header",
+
+	propTypes: {
+		pageType: React.PropTypes.number,
+		pageTitle: React.PropTypes.string,
+		user: React.PropTypes.string,
+		isPlayerBarOpened: React.PropTypes.bool,
+		backArrowFunc: React.PropTypes.func,
+		notificationText: React.PropTypes.string,
+		isAppFetching: React.PropTypes.bool,
+		songPlaying: React.PropTypes.string,
+		MASASuser: React.PropTypes.string,
+
+		onSetNavSidebarOpen: React.PropTypes.func,
+		toogleIsOpened: React.PropTypes.func,
+		goToHomepageSlide1: React.PropTypes.func,
+		closeModal: React.PropTypes.func
+	},
 
 	render: function render() {
 		var _this = this;
@@ -57160,37 +57171,12 @@ var Header = React.createClass({
 	}
 });
 
-var styles = {
-	headerContainer: {
-		border: 'solid 1px black',
-		height: '3rem',
-		backgroundColor: 'rgba(0,0,0,0.7)',
-		color: 'white',
-		margin: 0
-	},
-
-	desktopHeaderBar: {
-		visibility: 'hidden',
-
-		'@media (min-width: 700px)': {
-			visibility: 'visible'
-		}
-	},
-
-	smartphoneHeaderBar: {
-		'@media (min-width: 700px)': {
-			visibility: 'hidden'
-		}
-	}
-};
-
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../../MASAS_functions.jsx":300,"../Header/Header.jsx":315,"../UI/Link.jsx":383,"../UI/UI.jsx":391,"./HeaderDropdown.jsx":316,"./containers/Header.jsx":318,"radium":48,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],316:[function(require,module,exports){
+},{"../UI/Link.jsx":383,"../UI/UI.jsx":391,"./HeaderDropdown.jsx":316,"./containers/Header.jsx":318,"react":286,"react-redux":91,"react-router":125}],316:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -57212,7 +57198,7 @@ var MenuLink = function MenuLink(props) {
 	return React.createElement(
 		"div",
 		{ className: "menu-link", onClick: props.onClick },
-		React.createElement("img", { src: props.src, atl: "icon" }),
+		React.createElement("img", { src: props.src, atl: "profile pic" }),
 		React.createElement(
 			Link,
 			{ to: props.URL },
@@ -57221,14 +57207,25 @@ var MenuLink = function MenuLink(props) {
 	);
 };
 
+MenuLink.PropTypes = {
+	onClick: React.PropTypes.func,
+	src: React.PropTypes.string
+};
+
 var HeaderDropdown = React.createClass({
 	displayName: "HeaderDropdown",
 
-	propTypes: {},
+	propTypes: {
+		MASASuser: React.PropTypes.string,
+		userData: React.PropTypes.object,
+
+		dispatch: React.PropTypes.func,
+		logout: React.PropTypes.func
+	},
 
 	componentWillMount: function componentWillMount() {},
 
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {},
+	componentWillReceiveProps: function componentWillReceiveProps() {},
 
 	logout: function logout() {
 		this.props.logout();
@@ -57295,7 +57292,7 @@ var HeaderDropdown = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);
 
-},{"../UI/UI.jsx":391,"./containers/HeaderDropdown.jsx":319,"react":286,"react-dom":86,"react-redux":91,"react-router":125}],317:[function(require,module,exports){
+},{"../UI/UI.jsx":391,"./containers/HeaderDropdown.jsx":319,"react":286,"react-redux":91,"react-router":125}],317:[function(require,module,exports){
 "use strict";
 
 var ajaxCalls = {};
@@ -57333,13 +57330,8 @@ module.exports = ajaxCalls;
 },{"jquery":33}],318:[function(require,module,exports){
 'use strict';
 
-var ReactRedux = require("react-redux");
-
-var _require = require('react-router');
-
-var browserHistory = _require.browserHistory;
-
 var Header = {};
+
 // Which part of the Redux global state does our component want to receive as props?
 Header.mapStateToProps = function (state) {
 	return {
@@ -57375,7 +57367,7 @@ Header.mapDispatchToProps = function (dispatch) {
 
 module.exports = Header;
 
-},{"react-redux":91,"react-router":125}],319:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 'use strict';
 
 var ReactRedux = require("react-redux");
@@ -57409,11 +57401,11 @@ HeaderDropdown.mapDispatchToProps = function (dispatch) {
 
 	return {
 		dispatch: dispatch,
-		logout: logout.bind(null, dispatch),
-		getUsername: getUsername
+		logout: logout.bind(null, dispatch)
 	};
 };
 
+// getUsername: getUsername
 module.exports = HeaderDropdown;
 
 },{"../../../MASAS_functions.jsx":300,"../ajaxCalls.jsx":317,"react-redux":91,"react-router":125}],320:[function(require,module,exports){

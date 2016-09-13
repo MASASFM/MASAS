@@ -24,7 +24,7 @@ HeaderDropdown.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
 		logout: logout.bind(null, dispatch),
-		getUsername: getUsername
+		// getUsername: getUsername
 	}
 }
 

@@ -1,8 +1,5 @@
-var ReactRedux = require("react-redux")
-
-var {browserHistory} = require('react-router')
-
 var Header = {}
+
 // Which part of the Redux global state does our component want to receive as props?
 Header.mapStateToProps = function(state) {
 	return {
