@@ -11,6 +11,7 @@ var { Modal } = require("../UI/UI.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var Home = require("../Home/Home.jsx")
 var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
+var SplashScreen = require("./SplashScreen.jsx")
 
 var SC = require('soundcloud')
 var Cookie = require('js-cookie')
@@ -148,7 +149,7 @@ var App = React.createClass({
 	showSplashScreen: function() {
 		if(this.props.MASASuser === "") {
 			this.props.toogleModal()
-			this.props.updateModalContent(<div>HEYY</div>, 3)
+			this.props.updateModalContent(<SplashScreen />, 3)
 		}
 	},
 

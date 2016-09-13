@@ -77,13 +77,15 @@
     opacity: 1; } }
 @keyframes fadeout {
   from {
+    z-index: 4;
     opacity: 1; }
   25% {
-    opacity: 1; }
+    opacity: 0; }
   75% {
     opacity: 0; }
   to {
-    opacity: 0; } }
+    opacity: 0;
+    z-index: 4; } }
 @keyframes center-play-button {
   from {
     right: 2rem; }
@@ -565,17 +567,14 @@ input[type=range].MASAS-slider {
   top: 0;
   bottom: 0;
   background-color: black; }
-  .MASAS-modal.type3 .close-icon {
-    height: 1rem;
+  .MASAS-modal.type3 .modal-type-3--wrapper {
     display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: row;
     align-items: center;
-    text-transform: uppercase;
-    font-family: Lato-Semibold;
-    opacity: 0.5;
-    font-size: 0.7rem;
-    letter-spacing: 0.12rem; }
-    .MASAS-modal.type3 .close-icon img {
-      margin-right: 1rem; }
+    justify-content: center;
+    position: relative; }
 
 .MASAS-modal {
   position: fixed;
@@ -666,6 +665,105 @@ input[type=range].MASAS-slider {
   .RankingInfoIcon--wrapper .line .circle {
     stroke: white;
     fill: white; }
+
+.splash-screen--wrapper.login::before {
+  opacity: 1;
+  z-index: 3; }
+
+.splash-screen--wrapper {
+  display: flex;
+  flex: 1;
+  height: calc(100% - 2 * 4rem);
+  justify-content: space-between;
+  padding: 4rem 4rem;
+  align-items: center;
+  background-image: url(https://hd.unsplash.com/photo-1453791052107-5c843da62d97);
+  background-size: cover;
+  position: relative; }
+  .splash-screen--wrapper .swiper-slide {
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: transparent;
+    color: white;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; }
+  .splash-screen--wrapper .swiper-pagination-bullet {
+    opacity: 0.5;
+    border: 1px solid white; }
+  .splash-screen--wrapper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: white; }
+  .splash-screen--wrapper::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.3;
+    transition: opacity 1s linear;
+    content: ""; }
+  .splash-screen--wrapper .main-swiper-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 80%;
+    max-width: 60rem;
+    max-height: 40rem; }
+    .splash-screen--wrapper .main-swiper-container .first-slide {
+      display: flex;
+      justify-content: space-between; }
+      .splash-screen--wrapper .main-swiper-container .first-slide img {
+        height: 70%;
+        z-index: 2; }
+      .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
+        flex: 0.7;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        z-index: 2; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
+          font-family: Anders;
+          font-size: 2rem;
+          border-bottom: 0.5rem solid rgba(255, 255, 255, 0.5);
+          padding-bottom: 1rem;
+          display: table;
+          margin-left: auto;
+          margin-right: auto; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
+          width: 500px;
+          height: 300px;
+          margin: 20px auto; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
+          display: flex;
+          justify-content: space-around; }
+    .splash-screen--wrapper .main-swiper-container .login-content {
+      z-index: -2;
+      animation: fadeout 2s linear;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .splash-screen--wrapper .main-swiper-container .login-content.fade-in {
+      animation: fadein-menu 1s linear;
+      z-index: 4; }
 
 .HomeCountdown--wrapper1 {
   display: flex;

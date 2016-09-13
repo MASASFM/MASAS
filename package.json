@@ -28,10 +28,12 @@
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
     "react-sidebar": "^2.1.1",
+    "react-swipe": "^5.0.3",
     "redux": "^3.0.6",
     "redux-devtools": "^3.0.1",
     "redux-thunk": "^2.0.1",
-    "soundcloud": "^3.1.0"
+    "soundcloud": "^3.1.0",
+    "swipe-js-iso": "^2.0.3"
   },
   "devDependencies": {
     "babel": "^6.5.2",

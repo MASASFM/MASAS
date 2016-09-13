@@ -74,9 +74,7 @@ let Modal = React.createClass({
 			return (
 				<div className={ "MASAS-modal type3" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<div className="modal-type-3--wrapper">
-						<div className="modal-content">
-								{ this.props.children }
-						</div>
+						{ this.props.children }
 					</div>
 				</div>
 				)
