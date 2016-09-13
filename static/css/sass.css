@@ -672,9 +672,8 @@ input[type=range].MASAS-slider {
 .splash-screen--wrapper {
   display: flex;
   flex: 1;
-  height: calc(100% - 2 * 4rem);
+  height: 100%;
   justify-content: space-between;
-  padding: 4rem 4rem;
   align-items: center;
   background-image: url(https://hd.unsplash.com/photo-1453791052107-5c843da62d97);
   background-size: cover;
@@ -718,25 +717,27 @@ input[type=range].MASAS-slider {
     opacity: 0.7; }
   .splash-screen--wrapper .main-swiper-container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 60%;
-    width: 80%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translate(0%, 0%);
     max-width: 60rem;
-    max-height: 40rem; }
+    max-height: 400rem; }
     .splash-screen--wrapper .main-swiper-container .first-slide {
       display: flex;
       justify-content: space-between; }
       .splash-screen--wrapper .main-swiper-container .first-slide img {
         height: 70%;
-        z-index: 2; }
+        z-index: 2;
+        display: none; }
       .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
         flex: 0.7;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
+        width: 100%;
         z-index: 2; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
           font-family: Anders;
@@ -747,31 +748,36 @@ input[type=range].MASAS-slider {
           margin-left: auto;
           margin-right: auto; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
-          width: 500px;
-          height: 300px;
-          margin: 20px auto; }
+          width: 200px;
+          margin: 0px auto;
+          height: 100%; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
           display: flex;
-          justify-content: space-around; }
-    .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
-      height: 15rem; }
-    .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
-      z-index: -2;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: column; }
-      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
+          justify-content: space-around;
+          height: 4rem; }
+    .splash-screen--wrapper .main-swiper-container .second-slide {
+      max-height: 70%;
+      margin: 6rem 0; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
+        height: 15rem; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
+        z-index: -2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
+          font-size: 0.9rem;
+          opacity: 0.8; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+        cursor: pointer;
         font-size: 0.9rem;
-        opacity: 0.8; }
-    .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
-      cursor: pointer;
-      font-size: 0.9rem; }
+        max-width: 80vw; }
     .splash-screen--wrapper .main-swiper-container .third-slide {
       display: flex;
       flex-direction: column;
@@ -795,6 +801,30 @@ input[type=range].MASAS-slider {
           font-size: 1rem;
           padding-bottom: 2rem; }
 
+@media screen and (min-width: 992px) {
+  .splash-screen--wrapper {
+    height: calc(100% - 2 * 4rem);
+    padding: 4rem 4rem; }
+    .splash-screen--wrapper .main-swiper-container {
+      top: 50%;
+      left: 50%;
+      height: 60%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+      max-height: 40rem; }
+      .splash-screen--wrapper .main-swiper-container .first-slide img {
+        display: block; }
+      .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
+        width: 500px;
+        height: 300px;
+        margin: 20px auto; }
+      .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
+        height: auto; }
+      .splash-screen--wrapper .main-swiper-container .second-slide {
+        max-height: initial;
+        margin: initial; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+          max-width: initial; } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
