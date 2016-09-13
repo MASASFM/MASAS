@@ -1,19 +1,19 @@
 // NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
 
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 let Modal = React.createClass({
 	propTypes: {
 		isOpened: React.PropTypes.bool,			// is modal shown
 		closeModalFunc: React.PropTypes.func, 		// what to execute when clicking on close modal area (arrow or overlay)
 		type: React.PropTypes.number, 			// what type the modal is
+		children: React.PropTypes.node,
 	},
 
 	getDefaultProps: function() {
 		return {
 			isOpened: false,	
-			closeModalFunc: () => console.log('no closing function attached to modal'),
+			closeModalFunc: () => {},
 			type: 1,
 		}
 	},
@@ -57,6 +57,20 @@ let Modal = React.createClass({
 				</div>
 				)
 		else if(this.props.type === 2)
+			return (
+				<div className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
+					<div className="modal-type-2--wrapper">
+						<div className="close-icon">
+							<img onClick={ this.props.closeModalFunc } src="/static/img/MASAS_close_icon.svg" alt="close modal" /> 
+							dismiss tips
+						</div>
+						<div className="">
+								{ this.props.children }
+						</div>
+					</div>
+				</div>
+				)
+		else if(this.props.type === 3)
 			return (
 				<div className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
 					<div className="modal-type-2--wrapper">
