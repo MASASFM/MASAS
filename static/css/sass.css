@@ -3181,8 +3181,8 @@ input[type=range].MASAS-slider {
           z-index: 4; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
             background-color: rgba(0, 0, 0, 0.5);
-            height: 17rem;
-            width: 17rem;
+            height: 13rem;
+            width: 13rem;
             position: relative;
             cursor: pointer; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button {
@@ -3201,8 +3201,8 @@ input[type=range].MASAS-slider {
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .player-button.show-play-button {
               display: flex; }
             .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-              height: 17rem;
-              width: 17rem; }
+              height: 13rem;
+              width: 13rem; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing:hover .player-button, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing:hover .player-button {
             display: flex; }
           .discover--wrapper .multi-page--wrapper .page1 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper, .discover--wrapper .multi-page--wrapper .page2 .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
