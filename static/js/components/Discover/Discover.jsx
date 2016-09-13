@@ -81,17 +81,7 @@ var Discover = React.createClass({
 		}
 	},
 
-	componentWillReceiveProps: function(nextProps) {
-		const target = "#MASAS-modal"
-		if(nextProps.modalType === 2 && nextProps.isModalOpened) {
-			$(target).mousemove((event) => {
-				const sliderValue = (2*event.pageX-$(window).width()/2)/$(window).width() *100
-				this.setState({ sliderValue })
-			})
-		} else if(!nextProps.isModalOpened || nextProps.modalType === 1) {			
-			$(target).off('mousemove')
-			this.setState({ sliderValue: -1 })
-		}
+	componentWillReceiveProps: function() {
 	},
 
 	renderForUITip: function() {

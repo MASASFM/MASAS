@@ -174,7 +174,8 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" })
 					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" })
 
-					browserHistory.push('/discover')
+					if(window.location.pathname !== "/discover")
+						browserHistory.push('/discover')
 			} else {
 				// show terms and conditions form
 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx")

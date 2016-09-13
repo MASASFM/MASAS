@@ -55104,7 +55104,7 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
 
-				browserHistory.push('/discover');
+				if (window.location.pathname !== "/discover") browserHistory.push('/discover');
 			} else {
 				// show terms and conditions form
 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
@@ -56025,20 +56025,7 @@ var Discover = React.createClass({
 		}
 	},
 
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		var _this = this;
-
-		var target = "#MASAS-modal";
-		if (nextProps.modalType === 2 && nextProps.isModalOpened) {
-			$(target).mousemove(function (event) {
-				var sliderValue = (2 * event.pageX - $(window).width() / 2) / $(window).width() * 100;
-				_this.setState({ sliderValue: sliderValue });
-			});
-		} else if (!nextProps.isModalOpened || nextProps.modalType === 1) {
-			$(target).off('mousemove');
-			this.setState({ sliderValue: -1 });
-		}
-	},
+	componentWillReceiveProps: function componentWillReceiveProps() {},
 
 	renderForUITip: function renderForUITip() {
 
@@ -56069,7 +56056,7 @@ var Discover = React.createClass({
 	},
 
 	render: function render() {
-		var _this2 = this;
+		var _this = this;
 
 		var sliderInitDiscover = null;
 		if (this.props.MASAS_songInfo) sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval);
@@ -56080,7 +56067,7 @@ var Discover = React.createClass({
 		// changing state in this.checkUserStep, delaying it until after this.render()
 
 		if (this.props.songPlaying) window.setTimeout(function () {
-			return _this2.checkUserStep();
+			return _this.checkUserStep();
 		}, 500);
 
 		// this.renderForUITip()
@@ -56381,7 +56368,7 @@ var Footer = React.createClass({
 		// USE THIS LIFECYCLE FUNCTION TO UPDATE MODAL CONTENT
 		var that = this;
 		this.props.updateModalContent(React.createElement(FooterModal, {
-			isSpamModal: modalType === 1 ? true : false,
+			isSpamModal: modalType === 1,
 			isCopyrightModal: modalType === 2 ? true : false,
 			isSuggestTimeModal: modalType === 3 ? true : false
 		}));

@@ -21,6 +21,7 @@ var Footer = React.createClass({
 
 
 	componentWillMount: function() {
+
 		// init progress bar width
 		var progressBarWidth = 0
 
@@ -68,7 +69,7 @@ var Footer = React.createClass({
 		var that = this
 		this.props.updateModalContent(
 			<FooterModal 
-				isSpamModal={ modalType === 1 ? true : false}
+				isSpamModal={ modalType === 1}
 				isCopyrightModal={ modalType === 2 ? true : false}
 				isSuggestTimeModal={ modalType === 3 ? true : false}
 				/>
