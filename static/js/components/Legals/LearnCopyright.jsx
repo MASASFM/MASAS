@@ -1,7 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
-
-var LegalsContent = require('./LegalsContent.jsx')
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -20,9 +17,9 @@ var LearnCopyright = React.createClass({
 
 	render: function() {
 		return (
-			<LegalsContent>
+			<div className="legals-content">
 				LearnCopyright
-			</LegalsContent>
+			</div>
 		)
 	}
 })

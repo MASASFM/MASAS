@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 // var LegalsContent = require('./LegalsContent.jsx')
 
@@ -20,7 +19,7 @@ var Terms = React.createClass({
 
 	render: function() {
 		return (
-			<div>
+			<div className="legals-content">
 				<h3>Welcome to</h3>
 
 

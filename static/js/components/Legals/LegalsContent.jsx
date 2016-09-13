@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsContent.jsx")
@@ -8,6 +7,13 @@ var { Body } = require("../UI/UI.jsx")
 
 var LegalsContent = React.createClass({
 	propTypes: {
+		splashScreenLegals: React.PropTypes.bool,
+	},
+
+	getDefaultProps: function() {
+		return {
+			splashScreenLegals: false
+		}
 	},
 
 	componentWillMount: function() {
@@ -15,18 +21,25 @@ var LegalsContent = React.createClass({
 	},
 
 	render: function() {
-		return (
-			<Body>
-				<div className="legals-content--wrapper">
-					<div className="legals-content">
-						{ this.props.children }
-					</div>
-					<div onClick={ this.props.goToHome } className="back-icon">
-						<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
-					</div>
+		const content = (
+			<div className="legals-content--wrapper">
+				<div className="legals-content">
+					{ this.props.children }
 				</div>
-			</Body>
-		)
+				<div onClick={ this.props.goToHome } className="back-icon">
+					<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
+				</div>
+			</div>
+			)
+
+		if(this.props.splashScreenLegals)
+			return content
+		else
+			return (
+				<Body>
+					{ content }	
+				</Body>
+			)
 	}
 })
 
