@@ -1,17 +1,13 @@
 // Thomass-MacBook-Pro-2:frontend thomasbinetruy$ watchify index.jsx -t babelify -o "../node_modules/exorcist/bin/exorcist.js  bundle.js.map > bundle.js" -d
 
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/App.jsx")
 
-var Radium = require("radium")
-var StyleRoot = Radium.StyleRoot
-
 var Header = require("../Header/Header.jsx")
 
-var { Modal, Body } = require("../UI/UI.jsx")
+var { Modal } = require("../UI/UI.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var Home = require("../Home/Home.jsx")
 var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
@@ -23,6 +19,25 @@ var Cookie = require('js-cookie')
 
 var App = React.createClass({
 	propTypes: {
+		finishProcessingAuthCookie: React.PropTypes.func,
+
+		// redux
+		children: React.PropTypes.element,
+		navSiderbarOpen: React.PropTypes.bool,
+		processingAuthCookie: React.PropTypes.bool,
+		isModalOpened: React.PropTypes.bool,
+		modalContent: React.PropTypes.element,
+		modalType: React.PropTypes.number,
+		MASASuser: React.PropTypes.string,
+
+		toogleModal: React.PropTypes.func,
+		onSetNavbar: React.PropTypes.func,
+		logInWithToken: React.PropTypes.func,
+		forceRender: React.PropTypes.func,
+		showAppFetchingBar: React.PropTypes.func,
+		hideAppFetchingBar: React.PropTypes.func,
+		updateUnsplashArtist: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -70,8 +85,7 @@ var App = React.createClass({
 					this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular)
 				}
 			},
-			error: (e) => {
-				console.log(e)
+			error: () => {
 			}
 		})
 	},
@@ -127,6 +141,15 @@ var App = React.createClass({
 			remainingDuration: true,
 			toggleDuration: true
 		})
+
+		this.showSplashScreen()
+	},
+
+	showSplashScreen: function() {
+		if(this.props.MASASuser === "") {
+			this.props.toogleModal()
+			this.props.updateModalContent(<div>HEYY</div>, 3)
+		}
 	},
 
 	getUserTokenFromCookie: function() {
@@ -148,7 +171,7 @@ var App = React.createClass({
 								{this.props.children ? 
 										this.props.children
 									:
-										 <Home />
+										<Home />
 								}
 							</div>
 						<Footer />

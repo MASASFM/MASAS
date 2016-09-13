@@ -20,6 +20,9 @@ var Header = React.createClass({
 		isAppFetching: React.PropTypes.bool,
 		songPlaying: React.PropTypes.string,
 		MASASuser: React.PropTypes.string,
+		// isModalOpened: React.PropTypes.bool,
+		// toogleModal: React.PropTypes.func,
+		// updateModalContent: React.PropTypes.func,
 
 		onSetNavSidebarOpen: React.PropTypes.func,
 		toogleIsOpened: React.PropTypes.func,

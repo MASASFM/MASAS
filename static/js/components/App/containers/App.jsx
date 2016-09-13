@@ -14,6 +14,7 @@ App.mapStateToProps = function(state) {
 		isModalOpened: state.appReducer.isModalOpened,
 		modalContent: state.appReducer.modalContent,
 		modalType: state.appReducer.modalType,
+		MASASuser: state.appReducer.MASASuser,
 	}
 }
 
@@ -21,14 +22,15 @@ App.mapStateToProps = function(state) {
 App.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
-		onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
-		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+		// onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
+		// onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
+		// onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
 		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
 		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'}),
 		showAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_TRUE' }),
 		hideAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_FALSE' }),
 		updateUnsplashArtist: (name, username, url) => dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url }),
+		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
 	}
 }
 

@@ -29,9 +29,6 @@ var HeaderDropdown = React.createClass({
 		logout: React.PropTypes.func,
 	},
 
-	componentWillMount: function() {
-	},
-
 	componentWillReceiveProps: function() {
 	},
 
@@ -40,7 +37,7 @@ var HeaderDropdown = React.createClass({
 	},
 
 	render: function() {
-		if (this.props.MASASuser) {
+		if (this.props.MASASuser !== "") {
 			return (
 				<div className="dropdown--wrapper">
 					<div className="username--wrapper">

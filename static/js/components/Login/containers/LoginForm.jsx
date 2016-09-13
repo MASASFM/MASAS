@@ -27,15 +27,12 @@ var loginFB = () => {
 		FB.login( (response) => {
 			if (response.status === 'connected') {
 				// Logged into your app and Facebook.
-				console.log(FB.getAccessToken())
 				convertToken(FB.getAccessToken())
 			} else if (response.status === 'not_authorized') {
 				// The person is logged into Facebook, but not your app.
-				console.log('Login failed')
 			} else {
 				// The person is not logged into Facebook, so we're not sure if
 				// they are logged into this app or not.
-				console.log('Login failed')
 			}
 		})
 }
