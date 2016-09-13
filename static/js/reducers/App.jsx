@@ -15,6 +15,7 @@ exportVar.defaultState = {
 	isModalOpened: false,				// (bool) is modal opened
 	modalContent: <div></div>, 			// (obj) modal content
 	modalType: 1,					// (int) how the modal looks like. 1 for default
+	splashScreenPage: 0,				// (int) main swiper page on login splash screen
 }
 
 const { defaultState } = exportVar
@@ -22,6 +23,11 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'CHANGE_SLASH_SCREEN_PAGE':
+			return {
+				...state,
+				splashScreenPage: action.splashScreenPage,
+			}
 		case 'UPDATE_USER_DATA':
 			return {
 				...state,

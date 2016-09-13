@@ -64,9 +64,6 @@ var Discover = React.createClass({
 			const didUserSeeSecondTip = usersteps.filter(({ step }) => step === 6).length ? true : false
 
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
-				// this.props.updateModalType(2)
-				
-
 				this.props.updateModalContent(
 					<TeachSliderModal1 
 						title="Welcome to Discover,"
@@ -74,7 +71,6 @@ var Discover = React.createClass({
 				, 2)
 				this.props.toogleModal()
 			} else if(!didUserDismissTips && !didUserSeeSecondTip) {
-				// this.props.updateModalType(2)
 				this.props.updateModalContent(<TeachDiscoverModal2 />, 2)
 				this.props.toogleModal()
 			}
@@ -115,9 +111,7 @@ var Discover = React.createClass({
 
 		// changing state in this.checkUserStep, delaying it until after this.render()
 		if(this.props.songPlaying)
-			window.setTimeout(() => this.checkUserStep(), 500)
-		
-		// this.renderForUITip()
+			window.setTimeout(() => this.checkUserStep(), 3000)
 
 		return (
 			<div className="discover--wrapper">

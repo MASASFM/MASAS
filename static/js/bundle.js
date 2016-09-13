@@ -52486,11 +52486,16 @@ var _require2 = require("../UI/UI.jsx");
 var Button = _require2.Button;
 
 var LoginForm = require("../Login/LoginForm.jsx");
+var Legals = require("../Legals/LegalsHome.jsx");
 
 var SplashScreen = React.createClass({
 	displayName: "SplashScreen",
 
-	propTypes: {},
+	propTypes: {
+		splashScreenPage: React.PropTypes.number,
+
+		updateSplashScreenPage: React.PropTypes.func
+	},
 
 	getInitialState: function getInitialState() {
 		return {
@@ -52499,6 +52504,8 @@ var SplashScreen = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
+		var _this = this;
+
 		this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
 			pagination: '.swiper-pagination',
 			paginationClickable: true,
@@ -52509,12 +52516,11 @@ var SplashScreen = React.createClass({
 		this.mainSwiper = new Swiper('.main-swiper-container', {
 			noSwiping: true,
 			allowSwipeToPrev: false,
-			allowSwipeToNext: false
+			allowSwipeToNext: false,
+			onSlideChangeStart: function onSlideChangeStart(instance) {
+				_this.props.updateSplashScreenPage(instance.activeIndex);
+			}
 		});
-	},
-
-	componentWillUnmount: function componentWillUnmount() {
-		console.log('yay');
 	},
 
 	slideNext: function slideNext() {
@@ -52526,13 +52532,22 @@ var SplashScreen = React.createClass({
 	},
 
 	render: function render() {
+		var styles = { swiperContainer: {} };
+
+		if (this.mainSwiper && this.props.splashScreenPage === 2) styles = {
+			swiperContainer: {
+				height: '80%'
+			}
+		};
 
 		return React.createElement(
 			"div",
 			{ className: "splash-screen--wrapper " + (this.state.login ? "login" : "") },
 			React.createElement(
 				"div",
-				{ className: "swiper-container main-swiper-container" },
+				{
+					className: "swiper-container main-swiper-container",
+					style: styles.swiperContainer },
 				React.createElement(
 					"div",
 					{ className: "swiper-wrapper main-swiper-wrapper" },
@@ -52639,11 +52654,7 @@ var SplashScreen = React.createClass({
 					React.createElement(
 						"div",
 						{ className: "swiper-slide third-slide" },
-						React.createElement(
-							"h1",
-							null,
-							"terms"
-						),
+						React.createElement(Legals, { splashScreenLegals: true }),
 						React.createElement(
 							Button,
 							{
@@ -52660,7 +52671,7 @@ var SplashScreen = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
 
-},{"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./containers/SplashScreen.jsx":257,"react":238,"react-redux":43}],256:[function(require,module,exports){
+},{"../Legals/LegalsHome.jsx":282,"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./containers/SplashScreen.jsx":257,"react":238,"react-redux":43}],256:[function(require,module,exports){
 'use strict';
 
 // var ReactRedux = require("react-redux")
@@ -52720,23 +52731,23 @@ App.mapDispatchToProps = function (dispatch) {
 module.exports = App;
 
 },{"../../../MASAS_functions.jsx":252}],257:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var SplashScreen = {};
 
 // Which part of the Redux global state does our component want to receive as props?
 SplashScreen.mapStateToProps = function (state) {
-	return {};
+	return {
+		splashScreenPage: state.appReducer.splashScreenPage
+	};
 };
 
 // Which action creators does it want to receive by props?
 SplashScreen.mapDispatchToProps = function (dispatch) {
 	return {
-		// higher level state updates
-
-		// page state updates
-
-		// other state updates
+		updateSplashScreenPage: function updateSplashScreenPage(splashScreenPage) {
+			return dispatch({ type: 'CHANGE_SLASH_SCREEN_PAGE', splashScreenPage: splashScreenPage });
+		}
 	};
 };
 
@@ -53126,14 +53137,11 @@ var Discover = React.createClass({
 			}).length ? true : false;
 
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
-				// this.props.updateModalType(2)
-
 				this.props.updateModalContent(React.createElement(TeachSliderModal1, {
 					title: "Welcome to Discover,",
 					paragraph: "Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." }), 2);
 				this.props.toogleModal();
 			} else if (!didUserDismissTips && !didUserSeeSecondTip) {
-				// this.props.updateModalType(2)
 				this.props.updateModalContent(React.createElement(TeachDiscoverModal2, null), 2);
 				this.props.toogleModal();
 			}
@@ -53183,9 +53191,7 @@ var Discover = React.createClass({
 
 		if (this.props.songPlaying) window.setTimeout(function () {
 			return _this.checkUserStep();
-		}, 500);
-
-		// this.renderForUITip()
+		}, 3000);
 
 		return React.createElement(
 			"div",
@@ -55206,9 +55212,6 @@ module.exports = Home;
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -55228,8 +55231,8 @@ var EnforcementGuidelines = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			"EnforcementGuidelines"
 		);
 	}
@@ -55237,13 +55240,10 @@ var EnforcementGuidelines = React.createClass({
 
 module.exports = EnforcementGuidelines;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],279:[function(require,module,exports){
+},{"react":238}],279:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -55263,8 +55263,8 @@ var Guidelines = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			"Guidelines"
 		);
 	}
@@ -55272,13 +55272,10 @@ var Guidelines = React.createClass({
 
 module.exports = Guidelines;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],280:[function(require,module,exports){
+},{"react":238}],280:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -55298,8 +55295,8 @@ var LearnCopyright = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			"LearnCopyright"
 		);
 	}
@@ -55307,11 +55304,10 @@ var LearnCopyright = React.createClass({
 
 module.exports = LearnCopyright;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],281:[function(require,module,exports){
+},{"react":238}],281:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -55327,41 +55323,50 @@ var Body = _require2.Body;
 var LegalsContent = React.createClass({
 	displayName: "LegalsContent",
 
-	propTypes: {},
+	propTypes: {
+		splashScreenLegals: React.PropTypes.bool
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			splashScreenLegals: false
+		};
+	},
 
 	componentWillMount: function componentWillMount() {
 		this.props.updateTitle('Legals', this.props.goToHome); // 0 = menu icon; 1 = arrow back
 	},
 
 	render: function render() {
-		return React.createElement(
-			Body,
-			null,
+		var content = React.createElement(
+			"div",
+			{ className: "legals-content--wrapper" },
 			React.createElement(
 				"div",
-				{ className: "legals-content--wrapper" },
-				React.createElement(
-					"div",
-					{ className: "legals-content" },
-					this.props.children
-				),
-				React.createElement(
-					"div",
-					{ onClick: this.props.goToHome, className: "back-icon" },
-					React.createElement("img", { src: "/static/img/MASAS_arrow_left.svg", alt: "back" })
-				)
+				{ className: "legals-content" },
+				this.props.children
+			),
+			React.createElement(
+				"div",
+				{ onClick: this.props.goToHome, className: "back-icon" },
+				React.createElement("img", { src: "/static/img/MASAS_arrow_left.svg", alt: "back" })
 			)
+		);
+
+		if (this.props.splashScreenLegals) return content;else return React.createElement(
+			Body,
+			null,
+			content
 		);
 	}
 });
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LegalsContent);
 
-},{"../UI/UI.jsx":345,"./containers/LegalsContent.jsx":287,"react":238,"react-dom":38,"react-redux":43}],282:[function(require,module,exports){
+},{"../UI/UI.jsx":345,"./containers/LegalsContent.jsx":287,"react":238,"react-redux":43}],282:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -55392,7 +55397,15 @@ var Rest = require("./Rest.jsx");
 var LegalsHome = React.createClass({
 	displayName: "LegalsHome",
 
-	propTypes: {},
+	propTypes: {
+		splashScreenLegals: React.PropTypes.bool
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			splashScreenLegals: false
+		};
+	},
 
 	componentWillMount: function componentWillMount() {
 		this.props.updateTitle('Legals', '0'); // 0 = menu icon; 1 = arrow back
@@ -55403,27 +55416,98 @@ var LegalsHome = React.createClass({
 	},
 
 	render: function render() {
+		var indexLinks = React.createElement(
+			"div",
+			{ className: "legal-links--wrapper" },
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 1), className: "legal-links" },
+				"Terms of Uses"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 2), className: "legal-links" },
+				"Community Guidelines"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 3), className: "legal-links" },
+				"Privacy Policy"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 4), className: "legal-links" },
+				"Learn About Copyrights"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 5), className: "legal-links" },
+				"Report Copyright Infringement"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 6), className: "legal-links" },
+				"Law Enforcement Guidelines"
+			),
+			React.createElement(
+				"span",
+				{ onClick: this.props.goToPage.bind(this, 7), className: "legal-links" },
+				"Law Enforcement - User Information - Requests"
+			)
+		);
+
 		switch (this.props.pageNumber) {
 			case 1:
 				return React.createElement(
 					LegalsContent,
-					null,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
 					React.createElement(Terms, null)
 				);
 			case 2:
-				return React.createElement(Guidelines, null);
-			case 3:
-				return React.createElement(Privacy, null);
-			case 4:
-				return React.createElement(LearnCopyright, null);
-			case 5:
-				return React.createElement(ReportCopyright, null);
-			case 6:
-				return React.createElement(EnforcementGuidelines, null);
-			case 7:
-				return React.createElement(Rest, null);
-			default:
 				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(Guidelines, null)
+				);
+			case 3:
+				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(Privacy, null)
+				);
+			case 4:
+				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(LearnCopyright, null)
+				);
+			case 5:
+				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(ReportCopyright, null)
+				);
+			case 6:
+				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(EnforcementGuidelines, null)
+				);
+			case 7:
+				return React.createElement(
+					LegalsContent,
+					{
+						splashScreenLegals: this.props.splashScreenLegals },
+					React.createElement(Rest, null)
+				);
+			default:
+				if (!this.props.splashScreenLegals) return React.createElement(
 					Body,
 					null,
 					React.createElement(
@@ -55449,60 +55533,19 @@ var LegalsHome = React.createClass({
 								"Below are information that should be read be all users:"
 							)
 						),
-						React.createElement(
-							"div",
-							{ className: "links--wrapper" },
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 1), className: "legal-links" },
-								"Terms of Uses"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 2), className: "legal-links" },
-								"Community Guidelines"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 3), className: "legal-links" },
-								"Privacy Policy"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 4), className: "legal-links" },
-								"Learn About Copyrights"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 5), className: "legal-links" },
-								"Report Copyright Infringement"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 6), className: "legal-links" },
-								"Law Enforcement Guidelines"
-							),
-							React.createElement(
-								"span",
-								{ onClick: this.props.goToPage.bind(this, 7), className: "legal-links" },
-								"Law Enforcement - User Information - Requests"
-							)
-						)
+						indexLinks
 					)
-				);
+				);else return indexLinks;
 		}
 	}
 });
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LegalsHome);
 
-},{"../UI/UI.jsx":345,"./EnforcementGuidelines.jsx":278,"./Guidelines.jsx":279,"./LearnCopyright.jsx":280,"./LegalsContent.jsx":281,"./Privacy.jsx":283,"./ReportCopyright.jsx":284,"./Rest.jsx":285,"./Terms.jsx":286,"./containers/LegalsHome.jsx":288,"react":238,"react-dom":38,"react-redux":43}],283:[function(require,module,exports){
+},{"../UI/UI.jsx":345,"./EnforcementGuidelines.jsx":278,"./Guidelines.jsx":279,"./LearnCopyright.jsx":280,"./LegalsContent.jsx":281,"./Privacy.jsx":283,"./ReportCopyright.jsx":284,"./Rest.jsx":285,"./Terms.jsx":286,"./containers/LegalsHome.jsx":288,"react":238,"react-redux":43}],283:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -55522,8 +55565,8 @@ var Privacy = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			React.createElement(
 				"h3",
 				null,
@@ -56284,13 +56327,10 @@ var Privacy = React.createClass({
 
 module.exports = Privacy;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],284:[function(require,module,exports){
+},{"react":238}],284:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -56310,8 +56350,8 @@ var ReportCopyright = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			"ReportCopyright"
 		);
 	}
@@ -56319,13 +56359,10 @@ var ReportCopyright = React.createClass({
 
 module.exports = ReportCopyright;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],285:[function(require,module,exports){
+},{"react":238}],285:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var LegalsContent = require('./LegalsContent.jsx');
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -56345,8 +56382,8 @@ var Rest = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			LegalsContent,
-			null,
+			"div",
+			{ className: "legals-content" },
 			React.createElement(
 				"h3",
 				null,
@@ -56538,11 +56575,10 @@ var Rest = React.createClass({
 
 module.exports = Rest;
 
-},{"./LegalsContent.jsx":281,"react":238,"react-dom":38}],286:[function(require,module,exports){
+},{"react":238}],286:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 // var LegalsContent = require('./LegalsContent.jsx')
 
@@ -56565,7 +56601,7 @@ var Terms = React.createClass({
 	render: function render() {
 		return React.createElement(
 			"div",
-			null,
+			{ className: "legals-content" },
 			React.createElement(
 				"h3",
 				null,
@@ -57466,7 +57502,7 @@ var Terms = React.createClass({
 
 module.exports = Terms;
 
-},{"react":238,"react-dom":38}],287:[function(require,module,exports){
+},{"react":238}],287:[function(require,module,exports){
 'use strict';
 
 var LegalsContent = {};
@@ -63756,9 +63792,10 @@ exportVar.defaultState = {
 	isAppFetching: false, // (bool)
 	isModalOpened: false, // (bool) is modal opened
 	modalContent: React.createElement('div', null), // (obj) modal content
-	modalType: 1 };
+	modalType: 1, // (int) how the modal looks like. 1 for default
+	splashScreenPage: 0 };
 
-// (int) how the modal looks like. 1 for default
+// (int) main swiper page on login splash screen
 var defaultState = exportVar.defaultState;
 
 exportVar.appReducer = function () {
@@ -63766,6 +63803,10 @@ exportVar.appReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'CHANGE_SLASH_SCREEN_PAGE':
+			return _extends({}, state, {
+				splashScreenPage: action.splashScreenPage
+			});
 		case 'UPDATE_USER_DATA':
 			return _extends({}, state, {
 				userData: _extends({}, state.userData, action.userData)

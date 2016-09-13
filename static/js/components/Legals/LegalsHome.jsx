@@ -56,22 +56,22 @@ var LegalsHome = React.createClass({
 					splashScreenLegals={ this.props.splashScreenLegals}><Terms /></LegalsContent>
 			case 2:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><Guidelines /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><Guidelines /></LegalsContent>
 			case 3:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><Privacy /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><Privacy /></LegalsContent>
 			case 4:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><LearnCopyright /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><LearnCopyright /></LegalsContent>
 			case 5:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><ReportCopyright /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><ReportCopyright /></LegalsContent>
 			case 6:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><EnforcementGuidelines /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><EnforcementGuidelines /></LegalsContent>
 			case 7:
 				return <LegalsContent
-					splashScreenLegals={ this.props.splashScreenLegals}>><Rest /></LegalsContent>
+					splashScreenLegals={ this.props.splashScreenLegals}><Rest /></LegalsContent>
 			default:
 				if(!this.props.splashScreenLegals)
 					return (

@@ -6,10 +6,14 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/SplashScreen
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
+var Legals = require("../Legals/LegalsHome.jsx")
 
 
 var SplashScreen = React.createClass({
 	propTypes: {
+		splashScreenPage: React.PropTypes.number,
+
+		updateSplashScreenPage: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -30,11 +34,10 @@ var SplashScreen = React.createClass({
 			noSwiping: true,
 			allowSwipeToPrev: false,
 			allowSwipeToNext: false,
+			onSlideChangeStart: (instance) => {
+				this.props.updateSplashScreenPage(instance.activeIndex)
+			}
 		})
-	},
-
-	componentWillUnmount: function() {
-		console.log('yay')
 	},
 
 	slideNext: function() {
@@ -46,10 +49,20 @@ var SplashScreen = React.createClass({
 	},
 
 	render: function() {
+		var styles = { swiperContainer: {} }
+
+		if(this.mainSwiper && this.props.splashScreenPage === 2)
+			styles = {
+				swiperContainer: {
+					height: '80%',
+				}
+			}
 
 		return (
 			<div className={ "splash-screen--wrapper " + (this.state.login ? "login" : "") }>
-				<div className="swiper-container main-swiper-container">
+				<div 
+					className="swiper-container main-swiper-container"
+					style={ styles.swiperContainer }>
 					<div className="swiper-wrapper main-swiper-wrapper">
 
 						<div className="swiper-slide first-slide">
@@ -103,15 +116,13 @@ var SplashScreen = React.createClass({
 						</div>
 
 						<div className="swiper-slide third-slide">
-							<h1>terms</h1>
+							<Legals splashScreenLegals={ true } />
 							<Button
 								onClick={ this.slidePrev } 
 								isSecondaryAction={ true }>
 								Back
 							</Button>
 						</div>
-
-
 					</div>
 				</div>
 			</div>

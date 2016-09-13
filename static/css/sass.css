@@ -772,6 +772,9 @@ input[type=range].MASAS-slider {
     .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
       cursor: pointer;
       font-size: 0.9rem; }
+    .splash-screen--wrapper .main-swiper-container .third-slide {
+      display: flex;
+      flex-direction: column; }
 
 .HomeCountdown--wrapper1 {
   display: flex;
@@ -3560,14 +3563,15 @@ input[type=range].MASAS-slider {
     max-width: 35rem; }
     .legals--wrapper .text--wrapper p:nth-child(1) {
       margin-bottom: 1rem; }
-  .legals--wrapper .links--wrapper {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 1.5rem; }
-    .legals--wrapper .links--wrapper .legal-links {
-      cursor: pointer; }
+
+.legal-links--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 1.5rem; }
+  .legal-links--wrapper .legal-links {
+    cursor: pointer; }
 
 @media screen and (min-width: 992px) {
   .legals--wrapper {
