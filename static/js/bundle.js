@@ -51953,10 +51953,8 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 		type: "GET",
 		url: "/api/users/" + userPk + "/",
 		success: function success(userData) {
-			// check that terms and conditions were accepted
-			var hasAcceptedTerms = userData.usersteps.filter(function (userStep) {
-				return userStep.step === 1;
-			}).length;
+			// check that terms and conditions were accepted (commented for now, might not need it)
+			var hasAcceptedTerms = 1; // userData.usersteps.filter( (userStep) => userStep.step === 1).length
 			var canLogIn = userData.usersteps.filter(function (userStep) {
 				return userStep.step === 2;
 			}).length;

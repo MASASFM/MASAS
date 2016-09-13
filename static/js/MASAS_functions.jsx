@@ -161,8 +161,8 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 		type: "GET",
 		url: "/api/users/" + userPk + "/",
 		success: (userData) => {
-			// check that terms and conditions were accepted
-			const hasAcceptedTerms = userData.usersteps.filter( (userStep) => userStep.step === 1).length
+			// check that terms and conditions were accepted (commented for now, might not need it)
+			const hasAcceptedTerms = 1 // userData.usersteps.filter( (userStep) => userStep.step === 1).length
 			const canLogIn = userData.usersteps.filter( (userStep) => userStep.step === 2).length
 
 			if(hasAcceptedTerms) {
