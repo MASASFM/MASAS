@@ -52544,8 +52544,7 @@ var SplashScreen = React.createClass({
 			React.createElement(
 				"div",
 				{
-					className: "swiper-container main-swiper-container",
-					style: styles.swiperContainer },
+					className: "swiper-container main-swiper-container " + (this.props.splashScreenPage === 2 ? "legals-height" : "") },
 				React.createElement(
 					"div",
 					{ className: "swiper-wrapper main-swiper-wrapper" },
@@ -52652,7 +52651,9 @@ var SplashScreen = React.createClass({
 					React.createElement(
 						"div",
 						{ className: "swiper-slide third-slide" },
-						React.createElement(Legals, { splashScreenLegals: true }),
+						React.createElement(Legals, {
+							backButtonFunc: this.slidePrev,
+							splashScreenLegals: true }),
 						React.createElement(
 							Button,
 							{
@@ -55318,6 +55319,7 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../UI/UI.jsx");
 
 var Body = _require2.Body;
+var Button = _require2.Button;
 
 var LegalsContent = React.createClass({
 	displayName: "LegalsContent",
@@ -55333,7 +55335,9 @@ var LegalsContent = React.createClass({
 	},
 
 	componentWillMount: function componentWillMount() {
-		this.props.updateTitle('Legals', this.props.goToHome); // 0 = menu icon; 1 = arrow back
+		if (!this.props.splashScreenLegals) this.props.updateTitle('Legals', this.props.goToHome);
+
+		// this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
 	},
 
 	render: function render() {
@@ -55349,6 +55353,15 @@ var LegalsContent = React.createClass({
 				"div",
 				{ onClick: this.props.goToHome, className: "back-icon" },
 				React.createElement("img", { src: "/static/img/MASAS_arrow_left.svg", alt: "back" })
+			),
+			React.createElement(
+				Button,
+				{
+					isBigButton: false,
+					onClick: this.props.goToHome,
+					isSecondaryAction: true,
+					className: "back-to-legals-summary" },
+				"Back"
 			)
 		);
 
@@ -55379,6 +55392,7 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 var _require2 = require("../UI/UI.jsx");
 
 var Body = _require2.Body;
+var Button = _require2.Button;
 
 var LegalsContent = require("./LegalsContent.jsx");
 var EnforcementGuidelines = require("./EnforcementGuidelines.jsx");
@@ -55397,12 +55411,14 @@ var LegalsHome = React.createClass({
 	displayName: "LegalsHome",
 
 	propTypes: {
-		splashScreenLegals: React.PropTypes.bool
+		splashScreenLegals: React.PropTypes.bool,
+		backButtonFunc: React.PropTypes.func
 	},
 
 	getDefaultProps: function getDefaultProps() {
 		return {
-			splashScreenLegals: false
+			splashScreenLegals: false,
+			backButtonFunc: function backButtonFunc() {}
 		};
 	},
 
@@ -55523,7 +55539,16 @@ var LegalsHome = React.createClass({
 						null,
 						"Please, carefully read the following documents because logging in will constitute your approval of:"
 					),
-					indexLinks
+					indexLinks,
+					React.createElement(
+						Button,
+						{
+							isBigButton: false,
+							onClick: this.props.backButtonFunc,
+							isSecondaryAction: true,
+							className: "legals-index-back-button" },
+						"Back"
+					)
 				);
 		}
 	}

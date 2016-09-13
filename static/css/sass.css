@@ -715,6 +715,8 @@ input[type=range].MASAS-slider {
     opacity: 0.5; }
   .splash-screen--wrapper.legals::before {
     opacity: 0.7; }
+  .splash-screen--wrapper .main-swiper-container.legals-height {
+    height: 100%; }
   .splash-screen--wrapper .main-swiper-container {
     position: absolute;
     top: 0;
@@ -783,28 +785,46 @@ input[type=range].MASAS-slider {
       flex-direction: column;
       justify-content: space-around; }
       .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
-        margin-top: 1rem; }
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: none; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .back-to-legals-summary {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        align-self: center; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
+        margin-bottom: 6rem; }
       .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-start; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legals-index-back-button {
+          display: flex;
+          align-self: center; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .logo {
           height: 6rem;
           padding-bottom: 3rem; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
           max-height: 14rem;
           font-size: 0.8rem;
-          align-items: flex-start; }
+          align-items: flex-start;
+          padding-left: 4rem; }
           .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
-            padding-bottom: 1rem; }
+            padding-bottom: 2rem; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
           font-size: 1rem;
-          padding-bottom: 2rem; }
+          padding-bottom: 2rem;
+          line-height: 1.6rem;
+          margin: 0 1.2rem;
+          text-align: left; }
 
 @media screen and (min-width: 992px) {
   .splash-screen--wrapper {
     height: calc(100% - 2 * 4rem);
     padding: 4rem 4rem; }
+    .splash-screen--wrapper .main-swiper-container.legals-height {
+      height: 80%; }
     .splash-screen--wrapper .main-swiper-container {
       top: 50%;
       left: 50%;
@@ -824,7 +844,24 @@ input[type=range].MASAS-slider {
         max-height: initial;
         margin: initial; }
         .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
-          max-width: initial; } }
+          max-width: initial; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
+        margin-bottom: 0rem; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
+        margin-bottom: 0rem;
+        display: flex; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .back-to-legals-summary {
+        display: none;
+        align-self: auto; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legals-index-back-button {
+        display: none; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
+        padding-left: 1.5rem; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
+          padding-bottom: 1rem; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
+        margin: inherit;
+        text-align: inherit; } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -3567,6 +3604,10 @@ input[type=range].MASAS-slider {
       padding-bottom: 1rem;
       padding-left: 2rem;
       padding-top: 2.5rem; }
+    .legals-content--wrapper .legals-content .back-to-legals-summary {
+      display: none;
+      position: absolute;
+      bottom: 0; }
   .legals-content--wrapper ol {
     list-style-type: upper-roman; }
   .legals-content--wrapper ul {

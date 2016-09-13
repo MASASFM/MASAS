@@ -61,8 +61,7 @@ var SplashScreen = React.createClass({
 		return (
 			<div className={ "splash-screen--wrapper " + (this.props.splashScreenPage === 1 ? "login" : "") + (this.props.splashScreenPage === 2 ? "legals" : "") }>
 				<div 
-					className="swiper-container main-swiper-container"
-					style={ styles.swiperContainer }>
+					className={ "swiper-container main-swiper-container " + (this.props.splashScreenPage === 2 ? "legals-height" : "") } >
 					<div className="swiper-wrapper main-swiper-wrapper">
 
 						<div className="swiper-slide first-slide">
@@ -116,7 +115,9 @@ var SplashScreen = React.createClass({
 						</div>
 
 						<div className="swiper-slide third-slide">
-							<Legals splashScreenLegals={ true } />
+							<Legals
+								backButtonFunc={ this.slidePrev }
+								splashScreenLegals={ true } />
 							<Button
 								isBigButton={ false }
 								onClick={ this.slidePrev } 

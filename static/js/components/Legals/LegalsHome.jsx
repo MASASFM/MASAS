@@ -4,7 +4,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsHome.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
-var { Body } = require("../UI/UI.jsx")
+var { Body, Button } = require("../UI/UI.jsx")
 var LegalsContent = require("./LegalsContent.jsx")
 var EnforcementGuidelines = require("./EnforcementGuidelines.jsx")
 var Guidelines = require("./Guidelines.jsx")
@@ -21,11 +21,13 @@ var Rest = require("./Rest.jsx")
 var LegalsHome = React.createClass({
 	propTypes: {
 		splashScreenLegals: React.PropTypes.bool,
+		backButtonFunc: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
 		return {
-			splashScreenLegals: false
+			splashScreenLegals: false,
+			backButtonFunc: () => {},
 		}
 	},
 
@@ -97,6 +99,13 @@ var LegalsHome = React.createClass({
 								Please, carefully read the following documents because logging in will constitute your approval of:
 							</p>
 							{ indexLinks }
+							<Button
+								isBigButton={ false }
+								onClick={ this.props.backButtonFunc } 
+								isSecondaryAction={ true }
+								className="legals-index-back-button" >
+								Back
+							</Button>
 						</div>
 						)
 		}

@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsContent.jsx")
 
-var { Body } = require("../UI/UI.jsx")
+var { Body, Button } = require("../UI/UI.jsx")
 
 var LegalsContent = React.createClass({
 	propTypes: {
@@ -17,7 +17,10 @@ var LegalsContent = React.createClass({
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
+		if(!this.props.splashScreenLegals)
+			this.props.updateTitle('Legals', this.props.goToHome )
+
+		// this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
 	},
 
 	render: function() {
@@ -29,6 +32,13 @@ var LegalsContent = React.createClass({
 				<div onClick={ this.props.goToHome } className="back-icon">
 					<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
 				</div>
+				<Button
+					isBigButton={ false }
+					onClick={ this.props.goToHome } 
+					isSecondaryAction={ true }
+					className="back-to-legals-summary">
+					Back
+				</Button>
 			</div>
 			)
 

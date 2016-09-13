@@ -27,6 +27,9 @@
 	&.legals::before
 		opacity: 0.7
 
+	.main-swiper-container.legals-height
+		height: 100%
+
 	.main-swiper-container
 		position: absolute
 		top: 0
@@ -109,11 +112,26 @@
 
 			.MASAS-button
 				margin-top: 1rem
+				margin-bottom: 1rem
+				display: none
+
+			.back-to-legals-summary
+				display: flex
+				position: absolute
+				bottom: 0
+				align-self: center
+
+			.legals-content--wrapper
+				margin-bottom: 6rem
 
 			.text--wrapper
 				display: flex
 				flex-direction: column
 				justify-content: flex-start
+
+				.legals-index-back-button
+					display: flex
+					align-self: center
 
 				.logo
 					height: 6rem
@@ -123,13 +141,17 @@
 					max-height: 14rem
 					font-size: 0.8rem
 					align-items: flex-start
+					padding-left: 4rem
 
 					.legal-links
-						padding-bottom: 1rem
+						padding-bottom: 2rem
 
 				p
 					font-size: 1rem
 					padding-bottom: 2rem
+					line-height: 1.6rem
+					margin: 0 1.2rem
+					text-align: left
 
 @media screen and (min-width: $desktop-min-width)
 	.splash-screen--wrapper
@@ -144,6 +166,9 @@
 		&.login::before
 
 		&.legals::before
+
+		.main-swiper-container.legals-height
+			height: 80%
 
 		.main-swiper-container
 			top: 50%
@@ -185,14 +210,30 @@
 
 			.third-slide
 
+				.legals-content--wrapper
+					margin-bottom: 0rem
+
 				.MASAS-button
+					margin-bottom: 0rem
+					display: flex
+
+				.back-to-legals-summary
+					display: none
+					align-self: auto
 
 				.text--wrapper
+
+					.legals-index-back-button
+						display: none
 
 					.logo
 
 					.legal-links--wrapper
+						padding-left: 1.5rem
 
 						.legal-links
+							padding-bottom: 1rem
 
 					p
+						margin: inherit
+						text-align: inherit
