@@ -5,6 +5,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/SplashScreen
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
+var LoginForm = require("../Login/LoginForm.jsx")
 
 
 var SplashScreen = React.createClass({
@@ -22,10 +23,18 @@ var SplashScreen = React.createClass({
 			pagination: '.swiper-pagination',
 			paginationClickable: true,
 			autoplay: 2500,
+			autoplayDisableOnInteraction: false,
 		})
 
 		this.mainSwiper = new Swiper('.main-swiper-container', {
+			noSwiping: true,
+			allowSwipeToPrev: false,
+			allowSwipeToNext: false,
 		})
+	},
+
+	componentWillUnmount: function() {
+		console.log('yay')
 	},
 
 	slideNext: function() {
@@ -73,24 +82,27 @@ var SplashScreen = React.createClass({
 							</div>
 						</div>
 
-						<div className="swiper-slide">
+						<div className="swiper-slide second-slide">
 							<div className="login-content">
-								<Button
-									onClick={ this.slidePrev } 
-									isSecondaryAction={ true }>
-									Back
-								</Button>
-								<Button
-									onClick={ this.showLogin }>
-									Login
-								</Button>
-								<div onClick={ this.slideNext }>
-									term
+								<img src="/static/img/MASAS_logo_tipi.svg" className="masas-logo" alt="MASAS-logo" />
+
+								<div className="login-buttons">
+									<LoginForm />
+									<Button
+										noBorders={ true }
+										onClick={ this.slidePrev } 
+										isSecondaryAction={ true }>
+										Cancel
+									</Button>
 								</div>
+
+								<p onClick={ this.slideNext } className="terms-paragraph">
+									By logging-in, you agree to MASAS' Terms of Use & Cookie Policy
+								</p>
 							</div>
 						</div>
 
-						<div className="swiper-slide">
+						<div className="swiper-slide third-slide">
 							<h1>terms</h1>
 							<Button
 								onClick={ this.slidePrev } 

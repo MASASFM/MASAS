@@ -15,10 +15,10 @@ var LoginForm = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-				fullForm: true,
-				buttonTitle: "Log-in via Facebook",
-				subtitle: "",
-			}
+			fullForm: false,
+			buttonTitle: "Log-in via Facebook",
+			subtitle: "",
+		}
 	},
 
 	componentWillMount: function() {

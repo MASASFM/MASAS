@@ -25,6 +25,7 @@ App.mapDispatchToProps = function(dispatch) {
 		// onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
 		// onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
 		// onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
 		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
 		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'}),
 		showAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_TRUE' }),

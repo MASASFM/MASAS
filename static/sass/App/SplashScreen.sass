@@ -75,18 +75,28 @@
 					display: flex
 					justify-content: space-around
 
-		.login-content
-			z-index: -2
-			animation: fadeout 2s linear
-			position: absolute
-			top: 0
-			bottom: 0
-			left: 0
-			right: 0
-			display: flex
-			align-items: center
-			justify-content: center
+		.second-slide
+			.masas-logo
+				height: 15rem
 
-		.login-content.fade-in
-			animation: fadein-menu 1s linear
-			z-index: 4
+			.login-content
+				z-index: -2
+				position: absolute
+				top: 0
+				bottom: 0
+				left: 0
+				right: 0
+				display: flex
+				align-items: center
+				justify-content: space-between
+				flex-direction: column
+
+				.MASAS-button.no-borders
+					font-size: 0.9rem
+					opacity: 0.8
+
+			.terms-paragraph
+				cursor: pointer
+				font-size: 0.9rem	
+
+

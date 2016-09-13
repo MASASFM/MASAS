@@ -18,7 +18,7 @@ var Button = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-				noBorders: true,
+				noBorders: false,
 				className: "",
 				isDisabled: false,
 				isSecondaryAction: false,

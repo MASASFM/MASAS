@@ -104,6 +104,9 @@
   background-color: white;
   color: black; }
 
+.MASAS-button.no-borders {
+  border: 0px solid black !important; }
+
 .MASAS-button.soundcloud-login-button, .MASAS-button.facebook-login-button {
   display: flex;
   padding-left: 1rem;
@@ -750,9 +753,10 @@ input[type=range].MASAS-slider {
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
           display: flex;
           justify-content: space-around; }
-    .splash-screen--wrapper .main-swiper-container .login-content {
+    .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
+      height: 15rem; }
+    .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
       z-index: -2;
-      animation: fadeout 2s linear;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -760,10 +764,14 @@ input[type=range].MASAS-slider {
       right: 0;
       display: flex;
       align-items: center;
-      justify-content: center; }
-    .splash-screen--wrapper .main-swiper-container .login-content.fade-in {
-      animation: fadein-menu 1s linear;
-      z-index: 4; }
+      justify-content: space-between;
+      flex-direction: column; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
+        font-size: 0.9rem;
+        opacity: 0.8; }
+    .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+      cursor: pointer;
+      font-size: 0.9rem; }
 
 .HomeCountdown--wrapper1 {
   display: flex;

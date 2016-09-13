@@ -54,7 +54,8 @@ var UnsplashControls = React.createClass({
 	},
 
 	componentDidUpdate: function() {
-		document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")"	
+		if(document.getElementById("app-bg-image"))
+			document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")"	
 	},
 
 	render: function() {

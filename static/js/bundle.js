@@ -51970,7 +51970,7 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
 
-				if (window.location.pathname !== "/discover") browserHistory.push('/discover');
+				if (window.location.pathname !== "/") browserHistory.push('/');
 			} else {
 				// show terms and conditions form
 				var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
@@ -52279,7 +52279,8 @@ var App = React.createClass({
 		showAppFetchingBar: React.PropTypes.func,
 		hideAppFetchingBar: React.PropTypes.func,
 		updateUnsplashArtist: React.PropTypes.func,
-		updateModalContent: React.PropTypes.func
+		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -52386,11 +52387,19 @@ var App = React.createClass({
 		if (this.props.MASASuser === "") {
 			this.props.toogleModal();
 			this.props.updateModalContent(React.createElement(SplashScreen, null), 3);
+		} else {
+			this.props.closeModal();
 		}
 	},
 
 	getUserTokenFromCookie: function getUserTokenFromCookie() {
 		return Cookie.get('MASAS_authToken');
+	},
+
+	componentDidUpdate: function componentDidUpdate(prevProps) {
+		if (this.props.MASASuser !== prevProps.MASASuser) {
+			this.showSplashScreen();
+		}
 	},
 
 	render: function render() {
@@ -52476,6 +52485,8 @@ var _require2 = require("../UI/UI.jsx");
 
 var Button = _require2.Button;
 
+var LoginForm = require("../Login/LoginForm.jsx");
+
 var SplashScreen = React.createClass({
 	displayName: "SplashScreen",
 
@@ -52491,10 +52502,19 @@ var SplashScreen = React.createClass({
 		this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
 			pagination: '.swiper-pagination',
 			paginationClickable: true,
-			autoplay: 2500
+			autoplay: 2500,
+			autoplayDisableOnInteraction: false
 		});
 
-		this.mainSwiper = new Swiper('.main-swiper-container', {});
+		this.mainSwiper = new Swiper('.main-swiper-container', {
+			noSwiping: true,
+			allowSwipeToPrev: false,
+			allowSwipeToNext: false
+		});
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		console.log('yay');
 	},
 
 	slideNext: function slideNext() {
@@ -52591,33 +52611,34 @@ var SplashScreen = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "swiper-slide" },
+						{ className: "swiper-slide second-slide" },
 						React.createElement(
 							"div",
 							{ className: "login-content" },
-							React.createElement(
-								Button,
-								{
-									onClick: this.slidePrev,
-									isSecondaryAction: true },
-								"Back"
-							),
-							React.createElement(
-								Button,
-								{
-									onClick: this.showLogin },
-								"Login"
-							),
+							React.createElement("img", { src: "/static/img/MASAS_logo_tipi.svg", className: "masas-logo", alt: "MASAS-logo" }),
 							React.createElement(
 								"div",
-								{ onClick: this.slideNext },
-								"term"
+								{ className: "login-buttons" },
+								React.createElement(LoginForm, null),
+								React.createElement(
+									Button,
+									{
+										noBorders: true,
+										onClick: this.slidePrev,
+										isSecondaryAction: true },
+									"Cancel"
+								)
+							),
+							React.createElement(
+								"p",
+								{ onClick: this.slideNext, className: "terms-paragraph" },
+								"By logging-in, you agree to MASAS' Terms of Use & Cookie Policy"
 							)
 						)
 					),
 					React.createElement(
 						"div",
-						{ className: "swiper-slide" },
+						{ className: "swiper-slide third-slide" },
 						React.createElement(
 							"h1",
 							null,
@@ -52639,7 +52660,7 @@ var SplashScreen = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
 
-},{"../UI/UI.jsx":345,"./containers/SplashScreen.jsx":257,"react":238,"react-redux":43}],256:[function(require,module,exports){
+},{"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./containers/SplashScreen.jsx":257,"react":238,"react-redux":43}],256:[function(require,module,exports){
 'use strict';
 
 // var ReactRedux = require("react-redux")
@@ -52672,6 +52693,9 @@ App.mapDispatchToProps = function (dispatch) {
 		// onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
 		// onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
 		// onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+		closeModal: function closeModal() {
+			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+		},
 		logInWithToken: function logInWithToken(authToken) {
 			return _logInWithToken(dispatch, authToken);
 		},
@@ -53814,7 +53838,7 @@ var UnsplashControls = React.createClass({
 	},
 
 	componentDidUpdate: function componentDidUpdate() {
-		document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
+		if (document.getElementById("app-bg-image")) document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
 	},
 
 	render: function render() {
@@ -58480,7 +58504,7 @@ var LoginForm = React.createClass({
 	// text under button
 	getDefaultProps: function getDefaultProps() {
 		return {
-			fullForm: true,
+			fullForm: false,
 			buttonTitle: "Log-in via Facebook",
 			subtitle: ""
 		};
@@ -61988,7 +62012,7 @@ var Button = React.createClass({
 
 	getDefaultProps: function getDefaultProps() {
 		return {
-			noBorders: true,
+			noBorders: false,
 			className: "",
 			isDisabled: false,
 			isSecondaryAction: false,

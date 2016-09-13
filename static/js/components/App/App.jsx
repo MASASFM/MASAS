@@ -39,6 +39,7 @@ var App = React.createClass({
 		hideAppFetchingBar: React.PropTypes.func,
 		updateUnsplashArtist: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -150,12 +151,20 @@ var App = React.createClass({
 		if(this.props.MASASuser === "") {
 			this.props.toogleModal()
 			this.props.updateModalContent(<SplashScreen />, 3)
+		} else {
+			this.props.closeModal()
 		}
 	},
 
 	getUserTokenFromCookie: function() {
 		return Cookie.get('MASAS_authToken')
-	},	
+	},
+
+	componentDidUpdate: function(prevProps) {
+		if(this.props.MASASuser !== prevProps.MASASuser) {
+			this.showSplashScreen()
+		}
+	},
 
 	render: function() {
 
