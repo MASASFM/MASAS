@@ -52542,7 +52542,7 @@ var SplashScreen = React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: "splash-screen--wrapper " + (this.state.login ? "login" : "") },
+			{ className: "splash-screen--wrapper " + (this.props.splashScreenPage === 1 ? "login" : "") + (this.props.splashScreenPage === 2 ? "legals" : "") },
 			React.createElement(
 				"div",
 				{
@@ -52658,6 +52658,7 @@ var SplashScreen = React.createClass({
 						React.createElement(
 							Button,
 							{
+								isBigButton: false,
 								onClick: this.slidePrev,
 								isSecondaryAction: true },
 							"Back"
@@ -55426,33 +55427,13 @@ var LegalsHome = React.createClass({
 			),
 			React.createElement(
 				"span",
-				{ onClick: this.props.goToPage.bind(this, 2), className: "legal-links" },
-				"Community Guidelines"
-			),
-			React.createElement(
-				"span",
 				{ onClick: this.props.goToPage.bind(this, 3), className: "legal-links" },
 				"Privacy Policy"
 			),
 			React.createElement(
 				"span",
-				{ onClick: this.props.goToPage.bind(this, 4), className: "legal-links" },
-				"Learn About Copyrights"
-			),
-			React.createElement(
-				"span",
-				{ onClick: this.props.goToPage.bind(this, 5), className: "legal-links" },
-				"Report Copyright Infringement"
-			),
-			React.createElement(
-				"span",
-				{ onClick: this.props.goToPage.bind(this, 6), className: "legal-links" },
-				"Law Enforcement Guidelines"
-			),
-			React.createElement(
-				"span",
 				{ onClick: this.props.goToPage.bind(this, 7), className: "legal-links" },
-				"Law Enforcement - User Information - Requests"
+				"Cookie Policy"
 			)
 		);
 
@@ -55538,6 +55519,7 @@ var LegalsHome = React.createClass({
 				);else return React.createElement(
 					"div",
 					{ className: "text--wrapper" },
+					React.createElement("img", { src: "/static/img/MASAS_logo-M.svg", alt: "logo", className: "logo" }),
 					React.createElement(
 						"p",
 						null,

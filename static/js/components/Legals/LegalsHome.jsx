@@ -41,12 +41,8 @@ var LegalsHome = React.createClass({
 		const indexLinks = (
 			<div className="legal-links--wrapper">
 				<span onClick={ this.props.goToPage.bind(this, 1) } className="legal-links">Terms of Uses</span>
-				<span onClick={ this.props.goToPage.bind(this, 2) } className="legal-links">Community Guidelines</span>
 				<span onClick={ this.props.goToPage.bind(this, 3) } className="legal-links">Privacy Policy</span>
-				<span onClick={ this.props.goToPage.bind(this, 4) } className="legal-links">Learn About Copyrights</span>
-				<span onClick={ this.props.goToPage.bind(this, 5) } className="legal-links">Report Copyright Infringement</span>
-				<span onClick={ this.props.goToPage.bind(this, 6) } className="legal-links">Law Enforcement Guidelines</span>
-				<span onClick={ this.props.goToPage.bind(this, 7) } className="legal-links">Law Enforcement - User Information - Requests</span>
+				<span onClick={ this.props.goToPage.bind(this, 7) } className="legal-links">Cookie Policy</span>
 			</div>
 			)
 
@@ -96,6 +92,7 @@ var LegalsHome = React.createClass({
 				else 
 					return (
 						<div className="text--wrapper">
+							<img src="/static/img/MASAS_logo-M.svg" alt="logo" className="logo" />
 							<p>
 								Please, carefully read the following documents because logging in will constitute your approval of:
 							</p>

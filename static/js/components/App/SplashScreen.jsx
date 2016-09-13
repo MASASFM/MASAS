@@ -59,7 +59,7 @@ var SplashScreen = React.createClass({
 			}
 
 		return (
-			<div className={ "splash-screen--wrapper " + (this.state.login ? "login" : "") }>
+			<div className={ "splash-screen--wrapper " + (this.props.splashScreenPage === 1 ? "login" : "") + (this.props.splashScreenPage === 2 ? "legals" : "") }>
 				<div 
 					className="swiper-container main-swiper-container"
 					style={ styles.swiperContainer }>
@@ -118,6 +118,7 @@ var SplashScreen = React.createClass({
 						<div className="swiper-slide third-slide">
 							<Legals splashScreenLegals={ true } />
 							<Button
+								isBigButton={ false }
 								onClick={ this.slidePrev } 
 								isSecondaryAction={ true }>
 								Back

@@ -669,10 +669,6 @@ input[type=range].MASAS-slider {
     stroke: white;
     fill: white; }
 
-.splash-screen--wrapper.login::before {
-  opacity: 1;
-  z-index: 3; }
-
 .splash-screen--wrapper {
   display: flex;
   flex: 1;
@@ -716,6 +712,10 @@ input[type=range].MASAS-slider {
     opacity: 0.3;
     transition: opacity 1s linear;
     content: ""; }
+  .splash-screen--wrapper.login::before {
+    opacity: 0.5; }
+  .splash-screen--wrapper.legals::before {
+    opacity: 0.7; }
   .splash-screen--wrapper .main-swiper-container {
     position: absolute;
     top: 50%;
@@ -776,10 +776,15 @@ input[type=range].MASAS-slider {
       display: flex;
       flex-direction: column;
       justify-content: space-around; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
+        margin-top: 1rem; }
       .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-start; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .logo {
+          height: 6rem;
+          padding-bottom: 3rem; }
         .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
           max-height: 14rem;
           font-size: 0.8rem;
