@@ -760,7 +760,7 @@ input[type=range].MASAS-slider {
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
           width: 200px;
           margin: 0px auto;
-          height: 100%; }
+          height: 30%; }
           .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container .swiper-slide {
             align-items: flex-start;
             padding-top: 1.8rem; }
@@ -768,11 +768,14 @@ input[type=range].MASAS-slider {
           display: flex;
           justify-content: space-around;
           height: 5rem; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
+            font-size: 1.4rem; }
     .splash-screen--wrapper .main-swiper-container .second-slide {
-      max-height: 70%;
+      max-height: 78%;
       margin: 6rem 0; }
       .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
-        height: 15rem; }
+        height: 15rem;
+        margin-bottom: 2rem; }
       .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
         z-index: -2;
         position: absolute;
@@ -784,6 +787,10 @@ input[type=range].MASAS-slider {
         align-items: center;
         justify-content: space-between;
         flex-direction: column; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
+          margin-bottom: 2rem; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
+            height: inherit; }
         .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
           font-size: 0.9rem;
           opacity: 0.8; }
@@ -867,9 +874,17 @@ input[type=range].MASAS-slider {
               padding-top: 0rem; }
           .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
             height: auto; }
+            .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
+              font-size: inherit; }
       .splash-screen--wrapper .main-swiper-container .second-slide {
         max-height: initial;
         margin: initial; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
+          margin-bottom: 0; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
+          margin-bottom: 0; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
+            height: 3.5rem; }
         .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
           max-width: initial; }
       .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
