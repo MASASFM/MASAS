@@ -53126,15 +53126,15 @@ var Discover = React.createClass({
 			}).length ? true : false;
 
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
-				this.props.updateModalType(2);
+				// this.props.updateModalType(2)
 
 				this.props.updateModalContent(React.createElement(TeachSliderModal1, {
 					title: "Welcome to Discover,",
-					paragraph: "Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." }));
+					paragraph: "Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." }), 2);
 				this.props.toogleModal();
 			} else if (!didUserDismissTips && !didUserSeeSecondTip) {
-				this.props.updateModalType(2);
-				this.props.updateModalContent(React.createElement(TeachDiscoverModal2, null));
+				// this.props.updateModalType(2)
+				this.props.updateModalContent(React.createElement(TeachDiscoverModal2, null), 2);
 				this.props.toogleModal();
 			}
 		}
@@ -53383,8 +53383,8 @@ Discover.mapDispatchToProps = function (dispatch) {
 		toogleModal: function toogleModal() {
 			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
 		},
-		updateModalContent: function updateModalContent(modalContent) {
-			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+		updateModalContent: function updateModalContent(modalContent, modalType) {
+			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType });
 		},
 		updateModalType: function updateModalType(modalType) {
 			return dispatch({ type: 'UPDATE_MODAL_TYPE', modalType: modalType });
@@ -63252,8 +63252,7 @@ var UploadSC = React.createClass({
 
 			if (!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(function () {
-					_this.props.updateModalType(2);
-					_this.props.updateModalContent(React.createElement(TeachSliderModal1, null));
+					_this.props.updateModalContent(React.createElement(TeachSliderModal1, null), 2);
 					_this.props.toogleModal();
 				}, 1000);
 			}
@@ -63632,8 +63631,8 @@ UploadSC.mapDispatchToProps = function (dispatch) {
 		toogleModal: function toogleModal() {
 			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
 		},
-		updateModalContent: function updateModalContent(modalContent) {
-			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+		updateModalContent: function updateModalContent(modalContent, modalType) {
+			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType });
 		},
 		updateModalType: function updateModalType(modalType) {
 			return dispatch({ type: 'UPDATE_MODAL_TYPE', modalType: modalType });
@@ -63781,6 +63780,7 @@ exportVar.appReducer = function () {
 			if (state.isModalOpened) modalContent = React.createElement('div', null);
 
 			// reset type to 1 if closing modal
+			var modalType = state.modalType;
 			if (state.isModalOpened) modalType = 1;
 
 			return _extends({}, state, {

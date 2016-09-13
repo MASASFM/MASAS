@@ -64,18 +64,18 @@ var Discover = React.createClass({
 			const didUserSeeSecondTip = usersteps.filter(({ step }) => step === 6).length ? true : false
 
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
-				this.props.updateModalType(2)
+				// this.props.updateModalType(2)
 				
 
 				this.props.updateModalContent(
 					<TeachSliderModal1 
 						title="Welcome to Discover,"
 						paragraph="Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." />
-				)
+				, 2)
 				this.props.toogleModal()
 			} else if(!didUserDismissTips && !didUserSeeSecondTip) {
-				this.props.updateModalType(2)
-				this.props.updateModalContent(<TeachDiscoverModal2 />)
+				// this.props.updateModalType(2)
+				this.props.updateModalContent(<TeachDiscoverModal2 />, 2)
 				this.props.toogleModal()
 			}
 		}
