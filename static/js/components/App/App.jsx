@@ -219,6 +219,7 @@ var styles = {
 		height: window.innerHeight + 'px',
 		display: 'flex',
 		flexDirection: 'column',
+		backgroundColor: 'black',
 	}
 }
 

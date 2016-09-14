@@ -1,3 +1,18 @@
+.MASAS-modal.closed
+	opacity: 0
+
+	.splash-screen--wrapper
+		z-index: -1000
+		animation: fadeout-modal 0.5s linear
+
+		.test1, .test2
+			z-index: -1000 !important
+			animation: fadeout-modal 0.5s linear
+
+		.main-swiper-container
+			z-index: -1000
+			animation: fadeout-modal 0.5s linear
+
 .splash-screen--wrapper
 	@import "./Swiper"
 
@@ -73,6 +88,8 @@
 		transform: translate(0%,0%)
 		max-width: 60rem
 		max-height: 400rem
+		z-index: 1
+		animation: fadein-modal 0.5s linear
 
 		.swiper-pagination
 			.swiper-pagination-bullet

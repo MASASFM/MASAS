@@ -52458,7 +52458,8 @@ var styles = {
 	container: {
 		height: window.innerHeight + 'px',
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		backgroundColor: 'black'
 	}
 };
 

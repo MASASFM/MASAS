@@ -680,6 +680,18 @@ input[type=range].MASAS-slider {
     stroke: white;
     fill: white; }
 
+.MASAS-modal.closed {
+  opacity: 0; }
+  .MASAS-modal.closed .splash-screen--wrapper {
+    z-index: -1000;
+    animation: fadeout-modal 0.5s linear; }
+    .MASAS-modal.closed .splash-screen--wrapper .test1, .MASAS-modal.closed .splash-screen--wrapper .test2 {
+      z-index: -1000 !important;
+      animation: fadeout-modal 0.5s linear; }
+    .MASAS-modal.closed .splash-screen--wrapper .main-swiper-container {
+      z-index: -1000;
+      animation: fadeout-modal 0.5s linear; }
+
 .splash-screen--wrapper {
   display: flex;
   flex: 1;
@@ -762,7 +774,9 @@ input[type=range].MASAS-slider {
     width: 100%;
     transform: translate(0%, 0%);
     max-width: 60rem;
-    max-height: 400rem; }
+    max-height: 400rem;
+    z-index: 1;
+    animation: fadein-modal 0.5s linear; }
     .splash-screen--wrapper .main-swiper-container .swiper-pagination .swiper-pagination-bullet {
       width: 4px;
       height: 4px;
@@ -3792,7 +3806,7 @@ html {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   opacity: 0.6; }
 
 .body--background.artist-page-bg > .bg-image {
