@@ -61815,7 +61815,7 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(mapStateToProps, mapDis
 				error: function error() {}
 			});
 		} else {
-			this.setState({ title: "Drag the sun around to close this tip!", paragraph: "" });
+			this.setState({ paragraph: "Drag the sun around to close this tip!", title: "" });
 		}
 	},
 
@@ -61827,12 +61827,12 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(mapStateToProps, mapDis
 			{ className: "teach-modal--wrapper" },
 			React.createElement(
 				"p",
-				{ className: "bold" },
+				{ className: "title" },
 				this.state.title
 			),
 			React.createElement(
 				"p",
-				null,
+				{ className: "paragraph", style: { fontFamily: this.state.title === "" ? "Lato-Semibold" : "Lato-Light" } },
 				this.state.paragraph
 			),
 			React.createElement(

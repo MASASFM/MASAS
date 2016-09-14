@@ -565,7 +565,8 @@ input[type=range].MASAS-slider {
   .timePicker--wrapper .timePicker-slider--wrapper {
     bottom: 2.5rem; } }
 .MASAS-modal.type2 {
-  top: 4.1rem; }
+  top: 4.1rem;
+  padding-top: 3rem; }
   .MASAS-modal.type2 .close-icon {
     height: 1rem;
     display: flex;
@@ -646,7 +647,9 @@ input[type=range].MASAS-slider {
 
 @media screen and (min-width: 992px) {
   .MASAS-modal.type2 {
-    top: 4.2rem; }
+    top: 4.2rem;
+    height: inherit;
+    padding-top: inherit; }
 
   .MASAS-modal .modal-content--wrapper {
     width: 50%;
@@ -2258,6 +2261,14 @@ input[type=range].MASAS-slider {
           font-size: 0.9rem; } }
 .teach-modal--wrapper {
   padding: 0 2rem; }
+  .teach-modal--wrapper .title {
+    min-height: 2rem;
+    font-family: Lato-Semibold;
+    margin-bottom: 0.5rem; }
+  .teach-modal--wrapper .paragraph {
+    min-height: 5rem;
+    display: flex;
+    align-items: center; }
   .teach-modal--wrapper .teach-modal-pickTime--wrapper {
     display: flex;
     width: 220px !important;

@@ -87,7 +87,7 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 					error: () => {},
 				})
 			} else {
-				this.setState({ title: "Drag the sun around to close this tip!", paragraph: "" })
+				this.setState({ paragraph: "Drag the sun around to close this tip!", title: "" })
 			}
 		},
 
@@ -97,10 +97,10 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 
 			return (
 				<div className="teach-modal--wrapper">
-					<p className="bold">
+					<p className="title">
 						{ this.state.title }
 					</p>
-					<p>
+					<p className="paragraph" style={{ fontFamily: this.state.title === "" ? "Lato-Semibold" : "Lato-Light" }}>
 						{ this.state.paragraph }
 					</p>
 					<div style={{ marginBottom: '2rem' }}>
