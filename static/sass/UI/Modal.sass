@@ -15,7 +15,6 @@
 			margin-right: 1rem
 
 	.modal-type-2--wrapper
-		// animation: fadein2 2s linear
 
 .MASAS-modal.type3
 	top: 0
@@ -42,7 +41,7 @@
 	flex: 1
 	justify-content: center
 	align-items: center
-	animation: fadein-modal 2s linear
+	animation: fadein-modal 0.5s linear
 
 	.close-icon
 		z-index: 3
@@ -88,8 +87,9 @@
 			// display: flex
 
 .MASAS-modal.closed
-	display: none
-	z-index: -4
+	// display: none
+	z-index: -10
+	animation: fadeout-modal 0.5s linear
 
 @media screen and (min-width: $desktop-min-width)
 	.MASAS-modal.type2

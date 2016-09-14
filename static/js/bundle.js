@@ -63878,28 +63878,18 @@ exportVar.appReducer = function () {
 				modalType: action.modalType
 			});
 		case 'TOOGLE_IS_MODAL_OPENED':
-			// empty modal content on closing
-			var modalContent = state.modalContent;
-			if (state.isModalOpened) modalContent = React.createElement('div', null);
-
-			// reset type to 1 if closing modal
-			var modalType = state.modalType;
-			if (state.isModalOpened) modalType = 1;
-
 			return _extends({}, state, {
-				isModalOpened: !state.isModalOpened,
-				modalContent: modalContent,
-				modalType: modalType });
-		// reset type to 1 if closing modal
+				isModalOpened: !state.isModalOpened
+			});
 		case 'CLOSE_AND_EMPTY_MAIN_MODAL':
 			return _extends({}, state, {
-				isModalOpened: defaultState.isModalOpened,
-				modalContent: defaultState.modalContent,
-				modalType: defaultState.modalType
+				isModalOpened: defaultState.isModalOpened
 			});
 		case 'CHANGE_MODAL_CONTENT':
-			var modalType = state.modalType;
+			var modalType = 1;
 			if (action.modalType) modalType = action.modalType;
+
+			if (modalType < 1) modalType = 1;
 
 			return _extends({}, state, {
 				modalContent: action.modalContent,
