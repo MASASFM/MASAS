@@ -21,12 +21,24 @@
 		opacity: 0.7
 		transition: opacity 1s linear
 		content: ''
+		z-index: 1
 
 	&.login::before
 		opacity: 0.7
 
 	&.legals::before
 		opacity: 0.7
+
+	.test1, .test2
+		background-image: url(/static/img/splashscreen/0.jpg)
+		position: absolute
+		background-size: cover
+		top: 0
+		bottom: 0
+		right: 0
+		left: 0
+		opacity: 0
+		transition: opacity 1s linear
 
 	.main-swiper-container.legals-height
 		height: 100%

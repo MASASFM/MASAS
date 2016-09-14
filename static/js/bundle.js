@@ -52511,16 +52511,25 @@ var SplashScreen = React.createClass({
 			autoplayDisableOnInteraction: false,
 			onSlideChangeStart: function onSlideChangeStart(instance) {
 				var urls = {
-					0: ["https://hd.unsplash.com/photo-1449168013943-3a15804bb41c"],
-					1: ["https://hd.unsplash.com/photo-1460500063983-994d4c27756c"],
-					2: ["https://hd.unsplash.com/38/L2NfDz5SOm7Gbf755qpw_DSCF0490.jpg"],
-					3: ["https://hd.unsplash.com/photo-1464022793855-9b1e5bd1d8d4"],
-					4: ["https://hd.unsplash.com/photo-1457256439474-fbd0369264a1"],
-					5: ["https://hd.unsplash.com/photo-1444080748397-f442aa95c3e5"]
+					0: ["/static/img/splashscreen/0.jpg"],
+					1: ["/static/img/splashscreen/1.jpg"],
+					2: ["/static/img/splashscreen/2.jpg"],
+					3: ["/static/img/splashscreen/3.jpg"],
+					4: ["/static/img/splashscreen/4.jpg"],
+					5: ["/static/img/splashscreen/5.jpg"]
 				};
 
 				var changeBackground = function changeBackground(hashtag) {
-					$('.splash-screen--wrapper').css('background-image', 'url(' + urls[hashtag][0] + ')');
+					if ($('.test1').css("opacity") === "1") {
+						$('.splash-screen--wrapper').css('background-image', 'none');
+						$('.test1').css('opacity', 0);
+						$('.test2').css('opacity', 1);
+						$('.test2').css('background-image', 'url(' + urls[hashtag][0] + ')');
+					} else {
+						$('.test2').css('opacity', 0);
+						$('.test1').css('opacity', 1);
+						$('.test1').css('background-image', 'url(' + urls[hashtag][0] + ')');
+					}
 				};
 
 				switch (instance.activeIndex) {
@@ -52701,7 +52710,9 @@ var SplashScreen = React.createClass({
 						)
 					)
 				)
-			)
+			),
+			React.createElement("div", { className: "test1" }),
+			React.createElement("div", { className: "test2" })
 		);
 	}
 });
