@@ -1,7 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
-
-var LegalsContent = require('./LegalsContent.jsx')
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
@@ -20,7 +17,7 @@ var Rest = React.createClass({
 
 	render: function() {
 		return (
-			<LegalsContent>
+			<div className="legals-content">
 				<h3>Welcome to</h3>
 
 
@@ -89,7 +86,7 @@ var Rest = React.createClass({
 					<p>Last Amended: 07 September 2016</p>
  
 
-			</LegalsContent>
+			</div>
 		)
 	}
 })

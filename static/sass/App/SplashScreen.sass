@@ -1,0 +1,296 @@
+.splash-screen--wrapper
+	@import "./Swiper"
+
+	display: flex
+	flex: 1
+	height: 100%
+	justify-content: space-between
+	align-items: center
+	background-image: url(https://hd.unsplash.com/photo-1453791052107-5c843da62d97)
+	background-size: cover
+	position: relative
+	background-position: center
+
+	&::before
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		background-color: black
+		opacity: 0.7
+		transition: opacity 1s linear
+		content: ''
+		z-index: 1
+
+	&.login::before
+		opacity: 0.7
+
+	&.legals::before
+		opacity: 0.7
+
+	.test1, .test2
+		background-image: url(/static/img/splashscreen/0.jpg)
+		position: absolute
+		background-size: cover
+		top: 0
+		bottom: 0
+		right: 0
+		left: 0
+		opacity: 0
+		transition: opacity 1s linear
+
+	.main-swiper-container.legals-height
+		height: 100%
+
+	.main-swiper-container
+		position: absolute
+		top: 0
+		left: 0
+		height: 100%
+		width: 100%
+		transform: translate(0%,0%)
+		max-width: 60rem
+		max-height: 400rem
+
+		.swiper-pagination
+			.swiper-pagination-bullet
+				width: 4px
+				height: 4px
+				margin: 2px
+				opacity: 1
+
+		.first-slide
+			display: flex
+			justify-content: space-between
+			flex-direction: column
+
+			img
+				height: 33%
+				z-index: 2
+				margin: 2rem
+				margin-top: 4rem
+				// display: none
+
+			.main-content
+				flex: 1
+				display: flex
+				flex-direction: column
+				justify-content: space-between
+				height: 100%
+				width: 100%
+				z-index: 2
+
+				h1
+					font-family: Anders
+					font-size: 1.5rem
+					border-bottom: 1px solid rgba(255, 255, 255, 1)
+					padding-bottom: 1rem
+					display: table
+					margin-left: auto
+					margin-right: auto
+
+				.hashtag-swiper-container
+					width: 200px
+					margin: 0px auto
+					height: 30%
+
+					.swiper-slide
+						align-items: flex-start
+						padding-top: 1.8rem
+
+				.login-buttons--wrapper
+					display: flex
+					justify-content: space-around
+					height: 5rem
+
+					.MASAS-button
+						font-size: 1.4rem
+
+		.second-slide
+			max-height: 78%
+			margin: 6rem 0
+
+			.masas-logo
+				height: 15rem
+				margin-bottom: 2rem
+
+			.login-content
+				z-index: -2
+				position: absolute
+				top: 0
+				bottom: 0
+				left: 0
+				right: 0
+				display: flex
+				align-items: center
+				justify-content: space-between
+				flex-direction: column
+
+				.login-buttons
+					margin-bottom: 2rem
+
+					.login-container
+						height: inherit
+
+				.MASAS-button.no-borders
+					font-size: 0.9rem
+					opacity: 0.8
+
+			.terms-paragraph
+				cursor: pointer
+				font-size: 0.9rem	
+				max-width: 80vw
+
+		.third-slide
+			display: flex
+			flex-direction: column
+			justify-content: space-around
+
+			.MASAS-button
+				margin-top: 1rem
+				margin-bottom: 1rem
+				display: none
+
+			.back-to-legals-summary
+				display: flex
+				position: absolute
+				bottom: 0
+				align-self: center
+
+			.legals-content--wrapper
+				margin-bottom: 6rem
+
+			.text--wrapper
+				display: flex
+				flex-direction: column
+				justify-content: flex-start
+
+				.legals-index-back-button
+					display: flex
+					align-self: center
+
+				.logo
+					height: 6rem
+					padding-bottom: 3rem
+
+				.legal-links--wrapper
+					max-height: 14rem
+					font-size: 0.8rem
+					align-items: flex-start
+					padding-left: 4rem
+
+					.legal-links
+						padding-bottom: 2rem
+
+				p
+					font-size: 1rem
+					padding-bottom: 2rem
+					line-height: 1.6rem
+					margin: 0 1.2rem
+					text-align: left
+
+@media screen and (min-width: $desktop-min-width)
+	.splash-screen--wrapper
+		$padding-top: 4rem
+		height: calc(100% - 2 * #{$padding-top})
+		padding: $padding-top 4rem
+		background-position: inherit
+
+		$padding-top: 4rem
+		&::before
+			opacity: 0.3
+
+		&.login::before
+			opacity: 0.5
+
+		&.legals::before
+
+		.main-swiper-container.legals-height
+			height: 80%
+
+		.main-swiper-container
+			top: 50%
+			left: 50%
+			height: 60%
+			width: 80%
+			transform: translate(-50%,-50%)
+			max-height: 40rem
+
+			.first-slide
+				flex-direction: row
+
+				img
+					display: block
+					height: 70%
+					margin: 0
+
+				.main-content
+					flex: 0.7
+
+					h1
+						font-size: 2rem
+
+					.hashtag-swiper-container
+						width: 500px
+						height: 300px
+						margin: 20px auto
+
+						.swiper-slide
+							align-items: center
+							padding-top: 0rem
+
+					.login-buttons--wrapper
+						height: auto
+
+						.MASAS-button
+							font-size: inherit
+
+			.second-slide
+				max-height: initial
+				margin: initial
+
+				.masas-logo
+					margin-bottom: 0
+
+				.login-content
+					.login-buttons
+						margin-bottom: 0
+
+						.login-container
+							height: 3.5rem
+
+					.MASAS-button.no-borders
+
+				.terms-paragraph	
+					max-width: initial
+
+			.third-slide
+
+				.legals-content--wrapper
+					margin-bottom: 0rem
+
+				.MASAS-button
+					margin-bottom: 0rem
+					display: flex
+
+				.back-to-legals-summary
+					display: none
+					align-self: auto
+
+				.text--wrapper
+
+					.legals-index-back-button
+						display: none
+
+					.logo
+
+					.legal-links--wrapper
+						padding-left: 1.5rem
+
+						.legal-links
+							padding-bottom: 1rem
+
+					p
+						margin: inherit
+						text-align: inherit

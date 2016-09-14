@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var Button = React.createClass({
 	propTypes: {
@@ -19,7 +18,7 @@ var Button = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-				noBorders: true,
+				noBorders: false,
 				className: "",
 				isDisabled: false,
 				isSecondaryAction: false,

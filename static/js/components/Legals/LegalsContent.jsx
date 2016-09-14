@@ -1,32 +1,55 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsContent.jsx")
 
-var { Body } = require("../UI/UI.jsx")
+var { Body, Button } = require("../UI/UI.jsx")
 
 var LegalsContent = React.createClass({
 	propTypes: {
+		splashScreenLegals: React.PropTypes.bool,
+	},
+
+	getDefaultProps: function() {
+		return {
+			splashScreenLegals: false
+		}
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
+		if(!this.props.splashScreenLegals)
+			this.props.updateTitle('Legals', this.props.goToHome )
+
+		// this.props.updateTitle('Legals', this.props.goToHome )		// 0 = menu icon; 1 = arrow back
 	},
 
 	render: function() {
-		return (
-			<Body>
-				<div className="legals-content--wrapper">
-					<div className="legals-content">
-						{ this.props.children }
-					</div>
-					<div onClick={ this.props.goToHome } className="back-icon">
-						<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
-					</div>
+		const content = (
+			<div className="legals-content--wrapper">
+				<div className="legals-content">
+					{ this.props.children }
 				</div>
-			</Body>
-		)
+				<div onClick={ this.props.goToHome } className="back-icon">
+					<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
+				</div>
+				<Button
+					isBigButton={ false }
+					onClick={ this.props.goToHome } 
+					isSecondaryAction={ true }
+					className="back-to-legals-summary">
+					Back
+				</Button>
+			</div>
+			)
+
+		if(this.props.splashScreenLegals)
+			return content
+		else
+			return (
+				<Body>
+					{ content }	
+				</Body>
+			)
 	}
 })
 

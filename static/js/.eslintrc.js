@@ -30,6 +30,7 @@ module.exports = {
         "Promise": true,
         "SC": true,
         "FB": true,
+        "Swiper": true,
     },
 
     // react: https://github.com/yannickcr/eslint-plugin-react/blob/master/index.js

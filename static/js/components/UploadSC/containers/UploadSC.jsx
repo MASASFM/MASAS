@@ -29,7 +29,7 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 		// higher level state updates
 		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
+		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
 		updateModalType: (modalType) => dispatch({ type: 'UPDATE_MODAL_TYPE', modalType }),
 		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
 		

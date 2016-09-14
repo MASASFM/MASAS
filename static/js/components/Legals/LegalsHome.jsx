@@ -1,11 +1,10 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LegalsHome.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
-var { Body } = require("../UI/UI.jsx")
+var { Body, Button } = require("../UI/UI.jsx")
 var LegalsContent = require("./LegalsContent.jsx")
 var EnforcementGuidelines = require("./EnforcementGuidelines.jsx")
 var Guidelines = require("./Guidelines.jsx")
@@ -21,6 +20,15 @@ var Rest = require("./Rest.jsx")
 
 var LegalsHome = React.createClass({
 	propTypes: {
+		splashScreenLegals: React.PropTypes.bool,
+		backButtonFunc: React.PropTypes.func,
+	},
+
+	getDefaultProps: function() {
+		return {
+			splashScreenLegals: false,
+			backButtonFunc: () => {},
+		}
 	},
 
 	componentWillMount: function() {
@@ -32,49 +40,74 @@ var LegalsHome = React.createClass({
 	},
 
 	render: function() {
+		const indexLinks = (
+			<div className="legal-links--wrapper">
+				<span onClick={ this.props.goToPage.bind(this, 1) } className="legal-links">Terms of Uses</span>
+				<span onClick={ this.props.goToPage.bind(this, 3) } className="legal-links">Privacy Policy</span>
+				<span onClick={ this.props.goToPage.bind(this, 7) } className="legal-links">Cookie Policy</span>
+			</div>
+			)
+
 		switch(this.props.pageNumber) {
 			case 1:
-				return <LegalsContent><Terms /></LegalsContent>
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><Terms /></LegalsContent>
 			case 2:
-				return <Guidelines />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><Guidelines /></LegalsContent>
 			case 3:
-				return <Privacy />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><Privacy /></LegalsContent>
 			case 4:
-				return <LearnCopyright />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><LearnCopyright /></LegalsContent>
 			case 5:
-				return <ReportCopyright />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><ReportCopyright /></LegalsContent>
 			case 6:
-				return <EnforcementGuidelines />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><EnforcementGuidelines /></LegalsContent>
 			case 7:
-				return <Rest />
+				return <LegalsContent
+					splashScreenLegals={ this.props.splashScreenLegals}><Rest /></LegalsContent>
 			default:
-				return (
-					<Body>
-						<div className="legals--wrapper">
-							<img src="/static/img/MASAS_icon_legals_deco1.svg" alt="stars" className="star-icon" />
-							<div className="logo--wrapper">
-								<img src="/static/img/MASAS_logo-M.svg" alt="logo" className="logo" />
+				if(!this.props.splashScreenLegals)
+					return (
+						<Body>
+							<div className="legals--wrapper">
+								<img src="/static/img/MASAS_icon_legals_deco1.svg" alt="stars" className="star-icon" />
+								<div className="logo--wrapper">
+									<img src="/static/img/MASAS_logo-M.svg" alt="logo" className="logo" />
+								</div>
+								<div className="text--wrapper">
+									<p>
+										MASAS aims to be fair and transparent when it comes to the use of it's interactive and collaborative platform
+									</p>
+									<p>
+										Below are information that should be read be all users:
+									</p>
+								</div>
+								{ indexLinks }
 							</div>
-							<div className="text--wrapper">
-								<p>
-									MASAS aims to be fair and transparent when it comes to the use of it's interactive and collaborative platform
-								</p>
-								<p>
-									Below are information that should be read be all users:
-								</p>
-							</div>
-							<div className="links--wrapper">
-								<span onClick={ this.props.goToPage.bind(this, 1) } className="legal-links">Terms of Uses</span>
-								<span onClick={ this.props.goToPage.bind(this, 2) } className="legal-links">Community Guidelines</span>
-								<span onClick={ this.props.goToPage.bind(this, 3) } className="legal-links">Privacy Policy</span>
-								<span onClick={ this.props.goToPage.bind(this, 4) } className="legal-links">Learn About Copyrights</span>
-								<span onClick={ this.props.goToPage.bind(this, 5) } className="legal-links">Report Copyright Infringement</span>
-								<span onClick={ this.props.goToPage.bind(this, 6) } className="legal-links">Law Enforcement Guidelines</span>
-								<span onClick={ this.props.goToPage.bind(this, 7) } className="legal-links">Law Enforcement - User Information - Requests</span>
-							</div>
+						</Body>
+					)
+				else 
+					return (
+						<div className="text--wrapper">
+							<img src="/static/img/MASAS_logo-M.svg" alt="logo" className="logo" />
+							<p>
+								Please, carefully read the following documents because logging in will constitute your approval of:
+							</p>
+							{ indexLinks }
+							<Button
+								isBigButton={ false }
+								onClick={ this.props.backButtonFunc } 
+								isSecondaryAction={ true }
+								className="legals-index-back-button" >
+								Back
+							</Button>
 						</div>
-					</Body>
-				)
+						)
 		}
 	}
 })

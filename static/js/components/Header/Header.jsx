@@ -1,19 +1,34 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Header.jsx")
 
-var Radium = require("radium")
-
-var { goToURL } = require("../../MASAS_functions.jsx")
-var Header = require("../Header/Header.jsx")
+// var { goToURL } = require("../../MASAS_functions.jsx")
 var HeaderDropdown = require("./HeaderDropdown.jsx")
 var Link = require("../UI/Link.jsx")
 var { Button } = require("../UI/UI.jsx")
 var { browserHistory } = require('react-router')
 
 var Header = React.createClass({
+	propTypes: {
+		pageType: React.PropTypes.number,
+		pageTitle: React.PropTypes.string,
+		user: React.PropTypes.string,
+		isPlayerBarOpened: React.PropTypes.bool,
+		backArrowFunc: React.PropTypes.func,
+		notificationText: React.PropTypes.string,
+		isAppFetching: React.PropTypes.bool,
+		songPlaying: React.PropTypes.string,
+		MASASuser: React.PropTypes.string,
+		// isModalOpened: React.PropTypes.bool,
+		// toogleModal: React.PropTypes.func,
+		// updateModalContent: React.PropTypes.func,
+
+		onSetNavSidebarOpen: React.PropTypes.func,
+		toogleIsOpened: React.PropTypes.func,
+		goToHomepageSlide1: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
+	},
 
 	render: function() {
 		return (
@@ -94,30 +109,6 @@ var Header = React.createClass({
 		)
 	}
 })
-
-var styles = {
-	headerContainer: {
-		border: 'solid 1px black',
-		height: '3rem',
-		backgroundColor: 'rgba(0,0,0,0.7)',
-		color: 'white',
-		margin: 0
-	},
-
-	desktopHeaderBar: {
-		visibility: 'hidden',
-
-		'@media (min-width: 700px)': {
-			visibility: 'visible'
-		}
-	},
-
-	smartphoneHeaderBar: {
-		'@media (min-width: 700px)': {
-			visibility: 'hidden'
-		}
-	}
-}
 
 module.exports = ReactRedux.connect(
 	mapStateToProps,

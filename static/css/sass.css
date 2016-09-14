@@ -77,13 +77,15 @@
     opacity: 1; } }
 @keyframes fadeout {
   from {
+    z-index: 4;
     opacity: 1; }
   25% {
-    opacity: 1; }
+    opacity: 0; }
   75% {
     opacity: 0; }
   to {
-    opacity: 0; } }
+    opacity: 0;
+    z-index: 4; } }
 @keyframes center-play-button {
   from {
     right: 2rem; }
@@ -101,6 +103,9 @@
   cursor: pointer;
   background-color: white;
   color: black; }
+
+.MASAS-button.no-borders {
+  border: 0px solid black !important; }
 
 .MASAS-button.soundcloud-login-button, .MASAS-button.facebook-login-button {
   display: flex;
@@ -560,8 +565,19 @@ input[type=range].MASAS-slider {
     letter-spacing: 0.12rem; }
     .MASAS-modal.type2 .close-icon img {
       margin-right: 1rem; }
-  .MASAS-modal.type2 .modal-type-2--wrapper {
-    animation: fadein2 2s linear; }
+
+.MASAS-modal.type3 {
+  top: 0;
+  bottom: 0;
+  background-color: black; }
+  .MASAS-modal.type3 .modal-type-3--wrapper {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative; }
 
 .MASAS-modal {
   position: fixed;
@@ -574,7 +590,8 @@ input[type=range].MASAS-slider {
   display: flex;
   flex: 1;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  animation: fadein2 2s linear; }
   .MASAS-modal .close-icon {
     z-index: 3;
     position: absolute;
@@ -652,6 +669,252 @@ input[type=range].MASAS-slider {
     stroke: white;
     fill: white; }
 
+.splash-screen--wrapper {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(https://hd.unsplash.com/photo-1453791052107-5c843da62d97);
+  background-size: cover;
+  position: relative;
+  background-position: center; }
+  .splash-screen--wrapper .swiper-slide {
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: transparent;
+    color: white;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; }
+  .splash-screen--wrapper .swiper-pagination-bullet {
+    opacity: 0.5;
+    border: 1px solid white; }
+  .splash-screen--wrapper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: white; }
+  .splash-screen--wrapper::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.7;
+    transition: opacity 1s linear;
+    content: "";
+    z-index: 1; }
+  .splash-screen--wrapper.login::before {
+    opacity: 0.7; }
+  .splash-screen--wrapper.legals::before {
+    opacity: 0.7; }
+  .splash-screen--wrapper .test1, .splash-screen--wrapper .test2 {
+    background-image: url(/static/img/splashscreen/0.jpg);
+    position: absolute;
+    background-size: cover;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s linear; }
+  .splash-screen--wrapper .main-swiper-container.legals-height {
+    height: 100%; }
+  .splash-screen--wrapper .main-swiper-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: translate(0%, 0%);
+    max-width: 60rem;
+    max-height: 400rem; }
+    .splash-screen--wrapper .main-swiper-container .swiper-pagination .swiper-pagination-bullet {
+      width: 4px;
+      height: 4px;
+      margin: 2px;
+      opacity: 1; }
+    .splash-screen--wrapper .main-swiper-container .first-slide {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column; }
+      .splash-screen--wrapper .main-swiper-container .first-slide img {
+        height: 33%;
+        z-index: 2;
+        margin: 2rem;
+        margin-top: 4rem; }
+      .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        z-index: 2; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
+          font-family: Anders;
+          font-size: 1.5rem;
+          border-bottom: 1px solid white;
+          padding-bottom: 1rem;
+          display: table;
+          margin-left: auto;
+          margin-right: auto; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
+          width: 200px;
+          margin: 0px auto;
+          height: 30%; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container .swiper-slide {
+            align-items: flex-start;
+            padding-top: 1.8rem; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
+          display: flex;
+          justify-content: space-around;
+          height: 5rem; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
+            font-size: 1.4rem; }
+    .splash-screen--wrapper .main-swiper-container .second-slide {
+      max-height: 78%;
+      margin: 6rem 0; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
+        height: 15rem;
+        margin-bottom: 2rem; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .login-content {
+        z-index: -2;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
+          margin-bottom: 2rem; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
+            height: inherit; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .MASAS-button.no-borders {
+          font-size: 0.9rem;
+          opacity: 0.8; }
+      .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+        cursor: pointer;
+        font-size: 0.9rem;
+        max-width: 80vw; }
+    .splash-screen--wrapper .main-swiper-container .third-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: none; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .back-to-legals-summary {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        align-self: center; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
+        margin-bottom: 6rem; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legals-index-back-button {
+          display: flex;
+          align-self: center; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .logo {
+          height: 6rem;
+          padding-bottom: 3rem; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
+          max-height: 14rem;
+          font-size: 0.8rem;
+          align-items: flex-start;
+          padding-left: 4rem; }
+          .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
+            padding-bottom: 2rem; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
+          font-size: 1rem;
+          padding-bottom: 2rem;
+          line-height: 1.6rem;
+          margin: 0 1.2rem;
+          text-align: left; }
+
+@media screen and (min-width: 992px) {
+  .splash-screen--wrapper {
+    height: calc(100% - 2 * 4rem);
+    padding: 4rem 4rem;
+    background-position: inherit; }
+    .splash-screen--wrapper::before {
+      opacity: 0.3; }
+    .splash-screen--wrapper.login::before {
+      opacity: 0.5; }
+    .splash-screen--wrapper .main-swiper-container.legals-height {
+      height: 80%; }
+    .splash-screen--wrapper .main-swiper-container {
+      top: 50%;
+      left: 50%;
+      height: 60%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+      max-height: 40rem; }
+      .splash-screen--wrapper .main-swiper-container .first-slide {
+        flex-direction: row; }
+        .splash-screen--wrapper .main-swiper-container .first-slide img {
+          display: block;
+          height: 70%;
+          margin: 0; }
+        .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
+          flex: 0.7; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
+            font-size: 2rem; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
+            width: 500px;
+            height: 300px;
+            margin: 20px auto; }
+            .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container .swiper-slide {
+              align-items: center;
+              padding-top: 0rem; }
+          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
+            height: auto; }
+            .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
+              font-size: inherit; }
+      .splash-screen--wrapper .main-swiper-container .second-slide {
+        max-height: initial;
+        margin: initial; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
+          margin-bottom: 0; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
+          margin-bottom: 0; }
+          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
+            height: 3.5rem; }
+        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
+          max-width: initial; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
+        margin-bottom: 0rem; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
+        margin-bottom: 0rem;
+        display: flex; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .back-to-legals-summary {
+        display: none;
+        align-self: auto; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legals-index-back-button {
+        display: none; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
+        padding-left: 1.5rem; }
+        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
+          padding-bottom: 1rem; }
+      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
+        margin: inherit;
+        text-align: inherit; } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
@@ -3394,6 +3657,10 @@ input[type=range].MASAS-slider {
       padding-bottom: 1rem;
       padding-left: 2rem;
       padding-top: 2.5rem; }
+    .legals-content--wrapper .legals-content .back-to-legals-summary {
+      display: none;
+      position: absolute;
+      bottom: 0; }
   .legals-content--wrapper ol {
     list-style-type: upper-roman; }
   .legals-content--wrapper ul {
@@ -3439,14 +3706,15 @@ input[type=range].MASAS-slider {
     max-width: 35rem; }
     .legals--wrapper .text--wrapper p:nth-child(1) {
       margin-bottom: 1rem; }
-  .legals--wrapper .links--wrapper {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 1.5rem; }
-    .legals--wrapper .links--wrapper .legal-links {
-      cursor: pointer; }
+
+.legal-links--wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 1.5rem; }
+  .legal-links--wrapper .legal-links {
+    cursor: pointer; }
 
 @media screen and (min-width: 992px) {
   .legals--wrapper {

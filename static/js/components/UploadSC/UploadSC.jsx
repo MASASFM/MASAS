@@ -67,8 +67,7 @@ var UploadSC = React.createClass({
 
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
 				window.setTimeout(() => {
-					this.props.updateModalType(2)
-					this.props.updateModalContent(<TeachSliderModal1 />)
+					this.props.updateModalContent(<TeachSliderModal1 />, 2)
 					this.props.toogleModal()
 				}, 1000)
 			}
