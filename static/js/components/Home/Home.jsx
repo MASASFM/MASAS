@@ -43,24 +43,24 @@ var Home = React.createClass({
 
 		loginForm.style.marginBottom = marginBottom + "px"
 
-		$('#multiPage--wrapper').scroll( () => {
-			const topBound = $(window).height() - 120
-			const bottomBound = 50
-			if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
-				this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
-			} else if($('#time-picker-home').offset().top > topBound)  {
-				this.setState({ value: 0 })
-			} else {
-				this.setState({ value: 100 })
-			}
-		})
+		// $('#multiPage--wrapper').scroll( () => {
+		// 	const topBound = $(window).height() - 120
+		// 	const bottomBound = 50
+		// 	if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
+		// 		this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
+		// 	} else if($('#time-picker-home').offset().top > topBound)  {
+		// 		this.setState({ value: 0 })
+		// 	} else {
+		// 		this.setState({ value: 100 })
+		// 	}
+		// })
 	},
 
 	componentWillUnmount: function () {
 		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)
 
-		$('#multiPage--wrapper').unbind("scroll")
+		// $('#multiPage--wrapper').unbind("scroll")
 	},
 
 	scrollToInfo: function() {

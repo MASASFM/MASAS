@@ -54659,32 +54659,30 @@ var Home = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		var _this = this;
-
 		var marginBottom = (0, _jquery2.default)(window).height() / 2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight / 2;
 
 		var loginForm = document.getElementsByClassName('login-form--wrapper')[0];
 
 		loginForm.style.marginBottom = marginBottom + "px";
 
-		(0, _jquery2.default)('#multiPage--wrapper').scroll(function () {
-			var topBound = (0, _jquery2.default)(window).height() - 120;
-			var bottomBound = 50;
-			if ((0, _jquery2.default)('#time-picker-home').offset().top < topBound && (0, _jquery2.default)('#time-picker-home').offset().top > bottomBound) {
-				_this.setState({ value: (topBound - (0, _jquery2.default)('#time-picker-home').offset().top) / topBound * 100 });
-			} else if ((0, _jquery2.default)('#time-picker-home').offset().top > topBound) {
-				_this.setState({ value: 0 });
-			} else {
-				_this.setState({ value: 100 });
-			}
-		});
+		// $('#multiPage--wrapper').scroll( () => {
+		// 	const topBound = $(window).height() - 120
+		// 	const bottomBound = 50
+		// 	if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
+		// 		this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
+		// 	} else if($('#time-picker-home').offset().top > topBound)  {
+		// 		this.setState({ value: 0 })
+		// 	} else {
+		// 		this.setState({ value: 100 })
+		// 	}
+		// })
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
 
-		(0, _jquery2.default)('#multiPage--wrapper').unbind("scroll");
+		// $('#multiPage--wrapper').unbind("scroll")
 	},
 
 	scrollToInfo: function scrollToInfo() {
