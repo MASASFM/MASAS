@@ -55164,7 +55164,7 @@ var HomeCountdown = React.createClass({
 			{ className: "HomeCountdown--wrapper1" },
 			React.createElement(
 				"div",
-				{ id: "masasLoaderContainer", style: { position: 'relative', height: logoHeight + 'px' }, className: "HomeCountdown--wrapper2" + (this.props.user ? ' logged-in' : '') },
+				{ id: "masasLoaderContainer", style: { position: 'relative', height: logoHeight + 'px' }, className: "HomeCountdown--wrapper2" /* + (this.props.user ? ' logged-in' : '') */ },
 				React.createElement(
 					"div",
 					{ style: positionLinks },
@@ -55205,7 +55205,7 @@ var HomeCountdown = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "mobile-logo" + (!this.props.user ? ' logged-out' : '') },
+				{ className: "mobile-logo logged-out" /*+ (!this.props.user ? ' logged-out' : '') */ },
 				React.createElement("img", { src: "/static/img/MASAS_logo_tipi.svg", alt: "logo" })
 			)
 		);
