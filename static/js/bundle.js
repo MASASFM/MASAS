@@ -54748,17 +54748,17 @@ var Home = React.createClass({
 					),
 					React.createElement(
 						"div",
-						{ className: "" },
+						{ className: "link-button--wrapper" },
 						React.createElement(
 							Button,
-							{ onClick: function onClick() {
+							{ className: "upload-link-button", onClick: function onClick() {
 									return browserHistory.push('/upload');
 								}, isBigButton: true, isSecondaryAction: true },
 							"Share your sounds"
 						),
 						React.createElement(
 							Button,
-							{ onClick: function onClick() {
+							{ className: "discover-link-button", onClick: function onClick() {
 									return browserHistory.push('/discover');
 								}, isBigButton: true, isSecondaryAction: false },
 							"Discover Music"

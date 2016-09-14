@@ -2,7 +2,6 @@
 
 .home--wrapper
 	width: 100%
-	// max-width: 20rem
 	flex: 1
 	display: flex
 	align-items: center
@@ -47,6 +46,7 @@
 		flex-direction: column
 		position: relative
 		width: 100%
+		justify-content: center
 
 		#homepage-login
 			min-height: calc(100vh - #{$phone-header-height} - #{$phone-footer-height} - #{$phone-header-top-decoration2} - #{$phone-header-top-decoration})
@@ -114,13 +114,12 @@
 				display: flex
 				// flex: 1
 				// padding-bottom: 2.5rem
-				height: 15rem
-				padding-bottom: 4rem
+				padding-bottom: 2rem
 				justify-content: center
 				min-height: 1rem		// apparently fixes bug in chrome (hovering login button caused logo to get smaller)
 
 				img
-					height: 15rem
+					height: 40vh
 
 
 			.login-container
@@ -128,6 +127,12 @@
 				.signup-text
 					color: white
 					align-self: center
+
+			.link-button--wrapper
+				.upload-link-button
+					margin-bottom: 1rem
+
+				.discover-link-button
 
 		#masas-info--wrapper
 			p
