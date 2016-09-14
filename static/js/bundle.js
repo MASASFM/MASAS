@@ -52520,15 +52520,20 @@ var SplashScreen = React.createClass({
 				};
 
 				var changeBackground = function changeBackground(hashtag) {
+					var test1 = document.getElementsByClassName('test1')[0];
+					var test2 = document.getElementsByClassName('test2')[0];
+
 					if ($('.test1').css("opacity") === "1") {
 						$('.splash-screen--wrapper').css('background-image', 'none');
 						$('.test1').css('opacity', 0);
 						$('.test2').css('opacity', 1);
-						$('.test2').css('background-image', 'url(' + urls[hashtag][0] + ')');
+						test1.className = "test1";
+						test2.className = "test2 background-" + hashtag;
 					} else {
 						$('.test2').css('opacity', 0);
 						$('.test1').css('opacity', 1);
-						$('.test1').css('background-image', 'url(' + urls[hashtag][0] + ')');
+						test2.className = "test2";
+						test1.className = "test1 background-" + hashtag;
 					}
 				};
 
@@ -52712,7 +52717,19 @@ var SplashScreen = React.createClass({
 				)
 			),
 			React.createElement("div", { className: "test1" }),
-			React.createElement("div", { className: "test2" })
+			React.createElement("div", { className: "test2" }),
+			React.createElement("div", {
+				style: { opacity: 0, zIndex: -1000, top: "1000%" },
+				className: "test1 background-2 preload" }),
+			React.createElement("div", {
+				style: { opacity: 0, zIndex: -1000, top: "1000%" },
+				className: "test1 background-3 preload" }),
+			React.createElement("div", {
+				style: { opacity: 0, zIndex: -1000, top: "1000%" },
+				className: "test1 background-4 preload" }),
+			React.createElement("div", {
+				style: { opacity: 0, zIndex: -1000, top: "1000%" },
+				className: "test1 background-5 preload" })
 		);
 	}
 });
