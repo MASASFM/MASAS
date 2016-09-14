@@ -128,7 +128,7 @@ var Home = React.createClass({
 						</div>
 					</div>
 
-					<div className="page" id="masas-info--wrapper">
+					{ /*<div className="page" id="masas-info--wrapper">
 						<div className="abstract">
 							<img src="/static/img/MASAS_icon_metronome.svg" alt="deco" />
 							<p>
@@ -184,7 +184,7 @@ var Home = React.createClass({
 							<div style={{ display: ( this.props.user ? 'flex' : 'none'), height: '15rem' }}>
 							</div>
 						</div>
-					</div>	
+					</div>	*/ }
 
 
 				</div>
