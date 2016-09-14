@@ -54614,17 +54614,21 @@ var _require = require("./containers/Home.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var _require2 = require("../../MASAS_functions.jsx");
+var _require2 = require('react-router');
 
-var goToURL = _require2.goToURL;
+var browserHistory = _require2.browserHistory;
+
+var _require3 = require("../../MASAS_functions.jsx");
+
+var goToURL = _require3.goToURL;
 
 var LoginForm = require("../Login/LoginForm.jsx");
 
-var _require3 = require("../UI/UI.jsx");
+var _require4 = require("../UI/UI.jsx");
 
-var Button = _require3.Button;
-var TimePicker = _require3.TimePicker;
-var RankingInfoIcon = _require3.RankingInfoIcon;
+var Button = _require4.Button;
+var TimePicker = _require4.TimePicker;
+var RankingInfoIcon = _require4.RankingInfoIcon;
 // var UnsplashControls = require("./UnsplashControls.jsx")
 
 var HomeCountdown = require("./HomeCountdown.jsx");
@@ -54743,9 +54747,22 @@ var Home = React.createClass({
 							subtitle: "via Facebook" })
 					),
 					React.createElement(
-						Button,
-						{ onClick: this.scrollToInfo, isBigButton: true, isSecondaryAction: true },
-						"Learn the basics"
+						"div",
+						{ className: "" },
+						React.createElement(
+							Button,
+							{ onClick: function onClick() {
+									return browserHistory.push('/upload');
+								}, isBigButton: true, isSecondaryAction: true },
+							"Share your sounds"
+						),
+						React.createElement(
+							Button,
+							{ onClick: function onClick() {
+									return browserHistory.push('/discover');
+								}, isBigButton: true, isSecondaryAction: false },
+							"Discover Music"
+						)
 					)
 				),
 				React.createElement(
@@ -54877,7 +54894,7 @@ var Home = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 
-},{"../../MASAS_functions.jsx":252,"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./HomeCountdown.jsx":275,"./containers/Home.jsx":277,"jquery":33,"react":238,"react-redux":43}],275:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":252,"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./HomeCountdown.jsx":275,"./containers/Home.jsx":277,"jquery":33,"react":238,"react-redux":43,"react-router":77}],275:[function(require,module,exports){
 "use strict";
 
 // HACK NECESSARY TO HANDLE INTERVALS (magic numbers)

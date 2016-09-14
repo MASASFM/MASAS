@@ -4,6 +4,8 @@ import $ from "jquery"
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
 
+var { browserHistory } = require('react-router')
+
 var { goToURL } = require("../../MASAS_functions.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
 var { Button, TimePicker, RankingInfoIcon } = require("../UI/UI.jsx")
@@ -120,7 +122,10 @@ var Home = React.createClass({
 								subtitle="via Facebook"/>
 						</div>
 						
-						<Button onClick={ this.scrollToInfo } isBigButton={ true } isSecondaryAction={ true }>Learn the basics</Button> 
+						<div className="">
+							<Button onClick={ () => browserHistory.push('/upload') } isBigButton={ true } isSecondaryAction={ true }>Share your sounds</Button>
+							<Button onClick={ () => browserHistory.push('/discover') } isBigButton={ true } isSecondaryAction={ false }>Discover Music</Button>
+						</div>
 					</div>
 
 					<div className="page" id="masas-info--wrapper">
