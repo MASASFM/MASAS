@@ -61685,19 +61685,20 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, ma
 			React.createElement(
 				"p",
 				{ className: "bold" },
-				"Like your favorite discoveries"
+				"Like your favorites"
 			),
 			React.createElement(
 				"p",
 				null,
-				"or press L for quick action"
+				"by clicking on the ",
+				React.createElement("img", { src: "/static/img/MASAS_like_shadow.svg", alt: "like-icon" })
 			),
 			React.createElement(
 				Button,
 				{
 					isBigButton: false,
 					onClick: this.updateUserStep },
-				"Got it!"
+				"Close tip"
 			)
 		);
 	}

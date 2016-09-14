@@ -100,14 +100,14 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(
 			return (
 				<div className="teach-modal--wrapper like-UI-info">
 					<p className="bold">
-						Like your favorite discoveries
+						Like your favorites
 					</p>
 					<p>
-						or press L for quick action
+						by clicking on the <img src="/static/img/MASAS_like_shadow.svg" alt="like-icon" />
 					</p>
 					<Button 
 						isBigButton={false}
-						onClick={ this.updateUserStep }>Got it!</Button>
+						onClick={ this.updateUserStep }>Close tip</Button>
 				</div>
 			)
 		}
