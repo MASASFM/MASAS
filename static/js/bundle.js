@@ -54684,7 +54684,7 @@ var Home = React.createClass({
 	},
 
 	scrollToInfo: function scrollToInfo() {
-		(0, _jquery2.default)("#multiPage--wrapper").animate({ scrollTop: (0, _jquery2.default)("#homepage-login").height() }, '500');
+		// $("#multiPage--wrapper").animate({ scrollTop: $("#homepage-login").height() }, '500')
 	},
 
 	render: function render() {
@@ -54720,7 +54720,12 @@ var Home = React.createClass({
 			) : "",
 			React.createElement(
 				"div",
-				{ className: "multiPage--wrapper", id: "multiPage--wrapper" },
+				{
+					className: "multiPage--wrapper",
+					id: "multiPage--wrapper",
+					style: {
+						overflowY: "hidden"
+					} },
 				React.createElement(
 					"div",
 					{ className: "page", id: "homepage-login" },

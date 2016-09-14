@@ -62,7 +62,7 @@ var Home = React.createClass({
 	},
 
 	scrollToInfo: function() {
-		$("#multiPage--wrapper").animate({ scrollTop: $("#homepage-login").height() }, '500')
+		// $("#multiPage--wrapper").animate({ scrollTop: $("#homepage-login").height() }, '500')
 	},
 
 	render: function() {
@@ -100,7 +100,12 @@ var Home = React.createClass({
 						""
 				}
 
-				<div className="multiPage--wrapper" id="multiPage--wrapper">
+				<div 
+					className="multiPage--wrapper" 
+					id="multiPage--wrapper"
+					style={{
+						overflowY: "hidden",
+					}}>
 
 					<div className="page" id="homepage-login">
 						{ /* <UnsplashControls /> */ }
