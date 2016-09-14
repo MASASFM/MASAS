@@ -37,11 +37,11 @@ var Home = React.createClass({
 	},
 
 	componentDidMount: function() {
-		const marginBottom = $(window).height()/2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight/2
+		// const marginBottom = $(window).height()/2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight/2
 
-		const loginForm = document.getElementsByClassName('login-form--wrapper')[0]
+		// const loginForm = document.getElementsByClassName('login-form--wrapper')[0]
 
-		loginForm.style.marginBottom = marginBottom + "px"
+		// loginForm.style.marginBottom = marginBottom + "px"
 
 		// $('#multiPage--wrapper').scroll( () => {
 		// 	const topBound = $(window).height() - 120
