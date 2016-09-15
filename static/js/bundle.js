@@ -63120,7 +63120,7 @@ var PickTimeUpload = React.createClass({
 				_this.props.toogleModal();
 
 				// EMIT NOTIFICATION
-				_this.props.emitNotification(err.responseJSON.SC_ID[0]);
+				_this.props.emitNotification(err.responseJSON.detail);
 			}
 		});
 	},

@@ -72,7 +72,7 @@ var PickTimeUpload = React.createClass({
 				this.props.toogleModal()
 
 				// EMIT NOTIFICATION
-				this.props.emitNotification(err.responseJSON.SC_ID[0])
+				this.props.emitNotification(err.responseJSON.detail)
 			},
 		})
 	},
