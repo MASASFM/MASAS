@@ -284,8 +284,8 @@ var HomeCountdown = React.createClass({
 
 		var positionLinks = {
 			position: 'absolute', 
-			left: this.attributes.loginButtonPosition.x - 0, 
-			top: this.attributes.loginButtonPosition.y - 20,
+			// left: this.attributes.loginButtonPosition.x - 0, 
+			// top: this.attributes.loginButtonPosition.y - 20,
 			width: '6rem'
 		}
 
@@ -295,7 +295,7 @@ var HomeCountdown = React.createClass({
 		return (
 			<div className="HomeCountdown--wrapper1">
 				<div id='masasLoaderContainer' style={{ position: 'relative', height: logoHeight + 'px' }} className={ "HomeCountdown--wrapper2" /* + (this.props.user ? ' logged-in' : '') */}>
-					<div style={positionLinks}>
+					<div>
 							{ this.props.user ?
 								<Button 
 									onClick={ goToURL.bind(null, '/upload') } 

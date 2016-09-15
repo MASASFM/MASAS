@@ -55064,8 +55064,8 @@ var HomeCountdown = React.createClass({
 
 		var positionLinks = {
 			position: 'absolute',
-			left: this.attributes.loginButtonPosition.x - 0,
-			top: this.attributes.loginButtonPosition.y - 20,
+			// left: this.attributes.loginButtonPosition.x - 0,
+			// top: this.attributes.loginButtonPosition.y - 20,
 			width: '6rem'
 		};
 
@@ -55080,7 +55080,7 @@ var HomeCountdown = React.createClass({
 				{ id: "masasLoaderContainer", style: { position: 'relative', height: logoHeight + 'px' }, className: "HomeCountdown--wrapper2" /* + (this.props.user ? ' logged-in' : '') */ },
 				React.createElement(
 					"div",
-					{ style: positionLinks },
+					null,
 					this.props.user ? React.createElement(
 						Button,
 						{
