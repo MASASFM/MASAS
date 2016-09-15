@@ -108,7 +108,6 @@ var CountryAutocomplete = React.createClass({
 			<div className="MASAS-textbox country-autocomplete--wrapper" style={{ position: 'relative' }}>
 				<label htmlFor="cities-autocomplete" className="MASAS-label">City</label>
 				<Autocomplete
-					inputProps={{ name: 'cities', id: 'cities-autocomplete' }}
 					ref="autocomplete"
 					value={ this.state.value }
 					items={ this.state.cities }
@@ -120,6 +119,7 @@ var CountryAutocomplete = React.createClass({
 					inputProps={{ 
 						className: "MASAS-text-input",
 						id: "city",
+						name: 'cities'
 					}}
 					wrapperProps={{
 						className: "MASAS-textbox--wrapper wrapper-style"

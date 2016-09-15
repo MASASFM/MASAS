@@ -60069,7 +60069,6 @@ var CountryAutocomplete = React.createClass({
 				"City"
 			),
 			React.createElement(Autocomplete, {
-				inputProps: { name: 'cities', id: 'cities-autocomplete' },
 				ref: "autocomplete",
 				value: this.state.value,
 				items: this.state.cities,
@@ -60086,7 +60085,8 @@ var CountryAutocomplete = React.createClass({
 				},
 				inputProps: {
 					className: "MASAS-text-input",
-					id: "city"
+					id: "city",
+					name: 'cities'
 				},
 				wrapperProps: {
 					className: "MASAS-textbox--wrapper wrapper-style"
