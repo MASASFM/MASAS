@@ -52401,9 +52401,10 @@ var App = React.createClass({
 	},
 
 	render: function render() {
+		var hideLoadingModalZIndex = 100;
+		if (!this.props.processingAuthCookie) hideLoadingModalZIndex = -100;
 
-		// don't render app until the auth cookie has been processed
-		if (!this.props.processingAuthCookie) return React.createElement(
+		return React.createElement(
 			NavSidebar,
 			null,
 			React.createElement(
@@ -52420,24 +52421,6 @@ var App = React.createClass({
 					{ className: "modal-blur--wrapper" + (this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "") },
 					this.props.children ? this.props.children : React.createElement(Home, null)
 				),
-				React.createElement(Footer, null)
-			),
-			React.createElement("div", { id: "jquery_jplayer_1" }),
-			React.createElement(
-				Modal,
-				{
-					isOpened: this.props.isModalOpened,
-					closeModalFunc: this.props.toogleModal,
-					type: this.props.modalType },
-				this.props.modalContent
-			)
-		);else return React.createElement(
-			NavSidebar,
-			null,
-			React.createElement(
-				"div",
-				{ style: styles.container, id: "mobile-safari-bug-fix--wrapper" },
-				React.createElement(Header, null),
 				React.createElement(
 					"div",
 					{
@@ -52451,7 +52434,7 @@ var App = React.createClass({
 							justifyContent: 'center',
 							alignItems: 'center',
 							backgroundColor: 'black',
-							zIndex: 100,
+							zIndex: hideLoadingModalZIndex,
 							color: 'white'
 						} },
 					React.createElement("img", {
@@ -52464,7 +52447,15 @@ var App = React.createClass({
 				),
 				React.createElement(Footer, null)
 			),
-			React.createElement("div", { id: "jquery_jplayer_1" })
+			React.createElement("div", { id: "jquery_jplayer_1" }),
+			React.createElement(
+				Modal,
+				{
+					isOpened: this.props.isModalOpened,
+					closeModalFunc: this.props.toogleModal,
+					type: this.props.modalType },
+				this.props.modalContent
+			)
 		);
 	}
 });

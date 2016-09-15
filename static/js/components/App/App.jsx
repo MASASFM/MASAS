@@ -167,68 +167,60 @@ var App = React.createClass({
 	},
 
 	render: function() {
-
-		// don't render app until the auth cookie has been processed
+		var hideLoadingModalZIndex = 100
 		if(!this.props.processingAuthCookie)
-			return (
-				<NavSidebar>
-					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
-						<div className={"body--background"+ ( this.props.isModalOpened ? " saturated" : "" )} id="body--background">
-							<div className="bg-image" id="app-bg-image"></div>
+			hideLoadingModalZIndex = -100
+
+		return (
+			<NavSidebar>
+				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
+					<div className={"body--background"+ ( this.props.isModalOpened ? " saturated" : "" )} id="body--background">
+						<div className="bg-image" id="app-bg-image"></div>
+					</div>
+					<Header />
+						<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}>
+							{this.props.children ? 
+									this.props.children
+								:
+									<Home />
+							}
 						</div>
-						<Header />
-							<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}>
-								{this.props.children ? 
-										this.props.children
-									:
-										<Home />
-								}
-							</div>
-						<Footer />
-									
-					</div>
-					<div id="jquery_jplayer_1"></div>
-					<Modal 
-						isOpened={ this.props.isModalOpened }
-						closeModalFunc={ this.props.toogleModal }
-						type={ this.props.modalType }>
-						{ this.props.modalContent }
-					</Modal>
-				</NavSidebar>
-			)
-		else
-			return (
-				<NavSidebar>
-					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
-						<Header />
-							<div
+
+						<div
+							style={{
+								position: 'fixed',
+								top: 0,
+								bottom: 0,
+								left: 0,
+								right: 0,
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								backgroundColor: 'black',
+								zIndex: hideLoadingModalZIndex,
+								color: 'white'
+							}}>
+							<img
 								style={{
-									position: 'fixed',
-									top: 0,
-									bottom: 0,
-									left: 0,
-									right: 0,
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									backgroundColor: 'black',
-									zIndex: 100,
-									color: 'white'
-								}}>
-								<img
-									style={{
-										height: '7rem',
-										width: '7rem',
-									}}
-									src="/static/img/MASAS_logo-M.svg" 
-									alt="loading" />
-							</div>
-						<Footer />
-									
-					</div>
-					<div id="jquery_jplayer_1"></div>
-				</NavSidebar>
-			)
+									height: '7rem',
+									width: '7rem',
+								}}
+								src="/static/img/MASAS_logo-M.svg" 
+								alt="loading" />
+						</div>
+
+					<Footer />
+								
+				</div>
+				<div id="jquery_jplayer_1"></div>
+				<Modal 
+					isOpened={ this.props.isModalOpened }
+					closeModalFunc={ this.props.toogleModal }
+					type={ this.props.modalType }>
+					{ this.props.modalContent }
+				</Modal>
+			</NavSidebar>
+		)
 		
 	}
 })
