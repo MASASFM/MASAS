@@ -2497,7 +2497,8 @@ input[type=range].MASAS-slider {
   min-height: 8rem;
   flex-direction: column;
   overflow: hidden;
-  transition: linear 0.3s min-height; }
+  transition: linear 0.3s min-height;
+  max-height: 8rem; }
 .profile--wrapper .track--wrapper.open {
   min-height: 16rem; }
 .profile--wrapper .track--wrapper:nth-of-type(odd) {
@@ -2596,7 +2597,8 @@ input[type=range].MASAS-slider {
     min-height: 12rem; }
   .profile--wrapper .track--wrapper {
     min-height: 6rem;
-    height: 6rem; }
+    height: 6rem;
+    max-height: 6rem; }
     .profile--wrapper .track--wrapper .visible-info {
       min-height: 6rem; }
       .profile--wrapper .track--wrapper .visible-info .artwork--wrapper {

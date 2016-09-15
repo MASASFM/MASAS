@@ -7,6 +7,7 @@
 		flex-direction: column
 		overflow: hidden
 		transition: linear 0.3s min-height
+		max-height: $trackWrapperHeight
 
 	.track--wrapper.open
 		min-height: $trackWrapperHeight * 2
@@ -138,6 +139,7 @@
 		.track--wrapper
 			min-height: $trackWrapperHeight
 			height: $trackWrapperHeight
+			max-height: $trackWrapperHeight
 
 			.visible-info
 				min-height: $trackWrapperHeight
