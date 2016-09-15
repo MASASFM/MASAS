@@ -59523,10 +59523,14 @@ var Player = React.createClass({
 	},
 
 	getNextSongIcon: function getNextSongIcon() {
+		var _this2 = this;
+
 		if (this.props.songPlaying) {
 			if (this.props.isPlaylistPlaying) {
 				if (this.props.playlistPosition < this.props.playlist.length - 1) return React.createElement("img", { onClick: this.props.playNewSongFromPlaylist.bind(this, this.props.playlistPosition + 1), src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-song-icon" });else return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "next-song-icon" });
-			} else return React.createElement("img", { onClick: this.props.playRandomSong, src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-song-icon" });
+			} else return React.createElement("img", { onClick: function onClick() {
+					return _this2.props.playRandomSong(_this2.props.MASASuser, _this2.props.MASAS_songInfo.timeInterval[_this2.props.MASAS_songInfo.timeInterval.length - 2]);
+				}, src: "/static/img/MASAS_next.svg", alt: "next song", className: "next-song-icon" });
 		} else {
 			return React.createElement("img", { src: "/static/img/MASAS_next.svg", style: { visibility: 'hidden' }, alt: "next song", className: "next-song-icon" });
 		}

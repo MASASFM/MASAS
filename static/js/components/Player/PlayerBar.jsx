@@ -202,7 +202,7 @@ var Player = React.createClass({
 				else
 					return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
 			} else
-				return <img onClick={this.props.playRandomSong} src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
+				return <img onClick={ () => this.props.playRandomSong(this.props.MASASuser, this.props.MASAS_songInfo.timeInterval[this.props.MASAS_songInfo.timeInterval.length - 2]) } src="/static/img/MASAS_next.svg" alt="next song" className="next-song-icon" />
 		} else {
 			return <img src="/static/img/MASAS_next.svg" style={{ visibility: 'hidden' }} alt="next song" className="next-song-icon" />
 		}
