@@ -600,7 +600,7 @@ input[type=range].MASAS-slider {
     position: relative; }
 
 .MASAS-modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 4rem;
   left: 0;
