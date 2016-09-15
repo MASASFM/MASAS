@@ -2121,81 +2121,85 @@ input[type=range].MASAS-slider {
   width: 80%;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 0; }
+  padding: 0.5rem 0; }
 
-.pick-time-sc-sync .song-name--wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 80%;
-  align-items: center; }
-  .pick-time-sc-sync .song-name--wrapper .artwork {
-    height: 8rem;
-    width: 8rem;
-    background-color: black;
-    border: 2px solid white;
-    margin-bottom: 1rem; }
-  .pick-time-sc-sync .song-name--wrapper .song-title {
+.pick-time-sc-sync {
+  max-height: 27rem; }
+  .pick-time-sc-sync .song-name--wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    align-items: center; }
+    .pick-time-sc-sync .song-name--wrapper .artwork {
+      height: 6rem;
+      width: 6rem;
+      background-color: black;
+      border: 2px solid white;
+      margin-bottom: 1rem; }
+    .pick-time-sc-sync .song-name--wrapper .song-title {
+      font-family: Lato-Semibold;
+      font-size: 1.2rem;
+      text-align: center;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+  .pick-time-sc-sync .pickTime--wrapper #timePicker--pick-time-upload--wrapper, .pick-time-sc-sync .pickTime--wrapper .timePicker--pick-time-upload--wrapper {
+    height: 90px;
+    width: 220px; }
+  .pick-time-sc-sync .question-text {
+    font-size: 1.02rem;
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+    display: flex;
     font-family: Lato-Semibold;
-    font-size: 1.2rem;
-    text-align: center;
+    text-align: center; }
+  .pick-time-sc-sync .button--wrapper {
     width: 80%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center; }
-.pick-time-sc-sync .pickTime--wrapper {
-  height: 140px;
-  width: 300px; }
-  .pick-time-sc-sync .pickTime--wrapper .timePicker-slider--wrapper {
-    bottom: 1.5rem; }
-.pick-time-sc-sync .question-text {
-  font-size: 1.02rem;
-  letter-spacing: 0.18rem;
-  text-transform: uppercase;
-  display: flex;
-  font-family: Lato-Semibold;
-  text-align: center; }
-.pick-time-sc-sync .button--wrapper {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  min-height: 5.5rem;
-  justify-content: center;
-  align-items: center; }
-.pick-time-sc-sync .button--wrapper .submit {
-  font-size: 1.1rem; }
-.pick-time-sc-sync .button--wrapper .cancel-button {
-  visibility: hidden;
-  font-size: 0.8rem;
-  opacity: 0.5;
-  margin-top: 0.8rem; }
+  .pick-time-sc-sync .button--wrapper .submit {
+    font-size: 1.1rem; }
+  .pick-time-sc-sync .button--wrapper .cancel-button {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-top: 0.8rem;
+    display: none; }
 
 @media screen and (min-width: 992px) {
   .pick-time-sc-sync {
+    padding: 2rem 0;
     padding-top: 1.5rem; }
 
-  .pick-time-sc-sync .song-name--wrapper {
-    flex-direction: row;
-    width: 60%; }
-    .pick-time-sc-sync .song-name--wrapper .artwork {
-      width: 6rem;
-      height: 6rem;
-      margin-bottom: 0;
-      margin-right: 1rem; }
-    .pick-time-sc-sync .song-name--wrapper .song-title {
-      font-size: 0.9rem; }
-  .pick-time-sc-sync .pickTime--wrapper {
-    height: 155px;
-    width: 400px; }
+  .pick-time-sc-sync {
+    max-height: inherit; }
+    .pick-time-sc-sync .song-name--wrapper {
+      flex-direction: row;
+      width: 60%; }
+      .pick-time-sc-sync .song-name--wrapper .artwork {
+        width: 6rem;
+        height: 6rem;
+        margin-bottom: 0;
+        margin-right: 1rem; }
+      .pick-time-sc-sync .song-name--wrapper .song-title {
+        font-size: 0.9rem;
+        justify-content: flex-start; }
+    .pick-time-sc-sync .pickTime--wrapper #timePicker--pick-time-upload--wrapper, .pick-time-sc-sync .pickTime--wrapper .timePicker--pick-time-upload--wrapper {
+      height: 155px;
+      width: 400px; }
     .pick-time-sc-sync .pickTime--wrapper .timePicker-slider--wrapper {
       bottom: 0rem; }
-  .pick-time-sc-sync .button--wrapper {
-    width: 7rem;
-    min-height: 4.5rem; }
-  .pick-time-sc-sync .button--wrapper .submit {
-    font-size: 0.8rem;
-    width: 9rem; }
-  .pick-time-sc-sync .button--wrapper .cancel-button {
-    visibility: visible; } }
+    .pick-time-sc-sync .button--wrapper {
+      width: 7rem;
+      min-height: 4.5rem; }
+    .pick-time-sc-sync .button--wrapper .submit {
+      font-size: 0.8rem;
+      width: 9rem; }
+    .pick-time-sc-sync .button--wrapper .cancel-button {
+      display: block; } }
 .MASAS-modal .confirm-ownership--wrapper {
   display: flex;
   flex-direction: column;

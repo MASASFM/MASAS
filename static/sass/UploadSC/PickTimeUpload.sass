@@ -5,9 +5,11 @@
 	width: 80%
 	align-items: center
 	justify-content: space-between
-	padding: 2rem 0
+	padding: 0.5rem 0
 
 .pick-time-sc-sync
+	max-height: 27rem
+
 	.song-name--wrapper
 		display: flex
 		justify-content: center 
@@ -16,8 +18,8 @@
 		align-items: center
 
 		.artwork
-			height: 8rem
-			width: 8rem
+			height: 6rem
+			width: 6rem
 			background-color: black
 			border: 2px solid white
 			margin-bottom: 1rem
@@ -29,13 +31,14 @@
 			width: 80%
 			display: flex
 			align-items: center
+			justify-content: center
 
 	.pickTime--wrapper
-		height: 140px
-		width: 300px
+		#timePicker--pick-time-upload--wrapper, .timePicker--pick-time-upload--wrapper
+			height: 90px 
+			width: 220px 
 
 		.timePicker-slider--wrapper
-			bottom: 1.5rem
 
 	.question-text
 		font-size: 1.02rem
@@ -50,7 +53,7 @@
 		width: 80%
 		display: flex
 		flex-direction: column
-		min-height: 5.5rem
+		// min-height: 5.5rem
 		justify-content: center
 		align-items: center
 
@@ -59,16 +62,19 @@
 			font-size: 1.1rem
 
 		.cancel-button
-			visibility: hidden
 			font-size: 0.8rem
 			opacity: 0.5
 			margin-top: 0.8rem
+			display: none
 
 @media screen and (min-width: $desktop-min-width)
 	.pick-time-sc-sync
+		padding: 2rem 0
 		padding-top: 1.5rem
 
 	.pick-time-sc-sync
+		max-height: inherit
+
 		.song-name--wrapper
 			flex-direction: row
 			width: 60%
@@ -81,10 +87,12 @@
 
 			.song-title
 				font-size: 0.9rem
+				justify-content: flex-start
 
 		.pickTime--wrapper
-			height: 155px
-			width: 400px
+			#timePicker--pick-time-upload--wrapper, .timePicker--pick-time-upload--wrapper
+				height: 155px
+				width: 400px
 
 			.timePicker-slider--wrapper
 				bottom: 0rem
@@ -100,7 +108,7 @@
 				width: 9rem
 
 			.cancel-button
-				visibility: visible
+				display: block
 
 
 
