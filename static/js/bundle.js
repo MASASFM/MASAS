@@ -52535,17 +52535,19 @@ var SplashScreen = React.createClass({
 					var test1 = document.getElementsByClassName('test1')[0];
 					var test2 = document.getElementsByClassName('test2')[0];
 
-					if ($('.test1').css("opacity") === "1") {
-						$('.splash-screen--wrapper').css('background-image', 'none');
-						$('.test1').css('opacity', 0);
-						$('.test2').css('opacity', 1);
-						test1.className = "test1";
-						test2.className = "test2 background-" + hashtag;
-					} else {
-						$('.test2').css('opacity', 0);
-						$('.test1').css('opacity', 1);
-						test2.className = "test2";
-						test1.className = "test1 background-" + hashtag;
+					if (test1 && test2) {
+						if ($('.test1').css("opacity") === "1") {
+							$('.splash-screen--wrapper').css('background-image', 'none');
+							$('.test1').css('opacity', 0);
+							$('.test2').css('opacity', 1);
+							test1.className = "test1";
+							test2.className = "test2 background-" + hashtag;
+						} else {
+							$('.test2').css('opacity', 0);
+							$('.test1').css('opacity', 1);
+							test2.className = "test2";
+							test1.className = "test1 background-" + hashtag;
+						}
 					}
 				};
 
