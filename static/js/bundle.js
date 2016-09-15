@@ -52402,7 +52402,11 @@ var App = React.createClass({
 
 	render: function render() {
 		var hideLoadingModalZIndex = 100;
-		if (!this.props.processingAuthCookie) hideLoadingModalZIndex = -100;
+		var loadingModalAnim = "none";
+		if (!this.props.processingAuthCookie) {
+			hideLoadingModalZIndex = -100;
+			loadingModalAnim = "fadeout-loading-modal 1s linear";
+		}
 
 		return React.createElement(
 			NavSidebar,
@@ -52435,6 +52439,7 @@ var App = React.createClass({
 							alignItems: 'center',
 							backgroundColor: 'black',
 							zIndex: hideLoadingModalZIndex,
+							animation: loadingModalAnim,
 							color: 'white'
 						} },
 					React.createElement("img", {

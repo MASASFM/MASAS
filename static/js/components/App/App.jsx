@@ -168,8 +168,11 @@ var App = React.createClass({
 
 	render: function() {
 		var hideLoadingModalZIndex = 100
-		if(!this.props.processingAuthCookie)
+		var loadingModalAnim = "none"
+		if(!this.props.processingAuthCookie) {
 			hideLoadingModalZIndex = -100
+			loadingModalAnim = "fadeout-loading-modal 1s linear"
+		}
 
 		return (
 			<NavSidebar>
@@ -198,6 +201,7 @@ var App = React.createClass({
 								alignItems: 'center',
 								backgroundColor: 'black',
 								zIndex: hideLoadingModalZIndex,
+								animation: loadingModalAnim,
 								color: 'white'
 							}}>
 							<img
