@@ -52440,12 +52440,27 @@ var App = React.createClass({
 				React.createElement(Header, null),
 				React.createElement(
 					"div",
-					{ style: { display: 'flex', flex: 1 } },
-					React.createElement(
-						"h1",
-						null,
-						"LOADING..."
-					)
+					{
+						style: {
+							position: 'fixed',
+							top: 0,
+							bottom: 0,
+							left: 0,
+							right: 0,
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							backgroundColor: 'black',
+							zIndex: 100,
+							color: 'white'
+						} },
+					React.createElement("img", {
+						style: {
+							height: '7rem',
+							width: '7rem'
+						},
+						src: "/static/img/MASAS_logo-M.svg",
+						alt: "loading" })
 				),
 				React.createElement(Footer, null)
 			),

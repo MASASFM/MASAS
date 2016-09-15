@@ -201,8 +201,27 @@ var App = React.createClass({
 				<NavSidebar>
 					<div style = { styles.container } id="mobile-safari-bug-fix--wrapper">
 						<Header />
-							<div style={{ display: 'flex', flex: 1 }}>
-								<h1>LOADING...</h1>
+							<div
+								style={{
+									position: 'fixed',
+									top: 0,
+									bottom: 0,
+									left: 0,
+									right: 0,
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									backgroundColor: 'black',
+									zIndex: 100,
+									color: 'white'
+								}}>
+								<img
+									style={{
+										height: '7rem',
+										width: '7rem',
+									}}
+									src="/static/img/MASAS_logo-M.svg" 
+									alt="loading" />
 							</div>
 						<Footer />
 									
