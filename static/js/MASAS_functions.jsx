@@ -134,7 +134,7 @@ MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
 MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
 
 	if(typeof(FB) !== "undefined") {
-		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picturee"
+		const avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture"
 
 		// update avatar url if user has none
 		if(avatar_url && !userData.avatar_url)
@@ -142,7 +142,7 @@ MASAS_functions.updateProfilePicture = ({ userPk, userToken, userData }) => {
 				type: "PATCH",
 				url: "/api/users/" + userPk + "/",
 				headers: {
-					"Authorization": header,
+					"Authorization": "Bearer " + userToken,
 					"Content-Type:": "application/json"
 				},
 				data: JSON.stringify({

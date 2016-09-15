@@ -51929,14 +51929,14 @@ MASAS_functions.updateProfilePicture = function (_ref3) {
 	var userData = _ref3.userData;
 
 	if (typeof FB !== "undefined") {
-		var avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picturee";
+		var avatar_url = "https://graph.facebook.com/v2.5/" + FB.getUserID() + "/picture";
 
 		// update avatar url if user has none
 		if (avatar_url && !userData.avatar_url) $.ajax({
 			type: "PATCH",
 			url: "/api/users/" + userPk + "/",
 			headers: {
-				"Authorization": header,
+				"Authorization": "Bearer " + userToken,
 				"Content-Type:": "application/json"
 			},
 			data: JSON.stringify({
