@@ -4,7 +4,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PickTimeUpload.jsx")
 
 var { Button, Link, TimePicker } = require("../UI/UI.jsx")
-var { getCookie } = require("../../MASAS_functions.jsx")
+var { getCookie, updateProfileInfo } = require("../../MASAS_functions.jsx")
 
 var ModalContent = require("./ModalContent.jsx")
 
@@ -14,7 +14,7 @@ var PickTimeUpload = React.createClass({
 		// NONE REDUX
 		visible: React.PropTypes.bool,				// is cancel button visible
 		checkUserStep: React.PropTypes.func,		// check user step and show tip modal if necessary 
-		track: React.PropTypes.array,				// array containing track information
+		track: React.PropTypes.object,			// array containing track information
 
 		// REDUX
 		MASASuser: React.PropTypes.string,
@@ -56,6 +56,10 @@ var PickTimeUpload = React.createClass({
 			},
 			success: () => {
 				this.props.emitNotification('song synced ;)')
+
+				// UPDATE USER INFO
+				updateProfileInfo()
+
 				// CLOSE MODAL 
 				this.props.toogleModal()
 

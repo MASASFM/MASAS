@@ -63052,6 +63052,7 @@ var TimePicker = _require2.TimePicker;
 var _require3 = require("../../MASAS_functions.jsx");
 
 var getCookie = _require3.getCookie;
+var updateProfileInfo = _require3.updateProfileInfo;
 
 var ModalContent = require("./ModalContent.jsx");
 
@@ -63062,7 +63063,7 @@ var PickTimeUpload = React.createClass({
 		// NONE REDUX
 		visible: React.PropTypes.bool, // is cancel button visible
 		checkUserStep: React.PropTypes.func, // check user step and show tip modal if necessary
-		track: React.PropTypes.array, // array containing track information
+		track: React.PropTypes.object, // array containing track information
 
 		// REDUX
 		MASASuser: React.PropTypes.string,
@@ -63104,6 +63105,10 @@ var PickTimeUpload = React.createClass({
 			},
 			success: function success() {
 				_this.props.emitNotification('song synced ;)');
+
+				// UPDATE USER INFO
+				updateProfileInfo();
+
 				// CLOSE MODAL
 				_this.props.toogleModal();
 
@@ -63231,7 +63236,7 @@ var UploadSC = React.createClass({
 
 	propTypes: {
 		isConnectedSoundcloud: React.PropTypes.bool,
-		choosingTime: React.PropTypes.bool,
+		choosingTime: React.PropTypes.object,
 		isModalOpened: React.PropTypes.bool,
 		userData: React.PropTypes.object,
 		userPk: React.PropTypes.string,
@@ -63586,7 +63591,8 @@ PickTimeUpload.mapStateToProps = function (state) {
 	return {
 		track: state.uploadSCReducer.choosingTime,
 		MASASuser: state.appReducer.MASASuser,
-		pickTimeUpload: state.uploadSCReducer.pickTimeUpload
+		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		userPk: state.appReducer.MASASuserPk
 	};
 };
 

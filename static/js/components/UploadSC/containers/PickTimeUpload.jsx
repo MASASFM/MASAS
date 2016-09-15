@@ -7,6 +7,7 @@ PickTimeUpload.mapStateToProps = function(state) {
 		track: state.uploadSCReducer.choosingTime,
 		MASASuser: state.appReducer.MASASuser,
 		pickTimeUpload: state.uploadSCReducer.pickTimeUpload,
+		userPk: state.appReducer.MASASuserPk,
 	}
 }
 

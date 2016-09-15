@@ -18,7 +18,7 @@ var UploadSC = React.createClass({
 	
 	propTypes: {
 		isConnectedSoundcloud: React.PropTypes.bool,
-		choosingTime: React.PropTypes.bool,
+		choosingTime: React.PropTypes.object,
 		isModalOpened: React.PropTypes.bool,
 		userData: React.PropTypes.object,
 		userPk: React.PropTypes.string,
