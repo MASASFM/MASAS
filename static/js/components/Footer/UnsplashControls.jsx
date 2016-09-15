@@ -26,7 +26,9 @@ var UnsplashControls = React.createClass({
 	},
 
 	updateUnsplashArtist: function() {
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
+		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
+		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
+
 
 		$.ajax({
 			type: "GET",
@@ -40,7 +42,8 @@ var UnsplashControls = React.createClass({
 	},
 
 	getNewBackground: function() {
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
+		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
+		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
 
 		$.ajax({
 			type: "GET",
