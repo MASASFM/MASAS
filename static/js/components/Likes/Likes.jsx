@@ -152,7 +152,7 @@ var Likes = React.createClass({
 					<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
 						<img src="/static/img/MASAS_search.svg" alt="serach-icon" />
 						<Textbox id="likes--search-textbox" value={ this.props.searchInput } onChange={ this.updateSearchInput } />
-						<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_trash.svg" />
+						<img onClick={ this.openFiltersModal } className="filter-icon" alt="filter-songs" src="/static/img/MASAS_icon_filter.svg" />
 					</div>
 					<div className="filters--wrapper">
 						<div onClick={ this.toggleFilter.bind(this, 0) } id="filter-early-morning" className={ "tag-filter " + ( this.props.hashtagFilter[0] ? "enable" : "" )}>#EarlyMorning</div>

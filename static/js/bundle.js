@@ -57801,7 +57801,7 @@ var Likes = React.createClass({
 				{ className: "likes-searchbar--wrapper", id: "likes-searchbar-wrapper" },
 				React.createElement("img", { src: "/static/img/MASAS_search.svg", alt: "serach-icon" }),
 				React.createElement(Textbox, { id: "likes--search-textbox", value: this.props.searchInput, onChange: this.updateSearchInput }),
-				React.createElement("img", { onClick: this.openFiltersModal, className: "filter-icon", alt: "filter-songs", src: "/static/img/MASAS_icon_trash.svg" })
+				React.createElement("img", { onClick: this.openFiltersModal, className: "filter-icon", alt: "filter-songs", src: "/static/img/MASAS_icon_filter.svg" })
 			),
 			React.createElement(
 				"div",
@@ -60534,7 +60534,7 @@ var Profile = React.createClass({
 										{ onClick: this.saveProfile },
 										"save"
 									)
-								) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/edit_pencil.svg", alt: "edit profile" })
+								) : React.createElement("img", { onClick: this.props.toggleEditingProfile, className: "abcdefg", src: "/static/img/MASAS_edit_profile.svg", alt: "edit profile" })
 							),
 							avatar_url ? React.createElement("img", { src: avatar_url + "?width=400", alt: "profile picture", className: "profile-picture" }) : React.createElement("div", { className: "profile-picture" }),
 							React.createElement(

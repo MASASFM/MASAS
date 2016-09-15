@@ -389,7 +389,7 @@ var Profile = React.createClass({
 										{ this.props.isEditingProfile ?
 												<div><span onClick={ this.cancelEdit } style={{ paddingRight: "0.5rem" }}>cancel</span><span onClick={ this.saveProfile }>save</span></div>
 											:
-												<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/edit_pencil.svg" alt="edit profile" />
+												<img onClick={ this.props.toggleEditingProfile } className="abcdefg" src="/static/img/MASAS_edit_profile.svg" alt="edit profile" />
 										}
 									</div>
 								}
