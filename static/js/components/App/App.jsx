@@ -1,5 +1,6 @@
 // Thomass-MacBook-Pro-2:frontend thomasbinetruy$ watchify index.jsx -t babelify -o "../node_modules/exorcist/bin/exorcist.js  bundle.js.map > bundle.js" -d
 
+
 var React = require("react")
 
 var ReactRedux = require("react-redux")
