@@ -54633,18 +54633,11 @@ var _require2 = require('react-router');
 
 var browserHistory = _require2.browserHistory;
 
-var _require3 = require("../../MASAS_functions.jsx");
-
-var goToURL = _require3.goToURL;
-
 var LoginForm = require("../Login/LoginForm.jsx");
 
-var _require4 = require("../UI/UI.jsx");
+var _require3 = require("../UI/UI.jsx");
 
-var Button = _require4.Button;
-var TimePicker = _require4.TimePicker;
-var RankingInfoIcon = _require4.RankingInfoIcon;
-// var UnsplashControls = require("./UnsplashControls.jsx")
+var Button = _require3.Button;
 
 var HomeCountdown = require("./HomeCountdown.jsx");
 
@@ -54673,36 +54666,14 @@ var Home = React.createClass({
 		this.props.updateTitle('Home', '0'); // 0 = menu icon; 1 = arrow back
 	},
 
-	componentDidMount: function componentDidMount() {
-		// const marginBottom = $(window).height()/2 - document.getElementsByClassName('login-form--wrapper')[0].scrollHeight/2
-
-		// const loginForm = document.getElementsByClassName('login-form--wrapper')[0]
-
-		// loginForm.style.marginBottom = marginBottom + "px"
-
-		// $('#multiPage--wrapper').scroll( () => {
-		// 	const topBound = $(window).height() - 120
-		// 	const bottomBound = 50
-		// 	if($('#time-picker-home').offset().top <  topBound && $('#time-picker-home').offset().top > bottomBound) {
-		// 		this.setState({ value: (topBound - $('#time-picker-home').offset().top) / topBound * 100 })
-		// 	} else if($('#time-picker-home').offset().top > topBound)  {
-		// 		this.setState({ value: 0 })
-		// 	} else {
-		// 		this.setState({ value: 100 })
-		// 	}
-		// })
-	},
+	componentDidMount: function componentDidMount() {},
 
 	componentWillUnmount: function componentWillUnmount() {
 		(0, _jquery2.default)("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated");
 		this.props.goToPage(1, 4);
-
-		// $('#multiPage--wrapper').unbind("scroll")
 	},
 
-	scrollToInfo: function scrollToInfo() {
-		// $("#multiPage--wrapper").animate({ scrollTop: $("#homepage-login").height() }, '500')
-	},
+	scrollToInfo: function scrollToInfo() {},
 
 	render: function render() {
 		var currentPage = this.props.currentPage;
@@ -54785,7 +54756,7 @@ var Home = React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Home);
 
-},{"../../MASAS_functions.jsx":252,"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./HomeCountdown.jsx":275,"./containers/Home.jsx":277,"jquery":33,"react":238,"react-redux":43,"react-router":77}],275:[function(require,module,exports){
+},{"../Login/LoginForm.jsx":300,"../UI/UI.jsx":345,"./HomeCountdown.jsx":275,"./containers/Home.jsx":277,"jquery":33,"react":238,"react-redux":43,"react-router":77}],275:[function(require,module,exports){
 "use strict";
 
 // HACK NECESSARY TO HANDLE INTERVALS (magic numbers)
