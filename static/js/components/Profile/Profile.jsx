@@ -1,22 +1,17 @@
 // STATEFUL COMPONENT => CHANGE !!!! (integrate w/ redux states)
 
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Profile.jsx")
 
-var Sidebar = require("react-sidebar")
 var ProfileWrapper = require("./ProfileWrapper.jsx")
-var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
-var Header = require("../Header/Header.jsx")
-var Footer = require("../Footer/Footer.jsx")
 var TrackItem = require("../Profile/TrackItem.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
 
 var { goToURL, getCookie, updateNotificationBar, updateProfileInfo, isObjectEmpty } = require("../../MASAS_functions.jsx")
-var { Button, Body, Textbox, Marquee } = require("../UI/UI.jsx")
+var { Button, Marquee } = require("../UI/UI.jsx")
 
 
 var Profile = React.createClass({
@@ -28,6 +23,10 @@ var Profile = React.createClass({
 		publicProfileInfo: React.PropTypes.object,
 		updateUserSCSongs: React.PropTypes.func,
 		userSCSongs: React.PropTypes.array,
+		updateTitle: React.PropTypes.func,
+		userData: React.PropTypes.object,
+		userToken: React.PropTypes.string,
+		route: React.PropTypes.object,
 	},
 
 	getInitialState: function() {
@@ -64,7 +63,7 @@ var Profile = React.createClass({
 						this.getSCinfo()
 					}, 0)
 				},
-				error: (e) => {
+				error: () => {
 				}
 			})
 		else
@@ -77,7 +76,7 @@ var Profile = React.createClass({
 	},
 
 	// componentWillReceiveProps: function(nextProps, nextState) {
-	componentWillReceiveProps: function(nextProps, nextState) {
+	componentWillReceiveProps: function(nextProps) {
 		if(nextProps.route.publicProfile !== this.props.route.publicProfile) {
 			if(nextProps.route.publicProfile)
 				this.getPublicProfileInfo(nextProps)
@@ -104,7 +103,7 @@ var Profile = React.createClass({
 		}
 	},
 
-	componentDidUpdate: function(prevProps, prevState) {
+	componentDidUpdate: function(prevProps) {
 		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
 			this.getSCinfo()
 	},
@@ -121,13 +120,6 @@ var Profile = React.createClass({
 			return (
 				isObjectEmpty(this.props.publicProfileInfo) ?
 					<div className="no-songs--wrapper">
-						 {/*
-						 <div className="image--wrapper">
-							<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
-							<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
-							<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
-						</div>
-						*/}
 						<div className="upload-button">
 							<p className="bold">
 								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
@@ -147,7 +139,7 @@ var Profile = React.createClass({
 					</div>
 				)
 		else {
-			var songs = {}
+			songs = {}
 
 			if(isObjectEmpty(this.props.publicProfileInfo))
 				songs = this.props.userData.songs
@@ -164,7 +156,8 @@ var Profile = React.createClass({
 				if (dateB > dateA) {
 					return 1
 				}
-					return 0
+
+				return 0
 			}
 			songs.sort(compareFn)
 
@@ -195,7 +188,6 @@ var Profile = React.createClass({
 		var csrftoken = getCookie("csrftoken")
 
 		var textboxValues = { ...this.props.textboxValues }
-		var links = textboxValues.link_set
 		delete textboxValues.link_set
 		textboxValues.city = textboxValues.city
 
@@ -213,7 +205,7 @@ var Profile = React.createClass({
 			},
 			contentType: "application/json",
 			data: JSON.stringify(textboxValues), 
-			success: (r) => {
+			success: () => {
 				counterSuccess = counterSuccess + 1
 
 				if(counterSuccess === counterTotal) {
@@ -223,7 +215,7 @@ var Profile = React.createClass({
 				}
 				
 			},
-			error: (e) => {
+			error: () => {
 				updateNotificationBar("Error updating profile...")
 			}
 		})
@@ -252,7 +244,7 @@ var Profile = React.createClass({
 						link: textboxLink,
 						user: this.props.userData.url
 					}),
-					success: (r) => {
+					success: () => {
 						counterSuccess = counterSuccess + 1
 
 						if(counterSuccess === counterTotal) {
@@ -261,7 +253,7 @@ var Profile = React.createClass({
 							this.props.toggleEditingProfile()
 						}
 					},
-					error: (e) => {
+					error: () => {
 						updateNotificationBar("Error updating profile...")
 					}
 				})
@@ -285,7 +277,7 @@ var Profile = React.createClass({
 						"X-CSRFToken": csrftoken
 					},
 					url: userLink.url,
-					success: (r) => {
+					success: () => {
 						counterSuccess = counterSuccess + 1
 
 						if(counterSuccess === counterTotal) {
@@ -294,7 +286,7 @@ var Profile = React.createClass({
 							this.props.toggleEditingProfile()
 						}
 					},
-					error: (e) => {
+					error: () => {
 						updateNotificationBar("Error updating profile...")
 					}
 				})
@@ -370,11 +362,11 @@ var Profile = React.createClass({
 			occupation = this.props.publicProfileInfo.occupation
 		}
 
-		 var isProfileEmpty = false
+		var isProfileEmpty = false
 
-		 if(showProfile)
-			 if(link_set.length === 0 && (city === null || city === "") && (occupation === null || occupation === ""))
-			 	isProfileEmpty = true
+		if(showProfile)
+			if(link_set.length === 0 && (city === null || city === "") && (occupation === null || occupation === ""))
+				isProfileEmpty = true
 
 		if(showProfile) {
 			return (
@@ -443,13 +435,13 @@ var Profile = React.createClass({
 														<a href={ this.checkLink("soundcloud.com") } target="_blank">
 															<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
 														</a> : ""
-	 											}
-	 											{
+												}
+												{
 													this.checkPersonalWebsite() !== "" ?
 														<a href={ this.checkPersonalWebsite() } target="_blank">
 															<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
 														</a> : ""
-	 											}
+												}
 											</div>
 											<div className="occupation--wrapper">
 												<div className="occupation">
@@ -478,13 +470,13 @@ var Profile = React.createClass({
 														<a href={ this.checkLink("twitter.com") } target="_blank">
 															<img src="/static/img/twitter.svg" alt="twitter" />
 														</a> : ""
-	 											}
-	 											{
+												}
+												{
 													this.checkLink("facebook.com") !== "" ?
 														<a href={ this.checkLink("facebook.com") } target="_blank">
 															<img src="/static/img/facebook.svg" alt="facebook" />
 														</a> : ""
-	 											}
+												}
 											</div>
 										</div>
 									</div>
@@ -540,13 +532,6 @@ var Profile = React.createClass({
 		}
 	}
 })
-
-var styles = {
-	container: {
-		display: 'flex',
-		flexDirection: 'column',
-	}
-}
 
 module.exports = ReactRedux.connect(
 	mapStateToProps,
