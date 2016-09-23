@@ -51,7 +51,7 @@
     "eslint-plugin-standard": "^2.0.0",
     "flow-bin": "^0.32.0",
     "jest-cli": "*",
-    "livereactload": "^2.2.2",
+    "livereactload": "^3.0.0",
     "react-addons-test-utils": "0.14.6",
     "react-proxy": "^1.1.8",
     "redux-mock-store": "^1.0.2",
