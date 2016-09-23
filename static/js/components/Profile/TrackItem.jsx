@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/TrackItem.jsx")
@@ -20,6 +19,9 @@ var TrackItem = React.createClass({
 		updateModalContent: React.PropTypes.func,
 		allowOpen: React.PropTypes.bool, 			// should allow open song tray
 		publicProfileInfo: React.PropTypes.object,
+		pause: React.PropTypes.func,
+		songPlaying: React.PropTypes.string,
+		isPaused: React.PropTypes.bool,
 	},
 
 	componentWillMount: function() {
@@ -73,9 +75,9 @@ var TrackItem = React.createClass({
 
 	renderPlayerControlButton: function() {
 		if (this.props.MASAS_songInfo.url === this.props.songPlaying && this.props.isPaused === false)
-			return <img src="/static/img/MASAS_player_pause.svg" alt="pause" className="artwork" onClick={this.props.pause }/>
+			return <img src="/static/img/MASAS_player_pause.svg" alt="pause" className="artwork" onClick={ this.props.pause }/>
 		else
-			return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={this.playTrack }/>
+			return <img src="/static/img/MASAS_player_play.svg" alt="play" className="artwork" onClick={ this.playTrack }/>
 	},
 
 	toggleOpenTray: function() {
