@@ -1497,7 +1497,8 @@ input[type=range].MASAS-slider {
     font-size: 0.9rem;
     padding-left: 2rem; }
   .header .dropdown--wrapper .username--wrapper {
-    display: flex; }
+    display: flex;
+    cursor: pointer; }
   .header .dropdown--wrapper .username--wrapper .profile-picture {
     border: 1px solid;
     height: calc(2.2rem - 5px);

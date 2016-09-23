@@ -54441,7 +54441,11 @@ var HeaderDropdown = React.createClass({
 				{ className: "dropdown--wrapper" },
 				React.createElement(
 					"div",
-					{ className: "username--wrapper" },
+					{
+						onClick: function onClick() {
+							return browserHistory.push("/profile");
+						},
+						className: "username--wrapper" },
 					React.createElement("img", { src: this.props.userData.avatar_url, alt: "profile picture", className: "profile-picture" }),
 					React.createElement(
 						"span",

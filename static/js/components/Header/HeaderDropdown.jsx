@@ -40,7 +40,9 @@ var HeaderDropdown = React.createClass({
 		if (this.props.MASASuser !== "") {
 			return (
 				<div className="dropdown--wrapper">
-					<div className="username--wrapper">
+					<div 
+						onClick={ () => browserHistory.push("/profile") }
+						className="username--wrapper">
 						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
 						<span className="username" id="username-header">{this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
 					</div>
