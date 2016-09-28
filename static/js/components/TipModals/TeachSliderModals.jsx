@@ -14,7 +14,7 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 	)(React.createClass({
 		propTypes: {
 			title: React.PropTypes.string,
-			paragraph: React.PropTypes.string,
+			paragraph: React.PropTypes.node,
 			requireSunDrag: React.PropTypes.bool,
 
 			// redux
@@ -33,7 +33,7 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 			return {
 				title: "To upload this song,",
 				paragraph: "Drag the sun around the arc to select a category for your song to be discoverable from.",
-				requireSunDrag: true,
+				requireSunDrag: false,
 			}
 		},
 
@@ -96,11 +96,11 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 				this.hasMovedSlider = true
 
 			return (
-				<div className="teach-modal--wrapper">
+				<div className="teach-modal--wrapper"> 
 					<p className="title">
 						{ this.state.title }
 					</p>
-					<p className="paragraph" style={{ fontFamily: this.state.title === "" ? "Lato-Semibold" : "Lato-Light" }}>
+					<p className="paragraph" style={{ fontFamily: this.state.title === "" ? "Lato-Light" : "Lato-Light" }}>
 						{ this.state.paragraph }
 					</p>
 					<div style={{ marginBottom: '2rem' }}>
@@ -112,12 +112,9 @@ TeachSliderModals.TeachSliderModal1 = ReactRedux.connect(
 							canvasId="teach-modal-pickTime--canvas" 
 							showHashtag={ true } />
 					</div>
-					<Button 
-						isBigButton={ false }
-						onClick={ this.closeTip }>
-							Close tip
-						</Button>
-
+					<p className="paragraph last-paragraph">
+						drag the sun around to change <strong>mood</strong>!
+					</p>
 				</div>
 			)
 		}

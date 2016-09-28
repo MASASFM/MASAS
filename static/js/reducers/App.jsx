@@ -16,6 +16,7 @@ exportVar.defaultState = {
 	modalContent: <div></div>, 			// (obj) modal content
 	modalType: 1,					// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
+	closeModalFunc: () => {} 			// (func) function called on closin modal
 }
 
 const { defaultState } = exportVar
@@ -27,6 +28,11 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				splashScreenPage: action.splashScreenPage,
+			}
+		case 'UPDATE_CLOSE_MODAL_FUNC':
+			return {
+				...state,
+				closeModalFunc: action.closeModalFunc,
 			}
 		case 'UPDATE_USER_DATA':
 			return {
@@ -59,10 +65,15 @@ exportVar.appReducer = function(state = defaultState, action) {
 			if(modalType < 1)
 				modalType = 1
 
+			var closeModalFunc = defaultState.closeModalFunc
+			if(action.closeModalFunc)
+				closeModalFunc = action.closeModalFunc
+
 			return {
 				...state,
 				modalContent: action.modalContent,
 				modalType,
+				closeModalFunc,
 			}
 		case 'SET_APP_FETCHING_STATE_FALSE':
 			return {

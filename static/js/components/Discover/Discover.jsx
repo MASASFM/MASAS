@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { getTimeIntervalFromURL, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
@@ -54,6 +54,26 @@ var Discover = React.createClass({
 	componentDidMount: function() {
 	},
 
+	updateUserStep: function(step) {
+		var header = "Bearer " + this.props.userToken
+
+		$.ajax({
+			type: 'POST',
+			url: '/api/usersteps/',
+			headers: {
+				"Authorization": header,
+			},
+			data: {
+				user: this.props.userData.url,
+				step: step,
+			},
+			success: () => {
+				updateProfileInfo(this.props.closeModal)
+			},
+			error: () => {},
+		})
+	},
+
 	checkUserStep: function() {
 		// if user data is available
 		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
@@ -66,12 +86,12 @@ var Discover = React.createClass({
 			if(!didUserDismissTips && !didUserSeeFirstTip) {
 				this.props.updateModalContent(
 					<TeachSliderModal1 
-						title="Welcome to Discover,"
-						paragraph="Here you can listen to sounds shared by the community. Drag the sun around to discover songs according to your mood." />
-				, 2)
+						title=""
+						paragraph={ (<span>all the music shared on <strong>MASAS</strong> starts out in one of the discover <strong>moods</strong></span>) } />
+				, 2, () => this.updateUserStep(5) )
 				this.props.toogleModal()
 			} else if(!didUserDismissTips && !didUserSeeSecondTip) {
-				this.props.updateModalContent(<TeachDiscoverModal2 />, 2)
+				this.props.updateModalContent(<TeachDiscoverModal2 />, 2, () => this.updateUserStep(6))
 				this.props.toogleModal()
 			}
 		}

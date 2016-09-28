@@ -575,7 +575,7 @@ input[type=range].MASAS-slider {
     bottom: 2.5rem; } }
 .MASAS-modal.type2 {
   top: 4.1rem;
-  padding-top: 3rem; }
+  padding-top: 0rem; }
   .MASAS-modal.type2 .close-icon {
     height: 1rem;
     display: flex;
@@ -587,6 +587,17 @@ input[type=range].MASAS-slider {
     letter-spacing: 0.12rem; }
     .MASAS-modal.type2 .close-icon img {
       margin-right: 1rem; }
+  .MASAS-modal.type2 .tip-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem; }
+    .MASAS-modal.type2 .tip-title img {
+      height: 3rem; }
+    .MASAS-modal.type2 .tip-title span {
+      font-size: 1.7rem;
+      letter-spacing: 0.35rem;
+      padding-left: 1.5rem; }
 
 .MASAS-modal.type3 {
   top: 0;
@@ -2280,9 +2291,14 @@ input[type=range].MASAS-slider {
     font-family: Lato-Semibold;
     margin-bottom: 0.5rem; }
   .teach-modal--wrapper .paragraph {
-    min-height: 5rem;
-    display: flex;
-    align-items: center; }
+    font-family: Lato-Light;
+    font-size: 1rem; }
+    .teach-modal--wrapper .paragraph strong {
+      font-family: Lato-Semibold; }
+  .teach-modal--wrapper .paragraph.last-paragraph {
+    margin-bottom: 0; }
+  .teach-modal--wrapper .paragraph:first-letter {
+    text-transform: capitalize; }
   .teach-modal--wrapper .teach-modal-pickTime--wrapper {
     display: flex;
     width: 220px !important;

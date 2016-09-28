@@ -43,6 +43,10 @@ MASAS_functions.logout = () => {
 
 }
 
+MASAS_functions.closeModal = () => {
+	dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' })
+}
+
 MASAS_functions.updateNotificationBar = (notificationText) => {
 	const currentText = document.getElementById("notification-text")
 	if(currentText != notificationText) {
