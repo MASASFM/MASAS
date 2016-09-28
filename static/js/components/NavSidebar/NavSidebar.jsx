@@ -97,7 +97,7 @@ var NavSidebar = React.createClass({
 					overflow: 'hidden',
 				},
 				sidebar: {
-					zIndex: 5,
+					zIndex: 11,
 					// position: 'absolute',
 					// top: 0,
 					// bottom: 0,
