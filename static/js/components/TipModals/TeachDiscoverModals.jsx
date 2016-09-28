@@ -99,15 +99,15 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(
 		render: function() {
 			return (
 				<div className="teach-modal--wrapper like-UI-info">
-					<p className="bold">
-						Like your favorites
+					<p className="paragraph1">
+						The songs most loved by the community will get played on <strong>Popular</strong>
 					</p>
 					<p>
-						by clicking on the <img src="/static/img/MASAS_like_shadow.svg" alt="like-icon" />
+						<img src="/static/img/MASAS_like_shadow.svg" alt="like-icon" />
+						<span>
+							Click the diamond to <strong>Like</strong> a song!
+						</span>
 					</p>
-					<Button 
-						isBigButton={false}
-						onClick={ this.updateUserStep }>Close tip</Button>
 				</div>
 			)
 		}

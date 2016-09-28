@@ -57858,13 +57858,7 @@ var Discover = _wrapComponent("_component")(React.createClass({
 					paragraph: React.createElement(
 						"span",
 						null,
-						"all the music shared on ",
-						React.createElement(
-							"strong",
-							null,
-							"MASAS"
-						),
-						" starts out in one of the discover ",
+						"all the music shared on MASAS starts out in one of the discover ",
 						React.createElement(
 							"strong",
 							null,
@@ -67256,21 +67250,29 @@ TeachDiscoverModals.TeachDiscoverModal2 = ReactRedux.connect(mapStateToProps, ma
 			{ className: "teach-modal--wrapper like-UI-info" },
 			React.createElement(
 				"p",
-				{ className: "bold" },
-				"Like your favorites"
+				{ className: "paragraph1" },
+				"The songs most loved by the community will get played on ",
+				React.createElement(
+					"strong",
+					null,
+					"Popular"
+				)
 			),
 			React.createElement(
 				"p",
 				null,
-				"by clicking on the ",
-				React.createElement("img", { src: "/static/img/MASAS_like_shadow.svg", alt: "like-icon" })
-			),
-			React.createElement(
-				Button,
-				{
-					isBigButton: false,
-					onClick: this.updateUserStep },
-				"Close tip"
+				React.createElement("img", { src: "/static/img/MASAS_like_shadow.svg", alt: "like-icon" }),
+				React.createElement(
+					"span",
+					null,
+					"Click the diamond to ",
+					React.createElement(
+						"strong",
+						null,
+						"Like"
+					),
+					" a song!"
+				)
 			)
 		);
 	}

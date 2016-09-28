@@ -87,7 +87,7 @@ var Discover = React.createClass({
 				this.props.updateModalContent(
 					<TeachSliderModal1 
 						title=""
-						paragraph={ (<span>all the music shared on <strong>MASAS</strong> starts out in one of the discover <strong>moods</strong></span>) } />
+						paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
 				, 2, () => this.updateUserStep(5) )
 				this.props.toogleModal()
 			} else if(!didUserDismissTips && !didUserSeeSecondTip) {

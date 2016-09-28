@@ -3489,16 +3489,22 @@ input[type=range].MASAS-slider {
     margin-bottom: 0.6rem; }
 
 .teach-modal--wrapper.like-UI-info {
-  position: absolute;
-  bottom: 1rem;
-  left: 2rem;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin: 2rem 0; }
+  .teach-modal--wrapper.like-UI-info p.paragraph1 {
+    margin-bottom: 2rem; }
   .teach-modal--wrapper.like-UI-info p {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0;
+    align-self: center; }
+    .teach-modal--wrapper.like-UI-info p strong {
+      font-family: Lato-Semibold; }
     .teach-modal--wrapper.like-UI-info p img {
-      width: 2.5rem;
-      margin: 0 0.9rem; }
+      width: 5rem;
+      margin: 0 0.9rem;
+      margin-bottom: 1rem; }
   .teach-modal--wrapper.like-UI-info .MASAS-button {
     margin-bottom: 1rem;
     font-family: Lato-Semibold; }
