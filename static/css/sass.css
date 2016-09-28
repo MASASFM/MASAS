@@ -2894,7 +2894,8 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    flex: 1; }
     .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation {
       padding-bottom: 0.5rem; }
       .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper .occupation .MASAS_marquee--wrapper2 {
@@ -2911,7 +2912,8 @@ input[type=range].MASAS-slider {
       justify-content: center;
       display: flex;
       flex: 1;
-      width: 100%; }
+      width: 100%;
+      text-align: center; }
   .profile--wrapper .social-stats--wrapper {
     height: 0rem;
     visibility: hidden;
