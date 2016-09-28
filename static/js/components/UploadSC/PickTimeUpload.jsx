@@ -28,6 +28,12 @@ var PickTimeUpload = React.createClass({
 		handleTimePickerChange: React.PropTypes.func,
 	},
 
+	getDefaultProps: function() {
+		return {
+			checkUserStep: () => {}
+		}
+	 },
+
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', 1)		// 0 = menu icon; 1 = arrow back
 
@@ -72,7 +78,7 @@ var PickTimeUpload = React.createClass({
 				this.props.toogleModal()
 
 				// EMIT NOTIFICATION
-				this.props.emitNotification(err.responseJSON.detail)
+				this.props.emitNotification(err.responseJSON.SC_ID)
 			},
 		})
 	},

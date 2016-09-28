@@ -58,6 +58,9 @@ var UploadSC = React.createClass({
 	},
 
 	checkUserStep: function() {
+
+		/* not showing tip modal on this page anymore
+					   
 		// if user data is available
 		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
 			// if user has not dismissed tips yet
@@ -72,6 +75,8 @@ var UploadSC = React.createClass({
 				}, 1000)
 			}
 		}
+
+		*/
 	},
 
 	getUserTracks: function() {
@@ -133,7 +138,6 @@ var UploadSC = React.createClass({
 				}}>
 					<Body>
 						<PickTimeUpload 
-							checkUserStep={ this.checkUserStep }
 							visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
 					</Body>
 				</div>

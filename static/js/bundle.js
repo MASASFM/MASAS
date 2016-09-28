@@ -69036,6 +69036,12 @@ var PickTimeUpload = _wrapComponent("_component")(React.createClass({
 		handleTimePickerChange: React.PropTypes.func
 	},
 
+	getDefaultProps: function getDefaultProps() {
+		return {
+			checkUserStep: function checkUserStep() {}
+		};
+	},
+
 	componentWillMount: function componentWillMount() {
 		this.props.updateTitle('Upload', 1); // 0 = menu icon; 1 = arrow back
 
@@ -69079,7 +69085,7 @@ var PickTimeUpload = _wrapComponent("_component")(React.createClass({
 				_this.props.toogleModal();
 
 				// EMIT NOTIFICATION
-				_this.props.emitNotification(err.responseJSON.detail);
+				_this.props.emitNotification(err.responseJSON.SC_ID);
 			}
 		});
 	},
@@ -69173,8 +69179,6 @@ var _MASAS_mixins = require("../MASAS_mixins.jsx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var _components = {
 	_component: {}
 };
@@ -69258,36 +69262,31 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 	},
 
 	checkUserStep: function checkUserStep() {
-		var _this = this;
 
-		// if user data is available
-		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
-			// if user has not dismissed tips yet
-			var usersteps = [].concat(_toConsumableArray(this.props.userData.usersteps));
-			var didUserDismissTips = usersteps.filter(function (_ref) {
-				var step = _ref.step;
-				return step === 4;
-			}).length ? true : false;
-			var didUserSeeFirstTip = usersteps.filter(function (_ref2) {
-				var step = _ref2.step;
-				return step === 5;
-			}).length ? true : false;
-
-			if (!didUserDismissTips && !didUserSeeFirstTip) {
-				window.setTimeout(function () {
-					_this.props.updateModalContent(React.createElement(TeachSliderModal1, null), 2);
-					_this.props.toogleModal();
-				}, 1000);
-			}
-		}
+		/* not showing tip modal on this page anymore
+  			   
+  // if user data is available
+  if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+  	// if user has not dismissed tips yet
+  	let usersteps = [ ...this.props.userData.usersteps ]
+  	const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
+  	const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
+  		if(!didUserDismissTips && !didUserSeeFirstTip) {
+  		window.setTimeout(() => {
+  			this.props.updateModalContent(<TeachSliderModal1 />, 2)
+  			this.props.toogleModal()
+  		}, 1000)
+  	}
+  }
+  	*/
 	},
 
 	getUserTracks: function getUserTracks() {
-		var _this2 = this;
+		var _this = this;
 
 		var success = function success(data) {
-			_this2.props.updateMasasUserTracks(data.songs);
-			_this2.getUserSCTracks();
+			_this.props.updateMasasUserTracks(data.songs);
+			_this.getUserSCTracks();
 		};
 
 		var error = function error() {};
@@ -69296,40 +69295,40 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 	},
 
 	getUserSCTracks: function getUserSCTracks() {
-		var _this3 = this;
+		var _this2 = this;
 
 		SC.get(document.MASAS.SC.tracks_uri, { limit: 100 }).then(function (response) {
 			// async call to SC servers
-			_this3.props.updateSoundcloudUserTracks(response);
+			_this2.props.updateSoundcloudUserTracks(response);
 		});
 	},
 
 	connectToSC: function connectToSC() {
-		var _this4 = this;
+		var _this3 = this;
 
 		SC.connect().then(function () {
-			_this4.props.updateIsConnectedSC(true);
+			_this3.props.updateIsConnectedSC(true);
 			SC.get('/me').then(function (r) {
 				// store suername for mobile
-				_this4.props.updateSCusername(r.username);
+				_this3.props.updateSCusername(r.username);
 
 				// get user track (first from MASAS API (requires log in) and then from SC API)
-				_this4.getUserTracks();
+				_this3.getUserTracks();
 			}).catch(function () {
-				_this4.props.updateSCusername(null);
+				_this3.props.updateSCusername(null);
 			});
-			_this4.getUserTracks();
+			_this3.getUserTracks();
 		}).catch(function (error) {
 			return alert('Error: ' + error.message);
 		});
 	},
 
 	tracksTable: function tracksTable() {
-		var _this5 = this;
+		var _this4 = this;
 
 		if (this.props.soundcloudUserTracks) return this.props.soundcloudUserTracks.map(function (track) {
 			var synced = false;
-			if (_this5.props.masasUserTracks.filter(function (song) {
+			if (_this4.props.masasUserTracks.filter(function (song) {
 				return song.SC_ID === track.id;
 			}).length) synced = true;
 
@@ -69353,7 +69352,6 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 				Body,
 				null,
 				React.createElement(PickTimeUpload, {
-					checkUserStep: this.checkUserStep,
 					visible: !(this.props.modalType === 2 && this.props.isModalOpened) })
 			)
 		);
