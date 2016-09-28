@@ -22,6 +22,7 @@ var LegalsHome = React.createClass({
 	propTypes: {
 		splashScreenLegals: React.PropTypes.bool,
 		backButtonFunc: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
