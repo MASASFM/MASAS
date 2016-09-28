@@ -220,6 +220,8 @@
 .MASAS-textbox .MASAS-label {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.7rem; }
+.MASAS-textbox .MASAS-label.required {
+  color: white; }
 .MASAS-textbox .MASAS-text-input {
   height: 1.25rem;
   background-color: rgba(255, 255, 255, 0.16);
@@ -2826,7 +2828,8 @@ input[type=range].MASAS-slider {
         width: 80%; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #stage-name {
           height: 2rem;
-          font-size: 2rem; }
+          font-size: 2rem;
+          opacity: 1; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #city, .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info #occupation {
           width: 80%; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .edit-profile--wrapper .profile-edit--wrapper .personal-info .MASAS-textbox {

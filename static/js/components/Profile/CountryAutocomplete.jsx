@@ -62,7 +62,7 @@ var CountryAutocomplete = React.createClass({
 	render: function() {
 		return (
 			<div className="MASAS-textbox country-autocomplete--wrapper" style={{ position: 'relative' }}>
-				<label htmlFor="cities-autocomplete" className="MASAS-label">City</label>
+				<label htmlFor="cities-autocomplete" className="MASAS-label required">City *</label>
 				<Autocomplete
 					ref="autocomplete"
 					value={ this.state.value }

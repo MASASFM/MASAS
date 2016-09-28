@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileEdit.jsx")
@@ -44,7 +43,13 @@ var ProfileEdit = React.createClass({
 			return (
 				<div className="profile-edit--wrapper">
 					<div className="personal-info">
-						<Textbox onChange={ this.updateName } value={ this.props.textboxValues.name } id="stage-name">Stage Name</Textbox>
+						<Textbox 
+							onChange={ this.updateName } 
+							value={ this.props.textboxValues.name } 
+							id="stage-name"
+							isRequired={ true }>
+							Stage Name 
+							</Textbox>
 						<CountryAutocomplete onChange={ this.updateCity }/>
 						<Textbox onChange={ this.updateOccupation } value={ this.props.textboxValues.occupation } id="occupation">Occupation</Textbox>
 					</div>
