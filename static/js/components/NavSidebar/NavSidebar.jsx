@@ -97,7 +97,7 @@ var NavSidebar = React.createClass({
 					overflow: 'hidden',
 				},
 				sidebar: {
-					zIndex: 11,
+					zIndex: 12,
 					// position: 'absolute',
 					// top: 0,
 					// bottom: 0,
@@ -116,8 +116,8 @@ var NavSidebar = React.createClass({
 					// transition: 'left .3s ease-out, right .3s ease-out',
 				},
 				overlay: {
-					zIndex: 3,
-					// position: 'fixed',
+					zIndex: 11,
+					// position: 'fixed'1
 					// top: 0,
 					// left: 0,
 					// right: 0,
