@@ -2870,7 +2870,7 @@ input[type=range].MASAS-slider {
     display: none; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -2882,14 +2882,16 @@ input[type=range].MASAS-slider {
     width: 1.5rem;
     max-height: 1.5rem; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
-    width: 4.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 1rem; }
+    .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links .site-logo {
+      width: 2rem;
+      display: flex;
+      justify-content: center; }
   .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper {
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center; }
@@ -3096,8 +3098,6 @@ input[type=range].MASAS-slider {
         .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .occupation--wrapper {
           display: none; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper .social-links {
-          flex-grow: 1;
-          justify-content: space-around;
           margin: 0; }
         .profile--wrapper .profile-info--wrapper .text--wrapper .social--wrapper img {
           width: 1rem;

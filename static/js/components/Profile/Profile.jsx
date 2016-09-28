@@ -432,13 +432,13 @@ var Profile = React.createClass({
 											<div className="social-links right">
 												{
 													this.checkLink("soundcloud.com") !== "" ?
-														<a href={ this.checkLink("soundcloud.com") } target="_blank">
+														<a href={ this.checkLink("soundcloud.com") } className="site-logo" target="_blank">
 															<img src="/static/img/MASAS_logo_soundcloud.svg" alt="soundcloud" />
 														</a> : ""
 												}
 												{
 													this.checkPersonalWebsite() !== "" ?
-														<a href={ this.checkPersonalWebsite() } target="_blank">
+														<a href={ this.checkPersonalWebsite() } className="site-logo" target="_blank">
 															<img src="/static/img/MASAS_logo_world.svg" alt="personal page" />
 														</a> : ""
 												}
@@ -467,13 +467,13 @@ var Profile = React.createClass({
 											<div className="social-links left">
 												{
 													this.checkLink("twitter.com") !== "" ?
-														<a href={ this.checkLink("twitter.com") } target="_blank">
+														<a href={ this.checkLink("twitter.com") } className="site-logo" target="_blank">
 															<img src="/static/img/twitter.svg" alt="twitter" />
 														</a> : ""
 												}
 												{
 													this.checkLink("facebook.com") !== "" ?
-														<a href={ this.checkLink("facebook.com") } target="_blank">
+														<a href={ this.checkLink("facebook.com") } className="site-logo" target="_blank">
 															<img src="/static/img/facebook.svg" alt="facebook" />
 														</a> : ""
 												}
