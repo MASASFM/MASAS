@@ -36,7 +36,8 @@ var LegalsHome = React.createClass({
 	},
 
 	componentWillUpdate: function() {
-		this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
+		if(!this.props.splashScreenLegals)
+			this.props.updateTitle('Legals', '0')		// 0 = menu icon; 1 = arrow back
 	},
 
 	render: function() {

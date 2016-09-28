@@ -46,7 +46,6 @@ var App = React.createClass({
 	componentWillMount: function() {
 		// BIND EVENTS TO AJAX REQUESTS
 		// http://api.jquery.com/Ajax_Events/
-
 		$(document).bind("ajaxStart", () => {
 			this.props.showAppFetchingBar()
 		}).bind("ajaxStop", () => {
