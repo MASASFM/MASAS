@@ -65,7 +65,7 @@ var HeaderDropdown = React.createClass({
 				<div className="dropdown--wrapper" >
 					<Button
 						isBigButton={ false }
-						onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen />, 3) } }>Log-in</Button>
+						onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }>Log-in</Button>
 				</div>
 				)
 	}

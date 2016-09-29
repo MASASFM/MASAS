@@ -219,7 +219,7 @@ var App = React.createClass({
 				<div id="jquery_jplayer_1"></div>
 				<Modal 
 					isOpened={ this.props.isModalOpened }
-					closeModalFunc={ this.props.toogleModal }
+					closeModalFunc={ this.props.closeModal }
 					type={ this.props.modalType }>
 					{ this.props.modalContent }
 				</Modal>

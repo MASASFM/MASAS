@@ -11,10 +11,17 @@ var Legals = require("../Legals/LegalsHome.jsx")
 
 var SplashScreen = React.createClass({
 	propTypes: {
+		startPage: React.PropTypes.number,
 		splashScreenPage: React.PropTypes.number,
 
 		updateSplashScreenPage: React.PropTypes.func,
 		closeSplashScreen: React.PropTypes.func,
+	},
+
+	getDefaultProps: function() {
+		return {
+			startPage: 0,
+		};
 	},
 
 	getInitialState: function() {
@@ -95,6 +102,10 @@ var SplashScreen = React.createClass({
 					this.hashtagSwiper.startAutoplay()
 			}
 		})
+
+		// init starting page (home splash screen or login)
+		this.props.updateSplashScreenPage(this.props.startPage)
+		this.mainSwiper.slideTo(this.props.startPage, 0)
 	},
 
 	slideNext: function() {
@@ -103,6 +114,9 @@ var SplashScreen = React.createClass({
 
 	slidePrev: function() {
 		this.mainSwiper.slidePrev()
+	},
+
+	componentWillReceiveProps: function(nextProps) {
 	},
 
 	render: function() {

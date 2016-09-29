@@ -56,6 +56,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				isModalOpened: defaultState.isModalOpened,
+				modalContent: defaultState.modalContent,
 			}
 		case 'CHANGE_MODAL_CONTENT':
 			var modalType = 1
