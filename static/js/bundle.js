@@ -57907,7 +57907,7 @@ var Discover = _wrapComponent("_component")(React.createClass({
 		var _this2 = this;
 
 		// if user data is available
-		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened && window.location.pathname === "/discover") {
 			// if user has not dismissed tips yet
 			var usersteps = [].concat(_toConsumableArray(this.props.userData.usersteps));
 			var didUserDismissTips = usersteps.filter(function (_ref) {

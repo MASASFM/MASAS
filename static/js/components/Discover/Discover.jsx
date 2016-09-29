@@ -76,7 +76,7 @@ var Discover = React.createClass({
 
 	checkUserStep: function() {
 		// if user data is available
-		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
+		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened && window.location.pathname === "/discover") {
 			// if user has not dismissed tips yet
 			let usersteps = [ ...this.props.userData.usersteps ]
 			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
