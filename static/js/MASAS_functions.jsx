@@ -299,27 +299,38 @@ MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
 MASAS_functions.toggleSongLike = (userToken, songId) => {
+	// optimistic UI
+	dispatch({type: "TOGGLE_SONG_LIKE"})
+
 	// NO ACTION IF NO SONG IS PROVIDED
 	if(!songId) {
-		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+		window.setTimeout( () => {
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+
+			// remove optimistic UI
+			dispatch({type: "TOGGLE_SONG_LIKE"})
+		}, 0)
 
 		return 
 	}
 
-	//if(!userT) {
-	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+	if(!userToken) {
+		window.setTimeout( () => {
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like music!"})
 
-	//	return 
-	//}
+			// remove optimistic UI
+			dispatch({type: "TOGGLE_SONG_LIKE"})
+		}, 0)
+
+		return 
+	}
 
 	// CHECK IF SONG IS LIKED FROM REST API
 		// fetch user info
 		// compare liked songs with songId
 
-	// optimistic UI
-	dispatch({type: "TOGGLE_SONG_LIKE"})
 
 	// server check and UI update if necessary
 	var header = "Bearer " + userToken

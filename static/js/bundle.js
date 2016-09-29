@@ -56561,27 +56561,37 @@ MASAS_functions.playRandomSong = function (MASASuser) {
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
 MASAS_functions.toggleSongLike = function (userToken, songId) {
+	// optimistic UI
+	dispatch({ type: "TOGGLE_SONG_LIKE" });
+
 	// NO ACTION IF NO SONG IS PROVIDED
 	if (!songId) {
-		dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-		dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!" });
+		window.setTimeout(function () {
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!" });
+
+			// remove optimistic UI
+			dispatch({ type: "TOGGLE_SONG_LIKE" });
+		}, 0);
 
 		return;
 	}
 
-	//if(!userT) {
-	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+	if (!userToken) {
+		window.setTimeout(function () {
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
+			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like music!" });
 
-	//	return
-	//}
+			// remove optimistic UI
+			dispatch({ type: "TOGGLE_SONG_LIKE" });
+		}, 0);
+
+		return;
+	}
 
 	// CHECK IF SONG IS LIKED FROM REST API
 	// fetch user info
 	// compare liked songs with songId
-
-	// optimistic UI
-	dispatch({ type: "TOGGLE_SONG_LIKE" });
 
 	// server check and UI update if necessary
 	var header = "Bearer " + userToken;
@@ -65151,11 +65161,9 @@ module.exports = ajaxCalls;
 var _require = require("../ajaxCalls.jsx");
 
 var _playNewSong = _require.playNewSong;
-var updateLikeButton = _require.updateLikeButton;
 
 var _require2 = require("../../../MASAS_functions.jsx");
 
-var getCookie = _require2.getCookie;
 var pausePlayer = _require2.pausePlayer;
 var _playPreviousSong = _require2.playPreviousSong;
 var _toggleSongLike = _require2.toggleSongLike;

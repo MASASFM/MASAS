@@ -1,5 +1,5 @@
-var { playNewSong, updateLikeButton } = require("../ajaxCalls.jsx")
-var { getCookie, pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
+var { playNewSong } = require("../ajaxCalls.jsx")
+var { pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
 // var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 var Player = {}
