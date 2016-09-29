@@ -5,6 +5,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLineI
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
+var MiniProfile = require("../Profile/MiniProfile.jsx")
 
 
 var ArtworkLineItem = React.createClass({
@@ -37,10 +38,23 @@ var ArtworkLineItem = React.createClass({
 	getInitialState: function() {
 		return {
 			showProfile: false, 					// (bool) should mini profile be shown 
+			userInfo: null, 						// (object) object containing user info
 		};
 	},
 
 	componentWillMount: function() {
+	},
+	
+	componentDidMount: function() {
+		// get user info associated with this song
+		$.ajax({
+			type: 'GET',
+			url: this.props.MASAS_songInfo.trackArtist,
+			success: (r) => {
+				this.setState({ userInfo: r })
+			},
+			error: () => {},
+		})
 	},
 
 	toggleShowProfile: function() {
@@ -69,7 +83,7 @@ var ArtworkLineItem = React.createClass({
 				<div 
 					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }
 					onClick={ this.toggleShowProfile }>
-					
+					<MiniProfile userInfo={ this.state.userInfo } />
 				</div>
 				<div className="artwork--wrapper2">
 					{ artworkURL ?
