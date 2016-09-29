@@ -2786,8 +2786,7 @@ input[type=range].MASAS-slider {
   .profile--wrapper .main--wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    min-height: 22rem; }
+    flex-direction: column; }
   .profile--wrapper .profile-picture {
     height: 10rem;
     width: 10rem;
@@ -2797,7 +2796,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     height: 22rem; }
   .profile--wrapper .profile-info--wrapper.no-songs {
-    height: 12rem; }
+    height: 16rem; }
   .profile--wrapper .profile-info--wrapper .edit-profile-icon--wrapper {
     position: absolute;
     right: 28px;
@@ -2997,8 +2996,6 @@ input[type=range].MASAS-slider {
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper.hidden {
       display: none; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper {
-      display: flex;
-      flex: 1;
       flex-direction: column;
       justify-content: center;
       align-items: center; }
