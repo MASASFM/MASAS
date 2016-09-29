@@ -60,11 +60,16 @@
 			align-items: center
 			padding: 0 $sidePadding
 			background-color: black
+			flex-direction: row
 
-			.title, .artist
-				position: relative
-				height: $font-size
-				width: $artworkWidth - 2*$sidePadding
+			.song-info
+				flex: 1
+
+				.title, .artist
+					position: relative
+					height: $font-size
+					width: $artworkWidth - 2*$sidePadding
+
 
 	.artwork--wrapper
 		$ratio: 0.7

@@ -19,6 +19,12 @@ var ArtworkLineItem = React.createClass({
 		isItemPlaying: React.PropTypes.bool,
 		pause: React.PropTypes.func,
 		playAndSaveHistory: React.PropTypes.func,
+
+		songPlaying: React.PropTypes.string,
+		toggleSongLike: React.PropTypes.func,
+		isSongPlayingLiked: React.PropTypes.bool,
+		userToken: React.PropTypes.string,
+
 		isArtworkLarge: React.PropTypes.bool,			// larger ArtworkLineItem
 	},
 
@@ -78,10 +84,31 @@ var ArtworkLineItem = React.createClass({
 					</div>
 				</div>
 
-				<div className="song-info--wrapper">
-					<Marquee className="title">{ SC_songInfo.title }</Marquee>
-					<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
-				</div>
+				{
+					!isArtworkLarge ?
+						<div className="song-info--wrapper">
+							<Marquee className="title">{ SC_songInfo.title }</Marquee>
+							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
+						</div>
+					:
+						<div className="song-info--wrapper">
+							<div 
+								className="like-icon" 
+								style={{ display: (this.props.songPlaying === MASAS_songInfo.url ? 'flex' : 'none') }}
+								onClick={ this.props.toggleSongLike.bind(this, this.props.userToken, this.props.songPlaying) }>
+								{
+									this.props.isSongPlayingLiked ?
+										<img src="/static/img/MASAS_liked.svg" alt="like" />
+									:
+										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
+								}
+							</div>
+							<div className="song-info">
+								<div className="title"><Marquee>{ SC_songInfo.title }</Marquee></div>
+								<div className="artist"><Marquee>{ SC_songInfo.user.username }</Marquee></div>
+							</div>
+						</div>
+				}
 			</div>
 		)
 	}

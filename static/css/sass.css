@@ -3559,11 +3559,14 @@ input[type=range].MASAS-slider {
       justify-content: center;
       align-items: center;
       padding: 0 1rem;
-      background-color: black; }
-      .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .title, .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .artist {
-        position: relative;
-        height: 0.7rem;
-        width: 14rem; }
+      background-color: black;
+      flex-direction: row; }
+      .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info {
+        flex: 1; }
+        .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
+          position: relative;
+          height: 0.7rem;
+          width: 14rem; }
     .discover--wrapper .artwork--wrapper .artwork {
       height: 11.2rem;
       width: 11.2rem; }

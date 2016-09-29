@@ -156,6 +156,10 @@ var ArtworkLine = React.createClass({
 							pause={ this.props.pause }
 							playAndSaveHistory={ this.props.playAndSaveHistory }
 							isArtworkLarge={ true }
+							songPlaying={ this.props.songPlaying }
+							toggleSongLike={ this.props.toggleSongLike }
+							isSongPlayingLiked={ this.props.isSongPlayingLiked }
+							userToken={ this.props.userToken }
 							/>
 					</div>
 					<div 
