@@ -2475,15 +2475,16 @@ input[type=range].MASAS-slider {
   position: relative;
   cursor: pointer;
   height: 10rem; }
-.navSidebar--wrapper .profile-picture--wrapper .username {
-  position: absolute;
-  bottom: 0;
-  font-size: 1.5rem;
-  letter-spacing: 0.1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem; }
-.navSidebar--wrapper .profile-picture--wrapper .profile-picture {
-  object-fit: cover; }
+  .navSidebar--wrapper .profile-picture--wrapper .username {
+    position: absolute;
+    bottom: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem; }
+  .navSidebar--wrapper .profile-picture--wrapper .profile-picture {
+    object-fit: cover;
+    height: 10rem; }
 .navSidebar--wrapper .navSidebar-footer {
   display: flex;
   justify-content: space-between;

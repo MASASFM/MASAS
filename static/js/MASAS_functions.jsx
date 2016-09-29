@@ -300,8 +300,19 @@ MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 // Refactor with like and dislike functions called from toogleSongLike
 MASAS_functions.toggleSongLike = (userToken, songId) => {
 	// NO ACTION IF NO SONG IS PROVIDED
-	if(!songId)
+	if(!songId) {
+		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+
 		return 
+	}
+
+	//if(!userT) {
+	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+	//	dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
+
+	//	return 
+	//}
 
 	// CHECK IF SONG IS LIKED FROM REST API
 		// fetch user info
@@ -323,6 +334,7 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 		},
 		success: (data) => {
 			// GET USER LIKES FROM USER.PK
+
 			$.ajax({
 				type: "GET",
 				url: "/api/users/" + data.userPk + "/",	
@@ -396,11 +408,20 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 					}
 				},
 				error: (err) => {
-				},
+					dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+					dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like songs!"})
+				
+					// unlike song (optimistic UI)
+					dispatch({type: "TOGGLE_SONG_LIKE"})
+					return 
+					},
 			})
 
 		},
+
 		error: (err) => {
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
+			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..."})
 		},
 	})
 }

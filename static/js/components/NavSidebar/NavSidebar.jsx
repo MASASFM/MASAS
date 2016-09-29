@@ -33,7 +33,7 @@ var NavSidebar = React.createClass({
 	},
 
 	goToLogin: function() {
-		this.props.updateModalContent(<SplashScreen startPage="1" />, 3)
+		this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
 		this.props.toogleModal()
 		this.props.toogleSidebar()
 	},
