@@ -64641,11 +64641,7 @@ var NavSidebar = _wrapComponent("_component")(React.createClass({
 						Link,
 						{ to: "/", onClick: this.logout },
 						"Logout"
-					) : React.createElement(
-						Link,
-						{ to: "/login", onClick: this.props.toogleSidebar },
-						"Login"
-					)
+					) : React.createElement("div", { style: { display: 'none' } })
 				)
 			)
 		);

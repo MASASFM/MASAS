@@ -94,7 +94,7 @@ var NavSidebar = React.createClass({
 								{ this.props.MASASuser ?
 									<Link to="/" onClick={this.logout}>Logout</Link>
 									:
-									<Link to="/login" onClick={this.props.toogleSidebar}>Login</Link>
+									<div style={{ display: 'none' }}></div>
 								}
 							</div>
 						</div>
