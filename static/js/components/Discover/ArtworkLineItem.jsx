@@ -34,7 +34,17 @@ var ArtworkLineItem = React.createClass({
 		}
 	},
 
+	getInitialState: function() {
+		return {
+			showProfile: false, 					// (bool) should mini profile be shown 
+		};
+	},
+
 	componentWillMount: function() {
+	},
+
+	toggleShowProfile: function() {
+		this.setState({ showProfile: !this.state.showProfile })
 	},
 
 	render: function() {
@@ -56,6 +66,11 @@ var ArtworkLineItem = React.createClass({
 				style={{
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 				}}>
+				<div 
+					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }
+					onClick={ this.toggleShowProfile }>
+					
+				</div>
 				<div className="artwork--wrapper2">
 					{ artworkURL ?
 							<img src={ artworkURL } alt="artwork" className="artwork"/>
@@ -86,7 +101,9 @@ var ArtworkLineItem = React.createClass({
 
 				{
 					!isArtworkLarge ?
-						<div className="song-info--wrapper">
+						<div 
+							onClick={ this.toggleShowProfile }
+							className="song-info--wrapper">
 							<Marquee className="title">{ SC_songInfo.title }</Marquee>
 							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
 						</div>
@@ -103,7 +120,9 @@ var ArtworkLineItem = React.createClass({
 										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
 								}
 							</div>
-							<div className="song-info">
+							<div 
+								className="song-info"
+								onClick={ this.toggleShowProfile }>
 								<div className="title"><Marquee>{ SC_songInfo.title }</Marquee></div>
 								<div className="artist"><Marquee>{ SC_songInfo.user.username }</Marquee></div>
 							</div>

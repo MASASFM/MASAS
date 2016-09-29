@@ -105,6 +105,13 @@
     opacity: 0; }
   to {
     opacity: 1; } }
+@keyframes fadein-profile {
+  from {
+    z-index: 4;
+    opacity: 0; }
+  to {
+    z-index: 4;
+    opacity: 1; } }
 @keyframes center-play-button {
   from {
     right: 2rem; }
@@ -3521,7 +3528,22 @@ input[type=range].MASAS-slider {
   flex: 1;
   align-items: center; }
   .discover--wrapper .artwork--wrapper {
-    background-color: black; }
+    background-color: black;
+    position: relative; }
+    .discover--wrapper .artwork--wrapper .mini-profile {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      background-color: black;
+      opacity: 0;
+      animation: fadeout-modal 0.25s linear; }
+    .discover--wrapper .artwork--wrapper .mini-profile.show {
+      z-index: 1;
+      opacity: 1;
+      animation: fadein-profile 0.25s linear; }
     .discover--wrapper .artwork--wrapper .artwork--wrapper2 {
       position: relative;
       cursor: pointer; }
@@ -3613,7 +3635,6 @@ input[type=range].MASAS-slider {
           right: 0;
           bottom: 0;
           left: 0;
-          display: none;
           justify-content: center;
           align-items: center;
           background-color: rgba(0, 0, 0, 0.5); }
@@ -3625,8 +3646,6 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
           height: 13rem;
           width: 13rem; }
-      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing:hover .player-button {
-        display: flex; }
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
         display: none; }
     .discover--wrapper .artwork-line--wrapper .left-side, .discover--wrapper .artwork-line--wrapper .right-side {

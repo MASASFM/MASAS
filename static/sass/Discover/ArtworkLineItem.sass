@@ -1,5 +1,22 @@
 .artwork--wrapper
 	background-color: black
+	position: relative
+
+	.mini-profile
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: -1
+		background-color: black
+		opacity: 0
+		animation: fadeout-modal 0.25s linear 
+
+	.mini-profile.show
+		z-index: 1
+		opacity: 1
+		animation: fadein-profile 0.25s linear 
 
 	.artwork--wrapper2
 		position: relative
