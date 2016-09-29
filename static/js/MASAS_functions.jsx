@@ -264,15 +264,25 @@ MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 	if(timeInterval)
 		URL = URL + "?time_interval_id=" + timeInterval
 
-	var header = "Bearer " + MASASuser
-	var csrftoken = MASAS_functions.getCookie("csrftoken")
-	$.ajax({
-		type: "POST",
-		url: URL,
-		headers: {
+
+	var headers = {}
+	var type = "GET"
+
+	if(MASASuser !== "") {
+		var header = "Bearer " + MASASuser
+		var csrftoken = MASAS_functions.getCookie("csrftoken")
+		type = "POST"
+
+		headers = {
 			"Authorization": header,
 			"X-CSRFToken": csrftoken
-		},
+		}
+	}
+
+	$.ajax({
+		type,
+		url: URL,
+		headers,
 		data: {
 			
 		},
