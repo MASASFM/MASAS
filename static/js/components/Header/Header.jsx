@@ -91,9 +91,6 @@ var Header = React.createClass({
 						<div className="box tray-icon--wrapper">
 							{ this.props.MASASuser === "" ?
 								<div className="header-login-button--wrapper">
-									<Button
-										isBigButton={ true }
-										onClick={ () => { browserHistory.push('/login') } }>Request an invitation</Button>
 								</div>
 								:
 								<div 
