@@ -13,6 +13,7 @@ var SplashScreen = React.createClass({
 	propTypes: {
 		startPage: React.PropTypes.number,
 		splashScreenPage: React.PropTypes.number,
+		MASASuser: React.PropTypes.string,
 
 		updateSplashScreenPage: React.PropTypes.func,
 		closeSplashScreen: React.PropTypes.func,
@@ -173,7 +174,7 @@ var SplashScreen = React.createClass({
 										<LoginForm />
 										<Button
 											noBorders={ true }
-											onClick={ this.slidePrev } 
+											onClick={ this.props.closeSplashScreen } 
 											isSecondaryAction={ true }>
 											Cancel
 										</Button>
