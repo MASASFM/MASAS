@@ -40,7 +40,9 @@ var NavSidebar = React.createClass({
 								<span className="username">{/* this.props.userData.username */}My Profile</span>
 							</div>
 							:
-							""
+							<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
+								<span className="username">Login</span>
+							</div>
 						}
 						<div className="content">
 							<div className="nav-links">

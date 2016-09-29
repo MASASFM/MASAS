@@ -2473,7 +2473,8 @@ input[type=range].MASAS-slider {
   display: flex;
   flex-direction: column;
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 10rem; }
 .navSidebar--wrapper .profile-picture--wrapper .username {
   position: absolute;
   bottom: 0;
@@ -2482,8 +2483,7 @@ input[type=range].MASAS-slider {
   padding-bottom: 1rem;
   padding-left: 2rem; }
 .navSidebar--wrapper .profile-picture--wrapper .profile-picture {
-  object-fit: cover;
-  height: 10rem; }
+  object-fit: cover; }
 .navSidebar--wrapper .navSidebar-footer {
   display: flex;
   justify-content: space-between;
