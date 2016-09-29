@@ -10,7 +10,9 @@ SplashScreen.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 SplashScreen.mapDispatchToProps = function(dispatch) {
 	return {
-		updateSplashScreenPage: (splashScreenPage) => dispatch({ type: 'CHANGE_SLASH_SCREEN_PAGE', splashScreenPage })
+		updateSplashScreenPage: (splashScreenPage) => dispatch({ type: 'CHANGE_SLASH_SCREEN_PAGE', splashScreenPage }),
+		closeSplashScreen: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
+
 	}
 }
 

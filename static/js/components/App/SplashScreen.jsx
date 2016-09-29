@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/SplashScreen.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { goToURL } = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
 var LoginForm = require("../Login/LoginForm.jsx")
 var Legals = require("../Legals/LegalsHome.jsx")
@@ -14,6 +14,7 @@ var SplashScreen = React.createClass({
 		splashScreenPage: React.PropTypes.number,
 
 		updateSplashScreenPage: React.PropTypes.func,
+		closeSplashScreen: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -141,11 +142,11 @@ var SplashScreen = React.createClass({
 									</div>
 									<div className="login-buttons--wrapper">
 										<Button
-											onClick={ this.slideNext } 
-											isSecondaryAction={ true }>Sign-In</Button>
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } } 
+											isSecondaryAction={ true }>Share your sounds</Button>
 										<Button
-											onClick={ this.slideNext } 
-											>Sign-Up</Button>
+											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } } 
+											>discover music</Button>
 									</div>
 								</div>
 							</div>

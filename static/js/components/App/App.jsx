@@ -161,9 +161,9 @@ var App = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps) {
-		if(this.props.MASASuser !== prevProps.MASASuser) {
-			this.showSplashScreen()
-		}
+		//if(this.props.MASASuser !== prevProps.MASASuser) {
+		//	this.showSplashScreen()
+		//}
 	},
 
 	render: function() {
