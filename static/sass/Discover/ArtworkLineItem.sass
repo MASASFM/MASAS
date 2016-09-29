@@ -1,0 +1,93 @@
+.artwork--wrapper
+	background-color: black
+
+	.artwork--wrapper2
+		position: relative
+		cursor: pointer
+
+	$artworkWidth: 12rem
+	.artwork
+		height: $artworkWidth
+		width: $artworkWidth
+		background-color: black
+
+	.song-info--wrapper
+		display: none
+		align-items: center
+
+	.player-button
+		position: absolute
+		display: none
+		justify-content: center
+		align-items: center
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background-color: rgba(0,0,0,0.5)
+
+		img
+			width: 4rem
+			height: 4rem
+
+.artwork--wrapper2:hover	
+	.player-button
+		display: flex
+
+@media screen and (min-width: $desktop-min-width)
+	$artworkWidth: 16rem
+	$song-info-height: 3rem 
+	$font-size: 0.7rem
+	$sidePadding: 1rem
+
+	.artwork--wrapper.artwork-playing
+		$ratio: 1
+		$artworkWidth: $artworkWidth * $ratio
+		$song-info-height: $song-info-height * $ratio
+		$font-size: $font-size * $ratio
+		$sidePadding: $sidePadding * 1
+
+		.artwork
+			height: $artworkWidth
+			width: $artworkWidth
+
+		.song-info--wrapper
+			font-size: $font-size
+			height: $song-info-height
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			padding: 0 $sidePadding
+			background-color: black
+
+			.title, .artist
+				position: relative
+				height: $font-size
+				width: $artworkWidth - 2*$sidePadding
+
+	.artwork--wrapper
+		$ratio: 0.7
+		$artworkWidth: $artworkWidth * $ratio
+		$song-info-height: $song-info-height * $ratio
+		$font-size: $font-size * $ratio
+		$sidePadding: $sidePadding * 1
+
+		.artwork
+			height: $artworkWidth
+			width: $artworkWidth
+
+		.song-info--wrapper
+			font-size: $font-size
+			height: $song-info-height
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			padding: 0 $sidePadding
+			background-color: black
+
+			.title, .artist
+				position: relative
+				height: $font-size
+				width: $artworkWidth - 2*$sidePadding

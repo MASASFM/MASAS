@@ -19,6 +19,13 @@ var ArtworkLineItem = React.createClass({
 		isItemPlaying: React.PropTypes.bool,
 		pause: React.PropTypes.func,
 		playAndSaveHistory: React.PropTypes.func,
+		isArtworkLarge: React.PropTypes.bool,			// larger ArtworkLineItem
+	},
+
+	getDefaultProps: function() {
+		return {
+			isArtworkLarge: false,
+		}
 	},
 
 	componentWillMount: function() {
@@ -32,12 +39,14 @@ var ArtworkLineItem = React.createClass({
 			artworkURL, 
 			MASAS_songInfo,
 			isItemPlaying,
-			SC_songInfo
+			SC_songInfo,
+			isArtworkLarge
 		} = this.props
 
 		return (
 			<div 
-				className="artwork--wrapper" key={ key_ID }
+				className={ "artwork--wrapper " + (isArtworkLarge ? "artwork-playing" : "") }
+				key={ key_ID }
 				style={{
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 				}}>

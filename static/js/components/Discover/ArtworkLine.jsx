@@ -1,10 +1,8 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLine.jsx")
 
-var { Marquee } = require("../UI/UI.jsx")
 var ArtworkLineItem = require("./ArtworkLineItem.jsx")
 
 var ArtworkLine = React.createClass({
@@ -12,7 +10,20 @@ var ArtworkLine = React.createClass({
 		discoverNumber: React.PropTypes.number.isRequired,			// artwork shown from discover
 		isFooterOpened: React.PropTypes.bool,
 		toggleIsFooterOpened: React.PropTypes.func,
-		renderForUITip: React.PropTypes.bool,					
+		renderForUITip: React.PropTypes.bool,	
+		isModalOpened: React.PropTypes.bool,
+		modalType: React.PropTypes.number,
+		history: React.PropTypes.object,
+		playRandomSong: React.PropTypes.func,
+		MASASuser: React.PropTypes.string,
+		songPlaying: React.PropTypes.string,
+		pause: React.PropTypes.func,
+		play: React.PropTypes.func,
+		isPlayerPaused: React.PropTypes.bool,
+		toggleSongLike: React.PropTypes.func,
+		playAndSaveHistory: React.PropTypes.func,
+		isSongPlayingLiked: React.PropTypes.bool,
+		userToken: React.PropTypes.string,
 	},
 
 	getDefaultProps: function() {
@@ -34,8 +45,8 @@ var ArtworkLine = React.createClass({
 		this.refs.artworkLine.scrollLeft = this.refs.artworkLine.scrollWidth
 	},
  
- 	render: function() {
- 		let { renderForUITip, isModalOpened, modalType } = this.props
+	render: function() {
+		let { renderForUITip, isModalOpened, modalType } = this.props
 
 		let history = this.props.history.all.filter( ({MASAS_songInfo}) => {
 			return parseInt(MASAS_songInfo.timeInterval.substr(MASAS_songInfo.timeInterval.length - 2, 1)) === this.props.discoverNumber
@@ -89,8 +100,8 @@ var ArtworkLine = React.createClass({
 				key_ID = key_ID + 1
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
-				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-				 }
+					artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+				}
 
 				let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
 
@@ -117,10 +128,10 @@ var ArtworkLine = React.createClass({
 			artworkPlaying = artworkPlaying.SC_songInfo 		// retro compa, needs refactor
 			// get bigger artwork
 			let artworkPlayingURL = ""
-			 if(typeof(artworkPlaying) !== "undefined") 
-			 	if(artworkPlaying.artwork_url)
-				 	artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-			 
+			if(typeof(artworkPlaying) !== "undefined") 
+				if(artworkPlaying.artwork_url)
+					artworkPlayingURL = artworkPlaying.artwork_url.substring(0,artworkPlaying.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+
 			return  (
 				<div className="artwork-line--wrapper">
 					<div className="left-side">
@@ -133,50 +144,19 @@ var ArtworkLine = React.createClass({
 					</div>
 					<div 
 						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
-						<div className="artwork-playing">	
-							{ artworkPlayingURL ?
-									<img src={ artworkPlayingURL } className="artwork" alt="song playing" />
-								:
-									""
-							}
-							<div 
-								className={ "player-button" + (this.props.songPlaying !== MASAS_songPlayingInfo.url  ? " show-play-button" : "") }
-								onClick={ 
-									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
-										this.props.pause
-									:
-										this.props.play.bind(this, MASAS_songPlayingInfo.url)
-									}>
-								{
-									this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false ?
-										<img 
-											src="/static/img/MASAS_player_pause.svg" 
-											alt="pause" />
-									:
-										<img 
-											src="/static/img/MASAS_player_play.svg" 
-											
-											alt="play" />
-								}
-							</div>
-						</div>
-						<div className="song-info--wrapper">
-							<div 
-								className="like-icon" 
-								style={{ display: (this.props.songPlaying === MASAS_songPlayingInfo.url ? 'flex' : 'none') }}
-								onClick={ this.props.toggleSongLike.bind(this, this.props.userToken, this.props.songPlaying) }>
-								{
-									this.props.isSongPlayingLiked ?
-										<img src="/static/img/MASAS_liked.svg" alt="like" />
-									:
-										<img src="/static/img/MASAS_like_shadow.svg" alt="like" />
-								}
-							</div>
-							<div className="song-info">
-								<div className="title"><Marquee>{ artworkPlaying.title }</Marquee></div>
-								<div className="artist"><Marquee>{ artworkPlaying.user.username }</Marquee></div>
-							</div>
-						</div>
+
+						<ArtworkLineItem 
+							isModalOpened={ isModalOpened }
+							modalType={ modalType }
+							key_ID={ 0 }
+							artworkURL={ artworkPlayingURL }
+							SC_songInfo={ artworkPlaying }
+							MASAS_songInfo={ MASAS_songPlayingInfo }
+							isItemPlaying={ this.props.songPlaying === MASAS_songPlayingInfo.url && this.props.isPlayerPaused === false }
+							pause={ this.props.pause }
+							playAndSaveHistory={ this.props.playAndSaveHistory }
+							isArtworkLarge={ true }
+							/>
 					</div>
 					<div 
 						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }
@@ -187,7 +167,7 @@ var ArtworkLine = React.createClass({
 							onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
-							 alt="next" />
+							alt="next" />
 						{ 
 							this.props.isFooterOpened === false ?
 								<img

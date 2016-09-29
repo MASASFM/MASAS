@@ -1,0 +1,191 @@
+.artwork-line--wrapper
+
+	display: flex
+	align-self: flex-start
+	width: 100%
+	position: relative
+
+	.button
+		display: none
+
+	.artwork-playing--wrapper.hide-on-mobile
+		visibility: hidden
+
+	.artwork-playing--wrapper.hide-content
+		visibility: hidden
+
+	.artwork-playing--wrapper
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
+		z-index: 4		// to be over artwork-line--wapper
+
+		.artwork-playing
+			background-color: rgba(0,0,0,0.5)
+			$artworkWidth: 13rem
+			height: $artworkWidth
+			width: $artworkWidth
+			position: relative
+			cursor: pointer
+
+			.player-button
+				position: absolute
+				top: 0
+				right: 0
+				bottom: 0
+				left: 0
+				display: none
+				justify-content: center
+				align-items: center
+				background-color: rgba(0,0,0,0.5)
+
+				img
+					height: 5rem
+					width: 5rem
+
+			.player-button.show-play-button
+				display: flex
+
+			.artwork
+				height: $artworkWidth
+				width: $artworkWidth
+
+		.artwork-playing:hover
+			.player-button
+				display: flex
+					
+			
+		.song-info--wrapper
+			display: none
+
+	.left-side, .right-side
+		display: flex
+
+	.left-side
+		margin-right: 3rem
+		width: 50%
+		// justify-content: flex-end
+
+		.artwork-line
+			position: relative
+			width: 100%
+			flex: 1
+			overflow-x: auto
+			overflow-y: hidden
+			display: flex
+			// flex-direction: row-reverse
+
+			$artworkWidth: 12rem
+			.artwork-line2
+				position: absolute
+				display: flex
+				width: min-content
+				min-width: 100%
+				justify-content: flex-end
+				z-index: 3		// button is z-index 2 
+
+			.empty-artwork
+				height: $artworkWidth
+				// width: $artworkWidth / 2
+				width: 0
+
+			
+
+
+@media screen and (min-width: $desktop-min-width)
+	.artwork-line--wrapper
+		$artworkWidth: 16rem
+		$song-info-height: 3rem 
+		$font-size: 0.7rem
+		$ratio: $artworkWidth / $song-info-height
+		$font-ratio: $artworkWidth / $font-size
+		$sidePadding: 1rem
+		$like-icon-width: 1.5rem
+
+		.button
+			z-index: 2
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%, -50%)
+			padding-left: 2*$artworkWidth 
+			cursor: pointer
+
+			img
+				width: 2rem
+				height: 2rem
+				padding: 0 1rem
+
+			img.small
+				width: 1.5rem
+				height: 1.5rem
+				margin-right: 0.5rem // because width is smaller
+
+
+		.button.show
+			display: flex
+			flex-direction: row-reverse
+			align-items: center
+
+		.artwork-playing--wrapper.hide-on-mobile
+			visibility: visible
+
+		.artwork-playing--wrapper
+			max-width: $artworkWidth
+
+			.artwork-playing
+				background-color: rgba(0,0,0,0.4)
+				height: $artworkWidth
+				width: $artworkWidth
+				.artwork
+					height: $artworkWidth
+					width: $artworkWidth
+				
+			.song-info--wrapper
+				height: $song-info-height
+				display: flex
+				align-items: center
+				padding: 0 $sidePadding
+				background-color: black
+
+				.like-icon
+					width: $like-icon-width
+					cursor: pointer
+
+					img
+						width: $like-icon-width
+
+				.song-info
+					text-overflow: wrap
+					padding-left: $sidePadding
+					display: flex
+					flex-direction: column
+					font-size: $font-size
+
+					.title, .artist
+						position: relative
+						height: $font-size
+						width: $artworkWidth - (3*$sidePadding + $like-icon-width)
+
+		.left-side, .right-side
+
+
+		$ratio: 0.7
+		$artworkWidth: $artworkWidth * $ratio
+		$song-info-height: $song-info-height * $ratio
+		$font-size: $font-size * $ratio
+		$sidePadding: $sidePadding * 1
+		height: $artworkWidth + $song-info-height
+		.left-side
+			width: calc(50% - #{$artworkWidth} / 2.2)
+
+			.artwork-line
+
+				.empty-artwork
+					// height: $artworkWidth
+					// width: $artworkWidth / 2
+					width: 0
+
+				
