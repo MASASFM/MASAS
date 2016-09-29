@@ -1,22 +1,27 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/NavSidebar.jsx")
 
-var { Textbox, Link } = require("../UI/UI.jsx")
+var { Link } = require("../UI/UI.jsx")
 var { goToURL } = require("../../MASAS_functions.jsx")
 
+var SplashScreen = require("../App/SplashScreen.jsx")
 import Sidebar from "react-sidebar"
 
 
 var NavSidebar = React.createClass({
 	propTypes: {
+		children: React.PropTypes.node,
 		navSiderbarOpen: React.PropTypes.bool.isRequired,
 		MASASuser: React.PropTypes.string.isRequired,
 		userData: React.PropTypes.object.isRequired,
 		toogleSidebar: React.PropTypes.func.isRequired,
 		logout: React.PropTypes.func.isRequired,
+
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -24,6 +29,12 @@ var NavSidebar = React.createClass({
 
 	goToProfile: function() {
 		goToURL("/profile")
+		this.props.toogleSidebar()
+	},
+
+	goToLogin: function() {
+		this.props.updateModalContent(<SplashScreen startPage="1" />, 3)
+		this.props.toogleModal()
 		this.props.toogleSidebar()
 	},
 
@@ -40,7 +51,7 @@ var NavSidebar = React.createClass({
 								<span className="username">{/* this.props.userData.username */}My Profile</span>
 							</div>
 							:
-							<div className="profile-picture--wrapper" onClick={ this.goToProfile }>
+							<div className="profile-picture--wrapper" onClick={ this.goToLogin }>
 								<span className="username">Login</span>
 							</div>
 						}
@@ -90,51 +101,21 @@ var NavSidebar = React.createClass({
 					</div>
 
 		const navBarStylesOverride = {
-				root: {
-					// position: 'absolute',
-					// top: 0,
-					// left: 0,
-					// right: 0,
-					// bottom: 0,
-					overflow: 'hidden',
-				},
-				sidebar: {
-					zIndex: 12,
-					// position: 'absolute',
-					// top: 0,
-					// bottom: 0,
-					// transition: 'transform .3s ease-out',
-					// WebkitTransition: '-webkit-transform .3s ease-out',
-					// willChange: 'transform',
-					// overflowY: 'auto',
-				},
-				content: {
-					// position: 'absolute',
-					// top: 0,
-					// left: 0,
-					// right: 0,
-					// bottom: 0,
-					overflow: 'hidden',
-					// transition: 'left .3s ease-out, right .3s ease-out',
-				},
-				overlay: {
-					zIndex: 11,
-					// position: 'fixed'1
-					// top: 0,
-					// left: 0,
-					// right: 0,
-					// bottom: 0,
-					// opacity: 0,
-					// visibility: 'hidden',
-					// transition: 'opacity .3s ease-out',
-					// backgroundColor: 'rgba(0,0,0,.3)',
-				},
-				dragHandle: {
-					zIndex: 3,
-					// position: 'fixed',
-					// top: 0,
-					// bottom: 0,
-				}
+			root: {
+				overflow: 'hidden',
+			},
+			sidebar: {
+				zIndex: 12,
+			},
+			content: {
+				overflow: 'hidden',
+			},
+			overlay: {
+				zIndex: 11,
+			},
+			dragHandle: {
+				zIndex: 3,
+			}
 		}
 
 		return (
