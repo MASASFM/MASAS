@@ -24,7 +24,8 @@ HeaderDropdown.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
 		logout: logout.bind(null, dispatch),
-		// getUsername: getUsername
+		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
+		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 	}
 }
 

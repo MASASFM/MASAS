@@ -5,6 +5,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/HeaderDropdo
 
 var { Button, Link } = require("../UI/UI.jsx")
 var { browserHistory } = require('react-router')
+var SplashScreen = require("../App/SplashScreen.jsx")
 
 var MenuLink = (props) => {
 	return (
@@ -27,6 +28,8 @@ var HeaderDropdown = React.createClass({
 
 		dispatch: React.PropTypes.func,
 		logout: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
 	},
 
 	componentWillReceiveProps: function() {
@@ -61,8 +64,8 @@ var HeaderDropdown = React.createClass({
 			return (
 				<div className="dropdown--wrapper" >
 					<Button
-						isBigButton={ true }
-						onClick={ () => { browserHistory.push('/login') } }>Request an invitation</Button>
+						isBigButton={ false }
+						onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen />, 3) } }>Log-in</Button>
 				</div>
 				)
 	}
