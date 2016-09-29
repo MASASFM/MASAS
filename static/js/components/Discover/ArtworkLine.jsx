@@ -5,6 +5,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLine.jsx")
 
 var { Marquee } = require("../UI/UI.jsx")
+var ArtworkLineItem = require("./ArtworkLineItem.jsx")
 
 var ArtworkLine = React.createClass({
 	propTypes: {
@@ -90,45 +91,21 @@ var ArtworkLine = React.createClass({
 				if(SC_songInfo.artwork_url !== null) {
 				 	artworkURL = SC_songInfo.artwork_url.substring(0,SC_songInfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 				 }
-				return (
-					<div 
-						className="artwork--wrapper" key={ key_ID }
-						style={{
-							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
-						}}>
-						<div className="artwork--wrapper2">
-							{ artworkURL ?
-									<img src={ artworkURL } alt="artwork" className="artwork"/>
-								:
-									<div className="artwork"></div>
-							}
-							<div 
-								className={ "player-button" }
-								onClick={ 
-									this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
-										this.props.pause
-									:
-										this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url)
-									}>
-								{
-									this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false ?
-										<img 
-											src="/static/img/MASAS_player_pause.svg" 
-											alt="pause" />
-									:
-										<img 
-											src="/static/img/MASAS_player_play.svg" 
-											
-											alt="play" />
-								}
-							</div>
-						</div>
 
-						<div className="song-info--wrapper">
-							<Marquee className="title">{ SC_songInfo.title }</Marquee>
-							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
-						</div>
-					</div>
+				let isItemPlaying = this.props.songPlaying === MASAS_songInfo.url && this.props.isPlayerPaused === false
+
+				return (
+					<ArtworkLineItem 
+						isModalOpened={ isModalOpened }
+						modalType={ modalType }
+						key_ID={ key_ID }
+						artworkURL={ artworkURL }
+						SC_songInfo={ SC_songInfo }
+						MASAS_songInfo={ MASAS_songInfo }
+						isItemPlaying={ isItemPlaying }
+						pause={ this.props.pause }
+						playAndSaveHistory={ this.props.playAndSaveHistory }
+						/>
 					)
 			})
 			artworkLine.pop()
