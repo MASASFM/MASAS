@@ -65,6 +65,7 @@ var HeaderDropdown = React.createClass({
 				<div className="dropdown--wrapper" >
 					<Button
 						isBigButton={ false }
+						isSecondaryAction={ true }
 						onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }>Log-in</Button>
 				</div>
 				)

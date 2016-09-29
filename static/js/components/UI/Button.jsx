@@ -18,16 +18,15 @@ var Button = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-				noBorders: false,
-				className: "",
-				isDisabled: false,
-				isSecondaryAction: false,
-				isBigButton: true,
-				isDisabled: false,
-				wrapperStyle: {},
-				soundcloud: false,
-				facebook: false,
-			}
+			noBorders: false,
+			className: "",
+			isDisabled: false,
+			isSecondaryAction: false,
+			isBigButton: true,
+			wrapperStyle: {},
+			soundcloud: false,
+			facebook: false,
+		}
 	},
 
 	render: function() {
