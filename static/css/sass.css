@@ -2996,6 +2996,9 @@ input[type=range].MASAS-slider {
     .profile--wrapper .song-list--wrapper .edit-social-mobile--wrapper.hidden {
       display: none; }
     .profile--wrapper .song-list--wrapper .no-songs--wrapper {
+      display: flex;
+      flex: 1;
+      min-height: 20rem;
       flex-direction: column;
       justify-content: center;
       align-items: center; }
