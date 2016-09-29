@@ -7,6 +7,11 @@ from django.db.models import Prefetch
 from django.shortcuts import render
 from django.views import generic
 
+from django.http import HttpRequest,HttpResponse
+from django.http import JsonResponse
+from json import dumps
+from django.core.serializers import serialize
+
 import django_filters
 
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
@@ -141,9 +146,12 @@ class PlayView(APIView):
                 timeInterval_id=time_interval_id,
             )
 
-        unplayed = songs.exclude(
-            play__user=request.user
-        ).order_by('?').first()
+        unplayed = songs.order_by('?').first()
+        #import ipdb; ipdb.set_trace()
+        if request.user.__dict__ != {}:
+            unplayed = songs.exclude(
+                play__user=request.user
+            ).order_by('?').first()
 
         if unplayed:
             song = unplayed
@@ -200,6 +208,27 @@ class PlayView(APIView):
             tries -= 1
 
         return song
+
+    def get(self, request):
+        song = self.get_song(request)
+
+        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
+        try:
+            s.get('/tracks/%s' % song.SC_ID)
+        except requests.HTTPError:
+            song.deleted = datetime.datetime.now()
+            song.save()
+            return None
+
+        serializer = self.serializer_class(
+            instance=song,
+            context=dict(
+                request=request,
+                format=None,
+                view=self,
+            ),
+        )
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         song = self.get_song(request)
