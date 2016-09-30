@@ -86,7 +86,10 @@ var ArtworkLineItem = React.createClass({
 				}}>
 				<div 
 					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }>
-					<MiniProfile backArrowFunc={ this.toggleShowProfile } userInfo={ this.state.userInfo } />
+					<MiniProfile 
+						backArrowFunc={ this.toggleShowProfile } 
+						userInfo={ this.state.userInfo } 
+						isMiniProfileBig={ isArtworkLarge }/>
 				</div>
 				<div className="artwork--wrapper2">
 					{ artworkURL ?

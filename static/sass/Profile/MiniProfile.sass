@@ -7,13 +7,14 @@
 	align-items: center
 	height: 100%
 
+	$ratio: 0.7
 	.back-arrow
-		height: 1.5rem
-		width: 1.5rem
+		height: $ratio *1.5rem
+		width: $ratio *1.5rem
 		position: absolute
 		top: 0rem
 		left: 0rem
-		margin: 1rem
+		margin: $ratio * 1rem
 
 	.back-arrow:hover
 		cursor: pointer
@@ -22,21 +23,21 @@
 		display: flex
 		flex-direction: column
 		align-items: center
-		max-height: 14rem
+		max-height: $ratio * 14rem
 	
 		.artist-avatar
-			height: 6rem
-			width: 6rem
+			height: $ratio * 6rem
+			width: $ratio * 6rem
 			cursor: pointer
 
 		.username
-			margin: 2rem 0
-			margin-top: 1rem
-			max-width: 10rem
+			margin: $ratio * 2rem 0
+			margin-top: $ratio * 1rem
+			max-width: $ratio * 10rem
 			overflow-x: hidden
 			text-overflow: ellipsis
-			font-size: 1.3rem
-			letter-spacing: 0.2rem
+			font-size: $ratio * 1.3rem
+			letter-spacing: $ratio * 0.2rem
 			font-family: Lato-Light
 			white-space: nowrap
 			cursor: pointer
@@ -45,14 +46,42 @@
 			display: flex
 
 			.link-icon
-				width: 2rem
+				width: $ratio * 2rem
 				display: flex
 				justify-content: center
 
 				img
-					height: 1.3rem
-					width: 1.3rem
+					height: $ratio * 1.3rem
+					width: $ratio * 1.3rem
 					cursor: pointer
+.mini-profile--wrapper.large
+	$ratio: 1
+	.back-arrow
+		height: $ratio *1.5rem
+		width: $ratio *1.5rem
+		margin: $ratio * 1rem
+
+	.mini-profile--wrapper2
+		max-height: $ratio * 14rem
+	
+		.artist-avatar
+			height: $ratio * 6rem
+			width: $ratio * 6rem
+
+		.username
+			margin: $ratio * 2rem 0
+			margin-top: $ratio * 1rem
+			max-width: $ratio * 10rem
+			font-size: $ratio * 1.3rem
+			letter-spacing: $ratio * 0.2rem
+
+		.social-icons
+			.link-icon
+				width: $ratio * 2rem
+
+				img
+					height: $ratio * 1.3rem
+					width: $ratio * 1.3rem
 
 
 
