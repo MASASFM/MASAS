@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLineItem.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { makePromiseCancelable } = require("../../MASAS_functions.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 var MiniProfile = require("../Profile/MiniProfile.jsx")
 
@@ -47,7 +47,7 @@ var ArtworkLineItem = React.createClass({
 	
 	componentDidMount: function() {
 		// get user info associated with this song
-		$.ajax({
+		this.ajaxRequest = $.ajax({
 			type: 'GET',
 			url: this.props.MASAS_songInfo.trackArtist,
 			success: (r) => {
@@ -55,6 +55,10 @@ var ArtworkLineItem = React.createClass({
 			},
 			error: () => {},
 		})
+	},
+	
+	componentWillUnmount: function() {
+		this.ajaxRequest.abort()
 	},
 
 	toggleShowProfile: function() {

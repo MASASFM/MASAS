@@ -2,6 +2,7 @@ var React = require("react")
 var { browserHistory } = require("react-router")
 
 
+
 var MiniProfile = (props) => {
 	var viewContent = "Loading user info..."
 	if(props.userInfo) {
