@@ -81,9 +81,8 @@ var ArtworkLineItem = React.createClass({
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 				}}>
 				<div 
-					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }
-					onClick={ this.toggleShowProfile }>
-					<MiniProfile userInfo={ this.state.userInfo } />
+					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }>
+					<MiniProfile backArrowFunc={ this.toggleShowProfile } userInfo={ this.state.userInfo } />
 				</div>
 				<div className="artwork--wrapper2">
 					{ artworkURL ?

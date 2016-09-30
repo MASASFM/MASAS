@@ -1,4 +1,58 @@
+.mini-profile--wrapper:hover
+	cursor: default
+
 .mini-profile--wrapper
+	display: flex
+	justify-content: center
+	align-items: center
+	height: 100%
+
+	.back-arrow
+		height: 1.5rem
+		width: 1.5rem
+		position: absolute
+		top: 0rem
+		left: 0rem
+		margin: 1rem
+
+	.back-arrow:hover
+		cursor: pointer
+
+	.mini-profile--wrapper2
+		display: flex
+		flex-direction: column
+		align-items: center
+		max-height: 14rem
+	
+		.artist-avatar
+			height: 6rem
+			width: 6rem
+			cursor: pointer
+
+		.username
+			margin: 2rem 0
+			margin-top: 1rem
+			max-width: 10rem
+			overflow-x: hidden
+			text-overflow: ellipsis
+			font-size: 1.3rem
+			letter-spacing: 0.2rem
+			font-family: Lato-Light
+			white-space: nowrap
+			cursor: pointer
+
+		.social-icons
+			display: flex
+
+			.link-icon
+				width: 2rem
+				display: flex
+				justify-content: center
+
+				img
+					height: 1.3rem
+					width: 1.3rem
+					cursor: pointer
 
 
 
