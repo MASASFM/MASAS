@@ -65788,7 +65788,7 @@ var MiniProfile = function MiniProfile(props) {
 				{ className: "mini-profile--wrapper2" },
 				React.createElement("img", { onClick: function onClick() {
 						return browserHistory.push('/user/' + userPk);
-					}, src: props.userInfo.avatar_url, alt: "artist avatar", className: "artist-avatar" }),
+					}, src: props.userInfo.avatar_url + "?width=300", alt: "artist avatar", className: "artist-avatar" }),
 				React.createElement(
 					"span",
 					{ onClick: function onClick() {
