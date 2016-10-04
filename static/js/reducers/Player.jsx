@@ -6,6 +6,7 @@ exportVar.defaultState = {
 	playerAtTime: 0,					// (float) time current song playing is at
 	MASAS_songInfo: null,				// song info from MASAS db
 	SC_songInfo: null,					// song info from soundcloud API
+	artistInfo: null,						// (object) artist info  associated with song
 	isSongPlayingLiked: false,			// (bool) is currently playing song liked
 	isFetchingSong: false,				// (bool) is song currently fetching
 	isBuffering: false,					// (bool) is song buffering
@@ -19,6 +20,11 @@ const { defaultState } = exportVar
 exportVar.playerReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case 'UPDATE_ARTIST_INFO':
+			return {
+				...state,
+				artistInfo: action.artistInfo
+			}
 		case 'SET_IS_BUFFERING_TRUE':
 			return {
 				...state,

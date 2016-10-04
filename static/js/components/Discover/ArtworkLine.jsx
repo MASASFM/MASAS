@@ -24,6 +24,7 @@ var ArtworkLine = React.createClass({
 		playAndSaveHistory: React.PropTypes.func,
 		isSongPlayingLiked: React.PropTypes.bool,
 		userToken: React.PropTypes.string,
+		songPlayingArtistInfo: React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
@@ -96,7 +97,7 @@ var ArtworkLine = React.createClass({
 		else {
 			// artwork line (song history)
 			let key_ID = 0
-			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo }) => {
+			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
 				key_ID = key_ID + 1
 				let artworkURL = ""
 				if(SC_songInfo.artwork_url !== null) {
@@ -116,6 +117,7 @@ var ArtworkLine = React.createClass({
 						isItemPlaying={ isItemPlaying }
 						pause={ this.props.pause }
 						playAndSaveHistory={ this.props.playAndSaveHistory }
+						artistInfo={ artistInfo }
 						/>
 					)
 			})
@@ -160,6 +162,7 @@ var ArtworkLine = React.createClass({
 							toggleSongLike={ this.props.toggleSongLike }
 							isSongPlayingLiked={ this.props.isSongPlayingLiked }
 							userToken={ this.props.userToken }
+							artistInfo={ this.props.songPlayingArtistInfo }
 							/>
 					</div>
 					<div 

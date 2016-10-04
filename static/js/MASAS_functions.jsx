@@ -240,17 +240,31 @@ MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
 			type: "GET",
 			url: MASAS_songId,
 			success: (MASAS_songInfo) => {
-				// fetch SC song info
-				SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
-					dispatch({
-						type: "ADD_SONG_TO_HISTORY",
-						MASAS_songInfo,
-						SC_songInfo
-					})
-				}).catch( (err) => {
+				// STOR USER INFO ASSOCIATED WITH SONG
+				var ajaxRequest = $.ajax({
+					type: 'GET',
+					url: MASAS_songInfo.trackArtist,
+					success: (artistInfo) => {
+						dispatch({ 
+							type: "UPDATE_ARTIST_INFO",
+							artistInfo,
+						})
+
+						// fetch SC song info
+						SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
+							dispatch({
+								type: "ADD_SONG_TO_HISTORY",
+								MASAS_songInfo,
+								SC_songInfo,
+								artistInfo
+							})
+						}).catch( () => {
+						})
+					},
+					error: () => {},
 				})
 			},
-			error: (err) => {
+			error: () => {
 			},
 		})
 

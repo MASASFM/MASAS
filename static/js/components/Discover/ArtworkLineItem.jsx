@@ -25,6 +25,7 @@ var ArtworkLineItem = React.createClass({
 		toggleSongLike: React.PropTypes.func,
 		isSongPlayingLiked: React.PropTypes.bool,
 		userToken: React.PropTypes.string,
+		artistInfo: React.PropTypes.object,				// artist info 
 
 		isArtworkLarge: React.PropTypes.bool,			// larger ArtworkLineItem
 	},
@@ -47,14 +48,14 @@ var ArtworkLineItem = React.createClass({
 	
 	componentDidMount: function() {
 		// get user info associated with this song
-		this.ajaxRequest = $.ajax({
-			type: 'GET',
-			url: this.props.MASAS_songInfo.trackArtist,
-			success: (r) => {
-				this.setState({ userInfo: r })
-			},
-			error: () => {},
-		})
+		// this.ajaxRequest = $.ajax({
+		// 	type: 'GET',
+		// 	url: this.props.MASAS_songInfo.trackArtist,
+		// 	success: (r) => {
+		// 		this.setState({ userInfo: r })
+		// 	},
+		// 	error: () => {},
+		// })
 	},
 	
 	componentWillUnmount: function() {
@@ -88,7 +89,7 @@ var ArtworkLineItem = React.createClass({
 					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }>
 					<MiniProfile 
 						backArrowFunc={ this.toggleShowProfile } 
-						userInfo={ this.state.userInfo } 
+						userInfo={ this.props.artistInfo } 
 						isMiniProfileBig={ isArtworkLarge }/>
 				</div>
 				<div className="artwork--wrapper2">

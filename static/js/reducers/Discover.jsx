@@ -60,7 +60,8 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 						...state.history.all,
 						{
 							MASAS_songInfo: action.MASAS_songInfo, 
-							SC_songInfo: action.SC_songInfo
+							SC_songInfo: action.SC_songInfo,
+							artistInfo: action.artistInfo,
 						}
 					]
 				}

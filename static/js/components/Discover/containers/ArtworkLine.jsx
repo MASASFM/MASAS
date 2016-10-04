@@ -16,6 +16,7 @@ ArtworkLine.mapStateToProps = function(state) {
 		isFooterOpened: state.footerReducer.isOpened,
 		isModalOpened: state.appReducer.isModalOpened,
 		modalType: state.appReducer.modalType,
+		songPlayingArtistInfo: state.playerReducer.artistInfo,
 	}
 }
 
