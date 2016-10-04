@@ -52,7 +52,7 @@ var Likes = React.createClass({
 		}
 	},
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps) {
 		if(JSON.stringify(prevProps.userData) !== JSON.stringify(this.props.userData))
 			this.getLikes()
 	},

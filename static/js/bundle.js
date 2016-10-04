@@ -63062,7 +63062,7 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		}
 	},
 
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate: function componentDidUpdate(prevProps) {
 		if (JSON.stringify(prevProps.userData) !== JSON.stringify(this.props.userData)) this.getLikes();
 	},
 
