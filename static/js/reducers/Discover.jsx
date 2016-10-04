@@ -32,7 +32,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			// check song not latest in history
 			if(state.history.all.length > 0) {
 				var a = state.history.all[state.history.all.length -1]
-				var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
+				var b = { artistInfo: action.artistInfo, MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo }
 				if(JSON.stringify(a) === JSON.stringify(b) )
 					return state
 
@@ -52,7 +52,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 
 
 
-			return {
+			const resultState = {
 				...state,
 				history: {
 					...state.history,
@@ -67,6 +67,8 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 				}
 
 			}
+
+			return resultState
 			
 		case 'POP_SONG_FROM_HISTORY':
 			var stateBis = state

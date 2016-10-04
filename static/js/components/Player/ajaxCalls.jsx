@@ -66,17 +66,27 @@ ajaxCalls.playNewSong = function(newProps, addToHistory) {
 
 				// play song and update state
 				$("#jquery_jplayer_1").jPlayer('play')
-				
-				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
-				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })
-				if(!newProps.isPlaylistPlaying)
-					dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response })
 
-				// update song liked button based on server response (vs optimistic UI)
-				ajaxCalls.updateLikeButton(data, response, newProps)
+				var ajaxRequest = $.ajax({
+					type: 'GET',
+					url: data.trackArtist,
+					success: (artistInfo) => {
+						dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data })
+						dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response })
+						dispatch({ type: "UPDATE_ARTIST_INFO", artistInfo })
 
-				// end loading state
-				dispatch({type: 'SET_SONG_IS_FETCHING_FALSE'})
+						if(!newProps.isPlaylistPlaying)
+							dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response, artistInfo })
+
+						// update song liked button based on server response (vs optimistic UI)
+						ajaxCalls.updateLikeButton(data, response, newProps)
+
+						// end loading state
+						dispatch({type: 'SET_SONG_IS_FETCHING_FALSE'})
+					},
+					error: () => { },
+				})
+
 			}).catch((err) => {
 
 				// end loading state

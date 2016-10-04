@@ -57786,13 +57786,9 @@ var _require = require("./containers/ArtworkLineItem.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var _require2 = require("../../MASAS_functions.jsx");
+var _require2 = require("../UI/UI.jsx");
 
-var makePromiseCancelable = _require2.makePromiseCancelable;
-
-var _require3 = require("../UI/UI.jsx");
-
-var Marquee = _require3.Marquee;
+var Marquee = _require2.Marquee;
 
 var MiniProfile = require("../Profile/MiniProfile.jsx");
 
@@ -57835,21 +57831,9 @@ var ArtworkLineItem = _wrapComponent("_component")(React.createClass({
 	// (object) object containing user info
 	componentWillMount: function componentWillMount() {},
 
-	componentDidMount: function componentDidMount() {
-		// get user info associated with this song
-		// this.ajaxRequest = $.ajax({
-		// 	type: 'GET',
-		// 	url: this.props.MASAS_songInfo.trackArtist,
-		// 	success: (r) => {
-		// 		this.setState({ userInfo: r })
-		// 	},
-		// 	error: () => {},
-		// })
-	},
+	componentDidMount: function componentDidMount() {},
 
-	componentWillUnmount: function componentWillUnmount() {
-		this.ajaxRequest.abort();
-	},
+	componentWillUnmount: function componentWillUnmount() {},
 
 	toggleShowProfile: function toggleShowProfile() {
 		this.setState({ showProfile: !this.state.showProfile });
@@ -57957,7 +57941,7 @@ var ArtworkLineItem = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(ArtworkLineItem);
 
-},{"../../MASAS_functions.jsx":380,"../Profile/MiniProfile.jsx":445,"../UI/UI.jsx":476,"./containers/ArtworkLineItem.jsx":390,"livereactload/babel-transform":35,"react":366,"react-redux":171}],388:[function(require,module,exports){
+},{"../Profile/MiniProfile.jsx":445,"../UI/UI.jsx":476,"./containers/ArtworkLineItem.jsx":390,"livereactload/babel-transform":35,"react":366,"react-redux":171}],388:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -64967,6 +64951,7 @@ var Player = _wrapComponent("_component")(React.createClass({
 	displayName: "Player",
 
 	propTypes: {
+		songPlayingArtistInfo: React.PropTypes.object,
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
 		playlistPosition: React.PropTypes.number,
@@ -65298,15 +65283,24 @@ ajaxCalls.playNewSong = function (newProps, addToHistory) {
 				// play song and update state
 				$("#jquery_jplayer_1").jPlayer('play');
 
-				dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data });
-				dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response });
-				if (!newProps.isPlaylistPlaying) dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response });
+				var ajaxRequest = $.ajax({
+					type: 'GET',
+					url: data.trackArtist,
+					success: function success(artistInfo) {
+						dispatch({ type: "UPDATE_MASAS_SONG_INFO", songInfo: data });
+						dispatch({ type: "UPDATE_SC_SONG_INFO", songInfo: response });
+						dispatch({ type: "UPDATE_ARTIST_INFO", artistInfo: artistInfo });
 
-				// update song liked button based on server response (vs optimistic UI)
-				ajaxCalls.updateLikeButton(data, response, newProps);
+						if (!newProps.isPlaylistPlaying) dispatch({ type: 'ADD_SONG_TO_HISTORY', MASAS_songInfo: data, SC_songInfo: response, artistInfo: artistInfo });
 
-				// end loading state
-				dispatch({ type: 'SET_SONG_IS_FETCHING_FALSE' });
+						// update song liked button based on server response (vs optimistic UI)
+						ajaxCalls.updateLikeButton(data, response, newProps);
+
+						// end loading state
+						dispatch({ type: 'SET_SONG_IS_FETCHING_FALSE' });
+					},
+					error: function error() {}
+				});
 			}).catch(function (err) {
 
 				// end loading state
@@ -65384,7 +65378,8 @@ Player.mapStateToProps = function (state) {
 		playlistPosition: state.playerReducer.playlistPosition,
 		isPlaylistPlaying: state.playerReducer.isPlaylistPlaying,
 		isModalOpened: state.appReducer.isModalOpened,
-		modalType: state.appReducer.modalType
+		modalType: state.appReducer.modalType,
+		songPlayingArtistInfo: state.playerReducer.artistInfo
 	};
 };
 
@@ -70327,7 +70322,7 @@ exportVar.discoverReducer = function () {
 			// check song not latest in history
 			if (state.history.all.length > 0) {
 				var a = state.history.all[state.history.all.length - 1];
-				var b = { MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo };
+				var b = { artistInfo: action.artistInfo, MASAS_songInfo: action.MASAS_songInfo, SC_songInfo: action.SC_songInfo };
 				if (JSON.stringify(a) === JSON.stringify(b)) return state;
 
 				// CHECK IF SONG NOT LATEST IN ITS TIME INTERVAL
@@ -70345,7 +70340,7 @@ exportVar.discoverReducer = function () {
 				}
 			}
 
-			return _extends({}, state, {
+			var resultState = _extends({}, state, {
 				history: _extends({}, state.history, {
 					all: [].concat(_toConsumableArray(state.history.all), [{
 						MASAS_songInfo: action.MASAS_songInfo,
@@ -70355,6 +70350,8 @@ exportVar.discoverReducer = function () {
 				})
 
 			});
+
+			return resultState;
 
 		case 'POP_SONG_FROM_HISTORY':
 			var stateBis = state;

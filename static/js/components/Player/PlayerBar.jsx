@@ -10,6 +10,7 @@ var { Marquee } = require("../UI/UI.jsx")
 
 var Player = React.createClass({
 	propTypes: {
+		songPlayingArtistInfo: React.PropTypes.object,
 		playlist: React.PropTypes.array,
 		isPlaylistPlaying: React.PropTypes.bool,
 		playlistPosition: React.PropTypes.number,
