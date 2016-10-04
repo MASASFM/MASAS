@@ -66225,6 +66225,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 		var username = "";
 		var city = "";
 		var occupation = "";
+		var songs = [];
 
 		if (isObjectEmpty(this.props.publicProfileInfo)) {
 			showProfile = !isObjectEmpty(this.props.userData);
@@ -66234,6 +66235,9 @@ var Profile = _wrapComponent("_component")(React.createClass({
 			username = this.props.userData.username;
 			city = this.props.userData.city;
 			occupation = this.props.userData.occupation;
+			songs = this.props.userData.songs;
+
+			if (this.props.userToken === "") showProfile = false;
 		} else {
 			showProfile = !isObjectEmpty(this.props.publicProfileInfo);
 			link_set = this.props.publicProfileInfo.link_set;
@@ -66242,6 +66246,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 			username = this.props.publicProfileInfo.username;
 			city = this.props.publicProfileInfo.city;
 			occupation = this.props.publicProfileInfo.occupation;
+			songs = this.props.publicProfileInfo.songs;
 		}
 
 		var isProfileEmpty = false;
@@ -66260,7 +66265,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 						{ className: "main--wrapper" },
 						React.createElement(
 							"div",
-							{ className: "profile-info--wrapper " + (!this.props.userData.songs.length ? "no-songs" : "") },
+							{ className: "profile-info--wrapper " + (!songs.length ? "no-songs" : "") },
 							this.props.route.publicProfile ? React.createElement("div", null) : React.createElement(
 								"div",
 								{ className: "edit-profile-icon--wrapper" },
