@@ -127,7 +127,7 @@ var Profile = React.createClass({
 							<p>
 								This is your new profile, all your uploaded sounds will be shown here.
 							</p>
-							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Upload my first sound</Button>
+							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Share My First Sound</Button>
 							<Button onClick={goToURL.bind(null, "/discover")}>Discover music</Button>
 						</div>
 					</div>

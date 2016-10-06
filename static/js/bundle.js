@@ -59826,7 +59826,7 @@ var Home = _wrapComponent("_component")(React.createClass({
 							{ className: "upload-link-button", onClick: function onClick() {
 									return browserHistory.push('/upload');
 								}, isBigButton: true, isSecondaryAction: true },
-							"Share your sounds"
+							"Share Your Sounds"
 						),
 						React.createElement(
 							Button,
@@ -66247,7 +66247,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					Button,
 					{ isSecondaryAction: true, onClick: goToURL.bind(null, "/upload") },
-					"Upload my first sound"
+					"Share My First Sound"
 				),
 				React.createElement(
 					Button,
