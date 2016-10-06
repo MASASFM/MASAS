@@ -56436,13 +56436,14 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
 				dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Welcome !" });
 
-				if (window.location.pathname !== "/") browserHistory.push('/');
+				// if(window.location.pathname !== "/")
+				// 	browserHistory.push('/')
 			} else {
-				// show terms and conditions form
-				var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
-				dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: React.createElement(TermsAndCond, { userPk: parseInt(userPk), userToken: userToken, userData: userData }) });
-				dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
-			}
+					// show terms and conditions form
+					var TermsAndCond = require("./components/Login/TermsAndCond.jsx");
+					dispatch({ type: "CHANGE_MODAL_CONTENT", modalContent: React.createElement(TermsAndCond, { userPk: parseInt(userPk), userToken: userToken, userData: userData }) });
+					dispatch({ type: "TOOGLE_IS_MODAL_OPENED" });
+				}
 		},
 		error: function error(e) {}
 	});
