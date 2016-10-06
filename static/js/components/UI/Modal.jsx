@@ -40,7 +40,8 @@ let Modal = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		// update background blur on modal appear/dissapear
-		if(this.props.isOpened && nextProps.isOpened === false) {
+		// unless we are on /upload page (it handles background blurs itself)
+		if(window.location.pathname !== "/upload" && nextProps.isOpened === false) {
 			// remove background blur
 			$('#body--background').removeClass('blurred')
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {
