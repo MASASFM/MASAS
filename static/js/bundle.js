@@ -63421,7 +63421,6 @@ function _wrapComponent(id) {
 }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -63434,6 +63433,8 @@ var _require2 = require("../UI/UI.jsx");
 
 var Marquee = _require2.Marquee;
 
+var MiniProfile = require("../Profile/MiniProfile.jsx");
+
 var LikesItem = _wrapComponent("_component")(React.createClass({
 	displayName: "LikesItem",
 
@@ -63445,10 +63446,29 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 		pause: React.PropTypes.func,
 		isPaused: React.PropTypes.bool,
 		isFetchingSong: React.PropTypes.bool,
-		userData: React.PropTypes.object
+		userData: React.PropTypes.object,
+		songPlaying: React.PropTypes.string
 	},
 
-	componentWillMount: function componentWillMount() {},
+	getInitialState: function getInitialState() {
+		return {
+			artistInfo: null, // (obj) containing artist info
+			isShowingArtistInfo: false };
+	},
+
+	// (bool) is artist profile showing
+	componentDidMount: function componentDidMount() {
+		var _this = this;
+
+		this.getArtistReq = $.ajax({
+			type: 'GET',
+			url: this.props.MASASinfo.url,
+			success: function success(artistInfo) {
+				return _this.setState({ artistInfo: artistInfo });
+			},
+			error: function error() {}
+		});
+	},
 
 	playTrack: function playTrack() {
 		//this.props.playNewSong(this.props.MASASinfo.url)
@@ -63505,6 +63525,8 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 	},
 
 	render: function render() {
+		var _this2 = this;
+
 		var SCinfo = this.props.SCinfo;
 
 		var artworkURL = SCinfo.artwork_url;
@@ -63531,7 +63553,19 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "text--wrapper" },
+				{ className: "likes-mini-profile--wrapper" + (this.state.isShowingArtistInfo ? " show" : "") },
+				React.createElement(MiniProfile, {
+					userInfo: this.state.artistInfo,
+					backArrowFunc: function backArrowFunc() {
+						return _this2.setState({ isShowingArtistInfo: false });
+					},
+					isMiniProfileBig: true })
+			),
+			React.createElement(
+				"div",
+				{ className: "text--wrapper", onClick: function onClick() {
+						return _this2.setState({ isShowingArtistInfo: true });
+					} },
 				React.createElement(
 					"div",
 					{ className: "song-name--wrapper" },
@@ -63582,7 +63616,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesItem);
 
-},{"../UI/UI.jsx":476,"./containers/LikesItem.jsx":427,"livereactload/babel-transform":35,"react":366,"react-dom":41,"react-redux":171}],423:[function(require,module,exports){
+},{"../Profile/MiniProfile.jsx":445,"../UI/UI.jsx":476,"./containers/LikesItem.jsx":427,"livereactload/babel-transform":35,"react":366,"react-redux":171}],423:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");

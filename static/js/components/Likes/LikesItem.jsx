@@ -1,10 +1,10 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesItem.jsx")
 
 var { Marquee } = require("../UI/UI.jsx")
+var MiniProfile = require("../Profile/MiniProfile.jsx")
 
 var LikesItem = React.createClass({
 	propTypes: {
@@ -16,10 +16,23 @@ var LikesItem = React.createClass({
 		isPaused: React.PropTypes.bool,
 		isFetchingSong: React.PropTypes.bool,
 		userData: React.PropTypes.object,
+		songPlaying: React.PropTypes.string,
 	},
 
-	componentWillMount: function() {
-		
+	getInitialState: function() {
+		return {
+			artistInfo: null, 						// (obj) containing artist info
+			isShowingArtistInfo: false, 			// (bool) is artist profile showing
+		};
+	},
+
+	componentDidMount: function() {
+		this.getArtistReq = $.ajax({
+			type: 'GET',
+			url: this.props.MASASinfo.url,
+			success: artistInfo => this.setState({ artistInfo }),
+			error: () => {},
+		})
 	},
 
 	playTrack: function() {
@@ -81,9 +94,9 @@ var LikesItem = React.createClass({
 		var SCinfo = this.props.SCinfo
 
 		var artworkURL = SCinfo.artwork_url
-		 if(SCinfo.artwork_url !== null) {
-		 	artworkURL = SCinfo.artwork_url.substring(0,SCinfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
-		 }
+		if(SCinfo.artwork_url !== null) {
+			artworkURL = SCinfo.artwork_url.substring(0,SCinfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
+		}
 
 		return (
 			<div className="likes-item--wrapper">
@@ -96,7 +109,13 @@ var LikesItem = React.createClass({
 						{ this.renderPlayerControlButton() }
 					</div>
 				</div>
-				<div className="text--wrapper">
+				<div className={ "likes-mini-profile--wrapper" + (this.state.isShowingArtistInfo ? " show" : "") }>
+					<MiniProfile
+						userInfo={ this.state.artistInfo }
+						backArrowFunc={ () => this.setState({ isShowingArtistInfo: false }) }
+						isMiniProfileBig={ true } />
+				</div>
+				<div className="text--wrapper" onClick={ () => this.setState({ isShowingArtistInfo: true }) }>
 					<div className="song-name--wrapper">
 						<div className="title">
 							<Marquee>{ SCinfo.title }</Marquee>
