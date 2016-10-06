@@ -2292,27 +2292,33 @@ input[type=range].MASAS-slider {
   width: 90%;
   flex-direction: column;
   justify-content: space-around;
-  max-height: 16rem;
+  height: 24rem;
+  max-height: 28rem;
   max-width: 20rem; }
 
-.connect-sc--wrapper .connect-sc--header {
+.connect-sc--wrapper .connect-sc--texttt {
   display: flex;
   width: 100%;
   justify-content: space-around;
   height: -webkit-max-content;
   align-items: center; }
-.connect-sc--wrapper .connect-sc--header .MASAS-logo {
-  height: 4rem; }
-.connect-sc--wrapper .connect-sc--header .SC-logo {
-  height: 3rem; }
-.connect-sc--wrapper .connect-sc--header .sync-icon {
-  width: 4rem; }
-.connect-sc--wrapper p {
-  font-size: 1.2rem;
+.connect-sc--wrapper .demo-time-picker--wrapper {
+  height: 7rem;
+  width: 15rem; }
+.connect-sc--wrapper .connect-sc--text {
+  font-size: 1.05rem;
   text-align: center;
-  line-height: 1.5rem; }
-.connect-sc--wrapper .connect-button {
-  color: red; }
+  line-height: 1.5rem;
+  letter-spacing: 0.06rem;
+  font-family: Lato-Regular;
+  opacity: 0.8; }
+.connect-sc--wrapper .connect-button .button-subtitle {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  letter-spacing: 0.04rem;
+  font-family: Lato-Light; }
 
 .upload-sc--wrapper {
   display: flex;

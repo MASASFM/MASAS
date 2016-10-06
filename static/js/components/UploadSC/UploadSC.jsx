@@ -3,14 +3,12 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { background, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
-import { MobileBlurBackground } from "../MASAS_mixins.jsx"
+var { background } = require("../../MASAS_functions.jsx")
 
-var { Button, Body } = require("../UI/UI.jsx")
+var { Button, Body, TimePicker } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
-var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx")
-var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
+var SplashScreen = require("../App/SplashScreen.jsx")
 
 
 var UploadSC = React.createClass({
@@ -24,6 +22,7 @@ var UploadSC = React.createClass({
 		modalType: React.PropTypes.number,
 		SCusername: React.PropTypes.string,
 		soundcloudUserTracks: React.PropTypes.array,
+		MASASuser: React.PropTypes.string,
 
 		updateTitle: React.PropTypes.func,
 		updateModalType: React.PropTypes.func,
@@ -128,8 +127,6 @@ var UploadSC = React.createClass({
 	},
 
 	render: function() {
-		console.log(background)
-		
 		if(this.props.choosingTime) {
 			background.unblur()	
 
@@ -186,20 +183,36 @@ var UploadSC = React.createClass({
 			return (
 				<Body noBackground={ true }>
 					<div className="connect-sc--wrapper">
-						<div className="connect-sc--header">
-							<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
-							<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
-							<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
+						<div className="connect-sc--text">
+							All the music shared on MASAS starts out in one of the Discover moods
 						</div>
-						<p>
-							Connect your Souncloud account to MASAS and start sharing your songs in a click.
-						</p>
-						<div className="connect-button">
-							<Button 
-								onClick={ this.connectToSC } 
-								isBigButton={ true }
-								soundcloud={ true }>Connect to SoundCloud</Button>
+						<div className="demo-time-picker--wrapper">
+							<TimePicker 
+								initialDiscover={ 1 }
+								currentDiscover={ 1 }
+								/>
 						</div>
+						<div className="connect-sc--text">
+							if the community really <strong>Likes</strong> your songs, it will get featured on <strong>Popular</strong>!
+						</div>
+						
+						{ 
+							this.props.MASASuser !== "" ?
+								<div className="connect-button">
+									<Button 
+										onClick={ this.connectToSC } 
+										isBigButton={ true }
+										soundcloud={ true }>Connect to SoundCloud</Button>
+								</div>
+							:
+								<div className="connect-button">
+									<Button 
+										onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } } 
+										isSecondaryAction={ true }
+										isBigButton={ true }>Log-in to Upload</Button>
+									<div className="button-subtitle">It's free!</div>
+								</div>
+						}
 					</div>
 				</Body>
 				)
