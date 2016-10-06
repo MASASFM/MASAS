@@ -4032,16 +4032,25 @@ input[type=range].MASAS-slider {
 .popular--wrapper {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-between;
-  flex: 1; }
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+  max-height: 40rem; }
   .popular--wrapper .text {
     display: flex;
     flex-direction: column; }
     .popular--wrapper .text h1 {
-      font-size: 1.5rem; }
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      font-family: Lato-Regular;
+      letter-spacing: 0.07rem; }
     .popular--wrapper .text h2 {
-      font-size: 1rem; }
+      font-size: 1rem;
+      text-align: center;
+      font-family: Lato-Regular;
+      opacity: 0.8;
+      margin-top: 0.3rem;
+      letter-spacing: 0.06rem; }
   .popular--wrapper .loader--wrapper {
     height: 150px;
     width: 150px; }

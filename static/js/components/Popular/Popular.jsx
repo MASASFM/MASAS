@@ -4,7 +4,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Popular.jsx")
 
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var {goToURL} = require("../../MASAS_functions.jsx")
 var { BlurBackground, MobileBlurBackground } = require("../MASAS_mixins.jsx")
 var { Button, Body, MasasSpinner } = require("../UI/UI.jsx")
 
@@ -61,6 +61,7 @@ var Popular = React.createClass({
 						<Button
 							isSecondaryAction={ true }
 							isBigButton={ true }
+							onClick={ () => goToURL('/upload') }
 							>
 							share your sounds
 						</Button>
