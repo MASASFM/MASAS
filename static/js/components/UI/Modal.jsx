@@ -40,7 +40,7 @@ let Modal = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		// update background blur on modal appear/dissapear
-		if(nextProps.isOpened === false) {
+		if(this.props.isOpened && nextProps.isOpened === false) {
 			// remove background blur
 			$('#body--background').removeClass('blurred')
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {

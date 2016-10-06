@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { isObjectNotEmpty } = require("../../MASAS_functions.jsx")
+var { background, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
 import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 
 var { Button, Body } = require("../UI/UI.jsx")
@@ -14,8 +14,6 @@ var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 
 var UploadSC = React.createClass({
-	mixins: [ MobileBlurBackground ],
-	
 	propTypes: {
 		isConnectedSoundcloud: React.PropTypes.bool,
 		choosingTime: React.PropTypes.object,
@@ -43,6 +41,7 @@ var UploadSC = React.createClass({
 		this.props.updateTitle('Upload', '0')
 		if(this.props.isConnectedSoundcloud)
 			this.getUserTracks()
+
 	},
 
 	componentDidMount: function() {
@@ -129,7 +128,11 @@ var UploadSC = React.createClass({
 	},
 
 	render: function() {
-		if(this.props.choosingTime)
+		console.log(background)
+		
+		if(this.props.choosingTime) {
+			background.unblur()	
+
 			return (
 				<div style={{ 
 					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
@@ -142,8 +145,11 @@ var UploadSC = React.createClass({
 					</Body>
 				</div>
 			)
+		}
 
-		if(this.props.isConnectedSoundcloud) 
+		if(this.props.isConnectedSoundcloud) {
+			background.unblur()	
+
 			return (
 				<Body>
 				<div className="upload-sc--wrapper">
@@ -173,27 +179,28 @@ var UploadSC = React.createClass({
 				</div>
 				</Body>
 			)
-		else {
+		} else {
+			// blur background when SC not connected
+			background.blur()	
 
 			return (
-				<Body>
-
-				<div className="connect-sc--wrapper">
-					<div className="connect-sc--header">
-						<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
-						<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
-						<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
+				<Body noBackground={ true }>
+					<div className="connect-sc--wrapper">
+						<div className="connect-sc--header">
+							<img src="/static/img/MASAS_logo_soundcloud.svg" className="SC-logo" alt="soundcloud sync" />
+							<img src="/static/img/MASAS_icon_synch_separator.svg" className="sync-icon" alt="soundcloud sync" />
+							<img src="/static/img/MASAS_logo-M.svg" className="MASAS-logo" alt="soundcloud sync" />
+						</div>
+						<p>
+							Connect your Souncloud account to MASAS and start sharing your songs in a click.
+						</p>
+						<div className="connect-button">
+							<Button 
+								onClick={ this.connectToSC } 
+								isBigButton={ true }
+								soundcloud={ true }>Connect to SoundCloud</Button>
+						</div>
 					</div>
-					<p>
-						Connect your Souncloud account to MASAS and start sharing your songs in a click.
-					</p>
-					<div className="connect-button">
-						<Button 
-							onClick={ this.connectToSC } 
-							isBigButton={ true }
-							soundcloud={ true }>Connect to SoundCloud</Button>
-					</div>
-				</div>
 				</Body>
 				)
 		}

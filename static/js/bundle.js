@@ -56260,6 +56260,15 @@ MASAS_functions.isObjectNotEmpty = function (obj) {
 	return Object.keys(obj).length !== 0 && obj.constructor === Object;
 };
 
+MASAS_functions.background = {
+	blur: function blur() {
+		$('#body--background').addClass('blurred');
+	},
+	unblur: function unblur() {
+		$('#body--background').removeClass('blurred');
+	}
+};
+
 // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
 MASAS_functions.makePromiseCancelable = function (promise) {
 	var hasCanceled_ = false;
@@ -68935,7 +68944,7 @@ var Modal = _wrapComponent("_component")(React.createClass({
 
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		// update background blur on modal appear/dissapear
-		if (nextProps.isOpened === false) {
+		if (this.props.isOpened && nextProps.isOpened === false) {
 			// remove background blur
 			$('#body--background').removeClass('blurred');
 		} else if (nextProps.isOpened === true && nextProps.type === 1) {
@@ -70088,6 +70097,7 @@ var mapDispatchToProps = _require.mapDispatchToProps;
 
 var _require2 = require("../../MASAS_functions.jsx");
 
+var background = _require2.background;
 var isObjectNotEmpty = _require2.isObjectNotEmpty;
 
 var _require3 = require("../UI/UI.jsx");
@@ -70102,8 +70112,6 @@ var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1;
 
 var UploadSC = _wrapComponent("_component")(React.createClass({
 	displayName: "UploadSC",
-
-	mixins: [_MASAS_mixins.MobileBlurBackground],
 
 	propTypes: {
 		isConnectedSoundcloud: React.PropTypes.bool,
@@ -70222,71 +70230,83 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 	},
 
 	render: function render() {
-		if (this.props.choosingTime) return React.createElement(
-			"div",
-			{ style: {
-					visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible',
-					display: 'flex',
-					flex: '1'
-				} },
-			React.createElement(
-				Body,
-				null,
-				React.createElement(PickTimeUpload, {
-					visible: !(this.props.modalType === 2 && this.props.isModalOpened) })
-			)
-		);
+		console.log(background);
 
-		if (this.props.isConnectedSoundcloud) return React.createElement(
-			Body,
-			null,
-			React.createElement(
+		if (this.props.choosingTime) {
+			background.unblur();
+
+			return React.createElement(
 				"div",
-				{ className: "upload-sc--wrapper" },
+				{ style: {
+						visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible',
+						display: 'flex',
+						flex: '1'
+					} },
 				React.createElement(
-					"div",
-					{ className: "table-head" },
-					React.createElement(
-						"div",
-						{ className: "title" },
-						"Title"
-					),
-					React.createElement(
-						"div",
-						{ className: "duration" },
-						"Duration"
-					),
-					React.createElement(
-						"div",
-						{ className: "sync" },
-						"Sync"
-					)
-				),
-				React.createElement(
-					"div",
-					{ className: "upload-sc-items--wrapper" },
-					this.tracksTable()
-				),
-				React.createElement(
-					"div",
-					{ className: "logout--wrapper" },
-					this.props.SCusername ? React.createElement(
-						"span",
-						{ className: "logout-text", onClick: this.logoutSC },
-						"Log out from ",
-						React.createElement(
-							"span",
-							{ className: "logout-text--username" },
-							this.props.SCusername
-						)
-					) : ""
+					Body,
+					null,
+					React.createElement(PickTimeUpload, {
+						visible: !(this.props.modalType === 2 && this.props.isModalOpened) })
 				)
-			)
-		);else {
+			);
+		}
+
+		if (this.props.isConnectedSoundcloud) {
+			background.unblur();
 
 			return React.createElement(
 				Body,
 				null,
+				React.createElement(
+					"div",
+					{ className: "upload-sc--wrapper" },
+					React.createElement(
+						"div",
+						{ className: "table-head" },
+						React.createElement(
+							"div",
+							{ className: "title" },
+							"Title"
+						),
+						React.createElement(
+							"div",
+							{ className: "duration" },
+							"Duration"
+						),
+						React.createElement(
+							"div",
+							{ className: "sync" },
+							"Sync"
+						)
+					),
+					React.createElement(
+						"div",
+						{ className: "upload-sc-items--wrapper" },
+						this.tracksTable()
+					),
+					React.createElement(
+						"div",
+						{ className: "logout--wrapper" },
+						this.props.SCusername ? React.createElement(
+							"span",
+							{ className: "logout-text", onClick: this.logoutSC },
+							"Log out from ",
+							React.createElement(
+								"span",
+								{ className: "logout-text--username" },
+								this.props.SCusername
+							)
+						) : ""
+					)
+				)
+			);
+		} else {
+			// blur background when SC not connected
+			background.blur();
+
+			return React.createElement(
+				Body,
+				{ noBackground: true },
 				React.createElement(
 					"div",
 					{ className: "connect-sc--wrapper" },

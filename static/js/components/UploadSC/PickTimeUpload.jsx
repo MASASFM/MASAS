@@ -32,7 +32,7 @@ var PickTimeUpload = React.createClass({
 		return {
 			checkUserStep: () => {}
 		}
-	 },
+	},
 
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', 1)		// 0 = menu icon; 1 = arrow back
