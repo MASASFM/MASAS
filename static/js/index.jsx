@@ -19,6 +19,7 @@ var Profile = require("./components/Profile/Profile.jsx")
 var Likes = require("./components/Likes/Likes.jsx")
 var Discover = require("./components/Discover/Discover.jsx")
 var Legals = require("./components/Legals/LegalsHome.jsx")
+var Popular = require("./components/Popular/Popular.jsx")
 
 
 ReactDOM.render((
@@ -26,17 +27,17 @@ ReactDOM.render((
                <Router history={browserHistory}>
                        <Route path="/" component={App}>
                                <Route path="discover" component={Discover} />
+                               <Route path="pending" component={InvitationPending} />
                                <Route path="login" component={Login} />
-                               <Route path="sign-up" component={SignUp} />
-                               <Route path="upload" component={UploadSC} />
-                               <Route path="profile" publicProfile={false} component={Profile} />
-                               <Route path="/user/:username" publicProfile={true} component={Profile} />
                                <Route path="likes" component={Likes} />
                                <Route path="legals" component={Legals} />
-                               <Route path="pending" component={InvitationPending} />
+                               <Route path="popular" component={Popular} />
+                               <Route path="profile" publicProfile={false} component={Profile} />
+                               <Route path="/user/:username" publicProfile={true} component={Profile} />
+                               <Route path="sign-up" component={SignUp} />
+                               <Route path="upload" component={UploadSC} />
                        </Route>
                        <Route path="/sc-callback" component={SoundcloudCallback} />
-
                </Router>
        </ReactRedux.Provider>
 ), document.getElementById("content"))

@@ -15,4 +15,17 @@ MASAS_mixins.MobileBlurBackground = {
 	}
 }
 
+MASAS_mixins.BlurBackground = {
+	componentDidMount: function() {
+
+		// add blur class to background
+		$('#body--background').addClass('blurred')
+	},
+
+	componentWillUnmount: function() {
+		// remove blur class from background
+		$('#body--background').removeClass('blurred')
+	}
+}
+
 module.exports = MASAS_mixins

@@ -1,10 +1,23 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Body.jsx")
 
 var Body = React.createClass({
+	propTypes: {
+		children: React.PropTypes.node,
+		isModalOpened: React.PropTypes.bool,
+		modalType: React.PropTypes.number,
+		title: React.PropTypes.string,
+		noBackground: React.PropTypes.bool,		// should Body background be dark or transparent
+	},
+
+	getDefaultProps: function() {
+		return {
+			noBackground: false,				// show dark background by default
+		}
+	},
+
 	componentWillMount: function() {
 	},
 
@@ -37,7 +50,7 @@ var Body = React.createClass({
 						<div className="box"></div>
 					</div>
 					<div className="col-xs-12 col-md-8 page-content--wrapper">
-						<div className="box page-content">
+						<div className={ "box page-content" + ( this.props.noBackground ? " no-background" : "" ) }>
 							{ this.props.children }
 						</div>
 					</div>

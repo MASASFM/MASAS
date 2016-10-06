@@ -4,6 +4,7 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Template.jsx")
 
 // var {goToURL} = require("../../MASAS_functions.jsx")
+// import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
 
 // var Template = (props) => {

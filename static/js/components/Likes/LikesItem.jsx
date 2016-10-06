@@ -115,7 +115,7 @@ var LikesItem = React.createClass({
 						backArrowFunc={ () => this.setState({ isShowingArtistInfo: false }) }
 						isMiniProfileBig={ true } />
 				</div>
-				<div className="text--wrapper" onClick={ () => this.setState({ isShowingArtistInfo: true }) }>
+				<div className="text--wrapper" onClick={ () => this.setState({ isShowingArtistInfo: !this.state.isShowingArtistInfo }) }>
 					<div className="song-name--wrapper">
 						<div className="title">
 							<Marquee>{ SCinfo.title }</Marquee>

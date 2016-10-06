@@ -179,6 +179,8 @@
 .MASAS-button .small-button {
   height: 1.5rem; }
 
+.body--wrapper .page-content.no-background {
+  background-color: transparent; }
 .body--wrapper .page-content {
   position: relative; }
 .body--wrapper .page-title--wrapper {
@@ -291,6 +293,8 @@
   background-position: 95%;
   background-size: 20px; }
 
+.body--wrapper .page-content.no-background {
+  background-color: transparent; }
 .body--wrapper .page-content {
   position: relative; }
 .body--wrapper .page-title--wrapper {
@@ -4025,6 +4029,22 @@ input[type=range].MASAS-slider {
       max-width: 22rem; }
       .legals--wrapper .text--wrapper p {
         text-align: center; } }
+.popular--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  flex: 1; }
+  .popular--wrapper .text {
+    display: flex;
+    flex-direction: column; }
+    .popular--wrapper .text h1 {
+      font-size: 1.5rem; }
+    .popular--wrapper .text h2 {
+      font-size: 1rem; }
+  .popular--wrapper .loader--wrapper {
+    height: 7rem; }
+
 html {
   font-size: 14px;
   color: white;
@@ -4050,7 +4070,8 @@ html {
   right: 0;
   position: absolute;
   z-index: 0;
-  opacity: 0.6; }
+  opacity: 0.6;
+  transition: filter 0.5s linear; }
 
 .body--background.artist-page-bg > .bg-image {
   -webkit-filter: blur(6px) saturate(0%);

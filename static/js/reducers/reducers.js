@@ -1,5 +1,5 @@
 var Redux = require("redux")
-import thunk from 'redux-thunk'
+
 import { appReducer, defaultState as appDefaultState } from "./App.jsx"
 import { headerReducer, defaultState as headerDefaultState } from "./Header.jsx"
 import { bodyReducer, defaultState as bodyDefaultState } from "./Body.jsx"
@@ -12,6 +12,7 @@ import { likesReducer, defaultState as likesDefaultState } from "./Likes.jsx"
 import { discoverReducer, defaultState as discoverDefaultState  } from "./Discover.jsx"
 import { legalsReducer, defaultState as legalsDefaultState  } from "./Legals.jsx"
 import { profileReducer, defaultState as profileDefaultState  } from "./Profile.jsx"
+import { popularReducer, defaultState as popularDefaultState  } from "./Popular.jsx"
 
 const initialState = {
 	headerReducer: headerDefaultState,
@@ -26,6 +27,7 @@ const initialState = {
 	discoverReducer: discoverDefaultState,
 	legalsReducer: legalsDefaultState,
 	profileReducer: profileDefaultState,
+	popularReducer: popularDefaultState,
 }
 const rootReducer = Redux.combineReducers({
 	headerReducer,
@@ -39,7 +41,8 @@ const rootReducer = Redux.combineReducers({
 	likesReducer,
 	discoverReducer,
 	legalsReducer,
-	profileReducer
+	profileReducer,
+	popularReducer,
 })
 
 

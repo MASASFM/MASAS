@@ -60,7 +60,7 @@ var Header = React.createClass({
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
 							<div className="header-link"><Link to="/discover" disabled={ false }>Discover</Link></div>
-							<div className="header-link"><Link to="/" disabled={true}>Popular</Link></div>
+							<div className="header-link"><Link to="/popular" disabled={false}>Popular</Link></div>
 							<div className="header-link"><Link to="/upload" disabled={this.props.user ? false : true}>Upload</Link></div>
 							<div className="header-link"><Link to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
