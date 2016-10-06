@@ -63,8 +63,11 @@ var Popular = React.createClass({
 							isBigButton={ true }
 							onClick={ () => goToURL('/upload') }
 							>
-							share your sounds
+							Share Your Sounds
 						</Button>
+						<span className="button-subtitle">
+							It's free !
+						</span>
 					</div>
 				</div>
 			</Body>

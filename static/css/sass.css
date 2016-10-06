@@ -4062,6 +4062,13 @@ input[type=range].MASAS-slider {
         bottom: 0;
         left: 0;
         right: 0; }
+  .popular--wrapper .button--wrapper .button-subtitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    letter-spacing: 0.04rem;
+    font-family: Lato-Light; }
 
 html {
   font-size: 14px;
