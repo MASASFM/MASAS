@@ -59343,7 +59343,7 @@ var Header = _wrapComponent("_component")(React.createClass({
 							{ className: "header-link" },
 							React.createElement(
 								Link,
-								{ to: "/upload", disabled: this.props.user ? false : true },
+								{ to: "/upload", disabled: false },
 								"Upload"
 							)
 						),
@@ -64869,7 +64869,7 @@ var NavSidebar = _wrapComponent("_component")(React.createClass({
 						{ className: "link" },
 						React.createElement(
 							Link,
-							{ disabled: !this.props.MASASuser ? true : false, to: "/upload", onClick: this.props.toogleSidebar },
+							{ disabled: false, to: "/upload", onClick: this.props.toogleSidebar },
 							"upload"
 						)
 					),

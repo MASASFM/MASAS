@@ -76,7 +76,7 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link disabled={ !this.props.MASASuser ? true : false } to="/upload" onClick={this.props.toogleSidebar}>
+									<Link disabled={ false } to="/upload" onClick={this.props.toogleSidebar}>
 										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
 										upload
 									</Link>
