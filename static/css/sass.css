@@ -2391,6 +2391,9 @@ input[type=range].MASAS-slider {
     min-height: 3rem;
     max-height: 3rem; }
 
+  .connect-sc--wrapper {
+    max-width: 30rem; }
+
   .connect-sc--wrapper p {
     font-size: 1rem;
     font-family: Lato-Light; }
