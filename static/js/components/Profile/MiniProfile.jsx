@@ -39,11 +39,13 @@ var MiniProfile = (props) => {
 		viewContent = (
 				<div className="mini-profile--wrapper2">
 					<img onClick={ () => browserHistory.push('/user/' + userPk)  } src={ props.userInfo.avatar_url + "?width=300" } alt="artist avatar" className="artist-avatar" />
-					<span onClick={ () => browserHistory.push('/user/' + userPk)  } className="username">{ props.userInfo.name ? props.userInfo.name : props.userInfo.username }</span>
-					<div className="social-icons">
-					{ 
-						linkSet	
-					}	
+					<div className="profile-info">
+						<span onClick={ () => browserHistory.push('/user/' + userPk)  } className="username">{ props.userInfo.name ? props.userInfo.name : props.userInfo.username }</span>
+						<div className="social-icons">
+						{ 
+							linkSet	
+						}	
+						</div>
 					</div>
 				</div>
 		)

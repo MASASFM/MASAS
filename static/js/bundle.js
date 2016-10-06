@@ -63462,7 +63462,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 
 		this.getArtistReq = $.ajax({
 			type: 'GET',
-			url: this.props.MASASinfo.url,
+			url: this.props.MASASinfo.trackArtist,
 			success: function success(artistInfo) {
 				return _this.setState({ artistInfo: artistInfo });
 			},
@@ -65824,16 +65824,20 @@ var MiniProfile = function MiniProfile(props) {
 						return browserHistory.push('/user/' + userPk);
 					}, src: props.userInfo.avatar_url + "?width=300", alt: "artist avatar", className: "artist-avatar" }),
 				React.createElement(
-					"span",
-					{ onClick: function onClick() {
-							return browserHistory.push('/user/' + userPk);
-						}, className: "username" },
-					props.userInfo.name ? props.userInfo.name : props.userInfo.username
-				),
-				React.createElement(
 					"div",
-					{ className: "social-icons" },
-					linkSet
+					{ className: "profile-info" },
+					React.createElement(
+						"span",
+						{ onClick: function onClick() {
+								return browserHistory.push('/user/' + userPk);
+							}, className: "username" },
+						props.userInfo.name ? props.userInfo.name : props.userInfo.username
+					),
+					React.createElement(
+						"div",
+						{ className: "social-icons" },
+						linkSet
+					)
 				)
 			);
 		})();

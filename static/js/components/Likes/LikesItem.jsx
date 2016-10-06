@@ -29,7 +29,7 @@ var LikesItem = React.createClass({
 	componentDidMount: function() {
 		this.getArtistReq = $.ajax({
 			type: 'GET',
-			url: this.props.MASASinfo.url,
+			url: this.props.MASASinfo.trackArtist,
 			success: artistInfo => this.setState({ artistInfo }),
 			error: () => {},
 		})
