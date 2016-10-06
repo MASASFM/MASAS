@@ -16,7 +16,7 @@ exportVar.defaultState = {
 	modalContent: <div></div>, 			// (obj) modal content
 	modalType: 1,					// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
-	closeModalFunc: () => {} 			// (func) function called on closin modal
+	closeModalFunc: () => {}, 			// (func) function called on closin modal
 }
 
 const { defaultState } = exportVar

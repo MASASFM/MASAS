@@ -64,7 +64,7 @@ var NavSidebar = React.createClass({
 									</Link>
 								</div>
 								<div className="link">
-									<Link to='/popular' disabled={false}>
+									<Link to='/popular' onClick={ this.props.toogleSidebar }>
 										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										popular
 									</Link>

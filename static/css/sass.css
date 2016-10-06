@@ -4043,7 +4043,16 @@ input[type=range].MASAS-slider {
     .popular--wrapper .text h2 {
       font-size: 1rem; }
   .popular--wrapper .loader--wrapper {
-    height: 7rem; }
+    height: 150px;
+    width: 150px; }
+    .popular--wrapper .loader--wrapper .Masas-loader-container {
+      position: relative; }
+      .popular--wrapper .loader--wrapper .Masas-loader-container .Masas-loader-infinity, .popular--wrapper .loader--wrapper .Masas-loader-container .Masas-loader-gif {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0; }
 
 html {
   font-size: 14px;

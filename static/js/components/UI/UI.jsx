@@ -8,6 +8,7 @@ var TimePicker = require('./TimePicker.jsx')
 var Marquee = require('./Marquee.jsx')
 var Modal = require('./Modal.jsx')
 var RankingInfoIcon = require('./RankingInfoIcon.jsx')
+var MasasSpinner = require('./MasasSpinner.jsx')
 
 
 var UI = {}
@@ -16,12 +17,13 @@ UI.Body = Body
 UI.Button = Button
 UI.Checkbox = Checkbox
 UI.Link = Link
+UI.Marquee = Marquee
+UI.MasasSpinner = MasasSpinner
+UI.Modal = Modal
 UI.Password = Password
+UI.RankingInfoIcon = RankingInfoIcon
 UI.Textbox = Textbox
 UI.TimePicker = TimePicker
-UI.Marquee = Marquee
-UI.Modal = Modal
-UI.RankingInfoIcon = RankingInfoIcon
 
 
 module.exports = UI
