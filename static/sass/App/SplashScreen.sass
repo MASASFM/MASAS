@@ -100,22 +100,19 @@
 
 		.first-slide
 			display: flex
-			justify-content: space-between
+			justify-content: center 
 			flex-direction: column
 
 			img
-				height: 33%
+				height: 50%
+				max-height: 17rem
 				z-index: 2
-				margin: 2rem
-				margin-top: 4rem
-				// display: none
+				margin-bottom: 1rem
 
 			.main-content
-				flex: 1
 				display: flex
 				flex-direction: column
 				justify-content: space-between
-				height: 100%
 				width: 100%
 				z-index: 2
 
@@ -127,11 +124,13 @@
 					display: table
 					margin-left: auto
 					margin-right: auto
+					display: none
 
 				.hashtag-swiper-container
 					width: 200px
 					margin: 0px auto
 					height: 30%
+					display: none
 
 					.swiper-slide
 						align-items: flex-start
@@ -140,7 +139,9 @@
 				.login-buttons--wrapper
 					display: flex
 					justify-content: space-around
-					height: 5rem
+					height: 7rem
+					flex-direction: column
+					align-items: center
 
 					.MASAS-button
 						font-size: 1.4rem
@@ -272,85 +273,83 @@
 		.main-swiper-container
 			top: 50%
 			left: 50%
-			height: 60%
 			width: 80%
 			transform: translate(-50%,-50%)
 			max-height: 40rem
 
 			.first-slide
-				flex-direction: row
-
 				img
 					display: block
-					height: 70%
+					height: 19rem
 					margin: 0
+					margin-bottom: 3rem
 
-				.main-content
-					flex: 0.7
+		// 		.main-content
+		// 			flex: 0.7
 
-					h1
-						font-size: 2rem
+		// 			h1
+		// 				font-size: 2rem
 
-					.hashtag-swiper-container
-						width: 500px
-						height: 300px
-						margin: 20px auto
+		// 			.hashtag-swiper-container
+		// 				width: 500px
+		// 				height: 300px
+		// 				margin: 20px auto
 
-						.swiper-slide
-							align-items: center
-							padding-top: 0rem
+		// 				.swiper-slide
+		// 					align-items: center
+		// 					padding-top: 0rem
 
-					.login-buttons--wrapper
-						height: auto
+		// 			.login-buttons--wrapper
+		// 				height: auto
 
-						.MASAS-button
-							font-size: inherit
+		// 				.MASAS-button
+		// 					font-size: inherit
 
-			.second-slide
-				max-height: initial
-				margin: initial
+		// 	.second-slide
+		// 		max-height: initial
+		// 		margin: initial
 
-				.masas-logo
-					margin-bottom: 0
+		// 		.masas-logo
+		// 			margin-bottom: 0
 
-				.login-content
-					.login-buttons
-						margin-bottom: 0
+		// 		.login-content
+		// 			.login-buttons
+		// 				margin-bottom: 0
 
-						.login-container
-							height: 3.5rem
+		// 				.login-container
+		// 					height: 3.5rem
 
-					.MASAS-button.no-borders
+		// 			.MASAS-button.no-borders
 
-				.terms-paragraph	
-					max-width: initial
+		// 		.terms-paragraph	
+		// 			max-width: initial
 
-			.third-slide
+		// 	.third-slide
 
-				.legals-content--wrapper
-					margin-bottom: 0rem
+		// 		.legals-content--wrapper
+		// 			margin-bottom: 0rem
 
-				.MASAS-button
-					margin-bottom: 0rem
-					display: flex
+		// 		.MASAS-button
+		// 			margin-bottom: 0rem
+		// 			display: flex
 
-				.back-to-legals-summary
-					display: none
-					align-self: auto
+		// 		.back-to-legals-summary
+		// 			display: none
+		// 			align-self: auto
 
-				.text--wrapper
+		// 		.text--wrapper
 
-					.legals-index-back-button
-						display: none
+		// 			.legals-index-back-button
+		// 				display: none
 
-					.logo
+		// 			.logo
 
-					.legal-links--wrapper
-						padding-left: 1.5rem
+		// 			.legal-links--wrapper
+		// 				padding-left: 1.5rem
 
-						.legal-links
-							padding-bottom: 1rem
+		// 				.legal-links
+		// 					padding-bottom: 1rem
 
-					p
-						margin: inherit
-						text-align: inherit
+		// 			p
+		// 				margin: inherit
+		// 				text-align: inherit

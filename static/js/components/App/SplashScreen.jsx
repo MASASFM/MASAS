@@ -31,43 +31,73 @@ var SplashScreen = React.createClass({
 		}
 	},
 
+	changeBackground: function(hashtag) {
+		const test1 = document.getElementsByClassName('test1')[0]
+		const test2 = document.getElementsByClassName('test2')[0]
+
+		if(test1 && test2) {
+			if($('.test1').css("opacity") === "1") {
+				$('.splash-screen--wrapper').css('background-image', 'none')
+				$('.test1').css('opacity', 0)
+				$('.test2').css('opacity', 1)
+				test1.className = "test1"
+				test2.className = "test2 background-" + hashtag
+			} else {
+				$('.test2').css('opacity', 0)
+				$('.test1').css('opacity', 1)
+				test2.className = "test2"
+				test1.className = "test1 background-" + hashtag
+			}
+		}
+	},
+
 	componentDidMount: function() {
-		this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
-			pagination: '.swiper-pagination',
-			paginationClickable: true,
-			autoplay: 6000,
-			autoplayDisableOnInteraction: false,
-			onSlideChangeStart: (instance) => {
-				const urls = {
-					0: ["/static/img/splashscreen/0.jpg"],
-					1: ["/static/img/splashscreen/1.jpg"],
-					2: ["/static/img/splashscreen/2.jpg"],
-					3: ["/static/img/splashscreen/3.jpg"],
-					4: ["/static/img/splashscreen/4.jpg"],
-					5: ["/static/img/splashscreen/5.jpg"],
-				}
+		// no need for this swipper for now (maybe in A/B testing)
+		// this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
+		// 	pagination: '.swiper-pagination',
+		// 	paginationClickable: true,
+		// 	autoplay: 6000,
+		// 	autoplayDisableOnInteraction: false,
+		// 	onSlideChangeStart: (instance) => {
+		// 		const urls = {
+		// 			0: ["/static/img/splashscreen/0.jpg"],
+		// 			1: ["/static/img/splashscreen/1.jpg"],
+		// 			2: ["/static/img/splashscreen/2.jpg"],
+		// 			3: ["/static/img/splashscreen/3.jpg"],
+		// 			4: ["/static/img/splashscreen/4.jpg"],
+		// 			5: ["/static/img/splashscreen/5.jpg"],
+		// 		}
 
-				const changeBackground = (hashtag) => {
-					const test1 = document.getElementsByClassName('test1')[0]
-					const test2 = document.getElementsByClassName('test2')[0]
+		// 		const { changeBackground } = this
 
-					if(test1 && test2) {
-						if($('.test1').css("opacity") === "1") {
-							$('.splash-screen--wrapper').css('background-image', 'none')
-							$('.test1').css('opacity', 0)
-							$('.test2').css('opacity', 1)
-							test1.className = "test1"
-							test2.className = "test2 background-" + hashtag
-						} else {
-							$('.test2').css('opacity', 0)
-							$('.test1').css('opacity', 1)
-							test2.className = "test2"
-							test1.className = "test1 background-" + hashtag
-						}
-					}
-				}
+		// 		switch(instance.activeIndex) {
+		// 			case 0:
+		// 				changeBackground(0)
+		// 				break
+		// 			case 1:
+		// 				changeBackground(1)						
+		// 				break
+		// 			case 2:
+		// 				changeBackground(2)
+		// 				break
+		// 			case 3:
+		// 				changeBackground(3)
+		// 				break
+		// 			case 4:
+		// 				changeBackground(4)
+		// 				break
+		// 			case 5:
+		// 				changeBackground(5)
+		// 				break
+		// 		}
+		// 	}
+		// })
 
-				switch(instance.activeIndex) {
+		const { changeBackground } = this
+		this.backgroundNumber = 0
+		this.changeBackground = window.setInterval( () => {
+			if(this.props.splashScreenPage === 0)
+				switch(this.backgroundNumber) {
 					case 0:
 						changeBackground(0)
 						break
@@ -87,8 +117,12 @@ var SplashScreen = React.createClass({
 						changeBackground(5)
 						break
 				}
-			}
-		})
+
+			if(this.backgroundNumber < 5)
+				this.backgroundNumber = this.backgroundNumber  + 1
+			else
+				this.backgroundNumber = 0
+		}, 6000)
 
 		this.mainSwiper = new Swiper('.main-swiper-container', {
 			noSwiping: true,
@@ -97,16 +131,21 @@ var SplashScreen = React.createClass({
 			onSlideChangeStart: (instance) => {
 				this.props.updateSplashScreenPage(instance.activeIndex)
 
-				if(instance.activeIndex !== 0)
-					this.hashtagSwiper.stopAutoplay()
-				else
-					this.hashtagSwiper.startAutoplay()
+				// code linked ot hastag swipper momentarily commented out
+				// if(instance.activeIndex !== 0)
+				// 	this.hashtagSwiper.stopAutoplay()
+				// else
+				// 	this.hashtagSwiper.startAutoplay()
 			}
 		})
 
 		// init starting page (home splash screen or login)
 		this.props.updateSplashScreenPage(this.props.startPage)
 		this.mainSwiper.slideTo(this.props.startPage, 0)
+	},
+
+	componentWillUnmount: function() {
+		window.clearInterval(this.changeBackground)
 	},
 
 	slideNext: function() {
@@ -158,10 +197,10 @@ var SplashScreen = React.createClass({
 									<div className="login-buttons--wrapper">
 										<Button
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/upload') } } 
-											isSecondaryAction={ true }>Share your sounds</Button>
+											isSecondaryAction={ true }>Share Your Sounds</Button>
 										<Button
 											onClick={ () => { this.props.closeSplashScreen(); goToURL('/discover') } } 
-											>discover music</Button>
+											>Discover Music</Button>
 									</div>
 								</div>
 							</div>

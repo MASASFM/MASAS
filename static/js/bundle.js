@@ -57120,66 +57120,97 @@ var SplashScreen = _wrapComponent("_component")(React.createClass({
 		};
 	},
 
+	changeBackground: function changeBackground(hashtag) {
+		var test1 = document.getElementsByClassName('test1')[0];
+		var test2 = document.getElementsByClassName('test2')[0];
+
+		if (test1 && test2) {
+			if ($('.test1').css("opacity") === "1") {
+				$('.splash-screen--wrapper').css('background-image', 'none');
+				$('.test1').css('opacity', 0);
+				$('.test2').css('opacity', 1);
+				test1.className = "test1";
+				test2.className = "test2 background-" + hashtag;
+			} else {
+				$('.test2').css('opacity', 0);
+				$('.test1').css('opacity', 1);
+				test2.className = "test2";
+				test1.className = "test1 background-" + hashtag;
+			}
+		}
+	},
+
 	componentDidMount: function componentDidMount() {
 		var _this = this;
 
-		this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
-			pagination: '.swiper-pagination',
-			paginationClickable: true,
-			autoplay: 6000,
-			autoplayDisableOnInteraction: false,
-			onSlideChangeStart: function onSlideChangeStart(instance) {
-				var urls = {
-					0: ["/static/img/splashscreen/0.jpg"],
-					1: ["/static/img/splashscreen/1.jpg"],
-					2: ["/static/img/splashscreen/2.jpg"],
-					3: ["/static/img/splashscreen/3.jpg"],
-					4: ["/static/img/splashscreen/4.jpg"],
-					5: ["/static/img/splashscreen/5.jpg"]
-				};
+		// no need for this swipper for now (maybe in A/B testing)
+		// this.hashtagSwiper = new Swiper('.hashtag-swiper-container', {
+		// 	pagination: '.swiper-pagination',
+		// 	paginationClickable: true,
+		// 	autoplay: 6000,
+		// 	autoplayDisableOnInteraction: false,
+		// 	onSlideChangeStart: (instance) => {
+		// 		const urls = {
+		// 			0: ["/static/img/splashscreen/0.jpg"],
+		// 			1: ["/static/img/splashscreen/1.jpg"],
+		// 			2: ["/static/img/splashscreen/2.jpg"],
+		// 			3: ["/static/img/splashscreen/3.jpg"],
+		// 			4: ["/static/img/splashscreen/4.jpg"],
+		// 			5: ["/static/img/splashscreen/5.jpg"],
+		// 		}
 
-				var changeBackground = function changeBackground(hashtag) {
-					var test1 = document.getElementsByClassName('test1')[0];
-					var test2 = document.getElementsByClassName('test2')[0];
+		// 		const { changeBackground } = this
 
-					if (test1 && test2) {
-						if ($('.test1').css("opacity") === "1") {
-							$('.splash-screen--wrapper').css('background-image', 'none');
-							$('.test1').css('opacity', 0);
-							$('.test2').css('opacity', 1);
-							test1.className = "test1";
-							test2.className = "test2 background-" + hashtag;
-						} else {
-							$('.test2').css('opacity', 0);
-							$('.test1').css('opacity', 1);
-							test2.className = "test2";
-							test1.className = "test1 background-" + hashtag;
-						}
-					}
-				};
+		// 		switch(instance.activeIndex) {
+		// 			case 0:
+		// 				changeBackground(0)
+		// 				break
+		// 			case 1:
+		// 				changeBackground(1)						
+		// 				break
+		// 			case 2:
+		// 				changeBackground(2)
+		// 				break
+		// 			case 3:
+		// 				changeBackground(3)
+		// 				break
+		// 			case 4:
+		// 				changeBackground(4)
+		// 				break
+		// 			case 5:
+		// 				changeBackground(5)
+		// 				break
+		// 		}
+		// 	}
+		// })
 
-				switch (instance.activeIndex) {
-					case 0:
-						changeBackground(0);
-						break;
-					case 1:
-						changeBackground(1);
-						break;
-					case 2:
-						changeBackground(2);
-						break;
-					case 3:
-						changeBackground(3);
-						break;
-					case 4:
-						changeBackground(4);
-						break;
-					case 5:
-						changeBackground(5);
-						break;
-				}
+		var changeBackground = this.changeBackground;
+
+		this.backgroundNumber = 0;
+		this.changeBackground = window.setInterval(function () {
+			if (_this.props.splashScreenPage === 0) switch (_this.backgroundNumber) {
+				case 0:
+					changeBackground(0);
+					break;
+				case 1:
+					changeBackground(1);
+					break;
+				case 2:
+					changeBackground(2);
+					break;
+				case 3:
+					changeBackground(3);
+					break;
+				case 4:
+					changeBackground(4);
+					break;
+				case 5:
+					changeBackground(5);
+					break;
 			}
-		});
+
+			if (_this.backgroundNumber < 5) _this.backgroundNumber = _this.backgroundNumber + 1;else _this.backgroundNumber = 0;
+		}, 6000);
 
 		this.mainSwiper = new Swiper('.main-swiper-container', {
 			noSwiping: true,
@@ -57188,13 +57219,21 @@ var SplashScreen = _wrapComponent("_component")(React.createClass({
 			onSlideChangeStart: function onSlideChangeStart(instance) {
 				_this.props.updateSplashScreenPage(instance.activeIndex);
 
-				if (instance.activeIndex !== 0) _this.hashtagSwiper.stopAutoplay();else _this.hashtagSwiper.startAutoplay();
+				// code linked ot hastag swipper momentarily commented out
+				// if(instance.activeIndex !== 0)
+				// 	this.hashtagSwiper.stopAutoplay()
+				// else
+				// 	this.hashtagSwiper.startAutoplay()
 			}
 		});
 
 		// init starting page (home splash screen or login)
 		this.props.updateSplashScreenPage(this.props.startPage);
 		this.mainSwiper.slideTo(this.props.startPage, 0);
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		window.clearInterval(this.changeBackground);
 	},
 
 	slideNext: function slideNext() {
@@ -57291,7 +57330,7 @@ var SplashScreen = _wrapComponent("_component")(React.createClass({
 											_this2.props.closeSplashScreen();goToURL('/upload');
 										},
 										isSecondaryAction: true },
-									"Share your sounds"
+									"Share Your Sounds"
 								),
 								React.createElement(
 									Button,
@@ -57300,7 +57339,7 @@ var SplashScreen = _wrapComponent("_component")(React.createClass({
 											_this2.props.closeSplashScreen();goToURL('/discover');
 										}
 									},
-									"discover music"
+									"Discover Music"
 								)
 							)
 						)

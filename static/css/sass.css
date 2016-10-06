@@ -818,19 +818,17 @@ input[type=range].MASAS-slider {
       opacity: 1; }
     .splash-screen--wrapper .main-swiper-container .first-slide {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       flex-direction: column; }
       .splash-screen--wrapper .main-swiper-container .first-slide img {
-        height: 33%;
+        height: 50%;
+        max-height: 17rem;
         z-index: 2;
-        margin: 2rem;
-        margin-top: 4rem; }
+        margin-bottom: 1rem; }
       .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
-        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 100%;
         width: 100%;
         z-index: 2; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
@@ -840,18 +838,22 @@ input[type=range].MASAS-slider {
           padding-bottom: 1rem;
           display: table;
           margin-left: auto;
-          margin-right: auto; }
+          margin-right: auto;
+          display: none; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
           width: 200px;
           margin: 0px auto;
-          height: 30%; }
+          height: 30%;
+          display: none; }
           .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container .swiper-slide {
             align-items: flex-start;
             padding-top: 1.8rem; }
         .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
           display: flex;
           justify-content: space-around;
-          height: 5rem; }
+          height: 7rem;
+          flex-direction: column;
+          align-items: center; }
           .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
             font-size: 1.4rem; }
     .splash-screen--wrapper .main-swiper-container .second-slide {
@@ -950,59 +952,14 @@ input[type=range].MASAS-slider {
     .splash-screen--wrapper .main-swiper-container {
       top: 50%;
       left: 50%;
-      height: 60%;
       width: 80%;
       transform: translate(-50%, -50%);
       max-height: 40rem; }
-      .splash-screen--wrapper .main-swiper-container .first-slide {
-        flex-direction: row; }
-        .splash-screen--wrapper .main-swiper-container .first-slide img {
-          display: block;
-          height: 70%;
-          margin: 0; }
-        .splash-screen--wrapper .main-swiper-container .first-slide .main-content {
-          flex: 0.7; }
-          .splash-screen--wrapper .main-swiper-container .first-slide .main-content h1 {
-            font-size: 2rem; }
-          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container {
-            width: 500px;
-            height: 300px;
-            margin: 20px auto; }
-            .splash-screen--wrapper .main-swiper-container .first-slide .main-content .hashtag-swiper-container .swiper-slide {
-              align-items: center;
-              padding-top: 0rem; }
-          .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper {
-            height: auto; }
-            .splash-screen--wrapper .main-swiper-container .first-slide .main-content .login-buttons--wrapper .MASAS-button {
-              font-size: inherit; }
-      .splash-screen--wrapper .main-swiper-container .second-slide {
-        max-height: initial;
-        margin: initial; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .masas-logo {
-          margin-bottom: 0; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons {
-          margin-bottom: 0; }
-          .splash-screen--wrapper .main-swiper-container .second-slide .login-content .login-buttons .login-container {
-            height: 3.5rem; }
-        .splash-screen--wrapper .main-swiper-container .second-slide .terms-paragraph {
-          max-width: initial; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
-        margin-bottom: 0rem; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .MASAS-button {
-        margin-bottom: 0rem;
-        display: flex; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .back-to-legals-summary {
-        display: none;
-        align-self: auto; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legals-index-back-button {
-        display: none; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper {
-        padding-left: 1.5rem; }
-        .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper .legal-links--wrapper .legal-links {
-          padding-bottom: 1rem; }
-      .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper p {
-        margin: inherit;
-        text-align: inherit; } }
+      .splash-screen--wrapper .main-swiper-container .first-slide img {
+        display: block;
+        height: 19rem;
+        margin: 0;
+        margin-bottom: 3rem; } }
 .HomeCountdown--wrapper1 {
   display: flex;
   align-items: center; }
