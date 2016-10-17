@@ -1,4 +1,5 @@
 var Redux = require("redux")
+import thunkMiddleware from "redux-thunk"
 
 import { appReducer, defaultState as appDefaultState } from "./App.jsx"
 import { headerReducer, defaultState as headerDefaultState } from "./Header.jsx"
@@ -50,8 +51,8 @@ var store = Redux.createStore(
 		rootReducer, 
 		initialState,
 		// Redux.compose(
-			// Redux.applyMiddleware(thunk),
-			window.devToolsExtension ? window.devToolsExtension() : f => f
+		Redux.applyMiddleware(thunkMiddleware),
+		window.devToolsExtension ? window.devToolsExtension() : f => f
 			// )
 		)
 module.exports = store
