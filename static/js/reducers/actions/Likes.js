@@ -7,20 +7,28 @@ function requestLikes() {
 	}
 }
 
-export const RECEIVE_LIKES = 'RECEIVE_LIKES'
-function receiveLikes(json) {
+export const UPDATE_LIKES = 'UPDATE_LIKES'
+function updateLikes(SCinfo) {
 	return {
-		type: RECEIVE_LIKES,
-		posts: json.data.children.map(child => child.data),
-		receivedAt: Date.now()
+		type: UPDATE_LIKES,
+		SCinfo, 
+		userLikes: null
 	}
 }
 
+
 export function fetchLikes() {
-	return dispatch => {
-		dispatch(requestLikes())
-		return fetch(apiRoot + "get-likes")
-		.then(response => response.json())
-		.then(json => dispatch(receiveLikes(json)))
+	return (dispatch, getState) => {
+		const state = getState()
+		console.log(state)
+		const { userData } = state.appReducer
+
+		if(typeof(userData.likes) !== "undefined") {
+			var idString = userData.likes.map( like => like.song.SC_ID ).join()
+			SC.get("tracks", {limit: userData.likes.length, ids: idString})
+			.then( response => dispatch(updateLikes(response)) )
+		} else {
+			dispatch( updateLikes( [] ) )
+		}
 	}
 }

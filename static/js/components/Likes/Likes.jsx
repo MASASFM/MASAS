@@ -5,9 +5,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Likes.jsx")
 
 var LikesWrapper = require("./LikesWrapper.jsx")
 var LikesArtworks = require("./LikesArtworks.jsx")
-var { Textbox, Button } = require("../UI/UI.jsx")
+var { Textbox } = require("../UI/UI.jsx")
 var FiltersModal = require("./FiltersModal.jsx")
-var InfiniteScroll = require('react-infinite-scroll')(React)
 
 var { isSubsequence } = require("../../MASAS_functions.jsx")
 
@@ -23,6 +22,7 @@ var Likes = React.createClass({
 		updateLikes: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		toogleHashtag: React.PropTypes.func,
+		getLikes: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -42,14 +42,7 @@ var Likes = React.createClass({
 	},
 
 	getLikes: function() {
-		if(typeof(this.props.userData.likes) !== "undefined") {
-			var idString = this.props.userData.likes.map((like) => {return like.song.SC_ID}).join()
-			SC.get("tracks", {limit: this.props.userData.likes.length, ids: idString}).then( (response) => {
-				this.props.updateLikes(response)
-			})
-		} else {
-			this.props.updateLikes([])
-		}
+		this.props.getLikes()
 	},
 
 	componentDidUpdate(prevProps) {
@@ -146,7 +139,6 @@ var Likes = React.createClass({
 	},
 
 	render: function() {
-		console.log(this.props.SCinfo)
 		return (
 			<LikesWrapper>
 					<div className="likes-searchbar--wrapper" id="likes-searchbar-wrapper">
