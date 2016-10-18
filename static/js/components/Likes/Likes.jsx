@@ -26,6 +26,7 @@ var Likes = React.createClass({
 		updateTitle: React.PropTypes.func,
 		toogleHashtag: React.PropTypes.func,
 		getLikes: React.PropTypes.func,
+		userLikes: React.PropTypes.array,
 	},
 
 	componentWillMount: function() {
@@ -158,7 +159,10 @@ var Likes = React.createClass({
 						<div onClick={ this.toggleFilter.bind(this, 5) } id="filter-late-evening" className={ "tag-filter " + ( this.props.hashtagFilter[5] ? "enable" : "" )}>#LateEvening</div>
 					</div>
 
-					<LikesArtworks SCinfo={ this.filterLikes(this.props.SCinfo) } userData={ this.props.userData } />
+					<LikesArtworks 
+						SCinfo={ this.filterLikes(this.props.SCinfo) } 
+						userData={ this.props.userData } 
+						userLikes={ this.props.userLikes } />
 				
 			</LikesWrapper>
 		)

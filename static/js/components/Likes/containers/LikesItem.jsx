@@ -1,3 +1,5 @@
+import { toogleMiniProfile } from '../../../reducers/actions/Likes.js'
+
 var { pausePlayer } = require("../../../MASAS_functions.jsx")
 
 var LikesItem = {}
@@ -19,6 +21,7 @@ LikesItem.mapDispatchToProps = function(dispatch) {
 		pause: () => pausePlayer(dispatch),
 		loadPlaylist: (playlist) => dispatch({ type: "LOAD_PLAYLIST", playlist }),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
+		toogleMiniProfile: (MASAS_songPk) => dispatch(toogleMiniProfile(MASAS_songPk)),
 	}
 }
 

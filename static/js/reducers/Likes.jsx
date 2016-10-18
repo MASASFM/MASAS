@@ -1,7 +1,9 @@
+import { TOGGLE_MINI_PROFILE } from "./actions/Likes.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
-	userLikes: null,											// user likes from MASAS API
+	userLikes: [],											// user likes from MASAS API
 	SCinfo: [],													// song info corresponding to these likes from SCinfo (depreciating)
 	likesInfo: null, 											// (array[object]) object contains SCinfo and artistInfo for each entry
 	reFetch: 0,													// rerender when new likes come in
@@ -15,6 +17,18 @@ const { defaultState } = exportVar
 exportVar.likesReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case TOGGLE_MINI_PROFILE:
+			var userLikes = state.userLikes.map( like => {
+				if(like.MASAS_songInfo.pk === action.songPk)
+					return { ...like, showProfile: !like.showProfile }
+				else
+					return like
+			})
+
+			return {
+				...state,
+				userLikes,
+			}
 		case 'TOOGLE_HASHTAG_FILTER':
 			var hashtagFilter = state.hashtagFilter.slice(0)
 			hashtagFilter[action.hashtagNumber] = !hashtagFilter[action.hashtagNumber]

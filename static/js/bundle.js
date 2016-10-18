@@ -63017,7 +63017,8 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		updateLikes: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		toogleHashtag: React.PropTypes.func,
-		getLikes: React.PropTypes.func
+		getLikes: React.PropTypes.func,
+		userLikes: React.PropTypes.array
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -63178,7 +63179,10 @@ var Likes = _wrapComponent("_component")(React.createClass({
 					"#LateEvening"
 				)
 			),
-			React.createElement(LikesArtworks, { SCinfo: this.filterLikes(this.props.SCinfo), userData: this.props.userData })
+			React.createElement(LikesArtworks, {
+				SCinfo: this.filterLikes(this.props.SCinfo),
+				userData: this.props.userData,
+				userLikes: this.props.userLikes })
 		);
 	}
 }));
@@ -63236,7 +63240,8 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 	propTypes: {
 		SCinfo: React.PropTypes.array,
-		userData: React.PropTypes.object
+		userData: React.PropTypes.object,
+		userLikes: React.PropTypes.array
 	},
 
 	componentWillMount: function componentWillMount() {},
@@ -63244,8 +63249,6 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function renderLikes() {
-		var _this = this;
-
 		var songs = this.props.SCinfo;
 
 		if (!songs) {
@@ -63281,12 +63284,14 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			$('#body--background').addClass('blurred-mobile');
 			// // sort by uploaded time
 
-			var songList = songs.map(function (song) {
-				var MASAS_songInfo = _this.props.userData.likes.filter(function (like) {
-					return like.song.SC_ID === song.id;
-				});
-
-				if (MASAS_songInfo.length === 1) return React.createElement(LikesItem, { key: song.id, SCinfo: song, MASASinfo: MASAS_songInfo[0].song });else return null;
+			var _songs = this.props.userLikes;
+			var songList = _songs.map(function (song) {
+				return React.createElement(LikesItem, {
+					key: song.MASAS_songInfo.pk,
+					MASAS_songPk: song.MASAS_songInfo.pk,
+					SCinfo: song.SC_songInfo,
+					MASASinfo: song.MASAS_songInfo.song,
+					isShowingArtistInfo: song.showProfile });
 			});
 
 			return songList;
@@ -63424,16 +63429,18 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 		isPaused: React.PropTypes.bool,
 		isFetchingSong: React.PropTypes.bool,
 		userData: React.PropTypes.object,
-		songPlaying: React.PropTypes.string
+		songPlaying: React.PropTypes.string,
+		isShowingArtistInfo: React.PropTypes.bool,
+		toogleMiniProfile: React.PropTypes.func,
+		MASAS_songPk: React.PropTypes.number
 	},
 
 	getInitialState: function getInitialState() {
 		return {
-			artistInfo: null, // (obj) containing artist info
-			isShowingArtistInfo: false };
+			artistInfo: null };
 	},
 
-	// (bool) is artist profile showing
+	// (obj) containing artist info
 	componentDidMount: function componentDidMount() {
 		var _this = this;
 
@@ -63511,6 +63518,8 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 			artworkURL = SCinfo.artwork_url.substring(0, SCinfo.artwork_url.lastIndexOf("-")) + "-t300x300.jpg";
 		}
 
+		var isShowingArtistInfo = this.props.isShowingArtistInfo;
+
 		return React.createElement(
 			"div",
 			{ className: "likes-item--wrapper" },
@@ -63530,18 +63539,18 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "likes-mini-profile--wrapper" + (this.state.isShowingArtistInfo ? " show" : "") },
+				{ className: "likes-mini-profile--wrapper" + (isShowingArtistInfo ? " show" : "") },
 				React.createElement(MiniProfile, {
 					userInfo: this.state.artistInfo,
 					backArrowFunc: function backArrowFunc() {
-						return _this2.setState({ isShowingArtistInfo: false });
+						return _this2.props.toogleMiniProfile(_this2.props.MASAS_songPk);
 					},
 					isMiniProfileBig: true })
 			),
 			React.createElement(
 				"div",
 				{ className: "text--wrapper", onClick: function onClick() {
-						return _this2.setState({ isShowingArtistInfo: !_this2.state.isShowingArtistInfo });
+						return _this2.props.toogleMiniProfile(_this2.props.MASAS_songPk);
 					} },
 				React.createElement(
 					"div",
@@ -63770,7 +63779,8 @@ Likes.mapStateToProps = function (state) {
 		userPk: state.appReducer.MASASuserPk,
 		reFetch: state.likesReducer.reFetch,
 		searchInput: state.likesReducer.searchInput,
-		hashtagFilter: state.likesReducer.hashtagFilter
+		hashtagFilter: state.likesReducer.hashtagFilter,
+		userLikes: state.likesReducer.userLikes
 	};
 };
 
@@ -63804,7 +63814,9 @@ Likes.mapDispatchToProps = function (dispatch) {
 module.exports = Likes;
 
 },{"../../../reducers/actions/Likes.js":503}],425:[function(require,module,exports){
-"use strict";
+'use strict';
+
+var _Likes = require('../../../reducers/actions/Likes.js');
 
 var _require = require("../../../MASAS_functions.jsx");
 
@@ -63836,13 +63848,16 @@ LikesItem.mapDispatchToProps = function (dispatch) {
 		},
 		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
 			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
+		},
+		toogleMiniProfile: function toogleMiniProfile(MASAS_songPk) {
+			return dispatch((0, _Likes.toogleMiniProfile)(MASAS_songPk));
 		}
 	};
 };
 
 module.exports = LikesItem;
 
-},{"../../../MASAS_functions.jsx":379}],426:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":379,"../../../reducers/actions/Likes.js":503}],426:[function(require,module,exports){
 "use strict";
 
 var LikesWrapper = {};
@@ -71023,14 +71038,16 @@ exportVar.legalsReducer = function () {
 module.exports = exportVar;
 
 },{}],497:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _Likes = require("./actions/Likes.js");
 
 var exportVar = {};
 
 exportVar.defaultState = {
-	userLikes: null, // user likes from MASAS API
+	userLikes: [], // user likes from MASAS API
 	SCinfo: [], // song info corresponding to these likes from SCinfo (depreciating)
 	likesInfo: null, // (array[object]) object contains SCinfo and artistInfo for each entry
 	reFetch: 0, // rerender when new likes come in
@@ -71046,6 +71063,14 @@ exportVar.likesReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case _Likes.TOGGLE_MINI_PROFILE:
+			var userLikes = state.userLikes.map(function (like) {
+				if (like.MASAS_songInfo.pk === action.songPk) return _extends({}, like, { showProfile: !like.showProfile });else return like;
+			});
+
+			return _extends({}, state, {
+				userLikes: userLikes
+			});
 		case 'TOOGLE_HASHTAG_FILTER':
 			var hashtagFilter = state.hashtagFilter.slice(0);
 			hashtagFilter[action.hashtagNumber] = !hashtagFilter[action.hashtagNumber];
@@ -71058,10 +71083,14 @@ exportVar.likesReducer = function () {
 
 			if (action.likesInfo) likesInfo = action.likesInfo;
 
+			var userLikes = defaultState.userLikes;
+
+			if (action.userLikes) userLikes = action.userLikes;
+
 			return _extends({}, state, {
 				likesInfo: likesInfo,
 				SCinfo: action.SCinfo,
-				userLikes: action.userLikes
+				userLikes: userLikes
 			});
 		// SCinfo updated from likes page renderLikes() method
 		case 'ADD_LIKE':
@@ -71084,7 +71113,7 @@ exportVar.likesReducer = function () {
 
 module.exports = exportVar;
 
-},{}],498:[function(require,module,exports){
+},{"./actions/Likes.js":503}],498:[function(require,module,exports){
 "use strict";
 
 var exportVar = {};
@@ -71399,8 +71428,9 @@ module.exports = exportVar;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.toogleMiniProfile = toogleMiniProfile;
 exports.fetchLikes = fetchLikes;
-var apiRoot = 'http://masas.fm/';
+var apiRoot = 'http://masas.fm//';
 
 var REQUEST_LIKES = exports.REQUEST_LIKES = 'REQUEST_LIKES';
 function requestLikes() {
@@ -71410,7 +71440,7 @@ function requestLikes() {
 }
 
 var UPDATE_LIKES = exports.UPDATE_LIKES = 'UPDATE_LIKES';
-function updateLikes(SCinfo) {
+function updateLikesOld(SCinfo) {
 	return {
 		type: UPDATE_LIKES,
 		SCinfo: SCinfo,
@@ -71418,10 +71448,37 @@ function updateLikes(SCinfo) {
 	};
 }
 
+function updateLikes(SCinfo, MASASinfo) {
+	var userLikes = SCinfo.map(function (song) {
+		var MASAS_songInfo = MASASinfo.filter(function (like) {
+			return like.song.SC_ID === song.id;
+		});
+
+		if (MASAS_songInfo.length === 1) return {
+			SC_songInfo: song,
+			MASAS_songInfo: MASAS_songInfo[0],
+			showProfile: false
+		};else return;
+	});
+
+	return {
+		type: UPDATE_LIKES,
+		SCinfo: SCinfo,
+		userLikes: userLikes
+	};
+}
+
+var TOGGLE_MINI_PROFILE = exports.TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE';
+function toogleMiniProfile(MASAS_songPk) {
+	return {
+		type: TOGGLE_MINI_PROFILE,
+		songPk: MASAS_songPk
+	};
+}
+
 function fetchLikes() {
 	return function (dispatch, getState) {
 		var state = getState();
-		console.log(state);
 		var userData = state.appReducer.userData;
 
 		if (typeof userData.likes !== "undefined") {
@@ -71429,7 +71486,8 @@ function fetchLikes() {
 				return like.song.SC_ID;
 			}).join();
 			SC.get("tracks", { limit: userData.likes.length, ids: idString }).then(function (response) {
-				return dispatch(updateLikes(response));
+				dispatch(updateLikesOld(response));
+				dispatch(updateLikes(response, userData.likes));
 			});
 		} else {
 			dispatch(updateLikes([]));
@@ -71505,13 +71563,9 @@ var rootReducer = Redux.combineReducers({
 	popularReducer: _Popular.popularReducer
 });
 
-var store = Redux.createStore(rootReducer, initialState,
-// Redux.compose(
-Redux.applyMiddleware(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+var store = Redux.createStore(rootReducer, initialState, Redux.compose(Redux.applyMiddleware(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	return f;
-}
-// )
-);
+}));
 module.exports = store;
 
 },{"./App.jsx":490,"./Body.jsx":491,"./Discover.jsx":492,"./Footer.jsx":493,"./Header.jsx":494,"./Home.jsx":495,"./Legals.jsx":496,"./Likes.jsx":497,"./Login.jsx":498,"./Player.jsx":499,"./Popular.jsx":500,"./Profile.jsx":501,"./UploadSC.jsx":502,"redux":372,"redux-thunk":366}],505:[function(require,module,exports){

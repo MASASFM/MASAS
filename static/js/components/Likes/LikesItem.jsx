@@ -17,13 +17,15 @@ var LikesItem = React.createClass({
 		isFetchingSong: React.PropTypes.bool,
 		userData: React.PropTypes.object,
 		songPlaying: React.PropTypes.string,
+		isShowingArtistInfo: React.PropTypes.bool,
+		toogleMiniProfile: React.PropTypes.func,
+		MASAS_songPk: React.PropTypes.number,
 	},
 
 	getInitialState: function() {
 		return {
 			artistInfo: null, 						// (obj) containing artist info
-			isShowingArtistInfo: false, 			// (bool) is artist profile showing
-		};
+		}
 	},
 
 	componentDidMount: function() {
@@ -98,6 +100,8 @@ var LikesItem = React.createClass({
 			artworkURL = SCinfo.artwork_url.substring(0,SCinfo.artwork_url.lastIndexOf("-"))+"-t300x300.jpg"
 		}
 
+		const isShowingArtistInfo = this.props.isShowingArtistInfo
+
 		return (
 			<div className="likes-item--wrapper">
 				
@@ -109,13 +113,13 @@ var LikesItem = React.createClass({
 						{ this.renderPlayerControlButton() }
 					</div>
 				</div>
-				<div className={ "likes-mini-profile--wrapper" + (this.state.isShowingArtistInfo ? " show" : "") }>
+				<div className={ "likes-mini-profile--wrapper" + (isShowingArtistInfo ? " show" : "") }>
 					<MiniProfile
 						userInfo={ this.state.artistInfo }
-						backArrowFunc={ () => this.setState({ isShowingArtistInfo: false }) }
+						backArrowFunc={ () => this.props.toogleMiniProfile(this.props.MASAS_songPk) }
 						isMiniProfileBig={ true } />
 				</div>
-				<div className="text--wrapper" onClick={ () => this.setState({ isShowingArtistInfo: !this.state.isShowingArtistInfo }) }>
+				<div className="text--wrapper" onClick={ () => this.props.toogleMiniProfile(this.props.MASAS_songPk) }>
 					<div className="song-name--wrapper">
 						<div className="title">
 							<Marquee>{ SCinfo.title }</Marquee>

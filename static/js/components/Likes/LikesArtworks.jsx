@@ -13,6 +13,7 @@ var LikesArtworks = React.createClass({
 	propTypes: {
 		SCinfo: React.PropTypes.array,
 		userData: React.PropTypes.object,		
+		userLikes: React.PropTypes.array,
 	},
 
 	componentWillMount: function() {
@@ -48,15 +49,14 @@ var LikesArtworks = React.createClass({
 			$('#body--background').addClass('blurred-mobile')
 			// // sort by uploaded time
 
+			const songs = this.props.userLikes
 			var songList =  songs.map((song) => { 
-				var MASAS_songInfo = this.props.userData.likes.filter((like) => {
-					return like.song.SC_ID === song.id
-				})
-
-				if(MASAS_songInfo.length === 1)
-					return <LikesItem key={song.id} SCinfo={ song } MASASinfo={MASAS_songInfo[0].song} />
-				else
-					return null
+					return <LikesItem 
+							key={ song.MASAS_songInfo.pk } 
+							MASAS_songPk={ song.MASAS_songInfo.pk } 
+							SCinfo={ song.SC_songInfo } 
+							MASASinfo={ song.MASAS_songInfo.song }
+							isShowingArtistInfo={ song.showProfile } />
 			})
 
 			return songList

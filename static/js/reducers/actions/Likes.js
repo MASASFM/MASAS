@@ -30,12 +30,18 @@ function updateLikes(SCinfo, MASASinfo) {
 			return		
 	})
 
-	console.log(userLikes)
-
 	return {
 		type: UPDATE_LIKES,
 		SCinfo, 
 		userLikes,
+	}
+}
+
+export const TOGGLE_MINI_PROFILE = 'TOGGLE_LIKE_ARTWORK_MINI_PROFILE'
+export function toogleMiniProfile(MASAS_songPk) {
+	return {
+		type: TOGGLE_MINI_PROFILE,
+		songPk: MASAS_songPk,
 	}
 }
 

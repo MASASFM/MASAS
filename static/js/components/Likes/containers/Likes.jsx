@@ -12,6 +12,7 @@ Likes.mapStateToProps = function(state) {
 		reFetch: state.likesReducer.reFetch,
 		searchInput: state.likesReducer.searchInput,
 		hashtagFilter: state.likesReducer.hashtagFilter,
+		userLikes: state.likesReducer.userLikes,
 	}
 }
 
