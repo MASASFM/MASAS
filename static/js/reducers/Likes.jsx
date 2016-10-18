@@ -29,11 +29,17 @@ exportVar.likesReducer = function(state = defaultState, action) {
 			if(action.likesInfo)
 				likesInfo = action.likesInfo
 
+			var userLikes = defaultState.userLikes
+
+			if(action.userLikes)
+				userLikes = action.userLikes
+
+
 			return {
 				...state,
 				likesInfo,
 				SCinfo: action.SCinfo,
-				userLikes: action.userLikes,
+				userLikes,
 			}
 		// SCinfo updated from likes page renderLikes() method
 		case 'ADD_LIKE':
