@@ -30,9 +30,8 @@ LinkIcon.propTypes = {
 var MiniProfile = (props) => {
 	var viewContent = "Loading user info..."
 
-
 	if(props.userInfo) {
-		var linkSet = props.userInfo.link_set.map( ({ link }) => <LinkIcon url={ link  } /> )
+		var linkSet = props.userInfo.link_set.map( ({ link }) => <LinkIcon url={ link } key={ link } /> )
 		const str = props.userInfo.url
 		const userPk = str.slice(str.slice(0,str.lastIndexOf('/')).lastIndexOf('/')+1,str.lastIndexOf('/'))
 

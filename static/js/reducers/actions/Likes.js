@@ -16,17 +16,34 @@ function updateLikesOld(SCinfo) {
 	}
 }
 
-function updateLikes(SCinfo, MASASinfo) {
+export const UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE'
+function updateMiniProfile(songPk, artistInfo) {
+	return {
+		type: UPDATE_MINI_PROFILE,
+		songPk,
+		artistInfo
+	}
+}
+
+function fetchMiniProfile(MASAS_songInfo) {
+	return dispatch => fetch(MASAS_songInfo.user)
+			.then( resp => resp.json() )
+			.then( resp => dispatch( updateMiniProfile(MASAS_songInfo.pk, resp)) )
+}
+
+function updateLikes(dispatch, SCinfo, MASASinfo) {
 	const userLikes =  SCinfo.map( song => { 
 		var MASAS_songInfo = MASASinfo.filter( like => like.song.SC_ID === song.id )
 
-		if(MASAS_songInfo.length === 1)
+		if(MASAS_songInfo.length === 1) {
+			dispatch(fetchMiniProfile(MASAS_songInfo[0]))
 			return {
 				SC_songInfo: song,
 				MASAS_songInfo: MASAS_songInfo[0],
 				showProfile: false,
+				artistInfo: null,
 			}
-		else
+		} else
 			return		
 	})
 
@@ -55,10 +72,10 @@ export function fetchLikes() {
 			SC.get("tracks", {limit: userData.likes.length, ids: idString})
 			.then( response => {
 				dispatch(updateLikesOld(response))
-				dispatch(updateLikes(response, userData.likes))
+				dispatch(updateLikes(dispatch, response, userData.likes))
 			})
 		} else {
-			dispatch( updateLikes( [] ) )
+			dispatch( updateLikes( dispatch, [], [] ) )
 		}
 	}
 }

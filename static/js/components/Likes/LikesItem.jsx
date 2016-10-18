@@ -20,21 +20,7 @@ var LikesItem = React.createClass({
 		isShowingArtistInfo: React.PropTypes.bool,
 		toogleMiniProfile: React.PropTypes.func,
 		MASAS_songPk: React.PropTypes.number,
-	},
-
-	getInitialState: function() {
-		return {
-			artistInfo: null, 						// (obj) containing artist info
-		}
-	},
-
-	componentDidMount: function() {
-		this.getArtistReq = $.ajax({
-			type: 'GET',
-			url: this.props.MASASinfo.trackArtist,
-			success: artistInfo => this.setState({ artistInfo }),
-			error: () => {},
-		})
+		artistInfo: React.PropTypes.object,
 	},
 
 	playTrack: function() {
@@ -115,7 +101,7 @@ var LikesItem = React.createClass({
 				</div>
 				<div className={ "likes-mini-profile--wrapper" + (isShowingArtistInfo ? " show" : "") }>
 					<MiniProfile
-						userInfo={ this.state.artistInfo }
+						userInfo={ this.props.artistInfo }
 						backArrowFunc={ () => this.props.toogleMiniProfile(this.props.MASAS_songPk) }
 						isMiniProfileBig={ true } />
 				</div>

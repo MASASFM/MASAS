@@ -1,4 +1,4 @@
-import { TOGGLE_MINI_PROFILE } from "./actions/Likes.js"
+import { TOGGLE_MINI_PROFILE, UPDATE_MINI_PROFILE } from "./actions/Likes.js"
 
 let exportVar = {}
 
@@ -21,6 +21,19 @@ exportVar.likesReducer = function(state = defaultState, action) {
 			var userLikes = state.userLikes.map( like => {
 				if(like.MASAS_songInfo.pk === action.songPk)
 					return { ...like, showProfile: !like.showProfile }
+				else
+					return like
+			})
+
+			return {
+				...state,
+				userLikes,
+			}
+
+		case UPDATE_MINI_PROFILE:
+			var userLikes = state.userLikes.map( like => {
+				if(like.MASAS_songInfo.pk === action.songPk)
+					return { ...like, artistInfo: action.artistInfo }
 				else
 					return like
 			})

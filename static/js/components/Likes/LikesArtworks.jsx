@@ -56,6 +56,7 @@ var LikesArtworks = React.createClass({
 							MASAS_songPk={ song.MASAS_songInfo.pk } 
 							SCinfo={ song.SC_songInfo } 
 							MASASinfo={ song.MASAS_songInfo.song }
+							artistInfo={ song.artistInfo }
 							isShowingArtistInfo={ song.showProfile } />
 			})
 

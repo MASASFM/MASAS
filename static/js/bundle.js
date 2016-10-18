@@ -63291,6 +63291,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 					MASAS_songPk: song.MASAS_songInfo.pk,
 					SCinfo: song.SC_songInfo,
 					MASASinfo: song.MASAS_songInfo.song,
+					artistInfo: song.artistInfo,
 					isShowingArtistInfo: song.showProfile });
 			});
 
@@ -63432,26 +63433,8 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 		songPlaying: React.PropTypes.string,
 		isShowingArtistInfo: React.PropTypes.bool,
 		toogleMiniProfile: React.PropTypes.func,
-		MASAS_songPk: React.PropTypes.number
-	},
-
-	getInitialState: function getInitialState() {
-		return {
-			artistInfo: null };
-	},
-
-	// (obj) containing artist info
-	componentDidMount: function componentDidMount() {
-		var _this = this;
-
-		this.getArtistReq = $.ajax({
-			type: 'GET',
-			url: this.props.MASASinfo.trackArtist,
-			success: function success(artistInfo) {
-				return _this.setState({ artistInfo: artistInfo });
-			},
-			error: function error() {}
-		});
+		MASAS_songPk: React.PropTypes.number,
+		artistInfo: React.PropTypes.object
 	},
 
 	playTrack: function playTrack() {
@@ -63509,7 +63492,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 	},
 
 	render: function render() {
-		var _this2 = this;
+		var _this = this;
 
 		var SCinfo = this.props.SCinfo;
 
@@ -63541,16 +63524,16 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 				"div",
 				{ className: "likes-mini-profile--wrapper" + (isShowingArtistInfo ? " show" : "") },
 				React.createElement(MiniProfile, {
-					userInfo: this.state.artistInfo,
+					userInfo: this.props.artistInfo,
 					backArrowFunc: function backArrowFunc() {
-						return _this2.props.toogleMiniProfile(_this2.props.MASAS_songPk);
+						return _this.props.toogleMiniProfile(_this.props.MASAS_songPk);
 					},
 					isMiniProfileBig: true })
 			),
 			React.createElement(
 				"div",
 				{ className: "text--wrapper", onClick: function onClick() {
-						return _this2.props.toogleMiniProfile(_this2.props.MASAS_songPk);
+						return _this.props.toogleMiniProfile(_this.props.MASAS_songPk);
 					} },
 				React.createElement(
 					"div",
@@ -65939,7 +65922,7 @@ var MiniProfile = function MiniProfile(props) {
 		(function () {
 			linkSet = props.userInfo.link_set.map(function (_ref) {
 				var link = _ref.link;
-				return React.createElement(LinkIcon, { url: link });
+				return React.createElement(LinkIcon, { url: link, key: link });
 			});
 
 			var str = props.userInfo.url;
@@ -71071,6 +71054,15 @@ exportVar.likesReducer = function () {
 			return _extends({}, state, {
 				userLikes: userLikes
 			});
+
+		case _Likes.UPDATE_MINI_PROFILE:
+			var userLikes = state.userLikes.map(function (like) {
+				if (like.MASAS_songInfo.pk === action.songPk) return _extends({}, like, { artistInfo: action.artistInfo });else return like;
+			});
+
+			return _extends({}, state, {
+				userLikes: userLikes
+			});
 		case 'TOOGLE_HASHTAG_FILTER':
 			var hashtagFilter = state.hashtagFilter.slice(0);
 			hashtagFilter[action.hashtagNumber] = !hashtagFilter[action.hashtagNumber];
@@ -71448,17 +71440,40 @@ function updateLikesOld(SCinfo) {
 	};
 }
 
-function updateLikes(SCinfo, MASASinfo) {
+var UPDATE_MINI_PROFILE = exports.UPDATE_MINI_PROFILE = 'UPDATE_LIKE_ARTWORK_MINI_PROFILE';
+function updateMiniProfile(songPk, artistInfo) {
+	return {
+		type: UPDATE_MINI_PROFILE,
+		songPk: songPk,
+		artistInfo: artistInfo
+	};
+}
+
+function fetchMiniProfile(MASAS_songInfo) {
+	return function (dispatch) {
+		return fetch(MASAS_songInfo.user).then(function (resp) {
+			return resp.json();
+		}).then(function (resp) {
+			return dispatch(updateMiniProfile(MASAS_songInfo.pk, resp));
+		});
+	};
+}
+
+function updateLikes(dispatch, SCinfo, MASASinfo) {
 	var userLikes = SCinfo.map(function (song) {
 		var MASAS_songInfo = MASASinfo.filter(function (like) {
 			return like.song.SC_ID === song.id;
 		});
 
-		if (MASAS_songInfo.length === 1) return {
-			SC_songInfo: song,
-			MASAS_songInfo: MASAS_songInfo[0],
-			showProfile: false
-		};else return;
+		if (MASAS_songInfo.length === 1) {
+			dispatch(fetchMiniProfile(MASAS_songInfo[0]));
+			return {
+				SC_songInfo: song,
+				MASAS_songInfo: MASAS_songInfo[0],
+				showProfile: false,
+				artistInfo: null
+			};
+		} else return;
 	});
 
 	return {
@@ -71487,10 +71502,10 @@ function fetchLikes() {
 			}).join();
 			SC.get("tracks", { limit: userData.likes.length, ids: idString }).then(function (response) {
 				dispatch(updateLikesOld(response));
-				dispatch(updateLikes(response, userData.likes));
+				dispatch(updateLikes(dispatch, response, userData.likes));
 			});
 		} else {
-			dispatch(updateLikes([]));
+			dispatch(updateLikes(dispatch, [], []));
 		}
 	};
 }
