@@ -10,6 +10,9 @@ var FiltersModal = require("./FiltersModal.jsx")
 
 var { isSubsequence } = require("../../MASAS_functions.jsx")
 
+// FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA 
+// TO A SUB-COMPONENT THAT DISPLAYS IT
+
 var Likes = React.createClass({
 	propTypes: {
 		SCinfo: React.PropTypes.array,

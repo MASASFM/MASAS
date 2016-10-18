@@ -63000,6 +63000,9 @@ var _require3 = require("../../MASAS_functions.jsx");
 
 var isSubsequence = _require3.isSubsequence;
 
+// FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA
+// TO A SUB-COMPONENT THAT DISPLAYS IT
+
 var Likes = _wrapComponent("_component")(React.createClass({
 	displayName: "Likes",
 
@@ -63213,9 +63216,7 @@ function _wrapComponent(id) {
 }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
-
-var ReactRedux = require("react-redux");
+// commented because we may need this line in the near future
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
 var _require = require("../../MASAS_functions.jsx");
@@ -63228,6 +63229,8 @@ var Button = _require2.Button;
 
 var LikesItem = require("./LikesItem.jsx");
 
+// DISPLAYS USER LIKES (propTypes)
+// creates invisible artworks to keep the last line aligned left using flexbox
 var LikesArtworks = _wrapComponent("_component")(React.createClass({
 	displayName: "LikesArtworks",
 
@@ -63238,6 +63241,8 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 	componentWillMount: function componentWillMount() {},
 
+	// show songs if user has any likes
+	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function renderLikes() {
 		var _this = this;
 
@@ -63362,7 +63367,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 module.exports = LikesArtworks;
 
-},{"../../MASAS_functions.jsx":379,"../UI/UI.jsx":477,"./LikesItem.jsx":421,"livereactload/babel-transform":35,"react":365,"react-dom":41,"react-redux":170}],421:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":379,"../UI/UI.jsx":477,"./LikesItem.jsx":421,"livereactload/babel-transform":35,"react":365}],421:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");

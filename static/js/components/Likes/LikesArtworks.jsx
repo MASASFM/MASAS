@@ -1,7 +1,5 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
-
-var ReactRedux = require("react-redux")
+// commented because we may need this line in the near future
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
@@ -9,6 +7,8 @@ var { Button } = require("../UI/UI.jsx")
 
 var LikesItem = require("./LikesItem.jsx")
 
+// DISPLAYS USER LIKES (propTypes)
+// creates invisible artworks to keep the last line aligned left using flexbox
 var LikesArtworks = React.createClass({
 	propTypes: {
 		SCinfo: React.PropTypes.array,
@@ -18,6 +18,8 @@ var LikesArtworks = React.createClass({
 	componentWillMount: function() {
 	},
 
+	// show songs if user has any likes
+	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function() {
 		var songs = this.props.SCinfo
 
