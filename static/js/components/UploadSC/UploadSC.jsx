@@ -118,7 +118,8 @@ var UploadSC = React.createClass({
 				if(this.props.masasUserTracks.filter(function(song) { return song.SC_ID === track.id }).length)
 					synced = true
 
-				return <UploadSCItem key={track.id} track={ track } synced={synced}/>
+				if(track.streamable)
+					return <UploadSCItem key={track.id} track={ track } synced={synced}/>
 			})
 	},
 
