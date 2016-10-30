@@ -16,10 +16,16 @@
 			width: 1.5rem
 			padding: 2rem
 
+	// naming conventions getting to me. need & > selector to only affect wanted .legals-content
+	& > .legals-content
+		height: 0
+
 	.legals-content
 		height: min-content
 		position: relative
 		font-family: Lato-Light
+		flex: 1 1 auto
+		overflow-y: auto
 
 		.decoration
 			position: absolute
