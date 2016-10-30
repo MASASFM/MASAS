@@ -18,7 +18,7 @@ var LinkIcon = props => {
 		checkVar = <img src="/static/img/MASAS_logo_world.svg" alt="masas profile" />
 
 	if(checkVar) {
-		return <div className="link-icon"><a href={ url }>{ checkVar }</a></div>
+		return <div className="link-icon"><a href={ url } target="_blank">{ checkVar }</a></div>
 	} else
 		return ""
 }

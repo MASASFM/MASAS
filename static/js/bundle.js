@@ -52559,7 +52559,7 @@ var LinkIcon = function LinkIcon(props) {
 			{ className: "link-icon" },
 			React.createElement(
 				"a",
-				{ href: url },
+				{ href: url, target: "_blank" },
 				checkVar
 			)
 		);
