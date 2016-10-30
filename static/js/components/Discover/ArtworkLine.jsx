@@ -118,6 +118,7 @@ var ArtworkLine = React.createClass({
 						pause={ this.props.pause }
 						playAndSaveHistory={ this.props.playAndSaveHistory }
 						artistInfo={ artistInfo }
+						key={ key_ID }
 						/>
 					)
 			})

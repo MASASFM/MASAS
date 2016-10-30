@@ -44299,7 +44299,8 @@ var ArtworkLine = _wrapComponent("_component")(React.createClass({
 						isItemPlaying: isItemPlaying,
 						pause: _this.props.pause,
 						playAndSaveHistory: _this.props.playAndSaveHistory,
-						artistInfo: artistInfo
+						artistInfo: artistInfo,
+						key: key_ID
 					});
 				});
 				artworkLine.pop();
