@@ -1,4 +1,8 @@
 var React = require('react')
+import { 
+	INCREMENT_LOGGED_OUT_USER_STEP, 
+	RESET_LOGGED_OUT_USER_STEP 
+} from './actions/App.js'
 
 let exportVar = {} 
 
@@ -17,6 +21,7 @@ exportVar.defaultState = {
 	modalType: 1,					// (int) how the modal looks like. 1 for default
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
 	closeModalFunc: () => {}, 			// (func) function called on closin modal
+	loggedOutUserStep: 0,				// (int) user step used to show tip modals when user logged out
 }
 
 const { defaultState } = exportVar
@@ -24,6 +29,16 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case INCREMENT_LOGGED_OUT_USER_STEP:
+			return {
+				...state,
+				loggedOutUserStep: state.loggedOutUserStep + 1
+			}
+		case RESET_LOGGED_OUT_USER_STEP:
+			return {
+				...state,
+				loggedOutUserStep: 0
+			}
 		case 'CHANGE_SLASH_SCREEN_PAGE':
 			return {
 				...state,

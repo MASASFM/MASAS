@@ -73,7 +73,7 @@ let Modal = React.createClass({
 				<div 
 					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
 					id="MASAS-modal"
-					onClick={ this.closeModal }>
+					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
 					<div className="modal-type-2--wrapper">
 						<div className="tip-title">
 							<img src="/static/img/tip-light-bulb.png" alt="light bulb icon" />

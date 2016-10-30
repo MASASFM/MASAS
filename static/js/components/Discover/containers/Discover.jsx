@@ -1,4 +1,5 @@
 var Discover = {}
+import { incrementLoggedOutUserStep } from "../../../reducers/actions/App.js"
 
 // Which part of the Redux global state does our component want to receive as props?
 Discover.mapStateToProps = function(state) {
@@ -15,6 +16,7 @@ Discover.mapStateToProps = function(state) {
 		// other states
 		songPlaying: state.playerReducer.songPlaying,
 		MASAS_songInfo: state.playerReducer.MASAS_songInfo,
+		loggedOutUserStep: state.appReducer.loggedOutUserStep,
 	}
 }
 
@@ -32,6 +34,7 @@ Discover.mapDispatchToProps = function(dispatch) {
 
 		// other state updates 
 		handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
+		incrementLoggedOutUserStep: () => dispatch(incrementLoggedOutUserStep()),
 	}
 }
 

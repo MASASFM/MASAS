@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty, isObjectEmpty } = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
@@ -23,6 +23,7 @@ var Discover = React.createClass({
 		discoverNumber: React.PropTypes.number,
 		songPlaying: React.PropTypes.string,
 		MASAS_songInfo: React.PropTypes.object,
+		loggedOutUserStep: React.PropTypes.number,
 
 		updateTitle: React.PropTypes.func,
 		toogleModal: React.PropTypes.func,
@@ -30,6 +31,7 @@ var Discover = React.createClass({
 		updateModalContent: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
 		handleTimePickerChange: React.PropTypes.func,
+		incrementLoggedOutUserStep: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -94,6 +96,13 @@ var Discover = React.createClass({
 				this.props.updateModalContent(<TeachDiscoverModal2 />, 2, () => this.updateUserStep(6))
 				this.props.toogleModal()
 			}
+		} else if(isObjectEmpty(this.props.userData) && this.props.loggedOutUserStep === 0 && !this.props.isModalOpened){		// user is not logged in, show slider tip if session anonymous user hasn't seen it yet
+			this.props.updateModalContent(
+				<TeachSliderModal1 
+					title=""
+					paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
+			, 2, () => this.props.incrementLoggedOutUserStep() )
+			this.props.toogleModal()
 		}
 	},
 
