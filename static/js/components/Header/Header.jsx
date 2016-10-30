@@ -93,7 +93,7 @@ var Header = React.createClass({
 								<div 
 									className={ "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : "") } 
 									onClick={ this.props.songPlaying ? this.props.toogleIsOpened : () => {} } 
-									style={ !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} } >
+									style={ !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} } >
 								</div>
 							
 						</div>

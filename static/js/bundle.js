@@ -59352,7 +59352,7 @@ var Header = _wrapComponent("_component")(React.createClass({
 						React.createElement("div", {
 							className: "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : ""),
 							onClick: this.props.songPlaying ? this.props.toogleIsOpened : function () {},
-							style: !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} })
+							style: !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} })
 					)
 				)
 			)
