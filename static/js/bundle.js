@@ -59349,7 +59349,7 @@ var Header = _wrapComponent("_component")(React.createClass({
 					React.createElement(
 						"div",
 						{ className: "box tray-icon--wrapper" },
-						this.props.MASASuser === "" ? React.createElement("div", { className: "header-login-button--wrapper" }) : React.createElement("div", {
+						React.createElement("div", {
 							className: "toogle-open-tray-icon " + (this.props.isPlayerBarOpened ? "opened" : ""),
 							onClick: this.props.songPlaying ? this.props.toogleIsOpened : function () {},
 							style: !this.props.songPlaying ? { opacity: 0.7, cursor: 'default' } : {} })
