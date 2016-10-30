@@ -1,4 +1,6 @@
-const apiRoot = 'http://masas.fm//'
+import 'whatwg-fetch'
+
+// const apiRoot = 'http://masas.fm//'
 
 export const REQUEST_LIKES = 'REQUEST_LIKES'
 function requestLikes() {

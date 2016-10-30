@@ -119,7 +119,7 @@ var LikesArtworks = React.createClass({
 
 		// return the missing artworks to align the last line to the left if need be
 		let divArray = []
-		for(let i = 0; i < n_lastLine; i++) {
+		for(let i = 0; i < (n_line - n_lastLine); i++) {
 			divArray.push(<div key={ i } className="filler-artwork" style={{ height: 0, width: artworkWidth }}></div>)
 		}
 

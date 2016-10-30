@@ -3202,10 +3202,10 @@ input[type=range].MASAS-slider {
   right: 50%;
   transform: translate(50%, 0%); }
 .footer--wrapper .slider--wrapper.opened #player-play-button {
-  padding-left: 0.8rem;
-  padding-right: 0.8rem; }
+  padding-left: .8rem;
+  padding-right: .8rem; }
 .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
-  animation: fadeout 0.5s linear;
+  animation: fadeout .5s linear;
   opacity: 0;
   z-index: -1; }
 .footer--wrapper .slider--wrapper.opened .previous-song-icon {
@@ -3236,7 +3236,7 @@ input[type=range].MASAS-slider {
       display: flex;
       align-content: flex-start;
       flex: 1;
-      animation: fadein-menu 0.5s linear; }
+      animation: fadein-menu .5s linear; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .text-info {
         display: flex;
         flex: 1;
@@ -3245,9 +3245,9 @@ input[type=range].MASAS-slider {
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info {
         position: relative;
         width: 100%;
-        font-size: 0.7rem;
-        height: 0.7rem;
-        opacity: 0.4; }
+        font-size: .7rem;
+        height: .7rem;
+        opacity: .4; }
         .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .radio-info .time {
           text-transform: uppercase; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name {
@@ -3256,16 +3256,16 @@ input[type=range].MASAS-slider {
           position: relative;
           width: 100%;
           text-transform: uppercase;
-          font-size: 0.7rem;
+          font-size: .7rem;
           font-family: Lato-Semibold;
           width: 10rem;
-          height: 0.7rem; }
+          height: .7rem; }
         .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .song-name .song-title {
           position: relative;
           width: 100%;
-          height: 0.7rem;
+          height: .7rem;
           text-transform: uppercase;
-          font-size: 0.7rem;
+          font-size: .7rem;
           font-family: Lato-Light; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .sc-icon {
         display: flex;
@@ -3279,19 +3279,19 @@ input[type=range].MASAS-slider {
     align-items: center;
     position: absolute;
     right: 0rem;
-    transition: 0.3s linear;
+    transition: .3s linear;
     transform: translate(0, 0%); }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
       transform: rotate(180deg);
       height: 1rem;
       opacity: 0;
-      transition: opacity 0.3s linear; }
+      transition: opacity .3s linear; }
     .navbar-player--wrapper .player-controls--wrapper .player-button {
       height: 2.5rem; }
     .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
       height: 1rem;
       opacity: 0;
-      transition: opacity 0.3s linear; }
+      transition: opacity .3s linear; }
 
 @media screen and (min-width: 992px) {
   .footer--wrapper .slider--wrapper.opened #player-play-button {
@@ -3315,8 +3315,8 @@ input[type=range].MASAS-slider {
   .navbar-player--wrapper .song-info--wrapper {
     animation-name: none; }
   .navbar-player--wrapper .tray-icon {
-    height: 0.6rem;
-    width: 0.6rem; }
+    height: .6rem;
+    width: .6rem; }
   .navbar-player--wrapper .like-icon {
     height: 1rem; }
   .navbar-player--wrapper .player-controls--wrapper {
@@ -3328,7 +3328,7 @@ input[type=range].MASAS-slider {
       position: relative;
       right: 0;
       padding-right: 0;
-      padding-left: 0.8rem; }
+      padding-left: .8rem; }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
       display: block;
       opacity: 1; }
@@ -3352,7 +3352,8 @@ input[type=range].MASAS-slider {
     .likes-scroll--wrapper .likes--wrapper {
       flex-wrap: wrap;
       justify-content: space-between;
-      background-color: transparent;
+      background-color: transparent; }
+    .likes-scroll--wrapper .likes--wrapper > .likes--wrapper {
       flex-direction: row; } }
 .likes-item--wrapper {
   display: flex;
