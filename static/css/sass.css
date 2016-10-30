@@ -613,7 +613,8 @@ input[type=range].MASAS-slider {
 .MASAS-modal.type3 {
   top: 0;
   bottom: 0;
-  background-color: black; }
+  background-color: black;
+  display: block; }
   .MASAS-modal.type3 .modal-type-3--wrapper {
     display: flex;
     flex: 1;
