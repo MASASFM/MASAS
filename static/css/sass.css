@@ -3206,7 +3206,8 @@ input[type=range].MASAS-slider {
   padding-right: 0.8rem; }
 .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
   animation: fadeout 0.5s linear;
-  opacity: 0; }
+  opacity: 0;
+  z-index: -1; }
 .footer--wrapper .slider--wrapper.opened .previous-song-icon {
   opacity: 1; }
 .footer--wrapper .slider--wrapper.opened .next-song-icon {

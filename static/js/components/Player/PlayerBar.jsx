@@ -1,6 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
-var jPlayer = require("jplayer")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/PlayerBar.jsx")
