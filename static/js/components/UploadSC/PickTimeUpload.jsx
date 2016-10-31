@@ -37,9 +37,6 @@ var PickTimeUpload = React.createClass({
 	componentWillMount: function() {
 		this.props.updateTitle('Upload', 1)		// 0 = menu icon; 1 = arrow back
 
-		if(!$("#body--background").hasClass('blurred'))
-			$("#body--background").addClass('blurred')
-
 		this.props.checkUserStep()
 	},
 
@@ -84,7 +81,6 @@ var PickTimeUpload = React.createClass({
 	},
 
 	componentWillUnmount: function() {
-		$("#body--background").removeClass('blurred')
 	},
 
 
