@@ -92,9 +92,6 @@ var Likes = React.createClass({
 				}
 			}
 
-			// // ony keep SC data
-			// filteredSongList = filteredSongList.map((song) => song.SC_songInfo)
-
 			return filteredSongList
 		} else 
 			return

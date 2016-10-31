@@ -90,7 +90,8 @@ var UploadSC = React.createClass({
 	},
 
 	getUserSCTracks: function() {
-		SC.get(document.MASAS.SC.tracks_uri, {limit: 100}).then( (response) => {  // async call to SC servers
+		// SC.get(document.MASAS.SC.tracks_uri, {limit: 100}).then( (response) => {  // async call to SC servers
+		SC.get("me/tracks", {limit: 100}).then( (response) => {  // async call to SC servers
 			this.props.updateSoundcloudUserTracks(response)
 		})
 	},
