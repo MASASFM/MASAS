@@ -5,6 +5,10 @@ export const UPDATE_MODAL_TYPE = 'UPDATE_MODAL_TYPE'
 export const CLOSE_AND_EMPTY_MAIN_MODAL = 'CLOSE_AND_EMPTY_MAIN_MODAL'
 export const TOOGLE_IS_MODAL_OPENED = 'TOOGLE_IS_MODAL_OPENED'
 export const UPDATE_PAGE_TITLE = 'UPDATE_PAGE_TITLE'
+export const BLUR_BG = 'BLUR_BG'
+export const SATURATE_BG = 'SATURATE_BG'
+export const BLUR_BG_MOBILE = 'BLUR_BG_MOBILE'
+export const SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE'
 
 export function incrementLoggedOutUserStep() {
 	return {
@@ -53,3 +57,50 @@ export function updatePageTitle(title, pageType) {
 		pageType
 	}
 }
+
+var changeBgState = {}
+// blur = bool
+changeBgState.blur = function(blur) {
+	var isBlurred = true
+	if(!blur)
+		isBlurred = blur
+	return {
+		type: BLUR_BG,
+		isBlurred
+	}
+}
+
+// sat = bool
+changeBgState.saturate = function(sat) {
+	var isSaturated = true
+	if(!sat)
+		isSaturated = sat
+	return {
+		type: SATURATE_BG,
+		isSaturated,
+	}
+}
+
+// blur = bool
+changeBgState.blurMobile = function(blur) {
+	var isBlurred = true
+	if(!blur)
+		isBlurred = blur
+	return {
+		type: BLUR_BG,
+		isBlurred
+	}
+}
+
+// sat = bool
+changeBgState.saturateMobile = function(sat) {
+	var isSaturated = true
+	if(!sat)
+		isSaturated = sat
+	return {
+		type: SATURATE_BG,
+		isSaturated,
+	}
+}
+
+export default changeBgState

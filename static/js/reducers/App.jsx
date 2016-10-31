@@ -7,6 +7,10 @@ import {
 	CLOSE_AND_EMPTY_MAIN_MODAL,
 	TOOGLE_IS_MODAL_OPENED,
 	UPDATE_PAGE_TITLE,
+	BLUR_BG,
+	SATURATE_BG,
+	BLUR_BG_MOBILE,
+	SATURATE_BG_MOBILE,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -27,6 +31,12 @@ exportVar.defaultState = {
 	splashScreenPage: 0,				// (int) main swiper page on login splash screen
 	closeModalFunc: () => {}, 			// (func) function called on closin modal
 	loggedOutUserStep: 0,				// (int) user step used to show tip modals when user logged out
+	bgFilter: {					// (dict of bools) background state
+		blurred: false,
+		saturated: false,
+		mobileBlurred: false,
+		mobileSaturated: false,
+	}
 }
 
 const { defaultState } = exportVar
@@ -34,6 +44,39 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case BLUR_BG:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					blurred: action.isBlurred
+				}
+			}
+		case SATURATE_BG:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					blurred: action.isBlurred
+				}
+			}
+		case BLUR_BG_MOBILE:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					blurred: action.isBlurred
+				}
+
+			}
+		case SATURATE_BG_MOBILE:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					blurred: action.isBlurred
+				}
+			}	
 		case INCREMENT_LOGGED_OUT_USER_STEP:
 			return {
 				...state,

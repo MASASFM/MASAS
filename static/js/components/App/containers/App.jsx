@@ -3,6 +3,7 @@
 // var App = require('../components/App.jsx')
 
 var { logInWithToken } = require("../../../MASAS_functions.jsx")
+import { changeBgState } from "../../../reducers/actions/App.js"
 
 var App = {}
 
@@ -15,6 +16,7 @@ App.mapStateToProps = function(state) {
 		modalContent: state.appReducer.modalContent,
 		modalType: state.appReducer.modalType,
 		MASASuser: state.appReducer.MASASuser,
+		bgFilter: state.appReducer.bgFilter,
 	}
 }
 
@@ -32,6 +34,10 @@ App.mapDispatchToProps = function(dispatch) {
 		hideAppFetchingBar: () => dispatch({ type: 'SET_APP_FETCHING_STATE_FALSE' }),
 		updateUnsplashArtist: (name, username, url) => dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url }),
 		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
+		blurBg: (blur) => dispatch(changeBgState.blur(blur)),
+		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
+		blurBgMobile: (blur) => dispatch(changeBgState.blurMobile(blur)),
+		saturateBgMobile: (sat) => dispatch(changeBgState.saturateMobile(sat)),
 	}
 }
 

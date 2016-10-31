@@ -31,6 +31,7 @@ var App = React.createClass({
 		modalContent: React.PropTypes.element,
 		modalType: React.PropTypes.number,
 		MASASuser: React.PropTypes.string,
+		bgFilter: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
 		onSetNavbar: React.PropTypes.func,
@@ -41,6 +42,10 @@ var App = React.createClass({
 		updateUnsplashArtist: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
+		blurBg: React.PropTypes.func,
+		saturateBg: React.PropTypes.func,
+		blurBgMobile: React.PropTypes.func,
+		blurBgMobile: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
