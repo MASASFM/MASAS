@@ -1,6 +1,10 @@
 var React = require("react")
+var ReactRedux = require("react-redux")
+
+import { MobileBlurBackground } from "../MASAS_mixins.jsx"
+
 // commented because we may need this line in the near future
-// var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
+var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
 var { goToURL } = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
@@ -10,14 +14,33 @@ var LikesItem = require("./LikesItem.jsx")
 // DISPLAYS USER LIKES (propTypes)
 // creates invisible artworks to keep the last line aligned left using flexbox
 var LikesArtworks = React.createClass({
+
 	propTypes: {
 		SCinfo: React.PropTypes.array,
 		userData: React.PropTypes.object,		
 		userLikes: React.PropTypes.array,
+		bgFilter: React.PropTypes.object,
+
+		blurBg: React.PropTypes.func,
+		saturateBg: React.PropTypes.func,
+		blurBgMobile: React.PropTypes.func,
+		saturateBgMobile: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
 	},
+
+	// componentWillUpdate: function(nextProps) {
+	// 	const songs = this.props.userLikes
+
+	// 	if (!songs.length && (!this.props.bgFilter.blurred || this.props.bgFilter.mobileBlurred)) {
+	// 		this.props.blurBgMobile(false)
+	// 		this.props.blurBg(true)
+	// 	} else if(songs.length && (this.props.bgFilter.blurred || !this.props.bgFilter.mobileBlurred)) {
+	// 		this.props.blurBg(false)
+	// 		this.props.blurBgMobile(true)
+	// 	}
+	// },
 
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
@@ -25,8 +48,8 @@ var LikesArtworks = React.createClass({
 		var songs = this.props.SCinfo
 
 		if (!songs) {
-			$('#body--background').removeClass('blurred-mobile')
-			$('#body--background').addClass('blurred')
+			// this.props.blurBgMobile(false)
+			// this.props.blurBg(true)
 
 			return (
 				<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
@@ -45,19 +68,17 @@ var LikesArtworks = React.createClass({
 				</div>
 			)
 		} else {
-			$('#body--background').removeClass('blurred')
-			$('#body--background').addClass('blurred-mobile')
 			// // sort by uploaded time
 
 			const songs = this.props.userLikes
 			var songList =  songs.map((song) => { 
-					return <LikesItem 
-							key={ song.MASAS_songInfo.pk } 
-							MASAS_songPk={ song.MASAS_songInfo.pk } 
-							SCinfo={ song.SC_songInfo } 
-							MASASinfo={ song.MASAS_songInfo.song }
-							artistInfo={ song.artistInfo }
-							isShowingArtistInfo={ song.showProfile } />
+				return <LikesItem 
+						key={ song.MASAS_songInfo.pk } 
+						MASAS_songPk={ song.MASAS_songInfo.pk } 
+						SCinfo={ song.SC_songInfo } 
+						MASASinfo={ song.MASAS_songInfo.song }
+						artistInfo={ song.artistInfo }
+						isShowingArtistInfo={ song.showProfile } />
 			})
 
 			return songList
@@ -136,4 +157,7 @@ var LikesArtworks = React.createClass({
 	}
 })
 
-module.exports = LikesArtworks
+module.exports = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(LikesArtworks)

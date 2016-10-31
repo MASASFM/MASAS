@@ -1,17 +1,17 @@
-import $ from 'jquery'
+const { dispatch } = require('../reducers/reducers.js')
+import { changeBgState } from "../reducers/actions/App.js"
 
 let MASAS_mixins = {}
 
 MASAS_mixins.MobileBlurBackground = {
 	componentDidMount: function() {
-
 		// add blur class to background
-		$('#body--background').addClass('blurred-mobile')
+		dispatch(changeBgState.blurMobile(true))
 	},
 
 	componentWillUnmount: function() {
 		// remove blur class from background
-		$('#body--background').removeClass('blurred-mobile')
+		dispatch(changeBgState.blurMobile(false))
 	}
 }
 
@@ -19,12 +19,12 @@ MASAS_mixins.BlurBackground = {
 	componentDidMount: function() {
 
 		// add blur class to background
-		$('#body--background').addClass('blurred')
+		dispatch(changeBgState.blur(true))
 	},
 
 	componentWillUnmount: function() {
 		// remove blur class from background
-		$('#body--background').removeClass('blurred')
+		dispatch(changeBgState.blur(false))
 	}
 }
 

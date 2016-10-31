@@ -60,7 +60,7 @@ export function updatePageTitle(title, pageType) {
 	}
 }
 
-var changeBgState = {}
+export var changeBgState = {}
 // blur = bool
 changeBgState.blur = function(blur) {
 	var isBlurred = true
@@ -111,7 +111,7 @@ changeBgState.blurMobile = function(blur) {
 	if(!blur)
 		isBlurred = blur
 	return {
-		type: BLUR_BG,
+		type: BLUR_BG_MOBILE,
 		isBlurred
 	}
 }
@@ -122,9 +122,9 @@ changeBgState.saturateMobile = function(sat) {
 	if(!sat)
 		isSaturated = sat
 	return {
-		type: SATURATE_BG,
+		type: SATURATE_BG_MOBILE,
 		isSaturated,
 	}
 }
 
-export default changeBgState
+// export default changeBgState

@@ -1,5 +1,5 @@
 var React = require("react")
-import $ from "jquery"
+// import $ from "jquery"
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Home.jsx")
@@ -38,7 +38,7 @@ var Home = React.createClass({
 	},
 
 	componentWillUnmount: function () {
-		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
+		// $("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
 		this.props.goToPage(1, 4)
 	},
 
@@ -50,23 +50,23 @@ var Home = React.createClass({
 		const pageCount = 4
 
 		// update page backgound (fixed positioning are slow)
-		$("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
-		switch(currentPage) {
-			case 1:
-				// app background
-				break
-			case 2:
-				$("#body--background").addClass("artist-page-bg")
-				break
-			case 3:
-				$("#body--background").addClass("musicLover-page-bg")
-				break
-			case 4:
-				$("#body--background").addClass("dev-page-bg blurred saturated")
-				break
-			default:
-				break
-		}
+		// $("#body--background").removeClass("artist-page-bg musicLover-page-bg dev-page-bg blurred saturated")
+		// switch(currentPage) {
+		// 	case 1:
+		// 		// app background
+		// 		break
+		// 	case 2:
+		// 		$("#body--background").addClass("artist-page-bg")
+		// 		break
+		// 	case 3:
+		// 		$("#body--background").addClass("musicLover-page-bg")
+		// 		break
+		// 	case 4:
+		// 		$("#body--background").addClass("dev-page-bg blurred saturated")
+		// 		break
+		// 	default:
+		// 		break
+		// }
 
 		return (
 			<div className="home--wrapper">

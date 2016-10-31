@@ -42,10 +42,6 @@ var App = React.createClass({
 		updateUnsplashArtist: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
 		closeModal: React.PropTypes.func,
-		blurBg: React.PropTypes.func,
-		saturateBg: React.PropTypes.func,
-		blurBgMobile: React.PropTypes.func,
-		blurBgMobile: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -182,7 +178,23 @@ var App = React.createClass({
 		return (
 			<NavSidebar>
 				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
-					<div className={"body--background"+ ( this.props.isModalOpened ? " saturated" : "" )} id="body--background">
+					<div 
+						className={
+							"body--background"
+							+ 
+							( this.props.bgFilter.blurred ? " blurred " : "" )
+							+ 
+							( this.props.bgFilter.saturated ? " saturated " : "" )
+							+ 
+							( this.props.bgFilter.mobileBlurred ? " blurred-mobile " : "" )
+							+ 
+							( this.props.bgFilter.mobileSaturated ? " mobileSaturated " : "" )
+							+ 
+							( this.props.bgFilter.modalBlurred ? " modal-blurred " : "" )
+							+ 
+							( this.props.bgFilter.modalSaturated ? " modal-saturated " : "" )
+						} 
+						id="body--background">
 						<div className="bg-image" id="app-bg-image"></div>
 					</div>
 					<Header />

@@ -39,7 +39,7 @@ exportVar.defaultState = {
 		mobileBlurred: false,			// (bool) is app bg blurred only on mobile
 		mobileSaturated: false,			// (bool) is app bg saturated only on mobile
 		modalBlurred: false,			// (bool) is app bg blurred *because* of modal
-		modalSaturrated: false,			// (bool) is app bg saturated *because* of modal
+		modalSaturated: false,			// (bool) is app bg saturated *because* of modal
 	}
 }
 
@@ -61,7 +61,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				bgFilter: {
 					...state.bgFilter,
-					modalSaturrated: action.isSaturated
+					modalSaturated: action.isSaturated
 				}
 			}
 		case BLUR_BG:
@@ -77,7 +77,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				bgFilter: {
 					...state.bgFilter,
-					blurred: action.isBlurred
+					saturated: action.isSaturated
 				}
 			}
 		case BLUR_BG_MOBILE:
@@ -85,7 +85,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				bgFilter: {
 					...state.bgFilter,
-					blurred: action.isBlurred
+					mobileBlurred: action.isBlurred
 				}
 
 			}
@@ -94,7 +94,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				bgFilter: {
 					...state.bgFilter,
-					blurred: action.isBlurred
+					mobileSaturated: action.isSaturated
 				}
 			}	
 		case INCREMENT_LOGGED_OUT_USER_STEP:

@@ -43,13 +43,13 @@ let Modal = React.createClass({
 		// unless we are on /upload page (it handles background blurs itself)
 		if(nextProps.isOpened === false && window.location.pathname !== "/upload") {
 			// remove background blur
-			$('#body--background').removeClass('blurred')
+			// $('#body--background').removeClass('blurred')
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {
 			// put background blur on
-			$('#body--background').addClass('blurred')
+			// $('#body--background').addClass('blurred')
 		} else if( nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4) ) {
-			$('#body--background').addClass('blurred')
-			$('#body--background').removeClass('saturated')
+			// $('#body--background').addClass('blurred')
+			// $('#body--background').removeClass('saturated')
 		}
 	},
 
