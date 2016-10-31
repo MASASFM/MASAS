@@ -921,11 +921,11 @@
   "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_MapCache.js": [
     "var mapClear = require('./_mapClear'),\n    mapDelete = require('./_mapDelete'),\n    mapGet = require('./_mapGet'),\n    mapHas = require('./_mapHas'),\n    mapSet = require('./_mapSet');\n\n/**\n * Creates a map cache object to store key-value pairs.\n *\n * @private\n * @constructor\n * @param {Array} [values] The values to cache.\n */\nfunction MapCache(values) {\n  var index = -1,\n      length = values ? values.length : 0;\n\n  this.clear();\n  while (++index < length) {\n    var entry = values[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `MapCache`.\nMapCache.prototype.clear = mapClear;\nMapCache.prototype['delete'] = mapDelete;\nMapCache.prototype.get = mapGet;\nMapCache.prototype.has = mapHas;\nMapCache.prototype.set = mapSet;\n\nmodule.exports = MapCache;\n",
     {
+      "./_mapGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapGet.js",
+      "./_mapHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapHas.js",
       "./_mapSet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapSet.js",
       "./_mapClear": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapClear.js",
-      "./_mapDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js",
-      "./_mapGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapGet.js",
-      "./_mapHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapHas.js"
+      "./_mapDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_MapCache.js",
@@ -973,10 +973,10 @@
     "var stackClear = require('./_stackClear'),\n    stackDelete = require('./_stackDelete'),\n    stackGet = require('./_stackGet'),\n    stackHas = require('./_stackHas'),\n    stackSet = require('./_stackSet');\n\n/**\n * Creates a stack cache object to store key-value pairs.\n *\n * @private\n * @constructor\n * @param {Array} [values] The values to cache.\n */\nfunction Stack(values) {\n  var index = -1,\n      length = values ? values.length : 0;\n\n  this.clear();\n  while (++index < length) {\n    var entry = values[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `Stack`.\nStack.prototype.clear = stackClear;\nStack.prototype['delete'] = stackDelete;\nStack.prototype.get = stackGet;\nStack.prototype.has = stackHas;\nStack.prototype.set = stackSet;\n\nmodule.exports = Stack;\n",
     {
       "./_stackClear": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackClear.js",
+      "./_stackHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackHas.js",
       "./_stackSet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackSet.js",
       "./_stackDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackDelete.js",
-      "./_stackGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackGet.js",
-      "./_stackHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackHas.js"
+      "./_stackGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackGet.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Stack.js",
@@ -1521,8 +1521,8 @@
       "./_equalArrays": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_equalArrays.js",
       "./_mapToArray": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapToArray.js",
       "./_setToArray": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_setToArray.js",
-      "./_Uint8Array": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Uint8Array.js",
-      "./_Symbol": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Symbol.js"
+      "./_Symbol": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Symbol.js",
+      "./_Uint8Array": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Uint8Array.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_equalByTag.js",
@@ -1774,9 +1774,9 @@
     "var Map = require('./_Map'),\n    assocDelete = require('./_assocDelete'),\n    hashDelete = require('./_hashDelete'),\n    isKeyable = require('./_isKeyable');\n\n/**\n * Removes `key` and its value from the map.\n *\n * @private\n * @name delete\n * @memberOf MapCache\n * @param {string} key The key of the value to remove.\n * @returns {boolean} Returns `true` if the entry was removed, else `false`.\n */\nfunction mapDelete(key) {\n  var data = this.__data__;\n  if (isKeyable(key)) {\n    return hashDelete(typeof key == 'string' ? data.string : data.hash, key);\n  }\n  return Map ? data.map['delete'](key) : assocDelete(data.map, key);\n}\n\nmodule.exports = mapDelete;\n",
     {
       "./_isKeyable": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_isKeyable.js",
-      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js",
+      "./_hashDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashDelete.js",
       "./_assocDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_assocDelete.js",
-      "./_hashDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashDelete.js"
+      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js",
@@ -1802,9 +1802,9 @@
     "var Map = require('./_Map'),\n    assocHas = require('./_assocHas'),\n    hashHas = require('./_hashHas'),\n    isKeyable = require('./_isKeyable');\n\n/**\n * Checks if a map value for `key` exists.\n *\n * @private\n * @name has\n * @memberOf MapCache\n * @param {string} key The key of the entry to check.\n * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.\n */\nfunction mapHas(key) {\n  var data = this.__data__;\n  if (isKeyable(key)) {\n    return hashHas(typeof key == 'string' ? data.string : data.hash, key);\n  }\n  return Map ? data.map.has(key) : assocHas(data.map, key);\n}\n\nmodule.exports = mapHas;\n",
     {
       "./_isKeyable": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_isKeyable.js",
+      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js",
       "./_assocHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_assocHas.js",
-      "./_hashHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashHas.js",
-      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js"
+      "./_hashHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashHas.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapHas.js",
@@ -2718,17 +2718,17 @@
       "./Route": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Route.js",
       "./PropTypes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/PropTypes.js",
       "./Redirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Redirect.js",
+      "./RouteContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteContext.js",
+      "./RouteUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
       "./RoutingContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RoutingContext.js",
       "./Link": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Link.js",
       "./History": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/History.js",
       "./IndexRedirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRedirect.js",
       "./IndexRoute": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRoute.js",
-      "./Lifecycle": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Lifecycle.js",
-      "./RouteContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteContext.js",
       "./match": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/match.js",
       "./useRoutes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/useRoutes.js",
       "./hashHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/hashHistory.js",
-      "./RouteUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
+      "./Lifecycle": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Lifecycle.js",
       "./RouterContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouterContext.js",
       "./browserHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/browserHistory.js",
       "./useRouterHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/useRouterHistory.js",
@@ -3695,9 +3695,9 @@
       "fbjs/lib/shallowEqual": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/shallowEqual.js",
       "./ReactDOMOption": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMOption.js",
       "./AutoFocusUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/AutoFocusUtils.js",
-      "./ReactDOMTextarea": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMTextarea.js",
       "./ReactDOMInput": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMInput.js",
       "./ReactDOMSelect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMSelect.js",
+      "./ReactDOMTextarea": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMTextarea.js",
       "./ReactMultiChild": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactMultiChild.js",
       "./CSSPropertyOperations": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/CSSPropertyOperations.js"
     },
@@ -5351,49 +5351,38 @@
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/Header.jsx": [
-    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/Header.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\n\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require(\"./containers/Header.jsx\");\n\nvar mapStateToProps = _require.mapStateToProps;\nvar mapDispatchToProps = _require.mapDispatchToProps;\n\n// var { goToURL } = require(\"../../MASAS_functions.jsx\")\n\nvar HeaderDropdown = require(\"./HeaderDropdown.jsx\");\nvar Link = require(\"../UI/Link.jsx\");\n\nvar _require2 = require(\"../UI/UI.jsx\");\n\nvar Button = _require2.Button;\n\nvar _require3 = require('react-router');\n\nvar browserHistory = _require3.browserHistory;\n\nvar Header = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Header\",\n\n\tpropTypes: {\n\t\tpageType: React.PropTypes.number,\n\t\tpageTitle: React.PropTypes.string,\n\t\tuser: React.PropTypes.string,\n\t\tisPlayerBarOpened: React.PropTypes.bool,\n\t\tbackArrowFunc: React.PropTypes.func,\n\t\tnotificationText: React.PropTypes.string,\n\t\tisAppFetching: React.PropTypes.bool,\n\t\tsongPlaying: React.PropTypes.string,\n\t\tMASASuser: React.PropTypes.string,\n\t\t// isModalOpened: React.PropTypes.bool,\n\t\t// toogleModal: React.PropTypes.func,\n\t\t// updateModalContent: React.PropTypes.func,\n\n\t\tonSetNavSidebarOpen: React.PropTypes.func,\n\t\ttoogleIsOpened: React.PropTypes.func,\n\t\tgoToHomepageSlide1: React.PropTypes.func,\n\t\tcloseModal: React.PropTypes.func\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\treturn React.createElement(\n\t\t\t\"nav\",\n\t\t\t{ className: \"header\" },\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"ajax-loader--wrapper\" },\n\t\t\t\tReact.createElement(\"div\", { className: \"ajax-loader\" + (this.props.isAppFetching ? \" visible\" : \"\") })\n\t\t\t),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"notification--wrapper1\" },\n\t\t\t\tthis.props.notificationText !== \"\" ? React.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"notification--wrapper2\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"notification-text\", id: \"notification-text\" },\n\t\t\t\t\t\tthis.props.notificationText\n\t\t\t\t\t)\n\t\t\t\t) : \"\"\n\t\t\t),\n\t\t\tReact.createElement(\"div\", { className: \"top-decoration--top-border\" }),\n\t\t\tReact.createElement(\"div\", { className: \"top-decoration\" }),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"row middle-xs desktop-header\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-10 links--wrapper\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tLink,\n\t\t\t\t\t\t{ to: \"/\", className: \"logo\", onClick: this.props.goToHomepageSlide1 },\n\t\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/navlogo.png\", alt: \"MASAS\", className: \"logo\" })\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box\", style: { display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end' } },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ to: \"/discover\", disabled: false },\n\t\t\t\t\t\t\t\t\"Discover\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ to: \"/popular\", disabled: false },\n\t\t\t\t\t\t\t\t\"Popular\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ to: \"/upload\", disabled: false },\n\t\t\t\t\t\t\t\t\"Upload\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ to: \"/likes\", disabled: this.props.user ? false : true },\n\t\t\t\t\t\t\t\t\"Likes\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\", style: { display: 'none', minWidth: 0.1 } },\n\t\t\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/MASAS_search.svg\", alt: \"search\", className: \"search-icon\" })\n\t\t\t\t\t\t)\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(HeaderDropdown, null)\n\t\t\t\t)\n\t\t\t),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"row middle-xs phone-header\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-3\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box\" },\n\t\t\t\t\t\tthis.props.pageType === 0 ? React.createElement(\"img\", { onClick: this.props.onSetNavSidebarOpen, src: \"/static/img/MASAS_hamburger_menu.svg\", atl: \"menu\", className: \"menu-icon\" }) : React.createElement(\"img\", { onClick: function onClick() {\n\t\t\t\t\t\t\t\t_this.props.backArrowFunc();_this.props.closeModal();\n\t\t\t\t\t\t\t}, src: \"/static/img/MASAS_arrow_left.svg\", atl: \"back\", className: \"menu-icon\" })\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-6\" },\n\t\t\t\t\tthis.props.MASASuser === \"\" ? React.createElement(\"div\", null) : React.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box title\" },\n\t\t\t\t\t\tthis.props.pageTitle\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-3\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box tray-icon--wrapper\" },\n\t\t\t\t\t\tReact.createElement(\"div\", {\n\t\t\t\t\t\t\tclassName: \"toogle-open-tray-icon \" + (this.props.isPlayerBarOpened ? \"opened\" : \"\"),\n\t\t\t\t\t\t\tonClick: this.props.songPlaying ? this.props.toogleIsOpened : function () {},\n\t\t\t\t\t\t\tstyle: !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} })\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);\n//# sourceMappingURL=data:application/json;base64,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QUwsQ0FBVyxpQkFBWCxHQUErQixRQUEvQixHQUEwQyxFQUExQyxDQUE1QjtBQUNaLGdCQUFVLEtBQUssS0FBTCxDQUFXLFdBQVgsR0FBeUIsS0FBSyxLQUFMLENBQVcsY0FBWCxHQUE0QixZQUFNLEVBQU47QUFDL0QsY0FBUSxDQUFDLEtBQUssS0FBTCxDQUFXLFdBQVgsR0FBeUIsRUFBRSxTQUFTLENBQVQsRUFBWSxRQUFRLFNBQVIsRUFBeEMsR0FBOEQsRUFBOUQsRUFIVCxDQUZGO01BREQ7S0FqQkQ7SUF0Q0Q7R0FERCxDQURrQjtFQUFYO0NBckJJLEVBQVQ7O0FBK0ZKLE9BQU8sT0FBUCxHQUFpQixXQUFXLE9BQVgsQ0FDaEIsZUFEZ0IsRUFFaEIsa0JBRmdCLEVBR2YsTUFIZSxDQUFqQiIsImZpbGUiOiJIZWFkZXIuanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG5cbnZhciBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG52YXIgeyBtYXBTdGF0ZVRvUHJvcHMsIG1hcERpc3BhdGNoVG9Qcm9wcyB9ID0gcmVxdWlyZShcIi4vY29udGFpbmVycy9IZWFkZXIuanN4XCIpXG5cbi8vIHZhciB7IGdvVG9VUkwgfSA9IHJlcXVpcmUoXCIuLi8uLi9NQVNBU19mdW5jdGlvbnMuanN4XCIpXG52YXIgSGVhZGVyRHJvcGRvd24gPSByZXF1aXJlKFwiLi9IZWFkZXJEcm9wZG93bi5qc3hcIilcbnZhciBMaW5rID0gcmVxdWlyZShcIi4uL1VJL0xpbmsuanN4XCIpXG52YXIgeyBCdXR0b24gfSA9IHJlcXVpcmUoXCIuLi9VSS9VSS5qc3hcIilcbnZhciB7IGJyb3dzZXJIaXN0b3J5IH0gPSByZXF1aXJlKCdyZWFjdC1yb3V0ZXInKVxuXG52YXIgSGVhZGVyID0gUmVhY3QuY3JlYXRlQ2xhc3Moe1xuXHRwcm9wVHlwZXM6IHtcblx0XHRwYWdlVHlwZTogUmVhY3QuUHJvcFR5cGVzLm51bWJlcixcblx0XHRwYWdlVGl0bGU6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0dXNlcjogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0XHRpc1BsYXllckJhck9wZW5lZDogUmVhY3QuUHJvcFR5cGVzLmJvb2wsXG5cdFx0YmFja0Fycm93RnVuYzogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdFx0bm90aWZpY2F0aW9uVGV4dDogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0XHRpc0FwcEZldGNoaW5nOiBSZWFjdC5Qcm9wVHlwZXMuYm9vbCxcblx0XHRzb25nUGxheWluZzogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0XHRNQVNBU3VzZXI6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0Ly8gaXNNb2RhbE9wZW5lZDogUmVhY3QuUHJvcFR5cGVzLmJvb2wsXG5cdFx0Ly8gdG9vZ2xlTW9kYWw6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdC8vIHVwZGF0ZU1vZGFsQ29udGVudDogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cblx0XHRvblNldE5hdlNpZGViYXJPcGVuOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHR0b29nbGVJc09wZW5lZDogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdFx0Z29Ub0hvbWVwYWdlU2xpZGUxOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHRjbG9zZU1vZGFsOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0fSxcblxuXHRyZW5kZXI6IGZ1bmN0aW9uKCkge1xuXHRcdHJldHVybiAoXG5cdFx0XHQ8bmF2ICBjbGFzc05hbWU9XCJoZWFkZXJcIj5cblx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJhamF4LWxvYWRlci0td3JhcHBlclwiPlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPXsgXCJhamF4LWxvYWRlclwiICsgKHRoaXMucHJvcHMuaXNBcHBGZXRjaGluZyA/IFwiIHZpc2libGVcIiA6IFwiXCIpIH0+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm5vdGlmaWNhdGlvbi0td3JhcHBlcjFcIj5cblx0XHRcdFx0XHR7XG5cdFx0XHRcdFx0XHR0aGlzLnByb3BzLm5vdGlmaWNhdGlvblRleHQgIT09IFwiXCIgP1xuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm5vdGlmaWNhdGlvbi0td3JhcHBlcjJcIj5cblx0XHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm5vdGlmaWNhdGlvbi10ZXh0XCIgaWQ9XCJub3RpZmljYXRpb24tdGV4dFwiPlxuXHRcdFx0XHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLm5vdGlmaWNhdGlvblRleHQgfVxuXHRcdFx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHRcdDpcblx0XHRcdFx0XHRcdFx0XCJcIlxuXHRcdFx0XHRcdH1cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwidG9wLWRlY29yYXRpb24tLXRvcC1ib3JkZXJcIj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwidG9wLWRlY29yYXRpb25cIj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwicm93IG1pZGRsZS14cyBkZXNrdG9wLWhlYWRlclwiPlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiY29sLXhzLTEwIGxpbmtzLS13cmFwcGVyXCI+XG5cdFx0XHRcdFx0XHQ8TGluayB0bz1cIi9cIiBjbGFzc05hbWU9XCJsb2dvXCIgb25DbGljaz17dGhpcy5wcm9wcy5nb1RvSG9tZXBhZ2VTbGlkZTF9PlxuXHRcdFx0XHRcdFx0XHQ8aW1nIHNyYz1cIi9zdGF0aWMvaW1nL25hdmxvZ28ucG5nXCIgYWx0PVwiTUFTQVNcIiBjbGFzc05hbWU9XCJsb2dvXCIgLz5cblx0XHRcdFx0XHRcdDwvTGluaz5cblx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiYm94XCIgc3R5bGU9e3tkaXNwbGF5OiAnZmxleCcsIGZsZXg6IDIsIGZsZXhEaXJlY3Rpb246ICdyb3cnLCBqdXN0aWZ5Q29udGVudDogJ2ZsZXgtZW5kJ319PlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImhlYWRlci1saW5rXCI+PExpbmsgdG89XCIvZGlzY292ZXJcIiBkaXNhYmxlZD17IGZhbHNlIH0+RGlzY292ZXI8L0xpbms+PC9kaXY+XG5cdFx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiaGVhZGVyLWxpbmtcIj48TGluayB0bz1cIi9wb3B1bGFyXCIgZGlzYWJsZWQ9e2ZhbHNlfT5Qb3B1bGFyPC9MaW5rPjwvZGl2PlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImhlYWRlci1saW5rXCI+PExpbmsgdG89XCIvdXBsb2FkXCIgZGlzYWJsZWQ9e2ZhbHNlfT5VcGxvYWQ8L0xpbms+PC9kaXY+XG5cdFx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiaGVhZGVyLWxpbmtcIj48TGluayB0bz1cIi9saWtlc1wiIGRpc2FibGVkPXt0aGlzLnByb3BzLnVzZXIgPyBmYWxzZSA6IHRydWV9Pkxpa2VzPC9MaW5rPjwvZGl2PlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImhlYWRlci1saW5rXCIgc3R5bGU9e3sgZGlzcGxheTogJ25vbmUnLCBtaW5XaWR0aDogMC4xIH19PlxuXHRcdFx0XHRcdFx0XHRcdDxpbWcgc3JjPVwiL3N0YXRpYy9pbWcvTUFTQVNfc2VhcmNoLnN2Z1wiIGFsdD1cInNlYXJjaFwiIGNsYXNzTmFtZT1cInNlYXJjaC1pY29uXCIvPlxuXHRcdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdFx0PEhlYWRlckRyb3Bkb3duIC8+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInJvdyBtaWRkbGUteHMgcGhvbmUtaGVhZGVyXCI+XG5cdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJjb2wteHMtM1wiPlxuXHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJib3hcIj5cblx0XHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLnBhZ2VUeXBlID09PSAwID9cblx0XHRcdFx0XHRcdFx0XHQ8aW1nIG9uQ2xpY2s9e3RoaXMucHJvcHMub25TZXROYXZTaWRlYmFyT3Blbn0gc3JjPVwiL3N0YXRpYy9pbWcvTUFTQVNfaGFtYnVyZ2VyX21lbnUuc3ZnXCIgYXRsPVwibWVudVwiIGNsYXNzTmFtZT1cIm1lbnUtaWNvblwiLz5cblx0XHRcdFx0XHRcdFx0XHQ6XG5cdFx0XHRcdFx0XHRcdFx0PGltZyBvbkNsaWNrPXsgKCkgPT4geyB0aGlzLnByb3BzLmJhY2tBcnJvd0Z1bmMoKTsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsKCkgfSB9IHNyYz1cIi9zdGF0aWMvaW1nL01BU0FTX2Fycm93X2xlZnQuc3ZnXCIgYXRsPVwiYmFja1wiIGNsYXNzTmFtZT1cIm1lbnUtaWNvblwiLz5cblx0XHRcdFx0XHRcdFx0fVxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJjb2wteHMtNlwiPlxuXHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLk1BU0FTdXNlciA9PT0gXCJcIiA/XG5cdFx0XHRcdFx0XHRcdDxkaXY+PC9kaXY+XG5cdFx0XHRcdFx0XHRcdDpcblx0XHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJib3ggdGl0bGVcIj57IHRoaXMucHJvcHMucGFnZVRpdGxlIH08L2Rpdj5cblx0XHRcdFx0XHRcdH1cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImNvbC14cy0zXCI+XG5cdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImJveCB0cmF5LWljb24tLXdyYXBwZXJcIj5cblx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHRcdFx0PGRpdiBcblx0XHRcdFx0XHRcdFx0XHRcdGNsYXNzTmFtZT17IFwidG9vZ2xlLW9wZW4tdHJheS1pY29uIFwiICsgKHRoaXMucHJvcHMuaXNQbGF5ZXJCYXJPcGVuZWQgPyBcIm9wZW5lZFwiIDogXCJcIikgfSBcblx0XHRcdFx0XHRcdFx0XHRcdG9uQ2xpY2s9eyB0aGlzLnByb3BzLnNvbmdQbGF5aW5nID8gdGhpcy5wcm9wcy50b29nbGVJc09wZW5lZCA6ICgpID0+IHt9IH0gXG5cdFx0XHRcdFx0XHRcdFx0XHRzdHlsZT17ICF0aGlzLnByb3BzLnNvbmdQbGF5aW5nID8geyBvcGFjaXR5OiAwLCBjdXJzb3I6ICdkZWZhdWx0JyB9IDoge30gfSA+XG5cdFx0XHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0XHRcdFxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0PC9uYXY+XG5cdFx0KVxuXHR9XG59KVxuXG5tb2R1bGUuZXhwb3J0cyA9IFJlYWN0UmVkdXguY29ubmVjdChcblx0bWFwU3RhdGVUb1Byb3BzLFxuXHRtYXBEaXNwYXRjaFRvUHJvcHNcbikoSGVhZGVyKVxuIl19",
+    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/Header.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\n\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require(\"./containers/Header.jsx\");\n\nvar mapStateToProps = _require.mapStateToProps;\nvar mapDispatchToProps = _require.mapDispatchToProps;\n\n// var { goToURL } = require(\"../../MASAS_functions.jsx\")\n\nvar HeaderDropdown = require(\"./HeaderDropdown.jsx\");\nvar Link = require(\"../UI/Link.jsx\");\n\nvar _require2 = require(\"../UI/UI.jsx\");\n\nvar Button = _require2.Button;\n\nvar _require3 = require('react-router');\n\nvar browserHistory = _require3.browserHistory;\n\nvar Header = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Header\",\n\n\tpropTypes: {\n\t\tpageType: React.PropTypes.number,\n\t\tpageTitle: React.PropTypes.string,\n\t\tuser: React.PropTypes.string,\n\t\tisPlayerBarOpened: React.PropTypes.bool,\n\t\tbackArrowFunc: React.PropTypes.func,\n\t\tnotificationText: React.PropTypes.string,\n\t\tisAppFetching: React.PropTypes.bool,\n\t\tsongPlaying: React.PropTypes.string,\n\t\tMASASuser: React.PropTypes.string,\n\t\t// isModalOpened: React.PropTypes.bool,\n\t\t// toogleModal: React.PropTypes.func,\n\t\t// updateModalContent: React.PropTypes.func,\n\n\t\tonSetNavSidebarOpen: React.PropTypes.func,\n\t\ttoogleIsOpened: React.PropTypes.func,\n\t\tgoToHomepageSlide1: React.PropTypes.func,\n\t\tcloseModal: React.PropTypes.func\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\treturn React.createElement(\n\t\t\t\"nav\",\n\t\t\t{ className: \"header\" },\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"ajax-loader--wrapper\" },\n\t\t\t\tReact.createElement(\"div\", { className: \"ajax-loader\" + (this.props.isAppFetching ? \" visible\" : \"\") })\n\t\t\t),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"notification--wrapper1\" },\n\t\t\t\tthis.props.notificationText !== \"\" ? React.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"notification--wrapper2\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"notification-text\", id: \"notification-text\" },\n\t\t\t\t\t\tthis.props.notificationText\n\t\t\t\t\t)\n\t\t\t\t) : \"\"\n\t\t\t),\n\t\t\tReact.createElement(\"div\", { className: \"top-decoration--top-border\" }),\n\t\t\tReact.createElement(\"div\", { className: \"top-decoration\" }),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"row middle-xs desktop-header\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-10 links--wrapper\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tLink,\n\t\t\t\t\t\t{ to: \"/\", className: \"logo\", onClick: this.props.goToHomepageSlide1 },\n\t\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/navlogo.png\", alt: \"MASAS\", className: \"logo\" })\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box\", style: { display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end' } },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ onClick: this.props.closeModal, to: \"/discover\", disabled: false },\n\t\t\t\t\t\t\t\t\"Discover\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ onClick: this.props.closeModal, to: \"/popular\", disabled: false },\n\t\t\t\t\t\t\t\t\"Popular\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ onClick: this.props.closeModal, to: \"/upload\", disabled: false },\n\t\t\t\t\t\t\t\t\"Upload\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\" },\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\tLink,\n\t\t\t\t\t\t\t\t{ onClick: this.props.closeModal, to: \"/likes\", disabled: this.props.user ? false : true },\n\t\t\t\t\t\t\t\t\"Likes\"\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t\t{ className: \"header-link\", style: { display: 'none', minWidth: 0.1 } },\n\t\t\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/MASAS_search.svg\", alt: \"search\", className: \"search-icon\" })\n\t\t\t\t\t\t)\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(HeaderDropdown, null)\n\t\t\t\t)\n\t\t\t),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"row middle-xs phone-header\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-3\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box\" },\n\t\t\t\t\t\tthis.props.pageType === 0 ? React.createElement(\"img\", { onClick: this.props.onSetNavSidebarOpen, src: \"/static/img/MASAS_hamburger_menu.svg\", atl: \"menu\", className: \"menu-icon\" }) : React.createElement(\"img\", { onClick: function onClick() {\n\t\t\t\t\t\t\t\t_this.props.backArrowFunc();_this.props.closeModal();\n\t\t\t\t\t\t\t}, src: \"/static/img/MASAS_arrow_left.svg\", atl: \"back\", className: \"menu-icon\" })\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-6\" },\n\t\t\t\t\tthis.props.MASASuser === \"\" ? React.createElement(\"div\", null) : React.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box title\" },\n\t\t\t\t\t\tthis.props.pageTitle\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"col-xs-3\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"box tray-icon--wrapper\" },\n\t\t\t\t\t\tReact.createElement(\"div\", {\n\t\t\t\t\t\t\tclassName: \"toogle-open-tray-icon \" + (this.props.isPlayerBarOpened ? \"opened\" : \"\"),\n\t\t\t\t\t\t\tonClick: this.props.songPlaying ? this.props.toogleIsOpened : function () {},\n\t\t\t\t\t\t\tstyle: !this.props.songPlaying ? { opacity: 0, cursor: 'default' } : {} })\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Header);\n//# sourceMappingURL=data:application/json;base64,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QUw7TUFBNkIsS0FBSyxLQUFMLENBQVcsU0FBWDtNQUg1QjtLQVhKO0lBaUJDOztPQUFLLFdBQVUsVUFBVixFQUFMO0tBQ0M7O1FBQUssV0FBVSx3QkFBVixFQUFMO01BRUU7QUFDQyxrQkFBWSw0QkFBNEIsS0FBSyxLQUFMLENBQVcsaUJBQVgsR0FBK0IsUUFBL0IsR0FBMEMsRUFBMUMsQ0FBNUI7QUFDWixnQkFBVSxLQUFLLEtBQUwsQ0FBVyxXQUFYLEdBQXlCLEtBQUssS0FBTCxDQUFXLGNBQVgsR0FBNEIsWUFBTSxFQUFOO0FBQy9ELGNBQVEsQ0FBQyxLQUFLLEtBQUwsQ0FBVyxXQUFYLEdBQXlCLEVBQUUsU0FBUyxDQUFULEVBQVksUUFBUSxTQUFSLEVBQXhDLEdBQThELEVBQTlELEVBSFQsQ0FGRjtNQUREO0tBakJEO0lBdENEO0dBREQsQ0FEa0I7RUFBWDtDQXJCSSxFQUFUOztBQStGSixPQUFPLE9BQVAsR0FBaUIsV0FBVyxPQUFYLENBQ2hCLGVBRGdCLEVBRWhCLGtCQUZnQixFQUdmLE1BSGUsQ0FBakIiLCJmaWxlIjoiSGVhZGVyLmpzeCIsInNvdXJjZXNDb250ZW50IjpbInZhciBSZWFjdCA9IHJlcXVpcmUoXCJyZWFjdFwiKVxuXG52YXIgUmVhY3RSZWR1eCA9IHJlcXVpcmUoXCJyZWFjdC1yZWR1eFwiKVxudmFyIHsgbWFwU3RhdGVUb1Byb3BzLCBtYXBEaXNwYXRjaFRvUHJvcHMgfSA9IHJlcXVpcmUoXCIuL2NvbnRhaW5lcnMvSGVhZGVyLmpzeFwiKVxuXG4vLyB2YXIgeyBnb1RvVVJMIH0gPSByZXF1aXJlKFwiLi4vLi4vTUFTQVNfZnVuY3Rpb25zLmpzeFwiKVxudmFyIEhlYWRlckRyb3Bkb3duID0gcmVxdWlyZShcIi4vSGVhZGVyRHJvcGRvd24uanN4XCIpXG52YXIgTGluayA9IHJlcXVpcmUoXCIuLi9VSS9MaW5rLmpzeFwiKVxudmFyIHsgQnV0dG9uIH0gPSByZXF1aXJlKFwiLi4vVUkvVUkuanN4XCIpXG52YXIgeyBicm93c2VySGlzdG9yeSB9ID0gcmVxdWlyZSgncmVhY3Qtcm91dGVyJylcblxudmFyIEhlYWRlciA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblx0cHJvcFR5cGVzOiB7XG5cdFx0cGFnZVR5cGU6IFJlYWN0LlByb3BUeXBlcy5udW1iZXIsXG5cdFx0cGFnZVRpdGxlOiBSZWFjdC5Qcm9wVHlwZXMuc3RyaW5nLFxuXHRcdHVzZXI6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0aXNQbGF5ZXJCYXJPcGVuZWQ6IFJlYWN0LlByb3BUeXBlcy5ib29sLFxuXHRcdGJhY2tBcnJvd0Z1bmM6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdG5vdGlmaWNhdGlvblRleHQ6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0aXNBcHBGZXRjaGluZzogUmVhY3QuUHJvcFR5cGVzLmJvb2wsXG5cdFx0c29uZ1BsYXlpbmc6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0TUFTQVN1c2VyOiBSZWFjdC5Qcm9wVHlwZXMuc3RyaW5nLFxuXHRcdC8vIGlzTW9kYWxPcGVuZWQ6IFJlYWN0LlByb3BUeXBlcy5ib29sLFxuXHRcdC8vIHRvb2dsZU1vZGFsOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHQvLyB1cGRhdGVNb2RhbENvbnRlbnQ6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXG5cdFx0b25TZXROYXZTaWRlYmFyT3BlbjogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdFx0dG9vZ2xlSXNPcGVuZWQ6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdGdvVG9Ib21lcGFnZVNsaWRlMTogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdFx0Y2xvc2VNb2RhbDogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdH0sXG5cblx0cmVuZGVyOiBmdW5jdGlvbigpIHtcblx0XHRyZXR1cm4gKFxuXHRcdFx0PG5hdiAgY2xhc3NOYW1lPVwiaGVhZGVyXCI+XG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiYWpheC1sb2FkZXItLXdyYXBwZXJcIj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT17IFwiYWpheC1sb2FkZXJcIiArICh0aGlzLnByb3BzLmlzQXBwRmV0Y2hpbmcgPyBcIiB2aXNpYmxlXCIgOiBcIlwiKSB9PlxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJub3RpZmljYXRpb24tLXdyYXBwZXIxXCI+XG5cdFx0XHRcdFx0e1xuXHRcdFx0XHRcdFx0dGhpcy5wcm9wcy5ub3RpZmljYXRpb25UZXh0ICE9PSBcIlwiID9cblx0XHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJub3RpZmljYXRpb24tLXdyYXBwZXIyXCI+XG5cdFx0XHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJub3RpZmljYXRpb24tdGV4dFwiIGlkPVwibm90aWZpY2F0aW9uLXRleHRcIj5cblx0XHRcdFx0XHRcdFx0XHRcdHsgdGhpcy5wcm9wcy5ub3RpZmljYXRpb25UZXh0IH1cblx0XHRcdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0XHQ6XG5cdFx0XHRcdFx0XHRcdFwiXCJcblx0XHRcdFx0XHR9XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInRvcC1kZWNvcmF0aW9uLS10b3AtYm9yZGVyXCI+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInRvcC1kZWNvcmF0aW9uXCI+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInJvdyBtaWRkbGUteHMgZGVza3RvcC1oZWFkZXJcIj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImNvbC14cy0xMCBsaW5rcy0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0PExpbmsgdG89XCIvXCIgY2xhc3NOYW1lPVwibG9nb1wiIG9uQ2xpY2s9e3RoaXMucHJvcHMuZ29Ub0hvbWVwYWdlU2xpZGUxfT5cblx0XHRcdFx0XHRcdFx0PGltZyBzcmM9XCIvc3RhdGljL2ltZy9uYXZsb2dvLnBuZ1wiIGFsdD1cIk1BU0FTXCIgY2xhc3NOYW1lPVwibG9nb1wiIC8+XG5cdFx0XHRcdFx0XHQ8L0xpbms+XG5cdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImJveFwiIHN0eWxlPXt7ZGlzcGxheTogJ2ZsZXgnLCBmbGV4OiAyLCBmbGV4RGlyZWN0aW9uOiAncm93JywganVzdGlmeUNvbnRlbnQ6ICdmbGV4LWVuZCd9fT5cblx0XHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJoZWFkZXItbGlua1wiPjxMaW5rIG9uQ2xpY2s9eyB0aGlzLnByb3BzLmNsb3NlTW9kYWwgfSB0bz1cIi9kaXNjb3ZlclwiIGRpc2FibGVkPXsgZmFsc2UgfT5EaXNjb3ZlcjwvTGluaz48L2Rpdj5cblx0XHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJoZWFkZXItbGlua1wiPjxMaW5rIG9uQ2xpY2s9eyB0aGlzLnByb3BzLmNsb3NlTW9kYWwgfSB0bz1cIi9wb3B1bGFyXCIgZGlzYWJsZWQ9e2ZhbHNlfT5Qb3B1bGFyPC9MaW5rPjwvZGl2PlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImhlYWRlci1saW5rXCI+PExpbmsgb25DbGljaz17IHRoaXMucHJvcHMuY2xvc2VNb2RhbCB9IHRvPVwiL3VwbG9hZFwiIGRpc2FibGVkPXtmYWxzZX0+VXBsb2FkPC9MaW5rPjwvZGl2PlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImhlYWRlci1saW5rXCI+PExpbmsgb25DbGljaz17IHRoaXMucHJvcHMuY2xvc2VNb2RhbCB9IHRvPVwiL2xpa2VzXCIgZGlzYWJsZWQ9e3RoaXMucHJvcHMudXNlciA/IGZhbHNlIDogdHJ1ZX0+TGlrZXM8L0xpbms+PC9kaXY+XG5cdFx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiaGVhZGVyLWxpbmtcIiBzdHlsZT17eyBkaXNwbGF5OiAnbm9uZScsIG1pbldpZHRoOiAwLjEgfX0+XG5cdFx0XHRcdFx0XHRcdFx0PGltZyBzcmM9XCIvc3RhdGljL2ltZy9NQVNBU19zZWFyY2guc3ZnXCIgYWx0PVwic2VhcmNoXCIgY2xhc3NOYW1lPVwic2VhcmNoLWljb25cIi8+XG5cdFx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0XHQ8SGVhZGVyRHJvcGRvd24gLz5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwicm93IG1pZGRsZS14cyBwaG9uZS1oZWFkZXJcIj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImNvbC14cy0zXCI+XG5cdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImJveFwiPlxuXHRcdFx0XHRcdFx0XHR7IHRoaXMucHJvcHMucGFnZVR5cGUgPT09IDAgP1xuXHRcdFx0XHRcdFx0XHRcdDxpbWcgb25DbGljaz17dGhpcy5wcm9wcy5vblNldE5hdlNpZGViYXJPcGVufSBzcmM9XCIvc3RhdGljL2ltZy9NQVNBU19oYW1idXJnZXJfbWVudS5zdmdcIiBhdGw9XCJtZW51XCIgY2xhc3NOYW1lPVwibWVudS1pY29uXCIvPlxuXHRcdFx0XHRcdFx0XHRcdDpcblx0XHRcdFx0XHRcdFx0XHQ8aW1nIG9uQ2xpY2s9eyAoKSA9PiB7IHRoaXMucHJvcHMuYmFja0Fycm93RnVuYygpOyB0aGlzLnByb3BzLmNsb3NlTW9kYWwoKSB9IH0gc3JjPVwiL3N0YXRpYy9pbWcvTUFTQVNfYXJyb3dfbGVmdC5zdmdcIiBhdGw9XCJiYWNrXCIgY2xhc3NOYW1lPVwibWVudS1pY29uXCIvPlxuXHRcdFx0XHRcdFx0XHR9XG5cdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImNvbC14cy02XCI+XG5cdFx0XHRcdFx0XHR7IHRoaXMucHJvcHMuTUFTQVN1c2VyID09PSBcIlwiID9cblx0XHRcdFx0XHRcdFx0PGRpdj48L2Rpdj5cblx0XHRcdFx0XHRcdFx0OlxuXHRcdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImJveCB0aXRsZVwiPnsgdGhpcy5wcm9wcy5wYWdlVGl0bGUgfTwvZGl2PlxuXHRcdFx0XHRcdFx0fVxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiY29sLXhzLTNcIj5cblx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiYm94IHRyYXktaWNvbi0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0XHRcblx0XHRcdFx0XHRcdFx0XHQ8ZGl2IFxuXHRcdFx0XHRcdFx0XHRcdFx0Y2xhc3NOYW1lPXsgXCJ0b29nbGUtb3Blbi10cmF5LWljb24gXCIgKyAodGhpcy5wcm9wcy5pc1BsYXllckJhck9wZW5lZCA/IFwib3BlbmVkXCIgOiBcIlwiKSB9IFxuXHRcdFx0XHRcdFx0XHRcdFx0b25DbGljaz17IHRoaXMucHJvcHMuc29uZ1BsYXlpbmcgPyB0aGlzLnByb3BzLnRvb2dsZUlzT3BlbmVkIDogKCkgPT4ge30gfSBcblx0XHRcdFx0XHRcdFx0XHRcdHN0eWxlPXsgIXRoaXMucHJvcHMuc29uZ1BsYXlpbmcgPyB7IG9wYWNpdHk6IDAsIGN1cnNvcjogJ2RlZmF1bHQnIH0gOiB7fSB9ID5cblx0XHRcdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHQ8L25hdj5cblx0XHQpXG5cdH1cbn0pXG5cbm1vZHVsZS5leHBvcnRzID0gUmVhY3RSZWR1eC5jb25uZWN0KFxuXHRtYXBTdGF0ZVRvUHJvcHMsXG5cdG1hcERpc3BhdGNoVG9Qcm9wc1xuKShIZWFkZXIpXG4iXX0=",
     {
+      "../UI/Link.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "react-router": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "../UI/Link.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx",
-      "./HeaderDropdown.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx",
-      "./containers/Header.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/Header.jsx"
+      "./containers/Header.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/Header.jsx",
+      "./HeaderDropdown.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/Header.jsx",
-      "hash": "1f0379d53f5c7ef127775f0a8f9155bf",
+      "hash": "f81ead6b6ac35a342cddfaf96367d12c",
       "browserifyId": 397
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx": [
-    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\n\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require(\"./containers/HeaderDropdown.jsx\");\n\nvar mapStateToProps = _require.mapStateToProps;\nvar mapDispatchToProps = _require.mapDispatchToProps;\n\nvar _require2 = require(\"../UI/UI.jsx\");\n\nvar Button = _require2.Button;\nvar Link = _require2.Link;\n\nvar _require3 = require('react-router');\n\nvar browserHistory = _require3.browserHistory;\n\nvar SplashScreen = require(\"../App/SplashScreen.jsx\");\n\nvar MenuLink = function MenuLink(props) {\n\treturn React.createElement(\n\t\t\"div\",\n\t\t{ className: \"menu-link\", onClick: props.onClick },\n\t\tReact.createElement(\"img\", { src: props.src, atl: \"profile pic\" }),\n\t\tReact.createElement(\n\t\t\tLink,\n\t\t\t{ to: props.URL },\n\t\t\tprops.children\n\t\t)\n\t);\n};\n\nMenuLink.PropTypes = {\n\tonClick: React.PropTypes.func,\n\tsrc: React.PropTypes.string\n};\n\nvar HeaderDropdown = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"HeaderDropdown\",\n\n\tpropTypes: {\n\t\tMASASuser: React.PropTypes.string,\n\t\tuserData: React.PropTypes.object,\n\t\tisModalOpened: React.PropTypes.bool,\n\n\t\tdispatch: React.PropTypes.func,\n\t\tlogout: React.PropTypes.func,\n\t\ttoogleModal: React.PropTypes.func,\n\t\tupdateModalContent: React.PropTypes.func\n\t},\n\n\tcomponentWillReceiveProps: function componentWillReceiveProps() {},\n\n\tlogout: function logout() {\n\t\tthis.props.logout();\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\tif (this.props.MASASuser !== \"\") {\n\t\t\treturn React.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"dropdown--wrapper\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{\n\t\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t\treturn browserHistory.push(\"/profile\");\n\t\t\t\t\t\t},\n\t\t\t\t\t\tclassName: \"username--wrapper\" },\n\t\t\t\t\tReact.createElement(\"img\", { src: this.props.userData.avatar_url, alt: \"profile picture\", className: \"profile-picture\" }),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"span\",\n\t\t\t\t\t\t{ className: \"username\", id: \"username-header\" },\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tthis.props.userData.name ? this.props.userData.name : this.props.userData.username\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"dropdown-content\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ src: \"/static/img/MASAS_play_number.svg\", URL: \"/profile\" },\n\t\t\t\t\t\t\"My Profile\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ src: \"/static/img/MASAS_logo_world.svg\", URL: \"/legals\" },\n\t\t\t\t\t\t\"Legals\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ src: \"/static/img/MASAS_settings.svg\", URL: \"/\" },\n\t\t\t\t\t\t\"Account Settings\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ src: \"/static/img/MASAS_icon_log_out.svg\", URL: \"/\", onClick: this.logout },\n\t\t\t\t\t\t\"Sign out\"\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t} else return React.createElement(\n\t\t\t\"div\",\n\t\t\t{ className: \"dropdown--wrapper\" },\n\t\t\tReact.createElement(\n\t\t\t\tButton,\n\t\t\t\t{\n\t\t\t\t\tisBigButton: false,\n\t\t\t\t\tisSecondaryAction: true,\n\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t!_this.props.isModalOpened ? _this.props.toogleModal() : 0;_this.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);\n\t\t\t\t\t} },\n\t\t\t\t\"Log-in\"\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);\n//# sourceMappingURL=data:application/json;base64,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QixJQUFwQjtBQUNBLGNBQVUsbUJBQU07QUFBRSxPQUFDLE1BQUssS0FBTCxDQUFXLGFBQVgsR0FBMkIsTUFBSyxLQUFMLENBQVcsV0FBWCxFQUE1QixHQUF1RCxDQUF2RCxDQUFGLEtBQTRELENBQUssS0FBTCxDQUFXLGtCQUFYLENBQThCLG9CQUFDLFlBQUQsSUFBYyxXQUFZLENBQVosRUFBZCxDQUE5QixFQUFnRSxDQUFoRSxFQUE1RDtNQUFOLEVBSFg7O0lBREQ7R0FERCxDQXJCRDtFQURPO0NBbkJZLEVBQWpCOztBQW9ESixPQUFPLE9BQVAsR0FBaUIsV0FBVyxPQUFYLENBQ2hCLGVBRGdCLEVBRWhCLGtCQUZnQixFQUdmLGNBSGUsQ0FBakIiLCJmaWxlIjoiSGVhZGVyRHJvcGRvd24uanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG5cbnZhciBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG52YXIgeyBtYXBTdGF0ZVRvUHJvcHMsIG1hcERpc3BhdGNoVG9Qcm9wcyB9ID0gcmVxdWlyZShcIi4vY29udGFpbmVycy9IZWFkZXJEcm9wZG93bi5qc3hcIilcblxudmFyIHsgQnV0dG9uLCBMaW5rIH0gPSByZXF1aXJlKFwiLi4vVUkvVUkuanN4XCIpXG52YXIgeyBicm93c2VySGlzdG9yeSB9ID0gcmVxdWlyZSgncmVhY3Qtcm91dGVyJylcbnZhciBTcGxhc2hTY3JlZW4gPSByZXF1aXJlKFwiLi4vQXBwL1NwbGFzaFNjcmVlbi5qc3hcIilcblxudmFyIE1lbnVMaW5rID0gKHByb3BzKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0PGRpdiBjbGFzc05hbWU9XCJtZW51LWxpbmtcIiBvbkNsaWNrPXtwcm9wcy5vbkNsaWNrfT5cblx0XHRcdDxpbWcgc3JjPXtwcm9wcy5zcmN9IGF0bD1cInByb2ZpbGUgcGljXCIvPlxuXHRcdFx0PExpbmsgdG89e3Byb3BzLlVSTH0+e3Byb3BzLmNoaWxkcmVufTwvTGluaz5cblx0XHQ8L2Rpdj5cblx0KVxufVxuXG5NZW51TGluay5Qcm9wVHlwZXMgPSB7XG5cdG9uQ2xpY2s6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRzcmM6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG59XG5cbnZhciBIZWFkZXJEcm9wZG93biA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblx0cHJvcFR5cGVzOiB7XG5cdFx0TUFTQVN1c2VyOiBSZWFjdC5Qcm9wVHlwZXMuc3RyaW5nLFxuXHRcdHVzZXJEYXRhOiBSZWFjdC5Qcm9wVHlwZXMub2JqZWN0LFxuXHRcdGlzTW9kYWxPcGVuZWQ6IFJlYWN0LlByb3BUeXBlcy5ib29sLFxuXG5cdFx0ZGlzcGF0Y2g6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdGxvZ291dDogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdFx0dG9vZ2xlTW9kYWw6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdHVwZGF0ZU1vZGFsQ29udGVudDogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdH0sXG5cblx0Y29tcG9uZW50V2lsbFJlY2VpdmVQcm9wczogZnVuY3Rpb24oKSB7XG5cdH0sXG5cblx0bG9nb3V0OiBmdW5jdGlvbigpIHtcblx0XHR0aGlzLnByb3BzLmxvZ291dCgpXG5cdH0sXG5cblx0cmVuZGVyOiBmdW5jdGlvbigpIHtcblx0XHRpZiAodGhpcy5wcm9wcy5NQVNBU3VzZXIgIT09IFwiXCIpIHtcblx0XHRcdHJldHVybiAoXG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiZHJvcGRvd24tLXdyYXBwZXJcIj5cblx0XHRcdFx0XHQ8ZGl2IFxuXHRcdFx0XHRcdFx0b25DbGljaz17ICgpID0+IGJyb3dzZXJIaXN0b3J5LnB1c2goXCIvcHJvZmlsZVwiKSB9XG5cdFx0XHRcdFx0XHRjbGFzc05hbWU9XCJ1c2VybmFtZS0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0PGltZyBzcmM9eyB0aGlzLnByb3BzLnVzZXJEYXRhLmF2YXRhcl91cmwgfSBhbHQ9XCJwcm9maWxlIHBpY3R1cmVcIiBjbGFzc05hbWU9XCJwcm9maWxlLXBpY3R1cmVcIi8+XG5cdFx0XHRcdFx0XHQ8c3BhbiBjbGFzc05hbWU9XCJ1c2VybmFtZVwiIGlkPVwidXNlcm5hbWUtaGVhZGVyXCI+IHt0aGlzLnByb3BzLnVzZXJEYXRhLm5hbWUgPyB0aGlzLnByb3BzLnVzZXJEYXRhLm5hbWUgOiB0aGlzLnByb3BzLnVzZXJEYXRhLnVzZXJuYW1lfTwvc3Bhbj5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImRyb3Bkb3duLWNvbnRlbnRcIj5cblx0XHRcdFx0XHRcdDxNZW51TGluayBzcmM9Jy9zdGF0aWMvaW1nL01BU0FTX3BsYXlfbnVtYmVyLnN2ZycgVVJMPVwiL3Byb2ZpbGVcIj5NeSBQcm9maWxlPC9NZW51TGluaz5cblx0XHRcdFx0XHRcdDxociAvPlxuXHRcdFx0XHRcdFx0PE1lbnVMaW5rIHNyYz0nL3N0YXRpYy9pbWcvTUFTQVNfbG9nb193b3JsZC5zdmcnIFVSTD1cIi9sZWdhbHNcIj5MZWdhbHM8L01lbnVMaW5rPlxuXHRcdFx0XHRcdFx0PGhyIC8+XG5cdFx0XHRcdFx0XHQ8TWVudUxpbmsgc3JjPScvc3RhdGljL2ltZy9NQVNBU19zZXR0aW5ncy5zdmcnIFVSTD1cIi9cIj5BY2NvdW50IFNldHRpbmdzPC9NZW51TGluaz5cblx0XHRcdFx0XHRcdDxociAvPlxuXHRcdFx0XHRcdFx0PE1lbnVMaW5rIHNyYz0nL3N0YXRpYy9pbWcvTUFTQVNfaWNvbl9sb2dfb3V0LnN2ZycgVVJMPVwiL1wiIG9uQ2xpY2s9e3RoaXMubG9nb3V0fT5TaWduIG91dDwvTWVudUxpbms+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0KVxuXHRcdH0gZWxzZVxuXHRcdFx0cmV0dXJuIChcblx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJkcm9wZG93bi0td3JhcHBlclwiID5cblx0XHRcdFx0XHQ8QnV0dG9uXG5cdFx0XHRcdFx0XHRpc0JpZ0J1dHRvbj17IGZhbHNlIH1cblx0XHRcdFx0XHRcdGlzU2Vjb25kYXJ5QWN0aW9uPXsgdHJ1ZSB9XG5cdFx0XHRcdFx0XHRvbkNsaWNrPXsgKCkgPT4geyAhdGhpcy5wcm9wcy5pc01vZGFsT3BlbmVkID8gdGhpcy5wcm9wcy50b29nbGVNb2RhbCgpIDogMDsgdGhpcy5wcm9wcy51cGRhdGVNb2RhbENvbnRlbnQoPFNwbGFzaFNjcmVlbiBzdGFydFBhZ2U9eyAxIH0gLz4sIDMpIH0gfT5Mb2ctaW48L0J1dHRvbj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdClcblx0fVxufSlcblxubW9kdWxlLmV4cG9ydHMgPSBSZWFjdFJlZHV4LmNvbm5lY3QoXG5cdG1hcFN0YXRlVG9Qcm9wcyxcblx0bWFwRGlzcGF0Y2hUb1Byb3BzXG4pKEhlYWRlckRyb3Bkb3duKVxuIl19",
+    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\n\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require(\"./containers/HeaderDropdown.jsx\");\n\nvar mapStateToProps = _require.mapStateToProps;\nvar mapDispatchToProps = _require.mapDispatchToProps;\n\nvar _require2 = require(\"../UI/UI.jsx\");\n\nvar Button = _require2.Button;\nvar Link = _require2.Link;\n\nvar _require3 = require('react-router');\n\nvar browserHistory = _require3.browserHistory;\n\nvar SplashScreen = require(\"../App/SplashScreen.jsx\");\n\nvar MenuLink = function MenuLink(props) {\n\treturn React.createElement(\n\t\t\"div\",\n\t\t{ className: \"menu-link\" },\n\t\tReact.createElement(\"img\", { src: props.src, atl: \"profile pic\" }),\n\t\tReact.createElement(\n\t\t\tLink,\n\t\t\t{ to: props.URL, onClick: props.onClick },\n\t\t\tprops.children\n\t\t)\n\t);\n};\n\nMenuLink.PropTypes = {\n\tonClick: React.PropTypes.func,\n\tsrc: React.PropTypes.string,\n\tURL: React.PropTypes.string,\n\tchildren: React.PropTypes.node\n};\n\nvar HeaderDropdown = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"HeaderDropdown\",\n\n\tpropTypes: {\n\t\tMASASuser: React.PropTypes.string,\n\t\tuserData: React.PropTypes.object,\n\t\tisModalOpened: React.PropTypes.bool,\n\n\t\tdispatch: React.PropTypes.func,\n\t\tlogout: React.PropTypes.func,\n\t\ttoogleModal: React.PropTypes.func,\n\t\tupdateModalContent: React.PropTypes.func,\n\t\tcloseModal: React.PropTypes.func\n\t},\n\n\tcomponentWillReceiveProps: function componentWillReceiveProps() {},\n\n\tlogout: function logout() {\n\t\tthis.props.logout();\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\tif (this.props.MASASuser !== \"\") {\n\t\t\treturn React.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"dropdown--wrapper\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{\n\t\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t\t_this.props.closeModal();browserHistory.push(\"/profile\");\n\t\t\t\t\t\t},\n\t\t\t\t\t\tclassName: \"username--wrapper\" },\n\t\t\t\t\tReact.createElement(\"img\", { src: this.props.userData.avatar_url, alt: \"profile picture\", className: \"profile-picture\" }),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"span\",\n\t\t\t\t\t\t{ className: \"username\", id: \"username-header\" },\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tthis.props.userData.name ? this.props.userData.name : this.props.userData.username\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"dropdown-content\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ onClick: this.props.closeModal, src: \"/static/img/MASAS_play_number.svg\", URL: \"/profile\" },\n\t\t\t\t\t\t\"My Profile\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ onClick: this.props.closeModal, src: \"/static/img/MASAS_logo_world.svg\", URL: \"/legals\" },\n\t\t\t\t\t\t\"Legals\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ onClick: this.props.closeModal, src: \"/static/img/MASAS_settings.svg\", URL: \"/\" },\n\t\t\t\t\t\t\"Account Settings\"\n\t\t\t\t\t),\n\t\t\t\t\tReact.createElement(\"hr\", null),\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\tMenuLink,\n\t\t\t\t\t\t{ onClick: function onClick() {\n\t\t\t\t\t\t\t\t_this.props.closeModal();_this.logout();\n\t\t\t\t\t\t\t}, src: \"/static/img/MASAS_icon_log_out.svg\", URL: \"/\" },\n\t\t\t\t\t\t\"Sign out\"\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t} else return React.createElement(\n\t\t\t\"div\",\n\t\t\t{ className: \"dropdown--wrapper\" },\n\t\t\tReact.createElement(\n\t\t\t\tButton,\n\t\t\t\t{\n\t\t\t\t\tisBigButton: false,\n\t\t\t\t\tisSecondaryAction: true,\n\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t!_this.props.isModalOpened ? _this.props.toogleModal() : 0;_this.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);\n\t\t\t\t\t} },\n\t\t\t\t\"Log-in\"\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(HeaderDropdown);\n//# sourceMappingURL=data:application/json;base64,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QUF5QixLQUFJLGdDQUFKLEVBQXFDLEtBQUksR0FBSixFQUFsRjs7TUFMRDtLQU1DLCtCQU5EO0tBT0M7QUFBQyxjQUFEO1FBQVUsU0FBVSxtQkFBTTtBQUFFLGNBQUssS0FBTCxDQUFXLFVBQVgsR0FBRixLQUEyQixDQUFLLE1BQUwsR0FBM0I7UUFBTixFQUFvRCxLQUFJLG9DQUFKLEVBQXlDLEtBQUksR0FBSixFQUFqSDs7TUFQRDtLQVBEO0lBREQsQ0FEZ0M7R0FBakMsTUFxQkMsT0FDQzs7S0FBSyxXQUFVLG1CQUFWLEVBQUw7R0FDQztBQUFDLFVBQUQ7O0FBQ0Msa0JBQWMsS0FBZDtBQUNBLHdCQUFvQixJQUFwQjtBQUNBLGNBQVUsbUJBQU07QUFBRSxPQUFDLE1BQUssS0FBTCxDQUFXLGFBQVgsR0FBMkIsTUFBSyxLQUFMLENBQVcsV0FBWCxFQUE1QixHQUF1RCxDQUF2RCxDQUFGLEtBQTRELENBQUssS0FBTCxDQUFXLGtCQUFYLENBQThCLG9CQUFDLFlBQUQsSUFBYyxXQUFZLENBQVosRUFBZCxDQUE5QixFQUFnRSxDQUFoRSxFQUE1RDtNQUFOLEVBSFg7O0lBREQ7R0FERCxDQXJCRDtFQURPO0NBcEJZLEVBQWpCOztBQXFESixPQUFPLE9BQVAsR0FBaUIsV0FBVyxPQUFYLENBQ2hCLGVBRGdCLEVBRWhCLGtCQUZnQixFQUdmLGNBSGUsQ0FBakIiLCJmaWxlIjoiSGVhZGVyRHJvcGRvd24uanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG5cbnZhciBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG52YXIgeyBtYXBTdGF0ZVRvUHJvcHMsIG1hcERpc3BhdGNoVG9Qcm9wcyB9ID0gcmVxdWlyZShcIi4vY29udGFpbmVycy9IZWFkZXJEcm9wZG93bi5qc3hcIilcblxudmFyIHsgQnV0dG9uLCBMaW5rIH0gPSByZXF1aXJlKFwiLi4vVUkvVUkuanN4XCIpXG52YXIgeyBicm93c2VySGlzdG9yeSB9ID0gcmVxdWlyZSgncmVhY3Qtcm91dGVyJylcbnZhciBTcGxhc2hTY3JlZW4gPSByZXF1aXJlKFwiLi4vQXBwL1NwbGFzaFNjcmVlbi5qc3hcIilcblxudmFyIE1lbnVMaW5rID0gKHByb3BzKSA9PiB7XG5cdHJldHVybiAoXG5cdFx0PGRpdiBjbGFzc05hbWU9XCJtZW51LWxpbmtcIj5cblx0XHRcdDxpbWcgc3JjPXtwcm9wcy5zcmN9IGF0bD1cInByb2ZpbGUgcGljXCIvPlxuXHRcdFx0PExpbmsgdG89e3Byb3BzLlVSTH0gb25DbGljaz17cHJvcHMub25DbGlja30+e3Byb3BzLmNoaWxkcmVufTwvTGluaz5cblx0XHQ8L2Rpdj5cblx0KVxufVxuXG5NZW51TGluay5Qcm9wVHlwZXMgPSB7XG5cdG9uQ2xpY2s6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRzcmM6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFVSTDogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0Y2hpbGRyZW46IFJlYWN0LlByb3BUeXBlcy5ub2RlLFxufVxuXG52YXIgSGVhZGVyRHJvcGRvd24gPSBSZWFjdC5jcmVhdGVDbGFzcyh7XG5cdHByb3BUeXBlczoge1xuXHRcdE1BU0FTdXNlcjogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0XHR1c2VyRGF0YTogUmVhY3QuUHJvcFR5cGVzLm9iamVjdCxcblx0XHRpc01vZGFsT3BlbmVkOiBSZWFjdC5Qcm9wVHlwZXMuYm9vbCxcblxuXHRcdGRpc3BhdGNoOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHRsb2dvdXQ6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdHRvb2dsZU1vZGFsOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHR1cGRhdGVNb2RhbENvbnRlbnQ6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHRcdGNsb3NlTW9kYWw6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHR9LFxuXG5cdGNvbXBvbmVudFdpbGxSZWNlaXZlUHJvcHM6IGZ1bmN0aW9uKCkge1xuXHR9LFxuXG5cdGxvZ291dDogZnVuY3Rpb24oKSB7XG5cdFx0dGhpcy5wcm9wcy5sb2dvdXQoKVxuXHR9LFxuXG5cdHJlbmRlcjogZnVuY3Rpb24oKSB7XG5cdFx0aWYgKHRoaXMucHJvcHMuTUFTQVN1c2VyICE9PSBcIlwiKSB7XG5cdFx0XHRyZXR1cm4gKFxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImRyb3Bkb3duLS13cmFwcGVyXCI+XG5cdFx0XHRcdFx0PGRpdiBcblx0XHRcdFx0XHRcdG9uQ2xpY2s9eyAoKSA9PiB7IHRoaXMucHJvcHMuY2xvc2VNb2RhbCgpOyBicm93c2VySGlzdG9yeS5wdXNoKFwiL3Byb2ZpbGVcIikgfSB9XG5cdFx0XHRcdFx0XHRjbGFzc05hbWU9XCJ1c2VybmFtZS0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0PGltZyBzcmM9eyB0aGlzLnByb3BzLnVzZXJEYXRhLmF2YXRhcl91cmwgfSBhbHQ9XCJwcm9maWxlIHBpY3R1cmVcIiBjbGFzc05hbWU9XCJwcm9maWxlLXBpY3R1cmVcIi8+XG5cdFx0XHRcdFx0XHQ8c3BhbiBjbGFzc05hbWU9XCJ1c2VybmFtZVwiIGlkPVwidXNlcm5hbWUtaGVhZGVyXCI+IHt0aGlzLnByb3BzLnVzZXJEYXRhLm5hbWUgPyB0aGlzLnByb3BzLnVzZXJEYXRhLm5hbWUgOiB0aGlzLnByb3BzLnVzZXJEYXRhLnVzZXJuYW1lfTwvc3Bhbj5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cImRyb3Bkb3duLWNvbnRlbnRcIj5cblx0XHRcdFx0XHRcdDxNZW51TGluayBvbkNsaWNrPXsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsIH0gc3JjPScvc3RhdGljL2ltZy9NQVNBU19wbGF5X251bWJlci5zdmcnIFVSTD1cIi9wcm9maWxlXCI+TXkgUHJvZmlsZTwvTWVudUxpbms+XG5cdFx0XHRcdFx0XHQ8aHIgLz5cblx0XHRcdFx0XHRcdDxNZW51TGluayBvbkNsaWNrPXsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsIH0gIHNyYz0nL3N0YXRpYy9pbWcvTUFTQVNfbG9nb193b3JsZC5zdmcnIFVSTD1cIi9sZWdhbHNcIj5MZWdhbHM8L01lbnVMaW5rPlxuXHRcdFx0XHRcdFx0PGhyIC8+XG5cdFx0XHRcdFx0XHQ8TWVudUxpbmsgb25DbGljaz17IHRoaXMucHJvcHMuY2xvc2VNb2RhbCB9ICBzcmM9Jy9zdGF0aWMvaW1nL01BU0FTX3NldHRpbmdzLnN2ZycgVVJMPVwiL1wiPkFjY291bnQgU2V0dGluZ3M8L01lbnVMaW5rPlxuXHRcdFx0XHRcdFx0PGhyIC8+XG5cdFx0XHRcdFx0XHQ8TWVudUxpbmsgb25DbGljaz17ICgpID0+IHsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsKCk7IHRoaXMubG9nb3V0KCkgfSB9ICBzcmM9Jy9zdGF0aWMvaW1nL01BU0FTX2ljb25fbG9nX291dC5zdmcnIFVSTD1cIi9cIj5TaWduIG91dDwvTWVudUxpbms+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0KVxuXHRcdH0gZWxzZVxuXHRcdFx0cmV0dXJuIChcblx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJkcm9wZG93bi0td3JhcHBlclwiID5cblx0XHRcdFx0XHQ8QnV0dG9uXG5cdFx0XHRcdFx0XHRpc0JpZ0J1dHRvbj17IGZhbHNlIH1cblx0XHRcdFx0XHRcdGlzU2Vjb25kYXJ5QWN0aW9uPXsgdHJ1ZSB9XG5cdFx0XHRcdFx0XHRvbkNsaWNrPXsgKCkgPT4geyAhdGhpcy5wcm9wcy5pc01vZGFsT3BlbmVkID8gdGhpcy5wcm9wcy50b29nbGVNb2RhbCgpIDogMDsgdGhpcy5wcm9wcy51cGRhdGVNb2RhbENvbnRlbnQoPFNwbGFzaFNjcmVlbiBzdGFydFBhZ2U9eyAxIH0gLz4sIDMpIH0gfT5Mb2ctaW48L0J1dHRvbj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdClcblx0fVxufSlcblxubW9kdWxlLmV4cG9ydHMgPSBSZWFjdFJlZHV4LmNvbm5lY3QoXG5cdG1hcFN0YXRlVG9Qcm9wcyxcblx0bWFwRGlzcGF0Y2hUb1Byb3BzXG4pKEhlYWRlckRyb3Bkb3duKVxuIl19",
     {
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
       "../App/SplashScreen.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/App/SplashScreen.jsx",
+      "./containers/HeaderDropdown.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/HeaderDropdown.jsx",
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "react-router": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/index.js",
-      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "./containers/HeaderDropdown.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/HeaderDropdown.jsx"
+      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/HeaderDropdown.jsx",
-      "hash": "750f522d581f884fb562e416e86ea38c",
+      "hash": "df8864aea6eae59a06e2aba8ce17cdb8",
       "browserifyId": 398
-    }
-  ],
-  "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/ajaxCalls.jsx": [
-    "\"use strict\";\n\nvar ajaxCalls = {};\n\nvar $ = require('jquery');\n\najaxCalls.getUsername = function (dispatch, MASASuser) {\n\t// console.log(MASASuser)\n\tvar header = \"Bearer \" + MASASuser;\n\t$.ajax({\n\t\ttype: \"GET\",\n\t\turl: 'api/check-user/',\n\t\theaders: {\n\t\t\t\"Authorization\": header\n\t\t},\n\t\tsuccess: function success(data) {\n\t\t\tconsole.log(data);\n\t\t\tvar username = data.user;\n\t\t\tif (username.length > 13) username = username.substr(0, 13) + \"...\";\n\n\t\t\t// document.getElementById('username-header').innerHTML = username\n\t\t\t// if(data.user !== \"AnonymousUser\")\n\t\t\tdispatch({ type: 'SET_USERNAME', username: username });\n\n\t\t\treturn data;\n\t\t},\n\t\terror: function error(err) {\n\t\t\tconsole.log(err);\n\t\t}\n\t});\n};\n\nmodule.exports = ajaxCalls;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFqYXhDYWxscy5qc3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFJLFlBQVksRUFBWjs7QUFFSixJQUFNLElBQUksUUFBUSxRQUFSLENBQUo7O0FBRU4sVUFBVSxXQUFWLEdBQXdCLFVBQUMsUUFBRCxFQUFXLFNBQVgsRUFBeUI7O0FBRWhELEtBQUksU0FBUyxZQUFZLFNBQVosQ0FGbUM7QUFHaEQsR0FBRSxJQUFGLENBQU87QUFDTixRQUFNLEtBQU47QUFDQSxPQUFLLGlCQUFMO0FBQ0EsV0FBUztBQUNSLG9CQUFpQixNQUFqQjtHQUREO0FBR0EsV0FBUyxpQkFBQyxJQUFELEVBQVU7QUFDbEIsV0FBUSxHQUFSLENBQVksSUFBWixFQURrQjtBQUVsQixPQUFJLFdBQVcsS0FBSyxJQUFMLENBRkc7QUFHbEIsT0FBSSxTQUFTLE1BQVQsR0FBa0IsRUFBbEIsRUFDSCxXQUFXLFNBQVMsTUFBVCxDQUFnQixDQUFoQixFQUFrQixFQUFsQixJQUF3QixLQUF4QixDQURaOzs7O0FBSGtCLFdBUWxCLENBQVMsRUFBQyxNQUFLLGNBQUwsRUFBcUIsVUFBVSxRQUFWLEVBQS9CLEVBUmtCOztBQVVsQixVQUFPLElBQVAsQ0FWa0I7R0FBVjtBQVlULFNBQU8sZUFBQyxHQUFELEVBQVM7QUFDZixXQUFRLEdBQVIsQ0FBWSxHQUFaLEVBRGU7R0FBVDtFQWxCUixFQUhnRDtDQUF6Qjs7QUEyQnhCLE9BQU8sT0FBUCxHQUFpQixTQUFqQiIsImZpbGUiOiJhamF4Q2FsbHMuanN4Iiwic291cmNlc0NvbnRlbnQiOlsibGV0IGFqYXhDYWxscyA9IHt9XG5cbmNvbnN0ICQgPSByZXF1aXJlKCdqcXVlcnknKVxuXG5hamF4Q2FsbHMuZ2V0VXNlcm5hbWUgPSAoZGlzcGF0Y2gsIE1BU0FTdXNlcikgPT4ge1xuXHQvLyBjb25zb2xlLmxvZyhNQVNBU3VzZXIpXG5cdHZhciBoZWFkZXIgPSBcIkJlYXJlciBcIiArIE1BU0FTdXNlclxuXHQkLmFqYXgoe1xuXHRcdHR5cGU6IFwiR0VUXCIsXG5cdFx0dXJsOiAnYXBpL2NoZWNrLXVzZXIvJyxcdFxuXHRcdGhlYWRlcnM6IHtcblx0XHRcdFwiQXV0aG9yaXphdGlvblwiOiBoZWFkZXIsXG5cdFx0fSxcblx0XHRzdWNjZXNzOiAoZGF0YSkgPT4ge1xuXHRcdFx0Y29uc29sZS5sb2coZGF0YSlcblx0XHRcdHZhciB1c2VybmFtZSA9IGRhdGEudXNlclxuXHRcdFx0aWYgKHVzZXJuYW1lLmxlbmd0aCA+IDEzKVxuXHRcdFx0XHR1c2VybmFtZSA9IHVzZXJuYW1lLnN1YnN0cigwLDEzKSArIFwiLi4uXCJcblxuXHRcdFx0Ly8gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3VzZXJuYW1lLWhlYWRlcicpLmlubmVySFRNTCA9IHVzZXJuYW1lXG5cdFx0XHQvLyBpZihkYXRhLnVzZXIgIT09IFwiQW5vbnltb3VzVXNlclwiKVxuXHRcdFx0ZGlzcGF0Y2goe3R5cGU6J1NFVF9VU0VSTkFNRScsIHVzZXJuYW1lOiB1c2VybmFtZX0pXG5cdFx0XHRcblx0XHRcdHJldHVybiBkYXRhXG5cdFx0fSxcblx0XHRlcnJvcjogKGVycikgPT4ge1xuXHRcdFx0Y29uc29sZS5sb2coZXJyKVxuXHRcdH0sXG5cdH0pXG59XG5cbm1vZHVsZS5leHBvcnRzID0gYWpheENhbGxzIl19",
-    {
-      "jquery": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/jquery/dist/jquery.js"
-    },
-    {
-      "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/ajaxCalls.jsx",
-      "hash": "2965a72add584512e840c5552ce2a0f4",
-      "browserifyId": 399
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/Header.jsx": [
@@ -5404,21 +5393,19 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/Header.jsx",
       "hash": "152ef71c072043d2121aad9b9566d2a4",
-      "browserifyId": 400
+      "browserifyId": 399
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/HeaderDropdown.jsx": [
-    "'use strict';\n\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require('react-router');\n\nvar browserHistory = _require.browserHistory;\n\nvar _require2 = require('../ajaxCalls.jsx');\n\nvar getUsername = _require2.getUsername;\n\nvar _require3 = require(\"../../../MASAS_functions.jsx\");\n\nvar logout = _require3.logout;\n\nvar HeaderDropdown = {};\n\n// Which part of the Redux global state does our component want to receive as props?\nHeaderDropdown.mapStateToProps = function (state) {\n\treturn {\n\t\tMASASuser: state.appReducer.MASASuser,\n\t\t// userLoggedIn: state.appReducer.userLoggedIn,\n\t\t// username: state.appReducer.userData.user\n\t\tuserData: state.appReducer.userData,\n\t\tisModalOpened: state.appReducer.isModalOpened\n\t};\n};\n\n// Which action creators does it want to receive by props?\nHeaderDropdown.mapDispatchToProps = function (dispatch) {\n\n\treturn {\n\t\tdispatch: dispatch,\n\t\tlogout: logout.bind(null, dispatch),\n\t\tupdateModalContent: function updateModalContent(modalContent, modalType) {\n\t\t\treturn dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType });\n\t\t},\n\t\ttoogleModal: function toogleModal() {\n\t\t\treturn dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });\n\t\t}\n\t};\n};\n\nmodule.exports = HeaderDropdown;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkhlYWRlckRyb3Bkb3duLmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLElBQUksYUFBYSxRQUFRLGFBQVIsQ0FBYjs7ZUFDcUIsUUFBUSxjQUFSOztJQUFuQjs7Z0JBRWtCLFFBQVEsa0JBQVI7O0lBQWhCOztnQkFFUyxRQUFRLDhCQUFSOztJQUFYOztBQUVOLElBQUksaUJBQWlCLEVBQWpCOzs7QUFHSixlQUFlLGVBQWYsR0FBaUMsVUFBUyxLQUFULEVBQWdCO0FBQ2hELFFBQU87QUFDTixhQUFXLE1BQU0sVUFBTixDQUFpQixTQUFqQjs7O0FBR1gsWUFBVSxNQUFNLFVBQU4sQ0FBaUIsUUFBakI7QUFDVixpQkFBZSxNQUFNLFVBQU4sQ0FBaUIsYUFBakI7RUFMaEIsQ0FEZ0Q7Q0FBaEI7OztBQVlqQyxlQUFlLGtCQUFmLEdBQW9DLFVBQVMsUUFBVCxFQUFtQjs7QUFFdEQsUUFBTztBQUNOLG9CQURNO0FBRU4sVUFBUSxPQUFPLElBQVAsQ0FBWSxJQUFaLEVBQWtCLFFBQWxCLENBQVI7QUFDQSxzQkFBb0IsNEJBQUMsWUFBRCxFQUFlLFNBQWY7VUFBNkIsU0FBUyxFQUFFLE1BQU0sc0JBQU4sRUFBOEIsMEJBQWhDLEVBQThDLG9CQUE5QyxFQUFUO0dBQTdCO0FBQ3BCLGVBQWE7VUFBTSxTQUFTLEVBQUUsTUFBTSx3QkFBTixFQUFYO0dBQU47RUFKZCxDQUZzRDtDQUFuQjs7QUFVcEMsT0FBTyxPQUFQLEdBQWlCLGNBQWpCIiwiZmlsZSI6IkhlYWRlckRyb3Bkb3duLmpzeCIsInNvdXJjZXNDb250ZW50IjpbImxldCBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG5sZXQgeyBicm93c2VySGlzdG9yeSB9ID0gcmVxdWlyZSgncmVhY3Qtcm91dGVyJylcblxuY29uc3QgeyBnZXRVc2VybmFtZSB9ID0gcmVxdWlyZSgnLi4vYWpheENhbGxzLmpzeCcpXG5cbnZhciB7IGxvZ291dCB9ID0gcmVxdWlyZShcIi4uLy4uLy4uL01BU0FTX2Z1bmN0aW9ucy5qc3hcIilcblxudmFyIEhlYWRlckRyb3Bkb3duID0ge31cblxuLy8gV2hpY2ggcGFydCBvZiB0aGUgUmVkdXggZ2xvYmFsIHN0YXRlIGRvZXMgb3VyIGNvbXBvbmVudCB3YW50IHRvIHJlY2VpdmUgYXMgcHJvcHM/XG5IZWFkZXJEcm9wZG93bi5tYXBTdGF0ZVRvUHJvcHMgPSBmdW5jdGlvbihzdGF0ZSkge1xuXHRyZXR1cm4ge1xuXHRcdE1BU0FTdXNlcjogc3RhdGUuYXBwUmVkdWNlci5NQVNBU3VzZXIsXG5cdFx0Ly8gdXNlckxvZ2dlZEluOiBzdGF0ZS5hcHBSZWR1Y2VyLnVzZXJMb2dnZWRJbixcblx0XHQvLyB1c2VybmFtZTogc3RhdGUuYXBwUmVkdWNlci51c2VyRGF0YS51c2VyXG5cdFx0dXNlckRhdGE6IHN0YXRlLmFwcFJlZHVjZXIudXNlckRhdGEsXG5cdFx0aXNNb2RhbE9wZW5lZDogc3RhdGUuYXBwUmVkdWNlci5pc01vZGFsT3BlbmVkLFxuXHR9XG59XG5cblxuLy8gV2hpY2ggYWN0aW9uIGNyZWF0b3JzIGRvZXMgaXQgd2FudCB0byByZWNlaXZlIGJ5IHByb3BzP1xuSGVhZGVyRHJvcGRvd24ubWFwRGlzcGF0Y2hUb1Byb3BzID0gZnVuY3Rpb24oZGlzcGF0Y2gpIHtcblxuXHRyZXR1cm4ge1xuXHRcdGRpc3BhdGNoLFxuXHRcdGxvZ291dDogbG9nb3V0LmJpbmQobnVsbCwgZGlzcGF0Y2gpLFxuXHRcdHVwZGF0ZU1vZGFsQ29udGVudDogKG1vZGFsQ29udGVudCwgbW9kYWxUeXBlKSA9PiBkaXNwYXRjaCh7IHR5cGU6ICdDSEFOR0VfTU9EQUxfQ09OVEVOVCcsIG1vZGFsQ29udGVudCwgbW9kYWxUeXBlIH0pLFxuXHRcdHRvb2dsZU1vZGFsOiAoKSA9PiBkaXNwYXRjaCh7IHR5cGU6ICdUT09HTEVfSVNfTU9EQUxfT1BFTkVEJyB9KSxcblx0fVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IEhlYWRlckRyb3Bkb3duXG4iXX0=",
+    "\"use strict\";\n\nvar _App = require(\"../../../reducers/actions/App.js\");\n\n// let ReactRedux = require(\"react-redux\")\n// let { browserHistory } = require('react-router')\n\n// const { getUsername } = require('../ajaxCalls.jsx')\n\nvar _require = require(\"../../../MASAS_functions.jsx\");\n\nvar logout = _require.logout;\n\nvar HeaderDropdown = {};\n\n// Which part of the Redux global state does our component want to receive as props?\nHeaderDropdown.mapStateToProps = function (state) {\n\treturn {\n\t\tMASASuser: state.appReducer.MASASuser,\n\t\t// userLoggedIn: state.appReducer.userLoggedIn,\n\t\t// username: state.appReducer.userData.user\n\t\tuserData: state.appReducer.userData,\n\t\tisModalOpened: state.appReducer.isModalOpened\n\t};\n};\n\n// Which action creators does it want to receive by props?\nHeaderDropdown.mapDispatchToProps = function (dispatch) {\n\n\treturn {\n\t\tdispatch: dispatch,\n\t\tlogout: logout.bind(null, dispatch),\n\t\tupdateModalContent: function updateModalContent(modalContent, modalType) {\n\t\t\treturn dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType });\n\t\t},\n\t\ttoogleModal: function toogleModal() {\n\t\t\treturn dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });\n\t\t},\n\t\tcloseModal: function closeModal() {\n\t\t\treturn dispatch((0, _App.closeAndEmptyMainModal)());\n\t\t}\n\t};\n};\n\nmodule.exports = HeaderDropdown;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkhlYWRlckRyb3Bkb3duLmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7ZUFPaUIsUUFBUSw4QkFBUjs7SUFBWDs7QUFFTixJQUFJLGlCQUFpQixFQUFqQjs7O0FBR0osZUFBZSxlQUFmLEdBQWlDLFVBQVMsS0FBVCxFQUFnQjtBQUNoRCxRQUFPO0FBQ04sYUFBVyxNQUFNLFVBQU4sQ0FBaUIsU0FBakI7OztBQUdYLFlBQVUsTUFBTSxVQUFOLENBQWlCLFFBQWpCO0FBQ1YsaUJBQWUsTUFBTSxVQUFOLENBQWlCLGFBQWpCO0VBTGhCLENBRGdEO0NBQWhCOzs7QUFZakMsZUFBZSxrQkFBZixHQUFvQyxVQUFTLFFBQVQsRUFBbUI7O0FBRXRELFFBQU87QUFDTixvQkFETTtBQUVOLFVBQVEsT0FBTyxJQUFQLENBQVksSUFBWixFQUFrQixRQUFsQixDQUFSO0FBQ0Esc0JBQW9CLDRCQUFDLFlBQUQsRUFBZSxTQUFmO1VBQTZCLFNBQVMsRUFBRSxNQUFNLHNCQUFOLEVBQThCLDBCQUFoQyxFQUE4QyxvQkFBOUMsRUFBVDtHQUE3QjtBQUNwQixlQUFhO1VBQU0sU0FBUyxFQUFFLE1BQU0sd0JBQU4sRUFBWDtHQUFOO0FBQ2IsY0FBWTtVQUFNLFNBQVMsa0NBQVQ7R0FBTjtFQUxiLENBRnNEO0NBQW5COztBQVdwQyxPQUFPLE9BQVAsR0FBaUIsY0FBakIiLCJmaWxlIjoiSGVhZGVyRHJvcGRvd24uanN4Iiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY2xvc2VBbmRFbXB0eU1haW5Nb2RhbCB9IGZyb20gXCIuLi8uLi8uLi9yZWR1Y2Vycy9hY3Rpb25zL0FwcC5qc1wiXG5cbi8vIGxldCBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG4vLyBsZXQgeyBicm93c2VySGlzdG9yeSB9ID0gcmVxdWlyZSgncmVhY3Qtcm91dGVyJylcblxuLy8gY29uc3QgeyBnZXRVc2VybmFtZSB9ID0gcmVxdWlyZSgnLi4vYWpheENhbGxzLmpzeCcpXG5cbnZhciB7IGxvZ291dCB9ID0gcmVxdWlyZShcIi4uLy4uLy4uL01BU0FTX2Z1bmN0aW9ucy5qc3hcIilcblxudmFyIEhlYWRlckRyb3Bkb3duID0ge31cblxuLy8gV2hpY2ggcGFydCBvZiB0aGUgUmVkdXggZ2xvYmFsIHN0YXRlIGRvZXMgb3VyIGNvbXBvbmVudCB3YW50IHRvIHJlY2VpdmUgYXMgcHJvcHM/XG5IZWFkZXJEcm9wZG93bi5tYXBTdGF0ZVRvUHJvcHMgPSBmdW5jdGlvbihzdGF0ZSkge1xuXHRyZXR1cm4ge1xuXHRcdE1BU0FTdXNlcjogc3RhdGUuYXBwUmVkdWNlci5NQVNBU3VzZXIsXG5cdFx0Ly8gdXNlckxvZ2dlZEluOiBzdGF0ZS5hcHBSZWR1Y2VyLnVzZXJMb2dnZWRJbixcblx0XHQvLyB1c2VybmFtZTogc3RhdGUuYXBwUmVkdWNlci51c2VyRGF0YS51c2VyXG5cdFx0dXNlckRhdGE6IHN0YXRlLmFwcFJlZHVjZXIudXNlckRhdGEsXG5cdFx0aXNNb2RhbE9wZW5lZDogc3RhdGUuYXBwUmVkdWNlci5pc01vZGFsT3BlbmVkLFxuXHR9XG59XG5cblxuLy8gV2hpY2ggYWN0aW9uIGNyZWF0b3JzIGRvZXMgaXQgd2FudCB0byByZWNlaXZlIGJ5IHByb3BzP1xuSGVhZGVyRHJvcGRvd24ubWFwRGlzcGF0Y2hUb1Byb3BzID0gZnVuY3Rpb24oZGlzcGF0Y2gpIHtcblxuXHRyZXR1cm4ge1xuXHRcdGRpc3BhdGNoLFxuXHRcdGxvZ291dDogbG9nb3V0LmJpbmQobnVsbCwgZGlzcGF0Y2gpLFxuXHRcdHVwZGF0ZU1vZGFsQ29udGVudDogKG1vZGFsQ29udGVudCwgbW9kYWxUeXBlKSA9PiBkaXNwYXRjaCh7IHR5cGU6ICdDSEFOR0VfTU9EQUxfQ09OVEVOVCcsIG1vZGFsQ29udGVudCwgbW9kYWxUeXBlIH0pLFxuXHRcdHRvb2dsZU1vZGFsOiAoKSA9PiBkaXNwYXRjaCh7IHR5cGU6ICdUT09HTEVfSVNfTU9EQUxfT1BFTkVEJyB9KSxcblx0XHRjbG9zZU1vZGFsOiAoKSA9PiBkaXNwYXRjaChjbG9zZUFuZEVtcHR5TWFpbk1vZGFsKCkpLFxuXHR9XG59XG5cbm1vZHVsZS5leHBvcnRzID0gSGVhZGVyRHJvcGRvd25cbiJdfQ==",
     {
       "../../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
-      "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
-      "react-router": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/index.js",
-      "../ajaxCalls.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/ajaxCalls.jsx"
+      "../../../reducers/actions/App.js": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Header/containers/HeaderDropdown.jsx",
-      "hash": "3b9e77228a80e327223b43ef0f623a6d",
-      "browserifyId": 401
+      "hash": "82a84ca664c09e01b43a5e273743d6d1",
+      "browserifyId": 400
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/Home.jsx": [
@@ -5436,7 +5423,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/Home.jsx",
       "hash": "a33c7a80059475d43c7efb4ca210b00b",
-      "browserifyId": 402
+      "browserifyId": 401
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/HomeCountdown.jsx": [
@@ -5451,7 +5438,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/HomeCountdown.jsx",
       "hash": "5b72ca3ffe22fe3288045a99f073e0a3",
-      "browserifyId": 403
+      "browserifyId": 402
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/ajaxCalls.jsx": [
@@ -5462,7 +5449,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/ajaxCalls.jsx",
       "hash": "5979f60f215b1c627b00ef9cbf95f8ae",
-      "browserifyId": 404
+      "browserifyId": 403
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/containers/Home.jsx": [
@@ -5473,7 +5460,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Home/containers/Home.jsx",
       "hash": "de5d12bb50615cfe615524237d50d530",
-      "browserifyId": 405
+      "browserifyId": 404
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/EnforcementGuidelines.jsx": [
@@ -5485,7 +5472,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/EnforcementGuidelines.jsx",
       "hash": "81b3888a730fc90faaebdd72f8018be3",
-      "browserifyId": 406
+      "browserifyId": 405
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Guidelines.jsx": [
@@ -5497,7 +5484,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Guidelines.jsx",
       "hash": "3417233cd3f558c6a48a695f520787e9",
-      "browserifyId": 407
+      "browserifyId": 406
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LearnCopyright.jsx": [
@@ -5509,7 +5496,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LearnCopyright.jsx",
       "hash": "5d180269e7200d11178e42f195109eb8",
-      "browserifyId": 408
+      "browserifyId": 407
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsContent.jsx": [
@@ -5524,7 +5511,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsContent.jsx",
       "hash": "808b04b5607736577b810de85eb163fa",
-      "browserifyId": 409
+      "browserifyId": 408
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsHome.jsx": [
@@ -5547,7 +5534,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsHome.jsx",
       "hash": "f402ce4dea1f026fbe307533039075fc",
-      "browserifyId": 410
+      "browserifyId": 409
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Privacy.jsx": [
@@ -5559,7 +5546,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Privacy.jsx",
       "hash": "3d743e2de9846bb37466572513a27dce",
-      "browserifyId": 411
+      "browserifyId": 410
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/ReportCopyright.jsx": [
@@ -5571,7 +5558,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/ReportCopyright.jsx",
       "hash": "bec6c0a1cf50643cfa3aa19695a4c94b",
-      "browserifyId": 412
+      "browserifyId": 411
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Rest.jsx": [
@@ -5583,7 +5570,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Rest.jsx",
       "hash": "04541036e48ed4f5274ea74ec5a23329",
-      "browserifyId": 413
+      "browserifyId": 412
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Terms.jsx": [
@@ -5595,7 +5582,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/Terms.jsx",
       "hash": "990b591eb4dcb05c7f3838c64d7d6b7d",
-      "browserifyId": 414
+      "browserifyId": 413
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/containers/LegalsContent.jsx": [
@@ -5604,7 +5591,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/containers/LegalsContent.jsx",
       "hash": "d12c662549982980641fa41f0ed59c2a",
-      "browserifyId": 415
+      "browserifyId": 414
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/containers/LegalsHome.jsx": [
@@ -5613,7 +5600,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/containers/LegalsHome.jsx",
       "hash": "58de752997876844edc6a77cdc30f122",
-      "browserifyId": 416
+      "browserifyId": 415
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/FiltersModal.jsx": [
@@ -5628,7 +5615,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/FiltersModal.jsx",
       "hash": "4977009b223a030e56a0ef7cf668e5d2",
-      "browserifyId": 417
+      "browserifyId": 416
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/Likes.jsx": [
@@ -5647,7 +5634,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/Likes.jsx",
       "hash": "e664f57813d6933b07ed07da97c68e60",
-      "browserifyId": 418
+      "browserifyId": 417
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesArtworks.jsx": [
@@ -5663,7 +5650,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesArtworks.jsx",
       "hash": "22478e265e64d5f4d873586ade0baa0b",
-      "browserifyId": 419
+      "browserifyId": 418
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesItem.jsx": [
@@ -5679,7 +5666,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesItem.jsx",
       "hash": "c97ba94aec0856720a22bf39f8a08b04",
-      "browserifyId": 420
+      "browserifyId": 419
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesWrapper.jsx": [
@@ -5694,7 +5681,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesWrapper.jsx",
       "hash": "0a5c1917b78b465bc8da173d3fac9499",
-      "browserifyId": 421
+      "browserifyId": 420
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/NoLikesComponent.jsx": [
@@ -5709,7 +5696,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/NoLikesComponent.jsx",
       "hash": "af44da1bb7506346011943a07a79b945",
-      "browserifyId": 422
+      "browserifyId": 421
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/FiltersModal.jsx": [
@@ -5718,7 +5705,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/FiltersModal.jsx",
       "hash": "6647a22511783c18c0c6088eadbc6255",
-      "browserifyId": 423
+      "browserifyId": 422
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/Likes.jsx": [
@@ -5729,7 +5716,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/Likes.jsx",
       "hash": "1cc01fb41165f4fe10c0ff7c702157d6",
-      "browserifyId": 424
+      "browserifyId": 423
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesArtworks.jsx": [
@@ -5740,7 +5727,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesArtworks.jsx",
       "hash": "fa9f277509e7578c2dc3dda058a42b3f",
-      "browserifyId": 425
+      "browserifyId": 424
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesItem.jsx": [
@@ -5752,7 +5739,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesItem.jsx",
       "hash": "762236aa3aaafbc6bc6954ffa46b23dc",
-      "browserifyId": 426
+      "browserifyId": 425
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesWrapper.jsx": [
@@ -5761,7 +5748,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/LikesWrapper.jsx",
       "hash": "39fbf5c84c3abe40c4a961f2742154b0",
-      "browserifyId": 427
+      "browserifyId": 426
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/InvitationPending.jsx": [
@@ -5776,7 +5763,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/InvitationPending.jsx",
       "hash": "055fbe5af0bc97fdcb5d4b37ab4a5bc8",
-      "browserifyId": 428
+      "browserifyId": 427
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/LoginForm.jsx": [
@@ -5792,7 +5779,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/LoginForm.jsx",
       "hash": "d1966eed16a7a52b11b63f3b6df7719e",
-      "browserifyId": 429
+      "browserifyId": 428
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx": [
@@ -5802,13 +5789,13 @@
       "react-dom": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-dom/index.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "./containers/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/SignUp.jsx",
-      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx"
+      "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
+      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx",
       "hash": "c44caa7aeaeea88f66fb3849a36527ca",
-      "browserifyId": 430
+      "browserifyId": 429
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/TermsAndCond.jsx": [
@@ -5826,7 +5813,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/TermsAndCond.jsx",
       "hash": "4562a9e45b549874f9f16036ee21dd79",
-      "browserifyId": 431
+      "browserifyId": 430
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/ajaxCalls.jsx": [
@@ -5839,7 +5826,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/ajaxCalls.jsx",
       "hash": "1d5bceef003e6bf4371b2dab76c00978",
-      "browserifyId": 432
+      "browserifyId": 431
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/LoginForm.jsx": [
@@ -5853,7 +5840,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/LoginForm.jsx",
       "hash": "f60a583732f2a99f359656374f9815f4",
-      "browserifyId": 433
+      "browserifyId": 432
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/SignUp.jsx": [
@@ -5862,7 +5849,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/SignUp.jsx",
       "hash": "f23d05b02b4e172e2916a5efc6cf6849",
-      "browserifyId": 434
+      "browserifyId": 433
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/TermsAndCond.jsx": [
@@ -5871,7 +5858,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/TermsAndCond.jsx",
       "hash": "598d376f45a2e64ef017b16375b05635",
-      "browserifyId": 435
+      "browserifyId": 434
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/MASAS_mixins.jsx": [
@@ -5883,7 +5870,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/MASAS_mixins.jsx",
       "hash": "76c86f62fa60968c96cf2eb32ed00d26",
-      "browserifyId": 436
+      "browserifyId": 435
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/NavSidebar/NavSidebar.jsx": [
@@ -5901,7 +5888,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/NavSidebar/NavSidebar.jsx",
       "hash": "6a6ec2af4120e5d9569c878886d41282",
-      "browserifyId": 437
+      "browserifyId": 436
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/NavSidebar/containers/NavSidebar.jsx": [
@@ -5912,7 +5899,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/NavSidebar/containers/NavSidebar.jsx",
       "hash": "792f4b8c5daca3ff6ec30d662e8f51d6",
-      "browserifyId": 438
+      "browserifyId": 437
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/PlayerBar.jsx": [
@@ -5929,7 +5916,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/PlayerBar.jsx",
       "hash": "6d98c3ddacfc47c50d7ee28f63546929",
-      "browserifyId": 439
+      "browserifyId": 438
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/ajaxCalls.jsx": [
@@ -5942,7 +5929,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/ajaxCalls.jsx",
       "hash": "5ccdc31e902179da054a709eb7524ced",
-      "browserifyId": 440
+      "browserifyId": 439
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/containers/PlayerBar.jsx": [
@@ -5954,7 +5941,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Player/containers/PlayerBar.jsx",
       "hash": "c8cb1f01244163efde162bcaaa44b77a",
-      "browserifyId": 441
+      "browserifyId": 440
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/Popular.jsx": [
@@ -5971,7 +5958,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/Popular.jsx",
       "hash": "d3c0d48d8e76c1245dc4d2ecde970faa",
-      "browserifyId": 442
+      "browserifyId": 441
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/containers/Popular.jsx": [
@@ -5980,7 +5967,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/containers/Popular.jsx",
       "hash": "5f3285c15115fadd5aa887a2ff8f1557",
-      "browserifyId": 443
+      "browserifyId": 442
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ChangeMoodModal.jsx": [
@@ -5997,7 +5984,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ChangeMoodModal.jsx",
       "hash": "1d9f03adaf8c8e7163ab126f866ff693",
-      "browserifyId": 444
+      "browserifyId": 443
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/CountryAutocomplete.jsx": [
@@ -6012,7 +5999,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/CountryAutocomplete.jsx",
       "hash": "72b40e0892e840d7a4d5a3021b22d570",
-      "browserifyId": 445
+      "browserifyId": 444
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/MiniProfile.jsx": [
@@ -6024,7 +6011,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/MiniProfile.jsx",
       "hash": "9b6efcd6c5677dae162e981d1d49619d",
-      "browserifyId": 446
+      "browserifyId": 445
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/Profile.jsx": [
@@ -6044,7 +6031,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/Profile.jsx",
       "hash": "75deaf0d3573d2a1ec28038fea9b5b02",
-      "browserifyId": 447
+      "browserifyId": 446
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileEdit.jsx": [
@@ -6061,7 +6048,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileEdit.jsx",
       "hash": "9cefb0d1c5323428a51ab87c50b8ca45",
-      "browserifyId": 448
+      "browserifyId": 447
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileEditLinks.jsx": [
@@ -6077,7 +6064,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileEditLinks.jsx",
       "hash": "c243a0d85b49b92775fcb5fc14ff589c",
-      "browserifyId": 449
+      "browserifyId": 448
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileWrapper.jsx": [
@@ -6092,7 +6079,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ProfileWrapper.jsx",
       "hash": "86b1efb91d543629197974b7524aac1b",
-      "browserifyId": 450
+      "browserifyId": 449
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/RemoveSongModal.jsx": [
@@ -6109,7 +6096,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/RemoveSongModal.jsx",
       "hash": "3837cc35abeb7cff149d228895ea5794",
-      "browserifyId": 451
+      "browserifyId": 450
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/TrackItem.jsx": [
@@ -6127,7 +6114,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/TrackItem.jsx",
       "hash": "c37a8d262a2c676c699c593f78bd6327",
-      "browserifyId": 452
+      "browserifyId": 451
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ajaxCalls.jsx": [
@@ -6139,7 +6126,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/ajaxCalls.jsx",
       "hash": "4c60e0b3f42238302b1b081bdb485c47",
-      "browserifyId": 453
+      "browserifyId": 452
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ChangeMoodModal.jsx": [
@@ -6148,7 +6135,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ChangeMoodModal.jsx",
       "hash": "9931ee7a90f0715b6afcef0eda27d3ef",
-      "browserifyId": 454
+      "browserifyId": 453
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/CountryAutocomplete.jsx": [
@@ -6157,7 +6144,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/CountryAutocomplete.jsx",
       "hash": "17eb66513573abca1ad5a66fe8f4649e",
-      "browserifyId": 455
+      "browserifyId": 454
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/Profile.jsx": [
@@ -6168,7 +6155,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/Profile.jsx",
       "hash": "10f1baf8d1d7066d46ffcd8eb07e1ac4",
-      "browserifyId": 456
+      "browserifyId": 455
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileEdit.jsx": [
@@ -6177,7 +6164,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileEdit.jsx",
       "hash": "a726ef80bec1f127b4e0108cd77354c6",
-      "browserifyId": 457
+      "browserifyId": 456
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileEditLinks.jsx": [
@@ -6186,7 +6173,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileEditLinks.jsx",
       "hash": "317e6774bf515a392ed79a88724c8278",
-      "browserifyId": 458
+      "browserifyId": 457
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileWrapper.jsx": [
@@ -6195,7 +6182,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/ProfileWrapper.jsx",
       "hash": "b5de8eb59fb4c3688687b1e38fe070c7",
-      "browserifyId": 459
+      "browserifyId": 458
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/RemoveSongModal.jsx": [
@@ -6204,7 +6191,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/RemoveSongModal.jsx",
       "hash": "4cd2820c76537144a924b1149d80a526",
-      "browserifyId": 460
+      "browserifyId": 459
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/TrackItem.jsx": [
@@ -6215,7 +6202,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/containers/TrackItem.jsx",
       "hash": "2cf68661f5c82d184fcefd2f20947a31",
-      "browserifyId": 461
+      "browserifyId": 460
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/TeachDiscoverModals.jsx": [
@@ -6231,7 +6218,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/TeachDiscoverModals.jsx",
       "hash": "66b3dd45835f5c91922551cf1571ff2b",
-      "browserifyId": 462
+      "browserifyId": 461
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/TeachSliderModals.jsx": [
@@ -6247,7 +6234,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/TeachSliderModals.jsx",
       "hash": "dd2e0fd542d73839cd25ceafe2157837",
-      "browserifyId": 463
+      "browserifyId": 462
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/containers/TeachDiscoverModals.jsx": [
@@ -6256,7 +6243,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/containers/TeachDiscoverModals.jsx",
       "hash": "0cc6f70fa3fadb03c0bd102b3403665d",
-      "browserifyId": 464
+      "browserifyId": 463
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/containers/TeachSliderModals.jsx": [
@@ -6265,7 +6252,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/TipModals/containers/TeachSliderModals.jsx",
       "hash": "7663b83d4c4dfe7982c35a6aa9d96865",
-      "browserifyId": 465
+      "browserifyId": 464
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Body.jsx": [
@@ -6279,7 +6266,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Body.jsx",
       "hash": "906dba64783a90cd0f256432c55b509c",
-      "browserifyId": 466
+      "browserifyId": 465
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Button.jsx": [
@@ -6291,7 +6278,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Button.jsx",
       "hash": "8edc4e053348b9833831ebab430c0c4e",
-      "browserifyId": 467
+      "browserifyId": 466
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Checkbox.jsx": [
@@ -6304,11 +6291,11 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Checkbox.jsx",
       "hash": "f055f189728423afa3f793309c4042b3",
-      "browserifyId": 468
+      "browserifyId": 467
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx": [
-    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\nvar ReactDOM = require(\"react-dom\");\n\nvar _require = require('react-router');\n\nvar browserHistory = _require.browserHistory;\n\nvar Link = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Link\",\n\n\tpropTypes: {\n\t\tto: React.PropTypes.string, // path to forward to\n\t\tclassName: React.PropTypes.string,\n\t\tdisabled: React.PropTypes.bool\n\t},\n\n\tcomponentWillMount: function componentWillMount() {},\n\n\tgoToURL: function goToURL(path) {\n\t\tbrowserHistory.push(path);\n\t},\n\n\trender: function render() {\n\t\treturn React.createElement(\n\t\t\t\"span\",\n\t\t\t{ onClick: this.props.onClick },\n\t\t\tReact.createElement(\n\t\t\t\t\"span\",\n\t\t\t\t{ onClick: !this.props.disabled ? this.goToURL.bind(null, this.props.to) : null,\n\t\t\t\t\tclassName: \"MASAS-link \" + (this.props.className ? this.props.className : \"\") + (this.props.disabled ? \" disabled\" : \"\") },\n\t\t\t\tthis.props.children\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = Link;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxpbmsuanN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsSUFBSSxRQUFRLFFBQVEsT0FBUixDQUFSO0FBQ0osSUFBSSxXQUFXLFFBQVEsV0FBUixDQUFYOztlQUVxQixRQUFRLGNBQVI7O0lBQW5COztBQUVOLElBQUksb0NBQU8sTUFBTSxXQUFOLENBQWtCOzs7QUFDNUIsWUFBVztBQUNWLE1BQUksTUFBTSxTQUFOLENBQWdCLE1BQWhCO0FBQ0osYUFBVyxNQUFNLFNBQU4sQ0FBZ0IsTUFBaEI7QUFDWCxZQUFVLE1BQU0sU0FBTixDQUFnQixJQUFoQjtFQUhYOztBQU1BLHFCQUFvQiw4QkFBVyxFQUFYOztBQUdwQixVQUFTLGlCQUFTLElBQVQsRUFBZTtBQUN2QixpQkFBZSxJQUFmLENBQW9CLElBQXBCLEVBRHVCO0VBQWY7O0FBSVQsU0FBUSxrQkFBVztBQUNsQixTQUNDOztLQUFNLFNBQVMsS0FBSyxLQUFMLENBQVcsT0FBWCxFQUFmO0dBQ0M7O01BQU0sU0FBUyxDQUFDLEtBQUssS0FBTCxDQUFXLFFBQVgsR0FBc0IsS0FBSyxPQUFMLENBQWEsSUFBYixDQUFrQixJQUFsQixFQUF3QixLQUFLLEtBQUwsQ0FBVyxFQUFYLENBQS9DLEdBQWdFLElBQWhFO0FBQ2QsZ0JBQVcsaUJBQWlCLEtBQUssS0FBTCxDQUFXLFNBQVgsR0FBdUIsS0FBSyxLQUFMLENBQVcsU0FBWCxHQUF1QixFQUE5QyxDQUFqQixJQUFzRSxLQUFLLEtBQUwsQ0FBVyxRQUFYLEdBQXNCLFdBQXRCLEdBQW9DLEVBQXBDLENBQXRFLEVBRFo7SUFFRSxLQUFLLEtBQUwsQ0FBVyxRQUFYO0lBSEg7R0FERCxDQURrQjtFQUFYO0NBZEUsRUFBUDs7QUEwQkosT0FBTyxPQUFQLEdBQWlCLElBQWpCIiwiZmlsZSI6IkxpbmsuanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG52YXIgUmVhY3RET00gPSByZXF1aXJlKFwicmVhY3QtZG9tXCIpXG5cbnZhciB7IGJyb3dzZXJIaXN0b3J5IH0gPSByZXF1aXJlKCdyZWFjdC1yb3V0ZXInKVxuXG52YXIgTGluayA9IFJlYWN0LmNyZWF0ZUNsYXNzKHtcblx0cHJvcFR5cGVzOiB7XG5cdFx0dG86IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXHRcdFx0XHQvLyBwYXRoIHRvIGZvcndhcmQgdG9cblx0XHRjbGFzc05hbWU6IFJlYWN0LlByb3BUeXBlcy5zdHJpbmcsXG5cdFx0ZGlzYWJsZWQ6IFJlYWN0LlByb3BUeXBlcy5ib29sXG5cdH0sXG5cblx0Y29tcG9uZW50V2lsbE1vdW50OiBmdW5jdGlvbigpIHtcblx0fSxcblxuXHRnb1RvVVJMOiBmdW5jdGlvbihwYXRoKSB7XG5cdFx0YnJvd3Nlckhpc3RvcnkucHVzaChwYXRoKVxuXHR9LFxuXG5cdHJlbmRlcjogZnVuY3Rpb24oKSB7XG5cdFx0cmV0dXJuIChcblx0XHRcdDxzcGFuIG9uQ2xpY2s9e3RoaXMucHJvcHMub25DbGlja30+XG5cdFx0XHRcdDxzcGFuIG9uQ2xpY2s9eyF0aGlzLnByb3BzLmRpc2FibGVkID8gdGhpcy5nb1RvVVJMLmJpbmQobnVsbCwgdGhpcy5wcm9wcy50bykgOiBudWxsfSBcblx0XHRcdFx0XHRjbGFzc05hbWU9e1wiTUFTQVMtbGluayBcIiArICh0aGlzLnByb3BzLmNsYXNzTmFtZSA/IHRoaXMucHJvcHMuY2xhc3NOYW1lIDogXCJcIikgKyAodGhpcy5wcm9wcy5kaXNhYmxlZCA/IFwiIGRpc2FibGVkXCIgOiBcIlwiKX0+XG5cdFx0XHRcdFx0e3RoaXMucHJvcHMuY2hpbGRyZW59XG5cdFx0XHRcdDwvc3Bhbj5cblx0XHRcdDwvc3Bhbj5cblx0XHQpXG5cdH1cbn0pXG5cbm1vZHVsZS5leHBvcnRzID0gTGluayJdfQ==",
+    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\nvar React = require(\"react\");\nvar ReactDOM = require(\"react-dom\");\n\nvar _require = require('react-router');\n\nvar browserHistory = _require.browserHistory;\n\nvar Link = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Link\",\n\n\tpropTypes: {\n\t\tto: React.PropTypes.string, // path to forward to\n\t\tclassName: React.PropTypes.string,\n\t\tdisabled: React.PropTypes.bool,\n\t\tonClick: React.PropTypes.func\n\t},\n\n\tgetDefaultProps: function getDefaultProps() {\n\t\treturn {\n\t\t\tonClick: function onClick() {}\n\t\t};\n\t},\n\n\tcomponentWillMount: function componentWillMount() {},\n\n\tgoToURL: function goToURL(path) {\n\t\tbrowserHistory.push(path);\n\t},\n\n\trender: function render() {\n\t\treturn React.createElement(\n\t\t\t\"span\",\n\t\t\t{ onClick: this.props.onClick },\n\t\t\tReact.createElement(\n\t\t\t\t\"span\",\n\t\t\t\t{ onClick: !this.props.disabled ? this.goToURL.bind(null, this.props.to) : null,\n\t\t\t\t\tclassName: \"MASAS-link \" + (this.props.className ? this.props.className : \"\") + (this.props.disabled ? \" disabled\" : \"\") },\n\t\t\t\tthis.props.children\n\t\t\t)\n\t\t);\n\t}\n}));\n\nmodule.exports = Link;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkxpbmsuanN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsSUFBSSxRQUFRLFFBQVEsT0FBUixDQUFSO0FBQ0osSUFBSSxXQUFXLFFBQVEsV0FBUixDQUFYOztlQUVxQixRQUFRLGNBQVI7O0lBQW5COztBQUVOLElBQUksb0NBQU8sTUFBTSxXQUFOLENBQWtCOzs7QUFDNUIsWUFBVztBQUNWLE1BQUksTUFBTSxTQUFOLENBQWdCLE1BQWhCO0FBQ0osYUFBVyxNQUFNLFNBQU4sQ0FBZ0IsTUFBaEI7QUFDWCxZQUFVLE1BQU0sU0FBTixDQUFnQixJQUFoQjtBQUNWLFdBQVMsTUFBTSxTQUFOLENBQWdCLElBQWhCO0VBSlY7O0FBT0Esa0JBQWlCLDJCQUFXO0FBQzNCLFNBQU87QUFDTixZQUFTLG1CQUFNLEVBQU47R0FEVixDQUQyQjtFQUFYOztBQU1qQixxQkFBb0IsOEJBQVcsRUFBWDs7QUFHcEIsVUFBUyxpQkFBUyxJQUFULEVBQWU7QUFDdkIsaUJBQWUsSUFBZixDQUFvQixJQUFwQixFQUR1QjtFQUFmOztBQUlULFNBQVEsa0JBQVc7QUFDbEIsU0FDQzs7S0FBTSxTQUFTLEtBQUssS0FBTCxDQUFXLE9BQVgsRUFBZjtHQUNDOztNQUFNLFNBQVMsQ0FBQyxLQUFLLEtBQUwsQ0FBVyxRQUFYLEdBQXNCLEtBQUssT0FBTCxDQUFhLElBQWIsQ0FBa0IsSUFBbEIsRUFBd0IsS0FBSyxLQUFMLENBQVcsRUFBWCxDQUEvQyxHQUFnRSxJQUFoRTtBQUNkLGdCQUFXLGlCQUFpQixLQUFLLEtBQUwsQ0FBVyxTQUFYLEdBQXVCLEtBQUssS0FBTCxDQUFXLFNBQVgsR0FBdUIsRUFBOUMsQ0FBakIsSUFBc0UsS0FBSyxLQUFMLENBQVcsUUFBWCxHQUFzQixXQUF0QixHQUFvQyxFQUFwQyxDQUF0RSxFQURaO0lBRUUsS0FBSyxLQUFMLENBQVcsUUFBWDtJQUhIO0dBREQsQ0FEa0I7RUFBWDtDQXJCRSxFQUFQOztBQWlDSixPQUFPLE9BQVAsR0FBaUIsSUFBakIiLCJmaWxlIjoiTGluay5qc3giLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgUmVhY3QgPSByZXF1aXJlKFwicmVhY3RcIilcbnZhciBSZWFjdERPTSA9IHJlcXVpcmUoXCJyZWFjdC1kb21cIilcblxudmFyIHsgYnJvd3Nlckhpc3RvcnkgfSA9IHJlcXVpcmUoJ3JlYWN0LXJvdXRlcicpXG5cbnZhciBMaW5rID0gUmVhY3QuY3JlYXRlQ2xhc3Moe1xuXHRwcm9wVHlwZXM6IHtcblx0XHR0bzogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcdFx0XHRcdC8vIHBhdGggdG8gZm9yd2FyZCB0b1xuXHRcdGNsYXNzTmFtZTogUmVhY3QuUHJvcFR5cGVzLnN0cmluZyxcblx0XHRkaXNhYmxlZDogUmVhY3QuUHJvcFR5cGVzLmJvb2wsXG5cdFx0b25DbGljazogUmVhY3QuUHJvcFR5cGVzLmZ1bmMsXG5cdH0sXG5cblx0Z2V0RGVmYXVsdFByb3BzOiBmdW5jdGlvbigpIHtcblx0XHRyZXR1cm4ge1xuXHRcdFx0b25DbGljazogKCkgPT4ge30sXG5cdFx0fVxuXHR9LFxuXG5cdGNvbXBvbmVudFdpbGxNb3VudDogZnVuY3Rpb24oKSB7XG5cdH0sXG5cblx0Z29Ub1VSTDogZnVuY3Rpb24ocGF0aCkge1xuXHRcdGJyb3dzZXJIaXN0b3J5LnB1c2gocGF0aClcblx0fSxcblxuXHRyZW5kZXI6IGZ1bmN0aW9uKCkge1xuXHRcdHJldHVybiAoXG5cdFx0XHQ8c3BhbiBvbkNsaWNrPXt0aGlzLnByb3BzLm9uQ2xpY2t9PlxuXHRcdFx0XHQ8c3BhbiBvbkNsaWNrPXshdGhpcy5wcm9wcy5kaXNhYmxlZCA/IHRoaXMuZ29Ub1VSTC5iaW5kKG51bGwsIHRoaXMucHJvcHMudG8pIDogbnVsbH0gXG5cdFx0XHRcdFx0Y2xhc3NOYW1lPXtcIk1BU0FTLWxpbmsgXCIgKyAodGhpcy5wcm9wcy5jbGFzc05hbWUgPyB0aGlzLnByb3BzLmNsYXNzTmFtZSA6IFwiXCIpICsgKHRoaXMucHJvcHMuZGlzYWJsZWQgPyBcIiBkaXNhYmxlZFwiIDogXCJcIil9PlxuXHRcdFx0XHRcdHt0aGlzLnByb3BzLmNoaWxkcmVufVxuXHRcdFx0XHQ8L3NwYW4+XG5cdFx0XHQ8L3NwYW4+XG5cdFx0KVxuXHR9XG59KVxuXG5tb2R1bGUuZXhwb3J0cyA9IExpbmsiXX0=",
     {
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-dom": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-dom/index.js",
@@ -6317,8 +6304,8 @@
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx",
-      "hash": "3fad257894376de94c0d8c024da5bee1",
-      "browserifyId": 469
+      "hash": "537ab4568c39855b0a545b523f2df13c",
+      "browserifyId": 468
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Marquee.jsx": [
@@ -6331,7 +6318,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Marquee.jsx",
       "hash": "23fca1a0dfe33fee2f68fe385ace5499",
-      "browserifyId": 470
+      "browserifyId": 469
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/MasasSpinner.jsx": [
@@ -6343,7 +6330,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/MasasSpinner.jsx",
       "hash": "c9905e7b1680ff5f56cbe876a07cb78a",
-      "browserifyId": 471
+      "browserifyId": 470
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx": [
@@ -6359,7 +6346,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx",
       "hash": "e4047e00729b74eac16570fd7380f58a",
-      "browserifyId": 472
+      "browserifyId": 471
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Password.jsx": [
@@ -6372,7 +6359,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Password.jsx",
       "hash": "3ae814f05f2a5ba748ed66f05fe77757",
-      "browserifyId": 473
+      "browserifyId": 472
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/RankingInfoIcon.jsx": [
@@ -6386,7 +6373,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/RankingInfoIcon.jsx",
       "hash": "e925a287fb115d5e28cae442a1dd8917",
-      "browserifyId": 474
+      "browserifyId": 473
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Textbox.jsx": [
@@ -6400,7 +6387,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Textbox.jsx",
       "hash": "afae8a51dfbb49cc899e044b369e6b1c",
-      "browserifyId": 475
+      "browserifyId": 474
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePicker.jsx": [
@@ -6417,7 +6404,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePicker.jsx",
       "hash": "deb5b3f96a0de6d8a6db6a901133e9bd",
-      "browserifyId": 476
+      "browserifyId": 475
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePickerInside.jsx": [
@@ -6431,13 +6418,12 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePickerInside.jsx",
       "hash": "ca6335d0288d4e5b22430cddd7ebbeb0",
-      "browserifyId": 477
+      "browserifyId": 476
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx": [
     "'use strict';\n\nvar Body = require('./Body.jsx');\nvar Button = require('./Button.jsx');\nvar Checkbox = require('./Checkbox.jsx');\nvar Link = require('./Link.jsx');\nvar Password = require('./Password.jsx');\nvar Textbox = require('./Textbox.jsx');\nvar TimePicker = require('./TimePicker.jsx');\nvar Marquee = require('./Marquee.jsx');\nvar Modal = require('./Modal.jsx');\nvar RankingInfoIcon = require('./RankingInfoIcon.jsx');\nvar MasasSpinner = require('./MasasSpinner.jsx');\n\nvar UI = {};\n\nUI.Body = Body;\nUI.Button = Button;\nUI.Checkbox = Checkbox;\nUI.Link = Link;\nUI.Marquee = Marquee;\nUI.MasasSpinner = MasasSpinner;\nUI.Modal = Modal;\nUI.Password = Password;\nUI.RankingInfoIcon = RankingInfoIcon;\nUI.Textbox = Textbox;\nUI.TimePicker = TimePicker;\n\nmodule.exports = UI;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlVJLmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLElBQUksT0FBTyxRQUFRLFlBQVIsQ0FBUDtBQUNKLElBQUksU0FBUyxRQUFRLGNBQVIsQ0FBVDtBQUNKLElBQUksV0FBVyxRQUFRLGdCQUFSLENBQVg7QUFDSixJQUFJLE9BQU8sUUFBUSxZQUFSLENBQVA7QUFDSixJQUFJLFdBQVcsUUFBUSxnQkFBUixDQUFYO0FBQ0osSUFBSSxVQUFVLFFBQVEsZUFBUixDQUFWO0FBQ0osSUFBSSxhQUFhLFFBQVEsa0JBQVIsQ0FBYjtBQUNKLElBQUksVUFBVSxRQUFRLGVBQVIsQ0FBVjtBQUNKLElBQUksUUFBUSxRQUFRLGFBQVIsQ0FBUjtBQUNKLElBQUksa0JBQWtCLFFBQVEsdUJBQVIsQ0FBbEI7QUFDSixJQUFJLGVBQWUsUUFBUSxvQkFBUixDQUFmOztBQUdKLElBQUksS0FBSyxFQUFMOztBQUVKLEdBQUcsSUFBSCxHQUFVLElBQVY7QUFDQSxHQUFHLE1BQUgsR0FBWSxNQUFaO0FBQ0EsR0FBRyxRQUFILEdBQWMsUUFBZDtBQUNBLEdBQUcsSUFBSCxHQUFVLElBQVY7QUFDQSxHQUFHLE9BQUgsR0FBYSxPQUFiO0FBQ0EsR0FBRyxZQUFILEdBQWtCLFlBQWxCO0FBQ0EsR0FBRyxLQUFILEdBQVcsS0FBWDtBQUNBLEdBQUcsUUFBSCxHQUFjLFFBQWQ7QUFDQSxHQUFHLGVBQUgsR0FBcUIsZUFBckI7QUFDQSxHQUFHLE9BQUgsR0FBYSxPQUFiO0FBQ0EsR0FBRyxVQUFILEdBQWdCLFVBQWhCOztBQUdBLE9BQU8sT0FBUCxHQUFpQixFQUFqQiIsImZpbGUiOiJVSS5qc3giLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgQm9keSA9IHJlcXVpcmUoJy4vQm9keS5qc3gnKVxudmFyIEJ1dHRvbiA9IHJlcXVpcmUoJy4vQnV0dG9uLmpzeCcpXG52YXIgQ2hlY2tib3ggPSByZXF1aXJlKCcuL0NoZWNrYm94LmpzeCcpXG52YXIgTGluayA9IHJlcXVpcmUoJy4vTGluay5qc3gnKVxudmFyIFBhc3N3b3JkID0gcmVxdWlyZSgnLi9QYXNzd29yZC5qc3gnKVxudmFyIFRleHRib3ggPSByZXF1aXJlKCcuL1RleHRib3guanN4JylcbnZhciBUaW1lUGlja2VyID0gcmVxdWlyZSgnLi9UaW1lUGlja2VyLmpzeCcpXG52YXIgTWFycXVlZSA9IHJlcXVpcmUoJy4vTWFycXVlZS5qc3gnKVxudmFyIE1vZGFsID0gcmVxdWlyZSgnLi9Nb2RhbC5qc3gnKVxudmFyIFJhbmtpbmdJbmZvSWNvbiA9IHJlcXVpcmUoJy4vUmFua2luZ0luZm9JY29uLmpzeCcpXG52YXIgTWFzYXNTcGlubmVyID0gcmVxdWlyZSgnLi9NYXNhc1NwaW5uZXIuanN4JylcblxuXG52YXIgVUkgPSB7fVxuXG5VSS5Cb2R5ID0gQm9keVxuVUkuQnV0dG9uID0gQnV0dG9uXG5VSS5DaGVja2JveCA9IENoZWNrYm94XG5VSS5MaW5rID0gTGlua1xuVUkuTWFycXVlZSA9IE1hcnF1ZWVcblVJLk1hc2FzU3Bpbm5lciA9IE1hc2FzU3Bpbm5lclxuVUkuTW9kYWwgPSBNb2RhbFxuVUkuUGFzc3dvcmQgPSBQYXNzd29yZFxuVUkuUmFua2luZ0luZm9JY29uID0gUmFua2luZ0luZm9JY29uXG5VSS5UZXh0Ym94ID0gVGV4dGJveFxuVUkuVGltZVBpY2tlciA9IFRpbWVQaWNrZXJcblxuXG5tb2R1bGUuZXhwb3J0cyA9IFVJIl19",
     {
-      "./Link.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx",
       "./Button.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Button.jsx",
       "./Checkbox.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Checkbox.jsx",
       "./Password.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Password.jsx",
@@ -6446,13 +6432,14 @@
       "./RankingInfoIcon.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/RankingInfoIcon.jsx",
       "./MasasSpinner.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/MasasSpinner.jsx",
       "./Body.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Body.jsx",
+      "./Link.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Link.jsx",
       "./Modal.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx",
       "./TimePicker.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePicker.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
       "hash": "709247189d207c13b7bce06901558ffe",
-      "browserifyId": 478
+      "browserifyId": 477
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Body.jsx": [
@@ -6461,7 +6448,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Body.jsx",
       "hash": "82e3276ef00b460e3e614a8714bfe3b1",
-      "browserifyId": 479
+      "browserifyId": 478
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Modal.jsx": [
@@ -6472,7 +6459,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Modal.jsx",
       "hash": "4e8a1b5ed134e3a0bee7c8f3c8146665",
-      "browserifyId": 480
+      "browserifyId": 479
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/TimePickerInside.jsx": [
@@ -6481,7 +6468,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/TimePickerInside.jsx",
       "hash": "6eb7756157445588964b6a8004ad71a4",
-      "browserifyId": 481
+      "browserifyId": 480
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx": [
@@ -6497,7 +6484,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx",
       "hash": "4e8bf7c46f295324371d2c3f3a00116b",
-      "browserifyId": 482
+      "browserifyId": 481
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/PickTimeUpload.jsx": [
@@ -6514,7 +6501,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/PickTimeUpload.jsx",
       "hash": "95113815917c0c22b66d05ae52d7044c",
-      "browserifyId": 483
+      "browserifyId": 482
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx": [
@@ -6532,7 +6519,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx",
       "hash": "3f1388c5f5c0131d1f0c17d8cae09908",
-      "browserifyId": 484
+      "browserifyId": 483
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx": [
@@ -6547,7 +6534,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx",
       "hash": "bb7bded58f7681dc869a3488ae30203e",
-      "browserifyId": 485
+      "browserifyId": 484
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ajaxCalls.jsx": [
@@ -6558,7 +6545,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ajaxCalls.jsx",
       "hash": "5fb92ec2460f8a14dfbc058badfdf0c0",
-      "browserifyId": 486
+      "browserifyId": 485
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/ModalContent.jsx": [
@@ -6567,7 +6554,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/ModalContent.jsx",
       "hash": "3a9b0099ab8673e2f0f1c9809fe1fdf2",
-      "browserifyId": 487
+      "browserifyId": 486
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/PickTimeUpload.jsx": [
@@ -6576,7 +6563,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/PickTimeUpload.jsx",
       "hash": "15e3c234fc5a98e1a8e37954522358e4",
-      "browserifyId": 488
+      "browserifyId": 487
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSC.jsx": [
@@ -6589,7 +6576,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSC.jsx",
       "hash": "e3d3b7d3bd06ac2bfc4a5cbb6dd0a487",
-      "browserifyId": 489
+      "browserifyId": 488
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSCItem.jsx": [
@@ -6600,14 +6587,14 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSCItem.jsx",
       "hash": "f5ee139ea631ded518fe682d338db0bb",
-      "browserifyId": 490
+      "browserifyId": 489
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/index.jsx": [
     "\"use strict\";\n\nvar React = require(\"react\");\nvar ReactDOM = require(\"react-dom\");\n\nvar ReactRedux = require(\"react-redux\");\nvar store = require(\"./reducers/reducers.js\");\n\nvar Router = require(\"react-router\").Router;\nvar Route = require(\"react-router\").Route;\nvar browserHistory = require(\"react-router\").browserHistory;\n\nvar SoundcloudCallback = require(\"./SoundcloudCallback.jsx\");\n\nvar App = require(\"./components/App/App.jsx\");\nvar Login = require(\"./components/Login/LoginForm.jsx\");\nvar InvitationPending = require(\"./components/Login/InvitationPending.jsx\");\nvar SignUp = require(\"./components/Login/SignUp.jsx\");\nvar UploadSC = require(\"./components/UploadSC/UploadSC.jsx\");\nvar Profile = require(\"./components/Profile/Profile.jsx\");\nvar Likes = require(\"./components/Likes/Likes.jsx\");\nvar Discover = require(\"./components/Discover/Discover.jsx\");\nvar Legals = require(\"./components/Legals/LegalsHome.jsx\");\nvar Popular = require(\"./components/Popular/Popular.jsx\");\n\nReactDOM.render(React.createElement(\n        ReactRedux.Provider,\n        { store: store },\n        React.createElement(\n                Router,\n                { history: browserHistory },\n                React.createElement(\n                        Route,\n                        { path: \"/\", component: App },\n                        React.createElement(Route, { path: \"discover\", component: Discover }),\n                        React.createElement(Route, { path: \"pending\", component: InvitationPending }),\n                        React.createElement(Route, { path: \"login\", component: Login }),\n                        React.createElement(Route, { path: \"likes\", component: Likes }),\n                        React.createElement(Route, { path: \"legals\", component: Legals }),\n                        React.createElement(Route, { path: \"popular\", component: Popular }),\n                        React.createElement(Route, { path: \"profile\", publicProfile: false, component: Profile }),\n                        React.createElement(Route, { path: \"/user/:username\", publicProfile: true, component: Profile }),\n                        React.createElement(Route, { path: \"sign-up\", component: SignUp }),\n                        React.createElement(Route, { path: \"upload\", component: UploadSC })\n                ),\n                React.createElement(Route, { path: \"/sc-callback\", component: SoundcloudCallback })\n        )\n), document.getElementById(\"content\"));\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLElBQUksUUFBUSxRQUFRLE9BQVIsQ0FBUjtBQUNKLElBQUksV0FBVyxRQUFRLFdBQVIsQ0FBWDs7QUFFSixJQUFJLGFBQWEsUUFBUSxhQUFSLENBQWI7QUFDSixJQUFJLFFBQVEsUUFBUSx3QkFBUixDQUFSOztBQUVKLElBQUksU0FBUyxRQUFRLGNBQVIsRUFBd0IsTUFBeEI7QUFDYixJQUFJLFFBQVEsUUFBUSxjQUFSLEVBQXdCLEtBQXhCO0FBQ1osSUFBSSxpQkFBaUIsUUFBUSxjQUFSLEVBQXdCLGNBQXhCOztBQUVyQixJQUFJLHFCQUFxQixRQUFRLDBCQUFSLENBQXJCOztBQUVKLElBQUksTUFBTSxRQUFRLDBCQUFSLENBQU47QUFDSixJQUFJLFFBQVEsUUFBUSxrQ0FBUixDQUFSO0FBQ0osSUFBSSxvQkFBb0IsUUFBUSwwQ0FBUixDQUFwQjtBQUNKLElBQUksU0FBUyxRQUFRLCtCQUFSLENBQVQ7QUFDSixJQUFJLFdBQVcsUUFBUSxvQ0FBUixDQUFYO0FBQ0osSUFBSSxVQUFVLFFBQVEsa0NBQVIsQ0FBVjtBQUNKLElBQUksUUFBUSxRQUFRLDhCQUFSLENBQVI7QUFDSixJQUFJLFdBQVcsUUFBUSxvQ0FBUixDQUFYO0FBQ0osSUFBSSxTQUFTLFFBQVEsb0NBQVIsQ0FBVDtBQUNKLElBQUksVUFBVSxRQUFRLGtDQUFSLENBQVY7O0FBR0osU0FBUyxNQUFULENBQ087QUFBQyxtQkFBVyxRQUFaO1VBQXFCLE9BQU8sS0FBUCxFQUFyQjtRQUNRO0FBQUMsc0JBQUQ7a0JBQVEsU0FBUyxjQUFULEVBQVI7Z0JBQ1E7QUFBQyw2QkFBRDswQkFBTyxNQUFLLEdBQUwsRUFBUyxXQUFXLEdBQVgsRUFBaEI7d0JBQ1Esb0JBQUMsS0FBRCxJQUFPLE1BQUssVUFBTCxFQUFnQixXQUFXLFFBQVgsRUFBdkIsQ0FEUjt3QkFFUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsV0FBVyxpQkFBWCxFQUF0QixDQUZSO3dCQUdRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLE9BQUwsRUFBYSxXQUFXLEtBQVgsRUFBcEIsQ0FIUjt3QkFJUSxvQkFBQyxLQUFELElBQU8sTUFBSyxPQUFMLEVBQWEsV0FBVyxLQUFYLEVBQXBCLENBSlI7d0JBS1Esb0JBQUMsS0FBRCxJQUFPLE1BQUssUUFBTCxFQUFjLFdBQVcsTUFBWCxFQUFyQixDQUxSO3dCQU1RLG9CQUFDLEtBQUQsSUFBTyxNQUFLLFNBQUwsRUFBZSxXQUFXLE9BQVgsRUFBdEIsQ0FOUjt3QkFPUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsZUFBZSxLQUFmLEVBQXNCLFdBQVcsT0FBWCxFQUE1QyxDQVBSO3dCQVFRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLGlCQUFMLEVBQXVCLGVBQWUsSUFBZixFQUFxQixXQUFXLE9BQVgsRUFBbkQsQ0FSUjt3QkFTUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsV0FBVyxNQUFYLEVBQXRCLENBVFI7d0JBVVEsb0JBQUMsS0FBRCxJQUFPLE1BQUssUUFBTCxFQUFjLFdBQVcsUUFBWCxFQUFyQixDQVZSO2lCQURSO2dCQWFRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLGNBQUwsRUFBb0IsV0FBVyxrQkFBWCxFQUEzQixDQWJSO1NBRFI7Q0FEUCxFQWtCRyxTQUFTLGNBQVQsQ0FBd0IsU0FBeEIsQ0FsQkgiLCJmaWxlIjoiaW5kZXguanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG52YXIgUmVhY3RET00gPSByZXF1aXJlKFwicmVhY3QtZG9tXCIpXG5cbnZhciBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG52YXIgc3RvcmUgPSByZXF1aXJlKFwiLi9yZWR1Y2Vycy9yZWR1Y2Vycy5qc1wiKVxuXG52YXIgUm91dGVyID0gcmVxdWlyZShcInJlYWN0LXJvdXRlclwiKS5Sb3V0ZXJcbnZhciBSb3V0ZSA9IHJlcXVpcmUoXCJyZWFjdC1yb3V0ZXJcIikuUm91dGVcbnZhciBicm93c2VySGlzdG9yeSA9IHJlcXVpcmUoXCJyZWFjdC1yb3V0ZXJcIikuYnJvd3Nlckhpc3RvcnlcblxudmFyIFNvdW5kY2xvdWRDYWxsYmFjayA9IHJlcXVpcmUoXCIuL1NvdW5kY2xvdWRDYWxsYmFjay5qc3hcIilcblxudmFyIEFwcCA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvQXBwL0FwcC5qc3hcIilcbnZhciBMb2dpbiA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvTG9naW4vTG9naW5Gb3JtLmpzeFwiKVxudmFyIEludml0YXRpb25QZW5kaW5nID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9Mb2dpbi9JbnZpdGF0aW9uUGVuZGluZy5qc3hcIilcbnZhciBTaWduVXAgPSByZXF1aXJlKFwiLi9jb21wb25lbnRzL0xvZ2luL1NpZ25VcC5qc3hcIilcbnZhciBVcGxvYWRTQyA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvVXBsb2FkU0MvVXBsb2FkU0MuanN4XCIpXG52YXIgUHJvZmlsZSA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvUHJvZmlsZS9Qcm9maWxlLmpzeFwiKVxudmFyIExpa2VzID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9MaWtlcy9MaWtlcy5qc3hcIilcbnZhciBEaXNjb3ZlciA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvRGlzY292ZXIvRGlzY292ZXIuanN4XCIpXG52YXIgTGVnYWxzID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9MZWdhbHMvTGVnYWxzSG9tZS5qc3hcIilcbnZhciBQb3B1bGFyID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9Qb3B1bGFyL1BvcHVsYXIuanN4XCIpXG5cblxuUmVhY3RET00ucmVuZGVyKChcbiAgICAgICA8UmVhY3RSZWR1eC5Qcm92aWRlciBzdG9yZT17c3RvcmV9PlxuICAgICAgICAgICAgICAgPFJvdXRlciBoaXN0b3J5PXticm93c2VySGlzdG9yeX0+XG4gICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwiL1wiIGNvbXBvbmVudD17QXBwfT5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cImRpc2NvdmVyXCIgY29tcG9uZW50PXtEaXNjb3Zlcn0gLz5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cInBlbmRpbmdcIiBjb21wb25lbnQ9e0ludml0YXRpb25QZW5kaW5nfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibG9naW5cIiBjb21wb25lbnQ9e0xvZ2lufSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibGlrZXNcIiBjb21wb25lbnQ9e0xpa2VzfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibGVnYWxzXCIgY29tcG9uZW50PXtMZWdhbHN9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJwb3B1bGFyXCIgY29tcG9uZW50PXtQb3B1bGFyfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwicHJvZmlsZVwiIHB1YmxpY1Byb2ZpbGU9e2ZhbHNlfSBjb21wb25lbnQ9e1Byb2ZpbGV9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCIvdXNlci86dXNlcm5hbWVcIiBwdWJsaWNQcm9maWxlPXt0cnVlfSBjb21wb25lbnQ9e1Byb2ZpbGV9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJzaWduLXVwXCIgY29tcG9uZW50PXtTaWduVXB9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJ1cGxvYWRcIiBjb21wb25lbnQ9e1VwbG9hZFNDfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICA8L1JvdXRlPlxuICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cIi9zYy1jYWxsYmFja1wiIGNvbXBvbmVudD17U291bmRjbG91ZENhbGxiYWNrfSAvPlxuICAgICAgICAgICAgICAgPC9Sb3V0ZXI+XG4gICAgICAgPC9SZWFjdFJlZHV4LlByb3ZpZGVyPlxuKSwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJjb250ZW50XCIpKVxuIl19",
     {
-      "./components/Login/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx",
       "./SoundcloudCallback.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/SoundcloudCallback.jsx",
+      "./components/Login/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx",
       "./components/Legals/LegalsHome.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsHome.jsx",
       "./components/Popular/Popular.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/Popular.jsx",
       "./components/Login/LoginForm.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/LoginForm.jsx",
@@ -6626,7 +6613,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/index.jsx",
       "hash": "edc099f150ddabe55b4af1be5ee5a70c",
-      "browserifyId": 491
+      "browserifyId": 490
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/App.jsx": [
@@ -6638,7 +6625,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/App.jsx",
       "hash": "5a2bb23e37367b3bb13f7f3d0c2238e5",
-      "browserifyId": 492
+      "browserifyId": 491
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Body.jsx": [
@@ -6647,7 +6634,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Body.jsx",
       "hash": "eff593490f2566092a3aacab01f2c473",
-      "browserifyId": 493
+      "browserifyId": 492
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Discover.jsx": [
@@ -6656,7 +6643,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Discover.jsx",
       "hash": "572b17d4c4dc199c674d58a297318f80",
-      "browserifyId": 494
+      "browserifyId": 493
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Footer.jsx": [
@@ -6665,7 +6652,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Footer.jsx",
       "hash": "60978349c08ced1b30a70ff373d4d7b4",
-      "browserifyId": 495
+      "browserifyId": 494
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Header.jsx": [
@@ -6674,7 +6661,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Header.jsx",
       "hash": "e1e026af2bac2e8a81d66f691eaf486a",
-      "browserifyId": 496
+      "browserifyId": 495
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Home.jsx": [
@@ -6683,7 +6670,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Home.jsx",
       "hash": "a617b6167f24d1b6a708c20d724c9ce7",
-      "browserifyId": 497
+      "browserifyId": 496
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Legals.jsx": [
@@ -6692,7 +6679,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Legals.jsx",
       "hash": "c18a181965d0878e699cacb130dd2f1f",
-      "browserifyId": 498
+      "browserifyId": 497
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Likes.jsx": [
@@ -6703,7 +6690,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Likes.jsx",
       "hash": "31bfe624486648dce219770811b6b151",
-      "browserifyId": 499
+      "browserifyId": 498
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Login.jsx": [
@@ -6712,7 +6699,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Login.jsx",
       "hash": "36046e833a27e95e606ad5392d28a905",
-      "browserifyId": 500
+      "browserifyId": 499
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Player.jsx": [
@@ -6721,7 +6708,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Player.jsx",
       "hash": "87e0d97993dbab06989c02c4e0b8ffd6",
-      "browserifyId": 501
+      "browserifyId": 500
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Popular.jsx": [
@@ -6730,7 +6717,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Popular.jsx",
       "hash": "368507530a0f2b5702ac493e1b0f40cc",
-      "browserifyId": 502
+      "browserifyId": 501
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Profile.jsx": [
@@ -6739,7 +6726,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Profile.jsx",
       "hash": "b36fb81a1b4d4e54c0b4eabe25a70ace",
-      "browserifyId": 503
+      "browserifyId": 502
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/UploadSC.jsx": [
@@ -6751,7 +6738,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/UploadSC.jsx",
       "hash": "996c9a646b4043ee6f5e4392fcda05d5",
-      "browserifyId": 504
+      "browserifyId": 503
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js": [
@@ -6760,7 +6747,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js",
       "hash": "76e8b6e8b958daaa3f54ad421aceb558",
-      "browserifyId": 505
+      "browserifyId": 504
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/Likes.js": [
@@ -6771,7 +6758,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/Likes.js",
       "hash": "a88b89338c08f524c95d9b1483e26b35",
-      "browserifyId": 506
+      "browserifyId": 505
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/UploadSC.js": [
@@ -6780,7 +6767,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/UploadSC.js",
       "hash": "5a63540d14172e41141aba95830c7989",
-      "browserifyId": 507
+      "browserifyId": 506
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js": [
@@ -6805,7 +6792,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js",
       "hash": "a0e50903d486b58a786f4359f1948248",
-      "browserifyId": 508
+      "browserifyId": 507
     }
   ],
   "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js": [
@@ -6814,7 +6801,7 @@
     {
       "id": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
       "hash": "e4e777c67172e089a4853ebace05807b",
-      "browserifyId": 509
+      "browserifyId": 508
     }
   ]
 }, [

@@ -7,7 +7,14 @@ var Link = React.createClass({
 	propTypes: {
 		to: React.PropTypes.string,				// path to forward to
 		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool
+		disabled: React.PropTypes.bool,
+		onClick: React.PropTypes.func,
+	},
+
+	getDefaultProps: function() {
+		return {
+			onClick: () => {},
+		}
 	},
 
 	componentWillMount: function() {

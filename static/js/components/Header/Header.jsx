@@ -59,10 +59,10 @@ var Header = React.createClass({
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
-							<div className="header-link"><Link to="/discover" disabled={ false }>Discover</Link></div>
-							<div className="header-link"><Link to="/popular" disabled={false}>Popular</Link></div>
-							<div className="header-link"><Link to="/upload" disabled={false}>Upload</Link></div>
-							<div className="header-link"><Link to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
+							<div className="header-link"><Link onClick={ this.props.closeModal } to="/discover" disabled={ false }>Discover</Link></div>
+							<div className="header-link"><Link onClick={ this.props.closeModal } to="/popular" disabled={false}>Popular</Link></div>
+							<div className="header-link"><Link onClick={ this.props.closeModal } to="/upload" disabled={false}>Upload</Link></div>
+							<div className="header-link"><Link onClick={ this.props.closeModal } to="/likes" disabled={this.props.user ? false : true}>Likes</Link></div>
 							<div className="header-link" style={{ display: 'none', minWidth: 0.1 }}>
 								<img src="/static/img/MASAS_search.svg" alt="search" className="search-icon"/>
 							</div>

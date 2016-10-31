@@ -1,7 +1,9 @@
-let ReactRedux = require("react-redux")
-let { browserHistory } = require('react-router')
+import { closeAndEmptyMainModal } from "../../../reducers/actions/App.js"
 
-const { getUsername } = require('../ajaxCalls.jsx')
+// let ReactRedux = require("react-redux")
+// let { browserHistory } = require('react-router')
+
+// const { getUsername } = require('../ajaxCalls.jsx')
 
 var { logout } = require("../../../MASAS_functions.jsx")
 
@@ -27,6 +29,7 @@ HeaderDropdown.mapDispatchToProps = function(dispatch) {
 		logout: logout.bind(null, dispatch),
 		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
 	}
 }
 

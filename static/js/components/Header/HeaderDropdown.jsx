@@ -9,9 +9,9 @@ var SplashScreen = require("../App/SplashScreen.jsx")
 
 var MenuLink = (props) => {
 	return (
-		<div className="menu-link" onClick={props.onClick}>
+		<div className="menu-link">
 			<img src={props.src} atl="profile pic"/>
-			<Link to={props.URL}>{props.children}</Link>
+			<Link to={props.URL} onClick={props.onClick}>{props.children}</Link>
 		</div>
 	)
 }
@@ -19,6 +19,8 @@ var MenuLink = (props) => {
 MenuLink.PropTypes = {
 	onClick: React.PropTypes.func,
 	src: React.PropTypes.string,
+	URL: React.PropTypes.string,
+	children: React.PropTypes.node,
 }
 
 var HeaderDropdown = React.createClass({
@@ -31,6 +33,7 @@ var HeaderDropdown = React.createClass({
 		logout: React.PropTypes.func,
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
+		closeModal: React.PropTypes.func,
 	},
 
 	componentWillReceiveProps: function() {
@@ -45,19 +48,19 @@ var HeaderDropdown = React.createClass({
 			return (
 				<div className="dropdown--wrapper">
 					<div 
-						onClick={ () => browserHistory.push("/profile") }
+						onClick={ () => { this.props.closeModal(); browserHistory.push("/profile") } }
 						className="username--wrapper">
 						<img src={ this.props.userData.avatar_url } alt="profile picture" className="profile-picture"/>
 						<span className="username" id="username-header"> {this.props.userData.name ? this.props.userData.name : this.props.userData.username}</span>
 					</div>
 					<div className="dropdown-content">
-						<MenuLink src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>
+						<MenuLink onClick={ this.props.closeModal } src='/static/img/MASAS_play_number.svg' URL="/profile">My Profile</MenuLink>
 						<hr />
-						<MenuLink src='/static/img/MASAS_logo_world.svg' URL="/legals">Legals</MenuLink>
+						<MenuLink onClick={ this.props.closeModal }  src='/static/img/MASAS_logo_world.svg' URL="/legals">Legals</MenuLink>
 						<hr />
-						<MenuLink src='/static/img/MASAS_settings.svg' URL="/">Account Settings</MenuLink>
+						<MenuLink onClick={ this.props.closeModal }  src='/static/img/MASAS_settings.svg' URL="/">Account Settings</MenuLink>
 						<hr />
-						<MenuLink src='/static/img/MASAS_icon_log_out.svg' URL="/" onClick={this.logout}>Sign out</MenuLink>
+						<MenuLink onClick={ () => { this.props.closeModal(); this.logout() } }  src='/static/img/MASAS_icon_log_out.svg' URL="/">Sign out</MenuLink>
 					</div>
 				</div>
 			)
