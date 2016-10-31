@@ -18,11 +18,12 @@ export function resetLoggedOutUserStep() {
 	}
 }
 
-export function changeModalContent(modalContent, modalType) {
+export function changeModalContent(modalContent, modalType, closeModalFunc) {
 	return { 
 		type: CHANGE_MODAL_CONTENT, 
 		modalContent, 
-		modalType
+		modalType,
+		closeModalFunc
 	}
 }
 

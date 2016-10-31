@@ -41,19 +41,20 @@ let Modal = React.createClass({
 	componentWillReceiveProps: function(nextProps) {
 		// update background blur on modal appear/dissapear
 		// unless we are on /upload page (it handles background blurs itself)
-		if(window.location.pathname !== "/upload" && nextProps.isOpened === false) {
+		if(nextProps.isOpened === false && window.location.pathname !== "/upload") {
 			// remove background blur
 			$('#body--background').removeClass('blurred')
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {
 			// put background blur on
 			$('#body--background').addClass('blurred')
-		} else if(nextProps.isOpened === true && nextProps.type === 2) {
+		} else if( nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4) ) {
 			$('#body--background').addClass('blurred')
 			$('#body--background').removeClass('saturated')
 		}
 	},
 
 	render: function() {
+		// default modal (report copyright/spam/delete etc)
 		if(this.props.type === 1)
 			return (
 				<div className={ "MASAS-modal" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">
@@ -68,6 +69,7 @@ let Modal = React.createClass({
 					</div>
 				</div>
 				)
+		// tip modal
 		else if(this.props.type === 2)
 			return (
 				<div 
@@ -89,6 +91,21 @@ let Modal = React.createClass({
 					</div>
 				</div>
 				)
+		// info modal (why can't sync song)
+		else if(this.props.type === 4)
+			return (
+				<div 
+					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
+					id="MASAS-modal"
+					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
+					<div className="modal-type-2--wrapper">
+						<div className="">
+								{ this.props.children }
+						</div>
+					</div>
+				</div>
+				)
+		// splash screen
 		else if(this.props.type === 3)
 			return (
 				<div className={ "MASAS-modal type3" + (this.props.isOpened ? "" : " closed") } id="MASAS-modal">

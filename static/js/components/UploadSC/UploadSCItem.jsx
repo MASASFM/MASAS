@@ -13,6 +13,8 @@ var UploadSCItem = React.createClass({
 		public: React.PropTypes.bool, 			// is song public
 
 		chooseTime: React.PropTypes.func,
+		toogleModal: React.PropTypes.func,
+		updateModalContent: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -34,7 +36,8 @@ var UploadSCItem = React.createClass({
 
 	// show modal with info as to why song is not synchronizable
 	showSyncInfoModal: function() {
-		
+		this.props.updateModalContent(<div>HEY</div>, 4)
+		this.props.toogleModal()
 	},
 
 	render: function() {
@@ -71,7 +74,7 @@ var UploadSCItem = React.createClass({
 				</div>
 				<div 
 					className="sync--wrapper"
-					onClick={ () => { !this.props.public || !this.props.streamable ? this.showSyncInfoModal : 0 } }>
+					onClick={ () => ( !this.props.public || !this.props.streamable ? this.showSyncInfoModal() : 0 ) }>
 					{ this.showTrackStatus() }
 				</div>
 			</div>
