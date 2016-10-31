@@ -1,5 +1,12 @@
 var SC = require('soundcloud')
 
+import { 
+	UPDATE_SC_USER_TRACKS, 
+	UPDATE_MASAS_USER_TRACKS,
+	UPDATE_SC_USERNAME,
+	UPDATE_IS_CONNECTED_SC,
+} from './actions/UploadSC.js'
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -54,22 +61,22 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 				...state,
 				choosingTime: action.song
 			}
-		case 'UPDATE_SC_USER_TRACKS':
+		case UPDATE_SC_USER_TRACKS:
 			return {
 				...state,
 				soundcloudUserTracks: action.soundcloudUserTracks
 			}
-		case 'UPDATE_MASAS_USER_TRACKS':
+		case UPDATE_MASAS_USER_TRACKS:
 			return {
 				...state,
 				masasUserTracks: action.masasUserTracks
 			}
-		case 'UPDATE_SC_USERNAME':
+		case UPDATE_SC_USERNAME:
 			return {
 				...state,
 				SCusername: action.SCusername
 			}
-		case 'UPDATE_IS_CONNECTED_SC':
+		case UPDATE_IS_CONNECTED_SC:
 			return {
 				...state,
 				isConnectedSoundcloud: action.isConnectedSoundcloud
