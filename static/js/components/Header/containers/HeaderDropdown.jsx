@@ -13,7 +13,8 @@ HeaderDropdown.mapStateToProps = function(state) {
 		MASASuser: state.appReducer.MASASuser,
 		// userLoggedIn: state.appReducer.userLoggedIn,
 		// username: state.appReducer.userData.user
-		userData: state.appReducer.userData
+		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened,
 	}
 }
 

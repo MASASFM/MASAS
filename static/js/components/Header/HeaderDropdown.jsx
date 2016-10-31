@@ -25,6 +25,7 @@ var HeaderDropdown = React.createClass({
 	propTypes: {
 		MASASuser: React.PropTypes.string,
 		userData: React.PropTypes.object,
+		isModalOpened: React.PropTypes.bool,
 
 		dispatch: React.PropTypes.func,
 		logout: React.PropTypes.func,
@@ -66,7 +67,7 @@ var HeaderDropdown = React.createClass({
 					<Button
 						isBigButton={ false }
 						isSecondaryAction={ true }
-						onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }>Log-in</Button>
+						onClick={ () => { !this.props.isModalOpened ? this.props.toogleModal() : 0; this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }>Log-in</Button>
 				</div>
 				)
 	}

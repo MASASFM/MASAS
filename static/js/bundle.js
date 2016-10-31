@@ -46560,6 +46560,7 @@ var HeaderDropdown = _wrapComponent("_component")(React.createClass({
 	propTypes: {
 		MASASuser: React.PropTypes.string,
 		userData: React.PropTypes.object,
+		isModalOpened: React.PropTypes.bool,
 
 		dispatch: React.PropTypes.func,
 		logout: React.PropTypes.func,
@@ -46632,7 +46633,7 @@ var HeaderDropdown = _wrapComponent("_component")(React.createClass({
 					isBigButton: false,
 					isSecondaryAction: true,
 					onClick: function onClick() {
-						_this.props.toogleModal();_this.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);
+						!_this.props.isModalOpened ? _this.props.toogleModal() : 0;_this.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);
 					} },
 				"Log-in"
 			)
@@ -46742,7 +46743,8 @@ HeaderDropdown.mapStateToProps = function (state) {
 		MASASuser: state.appReducer.MASASuser,
 		// userLoggedIn: state.appReducer.userLoggedIn,
 		// username: state.appReducer.userData.user
-		userData: state.appReducer.userData
+		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened
 	};
 };
 
