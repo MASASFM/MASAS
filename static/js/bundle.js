@@ -50874,7 +50874,6 @@ var NoLikesComponent = _wrapComponent("_component")(React.createClass({
 	propTypes: {},
 
 	render: function render() {
-		console.log('yp');
 		return React.createElement(
 			"div",
 			{ className: "no-like--wrapper", style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 } },
@@ -50893,7 +50892,7 @@ var NoLikesComponent = _wrapComponent("_component")(React.createClass({
 						isBigButton: true,
 						isSecondaryAction: false,
 						onClick: function onClick() {
-							$('#body--background').removeClass('blurred');goToURL('/discover');
+							return goToURL('/discover');
 						} },
 					"Start discovering new music"
 				)
