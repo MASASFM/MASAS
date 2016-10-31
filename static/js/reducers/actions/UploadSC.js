@@ -17,7 +17,7 @@ export function updateMasasUserTracks(masasUserTracks) {
 	}
 }
 
-export function updateSCUsername() {
+export function updateSCUsername(SCusername) {
 	return {
 		type: UPDATE_SC_USERNAME,
 		SCusername,
