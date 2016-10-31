@@ -45122,6 +45122,9 @@ var Discover = _wrapComponent("_component")(React.createClass({
 
 	componentWillUnmount: function componentWillUnmount() {
 		this.props.closeModal();
+
+		// prevent tip modal from showing if user switches page after setTimout starts in render but before the callback is called
+		if (this.modalTimeout) window.clearTimeout(this.modalTimeout);
 	},
 
 	componentDidMount: function componentDidMount() {},
@@ -45251,7 +45254,7 @@ var Discover = _wrapComponent("_component")(React.createClass({
 
 		// changing state in this.checkUserStep, delaying it until after this.render()
 
-		if (this.props.songPlaying) window.setTimeout(function () {
+		if (this.props.songPlaying) this.modalTimeout = window.setTimeout(function () {
 			return _this3.checkUserStep();
 		}, 3000);
 
