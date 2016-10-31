@@ -8,6 +8,13 @@ import {
 	updatePageTitle,
 } from '../../../reducers/actions/App.js'
 
+import { 
+	updateSCUserTracks,
+	updateMasasUserTracks,
+	updateSCUsername,
+	updateIsConnectedSC,
+} from '../../../reducers/actions/UploadSC.js'
+
 var UploadSC = {} 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -42,10 +49,10 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 		closeModal: () => dispatch(closeAndEmptyMainModal),
 		
 		// page state updates
-		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch({type: 'UPDATE_SC_USER_TRACKS', soundcloudUserTracks}),
-		updateMasasUserTracks: (masasUserTracks) => dispatch({type: 'UPDATE_MASAS_USER_TRACKS', masasUserTracks}),
-		updateSCusername: (SCusername) => dispatch({type: 'UPDATE_SC_USERNAME', SCusername}),
-		updateIsConnectedSC: (isConnectedSoundcloud) => dispatch({type: 'UPDATE_IS_CONNECTED_SC', isConnectedSoundcloud}),
+		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch(updateSCUserTracks(soundcloudUserTracks)),
+		updateMasasUserTracks: (masasUserTracks) => dispatch(updateMasasUserTracks(masasUserTracks)),
+		updateSCusername: (SCusername) => dispatch(updateSCUsername(SCusername)),
+		updateIsConnectedSC: (isConnectedSoundcloud) => dispatch(updateIsConnectedSC(isConnectedSoundcloud)),
 		getUserTracks: (userPk, success, error) => getUserTracks(userPk, success, error),
 
 		// other state updates
