@@ -1,6 +1,7 @@
 @import "./fonts"
 @import "./vars"
 @import "./animations"
+@import "./backgroundFilters"
 
 @import "./UI/UI"
 @import "./App/App"
@@ -28,73 +29,16 @@ html
 
 @media screen and (min-width: $desktop-min-width)
 
-.modal-blur--wrapper
-	display: flex
-	flex: 1
-
-.modal-blur--wrapper.blurred
-	-webkit-filter: blur(2.5px) saturate(0%)
-	filter: blur(2.5px) saturate(0%)
-
-.bg-image
-	content: ""
-	background-image: url('https://source.unsplash.com/user/jeromeprax/1600x900')
-	background-size: cover
-	background-position: center
-	opacity: 0.8
-	top: 0
-	left: 0
-	bottom: 0
-	right: 0
-	position: absolute
-	z-index: 0
-	// transition-property: all
-	// transition-duration: 1s
-	// transition-timing-function: ease-in-out
-	opacity: 0.6		// for text to be readable
-	transition: filter 0.5s linear
-
-// .body--background.artist-page-bg > .bg-image
-// 	-webkit-filter: blur(6px) saturate(0%)
-// 	filter: blur(6px) saturate(0%)
-
-// .body--background.musicLover-page-bg > .bg-image
-// 	-webkit-filter: blur(12px) saturate(0%)
-// 	filter: blur(12px) saturate(0%)
-
-// .body--background.dev-page-bg > .bg-image
-
-.body--background.blurred > .bg-image
-	-webkit-filter: blur(5px)
-	filter: blur(5px)
-
-.body--background.blurred-mobile > .bg-image
-	opacity: 0.5
-	-webkit-filter: blur(15px)
-	filter: blur(15px)
-
-.body--background.saturated > .bg-image
-	-webkit-filter: saturate(0%)
-	// filter: saturate(0%)
-
-.body--background.blurred.saturated > .bg-image
-	-webkit-filter: blur(5px) saturate(0%)
-	filter: blur(5px) saturate(0%)
-
-.body--background.blurred-mobile.saturated > .bg-image
-	-webkit-filter: blur(5px) saturate(0%)
-	filter: blur(5px) saturate(0%)
-
-.body--background::before 
-	content: ""
-	background-color: black
-	opacity: 1
-	top: 0
-	left: 0
-	bottom: 0
-	right: 0
-	position: absolute
-	z-index: -1
+// .body--background::before 
+// 	content: ""
+// 	background-color: black
+// 	opacity: 1
+// 	top: 0
+// 	left: 0
+// 	bottom: 0
+// 	right: 0
+// 	position: absolute
+// 	z-index: -1
 
 
 h1
@@ -131,7 +75,7 @@ h1
 			padding-right: 1rem
 
 		.page-content
-			background-color: rgba(0,0,0,0.7)
+			// background-color: rgba(0,0,0,0.7)
 
 		.page-title
 			text-transform: capitalize
@@ -162,19 +106,4 @@ h1
 	.row-display-none-sm
 		display: flex
 
-	.body--background.blurred-mobile::before
-		opacity: 1
 
-	.body--background.blurred-mobile > .bg-image
-		-webkit-filter: blur(0px)
-		filter: blur(0px)
-		opacity: 0.8
-
-	.body--background.blurred-mobile.saturated > .bg-image
-		-webkit-filter: saturate(0%)
-		filter: saturate(0%)
-
-	.body--background.blurred-mobile.blurred > .bg-image
-		opacity: 0.5
-		-webkit-filter: blur(15px)
-		filter: blur(15px)

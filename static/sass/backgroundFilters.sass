@@ -1,0 +1,70 @@
+.bg-image
+	content: ""
+	background-image: url('https://source.unsplash.com/user/jeromeprax/1600x900')
+	background-size: cover
+	background-position: center
+	// opacity: 0.8
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	position: absolute
+	z-index: 0
+	// transition-property: all
+	// transition-duration: 1s
+	// transition-timing-function: ease-in-out
+	// opacity: 0.6		// for text to be readable
+	transition: filter 0.5s linear
+
+// block used to blur page content (as opposed to img bg that is on sibling block, hence need for 2 blur filters for modals)
+.modal-blur--wrapper
+	display: flex
+	flex: 1
+
+.modal-blur--wrapper.blurred
+	-webkit-filter: blur(5px) //2.5 saturate(0%)
+	filter: blur(5px) //2.5 saturate(0%)
+
+.body--background.blurred > .bg-image
+	-webkit-filter: blur(5px)
+	filter: blur(5px)
+
+.body--background.blurred.modal-blurred > .bg-image
+	-webkit-filter: blur(5px)
+	filter: blur(5px)
+
+.body--background.blurred-mobile > .bg-image
+	-webkit-filter: blur(15px)
+	filter: blur(15px)
+
+.body--background.saturated > .bg-image
+	-webkit-filter: saturate(0%)
+	filter: saturate(0%)
+
+.body--background.modal-saturated > .bg-image
+	-webkit-filter: saturate(0%)
+
+.body--background.blurred.saturated > .bg-image
+	-webkit-filter: blur(5px) saturate(0%)
+	filter: blur(5px) saturate(0%)
+
+.body--background.blurred-mobile.saturated > .bg-image
+	-webkit-filter: blur(5px) saturate(0%)
+	filter: blur(5px) saturate(0%)
+
+.body--background.blurred-mobile::before
+	opacity: 1
+
+@media screen and (min-width: $desktop-min-width)
+	.body--background.blurred-mobile > .bg-image
+		-webkit-filter: blur(0px)
+		filter: blur(0px)
+		// opacity: 0.8
+
+	.body--background.blurred-mobile.saturated > .bg-image
+		-webkit-filter: saturate(0%)
+		filter: saturate(0%)
+
+	.body--background.blurred-mobile.blurred > .bg-image
+		-webkit-filter: blur(5px)
+		filter: blur(5px)
