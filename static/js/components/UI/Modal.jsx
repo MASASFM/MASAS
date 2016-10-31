@@ -1,9 +1,13 @@
 // NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something
 
 var React = require("react")
+var ReactRedux = require("react-redux")
+
+var { mapStateToProps, mapDispatchToProps } = require("./containers/Modal.jsx")
 
 // exeptionally import store to retrieve 1 value (read only)
 var { getState } = require("../../reducers/reducers.js")
+
 
 
 var { closeModal } = require("../../MASAS_functions.jsx")
@@ -14,6 +18,9 @@ let Modal = React.createClass({
 		closeModalFunc: React.PropTypes.func, 		// what to execute when clicking on close modal area (arrow or overlay)
 		type: React.PropTypes.number, 			// what type the modal is
 		children: React.PropTypes.node,
+
+		modalBlurBg: React.PropTypes.func,
+		modalSaturateBg: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -41,14 +48,19 @@ let Modal = React.createClass({
 	componentWillReceiveProps: function(nextProps) {
 		// update background blur on modal appear/dissapear
 		// unless we are on /upload page (it handles background blurs itself)
-		if(nextProps.isOpened === false && window.location.pathname !== "/upload") {
+		if(nextProps.isOpened === false) {
 			// remove background blur
 			// $('#body--background').removeClass('blurred')
+			this.props.modalBlurBg(false)
+			this.props.modalSaturateBg(false)
 		} else if(nextProps.isOpened === true && nextProps.type === 1) {
+			this.props.modalBlurBg(true)
+			this.props.modalSaturateBg(true)
 			// put background blur on
 			// $('#body--background').addClass('blurred')
-		} else if( nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4) ) {
-			// $('#body--background').addClass('blurred')
+		} else if( nextProps.isOpened === true && nextProps.type === 2 ) {
+			this.props.modalBlurBg(true)
+			this.props.modalSaturateBg(false)
 			// $('#body--background').removeClass('saturated')
 		}
 	},
@@ -117,4 +129,7 @@ let Modal = React.createClass({
 	}
 })
 
-module.exports = Modal
+module.exports = ReactRedux.connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Modal)

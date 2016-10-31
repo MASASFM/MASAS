@@ -921,11 +921,11 @@
   "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_MapCache.js": [
     "var mapClear = require('./_mapClear'),\n    mapDelete = require('./_mapDelete'),\n    mapGet = require('./_mapGet'),\n    mapHas = require('./_mapHas'),\n    mapSet = require('./_mapSet');\n\n/**\n * Creates a map cache object to store key-value pairs.\n *\n * @private\n * @constructor\n * @param {Array} [values] The values to cache.\n */\nfunction MapCache(values) {\n  var index = -1,\n      length = values ? values.length : 0;\n\n  this.clear();\n  while (++index < length) {\n    var entry = values[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `MapCache`.\nMapCache.prototype.clear = mapClear;\nMapCache.prototype['delete'] = mapDelete;\nMapCache.prototype.get = mapGet;\nMapCache.prototype.has = mapHas;\nMapCache.prototype.set = mapSet;\n\nmodule.exports = MapCache;\n",
     {
-      "./_mapSet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapSet.js",
-      "./_mapDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js",
-      "./_mapClear": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapClear.js",
       "./_mapHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapHas.js",
-      "./_mapGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapGet.js"
+      "./_mapGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapGet.js",
+      "./_mapSet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapSet.js",
+      "./_mapClear": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapClear.js",
+      "./_mapDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_MapCache.js",
@@ -973,10 +973,10 @@
     "var stackClear = require('./_stackClear'),\n    stackDelete = require('./_stackDelete'),\n    stackGet = require('./_stackGet'),\n    stackHas = require('./_stackHas'),\n    stackSet = require('./_stackSet');\n\n/**\n * Creates a stack cache object to store key-value pairs.\n *\n * @private\n * @constructor\n * @param {Array} [values] The values to cache.\n */\nfunction Stack(values) {\n  var index = -1,\n      length = values ? values.length : 0;\n\n  this.clear();\n  while (++index < length) {\n    var entry = values[index];\n    this.set(entry[0], entry[1]);\n  }\n}\n\n// Add methods to `Stack`.\nStack.prototype.clear = stackClear;\nStack.prototype['delete'] = stackDelete;\nStack.prototype.get = stackGet;\nStack.prototype.has = stackHas;\nStack.prototype.set = stackSet;\n\nmodule.exports = Stack;\n",
     {
       "./_stackClear": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackClear.js",
-      "./_stackGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackGet.js",
       "./_stackHas": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackHas.js",
       "./_stackSet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackSet.js",
-      "./_stackDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackDelete.js"
+      "./_stackDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackDelete.js",
+      "./_stackGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_stackGet.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Stack.js",
@@ -1521,8 +1521,8 @@
       "./_equalArrays": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_equalArrays.js",
       "./_mapToArray": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapToArray.js",
       "./_setToArray": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_setToArray.js",
-      "./_Uint8Array": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Uint8Array.js",
-      "./_Symbol": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Symbol.js"
+      "./_Symbol": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Symbol.js",
+      "./_Uint8Array": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Uint8Array.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_equalByTag.js",
@@ -1773,10 +1773,10 @@
   "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js": [
     "var Map = require('./_Map'),\n    assocDelete = require('./_assocDelete'),\n    hashDelete = require('./_hashDelete'),\n    isKeyable = require('./_isKeyable');\n\n/**\n * Removes `key` and its value from the map.\n *\n * @private\n * @name delete\n * @memberOf MapCache\n * @param {string} key The key of the value to remove.\n * @returns {boolean} Returns `true` if the entry was removed, else `false`.\n */\nfunction mapDelete(key) {\n  var data = this.__data__;\n  if (isKeyable(key)) {\n    return hashDelete(typeof key == 'string' ? data.string : data.hash, key);\n  }\n  return Map ? data.map['delete'](key) : assocDelete(data.map, key);\n}\n\nmodule.exports = mapDelete;\n",
     {
-      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js",
       "./_isKeyable": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_isKeyable.js",
+      "./_hashDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashDelete.js",
       "./_assocDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_assocDelete.js",
-      "./_hashDelete": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashDelete.js"
+      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapDelete.js",
@@ -1788,9 +1788,9 @@
     "var Map = require('./_Map'),\n    assocGet = require('./_assocGet'),\n    hashGet = require('./_hashGet'),\n    isKeyable = require('./_isKeyable');\n\n/**\n * Gets the map value for `key`.\n *\n * @private\n * @name get\n * @memberOf MapCache\n * @param {string} key The key of the value to get.\n * @returns {*} Returns the entry value.\n */\nfunction mapGet(key) {\n  var data = this.__data__;\n  if (isKeyable(key)) {\n    return hashGet(typeof key == 'string' ? data.string : data.hash, key);\n  }\n  return Map ? data.map.get(key) : assocGet(data.map, key);\n}\n\nmodule.exports = mapGet;\n",
     {
       "./_isKeyable": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_isKeyable.js",
+      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js",
       "./_assocGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_assocGet.js",
-      "./_hashGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashGet.js",
-      "./_Map": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_Map.js"
+      "./_hashGet": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_hashGet.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-proxy/node_modules/lodash/_mapGet.js",
@@ -2405,11 +2405,11 @@
     "(function (process){\n'use strict';\n\nexports.__esModule = true;\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _warning = require('./warning');\n\nvar _warning2 = _interopRequireDefault(_warning);\n\nvar _invariant = require('invariant');\n\nvar _invariant2 = _interopRequireDefault(_invariant);\n\nvar _RouteUtils = require('./RouteUtils');\n\nvar _PropTypes = require('./PropTypes');\n\nvar func = _react2['default'].PropTypes.func;\n\n/**\n * An <IndexRoute> is used to specify its parent's <Route indexRoute> in\n * a JSX route config.\n */\nvar IndexRoute = _react2['default'].createClass({\n  displayName: 'IndexRoute',\n\n  statics: {\n\n    createRouteFromReactElement: function createRouteFromReactElement(element, parentRoute) {\n      /* istanbul ignore else: sanity check */\n      if (parentRoute) {\n        parentRoute.indexRoute = _RouteUtils.createRouteFromReactElement(element);\n      } else {\n        process.env.NODE_ENV !== 'production' ? _warning2['default'](false, 'An <IndexRoute> does not make sense at the root of your route config') : undefined;\n      }\n    }\n\n  },\n\n  propTypes: {\n    path: _PropTypes.falsy,\n    component: _PropTypes.component,\n    components: _PropTypes.components,\n    getComponent: func,\n    getComponents: func\n  },\n\n  /* istanbul ignore next: sanity check */\n  render: function render() {\n    !false ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, '<IndexRoute> elements are for router configuration only and should not be rendered') : _invariant2['default'](false) : undefined;\n  }\n\n});\n\nexports['default'] = IndexRoute;\nmodule.exports = exports['default'];\n}).call(this,require('_process'))",
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
-      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js",
       "./PropTypes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/PropTypes.js",
       "./RouteUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
       "invariant": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/node_modules/invariant/browser.js",
-      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js"
+      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRoute.js",
@@ -2421,9 +2421,9 @@
     "(function (process){\n'use strict';\n\nexports.__esModule = true;\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _warning = require('./warning');\n\nvar _warning2 = _interopRequireDefault(_warning);\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _invariant = require('invariant');\n\nvar _invariant2 = _interopRequireDefault(_invariant);\n\nvar object = _react2['default'].PropTypes.object;\n\n/**\n * The Lifecycle mixin adds the routerWillLeave lifecycle method to a\n * component that may be used to cancel a transition or prompt the user\n * for confirmation.\n *\n * On standard transitions, routerWillLeave receives a single argument: the\n * location we're transitioning to. To cancel the transition, return false.\n * To prompt the user for confirmation, return a prompt message (string).\n *\n * During the beforeunload event (assuming you're using the useBeforeUnload\n * history enhancer), routerWillLeave does not receive a location object\n * because it isn't possible for us to know the location we're transitioning\n * to. In this case routerWillLeave must return a prompt message to prevent\n * the user from closing the window/tab.\n */\nvar Lifecycle = {\n\n  contextTypes: {\n    history: object.isRequired,\n    // Nested children receive the route as context, either\n    // set by the route component using the RouteContext mixin\n    // or by some other ancestor.\n    route: object\n  },\n\n  propTypes: {\n    // Route components receive the route object as a prop.\n    route: object\n  },\n\n  componentDidMount: function componentDidMount() {\n    process.env.NODE_ENV !== 'production' ? _warning2['default'](false, 'the `Lifecycle` mixin is deprecated, please use `context.router.setRouteLeaveHook(route, hook)`. http://tiny.cc/router-lifecyclemixin') : undefined;\n    !this.routerWillLeave ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'The Lifecycle mixin requires you to define a routerWillLeave method') : _invariant2['default'](false) : undefined;\n\n    var route = this.props.route || this.context.route;\n\n    !route ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'The Lifecycle mixin must be used on either a) a <Route component> or ' + 'b) a descendant of a <Route component> that uses the RouteContext mixin') : _invariant2['default'](false) : undefined;\n\n    this._unlistenBeforeLeavingRoute = this.context.history.listenBeforeLeavingRoute(route, this.routerWillLeave);\n  },\n\n  componentWillUnmount: function componentWillUnmount() {\n    if (this._unlistenBeforeLeavingRoute) this._unlistenBeforeLeavingRoute();\n  }\n\n};\n\nexports['default'] = Lifecycle;\nmodule.exports = exports['default'];\n}).call(this,require('_process'))",
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
-      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js",
       "invariant": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/node_modules/invariant/browser.js",
-      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js"
+      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Lifecycle.js",
@@ -2502,8 +2502,8 @@
     "(function (process){\n'use strict';\n\nexports.__esModule = true;\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _warning = require('./warning');\n\nvar _warning2 = _interopRequireDefault(_warning);\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar object = _react2['default'].PropTypes.object;\n\n/**\n * The RouteContext mixin provides a convenient way for route\n * components to set the route in context. This is needed for\n * routes that render elements that want to use the Lifecycle\n * mixin to prevent transitions.\n */\nvar RouteContext = {\n\n  propTypes: {\n    route: object.isRequired\n  },\n\n  childContextTypes: {\n    route: object.isRequired\n  },\n\n  getChildContext: function getChildContext() {\n    return {\n      route: this.props.route\n    };\n  },\n\n  componentWillMount: function componentWillMount() {\n    process.env.NODE_ENV !== 'production' ? _warning2['default'](false, 'The `RouteContext` mixin is deprecated. You can provide `this.props.route` on context with your own `contextTypes`. http://tiny.cc/router-routecontextmixin') : undefined;\n  }\n\n};\n\nexports['default'] = RouteContext;\nmodule.exports = exports['default'];\n}).call(this,require('_process'))",
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
-      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js",
-      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js"
+      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteContext.js",
@@ -2515,8 +2515,8 @@
     "(function (process){\n'use strict';\n\nexports.__esModule = true;\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nexports.isReactChildren = isReactChildren;\nexports.createRouteFromReactElement = createRouteFromReactElement;\nexports.createRoutesFromReactChildren = createRoutesFromReactChildren;\nexports.createRoutes = createRoutes;\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _react = require('react');\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _warning = require('./warning');\n\nvar _warning2 = _interopRequireDefault(_warning);\n\nfunction isValidChild(object) {\n  return object == null || _react2['default'].isValidElement(object);\n}\n\nfunction isReactChildren(object) {\n  return isValidChild(object) || Array.isArray(object) && object.every(isValidChild);\n}\n\nfunction checkPropTypes(componentName, propTypes, props) {\n  componentName = componentName || 'UnknownComponent';\n\n  for (var propName in propTypes) {\n    if (propTypes.hasOwnProperty(propName)) {\n      var error = propTypes[propName](props, propName, componentName);\n\n      /* istanbul ignore if: error logging */\n      if (error instanceof Error) process.env.NODE_ENV !== 'production' ? _warning2['default'](false, error.message) : undefined;\n    }\n  }\n}\n\nfunction createRoute(defaultProps, props) {\n  return _extends({}, defaultProps, props);\n}\n\nfunction createRouteFromReactElement(element) {\n  var type = element.type;\n  var route = createRoute(type.defaultProps, element.props);\n\n  if (type.propTypes) checkPropTypes(type.displayName || type.name, type.propTypes, route);\n\n  if (route.children) {\n    var childRoutes = createRoutesFromReactChildren(route.children, route);\n\n    if (childRoutes.length) route.childRoutes = childRoutes;\n\n    delete route.children;\n  }\n\n  return route;\n}\n\n/**\n * Creates and returns a routes object from the given ReactChildren. JSX\n * provides a convenient way to visualize how routes in the hierarchy are\n * nested.\n *\n *   import { Route, createRoutesFromReactChildren } from 'react-router'\n *   \n *   const routes = createRoutesFromReactChildren(\n *     <Route component={App}>\n *       <Route path=\"home\" component={Dashboard}/>\n *       <Route path=\"news\" component={NewsFeed}/>\n *     </Route>\n *   )\n *\n * Note: This method is automatically used when you provide <Route> children\n * to a <Router> component.\n */\n\nfunction createRoutesFromReactChildren(children, parentRoute) {\n  var routes = [];\n\n  _react2['default'].Children.forEach(children, function (element) {\n    if (_react2['default'].isValidElement(element)) {\n      // Component classes may have a static create* method.\n      if (element.type.createRouteFromReactElement) {\n        var route = element.type.createRouteFromReactElement(element, parentRoute);\n\n        if (route) routes.push(route);\n      } else {\n        routes.push(createRouteFromReactElement(element));\n      }\n    }\n  });\n\n  return routes;\n}\n\n/**\n * Creates and returns an array of routes from the given object which\n * may be a JSX route, a plain object route, or an array of either.\n */\n\nfunction createRoutes(routes) {\n  if (isReactChildren(routes)) {\n    routes = createRoutesFromReactChildren(routes);\n  } else if (routes && !Array.isArray(routes)) {\n    routes = [routes];\n  }\n\n  return routes;\n}\n}).call(this,require('_process'))",
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
-      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js",
-      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js"
+      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
@@ -2578,8 +2578,8 @@
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
       "./RouterContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouterContext.js",
-      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js",
-      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js"
+      "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "./warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/warning.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RoutingContext.js",
@@ -2715,20 +2715,20 @@
     {
       "./PatternUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/PatternUtils.js",
       "./IndexLink": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexLink.js",
-      "./IndexRoute": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRoute.js",
       "./Route": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Route.js",
-      "./RouteUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
+      "./PropTypes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/PropTypes.js",
+      "./Redirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Redirect.js",
       "./Lifecycle": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Lifecycle.js",
       "./RouteContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteContext.js",
       "./RoutingContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RoutingContext.js",
-      "./PropTypes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/PropTypes.js",
-      "./Redirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Redirect.js",
       "./Link": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/Link.js",
       "./History": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/History.js",
+      "./IndexRedirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRedirect.js",
+      "./IndexRoute": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRoute.js",
       "./match": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/match.js",
       "./useRoutes": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/useRoutes.js",
       "./hashHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/hashHistory.js",
-      "./IndexRedirect": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/IndexRedirect.js",
+      "./RouteUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouteUtils.js",
       "./RouterContext": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/RouterContext.js",
       "./browserHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/browserHistory.js",
       "./useRouterHistory": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-router/lib/useRouterHistory.js",
@@ -3754,8 +3754,8 @@
       "./ReactMount": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactMount.js",
       "./ReactUpdates": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactUpdates.js",
       "./Object.assign": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/Object.assign.js",
-      "./LinkedValueUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/LinkedValueUtils.js",
-      "fbjs/lib/invariant": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/invariant.js"
+      "fbjs/lib/invariant": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/invariant.js",
+      "./LinkedValueUtils": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/LinkedValueUtils.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDOMInput.js",
@@ -3886,8 +3886,8 @@
       "./ReactBrowserComponentMixin": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactBrowserComponentMixin.js",
       "./ReactDefaultBatchingStrategy": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactDefaultBatchingStrategy.js",
       "./SelectEventPlugin": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/SelectEventPlugin.js",
-      "./ReactEventListener": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactEventListener.js",
       "./ChangeEventPlugin": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ChangeEventPlugin.js",
+      "./ReactEventListener": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactEventListener.js",
       "./EnterLeaveEventPlugin": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/EnterLeaveEventPlugin.js",
       "./ReactComponentBrowserEnvironment": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactComponentBrowserEnvironment.js",
       "./ReactInjection": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactInjection.js",
@@ -4412,12 +4412,12 @@
     "/**\n * Copyright 2013-2015, Facebook, Inc.\n * All rights reserved.\n *\n * This source code is licensed under the BSD-style license found in the\n * LICENSE file in the root directory of this source tree. An additional grant\n * of patent rights can be found in the PATENTS file in the same directory.\n *\n * @providesModule SelectEventPlugin\n */\n\n'use strict';\n\nvar EventConstants = require('./EventConstants');\nvar EventPropagators = require('./EventPropagators');\nvar ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');\nvar ReactInputSelection = require('./ReactInputSelection');\nvar SyntheticEvent = require('./SyntheticEvent');\n\nvar getActiveElement = require('fbjs/lib/getActiveElement');\nvar isTextInputElement = require('./isTextInputElement');\nvar keyOf = require('fbjs/lib/keyOf');\nvar shallowEqual = require('fbjs/lib/shallowEqual');\n\nvar topLevelTypes = EventConstants.topLevelTypes;\n\nvar skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;\n\nvar eventTypes = {\n  select: {\n    phasedRegistrationNames: {\n      bubbled: keyOf({ onSelect: null }),\n      captured: keyOf({ onSelectCapture: null })\n    },\n    dependencies: [topLevelTypes.topBlur, topLevelTypes.topContextMenu, topLevelTypes.topFocus, topLevelTypes.topKeyDown, topLevelTypes.topMouseDown, topLevelTypes.topMouseUp, topLevelTypes.topSelectionChange]\n  }\n};\n\nvar activeElement = null;\nvar activeElementID = null;\nvar lastSelection = null;\nvar mouseDown = false;\n\n// Track whether a listener exists for this plugin. If none exist, we do\n// not extract events.\nvar hasListener = false;\nvar ON_SELECT_KEY = keyOf({ onSelect: null });\n\n/**\n * Get an object which is a unique representation of the current selection.\n *\n * The return value will not be consistent across nodes or browsers, but\n * two identical selections on the same node will return identical objects.\n *\n * @param {DOMElement} node\n * @return {object}\n */\nfunction getSelection(node) {\n  if ('selectionStart' in node && ReactInputSelection.hasSelectionCapabilities(node)) {\n    return {\n      start: node.selectionStart,\n      end: node.selectionEnd\n    };\n  } else if (window.getSelection) {\n    var selection = window.getSelection();\n    return {\n      anchorNode: selection.anchorNode,\n      anchorOffset: selection.anchorOffset,\n      focusNode: selection.focusNode,\n      focusOffset: selection.focusOffset\n    };\n  } else if (document.selection) {\n    var range = document.selection.createRange();\n    return {\n      parentElement: range.parentElement(),\n      text: range.text,\n      top: range.boundingTop,\n      left: range.boundingLeft\n    };\n  }\n}\n\n/**\n * Poll selection to see whether it's changed.\n *\n * @param {object} nativeEvent\n * @return {?SyntheticEvent}\n */\nfunction constructSelectEvent(nativeEvent, nativeEventTarget) {\n  // Ensure we have the right element, and that the user is not dragging a\n  // selection (this matches native `select` event behavior). In HTML5, select\n  // fires only on input and textarea thus if there's no focused element we\n  // won't dispatch.\n  if (mouseDown || activeElement == null || activeElement !== getActiveElement()) {\n    return null;\n  }\n\n  // Only fire when selection has actually changed.\n  var currentSelection = getSelection(activeElement);\n  if (!lastSelection || !shallowEqual(lastSelection, currentSelection)) {\n    lastSelection = currentSelection;\n\n    var syntheticEvent = SyntheticEvent.getPooled(eventTypes.select, activeElementID, nativeEvent, nativeEventTarget);\n\n    syntheticEvent.type = 'select';\n    syntheticEvent.target = activeElement;\n\n    EventPropagators.accumulateTwoPhaseDispatches(syntheticEvent);\n\n    return syntheticEvent;\n  }\n\n  return null;\n}\n\n/**\n * This plugin creates an `onSelect` event that normalizes select events\n * across form elements.\n *\n * Supported elements are:\n * - input (see `isTextInputElement`)\n * - textarea\n * - contentEditable\n *\n * This differs from native browser implementations in the following ways:\n * - Fires on contentEditable fields as well as inputs.\n * - Fires for collapsed selection.\n * - Fires after user input.\n */\nvar SelectEventPlugin = {\n\n  eventTypes: eventTypes,\n\n  /**\n   * @param {string} topLevelType Record from `EventConstants`.\n   * @param {DOMEventTarget} topLevelTarget The listening component root node.\n   * @param {string} topLevelTargetID ID of `topLevelTarget`.\n   * @param {object} nativeEvent Native browser event.\n   * @return {*} An accumulation of synthetic events.\n   * @see {EventPluginHub.extractEvents}\n   */\n  extractEvents: function (topLevelType, topLevelTarget, topLevelTargetID, nativeEvent, nativeEventTarget) {\n    if (!hasListener) {\n      return null;\n    }\n\n    switch (topLevelType) {\n      // Track the input node that has focus.\n      case topLevelTypes.topFocus:\n        if (isTextInputElement(topLevelTarget) || topLevelTarget.contentEditable === 'true') {\n          activeElement = topLevelTarget;\n          activeElementID = topLevelTargetID;\n          lastSelection = null;\n        }\n        break;\n      case topLevelTypes.topBlur:\n        activeElement = null;\n        activeElementID = null;\n        lastSelection = null;\n        break;\n\n      // Don't fire the event while the user is dragging. This matches the\n      // semantics of the native select event.\n      case topLevelTypes.topMouseDown:\n        mouseDown = true;\n        break;\n      case topLevelTypes.topContextMenu:\n      case topLevelTypes.topMouseUp:\n        mouseDown = false;\n        return constructSelectEvent(nativeEvent, nativeEventTarget);\n\n      // Chrome and IE fire non-standard event when selection is changed (and\n      // sometimes when it hasn't). IE's event fires out of order with respect\n      // to key and input events on deletion, so we discard it.\n      //\n      // Firefox doesn't support selectionchange, so check selection status\n      // after each key entry. The selection changes after keydown and before\n      // keyup, but we check on keydown as well in the case of holding down a\n      // key, when multiple keydown events are fired but only one keyup is.\n      // This is also our approach for IE handling, for the reason above.\n      case topLevelTypes.topSelectionChange:\n        if (skipSelectionChangeEvent) {\n          break;\n        }\n      // falls through\n      case topLevelTypes.topKeyDown:\n      case topLevelTypes.topKeyUp:\n        return constructSelectEvent(nativeEvent, nativeEventTarget);\n    }\n\n    return null;\n  },\n\n  didPutListener: function (id, registrationName, listener) {\n    if (registrationName === ON_SELECT_KEY) {\n      hasListener = true;\n    }\n  }\n};\n\nmodule.exports = SelectEventPlugin;",
     {
       "./EventConstants": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/EventConstants.js",
-      "./EventPropagators": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/EventPropagators.js",
       "./isTextInputElement": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/isTextInputElement.js",
       "fbjs/lib/ExecutionEnvironment": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/ExecutionEnvironment.js",
       "fbjs/lib/keyOf": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/keyOf.js",
       "fbjs/lib/shallowEqual": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/shallowEqual.js",
       "fbjs/lib/getActiveElement": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/fbjs/lib/getActiveElement.js",
+      "./EventPropagators": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/EventPropagators.js",
       "./SyntheticEvent": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/SyntheticEvent.js",
       "./ReactInputSelection": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/lib/ReactInputSelection.js"
     },
@@ -4968,8 +4968,8 @@
     {
       "_process": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
       "./createStore": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/lib/createStore.js",
-      "lodash/isPlainObject": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/node_modules/lodash/isPlainObject.js",
-      "./utils/warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/lib/utils/warning.js"
+      "./utils/warning": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/lib/utils/warning.js",
+      "lodash/isPlainObject": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/node_modules/lodash/isPlainObject.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/redux/lib/combineReducers.js",
@@ -5182,8 +5182,8 @@
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "./ArtworkLineItem.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/ArtworkLineItem.jsx",
-      "./containers/ArtworkLine.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/containers/ArtworkLine.jsx"
+      "./containers/ArtworkLine.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/containers/ArtworkLine.jsx",
+      "./ArtworkLineItem.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/ArtworkLineItem.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/ArtworkLine.jsx",
@@ -5197,9 +5197,9 @@
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "../Profile/MiniProfile.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/MiniProfile.jsx",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
-      "./containers/ArtworkLineItem.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/containers/ArtworkLineItem.jsx"
+      "./containers/ArtworkLineItem.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/containers/ArtworkLineItem.jsx",
+      "../Profile/MiniProfile.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/MiniProfile.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/ArtworkLineItem.jsx",
@@ -5636,9 +5636,9 @@
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
+      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "./LikesWrapper.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesWrapper.jsx",
       "./FiltersModal.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/FiltersModal.jsx",
-      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "./containers/Likes.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/containers/Likes.jsx",
       "./LikesArtworks.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/LikesArtworks.jsx"
     },
@@ -5800,8 +5800,8 @@
       "react-dom": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-dom/index.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "./containers/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/containers/SignUp.jsx",
-      "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
-      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js"
+      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
+      "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx",
@@ -5963,8 +5963,8 @@
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
       "./containers/Popular.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/containers/Popular.jsx",
-      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
-      "../MASAS_mixins.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/MASAS_mixins.jsx"
+      "../MASAS_mixins.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/MASAS_mixins.jsx",
+      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/Popular.jsx",
@@ -6346,16 +6346,18 @@
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx": [
-    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\n// NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something\n\nvar React = require(\"react\");\n\n// exeptionally import store to retrieve 1 value (read only)\n\nvar _require = require(\"../../reducers/reducers.js\");\n\nvar getState = _require.getState;\n\nvar _require2 = require(\"../../MASAS_functions.jsx\");\n\nvar _closeModal = _require2.closeModal;\n\nvar Modal = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Modal\",\n\n\tpropTypes: {\n\t\tisOpened: React.PropTypes.bool, // is modal shown\n\t\tcloseModalFunc: React.PropTypes.func, // what to execute when clicking on close modal area (arrow or overlay)\n\t\ttype: React.PropTypes.number, // what type the modal is\n\t\tchildren: React.PropTypes.node\n\t},\n\n\tgetDefaultProps: function getDefaultProps() {\n\t\treturn {\n\t\t\tisOpened: false,\n\t\t\tcloseModalFunc: function closeModalFunc() {},\n\t\t\ttype: 1\n\t\t};\n\t},\n\n\tcomponentDidMount: function componentDidMount() {},\n\n\tcomponentWillUnmount: function componentWillUnmount() {},\n\n\tcomponentDidUpdate: function componentDidUpdate() {},\n\n\tcloseModal: function closeModal() {\n\t\tgetState().appReducer.closeModalFunc();\n\t\t_closeModal();\n\t},\n\n\tcomponentWillReceiveProps: function componentWillReceiveProps(nextProps) {\n\t\t// update background blur on modal appear/dissapear\n\t\t// unless we are on /upload page (it handles background blurs itself)\n\t\tif (nextProps.isOpened === false && window.location.pathname !== \"/upload\") {\n\t\t\t// remove background blur\n\t\t\t// $('#body--background').removeClass('blurred')\n\t\t} else if (nextProps.isOpened === true && nextProps.type === 1) {\n\t\t\t\t// put background blur on\n\t\t\t\t// $('#body--background').addClass('blurred')\n\t\t\t} else if (nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4)) {\n\t\t\t\t\t// $('#body--background').addClass('blurred')\n\t\t\t\t\t// $('#body--background').removeClass('saturated')\n\t\t\t\t}\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\tif (\n\t\t// default modal (report copyright/spam/delete etc)\n\t\tthis.props.type === 1) return React.createElement(\n\t\t\t\"div\",\n\t\t\t{ className: \"MASAS-modal\" + (this.props.isOpened ? \"\" : \" closed\"), id: \"MASAS-modal\" },\n\t\t\tReact.createElement(\"div\", { className: \"modal-overlay\", onClick: this.props.closeModalFunc }),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"modal-content--wrapper\" },\n\t\t\t\tReact.createElement(\"img\", { onClick: this.props.closeModalFunc, src: \"/static/img/MASAS_close_icon.svg\", className: \"close-icon\", alt: \"close modal\" }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"modal-content\" },\n\t\t\t\t\tthis.props.children\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t\t// tip modal\n\t\telse if (this.props.type === 2) return React.createElement(\n\t\t\t\"div\",\n\t\t\t{\n\t\t\t\tclassName: \"MASAS-modal type2\" + (this.props.isOpened ? \"\" : \" closed\"),\n\t\t\t\tid: \"MASAS-modal\",\n\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t_this.closeModal();_this.props.closeModalFunc();\n\t\t\t\t} },\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"modal-type-2--wrapper\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"tip-title\" },\n\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/tip-light-bulb.png\", alt: \"light bulb icon\" }),\n\t\t\t\t\t\"Tip\"\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"\" },\n\t\t\t\t\tthis.props.children\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t\t// info modal (why can't sync song)\n\t\telse if (this.props.type === 4) return React.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{\n\t\t\t\t\tclassName: \"MASAS-modal type2\" + (this.props.isOpened ? \"\" : \" closed\"),\n\t\t\t\t\tid: \"MASAS-modal\",\n\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t_this.closeModal();_this.props.closeModalFunc();\n\t\t\t\t\t} },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"modal-type-2--wrapper\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"\" },\n\t\t\t\t\t\tthis.props.children\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t\t// splash screen\n\t\t\telse if (this.props.type === 3) return React.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"MASAS-modal type3\" + (this.props.isOpened ? \"\" : \" closed\"), id: \"MASAS-modal\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"modal-type-3--wrapper\" },\n\t\t\t\t\t\tthis.props.children\n\t\t\t\t\t)\n\t\t\t\t);\n\t}\n}));\n\nmodule.exports = Modal;\n//# sourceMappingURL=data:application/json;base64,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QUFMLENBQVcsUUFBWCxHQUFzQixFQUF0QixHQUEyQixTQUEzQixDQUF2QjtBQUNaLFNBQUcsYUFBSDtBQUNBLGNBQVUsbUJBQU07QUFBRSxZQUFLLFVBQUwsR0FBRixLQUFxQixDQUFLLEtBQUwsQ0FBVyxjQUFYLEdBQXJCO01BQU4sRUFIWDtJQUlDOztPQUFLLFdBQVUsdUJBQVYsRUFBTDtLQUNDOztRQUFLLFdBQVUsRUFBVixFQUFMO01BQ0ksS0FBSyxLQUFMLENBQVcsUUFBWDtNQUZMO0tBSkQ7SUFERDs7QUFESSxRQWNBLElBQUcsS0FBSyxLQUFMLENBQVcsSUFBWCxLQUFvQixDQUFwQixFQUNQLE9BQ0M7O09BQUssV0FBWSx1QkFBdUIsS0FBSyxLQUFMLENBQVcsUUFBWCxHQUFzQixFQUF0QixHQUEyQixTQUEzQixDQUF2QixFQUErRCxJQUFHLGFBQUgsRUFBaEY7S0FDQzs7UUFBSyxXQUFVLHVCQUFWLEVBQUw7TUFDRyxLQUFLLEtBQUwsQ0FBVyxRQUFYO01BRko7S0FERCxDQURJO0VBckRFO0NBN0NHLEVBQVI7O0FBNkdKLE9BQU8sT0FBUCxHQUFpQixLQUFqQiIsImZpbGUiOiJNb2RhbC5qc3giLCJzb3VyY2VzQ29udGVudCI6WyIvLyBORUVEUyBESVJFQ1QgUEFSRU5UIFdJVEggPT4gcG9zaXRpb246IHJlbGF0aXZlLCBoZWlnaHQgPSBzb21ldGhpbmcsIHdpZHRoID0gc29tZXRoaW5nXG5cbnZhciBSZWFjdCA9IHJlcXVpcmUoXCJyZWFjdFwiKVxuXG4vLyBleGVwdGlvbmFsbHkgaW1wb3J0IHN0b3JlIHRvIHJldHJpZXZlIDEgdmFsdWUgKHJlYWQgb25seSlcbnZhciB7IGdldFN0YXRlIH0gPSByZXF1aXJlKFwiLi4vLi4vcmVkdWNlcnMvcmVkdWNlcnMuanNcIilcblxuXG52YXIgeyBjbG9zZU1vZGFsIH0gPSByZXF1aXJlKFwiLi4vLi4vTUFTQVNfZnVuY3Rpb25zLmpzeFwiKVxuXG5sZXQgTW9kYWwgPSBSZWFjdC5jcmVhdGVDbGFzcyh7XG5cdHByb3BUeXBlczoge1xuXHRcdGlzT3BlbmVkOiBSZWFjdC5Qcm9wVHlwZXMuYm9vbCxcdFx0XHQvLyBpcyBtb2RhbCBzaG93blxuXHRcdGNsb3NlTW9kYWxGdW5jOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYywgXHRcdC8vIHdoYXQgdG8gZXhlY3V0ZSB3aGVuIGNsaWNraW5nIG9uIGNsb3NlIG1vZGFsIGFyZWEgKGFycm93IG9yIG92ZXJsYXkpXG5cdFx0dHlwZTogUmVhY3QuUHJvcFR5cGVzLm51bWJlciwgXHRcdFx0Ly8gd2hhdCB0eXBlIHRoZSBtb2RhbCBpc1xuXHRcdGNoaWxkcmVuOiBSZWFjdC5Qcm9wVHlwZXMubm9kZSxcblx0fSxcblxuXHRnZXREZWZhdWx0UHJvcHM6IGZ1bmN0aW9uKCkge1xuXHRcdHJldHVybiB7XG5cdFx0XHRpc09wZW5lZDogZmFsc2UsXHRcblx0XHRcdGNsb3NlTW9kYWxGdW5jOiAoKSA9PiB7fSxcblx0XHRcdHR5cGU6IDEsXG5cdFx0fVxuXHR9LFxuXG5cdGNvbXBvbmVudERpZE1vdW50OiBmdW5jdGlvbigpIHtcblx0fSxcblxuXHRjb21wb25lbnRXaWxsVW5tb3VudDogZnVuY3Rpb24oKSB7XG5cdH0sXG5cblx0Y29tcG9uZW50RGlkVXBkYXRlOiBmdW5jdGlvbigpIHtcblx0fSxcblxuXHRjbG9zZU1vZGFsOiBmdW5jdGlvbigpIHtcblx0XHRnZXRTdGF0ZSgpLmFwcFJlZHVjZXIuY2xvc2VNb2RhbEZ1bmMoKVxuXHRcdGNsb3NlTW9kYWwoKVxuXHR9LFxuXG5cdGNvbXBvbmVudFdpbGxSZWNlaXZlUHJvcHM6IGZ1bmN0aW9uKG5leHRQcm9wcykge1xuXHRcdC8vIHVwZGF0ZSBiYWNrZ3JvdW5kIGJsdXIgb24gbW9kYWwgYXBwZWFyL2Rpc3NhcGVhclxuXHRcdC8vIHVubGVzcyB3ZSBhcmUgb24gL3VwbG9hZCBwYWdlIChpdCBoYW5kbGVzIGJhY2tncm91bmQgYmx1cnMgaXRzZWxmKVxuXHRcdGlmKG5leHRQcm9wcy5pc09wZW5lZCA9PT0gZmFsc2UgJiYgd2luZG93LmxvY2F0aW9uLnBhdGhuYW1lICE9PSBcIi91cGxvYWRcIikge1xuXHRcdFx0Ly8gcmVtb3ZlIGJhY2tncm91bmQgYmx1clxuXHRcdFx0Ly8gJCgnI2JvZHktLWJhY2tncm91bmQnKS5yZW1vdmVDbGFzcygnYmx1cnJlZCcpXG5cdFx0fSBlbHNlIGlmKG5leHRQcm9wcy5pc09wZW5lZCA9PT0gdHJ1ZSAmJiBuZXh0UHJvcHMudHlwZSA9PT0gMSkge1xuXHRcdFx0Ly8gcHV0IGJhY2tncm91bmQgYmx1ciBvblxuXHRcdFx0Ly8gJCgnI2JvZHktLWJhY2tncm91bmQnKS5hZGRDbGFzcygnYmx1cnJlZCcpXG5cdFx0fSBlbHNlIGlmKCBuZXh0UHJvcHMuaXNPcGVuZWQgPT09IHRydWUgJiYgKG5leHRQcm9wcy50eXBlID09PSAyIHx8IG5leHRQcm9wcy50eXBlID09PSA0KSApIHtcblx0XHRcdC8vICQoJyNib2R5LS1iYWNrZ3JvdW5kJykuYWRkQ2xhc3MoJ2JsdXJyZWQnKVxuXHRcdFx0Ly8gJCgnI2JvZHktLWJhY2tncm91bmQnKS5yZW1vdmVDbGFzcygnc2F0dXJhdGVkJylcblx0XHR9XG5cdH0sXG5cblx0cmVuZGVyOiBmdW5jdGlvbigpIHtcblx0XHQvLyBkZWZhdWx0IG1vZGFsIChyZXBvcnQgY29weXJpZ2h0L3NwYW0vZGVsZXRlIGV0Yylcblx0XHRpZih0aGlzLnByb3BzLnR5cGUgPT09IDEpXG5cdFx0XHRyZXR1cm4gKFxuXHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT17IFwiTUFTQVMtbW9kYWxcIiArICh0aGlzLnByb3BzLmlzT3BlbmVkID8gXCJcIiA6IFwiIGNsb3NlZFwiKSB9IGlkPVwiTUFTQVMtbW9kYWxcIj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm1vZGFsLW92ZXJsYXlcIiBvbkNsaWNrPXsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsRnVuYyB9PlxuXHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJtb2RhbC1jb250ZW50LS13cmFwcGVyXCI+XG5cdFx0XHRcdFx0XHQ8aW1nIG9uQ2xpY2s9eyB0aGlzLnByb3BzLmNsb3NlTW9kYWxGdW5jIH0gc3JjPVwiL3N0YXRpYy9pbWcvTUFTQVNfY2xvc2VfaWNvbi5zdmdcIiBjbGFzc05hbWU9XCJjbG9zZS1pY29uXCIgYWx0PVwiY2xvc2UgbW9kYWxcIiAvPlxuXHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJtb2RhbC1jb250ZW50XCI+XG5cdFx0XHRcdFx0XHRcdHsgdGhpcy5wcm9wcy5jaGlsZHJlbiB9XG5cdFx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdClcblx0XHQvLyB0aXAgbW9kYWxcblx0XHRlbHNlIGlmKHRoaXMucHJvcHMudHlwZSA9PT0gMilcblx0XHRcdHJldHVybiAoXG5cdFx0XHRcdDxkaXYgXG5cdFx0XHRcdFx0Y2xhc3NOYW1lPXsgXCJNQVNBUy1tb2RhbCB0eXBlMlwiICsgKHRoaXMucHJvcHMuaXNPcGVuZWQgPyBcIlwiIDogXCIgY2xvc2VkXCIpIH1cblx0XHRcdFx0XHRpZD1cIk1BU0FTLW1vZGFsXCJcblx0XHRcdFx0XHRvbkNsaWNrPXsgKCkgPT4geyB0aGlzLmNsb3NlTW9kYWwoKTsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsRnVuYygpIH0gfT5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm1vZGFsLXR5cGUtMi0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJ0aXAtdGl0bGVcIj5cblx0XHRcdFx0XHRcdFx0PGltZyBzcmM9XCIvc3RhdGljL2ltZy90aXAtbGlnaHQtYnVsYi5wbmdcIiBhbHQ9XCJsaWdodCBidWxiIGljb25cIiAvPlxuXHRcdFx0XHRcdFx0XHRUaXBcblx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdFx0ey8qIDxkaXYgY2xhc3NOYW1lPVwiY2xvc2UtaWNvblwiPlxuXHRcdFx0XHRcdFx0XHQ8aW1nIG9uQ2xpY2s9eyB0aGlzLnByb3BzLmNsb3NlTW9kYWxGdW5jIH0gc3JjPVwiL3N0YXRpYy9pbWcvTUFTQVNfY2xvc2VfaWNvbi5zdmdcIiBhbHQ9XCJjbG9zZSBtb2RhbFwiIC8+IFxuXHRcdFx0XHRcdFx0XHRkaXNtaXNzIHRpcHNcblx0XHRcdFx0XHRcdDwvZGl2PiAqL31cblx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiXCI+XG5cdFx0XHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLmNoaWxkcmVuIH1cblx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0KVxuXHRcdC8vIGluZm8gbW9kYWwgKHdoeSBjYW4ndCBzeW5jIHNvbmcpXG5cdFx0ZWxzZSBpZih0aGlzLnByb3BzLnR5cGUgPT09IDQpXG5cdFx0XHRyZXR1cm4gKFxuXHRcdFx0XHQ8ZGl2IFxuXHRcdFx0XHRcdGNsYXNzTmFtZT17IFwiTUFTQVMtbW9kYWwgdHlwZTJcIiArICh0aGlzLnByb3BzLmlzT3BlbmVkID8gXCJcIiA6IFwiIGNsb3NlZFwiKSB9XG5cdFx0XHRcdFx0aWQ9XCJNQVNBUy1tb2RhbFwiXG5cdFx0XHRcdFx0b25DbGljaz17ICgpID0+IHsgdGhpcy5jbG9zZU1vZGFsKCk7IHRoaXMucHJvcHMuY2xvc2VNb2RhbEZ1bmMoKSB9IH0+XG5cdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJtb2RhbC10eXBlLTItLXdyYXBwZXJcIj5cblx0XHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwiXCI+XG5cdFx0XHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLmNoaWxkcmVuIH1cblx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0KVxuXHRcdC8vIHNwbGFzaCBzY3JlZW5cblx0XHRlbHNlIGlmKHRoaXMucHJvcHMudHlwZSA9PT0gMylcblx0XHRcdHJldHVybiAoXG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPXsgXCJNQVNBUy1tb2RhbCB0eXBlM1wiICsgKHRoaXMucHJvcHMuaXNPcGVuZWQgPyBcIlwiIDogXCIgY2xvc2VkXCIpIH0gaWQ9XCJNQVNBUy1tb2RhbFwiPlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwibW9kYWwtdHlwZS0zLS13cmFwcGVyXCI+XG5cdFx0XHRcdFx0XHR7IHRoaXMucHJvcHMuY2hpbGRyZW4gfVxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0KVxuXHR9XG59KVxuXG5tb2R1bGUuZXhwb3J0cyA9IE1vZGFsXG4iXX0=",
+    "\"use strict\";\n\nvar _react2 = require(\"react\");\n\nvar _react3 = _interopRequireDefault(_react2);\n\nvar _babelTransform = require(\"livereactload/babel-transform\");\n\nvar _babelTransform2 = _interopRequireDefault(_babelTransform);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar _components = {\n\t_component: {}\n};\n\nvar _livereactloadBabelTransform2 = (0, _babelTransform2.default)({\n\tfilename: \"/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx\",\n\tcomponents: _components,\n\tlocals: [],\n\timports: [_react3.default]\n});\n\nfunction _wrapComponent(id) {\n\treturn function (Component) {\n\t\treturn _livereactloadBabelTransform2(Component, id);\n\t};\n}\n\n// NEEDS DIRECT PARENT WITH => position: relative, height = something, width = something\n\nvar React = require(\"react\");\nvar ReactRedux = require(\"react-redux\");\n\nvar _require = require(\"./containers/Modal.jsx\");\n\nvar mapStateToProps = _require.mapStateToProps;\nvar mapDispatchToProps = _require.mapDispatchToProps;\n\n// exeptionally import store to retrieve 1 value (read only)\n\nvar _require2 = require(\"../../reducers/reducers.js\");\n\nvar getState = _require2.getState;\n\nvar _require3 = require(\"../../MASAS_functions.jsx\");\n\nvar _closeModal = _require3.closeModal;\n\nvar Modal = _wrapComponent(\"_component\")(React.createClass({\n\tdisplayName: \"Modal\",\n\n\tpropTypes: {\n\t\tisOpened: React.PropTypes.bool, // is modal shown\n\t\tcloseModalFunc: React.PropTypes.func, // what to execute when clicking on close modal area (arrow or overlay)\n\t\ttype: React.PropTypes.number, // what type the modal is\n\t\tchildren: React.PropTypes.node,\n\n\t\tmodalBlurBg: React.PropTypes.func,\n\t\tmodalSaturateBg: React.PropTypes.func\n\t},\n\n\tgetDefaultProps: function getDefaultProps() {\n\t\treturn {\n\t\t\tisOpened: false,\n\t\t\tcloseModalFunc: function closeModalFunc() {},\n\t\t\ttype: 1\n\t\t};\n\t},\n\n\tcomponentDidMount: function componentDidMount() {},\n\n\tcomponentWillUnmount: function componentWillUnmount() {},\n\n\tcomponentDidUpdate: function componentDidUpdate() {},\n\n\tcloseModal: function closeModal() {\n\t\tgetState().appReducer.closeModalFunc();\n\t\t_closeModal();\n\t},\n\n\tcomponentWillReceiveProps: function componentWillReceiveProps(nextProps) {\n\t\t// update background blur on modal appear/dissapear\n\t\t// unless we are on /upload page (it handles background blurs itself)\n\t\tif (nextProps.isOpened === false) {\n\t\t\t// remove background blur\n\t\t\t// $('#body--background').removeClass('blurred')\n\t\t\tthis.props.modalBlurBg(false);\n\t\t\tthis.props.modalSaturateBg(false);\n\t\t} else if (nextProps.isOpened === true && nextProps.type === 1) {\n\t\t\tthis.props.modalBlurBg(true);\n\t\t\tthis.props.modalSaturateBg(true);\n\t\t\t// put background blur on\n\t\t\t// $('#body--background').addClass('blurred')\n\t\t} else if (nextProps.isOpened === true && nextProps.type === 2) {\n\t\t\t\tthis.props.modalBlurBg(true);\n\t\t\t\tthis.props.modalSaturateBg(false);\n\t\t\t\t// $('#body--background').removeClass('saturated')\n\t\t\t}\n\t},\n\n\trender: function render() {\n\t\tvar _this = this;\n\n\t\tif (\n\t\t// default modal (report copyright/spam/delete etc)\n\t\tthis.props.type === 1) return React.createElement(\n\t\t\t\"div\",\n\t\t\t{ className: \"MASAS-modal\" + (this.props.isOpened ? \"\" : \" closed\"), id: \"MASAS-modal\" },\n\t\t\tReact.createElement(\"div\", { className: \"modal-overlay\", onClick: this.props.closeModalFunc }),\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"modal-content--wrapper\" },\n\t\t\t\tReact.createElement(\"img\", { onClick: this.props.closeModalFunc, src: \"/static/img/MASAS_close_icon.svg\", className: \"close-icon\", alt: \"close modal\" }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"modal-content\" },\n\t\t\t\t\tthis.props.children\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t\t// tip modal\n\t\telse if (this.props.type === 2) return React.createElement(\n\t\t\t\"div\",\n\t\t\t{\n\t\t\t\tclassName: \"MASAS-modal type2\" + (this.props.isOpened ? \"\" : \" closed\"),\n\t\t\t\tid: \"MASAS-modal\",\n\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t_this.closeModal();_this.props.closeModalFunc();\n\t\t\t\t} },\n\t\t\tReact.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{ className: \"modal-type-2--wrapper\" },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"tip-title\" },\n\t\t\t\t\tReact.createElement(\"img\", { src: \"/static/img/tip-light-bulb.png\", alt: \"light bulb icon\" }),\n\t\t\t\t\t\"Tip\"\n\t\t\t\t),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"\" },\n\t\t\t\t\tthis.props.children\n\t\t\t\t)\n\t\t\t)\n\t\t);\n\t\t// info modal (why can't sync song)\n\t\telse if (this.props.type === 4) return React.createElement(\n\t\t\t\t\"div\",\n\t\t\t\t{\n\t\t\t\t\tclassName: \"MASAS-modal type2\" + (this.props.isOpened ? \"\" : \" closed\"),\n\t\t\t\t\tid: \"MASAS-modal\",\n\t\t\t\t\tonClick: function onClick() {\n\t\t\t\t\t\t_this.closeModal();_this.props.closeModalFunc();\n\t\t\t\t\t} },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"modal-type-2--wrapper\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"\" },\n\t\t\t\t\t\tthis.props.children\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t\t// splash screen\n\t\t\telse if (this.props.type === 3) return React.createElement(\n\t\t\t\t\t\"div\",\n\t\t\t\t\t{ className: \"MASAS-modal type3\" + (this.props.isOpened ? \"\" : \" closed\"), id: \"MASAS-modal\" },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\"div\",\n\t\t\t\t\t\t{ className: \"modal-type-3--wrapper\" },\n\t\t\t\t\t\tthis.props.children\n\t\t\t\t\t)\n\t\t\t\t);\n\t}\n}));\n\nmodule.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Modal);\n//# sourceMappingURL=data:application/json;base64,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RURTIERJUkVDVCBQQVJFTlQgV0lUSCA9PiBwb3NpdGlvbjogcmVsYXRpdmUsIGhlaWdodCA9IHNvbWV0aGluZywgd2lkdGggPSBzb21ldGhpbmdcblxudmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG52YXIgUmVhY3RSZWR1eCA9IHJlcXVpcmUoXCJyZWFjdC1yZWR1eFwiKVxuXG52YXIgeyBtYXBTdGF0ZVRvUHJvcHMsIG1hcERpc3BhdGNoVG9Qcm9wcyB9ID0gcmVxdWlyZShcIi4vY29udGFpbmVycy9Nb2RhbC5qc3hcIilcblxuLy8gZXhlcHRpb25hbGx5IGltcG9ydCBzdG9yZSB0byByZXRyaWV2ZSAxIHZhbHVlIChyZWFkIG9ubHkpXG52YXIgeyBnZXRTdGF0ZSB9ID0gcmVxdWlyZShcIi4uLy4uL3JlZHVjZXJzL3JlZHVjZXJzLmpzXCIpXG5cblxuXG52YXIgeyBjbG9zZU1vZGFsIH0gPSByZXF1aXJlKFwiLi4vLi4vTUFTQVNfZnVuY3Rpb25zLmpzeFwiKVxuXG5sZXQgTW9kYWwgPSBSZWFjdC5jcmVhdGVDbGFzcyh7XG5cdHByb3BUeXBlczoge1xuXHRcdGlzT3BlbmVkOiBSZWFjdC5Qcm9wVHlwZXMuYm9vbCxcdFx0XHQvLyBpcyBtb2RhbCBzaG93blxuXHRcdGNsb3NlTW9kYWxGdW5jOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYywgXHRcdC8vIHdoYXQgdG8gZXhlY3V0ZSB3aGVuIGNsaWNraW5nIG9uIGNsb3NlIG1vZGFsIGFyZWEgKGFycm93IG9yIG92ZXJsYXkpXG5cdFx0dHlwZTogUmVhY3QuUHJvcFR5cGVzLm51bWJlciwgXHRcdFx0Ly8gd2hhdCB0eXBlIHRoZSBtb2RhbCBpc1xuXHRcdGNoaWxkcmVuOiBSZWFjdC5Qcm9wVHlwZXMubm9kZSxcblxuXHRcdG1vZGFsQmx1ckJnOiBSZWFjdC5Qcm9wVHlwZXMuZnVuYyxcblx0XHRtb2RhbFNhdHVyYXRlQmc6IFJlYWN0LlByb3BUeXBlcy5mdW5jLFxuXHR9LFxuXG5cdGdldERlZmF1bHRQcm9wczogZnVuY3Rpb24oKSB7XG5cdFx0cmV0dXJuIHtcblx0XHRcdGlzT3BlbmVkOiBmYWxzZSxcdFxuXHRcdFx0Y2xvc2VNb2RhbEZ1bmM6ICgpID0+IHt9LFxuXHRcdFx0dHlwZTogMSxcblx0XHR9XG5cdH0sXG5cblx0Y29tcG9uZW50RGlkTW91bnQ6IGZ1bmN0aW9uKCkge1xuXHR9LFxuXG5cdGNvbXBvbmVudFdpbGxVbm1vdW50OiBmdW5jdGlvbigpIHtcblx0fSxcblxuXHRjb21wb25lbnREaWRVcGRhdGU6IGZ1bmN0aW9uKCkge1xuXHR9LFxuXG5cdGNsb3NlTW9kYWw6IGZ1bmN0aW9uKCkge1xuXHRcdGdldFN0YXRlKCkuYXBwUmVkdWNlci5jbG9zZU1vZGFsRnVuYygpXG5cdFx0Y2xvc2VNb2RhbCgpXG5cdH0sXG5cblx0Y29tcG9uZW50V2lsbFJlY2VpdmVQcm9wczogZnVuY3Rpb24obmV4dFByb3BzKSB7XG5cdFx0Ly8gdXBkYXRlIGJhY2tncm91bmQgYmx1ciBvbiBtb2RhbCBhcHBlYXIvZGlzc2FwZWFyXG5cdFx0Ly8gdW5sZXNzIHdlIGFyZSBvbiAvdXBsb2FkIHBhZ2UgKGl0IGhhbmRsZXMgYmFja2dyb3VuZCBibHVycyBpdHNlbGYpXG5cdFx0aWYobmV4dFByb3BzLmlzT3BlbmVkID09PSBmYWxzZSkge1xuXHRcdFx0Ly8gcmVtb3ZlIGJhY2tncm91bmQgYmx1clxuXHRcdFx0Ly8gJCgnI2JvZHktLWJhY2tncm91bmQnKS5yZW1vdmVDbGFzcygnYmx1cnJlZCcpXG5cdFx0XHR0aGlzLnByb3BzLm1vZGFsQmx1ckJnKGZhbHNlKVxuXHRcdFx0dGhpcy5wcm9wcy5tb2RhbFNhdHVyYXRlQmcoZmFsc2UpXG5cdFx0fSBlbHNlIGlmKG5leHRQcm9wcy5pc09wZW5lZCA9PT0gdHJ1ZSAmJiBuZXh0UHJvcHMudHlwZSA9PT0gMSkge1xuXHRcdFx0dGhpcy5wcm9wcy5tb2RhbEJsdXJCZyh0cnVlKVxuXHRcdFx0dGhpcy5wcm9wcy5tb2RhbFNhdHVyYXRlQmcodHJ1ZSlcblx0XHRcdC8vIHB1dCBiYWNrZ3JvdW5kIGJsdXIgb25cblx0XHRcdC8vICQoJyNib2R5LS1iYWNrZ3JvdW5kJykuYWRkQ2xhc3MoJ2JsdXJyZWQnKVxuXHRcdH0gZWxzZSBpZiggbmV4dFByb3BzLmlzT3BlbmVkID09PSB0cnVlICYmIG5leHRQcm9wcy50eXBlID09PSAyICkge1xuXHRcdFx0dGhpcy5wcm9wcy5tb2RhbEJsdXJCZyh0cnVlKVxuXHRcdFx0dGhpcy5wcm9wcy5tb2RhbFNhdHVyYXRlQmcoZmFsc2UpXG5cdFx0XHQvLyAkKCcjYm9keS0tYmFja2dyb3VuZCcpLnJlbW92ZUNsYXNzKCdzYXR1cmF0ZWQnKVxuXHRcdH1cblx0fSxcblxuXHRyZW5kZXI6IGZ1bmN0aW9uKCkge1xuXHRcdC8vIGRlZmF1bHQgbW9kYWwgKHJlcG9ydCBjb3B5cmlnaHQvc3BhbS9kZWxldGUgZXRjKVxuXHRcdGlmKHRoaXMucHJvcHMudHlwZSA9PT0gMSlcblx0XHRcdHJldHVybiAoXG5cdFx0XHRcdDxkaXYgY2xhc3NOYW1lPXsgXCJNQVNBUy1tb2RhbFwiICsgKHRoaXMucHJvcHMuaXNPcGVuZWQgPyBcIlwiIDogXCIgY2xvc2VkXCIpIH0gaWQ9XCJNQVNBUy1tb2RhbFwiPlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwibW9kYWwtb3ZlcmxheVwiIG9uQ2xpY2s9eyB0aGlzLnByb3BzLmNsb3NlTW9kYWxGdW5jIH0+XG5cdFx0XHRcdFx0XHRcblx0XHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm1vZGFsLWNvbnRlbnQtLXdyYXBwZXJcIj5cblx0XHRcdFx0XHRcdDxpbWcgb25DbGljaz17IHRoaXMucHJvcHMuY2xvc2VNb2RhbEZ1bmMgfSBzcmM9XCIvc3RhdGljL2ltZy9NQVNBU19jbG9zZV9pY29uLnN2Z1wiIGNsYXNzTmFtZT1cImNsb3NlLWljb25cIiBhbHQ9XCJjbG9zZSBtb2RhbFwiIC8+XG5cdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm1vZGFsLWNvbnRlbnRcIj5cblx0XHRcdFx0XHRcdFx0eyB0aGlzLnByb3BzLmNoaWxkcmVuIH1cblx0XHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQ8L2Rpdj5cblx0XHRcdFx0KVxuXHRcdC8vIHRpcCBtb2RhbFxuXHRcdGVsc2UgaWYodGhpcy5wcm9wcy50eXBlID09PSAyKVxuXHRcdFx0cmV0dXJuIChcblx0XHRcdFx0PGRpdiBcblx0XHRcdFx0XHRjbGFzc05hbWU9eyBcIk1BU0FTLW1vZGFsIHR5cGUyXCIgKyAodGhpcy5wcm9wcy5pc09wZW5lZCA/IFwiXCIgOiBcIiBjbG9zZWRcIikgfVxuXHRcdFx0XHRcdGlkPVwiTUFTQVMtbW9kYWxcIlxuXHRcdFx0XHRcdG9uQ2xpY2s9eyAoKSA9PiB7IHRoaXMuY2xvc2VNb2RhbCgpOyB0aGlzLnByb3BzLmNsb3NlTW9kYWxGdW5jKCkgfSB9PlxuXHRcdFx0XHRcdDxkaXYgY2xhc3NOYW1lPVwibW9kYWwtdHlwZS0yLS13cmFwcGVyXCI+XG5cdFx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInRpcC10aXRsZVwiPlxuXHRcdFx0XHRcdFx0XHQ8aW1nIHNyYz1cIi9zdGF0aWMvaW1nL3RpcC1saWdodC1idWxiLnBuZ1wiIGFsdD1cImxpZ2h0IGJ1bGIgaWNvblwiIC8+XG5cdFx0XHRcdFx0XHRcdFRpcFxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0XHR7LyogPGRpdiBjbGFzc05hbWU9XCJjbG9zZS1pY29uXCI+XG5cdFx0XHRcdFx0XHRcdDxpbWcgb25DbGljaz17IHRoaXMucHJvcHMuY2xvc2VNb2RhbEZ1bmMgfSBzcmM9XCIvc3RhdGljL2ltZy9NQVNBU19jbG9zZV9pY29uLnN2Z1wiIGFsdD1cImNsb3NlIG1vZGFsXCIgLz4gXG5cdFx0XHRcdFx0XHRcdGRpc21pc3MgdGlwc1xuXHRcdFx0XHRcdFx0PC9kaXY+ICovfVxuXHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJcIj5cblx0XHRcdFx0XHRcdFx0XHR7IHRoaXMucHJvcHMuY2hpbGRyZW4gfVxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQpXG5cdFx0Ly8gaW5mbyBtb2RhbCAod2h5IGNhbid0IHN5bmMgc29uZylcblx0XHRlbHNlIGlmKHRoaXMucHJvcHMudHlwZSA9PT0gNClcblx0XHRcdHJldHVybiAoXG5cdFx0XHRcdDxkaXYgXG5cdFx0XHRcdFx0Y2xhc3NOYW1lPXsgXCJNQVNBUy1tb2RhbCB0eXBlMlwiICsgKHRoaXMucHJvcHMuaXNPcGVuZWQgPyBcIlwiIDogXCIgY2xvc2VkXCIpIH1cblx0XHRcdFx0XHRpZD1cIk1BU0FTLW1vZGFsXCJcblx0XHRcdFx0XHRvbkNsaWNrPXsgKCkgPT4geyB0aGlzLmNsb3NlTW9kYWwoKTsgdGhpcy5wcm9wcy5jbG9zZU1vZGFsRnVuYygpIH0gfT5cblx0XHRcdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cIm1vZGFsLXR5cGUtMi0td3JhcHBlclwiPlxuXHRcdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJcIj5cblx0XHRcdFx0XHRcdFx0XHR7IHRoaXMucHJvcHMuY2hpbGRyZW4gfVxuXHRcdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQpXG5cdFx0Ly8gc3BsYXNoIHNjcmVlblxuXHRcdGVsc2UgaWYodGhpcy5wcm9wcy50eXBlID09PSAzKVxuXHRcdFx0cmV0dXJuIChcblx0XHRcdFx0PGRpdiBjbGFzc05hbWU9eyBcIk1BU0FTLW1vZGFsIHR5cGUzXCIgKyAodGhpcy5wcm9wcy5pc09wZW5lZCA/IFwiXCIgOiBcIiBjbG9zZWRcIikgfSBpZD1cIk1BU0FTLW1vZGFsXCI+XG5cdFx0XHRcdFx0PGRpdiBjbGFzc05hbWU9XCJtb2RhbC10eXBlLTMtLXdyYXBwZXJcIj5cblx0XHRcdFx0XHRcdHsgdGhpcy5wcm9wcy5jaGlsZHJlbiB9XG5cdFx0XHRcdFx0PC9kaXY+XG5cdFx0XHRcdDwvZGl2PlxuXHRcdFx0XHQpXG5cdH1cbn0pXG5cbm1vZHVsZS5leHBvcnRzID0gUmVhY3RSZWR1eC5jb25uZWN0KFxuXHRtYXBTdGF0ZVRvUHJvcHMsXG5cdG1hcERpc3BhdGNoVG9Qcm9wc1xuKShNb2RhbClcbiJdfQ==",
     {
       "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "../../reducers/reducers.js": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js",
+      "./containers/Modal.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Modal.jsx",
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
+      "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx",
-      "hash": "8fea5f7c32b88b53f6e4e6da62959c65",
+      "hash": "e4047e00729b74eac16570fd7380f58a",
       "browserifyId": 472
     }
   ],
@@ -6440,11 +6442,11 @@
       "./Password.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Password.jsx",
       "./Textbox.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Textbox.jsx",
       "./Marquee.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Marquee.jsx",
-      "./Modal.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx",
       "./RankingInfoIcon.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/RankingInfoIcon.jsx",
       "./MasasSpinner.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/MasasSpinner.jsx",
       "./Body.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Body.jsx",
-      "./TimePicker.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePicker.jsx"
+      "./TimePicker.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/TimePicker.jsx",
+      "./Modal.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/Modal.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
@@ -6461,13 +6463,24 @@
       "browserifyId": 479
     }
   ],
+  "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Modal.jsx": [
+    "\"use strict\";\n\nvar _App = require(\"../../../reducers/actions/App.js\");\n\nvar Modal = {};\n\n// Which part of the Redux global state does our component want to receive as props?\nModal.mapStateToProps = function (state) {\n\treturn {};\n};\n\n// Which action creators does it want to receive by props?\nModal.mapDispatchToProps = function (dispatch) {\n\treturn {\n\t\tmodalBlurBg: function modalBlurBg(blur) {\n\t\t\treturn dispatch(_App.changeBgState.modalBlur(blur));\n\t\t},\n\t\tmodalSaturateBg: function modalSaturateBg(sat) {\n\t\t\treturn dispatch(_App.changeBgState.modalSaturate(sat));\n\t\t}\n\t};\n};\n\nmodule.exports = Modal;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIk1vZGFsLmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBRUEsSUFBSSxRQUFRLEVBQVI7OztBQUdKLE1BQU0sZUFBTixHQUF3QixVQUFTLEtBQVQsRUFBZ0I7QUFDdkMsUUFBTyxFQUFQLENBRHVDO0NBQWhCOzs7QUFPeEIsTUFBTSxrQkFBTixHQUEyQixVQUFTLFFBQVQsRUFBbUI7QUFDN0MsUUFBTztBQUNOLGVBQWEscUJBQUMsSUFBRDtVQUFVLFNBQVMsbUJBQWMsU0FBZCxDQUF3QixJQUF4QixDQUFUO0dBQVY7QUFDYixtQkFBaUIseUJBQUMsR0FBRDtVQUFTLFNBQVMsbUJBQWMsYUFBZCxDQUE0QixHQUE1QixDQUFUO0dBQVQ7RUFGbEIsQ0FENkM7Q0FBbkI7O0FBTzNCLE9BQU8sT0FBUCxHQUFpQixLQUFqQiIsImZpbGUiOiJNb2RhbC5qc3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjaGFuZ2VCZ1N0YXRlIH0gZnJvbSBcIi4uLy4uLy4uL3JlZHVjZXJzL2FjdGlvbnMvQXBwLmpzXCJcblxudmFyIE1vZGFsID0ge31cblxuLy8gV2hpY2ggcGFydCBvZiB0aGUgUmVkdXggZ2xvYmFsIHN0YXRlIGRvZXMgb3VyIGNvbXBvbmVudCB3YW50IHRvIHJlY2VpdmUgYXMgcHJvcHM/XG5Nb2RhbC5tYXBTdGF0ZVRvUHJvcHMgPSBmdW5jdGlvbihzdGF0ZSkge1xuXHRyZXR1cm4ge1xuXG5cdH1cbn1cblxuLy8gV2hpY2ggYWN0aW9uIGNyZWF0b3JzIGRvZXMgaXQgd2FudCB0byByZWNlaXZlIGJ5IHByb3BzP1xuTW9kYWwubWFwRGlzcGF0Y2hUb1Byb3BzID0gZnVuY3Rpb24oZGlzcGF0Y2gpIHtcblx0cmV0dXJuIHtcblx0XHRtb2RhbEJsdXJCZzogKGJsdXIpID0+IGRpc3BhdGNoKGNoYW5nZUJnU3RhdGUubW9kYWxCbHVyKGJsdXIpKSxcblx0XHRtb2RhbFNhdHVyYXRlQmc6IChzYXQpID0+IGRpc3BhdGNoKGNoYW5nZUJnU3RhdGUubW9kYWxTYXR1cmF0ZShzYXQpKSxcblx0fVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IE1vZGFsXG4iXX0=",
+    {
+      "../../../reducers/actions/App.js": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js"
+    },
+    {
+      "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/Modal.jsx",
+      "hash": "4e8a1b5ed134e3a0bee7c8f3c8146665",
+      "browserifyId": 480
+    }
+  ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/TimePickerInside.jsx": [
     "'use strict';\n\nvar Template = {};\n\n// Which part of the Redux global state does our component want to receive as props?\nTemplate.mapStateToProps = function (state) {\n\treturn {};\n};\n\n// Which action creators does it want to receive by props?\nTemplate.mapDispatchToProps = function (dispatch) {\n\treturn {\n\t\tupdateTitle: function updateTitle(title, pageType) {\n\t\t\treturn dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });\n\t\t}\n\t};\n};\n\nmodule.exports = Template;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlRpbWVQaWNrZXJJbnNpZGUuanN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsSUFBSSxXQUFXLEVBQVg7OztBQUdKLFNBQVMsZUFBVCxHQUEyQixVQUFTLEtBQVQsRUFBZ0I7QUFDMUMsUUFBTyxFQUFQLENBRDBDO0NBQWhCOzs7QUFPM0IsU0FBUyxrQkFBVCxHQUE4QixVQUFTLFFBQVQsRUFBbUI7QUFDaEQsUUFBTztBQUNOLGVBQWEscUJBQUMsS0FBRCxFQUFRLFFBQVI7VUFBcUIsU0FBUyxFQUFDLE1BQUssbUJBQUwsRUFBMEIsT0FBTyxLQUFQLEVBQWMsVUFBVSxRQUFWLEVBQWxEO0dBQXJCO0VBRGQsQ0FEZ0Q7Q0FBbkI7O0FBTTlCLE9BQU8sT0FBUCxHQUFpQixRQUFqQiIsImZpbGUiOiJUaW1lUGlja2VySW5zaWRlLmpzeCIsInNvdXJjZXNDb250ZW50IjpbIlxudmFyIFRlbXBsYXRlID0ge31cblxuLy8gV2hpY2ggcGFydCBvZiB0aGUgUmVkdXggZ2xvYmFsIHN0YXRlIGRvZXMgb3VyIGNvbXBvbmVudCB3YW50IHRvIHJlY2VpdmUgYXMgcHJvcHM/XG5UZW1wbGF0ZS5tYXBTdGF0ZVRvUHJvcHMgPSBmdW5jdGlvbihzdGF0ZSkge1xuXHRyZXR1cm4ge1xuXG5cdH1cbn1cblxuLy8gV2hpY2ggYWN0aW9uIGNyZWF0b3JzIGRvZXMgaXQgd2FudCB0byByZWNlaXZlIGJ5IHByb3BzP1xuVGVtcGxhdGUubWFwRGlzcGF0Y2hUb1Byb3BzID0gZnVuY3Rpb24oZGlzcGF0Y2gpIHtcblx0cmV0dXJuIHtcblx0XHR1cGRhdGVUaXRsZTogKHRpdGxlLCBwYWdlVHlwZSkgPT4gZGlzcGF0Y2goe3R5cGU6J1VQREFURV9QQUdFX1RJVExFJywgdGl0bGU6IHRpdGxlLCBwYWdlVHlwZTogcGFnZVR5cGV9KSxcblx0fVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IFRlbXBsYXRlXG4iXX0=",
     {},
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/containers/TimePickerInside.jsx",
       "hash": "6eb7756157445588964b6a8004ad71a4",
-      "browserifyId": 480
+      "browserifyId": 481
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx": [
@@ -6483,7 +6496,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx",
       "hash": "4e8bf7c46f295324371d2c3f3a00116b",
-      "browserifyId": 481
+      "browserifyId": 482
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/PickTimeUpload.jsx": [
@@ -6491,16 +6504,16 @@
     {
       "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
-      "./ModalContent.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx",
       "./containers/PickTimeUpload.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/PickTimeUpload.jsx",
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
-      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js"
+      "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
+      "./ModalContent.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ModalContent.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/PickTimeUpload.jsx",
       "hash": "95113815917c0c22b66d05ae52d7044c",
-      "browserifyId": 482
+      "browserifyId": 483
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx": [
@@ -6509,8 +6522,8 @@
       "react": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react/react.js",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
       "livereactload/babel-transform": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/livereactload/babel-transform.js",
-      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "../UI/UI.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UI/UI.jsx",
+      "../../MASAS_functions.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/MASAS_functions.jsx",
       "../App/SplashScreen.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/App/SplashScreen.jsx",
       "./UploadSCItem.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx",
       "./containers/UploadSC.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSC.jsx",
@@ -6519,7 +6532,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx",
       "hash": "b3935935f79fe6658a232ccf824640ab",
-      "browserifyId": 483
+      "browserifyId": 484
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx": [
@@ -6534,7 +6547,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSCItem.jsx",
       "hash": "bb7bded58f7681dc869a3488ae30203e",
-      "browserifyId": 484
+      "browserifyId": 485
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ajaxCalls.jsx": [
@@ -6545,7 +6558,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/ajaxCalls.jsx",
       "hash": "5fb92ec2460f8a14dfbc058badfdf0c0",
-      "browserifyId": 485
+      "browserifyId": 486
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/ModalContent.jsx": [
@@ -6554,7 +6567,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/ModalContent.jsx",
       "hash": "3a9b0099ab8673e2f0f1c9809fe1fdf2",
-      "browserifyId": 486
+      "browserifyId": 487
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/PickTimeUpload.jsx": [
@@ -6563,7 +6576,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/PickTimeUpload.jsx",
       "hash": "15e3c234fc5a98e1a8e37954522358e4",
-      "browserifyId": 487
+      "browserifyId": 488
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSC.jsx": [
@@ -6576,7 +6589,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSC.jsx",
       "hash": "2b73a5c09c9601d76c56bf35f076c99c",
-      "browserifyId": 488
+      "browserifyId": 489
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSCItem.jsx": [
@@ -6587,18 +6600,18 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/containers/UploadSCItem.jsx",
       "hash": "f5ee139ea631ded518fe682d338db0bb",
-      "browserifyId": 489
+      "browserifyId": 490
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/index.jsx": [
     "\"use strict\";\n\nvar React = require(\"react\");\nvar ReactDOM = require(\"react-dom\");\n\nvar ReactRedux = require(\"react-redux\");\nvar store = require(\"./reducers/reducers.js\");\n\nvar Router = require(\"react-router\").Router;\nvar Route = require(\"react-router\").Route;\nvar browserHistory = require(\"react-router\").browserHistory;\n\nvar SoundcloudCallback = require(\"./SoundcloudCallback.jsx\");\n\nvar App = require(\"./components/App/App.jsx\");\nvar Login = require(\"./components/Login/LoginForm.jsx\");\nvar InvitationPending = require(\"./components/Login/InvitationPending.jsx\");\nvar SignUp = require(\"./components/Login/SignUp.jsx\");\nvar UploadSC = require(\"./components/UploadSC/UploadSC.jsx\");\nvar Profile = require(\"./components/Profile/Profile.jsx\");\nvar Likes = require(\"./components/Likes/Likes.jsx\");\nvar Discover = require(\"./components/Discover/Discover.jsx\");\nvar Legals = require(\"./components/Legals/LegalsHome.jsx\");\nvar Popular = require(\"./components/Popular/Popular.jsx\");\n\nReactDOM.render(React.createElement(\n        ReactRedux.Provider,\n        { store: store },\n        React.createElement(\n                Router,\n                { history: browserHistory },\n                React.createElement(\n                        Route,\n                        { path: \"/\", component: App },\n                        React.createElement(Route, { path: \"discover\", component: Discover }),\n                        React.createElement(Route, { path: \"pending\", component: InvitationPending }),\n                        React.createElement(Route, { path: \"login\", component: Login }),\n                        React.createElement(Route, { path: \"likes\", component: Likes }),\n                        React.createElement(Route, { path: \"legals\", component: Legals }),\n                        React.createElement(Route, { path: \"popular\", component: Popular }),\n                        React.createElement(Route, { path: \"profile\", publicProfile: false, component: Profile }),\n                        React.createElement(Route, { path: \"/user/:username\", publicProfile: true, component: Profile }),\n                        React.createElement(Route, { path: \"sign-up\", component: SignUp }),\n                        React.createElement(Route, { path: \"upload\", component: UploadSC })\n                ),\n                React.createElement(Route, { path: \"/sc-callback\", component: SoundcloudCallback })\n        )\n), document.getElementById(\"content\"));\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLElBQUksUUFBUSxRQUFRLE9BQVIsQ0FBUjtBQUNKLElBQUksV0FBVyxRQUFRLFdBQVIsQ0FBWDs7QUFFSixJQUFJLGFBQWEsUUFBUSxhQUFSLENBQWI7QUFDSixJQUFJLFFBQVEsUUFBUSx3QkFBUixDQUFSOztBQUVKLElBQUksU0FBUyxRQUFRLGNBQVIsRUFBd0IsTUFBeEI7QUFDYixJQUFJLFFBQVEsUUFBUSxjQUFSLEVBQXdCLEtBQXhCO0FBQ1osSUFBSSxpQkFBaUIsUUFBUSxjQUFSLEVBQXdCLGNBQXhCOztBQUVyQixJQUFJLHFCQUFxQixRQUFRLDBCQUFSLENBQXJCOztBQUVKLElBQUksTUFBTSxRQUFRLDBCQUFSLENBQU47QUFDSixJQUFJLFFBQVEsUUFBUSxrQ0FBUixDQUFSO0FBQ0osSUFBSSxvQkFBb0IsUUFBUSwwQ0FBUixDQUFwQjtBQUNKLElBQUksU0FBUyxRQUFRLCtCQUFSLENBQVQ7QUFDSixJQUFJLFdBQVcsUUFBUSxvQ0FBUixDQUFYO0FBQ0osSUFBSSxVQUFVLFFBQVEsa0NBQVIsQ0FBVjtBQUNKLElBQUksUUFBUSxRQUFRLDhCQUFSLENBQVI7QUFDSixJQUFJLFdBQVcsUUFBUSxvQ0FBUixDQUFYO0FBQ0osSUFBSSxTQUFTLFFBQVEsb0NBQVIsQ0FBVDtBQUNKLElBQUksVUFBVSxRQUFRLGtDQUFSLENBQVY7O0FBR0osU0FBUyxNQUFULENBQ087QUFBQyxtQkFBVyxRQUFaO1VBQXFCLE9BQU8sS0FBUCxFQUFyQjtRQUNRO0FBQUMsc0JBQUQ7a0JBQVEsU0FBUyxjQUFULEVBQVI7Z0JBQ1E7QUFBQyw2QkFBRDswQkFBTyxNQUFLLEdBQUwsRUFBUyxXQUFXLEdBQVgsRUFBaEI7d0JBQ1Esb0JBQUMsS0FBRCxJQUFPLE1BQUssVUFBTCxFQUFnQixXQUFXLFFBQVgsRUFBdkIsQ0FEUjt3QkFFUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsV0FBVyxpQkFBWCxFQUF0QixDQUZSO3dCQUdRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLE9BQUwsRUFBYSxXQUFXLEtBQVgsRUFBcEIsQ0FIUjt3QkFJUSxvQkFBQyxLQUFELElBQU8sTUFBSyxPQUFMLEVBQWEsV0FBVyxLQUFYLEVBQXBCLENBSlI7d0JBS1Esb0JBQUMsS0FBRCxJQUFPLE1BQUssUUFBTCxFQUFjLFdBQVcsTUFBWCxFQUFyQixDQUxSO3dCQU1RLG9CQUFDLEtBQUQsSUFBTyxNQUFLLFNBQUwsRUFBZSxXQUFXLE9BQVgsRUFBdEIsQ0FOUjt3QkFPUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsZUFBZSxLQUFmLEVBQXNCLFdBQVcsT0FBWCxFQUE1QyxDQVBSO3dCQVFRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLGlCQUFMLEVBQXVCLGVBQWUsSUFBZixFQUFxQixXQUFXLE9BQVgsRUFBbkQsQ0FSUjt3QkFTUSxvQkFBQyxLQUFELElBQU8sTUFBSyxTQUFMLEVBQWUsV0FBVyxNQUFYLEVBQXRCLENBVFI7d0JBVVEsb0JBQUMsS0FBRCxJQUFPLE1BQUssUUFBTCxFQUFjLFdBQVcsUUFBWCxFQUFyQixDQVZSO2lCQURSO2dCQWFRLG9CQUFDLEtBQUQsSUFBTyxNQUFLLGNBQUwsRUFBb0IsV0FBVyxrQkFBWCxFQUEzQixDQWJSO1NBRFI7Q0FEUCxFQWtCRyxTQUFTLGNBQVQsQ0FBd0IsU0FBeEIsQ0FsQkgiLCJmaWxlIjoiaW5kZXguanN4Iiwic291cmNlc0NvbnRlbnQiOlsidmFyIFJlYWN0ID0gcmVxdWlyZShcInJlYWN0XCIpXG52YXIgUmVhY3RET00gPSByZXF1aXJlKFwicmVhY3QtZG9tXCIpXG5cbnZhciBSZWFjdFJlZHV4ID0gcmVxdWlyZShcInJlYWN0LXJlZHV4XCIpXG52YXIgc3RvcmUgPSByZXF1aXJlKFwiLi9yZWR1Y2Vycy9yZWR1Y2Vycy5qc1wiKVxuXG52YXIgUm91dGVyID0gcmVxdWlyZShcInJlYWN0LXJvdXRlclwiKS5Sb3V0ZXJcbnZhciBSb3V0ZSA9IHJlcXVpcmUoXCJyZWFjdC1yb3V0ZXJcIikuUm91dGVcbnZhciBicm93c2VySGlzdG9yeSA9IHJlcXVpcmUoXCJyZWFjdC1yb3V0ZXJcIikuYnJvd3Nlckhpc3RvcnlcblxudmFyIFNvdW5kY2xvdWRDYWxsYmFjayA9IHJlcXVpcmUoXCIuL1NvdW5kY2xvdWRDYWxsYmFjay5qc3hcIilcblxudmFyIEFwcCA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvQXBwL0FwcC5qc3hcIilcbnZhciBMb2dpbiA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvTG9naW4vTG9naW5Gb3JtLmpzeFwiKVxudmFyIEludml0YXRpb25QZW5kaW5nID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9Mb2dpbi9JbnZpdGF0aW9uUGVuZGluZy5qc3hcIilcbnZhciBTaWduVXAgPSByZXF1aXJlKFwiLi9jb21wb25lbnRzL0xvZ2luL1NpZ25VcC5qc3hcIilcbnZhciBVcGxvYWRTQyA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvVXBsb2FkU0MvVXBsb2FkU0MuanN4XCIpXG52YXIgUHJvZmlsZSA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvUHJvZmlsZS9Qcm9maWxlLmpzeFwiKVxudmFyIExpa2VzID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9MaWtlcy9MaWtlcy5qc3hcIilcbnZhciBEaXNjb3ZlciA9IHJlcXVpcmUoXCIuL2NvbXBvbmVudHMvRGlzY292ZXIvRGlzY292ZXIuanN4XCIpXG52YXIgTGVnYWxzID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9MZWdhbHMvTGVnYWxzSG9tZS5qc3hcIilcbnZhciBQb3B1bGFyID0gcmVxdWlyZShcIi4vY29tcG9uZW50cy9Qb3B1bGFyL1BvcHVsYXIuanN4XCIpXG5cblxuUmVhY3RET00ucmVuZGVyKChcbiAgICAgICA8UmVhY3RSZWR1eC5Qcm92aWRlciBzdG9yZT17c3RvcmV9PlxuICAgICAgICAgICAgICAgPFJvdXRlciBoaXN0b3J5PXticm93c2VySGlzdG9yeX0+XG4gICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwiL1wiIGNvbXBvbmVudD17QXBwfT5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cImRpc2NvdmVyXCIgY29tcG9uZW50PXtEaXNjb3Zlcn0gLz5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cInBlbmRpbmdcIiBjb21wb25lbnQ9e0ludml0YXRpb25QZW5kaW5nfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibG9naW5cIiBjb21wb25lbnQ9e0xvZ2lufSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibGlrZXNcIiBjb21wb25lbnQ9e0xpa2VzfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwibGVnYWxzXCIgY29tcG9uZW50PXtMZWdhbHN9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJwb3B1bGFyXCIgY29tcG9uZW50PXtQb3B1bGFyfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxSb3V0ZSBwYXRoPVwicHJvZmlsZVwiIHB1YmxpY1Byb2ZpbGU9e2ZhbHNlfSBjb21wb25lbnQ9e1Byb2ZpbGV9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCIvdXNlci86dXNlcm5hbWVcIiBwdWJsaWNQcm9maWxlPXt0cnVlfSBjb21wb25lbnQ9e1Byb2ZpbGV9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJzaWduLXVwXCIgY29tcG9uZW50PXtTaWduVXB9IC8+XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPFJvdXRlIHBhdGg9XCJ1cGxvYWRcIiBjb21wb25lbnQ9e1VwbG9hZFNDfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICA8L1JvdXRlPlxuICAgICAgICAgICAgICAgICAgICAgICA8Um91dGUgcGF0aD1cIi9zYy1jYWxsYmFja1wiIGNvbXBvbmVudD17U291bmRjbG91ZENhbGxiYWNrfSAvPlxuICAgICAgICAgICAgICAgPC9Sb3V0ZXI+XG4gICAgICAgPC9SZWFjdFJlZHV4LlByb3ZpZGVyPlxuKSwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJjb250ZW50XCIpKVxuIl19",
     {
-      "./SoundcloudCallback.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/SoundcloudCallback.jsx",
       "./components/Login/InvitationPending.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/InvitationPending.jsx",
       "./components/Legals/LegalsHome.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Legals/LegalsHome.jsx",
       "./components/Popular/Popular.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Popular/Popular.jsx",
       "./components/Login/LoginForm.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/LoginForm.jsx",
       "react-redux": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-redux/lib/index.js",
+      "./components/UploadSC/UploadSC.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx",
       "./components/Discover/Discover.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Discover/Discover.jsx",
       "./components/Likes/Likes.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Likes/Likes.jsx",
       "./reducers/reducers.js": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js",
@@ -6607,13 +6620,13 @@
       "./components/App/App.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/App/App.jsx",
       "./components/Profile/Profile.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Profile/Profile.jsx",
       "react-dom": "/Users/thomasbinetruy/Documents/websites/masas/node_modules/react-dom/index.js",
-      "./components/Login/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx",
-      "./components/UploadSC/UploadSC.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/UploadSC/UploadSC.jsx"
+      "./SoundcloudCallback.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/SoundcloudCallback.jsx",
+      "./components/Login/SignUp.jsx": "/Users/thomasbinetruy/Documents/websites/masas/static/js/components/Login/SignUp.jsx"
     },
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/index.jsx",
       "hash": "edc099f150ddabe55b4af1be5ee5a70c",
-      "browserifyId": 490
+      "browserifyId": 491
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/App.jsx": [
@@ -6625,7 +6638,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/App.jsx",
       "hash": "3ba3b03eb67e4278303ffd9a341800a4",
-      "browserifyId": 491
+      "browserifyId": 492
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Body.jsx": [
@@ -6634,7 +6647,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Body.jsx",
       "hash": "eff593490f2566092a3aacab01f2c473",
-      "browserifyId": 492
+      "browserifyId": 493
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Discover.jsx": [
@@ -6643,7 +6656,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Discover.jsx",
       "hash": "572b17d4c4dc199c674d58a297318f80",
-      "browserifyId": 493
+      "browserifyId": 494
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Footer.jsx": [
@@ -6652,7 +6665,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Footer.jsx",
       "hash": "60978349c08ced1b30a70ff373d4d7b4",
-      "browserifyId": 494
+      "browserifyId": 495
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Header.jsx": [
@@ -6661,7 +6674,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Header.jsx",
       "hash": "e1e026af2bac2e8a81d66f691eaf486a",
-      "browserifyId": 495
+      "browserifyId": 496
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Home.jsx": [
@@ -6670,7 +6683,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Home.jsx",
       "hash": "a617b6167f24d1b6a708c20d724c9ce7",
-      "browserifyId": 496
+      "browserifyId": 497
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Legals.jsx": [
@@ -6679,7 +6692,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Legals.jsx",
       "hash": "c18a181965d0878e699cacb130dd2f1f",
-      "browserifyId": 497
+      "browserifyId": 498
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Likes.jsx": [
@@ -6690,7 +6703,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Likes.jsx",
       "hash": "31bfe624486648dce219770811b6b151",
-      "browserifyId": 498
+      "browserifyId": 499
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Login.jsx": [
@@ -6699,7 +6712,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Login.jsx",
       "hash": "36046e833a27e95e606ad5392d28a905",
-      "browserifyId": 499
+      "browserifyId": 500
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Player.jsx": [
@@ -6708,7 +6721,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Player.jsx",
       "hash": "87e0d97993dbab06989c02c4e0b8ffd6",
-      "browserifyId": 500
+      "browserifyId": 501
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Popular.jsx": [
@@ -6717,7 +6730,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Popular.jsx",
       "hash": "368507530a0f2b5702ac493e1b0f40cc",
-      "browserifyId": 501
+      "browserifyId": 502
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Profile.jsx": [
@@ -6726,7 +6739,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/Profile.jsx",
       "hash": "b36fb81a1b4d4e54c0b4eabe25a70ace",
-      "browserifyId": 502
+      "browserifyId": 503
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/UploadSC.jsx": [
@@ -6738,7 +6751,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/UploadSC.jsx",
       "hash": "996c9a646b4043ee6f5e4392fcda05d5",
-      "browserifyId": 503
+      "browserifyId": 504
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js": [
@@ -6747,7 +6760,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/App.js",
       "hash": "76e8b6e8b958daaa3f54ad421aceb558",
-      "browserifyId": 504
+      "browserifyId": 505
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/Likes.js": [
@@ -6758,7 +6771,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/Likes.js",
       "hash": "a88b89338c08f524c95d9b1483e26b35",
-      "browserifyId": 505
+      "browserifyId": 506
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/UploadSC.js": [
@@ -6767,7 +6780,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/actions/UploadSC.js",
       "hash": "5a63540d14172e41141aba95830c7989",
-      "browserifyId": 506
+      "browserifyId": 507
     }
   ],
   "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js": [
@@ -6792,7 +6805,7 @@
     {
       "id": "/Users/thomasbinetruy/Documents/websites/masas/static/js/reducers/reducers.js",
       "hash": "a0e50903d486b58a786f4359f1948248",
-      "browserifyId": 507
+      "browserifyId": 508
     }
   ],
   "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js": [
@@ -6801,7 +6814,7 @@
     {
       "id": "/usr/local/lib/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js",
       "hash": "e4e777c67172e089a4853ebace05807b",
-      "browserifyId": 508
+      "browserifyId": 509
     }
   ]
 }, [
