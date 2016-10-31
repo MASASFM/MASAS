@@ -198,14 +198,18 @@ var App = React.createClass({
 						<div className="bg-image" id="app-bg-image"></div>
 					</div>
 					<Header />
-						<div className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}>
-							{this.props.children ? 
+						<div 
+							className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}
+							style={{
+								opacity: !(this.props.isModalOpened && this.props.modalType === 4) ? 1 : 0,
+							}}>
+							{
+								this.props.children ? 
 									this.props.children
 								:
 									<Home />
 							}
 						</div>
-
 						<div
 							style={{
 								position: 'fixed',

@@ -128,7 +128,7 @@
   right: 0;
   position: absolute;
   z-index: 0;
-  transition: filter .5s linear; }
+  transition: filter 0.5s linear; }
   .bg-image::after {
     position: absolute;
     top: 0;
@@ -140,7 +140,8 @@
 
 .modal-blur--wrapper {
   display: flex;
-  flex: 1; }
+  flex: 1;
+  transition: opacity 0.2s linear; }
 
 .modal-blur--wrapper.blurred {
   -webkit-filter: blur(5px);
@@ -4144,7 +4145,7 @@ html {
   font-family: Lato-Regular; }
 
 h1 {
-  margin: .5rem;
+  margin: 0.5rem;
   color: white; }
 
 #content {
@@ -4176,7 +4177,7 @@ h1 {
     color: white;
     font-family: Lato-Light;
     padding-left: 1rem;
-    margin-top: .5rem; } }
+    margin-top: 0.5rem; } }
 
 .txt-align-center {
   text-align: center; }
