@@ -1,7 +1,12 @@
 var React = require('react')
 import { 
 	INCREMENT_LOGGED_OUT_USER_STEP, 
-	RESET_LOGGED_OUT_USER_STEP 
+	RESET_LOGGED_OUT_USER_STEP,
+	CHANGE_MODAL_CONTENT,
+	UPDATE_MODAL_TYPE,
+	CLOSE_AND_EMPTY_MAIN_MODAL,
+	TOOGLE_IS_MODAL_OPENED,
+	UPDATE_PAGE_TITLE,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -57,23 +62,23 @@ exportVar.appReducer = function(state = defaultState, action) {
 					...action.userData,
 				}
 			}
-		case 'UPDATE_MODAL_TYPE':
+		case UPDATE_MODAL_TYPE:
 			return {
 				...state,
 				modalType: action.modalType,
 			}
-		case 'TOOGLE_IS_MODAL_OPENED':
+		case TOOGLE_IS_MODAL_OPENED:
 			return {
 				...state,
 				isModalOpened: !state.isModalOpened,
 			}
-		case 'CLOSE_AND_EMPTY_MAIN_MODAL':
+		case CLOSE_AND_EMPTY_MAIN_MODAL:
 			return {
 				...state,
 				isModalOpened: defaultState.isModalOpened,
 				modalContent: defaultState.modalContent,
 			}
-		case 'CHANGE_MODAL_CONTENT':
+		case CHANGE_MODAL_CONTENT:
 			var modalType = 1
 			if(action.modalType)
 				modalType = action.modalType
@@ -116,7 +121,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				MASASuserPk: defaultState.MASASuser,
 				userData: {}
 			}
-		case 'UPDATE_PAGE_TITLE':
+		case UPDATE_PAGE_TITLE:
 			// HANDLE PAGE TYPE
 			let pageType = action.pageType
 			if(typeof(pageType) !== "number")
