@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSCItem.jsx")
@@ -10,6 +9,10 @@ var UploadSCItem = React.createClass({
 	propTypes: {
 		synced: React.PropTypes.bool	,		// is song synced
 		track: React.PropTypes.object,		// song info
+		streamable: React.PropTypes.bool,		// is song streamable
+		public: React.PropTypes.bool, 			// is song public
+
+		chooseTime: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -17,6 +20,21 @@ var UploadSCItem = React.createClass({
 
 	showSyncScreen: function() {
 		this.props.chooseTime(this.props.track)
+	},
+
+	showTrackStatus: function() {
+		console.log(this.props.public)
+		console.log(this.props.streamable)
+		if(!this.props.public)
+			return "private"
+
+		if(!this.props.streamable)
+			return "non stream"
+
+		if(this.props.synced)
+			return "synced"
+		else
+			return <img src="/static/img/MASAS_sync_off.svg" alt="sync" onClick={this.showSyncScreen} />
 	},
 
 	render: function() {
@@ -31,7 +49,7 @@ var UploadSCItem = React.createClass({
 				<div className="artwork--wrapper">
 					{ 
 						this.props.track.artwork_url ?
-							 <img src={this.props.track.artwork_url} alt="artwork" />
+							<img src={this.props.track.artwork_url} alt="artwork" />
 						: 
 							""
 					}
@@ -49,11 +67,7 @@ var UploadSCItem = React.createClass({
 					</div>
 				</div>
 				<div className="sync--wrapper">
-					{ this.props.synced ?
-						"synced"
-						:
-						<img src="/static/img/MASAS_sync_off.svg" alt="sync" onClick={this.showSyncScreen} />
-					}
+					{ this.showTrackStatus() }
 				</div>
 			</div>
 		)
