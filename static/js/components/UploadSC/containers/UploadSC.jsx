@@ -1,5 +1,13 @@
 var { getUserTracks } = require('../ajaxCalls.jsx')
 
+import { 
+	changeModalContent, 
+	updateModalType, 
+	closeAndEmptyMainModal,
+	toogleIsModalOpened,
+	updatePageTitle,
+} from '../../../reducers/actions/App.js'
+
 var UploadSC = {} 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -27,11 +35,11 @@ UploadSC.mapStateToProps = function(state) {
 UploadSC.mapDispatchToProps = function(dispatch) {
 	return {
 		// higher level state updates
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
-		updateModalType: (modalType) => dispatch({ type: 'UPDATE_MODAL_TYPE', modalType }),
-		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		toogleModal: () => dispatch(toogleIsModalOpened),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		updateModalType: (modalType) => dispatch(updateModalType(modalType)),
+		closeModal: () => dispatch(closeAndEmptyMainModal),
 		
 		// page state updates
 		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch({type: 'UPDATE_SC_USER_TRACKS', soundcloudUserTracks}),
