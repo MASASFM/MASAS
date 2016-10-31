@@ -50196,24 +50196,12 @@ var Likes = _wrapComponent("_component")(React.createClass({
 	filterLikes: function filterLikes() {
 		var _this = this;
 
-		if (this.props.SCinfo.length) {
-			var songs = this.props.SCinfo;
-			var songList = songs.map(function (song) {
-				var MASAS_songInfo = _this.props.userData.likes.filter(function (like) {
-					return like.song.SC_ID === song.id;
-				});
+		if (this.props.userLikes) {
+			var songList = this.props.userLikes;
 
-				if (MASAS_songInfo.length === 1) return [MASAS_songInfo, song];else return 0;
-			});
-
-			// filter out zeros
-			songList = songList.filter(function (a) {
-				return a !== 0;
-			});
-
-			// sort by uploaded time
+			// sort by liked time
 			songList.sort(function (a, b) {
-				return Date.parse(a[0][0].created) < Date.parse(b[0][0].created);
+				return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created);
 			});
 
 			var radioTimeString = timeIntervalURLToString;
@@ -50221,21 +50209,24 @@ var Likes = _wrapComponent("_component")(React.createClass({
 			var filteredSongList = songList.filter(function (song) {
 				if (song === 0) return false;
 
-				var songSearchString = radioTimeString(song[0][0].song.timeInterval) + " " + song[1].title + " " + song[1].tag_list;
+				// match filter string entered by user with a string of info relevant to each song.
+				// should refactor this into a "searchStringFilter" function
+				var songSearchString = radioTimeString(song.MASAS_songInfo.song.timeInterval) + " " + song.SC_songInfo.title + " " + song.SC_songInfo.tag_list;
 
 				return isSubsequence(_this.props.searchInput, songSearchString);
 			});
 
-			// filter by hashtags
+			// filter by hashtag buttons
 			var testVar = this.props.hashtagFilter.filter(function (hashtag) {
 				return hashtag;
 			});
 
+			// loop and filter for each hashtag button selected by user
 			if (testVar.length !== 0) {
 				for (var i = 0; i < this.props.hashtagFilter.length; i++) {
 					if (!this.props.hashtagFilter[i]) {
 						filteredSongList = filteredSongList.filter(function (song) {
-							var timeIntervalURL = song[0][0].song.timeInterval;
+							var timeIntervalURL = song.MASAS_songInfo.song.timeInterval;
 							var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
 							return parseInt(hashtagNumber) - 1 !== i;
 						});
@@ -50243,10 +50234,8 @@ var Likes = _wrapComponent("_component")(React.createClass({
 				}
 			}
 
-			// ony keep SC data
-			filteredSongList = filteredSongList.map(function (song) {
-				return song[1];
-			});
+			// // ony keep SC data
+			// filteredSongList = filteredSongList.map((song) => song.SC_songInfo)
 
 			return filteredSongList;
 		} else return;
@@ -50311,9 +50300,9 @@ var Likes = _wrapComponent("_component")(React.createClass({
 				)
 			),
 			React.createElement(LikesArtworks, {
-				SCinfo: this.filterLikes(this.props.SCinfo),
+				SCinfo: this.props.SCinfo,
 				userData: this.props.userData,
-				userLikes: this.props.userLikes })
+				userLikes: this.filterLikes(this.props.userLikes) })
 		);
 	}
 }));

@@ -55,24 +55,11 @@ var Likes = React.createClass({
 	},
 
 	filterLikes: function() {
-		if(this.props.SCinfo.length) {
-			var songs = this.props.SCinfo
-			var songList =  songs.map((song) => { 
-				var MASAS_songInfo = this.props.userData.likes.filter((like) => {
-					return like.song.SC_ID === song.id
-				})
+		if(this.props.userLikes) {
+			var songList = this.props.userLikes
 
-				if(MASAS_songInfo.length === 1)
-					return [MASAS_songInfo, song]
-				else
-					return 0
-			})
-
-			// filter out zeros
-			songList = songList.filter((a) => a !== 0)
-
-			// sort by uploaded time
-			songList.sort((a,b) => { return Date.parse(a[0][0].created) < Date.parse(b[0][0].created) })
+			// sort by liked time
+			songList.sort((a,b) => { return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created) })
 
 			var radioTimeString = timeIntervalURLToString
 
@@ -80,21 +67,24 @@ var Likes = React.createClass({
 				if(song === 0)
 					return false
 
-				var songSearchString = radioTimeString(song[0][0].song.timeInterval) + " " + song[1].title + " " + song[1].tag_list
+				// match filter string entered by user with a string of info relevant to each song.
+				// should refactor this into a "searchStringFilter" function
+				var songSearchString = radioTimeString(song.MASAS_songInfo.song.timeInterval) + " " + song.SC_songInfo.title + " " + song.SC_songInfo.tag_list
 
 				return isSubsequence(this.props.searchInput, songSearchString)
 			})
 
-			// filter by hashtags
+			// filter by hashtag buttons
 			var testVar = this.props.hashtagFilter.filter((hashtag) => {
 				return hashtag
 			})
 
+			// loop and filter for each hashtag button selected by user
 			if(testVar.length !== 0) {
 				for(var i = 0; i < this.props.hashtagFilter.length; i++) {
 					if(!this.props.hashtagFilter[i]) {
 						filteredSongList = filteredSongList.filter((song) => {
-							var timeIntervalURL = song[0][0].song.timeInterval
+							var timeIntervalURL = song.MASAS_songInfo.song.timeInterval
 							var hashtagNumber = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
 							return parseInt(hashtagNumber) - 1 !== i
 						})
@@ -102,8 +92,8 @@ var Likes = React.createClass({
 				}
 			}
 
-			// ony keep SC data
-			filteredSongList = filteredSongList.map((song) => song[1])
+			// // ony keep SC data
+			// filteredSongList = filteredSongList.map((song) => song.SC_songInfo)
 
 			return filteredSongList
 		} else 
@@ -141,9 +131,9 @@ var Likes = React.createClass({
 					</div>
 
 					<LikesArtworks 
-						SCinfo={ this.filterLikes(this.props.SCinfo) } 
+						SCinfo={ this.props.SCinfo } 
 						userData={ this.props.userData } 
-						userLikes={ this.props.userLikes } />
+						userLikes={ this.filterLikes(this.props.userLikes) } />
 				
 			</LikesWrapper>
 		)
