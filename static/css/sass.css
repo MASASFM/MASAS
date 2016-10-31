@@ -129,6 +129,14 @@
   position: absolute;
   z-index: 0;
   transition: filter .5s linear; }
+  .bg-image::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    content: " "; }
 
 .modal-blur--wrapper {
   display: flex;
@@ -164,9 +172,6 @@
 .body--background.blurred-mobile.saturated > .bg-image {
   -webkit-filter: blur(5px) saturate(0%);
   filter: blur(5px) saturate(0%); }
-
-.body--background.blurred-mobile::before {
-  opacity: 1; }
 
 @media screen and (min-width: 992px) {
   .body--background.blurred-mobile > .bg-image {
