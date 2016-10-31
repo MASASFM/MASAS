@@ -54,15 +54,15 @@ html
 	opacity: 0.6		// for text to be readable
 	transition: filter 0.5s linear
 
-.body--background.artist-page-bg > .bg-image
-	-webkit-filter: blur(6px) saturate(0%)
-	filter: blur(6px) saturate(0%)
+// .body--background.artist-page-bg > .bg-image
+// 	-webkit-filter: blur(6px) saturate(0%)
+// 	filter: blur(6px) saturate(0%)
 
-.body--background.musicLover-page-bg > .bg-image
-	-webkit-filter: blur(12px) saturate(0%)
-	filter: blur(12px) saturate(0%)
+// .body--background.musicLover-page-bg > .bg-image
+// 	-webkit-filter: blur(12px) saturate(0%)
+// 	filter: blur(12px) saturate(0%)
 
-.body--background.dev-page-bg > .bg-image
+// .body--background.dev-page-bg > .bg-image
 
 .body--background.blurred > .bg-image
 	-webkit-filter: blur(5px)
@@ -70,11 +70,8 @@ html
 
 .body--background.blurred-mobile > .bg-image
 	opacity: 0.5
-
-.body--background.blurred-mobile > .bg-image
 	-webkit-filter: blur(15px)
 	filter: blur(15px)
-
 
 .body--background.saturated > .bg-image
 	-webkit-filter: saturate(0%)
@@ -176,3 +173,8 @@ h1
 	.body--background.blurred-mobile.saturated > .bg-image
 		-webkit-filter: saturate(0%)
 		filter: saturate(0%)
+
+	.body--background.blurred-mobile.blurred > .bg-image
+		opacity: 0.5
+		-webkit-filter: blur(15px)
+		filter: blur(15px)

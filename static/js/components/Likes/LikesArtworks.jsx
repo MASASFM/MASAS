@@ -1,8 +1,6 @@
 var React = require("react")
 var ReactRedux = require("react-redux")
 
-import { MobileBlurBackground } from "../MASAS_mixins.jsx"
-
 // commented because we may need this line in the near future
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
@@ -10,6 +8,7 @@ var { goToURL } = require("../../MASAS_functions.jsx")
 var { Button } = require("../UI/UI.jsx")
 
 var LikesItem = require("./LikesItem.jsx")
+var NoLikesComponent = require("./NoLikesComponent.jsx")
 
 // DISPLAYS USER LIKES (propTypes)
 // creates invisible artworks to keep the last line aligned left using flexbox
@@ -45,28 +44,29 @@ var LikesArtworks = React.createClass({
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function() {
-		var songs = this.props.SCinfo
+		var songs = this.props.userLikes
 
-		if (!songs) {
+		if (!songs.length) {
 			// this.props.blurBgMobile(false)
 			// this.props.blurBg(true)
 
-			return (
-				<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-					<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem'}}>
-						<img src="/static/img/MASAS_no_likes.svg" alt="like icon" />
-						<p style={{ fontSize: '1.2rem'}}>
-							You haven't liked any sounds yet
-						</p>
-						<Button 
-							isBigButton={ true } 
-							isSecondaryAction={ false } 
-							onClick={ () => { $('#body--background').removeClass('blurred'); goToURL('/discover') } }>
-							Start discovering new music
-						</Button>
-					</div>
-				</div>
-			)
+			return <NoLikesComponent />
+			// (
+			// 	<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+			// 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem'}}>
+			// 			<img src="/static/img/MASAS_no_likes.svg" alt="like icon" />
+			// 			<p style={{ fontSize: '1.2rem'}}>
+			// 				You haven't liked any sounds yet
+			// 			</p>
+			// 			<Button 
+			// 				isBigButton={ true } 
+			// 				isSecondaryAction={ false } 
+			// 				onClick={ () => { $('#body--background').removeClass('blurred'); goToURL('/discover') } }>
+			// 				Start discovering new music
+			// 			</Button>
+			// 		</div>
+			// 	</div>
+			// )
 		} else {
 			// // sort by uploaded time
 
@@ -121,6 +121,10 @@ var LikesArtworks = React.createClass({
 		jsx elements
 	*/
 	alignArtworksLeft: function() {
+		// don't align if user has no likes
+		if(!this.props.userLikes.length)
+			return 
+
 		const { artworkWidth, likesWrapperWidth } = this.getElementsWidth()
 		// console.log("FUNCTION RETURN ======> ", this.getElementsWidth())
 		// console.log('ARTWORK WIDTH ===== ', artworkWidth)
