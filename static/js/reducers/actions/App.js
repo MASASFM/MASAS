@@ -9,6 +9,8 @@ export const BLUR_BG = 'BLUR_BG'
 export const SATURATE_BG = 'SATURATE_BG'
 export const BLUR_BG_MOBILE = 'BLUR_BG_MOBILE'
 export const SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE'
+export const MODAL_SATURATE_BG = 'MODAL_SATURATE_BG'
+export const MODAL_BLUR_BG = 'MODAL_BLUR_BG'
 
 export function incrementLoggedOutUserStep() {
 	return {
@@ -77,6 +79,28 @@ changeBgState.saturate = function(sat) {
 		isSaturated = sat
 	return {
 		type: SATURATE_BG,
+		isSaturated,
+	}
+}
+
+// blur = bool
+changeBgState.modalBlur = function(blur) {
+	var isBlurred = true
+	if(!blur)
+		isBlurred = blur
+	return {
+		type: MODAL_BLUR_BG,
+		isBlurred
+	}
+}
+
+// sat = bool
+changeBgState.modalSaturate = function(sat) {
+	var isSaturated = true
+	if(!sat)
+		isSaturated = sat
+	return {
+		type: MODAL_SATURATE_BG,
 		isSaturated,
 	}
 }

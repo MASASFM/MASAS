@@ -11,6 +11,8 @@ import {
 	SATURATE_BG,
 	BLUR_BG_MOBILE,
 	SATURATE_BG_MOBILE,
+	MODAL_BLUR_BG,
+	MODAL_SATURATE_BG,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -32,10 +34,12 @@ exportVar.defaultState = {
 	closeModalFunc: () => {}, 			// (func) function called on closin modal
 	loggedOutUserStep: 0,				// (int) user step used to show tip modals when user logged out
 	bgFilter: {					// (dict of bools) background state
-		blurred: false,
-		saturated: false,
-		mobileBlurred: false,
-		mobileSaturated: false,
+		blurred: false,				// (bool) is app bg blurred
+		saturated: false,			// (bool) is app bg saturated
+		mobileBlurred: false,			// (bool) is app bg blurred only on mobile
+		mobileSaturated: false,			// (bool) is app bg saturated only on mobile
+		modalBlurred: false,			// (bool) is app bg blurred *because* of modal
+		modalSaturrated: false,			// (bool) is app bg saturated *because* of modal
 	}
 }
 
@@ -44,6 +48,22 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case MODAL_BLUR_BG:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					modalBlurred: action.isBlurred
+				}
+			}
+		case MODAL_SATURATE_BG:
+			return {
+				...state,
+				bgFilter: {
+					...state.bgFilter,
+					modalSaturrated: action.isSaturated
+				}
+			}
 		case BLUR_BG:
 			return {
 				...state,
