@@ -47617,6 +47617,15 @@ var LegalsContent = _wrapComponent("_component")(React.createClass({
 				"div",
 				{ onClick: this.props.goToHome, className: "back-icon" },
 				React.createElement("img", { src: "/static/img/MASAS_arrow_left.svg", alt: "back" })
+			),
+			React.createElement(
+				Button,
+				{
+					isBigButton: false,
+					onClick: this.props.goToHome,
+					isSecondaryAction: true,
+					className: "back-to-legals-summary" },
+				"Back"
 			)
 		);
 

@@ -32,6 +32,13 @@ var LegalsContent = React.createClass({
 				<div onClick={ this.props.goToHome } className="back-icon">
 					<img src="/static/img/MASAS_arrow_left.svg" alt="back" />
 				</div>
+				<Button
+					isBigButton={ false }
+					onClick={ this.props.goToHome } 
+					isSecondaryAction={ true }
+					className="back-to-legals-summary">
+					Back
+				</Button>
 			</div>
 			)
 
