@@ -1,4 +1,5 @@
 var React = require('react')
+
 import { 
 	INCREMENT_LOGGED_OUT_USER_STEP, 
 	RESET_LOGGED_OUT_USER_STEP,

@@ -1,3 +1,5 @@
+import { closeAndEmptyMainModal } from "../../../reducers/actions/App.js"
+
 var Header = {}
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -21,7 +23,7 @@ Header.mapDispatchToProps = function(dispatch) {
 		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
 		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
 		goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4}),
-		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
 	}
 }
 
