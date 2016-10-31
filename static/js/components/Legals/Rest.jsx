@@ -49,10 +49,14 @@ var Rest = React.createClass({
 					<h4>Google cookies are those beginning '__ut'.</h4>
 
 					<p>You can find more information on the steps that Google take to Safeguard Your Data by visiting this URL (below):</p>
-					<ul><li>https://support.google.com/analytics/answer/6004245</li></ul>
+					<ul>
+						<li>https://support.google.com/analytics/answer/6004245</li>
+					</ul>
 
 					<p>And you can find their Privacy Policy by going visiting this URL(below):</p>
-					<ul><li>https://www.google.com/intl/en/policies/privacy/</li></ul>
+					<ul>
+						<li>https://www.google.com/intl/en/policies/privacy/</li>
+					</ul>
 
 					<p>To opt out of this analysis by Google, please see our Opting Out section below.</p>
 

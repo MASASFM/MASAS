@@ -3951,7 +3951,8 @@ input[type=range].MASAS-slider {
     line-height: 1.4rem;
     text-align: justify; }
     .legals-content--wrapper ol li, .legals-content--wrapper ul li {
-      padding-bottom: .8rem; }
+      padding-bottom: .8rem;
+      word-break: break-all; }
 
 @media screen and (min-width: 992px) {
   .legals-content--wrapper {
