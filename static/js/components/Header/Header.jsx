@@ -55,7 +55,7 @@ var Header = React.createClass({
 				</div>
 				<div className="row middle-xs desktop-header">
 					<div className="col-xs-10 links--wrapper">
-						<Link to="/" className="logo" onClick={this.props.goToHomepageSlide1}>
+						<Link to="/" className="logo" onClick={ () => { this.props.goToHomepageSlide1(); this.props.closeModal() } }>
 							<img src="/static/img/navlogo.png" alt="MASAS" className="logo" />
 						</Link>
 						<div className="box" style={{display: 'flex', flex: 2, flexDirection: 'row', justifyContent: 'flex-end'}}>
