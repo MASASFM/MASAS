@@ -6,6 +6,7 @@ import {
 	closeAndEmptyMainModal,
 	toogleIsModalOpened,
 	updatePageTitle,
+	changeBgState,
 } from '../../../reducers/actions/App.js'
 
 import { 
@@ -56,6 +57,8 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 		getUserTracks: (userPk, success, error) => getUserTracks(userPk, success, error),
 
 		// other state updates
+		blurBg: (blur) => dispatch(changeBgState.blur(blur)),
+		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
 	}
 }
 

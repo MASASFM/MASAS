@@ -3,8 +3,6 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSC.jsx")
 
-var { background } = require("../../MASAS_functions.jsx")
-
 var { Button, Body, TimePicker } = require("../UI/UI.jsx")
 var UploadSCItem = require("./UploadSCItem.jsx")
 var PickTimeUpload = require("./PickTimeUpload.jsx")
@@ -34,6 +32,8 @@ var UploadSC = React.createClass({
 		getUserTracks: React.PropTypes.func,
 		updateSoundcloudUserTracks: React.PropTypes.func,
 		updateIsConnectedSC: React.PropTypes.func,
+		blurBg: React.PropTypes.func,
+		saturateBg: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -43,38 +43,21 @@ var UploadSC = React.createClass({
 
 	},
 
+	componentWillUnmount: function() {
+		this.props.blurBg(false)
+	},
+
 	componentDidMount: function() {
+		this.updateBackgroundFilter()
 	},
 
-	componentWillReceiveProps: function(nextProps) {
-		if(this.props.choosingTime !== nextProps.choosingTime && nextProps.choosingTime === null)
-			this.props.updateTitle('Upload', '0')
-
-		// update masas user track prop to have the sync icon updatd in real time
-		if(this.props.choosingTime !== nextProps.choosingTime)
-			this.getUserTracks()
-	},
-
-	checkUserStep: function() {
-
-		/* not showing tip modal on this page anymore
-					   
-		// if user data is available
-		if(isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
-			// if user has not dismissed tips yet
-			let usersteps = [ ...this.props.userData.usersteps ]
-			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
-			const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
-
-			if(!didUserDismissTips && !didUserSeeFirstTip) {
-				window.setTimeout(() => {
-					this.props.updateModalContent(<TeachSliderModal1 />, 2)
-					this.props.toogleModal()
-				}, 1000)
-			}
-		}
-
-		*/
+	updateBackgroundFilter: function() {
+		if(this.props.choosingTime)
+			this.props.blurBg(false)
+		else if(this.props.isConnectedSoundcloud)
+			this.props.blurBg(false)
+		else
+			this.props.blurBg(true)
 	},
 
 	getUserTracks: function() {
@@ -91,7 +74,7 @@ var UploadSC = React.createClass({
 
 	getUserSCTracks: function() {
 		SC.get(document.MASAS.SC.tracks_uri, {limit: 100}).then( (response) => {  // async call to SC servers
-		// SC.get("me/tracks", {limit: 100}).then( (response) => {  // async call to SC servers
+		// SC.get("me/tracks", {limit: 100}).then( (response) => {  // for dev tests
 			this.props.updateSoundcloudUserTracks(response)
 		})
 	},
@@ -132,10 +115,19 @@ var UploadSC = React.createClass({
 		location.reload()
 	},
 
+	componentWillReceiveProps: function(nextProps) {
+		if(this.props.choosingTime !== nextProps.choosingTime && nextProps.choosingTime === null)
+			this.props.updateTitle('Upload', '0')
+
+		// update masas user track prop to have the sync icon updatd in real time
+		if(this.props.choosingTime !== nextProps.choosingTime)
+			this.getUserTracks()
+
+		this.updateBackgroundFilter()
+	},
+
 	render: function() {
 		if(this.props.choosingTime) {
-			background.unblur()	
-
 			return (
 				<div style={{ 
 					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
@@ -151,8 +143,6 @@ var UploadSC = React.createClass({
 		}
 
 		if(this.props.isConnectedSoundcloud) {
-			background.unblur()	
-
 			return (
 				<Body>
 				<div className="upload-sc--wrapper">
@@ -183,9 +173,6 @@ var UploadSC = React.createClass({
 				</Body>
 			)
 		} else {
-			// blur background when SC not connected
-			background.blur()	
-
 			return (
 				<Body noBackground={ true }>
 					<div className="connect-sc--wrapper">
