@@ -8,7 +8,7 @@ var LikesArtworks = require("./LikesArtworks.jsx")
 var { Textbox } = require("../UI/UI.jsx")
 var FiltersModal = require("./FiltersModal.jsx")
 
-var { isSubsequence } = require("../../MASAS_functions.jsx")
+var { isSubsequence, timeIntervalURLToString } = require("../../MASAS_functions.jsx")
 
 // FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA 
 // TO A SUB-COMPONENT THAT DISPLAYS IT
@@ -74,26 +74,7 @@ var Likes = React.createClass({
 			// sort by uploaded time
 			songList.sort((a,b) => { return Date.parse(a[0][0].created) < Date.parse(b[0][0].created) })
 
-			var radioTimeString = (timeIntervalURL) => {
-				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-			
-				switch(switchVar) {
-					case "1":
-						return "#EarlyMorning"
-					case "2":
-						return "#LateMorning"
-					case "3":
-						return "#EarlyAfternoon"
-					case "4":
-						return "#LateAfternoon"
-					case "5":
-						return "#EarlyEvening"
-					case "6":
-						return "#LateEvening"
-					default:
-						return 
-				}
-			}
+			var radioTimeString = timeIntervalURLToString
 
 			var filteredSongList = songList.filter((song) => {
 				if(song === 0)

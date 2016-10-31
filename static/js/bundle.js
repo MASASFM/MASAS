@@ -43318,6 +43318,27 @@ MASAS_functions.background = {
 	}
 };
 
+MASAS_functions.timeIntervalURLToString = function (timeIntervalURL) {
+	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
+
+	switch (switchVar) {
+		case "1":
+			return "#EarlyMorning";
+		case "2":
+			return "#LateMorning";
+		case "3":
+			return "#EarlyAfternoon";
+		case "4":
+			return "#LateAfternoon";
+		case "5":
+			return "#EarlyEvening";
+		case "6":
+			return "#LateEvening";
+		default:
+			return ""; // false
+	}
+};
+
 // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
 MASAS_functions.makePromiseCancelable = function (promise) {
 	var hasCanceled_ = false;
@@ -50127,6 +50148,7 @@ var FiltersModal = require("./FiltersModal.jsx");
 var _require3 = require("../../MASAS_functions.jsx");
 
 var isSubsequence = _require3.isSubsequence;
+var timeIntervalURLToString = _require3.timeIntervalURLToString;
 
 // FETCHES LIKES INFO, FILTERS IT IF NECESSARY, AND FEEDS THE DATA
 // TO A SUB-COMPONENT THAT DISPLAYS IT
@@ -50194,26 +50216,7 @@ var Likes = _wrapComponent("_component")(React.createClass({
 				return Date.parse(a[0][0].created) < Date.parse(b[0][0].created);
 			});
 
-			var radioTimeString = function radioTimeString(timeIntervalURL) {
-				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1);
-
-				switch (switchVar) {
-					case "1":
-						return "#EarlyMorning";
-					case "2":
-						return "#LateMorning";
-					case "3":
-						return "#EarlyAfternoon";
-					case "4":
-						return "#LateAfternoon";
-					case "5":
-						return "#EarlyEvening";
-					case "6":
-						return "#LateEvening";
-					default:
-						return;
-				}
-			};
+			var radioTimeString = timeIntervalURLToString;
 
 			var filteredSongList = songList.filter(function (song) {
 				if (song === 0) return false;
