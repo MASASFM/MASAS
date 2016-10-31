@@ -59,6 +59,7 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 		// other state updates
 		blurBg: (blur) => dispatch(changeBgState.blur(blur)),
 		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
+		blurMobileBr: (blur) => dispatch(changeBgState.blurMobile(blur)),
 	}
 }
 

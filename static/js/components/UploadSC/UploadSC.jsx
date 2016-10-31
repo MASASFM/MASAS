@@ -34,6 +34,7 @@ var UploadSC = React.createClass({
 		updateIsConnectedSC: React.PropTypes.func,
 		blurBg: React.PropTypes.func,
 		saturateBg: React.PropTypes.func,
+		blurMobileBr: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -54,9 +55,10 @@ var UploadSC = React.createClass({
 	updateBackgroundFilter: function() {
 		if(this.props.choosingTime)
 			this.props.blurBg(false)
-		else if(this.props.isConnectedSoundcloud)
+		else if(this.props.isConnectedSoundcloud) {
 			this.props.blurBg(false)
-		else
+			this.props.blurMobileBr(true)
+		} else
 			this.props.blurBg(true)
 	},
 
