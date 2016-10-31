@@ -50256,14 +50256,14 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		return React.createElement(
 			LikesWrapper,
 			null,
-			React.createElement(
+			this.props.userLikes.length ? React.createElement(
 				"div",
 				{ className: "likes-searchbar--wrapper", id: "likes-searchbar-wrapper" },
 				React.createElement("img", { src: "/static/img/MASAS_search.svg", alt: "serach-icon" }),
 				React.createElement(Textbox, { id: "likes--search-textbox", value: this.props.searchInput, onChange: this.updateSearchInput }),
 				React.createElement("img", { onClick: this.openFiltersModal, className: "filter-icon", alt: "filter-songs", src: "/static/img/MASAS_icon_filter.svg" })
-			),
-			React.createElement(
+			) : "",
+			this.props.userLikes.length ? React.createElement(
 				"div",
 				{ className: "filters--wrapper" },
 				React.createElement(
@@ -50296,7 +50296,7 @@ var Likes = _wrapComponent("_component")(React.createClass({
 					{ onClick: this.toggleFilter.bind(this, 5), id: "filter-late-evening", className: "tag-filter " + (this.props.hashtagFilter[5] ? "enable" : "") },
 					"#LateEvening"
 				)
-			),
+			) : "",
 			React.createElement(LikesArtworks, {
 				SCinfo: this.props.SCinfo,
 				userData: this.props.userData,
@@ -50347,14 +50347,6 @@ var _require = require("./containers/LikesArtworks.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var _require2 = require("../../MASAS_functions.jsx");
-
-var goToURL = _require2.goToURL;
-
-var _require3 = require("../UI/UI.jsx");
-
-var Button = _require3.Button;
-
 var LikesItem = require("./LikesItem.jsx");
 var NoLikesComponent = require("./NoLikesComponent.jsx");
 
@@ -50377,60 +50369,26 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 	componentWillMount: function componentWillMount() {},
 
-	// componentWillUpdate: function(nextProps) {
-	// 	const songs = this.props.userLikes
-
-	// 	if (!songs.length && (!this.props.bgFilter.blurred || this.props.bgFilter.mobileBlurred)) {
-	// 		this.props.blurBgMobile(false)
-	// 		this.props.blurBg(true)
-	// 	} else if(songs.length && (this.props.bgFilter.blurred || !this.props.bgFilter.mobileBlurred)) {
-	// 		this.props.blurBg(false)
-	// 		this.props.blurBgMobile(true)
-	// 	}
-	// },
-
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function renderLikes() {
 		var songs = this.props.userLikes;
 
-		if (!songs.length) {
-			// this.props.blurBgMobile(false)
-			// this.props.blurBg(true)
+		if (!songs.length) return React.createElement(NoLikesComponent, null);else {
+			// // sort by uploaded time
+			var _songs = this.props.userLikes;
+			var songList = _songs.map(function (song) {
+				return React.createElement(LikesItem, {
+					key: song.MASAS_songInfo.pk,
+					MASAS_songPk: song.MASAS_songInfo.pk,
+					SCinfo: song.SC_songInfo,
+					MASASinfo: song.MASAS_songInfo.song,
+					artistInfo: song.artistInfo,
+					isShowingArtistInfo: song.showProfile });
+			});
 
-			return React.createElement(NoLikesComponent, null);
-			// (
-			// 	<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-			// 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem'}}>
-			// 			<img src="/static/img/MASAS_no_likes.svg" alt="like icon" />
-			// 			<p style={{ fontSize: '1.2rem'}}>
-			// 				You haven't liked any sounds yet
-			// 			</p>
-			// 			<Button
-			// 				isBigButton={ true }
-			// 				isSecondaryAction={ false }
-			// 				onClick={ () => { $('#body--background').removeClass('blurred'); goToURL('/discover') } }>
-			// 				Start discovering new music
-			// 			</Button>
-			// 		</div>
-			// 	</div>
-			// )
-		} else {
-				// // sort by uploaded time
-
-				var _songs = this.props.userLikes;
-				var songList = _songs.map(function (song) {
-					return React.createElement(LikesItem, {
-						key: song.MASAS_songInfo.pk,
-						MASAS_songPk: song.MASAS_songInfo.pk,
-						SCinfo: song.SC_songInfo,
-						MASASinfo: song.MASAS_songInfo.song,
-						artistInfo: song.artistInfo,
-						isShowingArtistInfo: song.showProfile });
-				});
-
-				return songList;
-			}
+			return songList;
+		}
 	},
 
 	/**
@@ -50474,9 +50432,6 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 		var artworkWidth = _getElementsWidth.artworkWidth;
 		var likesWrapperWidth = _getElementsWidth.likesWrapperWidth;
-		// console.log("FUNCTION RETURN ======> ", this.getElementsWidth())
-		// console.log('ARTWORK WIDTH ===== ', artworkWidth)
-		// console.log('LIKES WRAPPER WIDTH ===== ', likesWrapperWidth)
 
 		var A = likesWrapperWidth;
 		var B = artworkWidth;
@@ -50510,7 +50465,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesArtworks);
 
-},{"../../MASAS_functions.jsx":378,"../UI/UI.jsx":478,"./LikesItem.jsx":420,"./NoLikesComponent.jsx":422,"./containers/LikesArtworks.jsx":425,"livereactload/babel-transform":33,"react":363,"react-redux":168}],420:[function(require,module,exports){
+},{"./LikesItem.jsx":420,"./NoLikesComponent.jsx":422,"./containers/LikesArtworks.jsx":425,"livereactload/babel-transform":33,"react":363,"react-redux":168}],420:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -50769,23 +50724,28 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 
 	mixins: [_MASAS_mixins.MobileBlurBackground],
 
-	propTypes: {},
+	propTypes: {
+		userLikes: React.PropTypes.array,
+		title: React.PropTypes.string,
+		SCinfo: React.PropTypes.array
+	},
 
 	componentWillMount: function componentWillMount() {
 		// this.props.updateTitle()
-		this.scrollOffset = 70;
+		// this.scrollOffset = 70
 	},
 
 	componentDidMount: function componentDidMount() {
-		var node = ReactDOM.findDOMNode(this.refs.scroll);
+		// var node = ReactDOM.findDOMNode(this.refs.scroll)
 
-		this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
-
-		$('.box.page-content')[0].scrollTop = this.scrollOffset;
+		if (this.props.userLikes.length) {
+			this.scrollOffset = document.getElementsByClassName('likes-searchbar--wrapper')[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
+			$('.box.page-content')[0].scrollTop = this.scrollOffset;
+		}
 	},
 
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-		this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
+		if (this.props.userLikes.length) this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
 	},
 
 	render: function render() {
@@ -50837,7 +50797,9 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 						{ ref: "scroll", className: "box page-content", style: { overflow: 'scroll', justifyContent: 'initial', backgroundColor: 'rgba(0,0,0,0)' } },
 						React.createElement(
 							"div",
-							{ className: "likes--wrapper", style: { minHeight: 'calc(100% + ' + this.scrollOffset + 'px)' } },
+							{
+								className: "likes--wrapper",
+								style: { minHeight: 'calc(100% + ' + this.scrollOffset + 'px)' } },
 							this.props.children
 						)
 					)
@@ -51107,7 +51069,8 @@ var LikesWrapper = {};
 LikesWrapper.mapStateToProps = function (state) {
 	return {
 		title: state.appReducer.pageTitle,
-		SCinfo: state.likesReducer.SCinfo
+		SCinfo: state.likesReducer.SCinfo,
+		userLikes: state.likesReducer.userLikes
 	};
 };
 

@@ -4,9 +4,6 @@ var ReactRedux = require("react-redux")
 // commented because we may need this line in the near future
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtworks.jsx")
 
-var { goToURL } = require("../../MASAS_functions.jsx")
-var { Button } = require("../UI/UI.jsx")
-
 var LikesItem = require("./LikesItem.jsx")
 var NoLikesComponent = require("./NoLikesComponent.jsx")
 
@@ -29,47 +26,15 @@ var LikesArtworks = React.createClass({
 	componentWillMount: function() {
 	},
 
-	// componentWillUpdate: function(nextProps) {
-	// 	const songs = this.props.userLikes
-
-	// 	if (!songs.length && (!this.props.bgFilter.blurred || this.props.bgFilter.mobileBlurred)) {
-	// 		this.props.blurBgMobile(false)
-	// 		this.props.blurBg(true)
-	// 	} else if(songs.length && (this.props.bgFilter.blurred || !this.props.bgFilter.mobileBlurred)) {
-	// 		this.props.blurBg(false)
-	// 		this.props.blurBgMobile(true)
-	// 	}
-	// },
-
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function() {
 		var songs = this.props.userLikes
 
-		if (!songs.length) {
-			// this.props.blurBgMobile(false)
-			// this.props.blurBg(true)
-
+		if (!songs.length)
 			return <NoLikesComponent />
-			// (
-			// 	<div className="no-like--wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-			// 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', minHeight: '17rem'}}>
-			// 			<img src="/static/img/MASAS_no_likes.svg" alt="like icon" />
-			// 			<p style={{ fontSize: '1.2rem'}}>
-			// 				You haven't liked any sounds yet
-			// 			</p>
-			// 			<Button 
-			// 				isBigButton={ true } 
-			// 				isSecondaryAction={ false } 
-			// 				onClick={ () => { $('#body--background').removeClass('blurred'); goToURL('/discover') } }>
-			// 				Start discovering new music
-			// 			</Button>
-			// 		</div>
-			// 	</div>
-			// )
-		} else {
+		else {
 			// // sort by uploaded time
-
 			const songs = this.props.userLikes
 			var songList =  songs.map((song) => { 
 				return <LikesItem 
@@ -126,9 +91,6 @@ var LikesArtworks = React.createClass({
 			return 
 
 		const { artworkWidth, likesWrapperWidth } = this.getElementsWidth()
-		// console.log("FUNCTION RETURN ======> ", this.getElementsWidth())
-		// console.log('ARTWORK WIDTH ===== ', artworkWidth)
-		// console.log('LIKES WRAPPER WIDTH ===== ', likesWrapperWidth)
 
 		const A = likesWrapperWidth
 		const B = artworkWidth
