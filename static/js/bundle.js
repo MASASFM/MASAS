@@ -57248,7 +57248,7 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 				return song.SC_ID === track.id;
 			}).length) synced = true;
 
-			if (track.streamable) return React.createElement(UploadSCItem, { key: track.id, track: track, synced: synced });
+			if (track.streamable && track.sharing !== "private") return React.createElement(UploadSCItem, { key: track.id, track: track, synced: synced });
 		});
 	},
 
