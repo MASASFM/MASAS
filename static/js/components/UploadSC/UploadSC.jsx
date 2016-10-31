@@ -46,6 +46,7 @@ var UploadSC = React.createClass({
 
 	componentWillUnmount: function() {
 		this.props.blurBg(false)
+		this.props.blurMobileBr(false)
 	},
 
 	componentDidMount: function() {
