@@ -3303,7 +3303,8 @@ input[type=range].MASAS-slider {
     padding-right: 0; }
   .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
     animation-name: none;
-    opacity: 1; }
+    opacity: 1;
+    z-index: 1; }
   .footer--wrapper .slider--wrapper.opened .player-controls--wrapper {
     animation-name: none;
     position: relative;
