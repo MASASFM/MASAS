@@ -897,7 +897,9 @@ input[type=range].MASAS-slider {
         display: flex;
         position: absolute;
         bottom: 0;
-        align-self: center; }
+        align-self: center;
+        right: 50%;
+        transform: translateX(50%); }
       .splash-screen--wrapper .main-swiper-container .third-slide .legals-content--wrapper {
         margin-bottom: 6rem; }
       .splash-screen--wrapper .main-swiper-container .third-slide .text--wrapper {
