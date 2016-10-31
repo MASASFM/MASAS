@@ -3915,7 +3915,8 @@ input[type=range].MASAS-slider {
     position: relative;
     font-family: Lato-Light;
     flex: 1 1 auto;
-    overflow-y: auto; }
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; }
     .legals-content--wrapper .legals-content .decoration {
       position: absolute;
       top: 0;
@@ -3948,7 +3949,7 @@ input[type=range].MASAS-slider {
     line-height: 1.4rem;
     text-align: justify; }
     .legals-content--wrapper ol li, .legals-content--wrapper ul li {
-      padding-bottom: 0.8rem; }
+      padding-bottom: .8rem; }
 
 @media screen and (min-width: 992px) {
   .legals-content--wrapper {
@@ -3956,9 +3957,9 @@ input[type=range].MASAS-slider {
     .legals-content--wrapper .back-icon img {
       display: block; }
     .legals-content--wrapper .legals-content p {
-      font-size: 0.7rem; }
+      font-size: .7rem; }
     .legals-content--wrapper .legals-content ol, .legals-content--wrapper .legals-content ul {
-      font-size: 0.7rem; } }
+      font-size: .7rem; } }
 .legals--wrapper {
   display: flex;
   flex: 1;
