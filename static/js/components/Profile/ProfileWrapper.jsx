@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ProfileWrapper.jsx")
@@ -9,7 +8,9 @@ import { MobileBlurBackground } from "../MASAS_mixins.jsx"
 var ProfileWrapper = React.createClass({
 	mixins: [ MobileBlurBackground ],
 
-	componentWillMount: function() {
+	propTypes: {
+		title: React.PropTypes.string,
+		children: React.PropTypes.node,
 	},
 
 	render: function() {
@@ -18,7 +19,7 @@ var ProfileWrapper = React.createClass({
 			minHeight:  marginHeight,
 			maxHeight: marginHeight
 		}
-		//
+		
 		return (
 			<div className="app-body body--wrapper" id="app-body--profile">
 				<div className="row row-display-none-sm no-margin" style={ marginStyle }>
