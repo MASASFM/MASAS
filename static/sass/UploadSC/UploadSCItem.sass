@@ -13,44 +13,63 @@ $SCItemHeight: 4em
 	background-color: rgba(255,255,255,0.16)
 
 .upload-sc-item--wrapper
-	.artwork--wrapper
-		min-width: -webkit-fit-content
-		height: $SCItemHeight
-		width: $SCItemHeight
-		background-color: black
+	&.non-synchronizable
+		.upload-sc-item-overlay--wrapper::after
+			position: absolute
+			top: 0
+			bottom: 0
+			left: 0
+			right: 0
+			background-color: rgba(0,0,0,0.5)
+			z-index: 2
+			content: " "
 
-	.artwork--wrapper
-		img
-			height: $SCItemHeight
+		.sync--wrapper
+			background-color: white
+			color: black
+			font-family: Lato-Semibold-Italic
+			font-size: 1.2rem
+			cursor: pointer
 
-	.song-info--wrapper
+	.upload-sc-item-overlay--wrapper
 		display: flex
-		flex-direction: column
-		justify-content: space-between
-		flex-grow: 1
-		padding: 0.5rem 0.5rem
+		flex: 1
+		position: relative
 
-	.song-info--wrapper
-		.song-name
-			font-size: 0.85rem
-			width: 100%
-			height: 0.85rem
-			position: relative
+		.artwork--wrapper
+			min-width: -webkit-fit-content
+			height: $SCItemHeight
+			width: $SCItemHeight
+			background-color: black
 
-		.song-stats
+			img
+				height: $SCItemHeight
+
+		.song-info--wrapper
 			display: flex
+			flex-direction: column
 			justify-content: space-between
-			align-items: center
+			flex-grow: 1
+			padding: 0.5rem 0.5rem
 
-		.song-stats
-			.number-listens
+			.song-name
+				font-size: 0.85rem
+				width: 100%
+				height: 0.85rem
+				position: relative
+
+			.song-stats
 				display: flex
+				justify-content: space-between
 				align-items: center
 
-			.number-listens
-				img
-					height: 1rem
-					padding-right: 0.3rem
+				.number-listens
+					display: flex
+					align-items: center
+
+					img
+						height: 1rem
+						padding-right: 0.3rem
 
 	.sync--wrapper
 		display: flex
@@ -58,7 +77,6 @@ $SCItemHeight: 4em
 		min-width: 5rem
 		justify-content: center
 
-	.sync--wrapper
 		img
 			height: $SCItemHeight
 			max-height: $SCItemHeight/2
@@ -66,24 +84,25 @@ $SCItemHeight: 4em
 
 @media screen and (min-width: $desktop-min-width)
 	.upload-sc-item--wrapper
-		.artwork--wrapper
+		.upload-sc-item-overlay--wrapper
+			.artwork--wrapper
 
 
-		.artwork--wrapper
-			img
+			.artwork--wrapper
+				img
 
 
-		.song-info--wrapper
-			flex-direction: row
-			align-items: center
+			.song-info--wrapper
+				flex-direction: row
+				align-items: center
 
-		.song-info--wrapper
-			.song-name
-				margin-right: 1rem
-				
-			.song-stats
+			.song-info--wrapper
+				.song-name
+					margin-right: 1rem
+					
+				.song-stats
 
 
-			.song-stats
-				.number-listens
-					display: none
+				.song-stats
+					.number-listens
+						display: none

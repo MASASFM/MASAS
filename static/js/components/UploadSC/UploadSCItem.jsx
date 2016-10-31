@@ -23,18 +23,18 @@ var UploadSCItem = React.createClass({
 	},
 
 	showTrackStatus: function() {
-		console.log(this.props.public)
-		console.log(this.props.streamable)
-		if(!this.props.public)
-			return "private"
-
-		if(!this.props.streamable)
-			return "non stream"
+		if(!this.props.streamable || !this.props.public)
+			return "?"
 
 		if(this.props.synced)
 			return "synced"
 		else
 			return <img src="/static/img/MASAS_sync_off.svg" alt="sync" onClick={this.showSyncScreen} />
+	},
+
+	// show modal with info as to why song is not synchronizable
+	showSyncInfoModal: function() {
+		
 	},
 
 	render: function() {
@@ -45,28 +45,33 @@ var UploadSCItem = React.createClass({
 		}
 
 		return (
-			<div className={"upload-sc-item--wrapper" + (this.props.synced ? " synced" : "")}>
-				<div className="artwork--wrapper">
-					{ 
-						this.props.track.artwork_url ?
-							<img src={this.props.track.artwork_url} alt="artwork" />
-						: 
-							""
-					}
-				</div>
-				<div className="song-info--wrapper">
-					<div className="song-name">
-						<Marquee>{this.props.track.title}</Marquee>
+			<div className={"upload-sc-item--wrapper" + (this.props.synced ? " synced " : "")  + (!this.props.streamable || !this.props.public ? " non-synchronizable " : "") }>
+				<div 
+					className={  "upload-sc-item-overlay--wrapper" }>
+					<div className="artwork--wrapper">
+						{ 
+							this.props.track.artwork_url ?
+								<img src={this.props.track.artwork_url} alt="artwork" />
+							: 
+								""
+						}
 					</div>
-					<div className="song-stats">
-						<span className="number-listens">
-							<img src="/static/img/MASAS_logo_tunes.svg" alt="music-not-icon" />
-							1796
-						</span>
-						<span>{ millisToMinutesAndSeconds(this.props.track.duration) }</span>
+					<div className="song-info--wrapper">
+						<div className="song-name">
+							<Marquee>{this.props.track.title}</Marquee>
+						</div>
+						<div className="song-stats">
+							<span className="number-listens">
+								<img src="/static/img/MASAS_logo_tunes.svg" alt="music-not-icon" />
+								1796
+							</span>
+							<span>{ millisToMinutesAndSeconds(this.props.track.duration) }</span>
+						</div>
 					</div>
 				</div>
-				<div className="sync--wrapper">
+				<div 
+					className="sync--wrapper"
+					onClick={ () => { !this.props.public || !this.props.streamable ? this.showSyncInfoModal : 0 } }>
 					{ this.showTrackStatus() }
 				</div>
 			</div>
