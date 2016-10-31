@@ -48754,18 +48754,12 @@ var React = require("react");
 // var {goToURL} = require("../../MASAS_functions.jsx")
 // var { Link } = require("../UI/UI.jsx")
 
-// var Template = (props) => {
-
-// }
-
 var Rest = _wrapComponent("_component")(React.createClass({
 	displayName: "Rest",
 
 	propTypes: {},
 
-	componentWillMount: function componentWillMount() {
-		// this.props.updateTitle('Template', '0')		// 0 = menu icon; 1 = arrow back
-	},
+	componentWillMount: function componentWillMount() {},
 
 	render: function render() {
 		return React.createElement(
@@ -48862,7 +48856,11 @@ var Rest = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"li",
 					null,
-					"https://support.google.com/analytics/answer/6004245"
+					React.createElement(
+						"a",
+						{ target: "_blank", href: "https://support.google.com/analytics/answer/6004245" },
+						"https://support.google.com/analytics/answer/6004245"
+					)
 				)
 			),
 			React.createElement(
@@ -48876,7 +48874,11 @@ var Rest = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"li",
 					null,
-					"https://www.google.com/intl/en/policies/privacy/"
+					React.createElement(
+						"a",
+						{ target: "_blank", href: "https://www.google.com/intl/en/policies/privacy/" },
+						"https://www.google.com/intl/en/policies/privacy/"
+					)
 				)
 			),
 			React.createElement(
