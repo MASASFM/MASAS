@@ -50710,7 +50710,6 @@ function _wrapComponent(id) {
 }
 
 var React = require("react");
-var ReactDOM = require("react-dom");
 
 var ReactRedux = require("react-redux");
 
@@ -50727,12 +50726,14 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 	propTypes: {
 		userLikes: React.PropTypes.array,
 		title: React.PropTypes.string,
-		SCinfo: React.PropTypes.array
+		SCinfo: React.PropTypes.array,
+
+		children: React.PropTypes.node
 	},
 
 	componentWillMount: function componentWillMount() {
 		// this.props.updateTitle()
-		// this.scrollOffset = 70
+		this.scrollOffset = 70;
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -50744,8 +50745,12 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 		}
 	},
 
-	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 		if (this.props.userLikes.length) this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
+	},
+
+	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		if (this.props.userLikes.length && !prevProps.userLikes.length) $('.box.page-content')[0].scrollTop = this.scrollOffset;
 	},
 
 	render: function render() {
@@ -50799,7 +50804,7 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 							"div",
 							{
 								className: "likes--wrapper",
-								style: { minHeight: 'calc(100% + ' + this.scrollOffset + 'px)' } },
+								style: { minHeight: 'calc(100% + ' + (this.props.userLikes.length ? this.scrollOffset : '0') + 'px)' } },
 							this.props.children
 						)
 					)
@@ -50816,7 +50821,7 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesWrapper);
 
-},{"../MASAS_mixins.jsx":436,"./containers/LikesWrapper.jsx":427,"livereactload/babel-transform":33,"react":363,"react-dom":39,"react-redux":168}],422:[function(require,module,exports){
+},{"../MASAS_mixins.jsx":436,"./containers/LikesWrapper.jsx":427,"livereactload/babel-transform":33,"react":363,"react-redux":168}],422:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -50992,7 +50997,8 @@ var LikesArtworks = {};
 // Which part of the Redux global state does our component want to receive as props?
 LikesArtworks.mapStateToProps = function (state) {
 	return {
-		bgFilter: state.appReducer.bgFilter
+		bgFilter: state.appReducer.bgFilter,
+		userLikes: state.likesReducer.userLikes
 	};
 };
 

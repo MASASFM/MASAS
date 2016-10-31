@@ -1,5 +1,4 @@
 var React = require("react")
-var ReactDOM = require("react-dom")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesWrapper.jsx")
@@ -14,11 +13,13 @@ var LikesWrapper = React.createClass({
 		userLikes: React.PropTypes.array,
 		title: React.PropTypes.string,
 		SCinfo: React.PropTypes.array,
+
+		children: React.PropTypes.node,
 	},
 	
 	componentWillMount: function() {
 		// this.props.updateTitle()
-		// this.scrollOffset = 70
+		this.scrollOffset = 70
 	},
 
 	componentDidMount: function() {
@@ -30,9 +31,14 @@ var LikesWrapper = React.createClass({
 		}
 	},
 
-	componentDidUpdate: function(prevProps, prevState) {
+	componentWillUpdate: function(nextProps, nextState) {
 		if(this.props.userLikes.length)
 			this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+	},
+
+	componentDidUpdate: function(prevProps, prevState) {
+		if(this.props.userLikes.length && !prevProps.userLikes.length)
+			$('.box.page-content')[0].scrollTop = this.scrollOffset
 	},
 
 	render: function() {
@@ -63,7 +69,7 @@ var LikesWrapper = React.createClass({
 						<div ref="scroll" className="box page-content" style={{ overflow: 'scroll', justifyContent: 'initial', backgroundColor: 'rgba(0,0,0,0)'}}>
 							<div 
 								className="likes--wrapper" 
-								style={{ minHeight: 'calc(100% + ' + this.scrollOffset + 'px)'  }}>
+								style={{ minHeight: 'calc(100% + ' + (this.props.userLikes.length ? this.scrollOffset : '0') + 'px)'  }}>
 								{ this.props.children }
 							</div>
 						</div>
