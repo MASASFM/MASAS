@@ -30,7 +30,7 @@ var NavSidebar = React.createClass({
 
 	goToProfile: function() {
 		goToURL("/profile")
-		this.props.toogleSidebar()
+		this.clearUI()
 	},
 
 	goToLogin: function() {
@@ -42,8 +42,14 @@ var NavSidebar = React.createClass({
 	},
 
 	logout: function() {
-		this.props.toogleSidebar()
+		this.clearUI()
 		this.props.logout()
+	},
+
+	// closes sidebar and modal
+	clearUI: function() {
+		this.props.toogleSidebar()
+		this.props.closeModal()
 	},
 
 	render: function() {
@@ -61,38 +67,38 @@ var NavSidebar = React.createClass({
 						<div className="content">
 							<div className="nav-links">
 								<div className="link">
-									<Link to="/" onClick={this.props.toogleSidebar}>
+									<Link to="/" onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_logo-M.svg" alt="radio icon" /> */}
 										home
 									</Link>
 								</div>
 								<div className="link">
-									<Link to='/popular' onClick={ this.props.toogleSidebar }>
+									<Link to='/popular' onClick={ this.clearUI }>
 										{ /* <img src="/static/img/MASAS_icon_Radio.svg" alt="radio icon" />*/}
 										popular
 									</Link>
 								</div>
 								<div className="link">
-									<Link to='/discover' disabled={ false } onClick={this.props.toogleSidebar}>
+									<Link to='/discover' disabled={ false } onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_icon_Discover.svg" alt="radio icon" />*/}
 										discover
 									</Link>
 								</div>
 								<div className="link">
-									<Link disabled={ false } to="/upload" onClick={this.props.toogleSidebar}>
+									<Link disabled={ false } to="/upload" onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_icon_Upload.svg" alt="radio icon" />*/}
 										upload
 									</Link>
 								</div>
 								<div className="link">
-									<Link disabled={ !this.props.MASASuser ? true : false } to="/likes" onClick={this.props.toogleSidebar}>
+									<Link disabled={ !this.props.MASASuser ? true : false } to="/likes" onClick={this.clearUI}>
 										{ /* <img src="/static/img/MASAS_liked.svg" alt="radio icon" />*/}
 										likes
 									</Link>
 								</div>
 							</div>
 							<div className="navSidebar-footer">
-								<Link to="/legals" onClick={this.props.toogleSidebar}>Legals</Link>
+								<Link to="/legals" onClick={this.clearUI}>Legals</Link>
 								<Link disabled={true}>Settings</Link>
 								{ this.props.MASASuser ?
 									<Link to="/" onClick={this.logout}>Logout</Link>

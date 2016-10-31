@@ -1,3 +1,4 @@
+import { closeAndEmptyMainModal } from "../../../reducers/actions/App.js"
 var { logout } = require("../../../MASAS_functions.jsx")
 
 var NavSidebar = {}
@@ -17,7 +18,7 @@ NavSidebar.mapDispatchToProps = function(dispatch) {
 		logout: logout.bind(null,dispatch),
 		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
 		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		toogleModal: () => dispatch(closeAndEmptyMainModal()),
 	}
 }
 
