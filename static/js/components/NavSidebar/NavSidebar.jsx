@@ -18,6 +18,7 @@ var NavSidebar = React.createClass({
 		userData: React.PropTypes.object.isRequired,
 		toogleSidebar: React.PropTypes.func.isRequired,
 		logout: React.PropTypes.func.isRequired,
+		isModalOpened: React.PropTypes.bool,
 
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
@@ -33,8 +34,10 @@ var NavSidebar = React.createClass({
 	},
 
 	goToLogin: function() {
+		if(!this.props.isModalOpened)
+			this.props.toogleModal()
+		
 		this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3)
-		this.props.toogleModal()
 		this.props.toogleSidebar()
 	},
 

@@ -51804,6 +51804,7 @@ var NavSidebar = _wrapComponent("_component")(React.createClass({
 		userData: React.PropTypes.object.isRequired,
 		toogleSidebar: React.PropTypes.func.isRequired,
 		logout: React.PropTypes.func.isRequired,
+		isModalOpened: React.PropTypes.bool,
 
 		toogleModal: React.PropTypes.func,
 		updateModalContent: React.PropTypes.func,
@@ -51818,8 +51819,9 @@ var NavSidebar = _wrapComponent("_component")(React.createClass({
 	},
 
 	goToLogin: function goToLogin() {
+		if (!this.props.isModalOpened) this.props.toogleModal();
+
 		this.props.updateModalContent(React.createElement(SplashScreen, { startPage: 1 }), 3);
-		this.props.toogleModal();
 		this.props.toogleSidebar();
 	},
 
@@ -51969,7 +51971,8 @@ NavSidebar.mapStateToProps = function (state) {
 	return {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		MASASuser: state.appReducer.MASASuser,
-		userData: state.appReducer.userData
+		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened
 	};
 };
 

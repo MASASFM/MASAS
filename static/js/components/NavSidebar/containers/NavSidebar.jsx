@@ -7,6 +7,7 @@ NavSidebar.mapStateToProps = function(state) {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		MASASuser: state.appReducer.MASASuser,
 		userData: state.appReducer.userData,
+		isModalOpened: state.appReducer.isModalOpened,
 	}
 }
 
