@@ -164,7 +164,8 @@
   filter: saturate(0%); }
 
 .body--background.modal-saturated > .bg-image {
-  -webkit-filter: saturate(0%); }
+  -webkit-filter: saturate(0%);
+  filter: saturate(0%); }
 
 .body--background.modal-saturated.modal-blurred > .bg-image {
   -webkit-filter: blur(15px) saturate(0%);

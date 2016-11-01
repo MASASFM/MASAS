@@ -44,10 +44,10 @@ UploadSC.mapDispatchToProps = function(dispatch) {
 	return {
 		// higher level state updates
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
-		toogleModal: () => dispatch(toogleIsModalOpened),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		updateModalType: (modalType) => dispatch(updateModalType(modalType)),
-		closeModal: () => dispatch(closeAndEmptyMainModal),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
 		
 		// page state updates
 		updateSoundcloudUserTracks: (soundcloudUserTracks) => dispatch(updateSCUserTracks(soundcloudUserTracks)),

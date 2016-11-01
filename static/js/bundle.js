@@ -57949,7 +57949,7 @@ UploadSC.mapDispatchToProps = function (dispatch) {
 			return dispatch((0, _App.updatePageTitle)(title, pageType));
 		},
 		toogleModal: function toogleModal() {
-			return dispatch(_App.toogleIsModalOpened);
+			return dispatch((0, _App.toogleIsModalOpened)());
 		},
 		updateModalContent: function updateModalContent(modalContent, modalType) {
 			return dispatch((0, _App.changeModalContent)(modalContent, modalType));
@@ -57958,7 +57958,7 @@ UploadSC.mapDispatchToProps = function (dispatch) {
 			return dispatch((0, _App.updateModalType)(modalType));
 		},
 		closeModal: function closeModal() {
-			return dispatch(_App.closeAndEmptyMainModal);
+			return dispatch((0, _App.closeAndEmptyMainModal)());
 		},
 
 		// page state updates
