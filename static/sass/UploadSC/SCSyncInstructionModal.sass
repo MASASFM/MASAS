@@ -1,0 +1,63 @@
+.SC-sync-instruction-modal--wrapper
+	display: flex
+	flex-direction: column
+	flex: 1
+	height: 100%
+	font-family: Lato-Light-Italic
+	font-size: 1.3rem
+	margin: 0 2rem
+
+	.intro-text
+		text-align: center
+		align-items: flex-end
+		flex: 0.2
+		display: flex
+
+	.bullets
+		display: flex
+		flex: 0.8
+		align-items: center
+		text-align: center
+		flex-direction: column
+		justify-content: center
+
+		& > div
+			display: flex
+			flex-direction: column
+			align-items: center
+
+			.number
+				margin: 0.5rem 0
+
+			.subtitle
+				font-size: 1.1rem
+				font-family: Lato-Light
+				margin: 0 1.5rem
+
+	.button--wrapper
+		justify-content: center
+		display: flex
+		flex: 0.2
+
+		& > .MASAS-button
+			height: 1.3rem
+
+@media screen and (min-width: $desktop-min-width)
+	.SC-sync-instruction-modal--wrapper
+		font-size: 2rem
+
+		.intro-text
+			justify-content: center
+
+		.bullets
+			flex-direction: row
+
+			& > div
+				max-width: 25rem
+
+				.number
+					margin: 2rem 0
+
+				.subtitle
+					min-height: 5rem
+					font-size: 1.2rem

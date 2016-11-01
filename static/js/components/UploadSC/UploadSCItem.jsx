@@ -2,7 +2,7 @@ var React = require("react")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/UploadSCItem.jsx")
-
+var SCSyncInstructionModal = require("./SCSyncInstructionModal.jsx")
 var { Marquee } = require("../UI/UI.jsx")
 
 var UploadSCItem = React.createClass({
@@ -36,7 +36,7 @@ var UploadSCItem = React.createClass({
 
 	// show modal with info as to why song is not synchronizable
 	showSyncInfoModal: function() {
-		this.props.updateModalContent(<div>HEY</div>, 4)
+		this.props.updateModalContent(<SCSyncInstructionModal />, 4)
 		this.props.toogleModal()
 	},
 

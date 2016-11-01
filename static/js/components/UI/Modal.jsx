@@ -110,10 +110,8 @@ let Modal = React.createClass({
 					className={ "MASAS-modal type2" + (this.props.isOpened ? "" : " closed") }
 					id="MASAS-modal"
 					onClick={ () => { this.closeModal(); this.props.closeModalFunc() } }>
-					<div className="modal-type-2--wrapper">
-						<div className="">
-								{ this.props.children }
-						</div>
+					<div className="modal-type-4--wrapper">
+						{ this.props.children }
 					</div>
 				</div>
 				)

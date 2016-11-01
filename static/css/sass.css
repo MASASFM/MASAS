@@ -678,6 +678,11 @@ input[type=range].MASAS-slider {
       font-size: 1.7rem;
       letter-spacing: 0.35rem;
       padding-left: 1.5rem; }
+  .MASAS-modal.type2 .modal-type-4--wrapper {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    align-items: center; }
 
 .MASAS-modal.type3 {
   top: 0;
@@ -2379,6 +2384,57 @@ input[type=range].MASAS-slider {
       .teach-modal--wrapper .teach-modal-pickTime--wrapper #teach-modal-pickTime--canvas {
         width: 300px !important;
         height: 100px !important; } }
+.SC-sync-instruction-modal--wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  font-family: Lato-Light-Italic;
+  font-size: 1.3rem;
+  margin: 0 2rem; }
+  .SC-sync-instruction-modal--wrapper .intro-text {
+    text-align: center;
+    align-items: flex-end;
+    flex: .2;
+    display: flex; }
+  .SC-sync-instruction-modal--wrapper .bullets {
+    display: flex;
+    flex: .8;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center; }
+    .SC-sync-instruction-modal--wrapper .bullets > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .SC-sync-instruction-modal--wrapper .bullets > div .number {
+        margin: .5rem 0; }
+      .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
+        font-size: 1.1rem;
+        font-family: Lato-Light;
+        margin: 0 1.5rem; }
+  .SC-sync-instruction-modal--wrapper .button--wrapper {
+    justify-content: center;
+    display: flex;
+    flex: .2; }
+    .SC-sync-instruction-modal--wrapper .button--wrapper > .MASAS-button {
+      height: 1.3rem; }
+
+@media screen and (min-width: 992px) {
+  .SC-sync-instruction-modal--wrapper {
+    font-size: 2rem; }
+    .SC-sync-instruction-modal--wrapper .intro-text {
+      justify-content: center; }
+    .SC-sync-instruction-modal--wrapper .bullets {
+      flex-direction: row; }
+      .SC-sync-instruction-modal--wrapper .bullets > div {
+        max-width: 25rem; }
+        .SC-sync-instruction-modal--wrapper .bullets > div .number {
+          margin: 2rem 0; }
+        .SC-sync-instruction-modal--wrapper .bullets > div .subtitle {
+          min-height: 5rem;
+          font-size: 1.2rem; } }
 .connect-sc--wrapper {
   flex: 1;
   align-items: center;
@@ -2403,15 +2459,15 @@ input[type=range].MASAS-slider {
   font-size: 1.05rem;
   text-align: center;
   line-height: 1.5rem;
-  letter-spacing: 0.06rem;
+  letter-spacing: .06rem;
   font-family: Lato-Regular;
-  opacity: 0.8; }
+  opacity: .8; }
 .connect-sc--wrapper .connect-button .button-subtitle {
   display: flex;
   justify-content: center;
-  margin-top: 0.5rem;
-  opacity: 0.8;
-  letter-spacing: 0.04rem;
+  margin-top: .5rem;
+  opacity: .8;
+  letter-spacing: .04rem;
   font-family: Lato-Light; }
 
 .upload-sc--wrapper {
@@ -2437,7 +2493,7 @@ input[type=range].MASAS-slider {
   margin: 1.7rem 0;
   cursor: pointer; }
 .upload-sc--wrapper .logout--wrapper .logout-text {
-  font-size: 0.7rem; }
+  font-size: .7rem; }
 .upload-sc--wrapper .logout--wrapper .logout-text--username {
   font-weight: bold; }
 .upload-sc--wrapper .back-button {
@@ -2452,7 +2508,7 @@ input[type=range].MASAS-slider {
   .upload-sc--wrapper .table-head {
     min-height: 2rem;
     justify-content: space-between;
-    padding-bottom: 0.5rem; }
+    padding-bottom: .5rem; }
   .upload-sc--wrapper .title {
     width: 70%;
     display: flex;
@@ -2472,7 +2528,7 @@ input[type=range].MASAS-slider {
   .upload-sc--wrapper .table-head {
     display: flex;
     font-family: Lato-Semibold;
-    font-size: 0.85rem; }
+    font-size: .85rem; }
   .upload-sc--wrapper .logout--wrapper {
     display: none; }
   .upload-sc--wrapper .back-button {
@@ -4030,17 +4086,20 @@ input[type=range].MASAS-slider {
     display: none;
     position: absolute;
     bottom: 0; }
-  .legals-content--wrapper ol {
-    list-style-type: upper-roman; }
-  .legals-content--wrapper ul {
-    list-style-type: disc; }
-  .legals-content--wrapper ol, .legals-content--wrapper ul {
-    padding-left: 3rem;
-    line-height: 1.4rem;
-    text-align: justify; }
-    .legals-content--wrapper ol li, .legals-content--wrapper ul li {
-      padding-bottom: .8rem;
-      word-break: break-all; }
+
+ol {
+  list-style-type: upper-roman; }
+
+ul {
+  list-style-type: disc; }
+
+ol, ul {
+  padding-left: 3rem;
+  line-height: 1.4rem;
+  text-align: justify; }
+  ol li, ul li {
+    padding-bottom: .8rem;
+    word-break: break-all; }
 
 @media screen and (min-width: 992px) {
   .legals-content--wrapper {
