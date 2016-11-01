@@ -32,6 +32,7 @@ var Profile = React.createClass({
 		updateTitle: React.PropTypes.func,
 		updateUserSCSongs: React.PropTypes.func,
 		getSCinfo: React.PropTypes.func,
+		saveProfile: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -84,114 +85,115 @@ var Profile = React.createClass({
 	},
 
 	saveProfile: function() {
-		const header = "Bearer " + this.props.userToken
-		var csrftoken = getCookie("csrftoken")
+		this.props.saveProfile(getCookie)
+		// const header = "Bearer " + this.props.userToken
+		// var csrftoken = getCookie("csrftoken")
 
-		var textboxValues = { ...this.props.textboxValues }
-		delete textboxValues.link_set
-		textboxValues.city = textboxValues.city
+		// var textboxValues = { ...this.props.textboxValues }
+		// delete textboxValues.link_set
+		// textboxValues.city = textboxValues.city
 
-		// counter used to know how many ajax calls are made
-		var counterTotal = 1
-		var counterSuccess = 0
+		// // counter used to know how many ajax calls are made
+		// var counterTotal = 1
+		// var counterSuccess = 0
 
-		// UPDATE PROFILE PART I (everything but links)
-		$.ajax({
-			type: "PATCH",
-			url: this.props.userData.url,
-			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken
-			},
-			contentType: "application/json",
-			data: JSON.stringify(textboxValues), 
-			success: () => {
-				counterSuccess = counterSuccess + 1
+		// // UPDATE PROFILE PART I (everything but links)
+		// $.ajax({
+		// 	type: "PATCH",
+		// 	url: this.props.userData.url,
+		// 	headers: {
+		// 		"Authorization": header,
+		// 		"X-CSRFToken": csrftoken
+		// 	},
+		// 	contentType: "application/json",
+		// 	data: JSON.stringify(textboxValues), 
+		// 	success: () => {
+		// 		counterSuccess = counterSuccess + 1
 
-				if(counterSuccess === counterTotal) {
-					updateProfileInfo()
-					updateNotificationBar('Profile updated !')
-					this.props.toggleEditingProfile()
-				}
+		// 		if(counterSuccess === counterTotal) {
+		// 			updateProfileInfo()
+		// 			updateNotificationBar('Profile updated !')
+		// 			this.props.toggleEditingProfile()
+		// 		}
 				
-			},
-			error: () => {
-				updateNotificationBar("Error updating profile...")
-			}
-		})
+		// 	},
+		// 	error: () => {
+		// 		updateNotificationBar("Error updating profile...")
+		// 	}
+		// })
 
-		// UPDATE PROFILE LINKS
+		// // UPDATE PROFILE LINKS
 
-		// link user entered doesn't exist, we create it
-		this.props.textboxValues.link_set.map((textboxLink) => {
-			var match = this.props.userData.link_set.filter((userLink) => {
-				return textboxLink === userLink.link
-			})
+		// // link user entered doesn't exist, we create it
+		// this.props.textboxValues.link_set.map((textboxLink) => {
+		// 	var match = this.props.userData.link_set.filter((userLink) => {
+		// 		return textboxLink === userLink.link
+		// 	})
 
-			// new link => POST
-			if(match.length === 0 && textboxLink !== "") {
-				counterTotal = counterTotal + 1
+		// 	// new link => POST
+		// 	if(match.length === 0 && textboxLink !== "") {
+		// 		counterTotal = counterTotal + 1
 
-				$.ajax({
-					type: "POST",
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken
-					},
-					url: "/api/links/",
-					contentType: "application/json",
-					data: JSON.stringify({
-						link: textboxLink,
-						user: this.props.userData.url
-					}),
-					success: () => {
-						counterSuccess = counterSuccess + 1
+		// 		$.ajax({
+		// 			type: "POST",
+		// 			headers: {
+		// 				"Authorization": header,
+		// 				"X-CSRFToken": csrftoken
+		// 			},
+		// 			url: "/api/links/",
+		// 			contentType: "application/json",
+		// 			data: JSON.stringify({
+		// 				link: textboxLink,
+		// 				user: this.props.userData.url
+		// 			}),
+		// 			success: () => {
+		// 				counterSuccess = counterSuccess + 1
 
-						if(counterSuccess === counterTotal) {
-							updateProfileInfo()
-							updateNotificationBar('Profile updated !')
-							this.props.toggleEditingProfile()
-						}
-					},
-					error: () => {
-						updateNotificationBar("Error updating profile...")
-					}
-				})
-			}
-		})
+		// 				if(counterSuccess === counterTotal) {
+		// 					updateProfileInfo()
+		// 					updateNotificationBar('Profile updated !')
+		// 					this.props.toggleEditingProfile()
+		// 				}
+		// 			},
+		// 			error: () => {
+		// 				updateNotificationBar("Error updating profile...")
+		// 			}
+		// 		})
+		// 	}
+		// })
 
-		// link user has in DB isn't in textboxes user has entered, we delete link in DB
-		this.props.userData.link_set.map((userLink) => {
-			var match = this.props.textboxValues.link_set.filter((textboxLink) => {
-				return userLink.link === textboxLink
-			})
+		// // link user has in DB isn't in textboxes user has entered, we delete link in DB
+		// this.props.userData.link_set.map((userLink) => {
+		// 	var match = this.props.textboxValues.link_set.filter((textboxLink) => {
+		// 		return userLink.link === textboxLink
+		// 	})
 
-			// new link => DELETE
-			if(match.length === 0) {
-				counterTotal = counterTotal + 1
+		// 	// new link => DELETE
+		// 	if(match.length === 0) {
+		// 		counterTotal = counterTotal + 1
 
-				$.ajax({
-					type: "DELETE",
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken
-					},
-					url: userLink.url,
-					success: () => {
-						counterSuccess = counterSuccess + 1
+		// 		$.ajax({
+		// 			type: "DELETE",
+		// 			headers: {
+		// 				"Authorization": header,
+		// 				"X-CSRFToken": csrftoken
+		// 			},
+		// 			url: userLink.url,
+		// 			success: () => {
+		// 				counterSuccess = counterSuccess + 1
 
-						if(counterSuccess === counterTotal) {
-							updateProfileInfo()
-							updateNotificationBar('Profile updated !')
-							this.props.toggleEditingProfile()
-						}
-					},
-					error: () => {
-						updateNotificationBar("Error updating profile...")
-					}
-				})
-			}
-		})
+		// 				if(counterSuccess === counterTotal) {
+		// 					updateProfileInfo()
+		// 					updateNotificationBar('Profile updated !')
+		// 					this.props.toggleEditingProfile()
+		// 				}
+		// 			},
+		// 			error: () => {
+		// 				updateNotificationBar("Error updating profile...")
+		// 			}
+		// 		})
+		// 	}
+		// })
 
 	},
 

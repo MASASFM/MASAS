@@ -7,6 +7,7 @@ import {
 	updateProfileInfo,
 	getPublicProfileInfo,
 	getSCinfo,
+	saveProfile
 } from "../../../reducers/actions/Profile.js"
 
 import {
@@ -38,6 +39,7 @@ Profile.mapDispatchToProps = function(dispatch) {
 		updateUserSCSongs: userSCSongs => dispatch(updateUserSCSongs(userSCSongs)),
 		getPublicProfileInfo: (userPk) => dispatch(getPublicProfileInfo(userPk)),
 		getSCinfo: () => dispatch(getSCinfo()),
+		saveProfile: (getCookie) => dispatch(saveProfile(getCookie)),
 	}
 }
 

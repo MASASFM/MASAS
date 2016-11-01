@@ -1,5 +1,4 @@
 var React = require("react")
-
 const { dispatch } = require("./reducers/reducers.js")
 
 var { browserHistory } = require("react-router")

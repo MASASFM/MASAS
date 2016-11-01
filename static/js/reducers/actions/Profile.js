@@ -1,4 +1,8 @@
-import 'whatwg-fetch'
+import "whatwg-fetch"
+
+import { 
+	updateNotificationBar
+} from "./Header.js"
 
 // var { isObjectEmpty } = require("../../MASAS_functions.jsx")
 const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
@@ -72,6 +76,7 @@ export function updateProfileInfo(callback) {
 		headers.append("Authorization", "Bearer " + MASASuser)
 
 		fetch(userData.url, { headers })
+		.then( r => r.json() )
 		.then( userData => {
 			dispatch({ type: 'UPDATE_USER_DATA', userData })
 			if(callback)
@@ -79,3 +84,116 @@ export function updateProfileInfo(callback) {
 		})
 	}
 }
+
+
+
+export function saveProfile(getCookie) {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { MASASuser, userData } = state.appReducer
+		const userToken = MASASuser
+		var textboxValues = { ...state.profileReducer.textboxValues }
+		delete textboxValues.link_set
+		// textboxValues.city = textboxValues.city
+
+		const header = "Bearer " + userToken
+		var csrftoken = getCookie("csrftoken")
+
+		// counter used to know how many ajax calls are made
+		var counterTotal = 1
+		var counterSuccess = 0
+
+		////////// UPDATE PROFILE PART I (everything but links)
+		fetch(userData.url, {
+			method: "PATCH",
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken,
+				"content-type": "application/json"
+			},
+			// contentType: "application/json",
+			body: JSON.stringify(textboxValues), 
+		}).then( r => {
+			counterSuccess = counterSuccess + 1
+
+			if(counterSuccess === counterTotal) {
+				dispatch(updateProfileInfo())
+				dispatch(updateNotificationBar('Profile updated !'))
+				dispatch(toggleEditingProfile())
+			}
+		}).catch( e => {
+			dispatch(updateNotificationBar("Error updating profile..."))
+		})
+
+		////////// UPDATE PROFILE LINKS
+		textboxValues = { ...state.profileReducer.textboxValues }
+
+		// link user entered doesn't exist, we create it
+		textboxValues.link_set.map( textboxLink => {
+			var match = userData.link_set.filter( userLink => {
+				return textboxLink === userLink.link
+			})
+
+			// new link => POST
+			if(match.length === 0 && textboxLink !== "") {
+				counterTotal = counterTotal + 1
+
+				fetch("/api/links/", {
+					method: "POST",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken,
+						"content-type": "application/json",
+					},
+					body: JSON.stringify({
+						link: textboxLink,
+						user: userData.url
+					}),
+				}).then( r => {
+					counterSuccess = counterSuccess + 1
+
+					if(counterSuccess === counterTotal) {
+						dispatch(updateProfileInfo())
+						dispatch(updateNotificationBar('Profile updated !'))
+						dispatch(toggleEditingProfile())
+					}
+				}).catch( e => {
+					dispatch(updateNotificationBar("Error updating profile..."))
+				})
+			}
+		})
+
+		// link user has in DB isn't in textboxes user has entered, we delete link in DB
+		userData.link_set.map((userLink) => {
+			var match = textboxValues.link_set.filter((textboxLink) => {
+				return userLink.link === textboxLink
+			})
+
+			// new link => DELETE
+			if(match.length === 0) {
+				counterTotal = counterTotal + 1
+
+				fetch(userLink.url, {
+					method: "DELETE",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					}
+				}).then( r => {
+					counterSuccess = counterSuccess + 1
+
+					if(counterSuccess === counterTotal) {
+						dispatch(updateProfileInfo())
+						dispatch(updateNotificationBar('Profile updated !'))
+						dispatch(toggleEditingProfile())
+					}
+				}).catch( e => {
+					dispatch(updateNotificationBar("Error updating profile..."))
+				})
+			}
+		})
+	}
+}
+
+
+
