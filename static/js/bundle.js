@@ -50356,7 +50356,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			// // sort by uploaded time
 			var songs = this.props.userLikes;
 			songs.sort(function (a, b) {
-				return Date.parse(a.MASAS_songInfo.created) - Date.parse(b.MASAS_songInfo.created);
+				return Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created);
 			});
 			console.log(songs.map(function (song) {
 				return song.MASAS_songInfo.created;
