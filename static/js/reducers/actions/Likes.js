@@ -28,7 +28,6 @@ function updateMiniProfile(songPk, artistInfo) {
 }
 
 function fetchMiniProfile(MASAS_songInfo) {
-	console.log(MASAS_songInfo.song.trackArtist)
 	return dispatch => fetch(MASAS_songInfo.song.trackArtist)
 			.then( resp => resp.json() )
 			.then( resp => dispatch( updateMiniProfile(MASAS_songInfo.pk, resp)) )

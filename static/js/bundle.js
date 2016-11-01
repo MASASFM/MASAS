@@ -50355,6 +50355,9 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 		if (!this.props.userLikesUnfiltered.length) return React.createElement(NoLikesComponent, null);else {
 			// // sort by uploaded time
 			var songs = this.props.userLikes;
+			songs.sort(function (a, b) {
+				return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created);
+			});
 			var songList = songs.map(function (song) {
 				return React.createElement(LikesItem, {
 					key: song.MASAS_songInfo.pk,
@@ -59099,7 +59102,6 @@ function updateMiniProfile(songPk, artistInfo) {
 }
 
 function fetchMiniProfile(MASAS_songInfo) {
-	console.log(MASAS_songInfo.song.trackArtist);
 	return function (dispatch) {
 		return fetch(MASAS_songInfo.song.trackArtist).then(function (resp) {
 			return resp.json();
