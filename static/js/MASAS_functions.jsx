@@ -123,7 +123,6 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 			}
 
 			// render app
-			console.log(dispatch)
 			dispatch({type:"DONE_PROCESSING_AUTH_COOKIE"})
 		},
 		error: (err) => {

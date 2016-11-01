@@ -9,6 +9,7 @@ var ProfileWrapper = require("./ProfileWrapper.jsx")
 var TrackItem = require("../Profile/TrackItem.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
+var ProfileTrackList = require("./ProfileTrackList.jsx")
 
 var { goToURL, getCookie, updateNotificationBar, updateProfileInfo, isObjectEmpty } = require("../../MASAS_functions.jsx")
 var { Button, Marquee } = require("../UI/UI.jsx")
@@ -30,6 +31,7 @@ var Profile = React.createClass({
 		updatePublicProfileInfo: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		updateUserSCSongs: React.PropTypes.func,
+		getSCinfo: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -52,24 +54,6 @@ var Profile = React.createClass({
 
 		if(typeof(props.routeParams.username) !== "undefined")
 			this.props.getPublicProfileInfo(props.routeParams.username)
-			// $.ajax({
-			// 	type: 'GET',
-			// 	url: "/api/users/" + props.routeParams.username + "/",
-			// 	success: (r) => {
-			// 		props.updatePublicProfileInfo(r)
-					
-			// 		// forcing get soundcloud info after updating public profile
-			// 		setTimeout(() => {
-			// 			if(this.props.publicProfileInfo.name)
-			// 				this.props.updateTitle(this.props.publicProfileInfo.name + "'s profile", '0')
-			// 			else
-			// 				this.props.updateTitle(this.props.publicProfileInfo.username + "'s profile", '0')
-			// 			this.getSCinfo()
-			// 		}, 0)
-			// 	},
-			// 	error: () => {
-			// 	}
-			// })
 		else
 			this.props.updateTitle('My Profile', '0')
 	},
@@ -91,100 +75,12 @@ var Profile = React.createClass({
 	},
 
 	getSCinfo: function() {
-		var songs = {}
-
-		if(isObjectEmpty(this.props.publicProfileInfo))
-			songs = this.props.userData.songs
-		else
-			songs = this.props.publicProfileInfo.songs
-
-		if(typeof(songs) !== "undefined") {
-			var idString = songs.map((song) => {return song.SC_ID}).join()
-
-			SC.get('tracks', {limit: 200, ids: idString}).then( (response) => {
-				this.props.updateUserSCSongs(response)
-			})
-		}
+		this.props.getSCinfo()
 	},
 
 	componentDidUpdate: function(prevProps) {
 		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
 			this.getSCinfo()
-	},
-
-	displaySongs: function() {
-		var songs = {}
-
-		if(isObjectEmpty(this.props.publicProfileInfo))
-			songs = this.props.userData.songs
-		else
-			songs = this.props.publicProfileInfo.songs
-
-		if (!songs.length) 
-			return (
-				isObjectEmpty(this.props.publicProfileInfo) ?
-					<div className="no-songs--wrapper">
-						<div className="upload-button">
-							<p className="bold">
-								Congratulation { this.props.userData.name ? this.props.userData.name : this.props.userData.username }, you're now part of the familly
-							</p>
-							<p>
-								This is your new profile, all your uploaded sounds will be shown here.
-							</p>
-							<Button isSecondaryAction={ true } onClick={goToURL.bind(null, "/upload")}>Share My First Sound</Button>
-							<Button onClick={goToURL.bind(null, "/discover")}>Discover music</Button>
-						</div>
-					</div>
-					:
-					<div className="no-songs--wrapper">
-						<div className="upload-button">
-							<Button onClick={ () => {} } isSecondaryAction={ true } isDisabled={ true }>This user has no sounds</Button>
-						</div>
-					</div>
-				)
-		else {
-			songs = {}
-
-			if(isObjectEmpty(this.props.publicProfileInfo))
-				songs = this.props.userData.songs
-			else
-				songs = this.props.publicProfileInfo.songs
-
-			var compareFn = (a, b) => {
-				var dateA = new Date(a.dateUploaded)
-				var dateB = new Date(b.dateUploaded)
-
-				if (dateA > dateB) {
-					return -1
-				}
-				if (dateB > dateA) {
-					return 1
-				}
-
-				return 0
-			}
-			songs.sort(compareFn)
-
-			var songList =  songs.map((song) => { 
-				var SC_songInfo = this.props.userSCSongs.filter((el) => {
-					return el.id === song.SC_ID
-				})[0]
-
-				// return nothing if song no longer exists on soundcloud
-				if(SC_songInfo === undefined)
-					return
-
-				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song} allowOpen={ !this.props.route.publicProfile }/>
-			})
-
-			return (
-				<div>
-					<div className="track-table--wrapper">
-						{songList}
-					</div>
-				</div>
-				)
-		}
 	},
 
 	saveProfile: function() {
@@ -348,6 +244,10 @@ var Profile = React.createClass({
 		var city = ""
 		var occupation = ""
 		var songs = []
+		//////////////
+		var userData = {}
+		var isPublicProfile = false
+		var songs = this.props.userData.songs
 
 		if(isObjectEmpty(this.props.publicProfileInfo)) {
 			showProfile = !isObjectEmpty(this.props.userData)
@@ -358,6 +258,7 @@ var Profile = React.createClass({
 			city = this.props.userData.city
 			occupation = this.props.userData.occupation
 			songs = this.props.userData.songs
+			userData = this.props.userData
 
 			if(this.props.userToken === "")
 				showProfile = false
@@ -369,6 +270,9 @@ var Profile = React.createClass({
 			username = this.props.publicProfileInfo.username
 			city = this.props.publicProfileInfo.city
 			occupation = this.props.publicProfileInfo.occupation
+			songs = this.props.publicProfileInfo.songs
+			userData = this.props.publicProfileInfo
+			isPublicProfile = true
 			songs = this.props.publicProfileInfo.songs
 		}
 
@@ -527,7 +431,11 @@ var Profile = React.createClass({
 							<div className={ "edit-social-mobile--wrapper " + (!this.props.isEditingProfile ? "hidden" : "")}>
 								<ProfileEditLinks show={ !this.props.route.publicProfile } />
 							</div>
-							{ this.displaySongs() }
+							<ProfileTrackList 
+								songs={ songs }
+								isPublicProfile={ isPublicProfile }
+								userSCSongs={ this.props.userSCSongs }
+								userData={ userData } />
 						</div>
 
 					</ProfileWrapper>
