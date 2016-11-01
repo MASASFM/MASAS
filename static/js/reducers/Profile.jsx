@@ -1,3 +1,11 @@
+import {
+	UPDATE_USER_SC_SONGS,
+	UPDATE_PUBLIC_PROFILE_INFO,
+	UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
+	TOGGLE_EDITING_PROFILE,
+	UPDATE_SONG_MOOD_MODAL_VALUE,
+} from "./actions/Profile.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -19,24 +27,24 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
-		case 'UPDATE_USER_SC_SONGS':
+		case UPDATE_USER_SC_SONGS:
 			return {
 				...state,
 				userSCSongs: action.userSCSongs
 			}
-		case 'UPDATE_PUBLIC_PROFILE_INFO':
+		case UPDATE_PUBLIC_PROFILE_INFO:
 			return {
 				...state,
 				publicProfileInfo: action.publicProfileInfo
 			}
-		case 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES':
+		case UPDATE_EDIT_PROFILE_TEXTBOX_VALUES:
 			var textboxValues = {...state.textboxValues, ...action.textboxValues}
 			
 			return {
 				...state,
 				textboxValues
 			}
-		case "UPDATE_SONG_MOOD_MODAL_VALUE":
+		case UPDATE_SONG_MOOD_MODAL_VALUE:
 			var discoverNumber = action.discoverNumber
 
 			if(discoverNumber < 1)
@@ -48,7 +56,7 @@ exportVar.profileReducer = function(state = defaultState, action) {
 				...state,
 				changeSongMoodValue: action.discoverNumber
 			}
-		case "TOGGLE_EDITING_PROFILE":
+		case TOGGLE_EDITING_PROFILE:
 			return {
 				...state,
 				isEditingProfile: !state.isEditingProfile,

@@ -1,5 +1,3 @@
-var { browserHistory } = require('react-router')
-
 const { dispatch, getState } = require('../../reducers/reducers.js')
 
 var ajaxCalls = {}

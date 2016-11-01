@@ -14,6 +14,7 @@ var { goToURL, getCookie, updateNotificationBar, updateProfileInfo, isObjectEmpt
 var { Button, Marquee } = require("../UI/UI.jsx")
 
 
+
 var Profile = React.createClass({
 	propTypes: {
 		isEditingProfile: React.PropTypes.bool,

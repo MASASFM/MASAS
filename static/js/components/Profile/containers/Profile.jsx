@@ -1,4 +1,15 @@
-var { updateProfileInfo } = require('../ajaxCalls.jsx')
+// var { updateProfileInfo } = require('../ajaxCalls.jsx')
+
+import {
+	toggleEditingProfile,
+	updateUserSCSongs,
+	updatePublicProfileInfo,
+	updateProfileInfo,
+} from "../../../reducers/actions/Profile.js"
+
+import {
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
 
 var Profile = {}
 
@@ -18,11 +29,11 @@ Profile.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 Profile.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		updateProfileInfo,
-		toggleEditingProfile: () => dispatch({ type: "TOGGLE_EDITING_PROFILE" }),
-		updatePublicProfileInfo: (publicProfileInfo) => dispatch({ type: "UPDATE_PUBLIC_PROFILE_INFO" , publicProfileInfo}),
-		updateUserSCSongs: (userSCSongs) => dispatch({ type:'UPDATE_USER_SC_SONGS', userSCSongs}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		updateProfileInfo: () => dispatch(updateProfileInfo()),
+		toggleEditingProfile: () => dispatch(toggleEditingProfile()),
+		updatePublicProfileInfo: publicProfileInfo => dispatch(updatePublicProfileInfo(publicProfileInfo)),
+		updateUserSCSongs: userSCSongs => dispatch(updateUserSCSongs(userSCSongs)),
 	}
 }
 
