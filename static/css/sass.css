@@ -2135,7 +2135,7 @@ input[type=range].MASAS-slider {
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.44);
   height: 4em;
-  margin: .3rem 0rem;
+  margin: 0.3rem 0rem;
   display: flex; }
 
 .upload-sc-item--wrapper.synced {
@@ -2172,11 +2172,11 @@ input[type=range].MASAS-slider {
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    padding: .5rem .5rem; }
+    padding: 0.5rem 0.5rem; }
     .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-name {
-      font-size: .85rem;
+      font-size: 0.85rem;
       width: 100%;
-      height: .85rem;
+      height: 0.85rem;
       position: relative; }
     .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats {
       display: flex;
@@ -2187,7 +2187,7 @@ input[type=range].MASAS-slider {
         align-items: center; }
         .upload-sc-item--wrapper .upload-sc-item-overlay--wrapper .song-info--wrapper .song-stats .number-listens img {
           height: 1rem;
-          padding-right: .3rem; }
+          padding-right: 0.3rem; }
 .upload-sc-item--wrapper .sync--wrapper {
   display: flex;
   align-items: center;
@@ -2463,15 +2463,15 @@ input[type=range].MASAS-slider {
   font-size: 1.05rem;
   text-align: center;
   line-height: 1.5rem;
-  letter-spacing: .06rem;
+  letter-spacing: 0.06rem;
   font-family: Lato-Regular;
-  opacity: .8; }
+  opacity: 0.8; }
 .connect-sc--wrapper .connect-button .button-subtitle {
   display: flex;
   justify-content: center;
-  margin-top: .5rem;
-  opacity: .8;
-  letter-spacing: .04rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  letter-spacing: 0.04rem;
   font-family: Lato-Light; }
 
 .upload-sc--wrapper {
@@ -2497,7 +2497,7 @@ input[type=range].MASAS-slider {
   margin: 1.7rem 0;
   cursor: pointer; }
 .upload-sc--wrapper .logout--wrapper .logout-text {
-  font-size: .7rem; }
+  font-size: 0.7rem; }
 .upload-sc--wrapper .logout--wrapper .logout-text--username {
   font-weight: bold; }
 .upload-sc--wrapper .back-button {
@@ -2512,7 +2512,7 @@ input[type=range].MASAS-slider {
   .upload-sc--wrapper .table-head {
     min-height: 2rem;
     justify-content: space-between;
-    padding-bottom: .5rem; }
+    padding-bottom: 0.5rem; }
   .upload-sc--wrapper .title {
     width: 70%;
     display: flex;
@@ -2532,7 +2532,7 @@ input[type=range].MASAS-slider {
   .upload-sc--wrapper .table-head {
     display: flex;
     font-family: Lato-Semibold;
-    font-size: .85rem; }
+    font-size: 0.85rem; }
   .upload-sc--wrapper .logout--wrapper {
     display: none; }
   .upload-sc--wrapper .back-button {
@@ -4102,7 +4102,7 @@ ol, ul {
   line-height: 1.4rem;
   text-align: justify; }
   ol li, ul li {
-    padding-bottom: .8rem;
+    padding-bottom: 0.8rem;
     word-break: break-all; }
 
 @media screen and (min-width: 992px) {
@@ -4111,9 +4111,9 @@ ol, ul {
     .legals-content--wrapper .back-icon img {
       display: block; }
     .legals-content--wrapper .legals-content p {
-      font-size: .7rem; }
+      font-size: 0.7rem; }
     .legals-content--wrapper .legals-content ol, .legals-content--wrapper .legals-content ul {
-      font-size: .7rem; } }
+      font-size: 0.7rem; } }
 .legals--wrapper {
   display: flex;
   flex: 1;
@@ -4235,6 +4235,8 @@ h1 {
   .app-body .page-content--wrapper {
     padding-left: 1rem;
     padding-right: 1rem; }
+  .app-body .page-content {
+    background-color: rgba(0, 0, 0, 0.7); }
   .app-body .page-title {
     text-transform: capitalize;
     color: white;
