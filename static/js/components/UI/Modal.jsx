@@ -58,7 +58,7 @@ let Modal = React.createClass({
 			this.props.modalSaturateBg(true)
 			// put background blur on
 			// $('#body--background').addClass('blurred')
-		} else if( nextProps.isOpened === true && nextProps.type === 2 ) {
+		} else if( nextProps.isOpened === true && (nextProps.type === 2 || nextProps.type === 4)) {
 			this.props.modalBlurBg(true)
 			this.props.modalSaturateBg(false)
 			// $('#body--background').removeClass('saturated')

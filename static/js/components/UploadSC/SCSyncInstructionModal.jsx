@@ -40,7 +40,7 @@ var SCSyncInstructionModal = React.createClass({
 						</div>
 				</div>
 				<div className="button--wrapper">
-					<Button isSecondaryAction={ true }>Ok</Button>
+					<Button onClick={ () => {} } isSecondaryAction={ true }>Ok</Button>
 				</div>
 			</div>
 		)
