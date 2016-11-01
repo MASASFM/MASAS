@@ -59099,8 +59099,9 @@ function updateMiniProfile(songPk, artistInfo) {
 }
 
 function fetchMiniProfile(MASAS_songInfo) {
+	console.log(MASAS_songInfo.song.trackArtist);
 	return function (dispatch) {
-		return fetch(MASAS_songInfo.user).then(function (resp) {
+		return fetch(MASAS_songInfo.song.trackArtist).then(function (resp) {
 			return resp.json();
 		}).then(function (resp) {
 			return dispatch(updateMiniProfile(MASAS_songInfo.pk, resp));
