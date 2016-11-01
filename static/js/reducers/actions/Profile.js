@@ -1,6 +1,7 @@
 import 'whatwg-fetch'
 
-var { isObjectEmpty } = require("../../MASAS_functions.jsx")
+// var { isObjectEmpty } = require("../../MASAS_functions.jsx")
+const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 
 export const UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS'
 export const UPDATE_PUBLIC_PROFILE_INFO = 'UPDATE_PUBLIC_PROFILE_INFO'

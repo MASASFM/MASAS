@@ -59190,9 +59190,11 @@ exports.updateProfileInfo = updateProfileInfo;
 
 require('whatwg-fetch');
 
-var _require = require("../../MASAS_functions.jsx");
+// var { isObjectEmpty } = require("../../MASAS_functions.jsx")
+var isObjectEmpty = function isObjectEmpty(obj) {
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
+};
 
-var isObjectEmpty = _require.isObjectEmpty;
 var UPDATE_USER_SC_SONGS = exports.UPDATE_USER_SC_SONGS = 'UPDATE_USER_SC_SONGS';
 var UPDATE_PUBLIC_PROFILE_INFO = exports.UPDATE_PUBLIC_PROFILE_INFO = 'UPDATE_PUBLIC_PROFILE_INFO';
 var TOGGLE_EDITING_PROFILE = exports.TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE';
@@ -59270,7 +59272,7 @@ function updateProfileInfo(callback) {
 	};
 }
 
-},{"../../MASAS_functions.jsx":378,"whatwg-fetch":377}],508:[function(require,module,exports){
+},{"whatwg-fetch":377}],508:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
