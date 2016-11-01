@@ -18,16 +18,18 @@ var { Button, Marquee } = require("../UI/UI.jsx")
 var Profile = React.createClass({
 	propTypes: {
 		isEditingProfile: React.PropTypes.bool,
-		toggleEditingProfile: React.PropTypes.func,
-		textboxValues: React.PropTypes.object,
-		updatePublicProfileInfo: React.PropTypes.func,
 		publicProfileInfo: React.PropTypes.object,
-		updateUserSCSongs: React.PropTypes.func,
+		route: React.PropTypes.object,
+		textboxValues: React.PropTypes.object,
 		userSCSongs: React.PropTypes.array,
-		updateTitle: React.PropTypes.func,
 		userData: React.PropTypes.object,
 		userToken: React.PropTypes.string,
-		route: React.PropTypes.object,
+		
+		getPublicProfileInfo: React.PropTypes.func,
+		toggleEditingProfile: React.PropTypes.func,
+		updatePublicProfileInfo: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		updateUserSCSongs: React.PropTypes.func,
 	},
 
 	getInitialState: function() {
@@ -49,24 +51,25 @@ var Profile = React.createClass({
 			props = this.props
 
 		if(typeof(props.routeParams.username) !== "undefined")
-			$.ajax({
-				type: 'GET',
-				url: "/api/users/" + props.routeParams.username + "/",
-				success: (r) => {
-					props.updatePublicProfileInfo(r)
+			this.props.getPublicProfileInfo(props.routeParams.username)
+			// $.ajax({
+			// 	type: 'GET',
+			// 	url: "/api/users/" + props.routeParams.username + "/",
+			// 	success: (r) => {
+			// 		props.updatePublicProfileInfo(r)
 					
-					// forcing get soundcloud info after updating public profile
-					setTimeout(() => {
-						if(this.props.publicProfileInfo.name)
-							this.props.updateTitle(this.props.publicProfileInfo.name + "'s profile", '0')
-						else
-							this.props.updateTitle(this.props.publicProfileInfo.username + "'s profile", '0')
-						this.getSCinfo()
-					}, 0)
-				},
-				error: () => {
-				}
-			})
+			// 		// forcing get soundcloud info after updating public profile
+			// 		setTimeout(() => {
+			// 			if(this.props.publicProfileInfo.name)
+			// 				this.props.updateTitle(this.props.publicProfileInfo.name + "'s profile", '0')
+			// 			else
+			// 				this.props.updateTitle(this.props.publicProfileInfo.username + "'s profile", '0')
+			// 			this.getSCinfo()
+			// 		}, 0)
+			// 	},
+			// 	error: () => {
+			// 	}
+			// })
 		else
 			this.props.updateTitle('My Profile', '0')
 	},

@@ -5,6 +5,7 @@ import {
 	updateUserSCSongs,
 	updatePublicProfileInfo,
 	updateProfileInfo,
+	getPublicProfileInfo,
 } from "../../../reducers/actions/Profile.js"
 
 import {
@@ -34,6 +35,7 @@ Profile.mapDispatchToProps = function(dispatch) {
 		toggleEditingProfile: () => dispatch(toggleEditingProfile()),
 		updatePublicProfileInfo: publicProfileInfo => dispatch(updatePublicProfileInfo(publicProfileInfo)),
 		updateUserSCSongs: userSCSongs => dispatch(updateUserSCSongs(userSCSongs)),
+		getPublicProfileInfo: (userPk) => dispatch(getPublicProfileInfo(userPk)),
 	}
 }
 

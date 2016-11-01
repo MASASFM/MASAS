@@ -53268,16 +53268,18 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 	propTypes: {
 		isEditingProfile: React.PropTypes.bool,
-		toggleEditingProfile: React.PropTypes.func,
-		textboxValues: React.PropTypes.object,
-		updatePublicProfileInfo: React.PropTypes.func,
 		publicProfileInfo: React.PropTypes.object,
-		updateUserSCSongs: React.PropTypes.func,
+		route: React.PropTypes.object,
+		textboxValues: React.PropTypes.object,
 		userSCSongs: React.PropTypes.array,
-		updateTitle: React.PropTypes.func,
 		userData: React.PropTypes.object,
 		userToken: React.PropTypes.string,
-		route: React.PropTypes.object
+
+		getPublicProfileInfo: React.PropTypes.func,
+		toggleEditingProfile: React.PropTypes.func,
+		updatePublicProfileInfo: React.PropTypes.func,
+		updateTitle: React.PropTypes.func,
+		updateUserSCSongs: React.PropTypes.func
 	},
 
 	getInitialState: function getInitialState() {
@@ -53295,26 +53297,30 @@ var Profile = _wrapComponent("_component")(React.createClass({
 	},
 
 	getPublicProfileInfo: function getPublicProfileInfo() {
-		var _this = this;
-
 		var props = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
 
 		if (props === null) props = this.props;
 
-		if (typeof props.routeParams.username !== "undefined") $.ajax({
-			type: 'GET',
-			url: "/api/users/" + props.routeParams.username + "/",
-			success: function success(r) {
-				props.updatePublicProfileInfo(r);
+		if (typeof props.routeParams.username !== "undefined") this.props.getPublicProfileInfo(props.routeParams.username);
+		// $.ajax({
+		// 	type: 'GET',
+		// 	url: "/api/users/" + props.routeParams.username + "/",
+		// 	success: (r) => {
+		// 		props.updatePublicProfileInfo(r)
 
-				// forcing get soundcloud info after updating public profile
-				setTimeout(function () {
-					if (_this.props.publicProfileInfo.name) _this.props.updateTitle(_this.props.publicProfileInfo.name + "'s profile", '0');else _this.props.updateTitle(_this.props.publicProfileInfo.username + "'s profile", '0');
-					_this.getSCinfo();
-				}, 0);
-			},
-			error: function error() {}
-		});else this.props.updateTitle('My Profile', '0');
+		// 		// forcing get soundcloud info after updating public profile
+		// 		setTimeout(() => {
+		// 			if(this.props.publicProfileInfo.name)
+		// 				this.props.updateTitle(this.props.publicProfileInfo.name + "'s profile", '0')
+		// 			else
+		// 				this.props.updateTitle(this.props.publicProfileInfo.username + "'s profile", '0')
+		// 			this.getSCinfo()
+		// 		}, 0)
+		// 	},
+		// 	error: () => {
+		// 	}
+		// })
+		else this.props.updateTitle('My Profile', '0');
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
@@ -53323,18 +53329,18 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 	// componentWillReceiveProps: function(nextProps, nextState) {
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		var _this2 = this;
+		var _this = this;
 
 		if (nextProps.route.publicProfile !== this.props.route.publicProfile) {
 			if (nextProps.route.publicProfile) this.getPublicProfileInfo(nextProps);else this.props.updatePublicProfileInfo({});
 			window.setTimeout(function () {
-				return _this2.getSCinfo();
+				return _this.getSCinfo();
 			}, 0);
 		}
 	},
 
 	getSCinfo: function getSCinfo() {
-		var _this3 = this;
+		var _this2 = this;
 
 		var songs = {};
 
@@ -53346,7 +53352,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 			}).join();
 
 			SC.get('tracks', { limit: 200, ids: idString }).then(function (response) {
-				_this3.props.updateUserSCSongs(response);
+				_this2.props.updateUserSCSongs(response);
 			});
 		}
 	},
@@ -53356,7 +53362,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 	},
 
 	displaySongs: function displaySongs() {
-		var _this4 = this;
+		var _this3 = this;
 
 		var songs = {};
 
@@ -53424,14 +53430,14 @@ var Profile = _wrapComponent("_component")(React.createClass({
 			songs.sort(compareFn);
 
 			var songList = songs.map(function (song) {
-				var SC_songInfo = _this4.props.userSCSongs.filter(function (el) {
+				var SC_songInfo = _this3.props.userSCSongs.filter(function (el) {
 					return el.id === song.SC_ID;
 				})[0];
 
 				// return nothing if song no longer exists on soundcloud
 				if (SC_songInfo === undefined) return;
 
-				return React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song, allowOpen: !_this4.props.route.publicProfile });
+				return React.createElement(TrackItem, { key: song.SC_ID, track: SC_songInfo, MASAS_songInfo: song, allowOpen: !_this3.props.route.publicProfile });
 			});
 
 			return React.createElement(
@@ -53447,7 +53453,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 	},
 
 	saveProfile: function saveProfile() {
-		var _this5 = this;
+		var _this4 = this;
 
 		var header = "Bearer " + this.props.userToken;
 		var csrftoken = getCookie("csrftoken");
@@ -53476,7 +53482,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 				if (counterSuccess === counterTotal) {
 					updateProfileInfo();
 					updateNotificationBar('Profile updated !');
-					_this5.props.toggleEditingProfile();
+					_this4.props.toggleEditingProfile();
 				}
 			},
 			error: function error() {
@@ -53488,7 +53494,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 		// link user entered doesn't exist, we create it
 		this.props.textboxValues.link_set.map(function (textboxLink) {
-			var match = _this5.props.userData.link_set.filter(function (userLink) {
+			var match = _this4.props.userData.link_set.filter(function (userLink) {
 				return textboxLink === userLink.link;
 			});
 
@@ -53506,7 +53512,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 					contentType: "application/json",
 					data: JSON.stringify({
 						link: textboxLink,
-						user: _this5.props.userData.url
+						user: _this4.props.userData.url
 					}),
 					success: function success() {
 						counterSuccess = counterSuccess + 1;
@@ -53514,7 +53520,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 						if (counterSuccess === counterTotal) {
 							updateProfileInfo();
 							updateNotificationBar('Profile updated !');
-							_this5.props.toggleEditingProfile();
+							_this4.props.toggleEditingProfile();
 						}
 					},
 					error: function error() {
@@ -53526,7 +53532,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 		// link user has in DB isn't in textboxes user has entered, we delete link in DB
 		this.props.userData.link_set.map(function (userLink) {
-			var match = _this5.props.textboxValues.link_set.filter(function (textboxLink) {
+			var match = _this4.props.textboxValues.link_set.filter(function (textboxLink) {
 				return userLink.link === textboxLink;
 			});
 
@@ -53547,7 +53553,7 @@ var Profile = _wrapComponent("_component")(React.createClass({
 						if (counterSuccess === counterTotal) {
 							updateProfileInfo();
 							updateNotificationBar('Profile updated !');
-							_this5.props.toggleEditingProfile();
+							_this4.props.toggleEditingProfile();
 						}
 					},
 					error: function error() {
@@ -54696,6 +54702,9 @@ Profile.mapDispatchToProps = function (dispatch) {
 		},
 		updateUserSCSongs: function updateUserSCSongs(userSCSongs) {
 			return dispatch((0, _Profile.updateUserSCSongs)(userSCSongs));
+		},
+		getPublicProfileInfo: function getPublicProfileInfo(userPk) {
+			return dispatch((0, _Profile.getPublicProfileInfo)(userPk));
 		}
 	};
 };
