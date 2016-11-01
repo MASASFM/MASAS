@@ -52077,13 +52077,13 @@ NavSidebar.mapDispatchToProps = function (dispatch) {
 		},
 		logout: logout.bind(null, dispatch),
 		closeModal: function closeModal() {
-			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+			return dispatch((0, _App.closeAndEmptyMainModal)());
 		},
 		updateModalContent: function updateModalContent(modalContent, modalType) {
 			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType });
 		},
 		toogleModal: function toogleModal() {
-			return dispatch((0, _App.closeAndEmptyMainModal)());
+			return dispatch((0, _App.toogleIsModalOpened)());
 		}
 	};
 };
