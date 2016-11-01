@@ -50358,6 +50358,9 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			songs.sort(function (a, b) {
 				return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created);
 			});
+			console.log(songs.map(function (song) {
+				return song.MASAS_songInfo.created;
+			}));
 			var songList = songs.map(function (song) {
 				return React.createElement(LikesItem, {
 					key: song.MASAS_songInfo.pk,
