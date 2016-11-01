@@ -57556,7 +57556,7 @@ var UploadSC = _wrapComponent("_component")(React.createClass({
 			);
 		}
 
-		if (this.props.isConnectedSoundcloud) {
+		if (this.props.isConnectedSoundcloud && this.props.userPk) {
 			return React.createElement(
 				Body,
 				null,

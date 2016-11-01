@@ -145,7 +145,7 @@ var UploadSC = React.createClass({
 			)
 		}
 
-		if(this.props.isConnectedSoundcloud) {
+		if(this.props.isConnectedSoundcloud && this.props.userPk) {
 			return (
 				<Body>
 				<div className="upload-sc--wrapper">
