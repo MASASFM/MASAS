@@ -31,7 +31,15 @@ var MiniProfile = (props) => {
 	var viewContent = "Loading user info..."
 
 	if(props.userInfo) {
-		var linkSet = props.userInfo.link_set.map( ({ link }) => <LinkIcon url={ link } key={ link } /> )
+		// https://facebook.github.io/react/docs/lists-and-keys.html#keys
+		// We don't recommend using indexes for keys if the items can reorder, 
+		// as that would be slow. You may read an in-depth explanation about why 
+		// keys are necessary if you're interested.
+
+		// indexes are used as keys because links don't expect to be reordered
+		// this prevents keys from overlapping if for some reason link repeat in link_set
+		var linkSet = props.userInfo.link_set.map( (link_set, index) => <LinkIcon url={ link_set.link } key={ index } /> )
+
 		const str = props.userInfo.url
 		const userPk = str.slice(str.slice(0,str.lastIndexOf('/')).lastIndexOf('/')+1,str.lastIndexOf('/'))
 

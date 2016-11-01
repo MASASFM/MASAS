@@ -53137,9 +53137,15 @@ var MiniProfile = function MiniProfile(props) {
 		var linkSet;
 
 		(function () {
-			linkSet = props.userInfo.link_set.map(function (_ref) {
-				var link = _ref.link;
-				return React.createElement(LinkIcon, { url: link, key: link });
+			// https://facebook.github.io/react/docs/lists-and-keys.html#keys
+			// We don't recommend using indexes for keys if the items can reorder,
+			// as that would be slow. You may read an in-depth explanation about why
+			// keys are necessary if you're interested.
+
+			// indexes are used as keys because links don't expect to be reordered
+			// this prevents keys from overlapping if for some reason link repeat in link_set
+			linkSet = props.userInfo.link_set.map(function (link_set, index) {
+				return React.createElement(LinkIcon, { url: link_set.link, key: index });
 			});
 
 			var str = props.userInfo.url;
