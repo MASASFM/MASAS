@@ -50147,7 +50147,8 @@ var Likes = _wrapComponent("_component")(React.createClass({
 		updateTitle: React.PropTypes.func,
 		toogleHashtag: React.PropTypes.func,
 		getLikes: React.PropTypes.func,
-		userLikes: React.PropTypes.array
+		userLikes: React.PropTypes.array,
+		updateSearchInput: React.PropTypes.func
 	},
 
 	componentWillMount: function componentWillMount() {
@@ -50337,6 +50338,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 		SCinfo: React.PropTypes.array,
 		userData: React.PropTypes.object,
 		userLikes: React.PropTypes.array,
+		userLikesUnfiltered: React.PropTypes.array,
 		bgFilter: React.PropTypes.object,
 
 		blurBg: React.PropTypes.func,
@@ -50350,12 +50352,10 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function renderLikes() {
-		var songs = this.props.userLikes;
-
-		if (!songs.length) return React.createElement(NoLikesComponent, null);else {
+		if (!this.props.userLikesUnfiltered.length) return React.createElement(NoLikesComponent, null);else {
 			// // sort by uploaded time
-			var _songs = this.props.userLikes;
-			var songList = _songs.map(function (song) {
+			var songs = this.props.userLikes;
+			var songList = songs.map(function (song) {
 				return React.createElement(LikesItem, {
 					key: song.MASAS_songInfo.pk,
 					MASAS_songPk: song.MASAS_songInfo.pk,
@@ -50723,11 +50723,11 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 		}
 	},
 
-	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
-		if (this.props.userLikes.length) this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
-	},
+	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {},
 
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+		if (this.props.userLikes.length && document.getElementsByClassName("likes-searchbar--wrapper")[0]) this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
+
 		if (this.props.userLikes.length && !prevProps.userLikes.length) $('.box.page-content')[0].scrollTop = this.scrollOffset;
 	},
 
@@ -50975,7 +50975,7 @@ var LikesArtworks = {};
 LikesArtworks.mapStateToProps = function (state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
-		userLikes: state.likesReducer.userLikes
+		userLikesUnfiltered: state.likesReducer.userLikes
 	};
 };
 

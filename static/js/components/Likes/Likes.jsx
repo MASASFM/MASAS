@@ -27,6 +27,7 @@ var Likes = React.createClass({
 		toogleHashtag: React.PropTypes.func,
 		getLikes: React.PropTypes.func,
 		userLikes: React.PropTypes.array,
+		updateSearchInput: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {

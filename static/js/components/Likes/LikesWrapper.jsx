@@ -32,11 +32,13 @@ var LikesWrapper = React.createClass({
 	},
 
 	componentWillUpdate: function(nextProps, nextState) {
-		if(this.props.userLikes.length)
-			this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+
 	},
 
 	componentDidUpdate: function(prevProps, prevState) {
+		if(this.props.userLikes.length && document.getElementsByClassName("likes-searchbar--wrapper")[0]	)
+			this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
+
 		if(this.props.userLikes.length && !prevProps.userLikes.length)
 			$('.box.page-content')[0].scrollTop = this.scrollOffset
 	},

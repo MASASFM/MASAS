@@ -15,6 +15,7 @@ var LikesArtworks = React.createClass({
 		SCinfo: React.PropTypes.array,
 		userData: React.PropTypes.object,		
 		userLikes: React.PropTypes.array,
+		userLikesUnfiltered: React.PropTypes.array,
 		bgFilter: React.PropTypes.object,
 
 		blurBg: React.PropTypes.func,
@@ -29,9 +30,7 @@ var LikesArtworks = React.createClass({
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function() {
-		var songs = this.props.userLikes
-
-		if (!songs.length)
+		if (!this.props.userLikesUnfiltered.length)
 			return <NoLikesComponent />
 		else {
 			// // sort by uploaded time

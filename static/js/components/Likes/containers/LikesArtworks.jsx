@@ -6,7 +6,7 @@ var LikesArtworks = {}
 LikesArtworks.mapStateToProps = function(state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
-		userLikes: state.likesReducer.userLikes,
+		userLikesUnfiltered: state.likesReducer.userLikes,
 	}
 }
 
