@@ -73,7 +73,7 @@ export function fetchLikes() {
 			var idString = userData.likes.map( like => like.song.SC_ID ).join()
 			SC.get("tracks", {limit: userData.likes.length, ids: idString})
 			.then( response => {
-				dispatch(updateLikesOld(response))
+				// dispatch(updateLikesOld(response))
 				dispatch(updateLikes(dispatch, response, userData.likes))
 			})
 		} else {

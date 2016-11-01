@@ -50358,9 +50358,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			songs.sort(function (a, b) {
 				return Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created);
 			});
-			console.log(songs.map(function (song) {
-				return song.MASAS_songInfo.created;
-			}));
+
 			var songList = songs.map(function (song) {
 				return React.createElement(LikesItem, {
 					key: song.MASAS_songInfo.pk,
@@ -50734,7 +50732,9 @@ var LikesWrapper = _wrapComponent("_component")(React.createClass({
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
 		if (this.props.userLikes.length && document.getElementsByClassName("likes-searchbar--wrapper")[0]) this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10;
 
-		if (this.props.userLikes.length && !prevProps.userLikes.length) $('.box.page-content')[0].scrollTop = this.scrollOffset;
+		if (this.props.userLikes.length === 1 && !prevProps.userLikes.length) {
+			$('.box.page-content')[0].scrollTop = this.scrollOffset;
+		}
 	},
 
 	render: function render() {
@@ -59156,7 +59156,7 @@ function fetchLikes() {
 				return like.song.SC_ID;
 			}).join();
 			SC.get("tracks", { limit: userData.likes.length, ids: idString }).then(function (response) {
-				dispatch(updateLikesOld(response));
+				// dispatch(updateLikesOld(response))
 				dispatch(updateLikes(dispatch, response, userData.likes));
 			});
 		} else {

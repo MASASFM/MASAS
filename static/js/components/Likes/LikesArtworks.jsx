@@ -36,7 +36,7 @@ var LikesArtworks = React.createClass({
 			// // sort by uploaded time
 			const songs = this.props.userLikes
 			songs.sort( (a, b) => Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created) )
-			console.log(songs.map(song => song.MASAS_songInfo.created))
+
 			var songList =  songs.map((song) => { 
 				return <LikesItem 
 						key={ song.MASAS_songInfo.pk } 

@@ -39,8 +39,9 @@ var LikesWrapper = React.createClass({
 		if(this.props.userLikes.length && document.getElementsByClassName("likes-searchbar--wrapper")[0]	)
 			this.scrollOffset = document.getElementsByClassName("likes-searchbar--wrapper")[0].offsetHeight + document.getElementsByClassName("filters--wrapper")[0].offsetHeight + 10
 
-		if(this.props.userLikes.length && !prevProps.userLikes.length)
+		if(this.props.userLikes.length === 1&& !prevProps.userLikes.length) {
 			$('.box.page-content')[0].scrollTop = this.scrollOffset
+		}
 	},
 
 	render: function() {
