@@ -4,7 +4,12 @@ import {
 	doneProcessingAuthCookie,
 	setAppFetchingStateTrue,
 	setAppFetchingStateFalse,
+	changeModalContent,
 } from "../../../reducers/actions/App.js"
+
+import {
+	changeUnsplashArtist,
+} from "../../../reducers/actions/Home.js"
 
 // var ReactRedux = require("react-redux")
 // var App = require('../components/App.jsx')
@@ -36,8 +41,8 @@ App.mapDispatchToProps = function(dispatch) {
 		forceRender: () => dispatch(doneProcessingAuthCookie()),
 		showAppFetchingBar: () => dispatch(setAppFetchingStateTrue()),
 		hideAppFetchingBar: () => dispatch(setAppFetchingStateFalse()),
-		updateUnsplashArtist: (name, username, url) => dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url }),
-		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
+		updateUnsplashArtist: (name, username, url) => dispatch(changeUnsplashArtist(username, name, url)),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 	}
 }
 

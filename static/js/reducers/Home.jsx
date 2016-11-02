@@ -1,3 +1,7 @@
+import {
+	CHANGE_UNSPLASH_ARTIST,
+} from './actions/Home.js'
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -27,7 +31,7 @@ exportVar.homeReducer = function(state = defaultState, action) {
 				...state,
 				currentPage: pageNumber
 			}
-		case 'CHANGE_UNSPLASH_ARTIST':
+		case CHANGE_UNSPLASH_ARTIST:
 			return {
 				...state,
 				unsplashArtistName: action.unsplashArtistName,

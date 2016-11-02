@@ -47,6 +47,9 @@ export function resetLoggedOutUserStep() {
 }
 
 export function changeModalContent(modalContent, modalType, closeModalFunc) {
+	if(closeModalFunc === undefined)
+		closeModalFunc = () => {}
+	
 	return { 
 		type: CHANGE_MODAL_CONTENT, 
 		modalContent, 
