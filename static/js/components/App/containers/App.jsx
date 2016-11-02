@@ -11,11 +11,12 @@ App.mapStateToProps = function(state) {
 	return {
 		navSiderbarOpen: state.appReducer.navSiderbarOpen,
 		processingAuthCookie: state.appReducer.processingAuthCookie,
+		MASASuser: state.appReducer.MASASuser,
+
+		bgFilter: state.appReducer.bgFilter,
+		modalType: state.appReducer.modalType,
 		isModalOpened: state.appReducer.isModalOpened,
 		modalContent: state.appReducer.modalContent,
-		modalType: state.appReducer.modalType,
-		MASASuser: state.appReducer.MASASuser,
-		bgFilter: state.appReducer.bgFilter,
 	}
 }
 
@@ -23,9 +24,6 @@ App.mapStateToProps = function(state) {
 App.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		// onIncrement: () => dispatch({type:'INCREMENT_COUNTER'}),
-		// onDecrement: () => dispatch({type:'DECREMENT_COUNTER'}),
-		// onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
 		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
 		logInWithToken: (authToken) => logInWithToken(dispatch, authToken),
 		forceRender: () => dispatch({type:'DONE_PROCESSING_AUTH_COOKIE'}),

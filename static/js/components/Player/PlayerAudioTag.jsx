@@ -1,3 +1,5 @@
+// mounts audio tag into dom and initializes jPlayer
+
 var React = require("react")
 
 var ReactRedux = require("react-redux")

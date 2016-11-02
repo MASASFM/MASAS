@@ -3,13 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/App.jsx")
 
-var Header = require("../Header/Header.jsx")
-
-var { Modal } = require("../UI/UI.jsx")
-var Footer = require("../Footer/Footer.jsx")
-var Home = require("../Home/Home.jsx")
-var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
-var PlayerAudioTag = require("../Player/PlayerAudioTag.jsx")
+var AppDumb = require("./AppDumb.jsx")
 var SplashScreen = require("./SplashScreen.jsx")
 
 var SC = require('soundcloud')
@@ -132,93 +126,13 @@ var App = React.createClass({
 			loadingModalAnim = "fadeout-loading-modal 1s linear"
 		}
 
-		return (
-			<NavSidebar>
-				<div style = { styles.container } id="mobile-safari-bug-fix--wrapper" >
-					<div 
-						className={
-							"body--background"
-							+ 
-							( this.props.bgFilter.blurred ? " blurred " : "" )
-							+ 
-							( this.props.bgFilter.saturated ? " saturated " : "" )
-							+ 
-							( this.props.bgFilter.mobileBlurred ? " blurred-mobile " : "" )
-							+ 
-							( this.props.bgFilter.mobileSaturated ? " mobileSaturated " : "" )
-							+ 
-							( this.props.bgFilter.modalBlurred ? " modal-blurred " : "" )
-							+ 
-							( this.props.bgFilter.modalSaturated ? " modal-saturated " : "" )
-						} 
-						id="body--background">
-						<div className="bg-image" id="app-bg-image"></div>
-					</div>
-					<Header />
-						<div 
-							className={ "modal-blur--wrapper" + ( this.props.isModalOpened && this.props.modalType !== 2 ? " blurred" : "" )}
-							style={{
-								opacity: !(this.props.isModalOpened && this.props.modalType === 4) ? 1 : 0,
-							}}>
-							{
-								this.props.children ? 
-									this.props.children
-								:
-									<Home />
-							}
-						</div>
-						<div
-							style={{
-								position: 'fixed',
-								top: 0,
-								bottom: 0,
-								left: 0,
-								right: 0,
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								backgroundColor: 'black',
-								zIndex: hideLoadingModalZIndex,
-								animation: loadingModalAnim,
-								color: 'white'
-							}}>
-							<img
-								style={{
-									height: '7rem',
-									width: '7rem',
-								}}
-								src="/static/img/MASAS_logo-M.svg" 
-								alt="loading" />
-						</div>
-
-					<Footer />
-								
-				</div>
-				<PlayerAudioTag />
-				<Modal 
-					isOpened={ this.props.isModalOpened }
-					closeModalFunc={ this.props.closeModal }
-					type={ this.props.modalType }>
-					{ this.props.modalContent }
-				</Modal>
-			</NavSidebar>
-		)
-		
+		return <AppDumb 
+				hideLoadingModalZIndex={ hideLoadingModalZIndex }
+				loadingModalAnim={ loadingModalAnim }>{ this.props.children }</AppDumb>
 	}
 })
-
-var styles = {
-	container: {
-		height: window.innerHeight + 'px',
-		display: 'flex',
-		flexDirection: 'column',
-		backgroundColor: 'black',
-	}
-}
-
 
 module.exports = ReactRedux.connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(App)
-// module.exports = App
