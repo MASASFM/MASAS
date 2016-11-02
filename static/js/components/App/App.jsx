@@ -1,6 +1,3 @@
-// Thomass-MacBook-Pro-2:frontend thomasbinetruy$ watchify index.jsx -t babelify -o "../node_modules/exorcist/bin/exorcist.js  bundle.js.map > bundle.js" -d
-
-
 var React = require("react")
 
 var ReactRedux = require("react-redux")
@@ -12,6 +9,7 @@ var { Modal } = require("../UI/UI.jsx")
 var Footer = require("../Footer/Footer.jsx")
 var Home = require("../Home/Home.jsx")
 var NavSidebar = require("../NavSidebar/NavSidebar.jsx")
+var PlayerAudioTag = require("../Player/PlayerAudioTag.jsx")
 var SplashScreen = require("./SplashScreen.jsx")
 
 var SC = require('soundcloud')
@@ -102,47 +100,6 @@ var App = React.createClass({
 			document.getElementsByTagName('body')[0].style.height = window.innerHeight + 'px'
 			document.getElementById('content').style.height = window.innerHeight + 'px'
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
-		})
-
-
-		// play pause play hack for mobile 
-		$("#jquery_jplayer_1").jPlayer({
-			ready: function(	) {
-				var streamURL = "http://www.xamuel.com/blank-mp3-files/point1sec.mp3"
-				$(this).jPlayer("setMedia", {
-					mp3: streamURL,
-					oga: ""
-				})
-
-				var click = document.ontouchstart === undefined ? 'click' : 'touchstart'
-				var kickoff = function () {
-					$("#jquery_jplayer_1").jPlayer("play")
-					document.documentElement.removeEventListener(click, kickoff, true)
-				}
-				document.documentElement.addEventListener(click, kickoff, true)
-			},
-
-			keyBindings: {
-				play: {
-					key: 32,
-					fn: function(f) {
-						if(f.status.paused) {
-							f.play()
-						} else {
-							f.pause()
-						}
-					}
-				}
-			},
-			swfPath: "http://jplayer.org/latest/dist/jplayer",
-			supplied: "mp3, oga",
-			wmode: "window",
-			useStateClassSkin: true,
-			autoBlur: false,
-			smoothPlayBar: true,
-			keyEnabled: true,
-			remainingDuration: true,
-			toggleDuration: true
 		})
 
 		this.showSplashScreen()
@@ -237,7 +194,7 @@ var App = React.createClass({
 					<Footer />
 								
 				</div>
-				<div id="jquery_jplayer_1"></div>
+				<PlayerAudioTag />
 				<Modal 
 					isOpened={ this.props.isModalOpened }
 					closeModalFunc={ this.props.closeModal }
