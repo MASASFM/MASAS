@@ -14,6 +14,9 @@ import {
 	SATURATE_BG_MOBILE,
 	MODAL_BLUR_BG,
 	MODAL_SATURATE_BG,
+	DONE_PROCESSING_AUTH_COOKIE,
+	SET_APP_FETCHING_STATE_TRUE,
+	SET_APP_FETCHING_STATE_FALSE,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -160,12 +163,12 @@ exportVar.appReducer = function(state = defaultState, action) {
 				modalType,
 				closeModalFunc,
 			}
-		case 'SET_APP_FETCHING_STATE_FALSE':
+		case SET_APP_FETCHING_STATE_FALSE:
 			return {
 				...state,
 				isAppFetching: false
 			}
-		case 'SET_APP_FETCHING_STATE_TRUE':
+		case SET_APP_FETCHING_STATE_TRUE:
 			return {
 				...state,
 				isAppFetching: true
@@ -214,7 +217,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				MASASuserPk: action.pk
 			}
-		case 'DONE_PROCESSING_AUTH_COOKIE':
+		case DONE_PROCESSING_AUTH_COOKIE:
 			return {
 				...state,
 				processingAuthCookie: false

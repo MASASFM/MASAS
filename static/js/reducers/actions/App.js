@@ -11,6 +11,28 @@ export const BLUR_BG_MOBILE = 'BLUR_BG_MOBILE'
 export const SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE'
 export const MODAL_SATURATE_BG = 'MODAL_SATURATE_BG'
 export const MODAL_BLUR_BG = 'MODAL_BLUR_BG'
+export const DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE'
+export const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
+export const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
+
+export function setAppFetchingStateTrue() {
+	return {
+		type: SET_APP_FETCHING_STATE_TRUE
+	}
+}
+
+
+export function setAppFetchingStateFalse() {
+	return {
+		type: SET_APP_FETCHING_STATE_FALSE
+	}
+}
+
+export function doneProcessingAuthCookie() {
+	return {
+		type: DONE_PROCESSING_AUTH_COOKIE
+	}
+}
 
 export function incrementLoggedOutUserStep() {
 	return {

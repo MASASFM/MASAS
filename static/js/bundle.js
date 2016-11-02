@@ -44542,7 +44542,9 @@ var SplashScreen = _wrapComponent("_component")(React.createClass({
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
 
 },{"../../MASAS_functions.jsx":378,"../Legals/LegalsHome.jsx":411,"../Login/LoginForm.jsx":430,"../UI/UI.jsx":483,"./containers/SplashScreen.jsx":385,"livereactload/babel-transform":33,"react":363,"react-redux":168}],383:[function(require,module,exports){
-'use strict';
+"use strict";
+
+var _App = require("../../../reducers/actions/App.js");
 
 // var ReactRedux = require("react-redux")
 // var App = require('../components/App.jsx')
@@ -44571,22 +44573,22 @@ App.mapStateToProps = function (state) {
 App.mapDispatchToProps = function (dispatch) {
 	return {
 		toogleModal: function toogleModal() {
-			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+			return dispatch((0, _App.toogleIsModalOpened)());
 		},
 		closeModal: function closeModal() {
-			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+			return dispatch((0, _App.closeAndEmptyMainModal)());
 		},
 		logInWithToken: function logInWithToken(authToken) {
 			return _logInWithToken(dispatch, authToken);
 		},
 		forceRender: function forceRender() {
-			return dispatch({ type: 'DONE_PROCESSING_AUTH_COOKIE' });
+			return dispatch((0, _App.doneProcessingAuthCookie)());
 		},
 		showAppFetchingBar: function showAppFetchingBar() {
-			return dispatch({ type: 'SET_APP_FETCHING_STATE_TRUE' });
+			return dispatch((0, _App.setAppFetchingStateTrue)());
 		},
 		hideAppFetchingBar: function hideAppFetchingBar() {
-			return dispatch({ type: 'SET_APP_FETCHING_STATE_FALSE' });
+			return dispatch((0, _App.setAppFetchingStateFalse)());
 		},
 		updateUnsplashArtist: function updateUnsplashArtist(name, username, url) {
 			return dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url });
@@ -44599,7 +44601,7 @@ App.mapDispatchToProps = function (dispatch) {
 
 module.exports = App;
 
-},{"../../../MASAS_functions.jsx":378}],384:[function(require,module,exports){
+},{"../../../MASAS_functions.jsx":378,"../../../reducers/actions/App.js":511}],384:[function(require,module,exports){
 "use strict";
 
 var _App = require("../../../reducers/actions/App.js");
@@ -58406,11 +58408,11 @@ exportVar.appReducer = function () {
 				modalType: modalType,
 				closeModalFunc: closeModalFunc
 			});
-		case 'SET_APP_FETCHING_STATE_FALSE':
+		case _App.SET_APP_FETCHING_STATE_FALSE:
 			return _extends({}, state, {
 				isAppFetching: false
 			});
-		case 'SET_APP_FETCHING_STATE_TRUE':
+		case _App.SET_APP_FETCHING_STATE_TRUE:
 			return _extends({}, state, {
 				isAppFetching: true
 			});
@@ -58450,7 +58452,7 @@ exportVar.appReducer = function () {
 			return _extends({}, state, {
 				MASASuserPk: action.pk
 			});
-		case 'DONE_PROCESSING_AUTH_COOKIE':
+		case _App.DONE_PROCESSING_AUTH_COOKIE:
 			return _extends({}, state, {
 				processingAuthCookie: false
 			});
@@ -59133,6 +59135,9 @@ module.exports = exportVar;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.setAppFetchingStateTrue = setAppFetchingStateTrue;
+exports.setAppFetchingStateFalse = setAppFetchingStateFalse;
+exports.doneProcessingAuthCookie = doneProcessingAuthCookie;
 exports.incrementLoggedOutUserStep = incrementLoggedOutUserStep;
 exports.resetLoggedOutUserStep = resetLoggedOutUserStep;
 exports.changeModalContent = changeModalContent;
@@ -59153,6 +59158,27 @@ var BLUR_BG_MOBILE = exports.BLUR_BG_MOBILE = 'BLUR_BG_MOBILE';
 var SATURATE_BG_MOBILE = exports.SATURATE_BG_MOBILE = 'SATURATE_BG_MOBILE';
 var MODAL_SATURATE_BG = exports.MODAL_SATURATE_BG = 'MODAL_SATURATE_BG';
 var MODAL_BLUR_BG = exports.MODAL_BLUR_BG = 'MODAL_BLUR_BG';
+var DONE_PROCESSING_AUTH_COOKIE = exports.DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE';
+var SET_APP_FETCHING_STATE_FALSE = exports.SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE';
+var SET_APP_FETCHING_STATE_TRUE = exports.SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE';
+
+function setAppFetchingStateTrue() {
+	return {
+		type: SET_APP_FETCHING_STATE_TRUE
+	};
+}
+
+function setAppFetchingStateFalse() {
+	return {
+		type: SET_APP_FETCHING_STATE_FALSE
+	};
+}
+
+function doneProcessingAuthCookie() {
+	return {
+		type: DONE_PROCESSING_AUTH_COOKIE
+	};
+}
 
 function incrementLoggedOutUserStep() {
 	return {
