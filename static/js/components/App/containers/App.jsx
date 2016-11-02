@@ -11,9 +11,6 @@ import {
 	changeUnsplashArtist,
 } from "../../../reducers/actions/Home.js"
 
-// var ReactRedux = require("react-redux")
-// var App = require('../components/App.jsx')
-
 var { logInWithToken } = require("../../../MASAS_functions.jsx")
 
 var App = {}

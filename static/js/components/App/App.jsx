@@ -17,16 +17,11 @@ var App = React.createClass({
 
 		// redux
 		children: React.PropTypes.element,
-		navSiderbarOpen: React.PropTypes.bool,
 		processingAuthCookie: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
 		modalContent: React.PropTypes.element,
-		modalType: React.PropTypes.number,
 		MASASuser: React.PropTypes.string,
-		bgFilter: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
-		onSetNavbar: React.PropTypes.func,
 		logInWithToken: React.PropTypes.func,
 		forceRender: React.PropTypes.func,
 		showAppFetchingBar: React.PropTypes.func,

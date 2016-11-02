@@ -43903,16 +43903,11 @@ var App = _wrapComponent("_component")(React.createClass({
 
 		// redux
 		children: React.PropTypes.element,
-		navSiderbarOpen: React.PropTypes.bool,
 		processingAuthCookie: React.PropTypes.bool,
-		isModalOpened: React.PropTypes.bool,
 		modalContent: React.PropTypes.element,
-		modalType: React.PropTypes.number,
 		MASASuser: React.PropTypes.string,
-		bgFilter: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
-		onSetNavbar: React.PropTypes.func,
 		logInWithToken: React.PropTypes.func,
 		forceRender: React.PropTypes.func,
 		showAppFetchingBar: React.PropTypes.func,
@@ -44547,9 +44542,6 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(SplashS
 var _App = require("../../../reducers/actions/App.js");
 
 var _Home = require("../../../reducers/actions/Home.js");
-
-// var ReactRedux = require("react-redux")
-// var App = require('../components/App.jsx')
 
 var _require = require("../../../MASAS_functions.jsx");
 
