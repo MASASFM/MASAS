@@ -2959,7 +2959,8 @@ input[type=range].MASAS-slider {
     align-items: center;
     max-height: 9.8rem;
     height: 11rem;
-    justify-content: space-between; }
+    justify-content: space-between;
+    overflow: hidden; }
     .mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
       height: 4.2rem;
       width: 4.2rem;
