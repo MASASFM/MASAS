@@ -43941,25 +43941,27 @@ var App = _wrapComponent("_component")(React.createClass({
 		if (userToken) this.props.logInWithToken(userToken, this.props.finishProcessingAuthCookie);else this.props.forceRender(); // auth cookie is done processing
 
 		// INIT BACKGROUND WITH UNSPLASH MASAS LIKES
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
+		this.props.updateUnsplashArtist();
+		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
 
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/users/masas/likes/",
-			data: {
-				client_id: unsplashClientID,
-				per_page: 30
-			},
-			success: function success(r) {
-				var likeNumber = Math.floor(Math.random() * r.length) - 1;
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "https://api.unsplash.com/users/masas/likes/",
+		// 	data: {
+		// 		client_id: unsplashClientID,
+		// 		per_page: 30
+		// 	},
+		// 	success: (r) => {
+		// 		const likeNumber = Math.floor(Math.random() * r.length) - 1
 
-				if (likeNumber > -1 && likeNumber < r.length) {
-					var like = r[likeNumber];
-					_this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular);
-				}
-			},
-			error: function error() {}
-		});
+		// 		if(likeNumber > -1 && likeNumber < r.length) {
+		// 			const like = r[likeNumber]
+		// 			this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular)
+		// 		}
+		// 	},
+		// 	error: () => {
+		// 	}
+		// })
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -44584,8 +44586,8 @@ App.mapDispatchToProps = function (dispatch) {
 		hideAppFetchingBar: function hideAppFetchingBar() {
 			return dispatch((0, _App.setAppFetchingStateFalse)());
 		},
-		updateUnsplashArtist: function updateUnsplashArtist(name, username, url) {
-			return dispatch((0, _Home.changeUnsplashArtist)(username, name, url));
+		updateUnsplashArtist: function updateUnsplashArtist() {
+			return dispatch((0, _Home.changeUnsplashArtist)());
 		},
 		updateModalContent: function updateModalContent(modalContent, modalType) {
 			return dispatch((0, _App.changeModalContent)(modalContent, modalType));
@@ -59322,10 +59324,14 @@ function updateNotificationBar(notificationText) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.CHANGE_UNSPLASH_ARTIST = undefined;
 exports.changeUnsplashArtist = changeUnsplashArtist;
+
+require('whatwg-fetch');
+
 var CHANGE_UNSPLASH_ARTIST = exports.CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST';
 
-function changeUnsplashArtist(username, name, url) {
+function updateUnsplashArtist(username, name, url) {
 	return {
 		type: 'CHANGE_UNSPLASH_ARTIST',
 		unsplashArtistUsername: username,
@@ -59334,7 +59340,28 @@ function changeUnsplashArtist(username, name, url) {
 	};
 }
 
-},{}],514:[function(require,module,exports){
+function changeUnsplashArtist() {
+	return function (dispatch) {
+		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
+
+		fetch("https://api.unsplash.com/users/masas/likes/?client_id=" + unsplashClientID, {
+			method: "GET",
+			body: {
+				client_id: unsplashClientID,
+				per_page: 30
+			}
+		}).then(function (r) {
+			var likeNumber = Math.floor(Math.random() * r.length) - 1;
+
+			if (likeNumber > -1 && likeNumber < r.length) {
+				var like = r[likeNumber];
+				updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular);
+			}
+		}).catch(function (e) {});
+	};
+}
+
+},{"whatwg-fetch":377}],514:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

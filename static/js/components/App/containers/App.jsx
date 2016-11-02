@@ -38,7 +38,7 @@ App.mapDispatchToProps = function(dispatch) {
 		forceRender: () => dispatch(doneProcessingAuthCookie()),
 		showAppFetchingBar: () => dispatch(setAppFetchingStateTrue()),
 		hideAppFetchingBar: () => dispatch(setAppFetchingStateFalse()),
-		updateUnsplashArtist: (name, username, url) => dispatch(changeUnsplashArtist(username, name, url)),
+		updateUnsplashArtist: () => dispatch(changeUnsplashArtist()),
 		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 	}
 }
