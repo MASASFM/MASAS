@@ -1,6 +1,5 @@
 var React = require("react")
 
-
 var ProfileWrapper = require("./ProfileWrapper.jsx")
 var ProfileEditLinks = require("./ProfileEditLinks.jsx")
 var ProfileEdit = require("./ProfileEdit.jsx")
@@ -10,14 +9,6 @@ var { Marquee } = require("../UI/UI.jsx")
 // var ReactRedux = require("react-redux")
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/Template.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
-
 var ProfileDumb = React.createClass({
 	propTypes: {
 		userData: React.PropTypes.object,			// object containing user data to display
@@ -26,7 +17,7 @@ var ProfileDumb = React.createClass({
 		userSCSongs: React.PropTypes.array,			// user SC related info for songs. Not used. Only passed down to track list dumb component
 
 		saveProfile: React.PropTypes.func,			// function called when user saved profile
-		toogleEditingProfile: React.PropTypes.func,			// hides/closes edit profile form
+		toogleEditingProfile: React.PropTypes.func,		// hides/closes edit profile form
 	},
 
 	checkLink: function(url) {

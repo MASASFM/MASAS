@@ -53299,7 +53299,16 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 		if (props === null) props = this.props;
 
-		if (typeof props.routeParams.username !== "undefined") this.props.getPublicProfileInfo(props.routeParams.username);else this.props.updateTitle('My Profile', '0');
+		if (typeof props.routeParams.username !== "undefined") this.props.getPublicProfileInfo(props.routeParams.username);
+	},
+
+	updatePageTitle: function updatePageTitle() {
+		if (this.isPublicProfile) {
+			if (!isObjectEmpty(this.props.publicProfileInfo)) {
+				var titleStr = this.props.publicProfileInfo.name ? this.props.publicProfileInfo.name : this.props.publicProfileInfo.username;
+				this.props.updateTitle(titleStr + "'s Profile", "0");
+			}
+		} else this.props.updateTitle("My Profile", "0");
 	},
 
 	getSCinfo: function getSCinfo() {
@@ -53308,6 +53317,8 @@ var Profile = _wrapComponent("_component")(React.createClass({
 
 	componentDidUpdate: function componentDidUpdate(prevProps) {
 		if (JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs)) this.getSCinfo();
+
+		this.updatePageTitle();
 	},
 
 	saveProfile: function saveProfile() {
@@ -53317,7 +53328,8 @@ var Profile = _wrapComponent("_component")(React.createClass({
 	render: function render() {
 		var showProfile = false;
 		var userData = {};
-		var isPublicProfile = typeof this.props.routeParams.username !== "undefined";
+		this.isPublicProfile = typeof this.props.routeParams.username !== "undefined";
+		var isPublicProfile = this.isPublicProfile;
 
 		if (isPublicProfile) {
 			showProfile = !isObjectEmpty(this.props.publicProfileInfo);
@@ -53392,14 +53404,6 @@ var Marquee = _require.Marquee;
 
 // var ReactRedux = require("react-redux")
 // var { mapStateToProps, mapDispatchToProps } = require("./containers/Template.jsx")
-
-// var {goToURL} = require("../../MASAS_functions.jsx")
-// import { BlurBackground } from "../MASAS_mixins.jsx"
-// var { Link } = require("../UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
 
 var ProfileDumb = _wrapComponent("_component")(React.createClass({
 	displayName: "ProfileDumb",

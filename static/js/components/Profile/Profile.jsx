@@ -59,8 +59,16 @@ var Profile = React.createClass({
 
 		if(typeof(props.routeParams.username) !== "undefined")
 			this.props.getPublicProfileInfo(props.routeParams.username)
-		else
-			this.props.updateTitle('My Profile', '0')
+	},
+
+	updatePageTitle: function() {
+		if(this.isPublicProfile) {
+			if(!isObjectEmpty(this.props.publicProfileInfo)) {
+				var titleStr = this.props.publicProfileInfo.name ? this.props.publicProfileInfo.name : this.props.publicProfileInfo.username
+				this.props.updateTitle(titleStr + "'s Profile", "0")
+			}
+		} else
+			this.props.updateTitle("My Profile", "0")
 	},
 
 	getSCinfo: function() {
@@ -70,6 +78,8 @@ var Profile = React.createClass({
 	componentDidUpdate: function(prevProps) {
 		if(JSON.stringify(this.props.userData.songs) !== JSON.stringify(prevProps.userData.songs))
 			this.getSCinfo()
+
+		this.updatePageTitle()
 	},
 
 	saveProfile: function() {
@@ -79,7 +89,8 @@ var Profile = React.createClass({
 	render: function() {
 		var showProfile = false
 		var userData = {}
-		var isPublicProfile = typeof(this.props.routeParams.username) !== "undefined"
+		this.isPublicProfile = typeof(this.props.routeParams.username) !== "undefined"
+		var { isPublicProfile } = this
 
 		if(isPublicProfile) {
 			showProfile = !isObjectEmpty(this.props.publicProfileInfo)
