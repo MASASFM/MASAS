@@ -85,13 +85,6 @@ export function updateProfileInfo(callback) {
 	}
 }
 
-function patchUser(url) {
-	return dispatch => {
-
-	}
-
-}
-
 function updateLinks(userData, textboxValues, header, csrftoken) {
 	return dispatch => {
 		const counterTotal = textboxValues.link_set.filter(a => a !== "").length

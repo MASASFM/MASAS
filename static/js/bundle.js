@@ -59310,10 +59310,6 @@ function updateProfileInfo(callback) {
 	};
 }
 
-function patchUser(url) {
-	return function (dispatch) {};
-}
-
 function updateLinks(userData, textboxValues, header, csrftoken) {
 	return function (dispatch) {
 		var counterTotal = textboxValues.link_set.filter(function (a) {
