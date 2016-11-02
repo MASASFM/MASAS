@@ -59310,6 +59310,71 @@ function updateProfileInfo(callback) {
 	};
 }
 
+function patchUser(url) {
+	return function (dispatch) {};
+}
+
+function updateLinks(userData, textboxValues, header, csrftoken) {
+	return function (dispatch) {
+		var counterTotal = textboxValues.link_set.filter(function (a) {
+			return a !== "";
+		}).length;
+		var counterSuccess = 0;
+
+		textboxValues.link_set.map(function (textboxLink) {
+			if (textboxLink !== "") fetch("/api/links/", {
+				method: "POST",
+				headers: {
+					"Authorization": header,
+					"X-CSRFToken": csrftoken,
+					"content-type": "application/json"
+				},
+				body: JSON.stringify({
+					link: textboxLink,
+					user: userData.url
+				})
+			}).then(function (r) {
+				counterSuccess = counterSuccess + 1;
+
+				if (counterSuccess === counterTotal) {
+					dispatch(updateProfileInfo());
+					dispatch((0, _Header.updateNotificationBar)('Profile updated !'));
+					dispatch(toggleEditingProfile());
+				}
+			}).catch(function (e) {
+				dispatch((0, _Header.updateNotificationBar)("Error updating profile..."));
+			});
+		});
+	};
+}
+
+function deleteLinks(userData, textboxValues, header, csrftoken) {
+	return function (dispatch) {
+		var counterTotal = userData.link_set.length;
+		var counterSuccess = 0;
+
+		if (!counterTotal) dispatch(updateLinks(userData, textboxValues, header, csrftoken));else {
+			userData.link_set.map(function (userLink) {
+				fetch(userLink.url, {
+					method: "DELETE",
+					headers: {
+						"Authorization": header,
+						"X-CSRFToken": csrftoken
+					}
+				}).then(function (r) {
+					counterSuccess = counterSuccess + 1;
+
+					if (counterSuccess === counterTotal) {
+						dispatch(updateLinks(userData, textboxValues, header, csrftoken));
+					}
+				}).catch(function (e) {
+					dispatch((0, _Header.updateNotificationBar)("Error updating profile..."));
+				});
+			});
+		}
+	};
+}
+
 function saveProfile(getCookie) {
 	return function (dispatch, getState) {
 		var state = getState();
@@ -59325,11 +59390,7 @@ function saveProfile(getCookie) {
 		var header = "Bearer " + userToken;
 		var csrftoken = getCookie("csrftoken");
 
-		// counter used to know how many ajax calls are made
-		var counterTotal = 1;
-		var counterSuccess = 0;
-
-		////////// UPDATE PROFILE PART I (everything but links)
+		////////// UPDATE PROFILE
 		fetch(userData.url, {
 			method: "PATCH",
 			headers: {
@@ -59337,86 +59398,12 @@ function saveProfile(getCookie) {
 				"X-CSRFToken": csrftoken,
 				"content-type": "application/json"
 			},
-			// contentType: "application/json",
 			body: JSON.stringify(textboxValues)
 		}).then(function (r) {
-			counterSuccess = counterSuccess + 1;
-
-			if (counterSuccess === counterTotal) {
-				dispatch(updateProfileInfo());
-				dispatch((0, _Header.updateNotificationBar)('Profile updated !'));
-				dispatch(toggleEditingProfile());
-			}
+			textboxValues = _extends({}, state.profileReducer.textboxValues);
+			dispatch(deleteLinks(userData, textboxValues, header, csrftoken));
 		}).catch(function (e) {
 			dispatch((0, _Header.updateNotificationBar)("Error updating profile..."));
-		});
-
-		////////// UPDATE PROFILE LINKS
-		textboxValues = _extends({}, state.profileReducer.textboxValues);
-
-		// link user entered doesn't exist, we create it
-		textboxValues.link_set.map(function (textboxLink) {
-			var match = userData.link_set.filter(function (userLink) {
-				return textboxLink === userLink.link;
-			});
-
-			// new link => POST
-			if (match.length === 0 && textboxLink !== "") {
-				counterTotal = counterTotal + 1;
-
-				fetch("/api/links/", {
-					method: "POST",
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken,
-						"content-type": "application/json"
-					},
-					body: JSON.stringify({
-						link: textboxLink,
-						user: userData.url
-					})
-				}).then(function (r) {
-					counterSuccess = counterSuccess + 1;
-
-					if (counterSuccess === counterTotal) {
-						dispatch(updateProfileInfo());
-						dispatch((0, _Header.updateNotificationBar)('Profile updated !'));
-						dispatch(toggleEditingProfile());
-					}
-				}).catch(function (e) {
-					dispatch((0, _Header.updateNotificationBar)("Error updating profile..."));
-				});
-			}
-		});
-
-		// link user has in DB isn't in textboxes user has entered, we delete link in DB
-		userData.link_set.map(function (userLink) {
-			var match = textboxValues.link_set.filter(function (textboxLink) {
-				return userLink.link === textboxLink;
-			});
-
-			// new link => DELETE
-			if (match.length === 0) {
-				counterTotal = counterTotal + 1;
-
-				fetch(userLink.url, {
-					method: "DELETE",
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken
-					}
-				}).then(function (r) {
-					counterSuccess = counterSuccess + 1;
-
-					if (counterSuccess === counterTotal) {
-						dispatch(updateProfileInfo());
-						dispatch((0, _Header.updateNotificationBar)('Profile updated !'));
-						dispatch(toggleEditingProfile());
-					}
-				}).catch(function (e) {
-					dispatch((0, _Header.updateNotificationBar)("Error updating profile..."));
-				});
-			}
 		});
 	};
 }

@@ -85,59 +85,20 @@ export function updateProfileInfo(callback) {
 	}
 }
 
+function patchUser(url) {
+	return dispatch => {
 
+	}
 
-export function saveProfile(getCookie) {
-	return (dispatch, getState) => {
-		const state = getState()
-		const { MASASuser, userData } = state.appReducer
-		const userToken = MASASuser
-		var textboxValues = { ...state.profileReducer.textboxValues }
-		delete textboxValues.link_set
-		// textboxValues.city = textboxValues.city
+}
 
-		const header = "Bearer " + userToken
-		var csrftoken = getCookie("csrftoken")
-
-		// counter used to know how many ajax calls are made
-		var counterTotal = 1
+function updateLinks(userData, textboxValues, header, csrftoken) {
+	return dispatch => {
+		const counterTotal = textboxValues.link_set.filter(a => a !== "").length
 		var counterSuccess = 0
 
-		////////// UPDATE PROFILE PART I (everything but links)
-		fetch(userData.url, {
-			method: "PATCH",
-			headers: {
-				"Authorization": header,
-				"X-CSRFToken": csrftoken,
-				"content-type": "application/json"
-			},
-			// contentType: "application/json",
-			body: JSON.stringify(textboxValues), 
-		}).then( r => {
-			counterSuccess = counterSuccess + 1
-
-			if(counterSuccess === counterTotal) {
-				dispatch(updateProfileInfo())
-				dispatch(updateNotificationBar('Profile updated !'))
-				dispatch(toggleEditingProfile())
-			}
-		}).catch( e => {
-			dispatch(updateNotificationBar("Error updating profile..."))
-		})
-
-		////////// UPDATE PROFILE LINKS
-		textboxValues = { ...state.profileReducer.textboxValues }
-
-		// link user entered doesn't exist, we create it
 		textboxValues.link_set.map( textboxLink => {
-			var match = userData.link_set.filter( userLink => {
-				return textboxLink === userLink.link
-			})
-
-			// new link => POST
-			if(match.length === 0 && textboxLink !== "") {
-				counterTotal = counterTotal + 1
-
+			if(textboxLink !== "")
 				fetch("/api/links/", {
 					method: "POST",
 					headers: {
@@ -160,19 +121,19 @@ export function saveProfile(getCookie) {
 				}).catch( e => {
 					dispatch(updateNotificationBar("Error updating profile..."))
 				})
-			}
 		})
+	}
+}
 
-		// link user has in DB isn't in textboxes user has entered, we delete link in DB
-		userData.link_set.map((userLink) => {
-			var match = textboxValues.link_set.filter((textboxLink) => {
-				return userLink.link === textboxLink
-			})
+function deleteLinks(userData, textboxValues, header, csrftoken) {
+	return dispatch => {
+		const counterTotal = userData.link_set.length
+		var counterSuccess = 0
 
-			// new link => DELETE
-			if(match.length === 0) {
-				counterTotal = counterTotal + 1
-
+		if(!counterTotal)
+			dispatch(updateLinks(userData, textboxValues, header, csrftoken))
+		else {
+			userData.link_set.map((userLink) => {
 				fetch(userLink.url, {
 					method: "DELETE",
 					headers: {
@@ -183,14 +144,42 @@ export function saveProfile(getCookie) {
 					counterSuccess = counterSuccess + 1
 
 					if(counterSuccess === counterTotal) {
-						dispatch(updateProfileInfo())
-						dispatch(updateNotificationBar('Profile updated !'))
-						dispatch(toggleEditingProfile())
+						dispatch(updateLinks(userData, textboxValues, header, csrftoken))
 					}
 				}).catch( e => {
 					dispatch(updateNotificationBar("Error updating profile..."))
 				})
-			}
+			})
+		}
+	}
+}
+
+export function saveProfile(getCookie) {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { MASASuser, userData } = state.appReducer
+		const userToken = MASASuser
+		var textboxValues = { ...state.profileReducer.textboxValues }
+		delete textboxValues.link_set
+		// textboxValues.city = textboxValues.city
+
+		const header = "Bearer " + userToken
+		var csrftoken = getCookie("csrftoken")
+
+		////////// UPDATE PROFILE
+		fetch(userData.url, {
+			method: "PATCH",
+			headers: {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken,
+				"content-type": "application/json"
+			},
+			body: JSON.stringify(textboxValues), 
+		}).then( r => {
+			textboxValues = { ...state.profileReducer.textboxValues }
+			dispatch(deleteLinks(userData, textboxValues, header, csrftoken))
+		}).catch( e => {
+			dispatch(updateNotificationBar("Error updating profile..."))
 		})
 	}
 }
