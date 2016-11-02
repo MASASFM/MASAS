@@ -1,0 +1,62 @@
+.no-songs--wrapper
+	display: flex
+	flex: 1
+	min-height: 20rem
+	flex-direction: column
+	justify-content: center
+	align-items: center
+
+	.no-songs--wrapper
+		img
+			width: 3rem
+
+		.upload-button
+			display: flex
+			flex: 1
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			padding-top: 0.5rem
+			padding: 0 1rem
+
+			p
+				text-align: center
+				font-family: Lato-Light
+				margin-bottom: 1.5rem
+				line-height: 1.2
+
+			p.bold
+				font-family: Lato-Semibold
+				font-size: 1.2rem
+				line-height: 1.3
+
+			.MASAS-button
+				margin-bottom: 1rem
+
+
+		.image--wrapper
+			display: flex
+			justify-content: space-between
+
+	.track-table--wrapper
+		display: flex
+		flex: 1
+		flex-direction: column
+		left: 0
+		height: 100%
+		right: 0
+		animation: fadein-menu 1s linear
+
+@media screen and (min-width: $desktop-min-width)
+	.no-songs--wrapper
+
+		.upload-button
+			p
+				max-width: 20rem
+
+	.track-table--wrapper
+		padding: 1rem
+		overflow: none
+		display: flex
+		flex: 1
+		flex-direction: column
