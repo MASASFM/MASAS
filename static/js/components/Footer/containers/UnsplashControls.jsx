@@ -1,3 +1,7 @@
+import {
+	changeUnsplashArtist,
+	getNewBackground,
+} from "../../../reducers/actions/Home.js"
 
 var UnsplashControls = {}
 
@@ -15,8 +19,8 @@ UnsplashControls.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 UnsplashControls.mapDispatchToProps = function(dispatch) {
 	return {
-		updateUnsplashArtist: (name, username, url) => dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url }),
-		updateBackgroundURL: (url) => dispatch({ type: 'CHANGE_BACKGROUND', backgroundURL: url }),
+		updateUnsplashArtist: () => dispatch(changeUnsplashArtist()),
+		updateBackgroundURL: () => dispatch(getNewBackground()),
 	}
 }
 

@@ -46080,40 +46080,6 @@ var UnsplashControls = _wrapComponent("_component")(React.createClass({
 		updateBackgroundURL: React.PropTypes.func
 	},
 
-	componentWillMount: function componentWillMount() {},
-
-	updateUnsplashArtist: function updateUnsplashArtist() {
-		var _this = this;
-
-		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa";
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
-			success: function success(r) {
-				_this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular);
-			},
-			error: function error() {}
-		});
-	},
-
-	getNewBackground: function getNewBackground() {
-		var _this2 = this;
-
-		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa";
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
-			success: function success(r) {
-				_this2.props.updateBackgroundURL(r.urls.regular);
-			},
-			error: function error() {}
-		});
-	},
-
 	componentDidUpdate: function componentDidUpdate() {
 		if (document.getElementById("app-bg-image")) document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")";
 	},
@@ -46127,7 +46093,7 @@ var UnsplashControls = _wrapComponent("_component")(React.createClass({
 				{ className: "artist-controls" },
 				React.createElement(
 					"a",
-					{ onClick: this.updateUnsplashArtist },
+					{ onClick: this.props.updateUnsplashArtist },
 					React.createElement("img", { src: "/static/img/MASAS_icon_change_photograph.svg", alt: "random-artist" })
 				),
 				React.createElement(
@@ -46141,7 +46107,7 @@ var UnsplashControls = _wrapComponent("_component")(React.createClass({
 				{ className: "background-controls" },
 				React.createElement(
 					"a",
-					{ onClick: this.getNewBackground },
+					{ onClick: this.props.updateBackgroundURL },
 					React.createElement("img", { src: "/static/img/MASAS_icon_change_unsplash_user.svg", alt: "random-background" })
 				)
 			)
@@ -46352,7 +46318,9 @@ FooterModal.mapDispatchToProps = function (dispatch) {
 module.exports = FooterModal;
 
 },{"../ajaxCalls.jsx":395}],398:[function(require,module,exports){
-'use strict';
+"use strict";
+
+var _Home = require("../../../reducers/actions/Home.js");
 
 var UnsplashControls = {};
 
@@ -46370,18 +46338,18 @@ UnsplashControls.mapStateToProps = function (state) {
 // Which action creators does it want to receive by props?
 UnsplashControls.mapDispatchToProps = function (dispatch) {
 	return {
-		updateUnsplashArtist: function updateUnsplashArtist(name, username, url) {
-			return dispatch({ type: 'CHANGE_UNSPLASH_ARTIST', unsplashArtistUsername: username, unsplashArtistName: name, backgroundURL: url });
+		updateUnsplashArtist: function updateUnsplashArtist() {
+			return dispatch((0, _Home.changeUnsplashArtist)());
 		},
-		updateBackgroundURL: function updateBackgroundURL(url) {
-			return dispatch({ type: 'CHANGE_BACKGROUND', backgroundURL: url });
+		updateBackgroundURL: function updateBackgroundURL() {
+			return dispatch((0, _Home.getNewBackground)());
 		}
 	};
 };
 
 module.exports = UnsplashControls;
 
-},{}],399:[function(require,module,exports){
+},{"../../../reducers/actions/Home.js":513}],399:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -59324,13 +59292,18 @@ function updateNotificationBar(notificationText) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.CHANGE_UNSPLASH_ARTIST = undefined;
+exports.CHANGE_BACKGROUND = exports.CHANGE_UNSPLASH_ARTIST = undefined;
 exports.changeUnsplashArtist = changeUnsplashArtist;
+exports.getNewBackground = getNewBackground;
 
 require('whatwg-fetch');
 
 var CHANGE_UNSPLASH_ARTIST = exports.CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST';
+var CHANGE_BACKGROUND = exports.CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
 
+var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa";
+
+// update background unsplash artist and picture
 function updateUnsplashArtist(username, name, url) {
 	return {
 		type: 'CHANGE_UNSPLASH_ARTIST',
@@ -59340,10 +59313,9 @@ function updateUnsplashArtist(username, name, url) {
 	};
 }
 
+// get new unsplash artist (get both new unsplash artist and new picture)
 function changeUnsplashArtist() {
 	return function (dispatch) {
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b";
-
 		fetch("https://api.unsplash.com/users/masas/likes/?client_id=" + unsplashClientID, {
 			method: "GET",
 			body: {
@@ -59355,8 +59327,28 @@ function changeUnsplashArtist() {
 
 			if (likeNumber > -1 && likeNumber < r.length) {
 				var like = r[likeNumber];
-				updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular);
+				dispatch(updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular));
 			}
+		}).catch(function (e) {});
+	};
+}
+
+// update background state
+function changeBackground(url) {
+	return {
+		type: CHANGE_BACKGROUND,
+		backgroundURL: url
+	};
+}
+
+// get random unsplash picture from current background artist
+function getNewBackground() {
+	return function (dispatch, getState) {
+		var state = getState();
+		var unsplashArtistUsername = state.homeReducer.unsplashArtistUsername;
+
+		fetch("https://api.unsplash.com/users/masas/likes/?username=" + unsplashArtistUsername + "&client_id=" + unsplashClientID).then(function (r) {
+			dispatch(changeBackground(r.urls.regular));
 		}).catch(function (e) {});
 	};
 }

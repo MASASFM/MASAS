@@ -22,40 +22,6 @@ var UnsplashControls = React.createClass({
 		updateBackgroundURL: React.PropTypes.func,
 	},
 
-	componentWillMount: function() {
-	},
-
-	updateUnsplashArtist: function() {
-		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
-
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?client_id=" + unsplashClientID,
-			success: (r) => {
-				this.props.updateUnsplashArtist(r.user.name, r.user.username, r.urls.regular)	
-			},
-			error: () => {
-			}
-		})
-	},
-
-	getNewBackground: function() {
-		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-		var unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
-
-		$.ajax({
-			type: "GET",
-			url: "https://api.unsplash.com/photos/random/?username=" + this.props.unsplashArtistUsername + "&client_id=" + unsplashClientID,
-			success: (r) => {
-				this.props.updateBackgroundURL(r.urls.regular)
-			},
-			error: () => {
-			}
-		})
-	},
-
 	componentDidUpdate: function() {
 		if(document.getElementById("app-bg-image"))
 			document.getElementById("app-bg-image").style.backgroundImage = "url(" + this.props.backgroundURL + ")"	
@@ -65,13 +31,13 @@ var UnsplashControls = React.createClass({
 		return (
 			<div className={ "unsplash-controls " + (this.props.modalType === 2 && this.props.isModalOpened ? "hidden" : "") }>
 				<div className="artist-controls">
-					<a onClick={ this.updateUnsplashArtist }>
+					<a onClick={ this.props.updateUnsplashArtist }>
 						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-artist"/>
 					</a>
 					<a href={ "https://unsplash.com/" + this.props.unsplashArtistUsername } target="_blank">{ this.props.unsplashArtistName }</a>
 				</div>
 				<div className="background-controls">
-					<a onClick={ this.getNewBackground }>
+					<a onClick={ this.props.updateBackgroundURL }>
 						<img src="/static/img/MASAS_icon_change_unsplash_user.svg" alt="random-background"/>
 					</a>
 				</div>

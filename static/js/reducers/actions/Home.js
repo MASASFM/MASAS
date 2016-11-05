@@ -1,7 +1,11 @@
 import 'whatwg-fetch'
 
 export const CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST'
+export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 
+const unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
+
+// update background unsplash artist and picture
 function updateUnsplashArtist (username, name, url) {
 	return {
 		type: 'CHANGE_UNSPLASH_ARTIST',
@@ -11,10 +15,9 @@ function updateUnsplashArtist (username, name, url) {
 	}
 }
 
+// get new unsplash artist (get both new unsplash artist and new picture)
 export function changeUnsplashArtist () {
 	return dispatch => {
-		var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-
 		fetch("https://api.unsplash.com/users/masas/likes/?client_id=" + unsplashClientID, {
 			method: "GET",
 			body: {
@@ -26,8 +29,31 @@ export function changeUnsplashArtist () {
 
 			if(likeNumber > -1 && likeNumber < r.length) {
 				const like = r[likeNumber]
-				updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular)
+				dispatch(updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular))
 			}
+		}).catch( e => {
+
+		})
+	}
+}
+
+// update background state
+function changeBackground(url) {
+	return { 
+		type: CHANGE_BACKGROUND,
+		backgroundURL: url
+	}
+}
+
+// get random unsplash picture from current background artist
+export function getNewBackground() {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { unsplashArtistUsername } = state.homeReducer
+
+		fetch("https://api.unsplash.com/users/masas/likes/?username=" + unsplashArtistUsername + "&client_id=" + unsplashClientID)
+		.then( r => {
+			dispatch(changeBackground(r.urls.regular))
 		}).catch( e => {
 
 		})
