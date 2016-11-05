@@ -20,6 +20,7 @@ var App = React.createClass({
 		processingAuthCookie: React.PropTypes.bool,
 		modalContent: React.PropTypes.element,
 		MASASuser: React.PropTypes.string,
+		location: React.PropTypes.object,
 
 		toogleModal: React.PropTypes.func,
 		logInWithToken: React.PropTypes.func,
@@ -59,26 +60,6 @@ var App = React.createClass({
 
 		// INIT BACKGROUND WITH UNSPLASH MASAS LIKES
 		this.props.updateUnsplashArtist()
-		// var unsplashClientID = "8ad2087b753cfaaa3c601d73395a8205b727571b7491dc80b68ff4bde538ee6b"
-
-		// $.ajax({
-		// 	type: "GET",
-		// 	url: "https://api.unsplash.com/users/masas/likes/",
-		// 	data: {
-		// 		client_id: unsplashClientID,
-		// 		per_page: 30
-		// 	},
-		// 	success: (r) => {
-		// 		const likeNumber = Math.floor(Math.random() * r.length) - 1
-
-		// 		if(likeNumber > -1 && likeNumber < r.length) {
-		// 			const like = r[likeNumber]
-		// 			this.props.updateUnsplashArtist(like.user.name, like.user.username, like.urls.regular)
-		// 		}
-		// 	},
-		// 	error: () => {
-		// 	}
-		// })
 	},
 
 	componentDidMount: function() {
@@ -92,7 +73,8 @@ var App = React.createClass({
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
 		})
 
-		this.showSplashScreen()
+		if(this.props.location.pathname === '/')
+			this.showSplashScreen()
 	},
 
 	showSplashScreen: function() {
