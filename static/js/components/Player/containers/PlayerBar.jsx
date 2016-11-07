@@ -7,15 +7,10 @@ import {
 	playNewSong
 } from "../../../reducers/actions/Player.js"
 
-
-// var { playNewSong, playPreviousSong, playRandomSong } = require("../ajaxCalls.jsx")
-// var { pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
 var { toggleSongLike } = require("../../../MASAS_functions.jsx")
-// var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 var Player = {}
 
-// Which part of the Redux global state does our component want to receive as props?
 Player.mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
@@ -42,18 +37,16 @@ var resumePlaying = function(playerAtTime) {
 	$("#jquery_jplayer_1").jPlayer("play", playerAtTime)
 }
 
-
-// Which action creators does it want to receive by props?
 Player.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
 		play: () => dispatch(playPlayer()),
-		pause: () => dispatch(pausePlayer()), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		pause: () => dispatch(pausePlayer()),
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
-		playNewSong: (newProps, addToHistory) => dispatch(playNewSong()),
+		playNewSong: () => dispatch(playNewSong()),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
 		playRandomSong: (MASASuser, timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
-		playPreviousSong: (discoverHistory) => dispatch(playPreviousSongInHistory()),
+		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
 	}
 }

@@ -43304,6 +43304,14 @@ var Cookie = require("js-cookie");
 
 var MASAS_functions = {};
 
+/////
+/////
+/////
+////		Useful functions
+////
+/////
+/////
+
 MASAS_functions.isObjectEmpty = function (obj) {
 	return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
@@ -43337,7 +43345,7 @@ MASAS_functions.timeIntervalURLToString = function (timeIntervalURL) {
 		case "6":
 			return "#LateEvening";
 		default:
-			return ""; // false
+			return "";
 	}
 };
 
@@ -43363,15 +43371,48 @@ MASAS_functions.makePromiseCancelable = function (promise) {
 	};
 };
 
-MASAS_functions.logout = function () {
-	Cookie.remove("MASAS_authToken");
-
-	dispatch({ type: "LOGOUT" });
-
-	FB.logout(function (response) {
-		MASAS_functions.updateNotificationBar("Logged out !");
-	});
+MASAS_functions.updateAuthCookie = function (userToken) {
+	Cookie.set("MASAS_authToken", userToken);
 };
+
+MASAS_functions.goToURL = function (path) {
+	browserHistory.push(path);
+};
+
+// using jQuery
+MASAS_functions.getCookie = function (name) {
+	var cookieValue = null;
+	if (document.cookie && document.cookie != "") {
+		var cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = $.trim(cookies[i]);
+			// Does this cookie string begin with the name we want?
+			if (cookie.substring(0, name.length + 1) == name + "=") {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+};
+
+// (BOOL) checks if a sequence is a subsequence of a string
+MASAS_functions.isSubsequence = function (sequence, string) {
+	if (string.toLowerCase().includes(sequence.toLowerCase())) return true;else return false;
+};
+
+// returns 1-6 for timeInterval based on songId
+MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
+	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1));
+};
+
+/////
+/////
+/////
+////		Other UI
+////
+/////
+/////
 
 MASAS_functions.closeModal = function () {
 	dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
@@ -43385,13 +43426,13 @@ MASAS_functions.updateNotificationBar = function (notificationText) {
 	}
 };
 
-MASAS_functions.updateAuthCookie = function (userToken) {
-	Cookie.set("MASAS_authToken", userToken);
-};
-
-MASAS_functions.goToURL = function (path) {
-	browserHistory.push(path);
-};
+/////
+/////
+/////
+////		PROFILE
+////
+/////
+/////
 
 /*
 	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
@@ -43430,6 +43471,16 @@ MASAS_functions.logInWithToken = function (removeVariable, userToken) {
 			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: err.responseText });
 			dispatch({ type: "DONE_PROCESSING_AUTH_COOKIE" });
 		}
+	});
+};
+
+MASAS_functions.logout = function () {
+	Cookie.remove("MASAS_authToken");
+
+	dispatch({ type: "LOGOUT" });
+
+	FB.logout(function (response) {
+		MASAS_functions.updateNotificationBar("Logged out !");
 	});
 };
 
@@ -43521,98 +43572,27 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 	});
 };
 
-// using jQuery
-MASAS_functions.getCookie = function (name) {
-	var cookieValue = null;
-	if (document.cookie && document.cookie != "") {
-		var cookies = document.cookie.split(";");
-		for (var i = 0; i < cookies.length; i++) {
-			var cookie = $.trim(cookies[i]);
-			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) == name + "=") {
-				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-				break;
-			}
-		}
-	}
-	return cookieValue;
-};
-
 /////
 /////
 /////
-////		PLAYER
+////		PLAYER (legacy functions that might still be used)
 ////
 /////
 /////
 
 // pause player
 MASAS_functions.pausePlayer = function () {
-	// // pause player
-	// $("#jquery_jplayer_1").jPlayer("pause")
-
-	// // get time to start playing at this time when unpausing and update app state
-	// var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-	// dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
-
 	dispatch((0, _Player.pausePlayer)());
 };
 
-MASAS_functions.playPreviousSong = function (discoverHistory) {
-	// // POP SONG FROM HISTORY
-	// dispatch({ type: "POP_SONG_FROM_HISTORY" })
-
-	// // PLAY LATEST SONG IN HISTORY
-	// dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
+MASAS_functions.playPreviousSong = function () {
 	dispatch((0, _Player.playPreviousSongInHistory)());
 };
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = function (MASAS_songId) {
-	var addToHistory = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
-
-	(0, _Player.playNewSong)();
-	// PLAY NEW SONG
-	// dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId})
-
-	// // STORE NEW SONG IN HISTORY if addToHistory = true
-	// // fetch MASAS song info
-	// if(addToHistory)
-	// 	$.ajax({
-	// 		type: "GET",
-	// 		url: MASAS_songId,
-	// 		success: (MASAS_songInfo) => {
-	// 			// STOR USER INFO ASSOCIATED WITH SONG
-	// 			var ajaxRequest = $.ajax({
-	// 				type: 'GET',
-	// 				url: MASAS_songInfo.trackArtist,
-	// 				success: (artistInfo) => {
-	// 					dispatch({
-	// 						type: "UPDATE_ARTIST_INFO",
-	// 						artistInfo,
-	// 					})
-
-	// 					// fetch SC song info
-	// 					SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
-	// 						dispatch({
-	// 							type: "ADD_SONG_TO_HISTORY",
-	// 							MASAS_songInfo,
-	// 							SC_songInfo,
-	// 							artistInfo
-	// 						})
-	// 					}).catch( () => {
-	// 					})
-	// 				},
-	// 				error: () => {},
-	// 			})
-	// 		},
-	// 		error: () => {
-	// 		},
-	// 	})
-
-	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
-	// dispatch({ type: "SET_ADD_SONG_HISTORY_TRUE" })
+MASAS_functions.playNewSong = function () {
+	dispatch((0, _Player.playNewSong)());
 };
 
 // gets song based on timeInteral and play song
@@ -43620,40 +43600,6 @@ MASAS_functions.playRandomSong = function (MASASuser) {
 	var timeInterval = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 
 	dispatch((0, _Player.playRandomSong)(timeInterval));
-	// var URL = "/api/play/"
-	// if(timeInterval)
-	// 	URL = URL + "?time_interval_id=" + timeInterval
-
-	// var headers = {}
-	// var type = "GET"
-
-	// // make post request if unauth
-	// if(MASASuser !== "") {
-	// 	var header = "Bearer " + MASASuser
-	// 	var csrftoken = MASAS_functions.getCookie("csrftoken")
-	// 	type = "POST"
-
-	// 	headers = {
-	// 		"Authorization": header,
-	// 		"X-CSRFToken": csrftoken
-	// 	}
-	// }
-
-	// $.ajax({
-	// 	type,
-	// 	url: URL,
-	// 	headers,
-	// 	data: {
-
-	// 	},
-	// 	success: (data) => {
-	// 		MASAS_functions.playNewSong(data.url)
-	// 	},
-	// 	error: (err) => {
-	// 		if(err.status === 401)
-	// 			MASAS_functions.updateNotificationBar("Login to play music !")
-	// 	},
-	// })
 },
 
 // songId = url to django rest for this song
@@ -43794,16 +43740,6 @@ MASAS_functions.toggleSongLike = function (userToken, songId) {
 			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..." });
 		}
 	});
-};
-
-// (BOOL) checks if a sequence is a subsequence of a string
-MASAS_functions.isSubsequence = function (sequence, string) {
-	if (string.toLowerCase().includes(sequence.toLowerCase())) return true;else return false;
-};
-
-// returns 1-6 for timeInterval based on songId
-MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
-	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1));
 };
 
 var _require4 = require("./components/Profile/ajaxCalls.jsx");
@@ -44988,6 +44924,7 @@ var ArtworkLineItem = _wrapComponent("_component")(React.createClass({
 		isItemPlaying: React.PropTypes.bool,
 		pause: React.PropTypes.func,
 		playAndSaveHistory: React.PropTypes.func,
+		resumePlayer: React.PropTypes.func,
 
 		songPlaying: React.PropTypes.string,
 		toggleSongLike: React.PropTypes.func,
@@ -45019,6 +44956,10 @@ var ArtworkLineItem = _wrapComponent("_component")(React.createClass({
 
 	toggleShowProfile: function toggleShowProfile() {
 		this.setState({ showProfile: !this.state.showProfile });
+	},
+
+	onArtworkClick: function onArtworkClick() {
+		if (this.props.isItemPlaying) this.props.pause();else if (this.props.songPlaying === this.props.MASAS_songInfo.url) this.props.resumePlayer();else this.props.playAndSaveHistory(this.props.MASAS_songInfo.url);
 	},
 
 	render: function render() {
@@ -45057,7 +44998,7 @@ var ArtworkLineItem = _wrapComponent("_component")(React.createClass({
 					"div",
 					{
 						className: "player-button",
-						onClick: isItemPlaying ? this.props.pause : this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url) },
+						onClick: this.onArtworkClick },
 					isItemPlaying ? React.createElement("img", {
 						src: "/static/img/MASAS_player_pause.svg",
 						alt: "pause" }) : React.createElement("img", {
@@ -45469,12 +45410,11 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Discove
 },{"../../MASAS_functions.jsx":378,"../UI/UI.jsx":482,"./../TipModals/TeachDiscoverModals.jsx":466,"./../TipModals/TeachSliderModals.jsx":467,"./ArtworkLine.jsx":386,"./containers/Discover.jsx":391,"livereactload/babel-transform":33,"react":363,"react-redux":168}],389:[function(require,module,exports){
 "use strict";
 
+var _Player = require("../../../reducers/actions/Player.js");
+
 var _require = require("../../../MASAS_functions.jsx");
 
-var pausePlayer = _require.pausePlayer;
-var playNewSong = _require.playNewSong;
 var _toggleSongLike = _require.toggleSongLike;
-var _playRandomSong = _require.playRandomSong;
 
 var ArtworkLine = {};
 
@@ -45499,22 +45439,17 @@ ArtworkLine.mapStateToProps = function (state) {
 // Which action creators does it want to receive by props?
 ArtworkLine.mapDispatchToProps = function (dispatch) {
 	return {
-		// updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
 		toggleSongLike: function toggleSongLike(userToken, songId) {
 			return _toggleSongLike(userToken, songId);
 		},
-		play: function play(songToPlay) {
-			return playNewSong(songToPlay, false);
-		},
 		playAndSaveHistory: function playAndSaveHistory(songToPlay) {
-			return playNewSong(songToPlay);
+			return dispatch((0, _Player.playSong)(songToPlay));
 		},
 		playRandomSong: function playRandomSong(MASASuser, timeInterval) {
-			return _playRandomSong(MASASuser, timeInterval);
+			return dispatch((0, _Player.playRandomSong)(MASASuser, timeInterval));
 		},
 		pause: function pause() {
-			return pausePlayer(dispatch);
+			return dispatch((0, _Player.pausePlayer)());
 		},
 		toggleIsFooterOpened: function toggleIsFooterOpened() {
 			return dispatch({ type: "TOOGLE_IS_FOOTER_OPENED" });
@@ -45524,8 +45459,10 @@ ArtworkLine.mapDispatchToProps = function (dispatch) {
 
 module.exports = ArtworkLine;
 
-},{"../../../MASAS_functions.jsx":378}],390:[function(require,module,exports){
-'use strict';
+},{"../../../MASAS_functions.jsx":378,"../../../reducers/actions/Player.js":515}],390:[function(require,module,exports){
+"use strict";
+
+var _Player = require("../../../reducers/actions/Player.js");
 
 var ArtworkLineItem = {};
 
@@ -45537,13 +45474,16 @@ ArtworkLineItem.mapDispatchToProps = function (dispatch) {
 	return {
 		updateTitle: function updateTitle(title, pageType) {
 			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
+		},
+		resumePlayer: function resumePlayer() {
+			return dispatch((0, _Player.resumePlayer)());
 		}
 	};
 };
 
 module.exports = ArtworkLineItem;
 
-},{}],391:[function(require,module,exports){
+},{"../../../reducers/actions/Player.js":515}],391:[function(require,module,exports){
 'use strict';
 
 var _App = require('../../../reducers/actions/App.js');
@@ -52566,17 +52506,12 @@ PlayerAudioTag.exports = PlayerAudioTag;
 
 var _Player = require("../../../reducers/actions/Player.js");
 
-// var { playNewSong, playPreviousSong, playRandomSong } = require("../ajaxCalls.jsx")
-// var { pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
-
 var _require = require("../../../MASAS_functions.jsx");
 
 var _toggleSongLike = _require.toggleSongLike;
-// var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 var Player = {};
 
-// Which part of the Redux global state does our component want to receive as props?
 Player.mapStateToProps = function (state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
@@ -52603,7 +52538,6 @@ var _resumePlaying = function _resumePlaying(playerAtTime) {
 	$("#jquery_jplayer_1").jPlayer("play", playerAtTime);
 };
 
-// Which action creators does it want to receive by props?
 Player.mapDispatchToProps = function (dispatch) {
 	return {
 		dispatch: dispatch,
@@ -52612,11 +52546,11 @@ Player.mapDispatchToProps = function (dispatch) {
 		},
 		pause: function pause() {
 			return dispatch((0, _Player.pausePlayer)());
-		}, // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		},
 		resumePlaying: function resumePlaying(playerAtTime) {
 			return _resumePlaying(playerAtTime);
 		},
-		playNewSong: function playNewSong(newProps, addToHistory) {
+		playNewSong: function playNewSong() {
 			return dispatch((0, _Player.playNewSong)());
 		},
 		toggleSongLike: function toggleSongLike(userToken, songId) {
@@ -52626,7 +52560,7 @@ Player.mapDispatchToProps = function (dispatch) {
 			var timeInterval = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 			return dispatch((0, _Player.playRandomSong)(timeInterval));
 		},
-		playPreviousSong: function playPreviousSong(discoverHistory) {
+		playPreviousSong: function playPreviousSong() {
 			return dispatch((0, _Player.playPreviousSongInHistory)());
 		},
 		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
@@ -59365,6 +59299,7 @@ exports.stopPlayer = stopPlayer;
 exports.playPlayer = playPlayer;
 exports.pausePlayer = pausePlayer;
 exports.playSong = playSong;
+exports.resumePlayer = resumePlayer;
 exports.playNewSong = playNewSong;
 exports.playPreviousSongInHistory = playPreviousSongInHistory;
 exports.playRandomSong = playRandomSong;
@@ -59563,11 +59498,18 @@ function updateArtistInfo(artistInfo) {
 	};
 }
 
-// plays song based on given URL
+// plays song from start based on given URL
 function playSong(songURL) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL
+	};
+}
+
+// resumes song based on given URL
+function resumePlayer() {
+	return {
+		type: PLAY
 	};
 }
 

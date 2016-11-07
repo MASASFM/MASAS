@@ -13,6 +13,14 @@ var Cookie = require("js-cookie")
 
 var MASAS_functions = {}
 
+/////
+/////
+/////
+////		Useful functions
+////
+/////
+/////
+
 MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 MASAS_functions.isObjectNotEmpty = (obj) => Object.keys(obj).length !== 0 && obj.constructor === Object
 
@@ -42,7 +50,7 @@ MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
 					case "6":
 						return "#LateEvening"
 					default:
-						return ""	// false
+						return ""
 				}
 			}
 
@@ -68,16 +76,51 @@ MASAS_functions.makePromiseCancelable = (promise) => {
 	}
 }
 
-MASAS_functions.logout = () => {
-	Cookie.remove("MASAS_authToken")
-
-	dispatch({type: "LOGOUT"})
-
-	FB.logout(function(response) {
-		MASAS_functions.updateNotificationBar("Logged out !")
-	})
-
+MASAS_functions.updateAuthCookie = (userToken) => {
+	Cookie.set("MASAS_authToken", userToken)
 }
+
+MASAS_functions.goToURL = (path) => {
+	browserHistory.push(path)
+}
+
+// using jQuery
+MASAS_functions.getCookie = (name) => {
+	var cookieValue = null
+	if (document.cookie && document.cookie != "") {
+		var cookies = document.cookie.split(";")
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = $.trim(cookies[i])
+			// Does this cookie string begin with the name we want?
+			if (cookie.substring(0, name.length + 1) == (name + "=")) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+				break
+			}
+		}
+	}
+	return cookieValue
+}
+
+// (BOOL) checks if a sequence is a subsequence of a string
+MASAS_functions.isSubsequence = (sequence, string) => {
+	if (string.toLowerCase().includes(sequence.toLowerCase()))
+		return true
+	else
+		return false
+}
+
+// returns 1-6 for timeInterval based on songId
+MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
+	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
+}
+
+/////
+/////
+/////
+////		Other UI
+////
+/////
+/////
 
 MASAS_functions.closeModal = () => {
 	dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' })
@@ -92,13 +135,13 @@ MASAS_functions.updateNotificationBar = (notificationText) => {
 
 }
 
-MASAS_functions.updateAuthCookie = (userToken) => {
-	Cookie.set("MASAS_authToken", userToken)
-}
-
-MASAS_functions.goToURL = (path) => {
-	browserHistory.push(path)
-}
+/////
+/////
+/////
+////		PROFILE
+////
+/////
+/////
 
 /*
 	takes dispatch (from mapDispatchToProps(dispatch) in containers) and user token
@@ -139,6 +182,17 @@ MASAS_functions.logInWithToken = (removeVariable, userToken) => {
 
 		},
 	})
+}
+
+MASAS_functions.logout = () => {
+	Cookie.remove("MASAS_authToken")
+
+	dispatch({type: "LOGOUT"})
+
+	FB.logout(function(response) {
+		MASAS_functions.updateNotificationBar("Logged out !")
+	})
+
 }
 
 MASAS_functions.updateUserEmail = ({ userPk, userToken, userData }) => {
@@ -228,136 +282,32 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 	})
 }
 
-// using jQuery
-MASAS_functions.getCookie = (name) => {
-	var cookieValue = null
-	if (document.cookie && document.cookie != "") {
-		var cookies = document.cookie.split(";")
-		for (var i = 0; i < cookies.length; i++) {
-			var cookie = $.trim(cookies[i])
-			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) == (name + "=")) {
-				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-				break
-			}
-		}
-	}
-	return cookieValue
-}
-
 /////
 /////
 /////
-////		PLAYER
+////		PLAYER (legacy functions that might still be used)
 ////
 /////
 /////
 
 // pause player
 MASAS_functions.pausePlayer = () => {
-	// // pause player
-	// $("#jquery_jplayer_1").jPlayer("pause")
-	
-	// // get time to start playing at this time when unpausing and update app state
-	// var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-	// dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
-
 	dispatch(pausePlayer())
 }
 
-MASAS_functions.playPreviousSong = (discoverHistory) => {
-	// // POP SONG FROM HISTORY
-	// dispatch({ type: "POP_SONG_FROM_HISTORY" })
-
-	// // PLAY LATEST SONG IN HISTORY
-	// dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
+MASAS_functions.playPreviousSong = () => {
 	dispatch(playPreviousSongInHistory())
 }
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
-MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
-	playNewSong()
-	// PLAY NEW SONG
-	// dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId})
-
-	// // STORE NEW SONG IN HISTORY if addToHistory = true
-	// // fetch MASAS song info
-	// if(addToHistory)
-	// 	$.ajax({
-	// 		type: "GET",
-	// 		url: MASAS_songId,
-	// 		success: (MASAS_songInfo) => {
-	// 			// STOR USER INFO ASSOCIATED WITH SONG
-	// 			var ajaxRequest = $.ajax({
-	// 				type: 'GET',
-	// 				url: MASAS_songInfo.trackArtist,
-	// 				success: (artistInfo) => {
-	// 					dispatch({ 
-	// 						type: "UPDATE_ARTIST_INFO",
-	// 						artistInfo,
-	// 					})
-
-	// 					// fetch SC song info
-	// 					SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
-	// 						dispatch({
-	// 							type: "ADD_SONG_TO_HISTORY",
-	// 							MASAS_songInfo,
-	// 							SC_songInfo,
-	// 							artistInfo
-	// 						})
-	// 					}).catch( () => {
-	// 					})
-	// 				},
-	// 				error: () => {},
-	// 			})
-	// 		},
-	// 		error: () => {
-	// 		},
-	// 	})
-
-	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
-	// dispatch({ type: "SET_ADD_SONG_HISTORY_TRUE" })
+MASAS_functions.playNewSong = () => {
+	dispatch(playNewSong())
 }
 
 // gets song based on timeInteral and play song
 MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 	dispatch(playRandomSong(timeInterval))
-	// var URL = "/api/play/"
-	// if(timeInterval)
-	// 	URL = URL + "?time_interval_id=" + timeInterval
-
-
-	// var headers = {}
-	// var type = "GET"
-
-	// // make post request if unauth
-	// if(MASASuser !== "") {
-	// 	var header = "Bearer " + MASASuser
-	// 	var csrftoken = MASAS_functions.getCookie("csrftoken")
-	// 	type = "POST"
-
-	// 	headers = {
-	// 		"Authorization": header,
-	// 		"X-CSRFToken": csrftoken
-	// 	}
-	// }
-
-	// $.ajax({
-	// 	type,
-	// 	url: URL,
-	// 	headers,
-	// 	data: {
-			
-	// 	},
-	// 	success: (data) => {
-	// 		MASAS_functions.playNewSong(data.url)
-	// 	},
-	// 	error: (err) => {
-	// 		if(err.status === 401)
-	// 			MASAS_functions.updateNotificationBar("Login to play music !")
-	// 	},
-	// })
 },
 
 // songId = url to django rest for this song
@@ -499,19 +449,6 @@ MASAS_functions.toggleSongLike = (userToken, songId) => {
 			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..."})
 		},
 	})
-}
-
-// (BOOL) checks if a sequence is a subsequence of a string
-MASAS_functions.isSubsequence = (sequence, string) => {
-	if (string.toLowerCase().includes(sequence.toLowerCase()))
-		return true
-	else
-		return false
-}
-
-// returns 1-6 for timeInterval based on songId
-MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
-	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
 }
 
 const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")

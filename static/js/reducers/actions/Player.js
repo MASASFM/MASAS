@@ -107,7 +107,7 @@ export function playPlayer() {
 }
 
 // pause player
-export function pausePlayer () {
+export function pausePlayer() {
 	return dispatch => {
 		// pause player
 		$("#jquery_jplayer_1").jPlayer("pause")
@@ -204,11 +204,18 @@ function updateArtistInfo(artistInfo) {
 }
 
 
-// plays song based on given URL
+// plays song from start based on given URL
 export function playSong(songURL) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,
+	}
+}
+
+// resumes song based on given URL
+export function resumePlayer() {
+	return {
+		type: PLAY,
 	}
 }
 

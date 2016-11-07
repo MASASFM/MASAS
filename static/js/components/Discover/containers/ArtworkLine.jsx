@@ -1,4 +1,10 @@
-var { pausePlayer, playNewSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
+var { toggleSongLike } = require("../../../MASAS_functions.jsx")
+
+import {
+	playSong,
+	pausePlayer,
+	playRandomSong,
+} from "../../../reducers/actions/Player.js"
 
 var ArtworkLine = {}
 
@@ -23,13 +29,10 @@ ArtworkLine.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 ArtworkLine.mapDispatchToProps = function(dispatch) {
 	return {
-		// updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		// handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
-		play: (songToPlay) => playNewSong(songToPlay, false),
-		playAndSaveHistory: (songToPlay) => playNewSong(songToPlay),
-		playRandomSong: (MASASuser, timeInterval) => playRandomSong(MASASuser, timeInterval),
-		pause: () => pausePlayer(dispatch),
+		playAndSaveHistory: (songToPlay) => dispatch(playSong(songToPlay)),
+		playRandomSong: (MASASuser, timeInterval) => dispatch(playRandomSong(MASASuser, timeInterval)),
+		pause: () => dispatch(pausePlayer()),
 		toggleIsFooterOpened: () => dispatch({ type: "TOOGLE_IS_FOOTER_OPENED" }) 
 	}
 }

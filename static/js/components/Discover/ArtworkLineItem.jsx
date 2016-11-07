@@ -19,6 +19,7 @@ var ArtworkLineItem = React.createClass({
 		isItemPlaying: React.PropTypes.bool,
 		pause: React.PropTypes.func,
 		playAndSaveHistory: React.PropTypes.func,
+		resumePlayer: React.PropTypes.func,
 
 		songPlaying: React.PropTypes.string,
 		toggleSongLike: React.PropTypes.func,
@@ -55,6 +56,15 @@ var ArtworkLineItem = React.createClass({
 		this.setState({ showProfile: !this.state.showProfile })
 	},
 
+	onArtworkClick: function() {
+		if(this.props.isItemPlaying)
+			this.props.pause()
+		else if(this.props.songPlaying === this.props.MASAS_songInfo.url)
+			this.props.resumePlayer()
+		else
+			this.props.playAndSaveHistory(this.props.MASAS_songInfo.url)
+	},
+
 	render: function() {
 		let { 
 			isModalOpened, 
@@ -89,12 +99,7 @@ var ArtworkLineItem = React.createClass({
 					}
 					<div 
 						className={ "player-button" }
-						onClick={ 
-							isItemPlaying ?
-								this.props.pause
-							:
-								this.props.playAndSaveHistory.bind(this, MASAS_songInfo.url)
-							}>
+						onClick={ this.onArtworkClick }>
 						{
 							isItemPlaying ?
 								<img 
