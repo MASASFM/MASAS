@@ -8,6 +8,8 @@ import {
 	UNLIKE_SONG,
 	STOP,
 	PLAY,
+	PLAY_NEW_SONG,
+	PLAY_NEW_SONG_FROM_PLAYLIST,
 } from "./actions/Player.js"
 
 let exportVar = {}
@@ -62,7 +64,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 			return {
 				defaultState
 			}
-		case 'PLAY_NEW_SONG':
+		case PLAY_NEW_SONG:
 			return {
 				...state,
 				isPaused: false,
@@ -70,7 +72,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				songPlaying: action.song,
 				isPlaylistPlaying: false,
 			}
-		case 'PLAY_NEW_SONG_FROM_PLAYLIST':
+		case PLAY_NEW_SONG_FROM_PLAYLIST:
 			if(action.playlistPosition < state.playlist.length)
 				return {
 					...state,

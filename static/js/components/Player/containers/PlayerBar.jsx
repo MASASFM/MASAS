@@ -1,10 +1,16 @@
 import {
-
+	playPlayer,
+	pausePlayer,
+	playPreviousSongInHistory,
+	playRandomSong,
+	playNewSongFromPlaylist,
+	playNewSong
 } from "../../../reducers/actions/Player.js"
 
 
-var { playNewSong } = require("../ajaxCalls.jsx")
-var { pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
+// var { playNewSong, playPreviousSong, playRandomSong } = require("../ajaxCalls.jsx")
+// var { pausePlayer, playPreviousSong, toggleSongLike, playRandomSong } = require("../../../MASAS_functions.jsx")
+var { toggleSongLike } = require("../../../MASAS_functions.jsx")
 // var MASAS_functions = require("../../../MASAS_functions.jsx")
 
 var Player = {}
@@ -41,14 +47,14 @@ var resumePlaying = function(playerAtTime) {
 Player.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
-		play: () => dispatch({ type: 'PLAY' }),
-		pause: (pausingAtTime) => pausePlayer(), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
+		play: () => dispatch(playPlayer()),
+		pause: () => dispatch(pausePlayer()), // dispatch({ type: 'PAUSE', pausingAtTime: pausingAtTime })
 		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
-		playNewSong: (newProps, addToHistory) => playNewSong(newProps, addToHistory),
+		playNewSong: (newProps, addToHistory) => dispatch(playNewSong()),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
-		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
-		playPreviousSong: (discoverHistory) => playPreviousSong(discoverHistory),
-		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
+		playRandomSong: (MASASuser, timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
+		playPreviousSong: (discoverHistory) => dispatch(playPreviousSongInHistory()),
+		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
 	}
 }
 

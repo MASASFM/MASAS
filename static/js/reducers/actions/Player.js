@@ -1,8 +1,13 @@
 import "whatwg-fetch"
 
 import {
-	addSongToHistory
+	addSongToHistory,
+	popSongFromHistory,
 } from "./Discover.js"
+
+import {
+	updateNotificationBar,
+} from "./Header.js"
 
 export const SET_SONG_IS_FETCHING_TRUE = "SET_SONG_IS_FETCHING_TRUE"
 export const UPDATE_MASAS_SONG_INFO = "UPDATE_MASAS_SONG_INFO"
@@ -13,6 +18,26 @@ export const LIKE_SONG = "LIKE_SONG"
 export const UNLIKE_SONG = "UNLIKE_SONG"
 export const STOP = "STOP"
 export const PLAY = "PLAY"
+export const PLAY_NEW_SONG = "PLAY_NEW_SONG"
+export const PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST"
+
+///// TO DELETE
+const getCookie = (name) => {
+	var cookieValue = null
+	if (document.cookie && document.cookie != "") {
+		var cookies = document.cookie.split(";")
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = $.trim(cookies[i])
+			// Does this cookie string begin with the name we want?
+			if (cookie.substring(0, name.length + 1) == (name + "=")) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+				break
+			}
+		}
+	}
+	return cookieValue
+}
+
 
 // see playerReducer
 function likeSong(value = true) {
@@ -78,6 +103,18 @@ export function stopPlayer() {
 export function playPlayer() {
 	return {
 		type: PLAY,
+	}
+}
+
+// pause player
+export function pausePlayer () {
+	return dispatch => {
+		// pause player
+		$("#jquery_jplayer_1").jPlayer("pause")
+		
+		// get time to start playing at this time when unpausing and update app state
+		var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
+		dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
 	}
 }
 
@@ -166,6 +203,15 @@ function updateArtistInfo(artistInfo) {
 	}
 }
 
+
+// plays song based on given URL
+export function playSong(songURL) {
+	return {
+		type: PLAY_NEW_SONG,
+		song: songURL,
+	}
+}
+
 // called when state.playerReducer.songPlaying changes
 // we get song to play from state
 // grab its stream link from SC
@@ -179,6 +225,7 @@ export function playNewSong() {
 		} = state.playerReducer
 
 		dispatch(setIsSongFetching(true))
+		// dispatch(playSong(songPlaying))
 
 		fetch(songPlaying)
 		.then( r => r.json() )
@@ -210,5 +257,64 @@ export function playNewSong() {
 			.catch( e => resetPlayer() )
 
 		}).catch( e => resetPlayer() )
+	}
+}
+
+// play previous song in history
+export function playPreviousSongInHistory() {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { discoverHistory } = state.discoverReducer
+
+		// POP SONG FROM HISTORY
+		dispatch(popSongFromHistory())
+
+		// PLAY LATEST SONG IN HISTORY
+		const songURL = discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url
+		dispatch(playSong(songURL))
+	}
+}
+
+export function playRandomSong(timeInterval = 0) {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { MASASuser } = state.appReducer
+
+		var URL = "/api/play/"
+		if(timeInterval)
+			URL = URL + "?time_interval_id=" + timeInterval
+
+
+		var headers = {}
+		var method = "GET"
+
+		// make post request if unauth
+		if(MASASuser !== "") {
+			const header = "Bearer " + MASASuser
+			const csrftoken = getCookie("csrftoken")
+			method = "POST"
+
+			headers = {
+				"Authorization": header,
+				"X-CSRFToken": csrftoken
+			}
+		}
+
+		fetch(URL, { 
+			headers,
+			method
+		}).then( r => r.json() )
+		.then( data => dispatch(playSong(data.url)) )
+		.catch( e => {
+			if(e.status === 401)
+				dispatch(updateNotificationBar("Login to play music !"))
+		})
+	}
+}
+
+export function playNewSongFromPlaylist(playlistPosition) {
+	return {
+		type: PLAY_NEW_SONG_FROM_PLAYLIST, 
+		playlistPosition
 	}
 }

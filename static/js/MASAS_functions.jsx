@@ -1,6 +1,13 @@
 var React = require("react")
 const { dispatch } = require("./reducers/reducers.js")
 
+import {
+	pausePlayer,
+	playPreviousSongInHistory,
+	playNewSong,
+	playRandomSong,
+} from "./reducers/actions/Player.js"
+
 var { browserHistory } = require("react-router")
 var Cookie = require("js-cookie")
 
@@ -238,64 +245,76 @@ MASAS_functions.getCookie = (name) => {
 	return cookieValue
 }
 
+/////
+/////
+/////
+////		PLAYER
+////
+/////
+/////
+
 // pause player
 MASAS_functions.pausePlayer = () => {
-	// pause player
-	$("#jquery_jplayer_1").jPlayer("pause")
+	// // pause player
+	// $("#jquery_jplayer_1").jPlayer("pause")
 	
-	// get time to start playing at this time when unpausing and update app state
-	var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-	dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
+	// // get time to start playing at this time when unpausing and update app state
+	// var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
+	// dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
+
+	dispatch(pausePlayer())
 }
 
 MASAS_functions.playPreviousSong = (discoverHistory) => {
-	// POP SONG FROM HISTORY
-	dispatch({ type: "POP_SONG_FROM_HISTORY" })
+	// // POP SONG FROM HISTORY
+	// dispatch({ type: "POP_SONG_FROM_HISTORY" })
 
-	// PLAY LATEST SONG IN HISTORY
-	dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
+	// // PLAY LATEST SONG IN HISTORY
+	// dispatch({ type: "PLAY_NEW_SONG", song: discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url })
+	dispatch(playPreviousSongInHistory())
 }
 
 // update player state with new song (playNewSong in Player/ajaxCalls will take care of playing it on state change)
 // addToHistory: (BOOL) should song be added to history
 MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
+	playNewSong()
 	// PLAY NEW SONG
-	dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId})
+	// dispatch({ type: "PLAY_NEW_SONG", song: MASAS_songId})
 
-	// STORE NEW SONG IN HISTORY if addToHistory = true
-	// fetch MASAS song info
-	if(addToHistory)
-		$.ajax({
-			type: "GET",
-			url: MASAS_songId,
-			success: (MASAS_songInfo) => {
-				// STOR USER INFO ASSOCIATED WITH SONG
-				var ajaxRequest = $.ajax({
-					type: 'GET',
-					url: MASAS_songInfo.trackArtist,
-					success: (artistInfo) => {
-						dispatch({ 
-							type: "UPDATE_ARTIST_INFO",
-							artistInfo,
-						})
+	// // STORE NEW SONG IN HISTORY if addToHistory = true
+	// // fetch MASAS song info
+	// if(addToHistory)
+	// 	$.ajax({
+	// 		type: "GET",
+	// 		url: MASAS_songId,
+	// 		success: (MASAS_songInfo) => {
+	// 			// STOR USER INFO ASSOCIATED WITH SONG
+	// 			var ajaxRequest = $.ajax({
+	// 				type: 'GET',
+	// 				url: MASAS_songInfo.trackArtist,
+	// 				success: (artistInfo) => {
+	// 					dispatch({ 
+	// 						type: "UPDATE_ARTIST_INFO",
+	// 						artistInfo,
+	// 					})
 
-						// fetch SC song info
-						SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
-							dispatch({
-								type: "ADD_SONG_TO_HISTORY",
-								MASAS_songInfo,
-								SC_songInfo,
-								artistInfo
-							})
-						}).catch( () => {
-						})
-					},
-					error: () => {},
-				})
-			},
-			error: () => {
-			},
-		})
+	// 					// fetch SC song info
+	// 					SC.get("/tracks/" + MASAS_songInfo.SC_ID).then((SC_songInfo) => {
+	// 						dispatch({
+	// 							type: "ADD_SONG_TO_HISTORY",
+	// 							MASAS_songInfo,
+	// 							SC_songInfo,
+	// 							artistInfo
+	// 						})
+	// 					}).catch( () => {
+	// 					})
+	// 				},
+	// 				error: () => {},
+	// 			})
+	// 		},
+	// 		error: () => {
+	// 		},
+	// 	})
 
 	// SET ADD TO HISTORY TO TRUE SO ITS DEFAULT FOR NEXT ADDED SONG
 	// dispatch({ type: "SET_ADD_SONG_HISTORY_TRUE" })
@@ -303,40 +322,42 @@ MASAS_functions.playNewSong = (MASAS_songId, addToHistory = true) => {
 
 // gets song based on timeInteral and play song
 MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
-	var URL = "/api/play/"
-	if(timeInterval)
-		URL = URL + "?time_interval_id=" + timeInterval
+	dispatch(playRandomSong(timeInterval))
+	// var URL = "/api/play/"
+	// if(timeInterval)
+	// 	URL = URL + "?time_interval_id=" + timeInterval
 
 
-	var headers = {}
-	var type = "GET"
+	// var headers = {}
+	// var type = "GET"
 
-	if(MASASuser !== "") {
-		var header = "Bearer " + MASASuser
-		var csrftoken = MASAS_functions.getCookie("csrftoken")
-		type = "POST"
+	// // make post request if unauth
+	// if(MASASuser !== "") {
+	// 	var header = "Bearer " + MASASuser
+	// 	var csrftoken = MASAS_functions.getCookie("csrftoken")
+	// 	type = "POST"
 
-		headers = {
-			"Authorization": header,
-			"X-CSRFToken": csrftoken
-		}
-	}
+	// 	headers = {
+	// 		"Authorization": header,
+	// 		"X-CSRFToken": csrftoken
+	// 	}
+	// }
 
-	$.ajax({
-		type,
-		url: URL,
-		headers,
-		data: {
+	// $.ajax({
+	// 	type,
+	// 	url: URL,
+	// 	headers,
+	// 	data: {
 			
-		},
-		success: (data) => {
-			MASAS_functions.playNewSong(data.url)
-		},
-		error: (err) => {
-			if(err.status === 401)
-				MASAS_functions.updateNotificationBar("Login to play music !")
-		},
-	})
+	// 	},
+	// 	success: (data) => {
+	// 		MASAS_functions.playNewSong(data.url)
+	// 	},
+	// 	error: (err) => {
+	// 		if(err.status === 401)
+	// 			MASAS_functions.updateNotificationBar("Login to play music !")
+	// 	},
+	// })
 },
 
 // songId = url to django rest for this song
