@@ -43,25 +43,25 @@ MASAS_functions.background = {
 }
 
 MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
-				var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
-			
-				switch(switchVar) {
-					case "1":
-						return "#EarlyMorning"
-					case "2":
-						return "#LateMorning"
-					case "3":
-						return "#EarlyAfternoon"
-					case "4":
-						return "#LateAfternoon"
-					case "5":
-						return "#EarlyEvening"
-					case "6":
-						return "#LateEvening"
-					default:
-						return ""
-				}
-			}
+	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+
+	switch(switchVar) {
+		case "1":
+			return "#EarlyMorning"
+		case "2":
+			return "#LateMorning"
+		case "3":
+			return "#EarlyAfternoon"
+		case "4":
+			return "#LateAfternoon"
+		case "5":
+			return "#EarlyEvening"
+		case "6":
+			return "#LateEvening"
+		default:
+			return ""
+	}
+}
 
 // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
 MASAS_functions.makePromiseCancelable = (promise) => {
