@@ -52571,7 +52571,7 @@ Player.mapDispatchToProps = function (dispatch) {
 		},
 		resumePlaying: function resumePlaying() {
 			return dispatch((0, _Player.resumePlayer)());
-		},
+		}, // same as this.props.play (see actions/Player.js) Not sure keeping both for historical reasons for now
 		playNewSong: function playNewSong() {
 			return dispatch((0, _Player.playNewSong)());
 		},
