@@ -1,9 +1,20 @@
+import {
+	playNewSongFromPlaylist,
+	playRandomSong
+} from "../../../reducers/actions/Player.js"
 
-var { playRandomSong } = require("../../../MASAS_functions.jsx")
+import {
+	setPlayerProgressBar,
+	toogleIsFooterOpened,
+} from "../../../reducers/actions/Footer.js"
+	
+import {
+	changeModalContent,
+	toogleIsModalOpened,
+} from "../../../reducers/actions/App.js"
 
 var Footer = {}
 
-// Which part of the Redux global state does our component want to receive as props?
 Footer.mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
@@ -22,17 +33,14 @@ Footer.mapStateToProps = function(state) {
 	}
 }
 
-// Which action creators does it want to receive by props?
 Footer.mapDispatchToProps = function(dispatch) {
 	return {
-		// playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		// playRandomSong: (songId) => playNewSong(songId, true),
-		playRandomSong: (MASASuser, timeInterval = 0) => playRandomSong(MASASuser, timeInterval),
-		updateProgressBar:(progress) => dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress}),
-		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
-		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
+		playRandomSong: timeInterval => dispatch(playRandomSong(timeInterval)),
+		updateProgressBar: progress => dispatch(setPlayerProgressBar(progress)),
+		toogleIsOpened: () => dispatch(toogleIsFooterOpened()),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		playNewSongFromPlaylist: playlistPosition => dispatch(playNewSongFromPlaylist(playlistPosition)),
 	}
 }
 

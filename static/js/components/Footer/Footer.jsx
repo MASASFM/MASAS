@@ -49,7 +49,7 @@ var Footer = React.createClass({
 	playRandomSong: function () {
 		const timeInterval = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
 
-		this.props.playRandomSong(this.props.MASASuser, timeInterval)
+		this.props.playRandomSong(timeInterval)
 	},
 
 	toogleMenu: function() {
