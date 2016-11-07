@@ -1,3 +1,7 @@
+import {
+
+} from "actions/Player.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -106,7 +110,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				isFetchingSong: true
 			}
 		case 'SET_SONG_IS_FETCHING_FALSE': 	// not tested
- 			return {
+			return {
 				...state,
 				isFetchingSong: false
 			}
