@@ -20,6 +20,8 @@ export const STOP = "STOP"
 export const PLAY = "PLAY"
 export const PLAY_NEW_SONG = "PLAY_NEW_SONG"
 export const PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST"
+export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
+export const SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE"
 
 ///// TO DELETE
 const getCookie = (name) => {
@@ -38,6 +40,16 @@ const getCookie = (name) => {
 	return cookieValue
 }
 
+export function setIsPlayerBuffering(value = true) {
+	if(value)
+		return {
+			type: SET_SONG_IS_FETCHING_TRUE
+		}
+	else
+		return {
+			type: SET_SONG_IS_FETCHING_FALSE
+		}
+}
 
 // see playerReducer
 function likeSong(value = true) {
@@ -101,6 +113,13 @@ export function stopPlayer() {
 
 // plays jPlayer
 export function playPlayer() {
+	return {
+		type: PLAY,
+	}
+}
+
+// resumes song based on given URL
+export function resumePlayer() {
 	return {
 		type: PLAY,
 	}
@@ -209,13 +228,6 @@ export function playSong(songURL) {
 	return {
 		type: PLAY_NEW_SONG,
 		song: songURL,
-	}
-}
-
-// resumes song based on given URL
-export function resumePlayer() {
-	return {
-		type: PLAY,
 	}
 }
 

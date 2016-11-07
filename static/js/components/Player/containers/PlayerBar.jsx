@@ -4,7 +4,9 @@ import {
 	playPreviousSongInHistory,
 	playRandomSong,
 	playNewSongFromPlaylist,
-	playNewSong
+	playNewSong,
+	resumePlayer,
+	setIsPlayerBuffering,
 } from "../../../reducers/actions/Player.js"
 
 var { toggleSongLike } = require("../../../MASAS_functions.jsx")
@@ -33,21 +35,18 @@ Player.mapStateToProps = function(state) {
 	}
 }
 
-var resumePlaying = function(playerAtTime) {
-	$("#jquery_jplayer_1").jPlayer("play", playerAtTime)
-}
-
 Player.mapDispatchToProps = function(dispatch) {
 	return {
 		dispatch,
 		play: () => dispatch(playPlayer()),
 		pause: () => dispatch(pausePlayer()),
-		resumePlaying: (playerAtTime) => resumePlaying(playerAtTime),
+		resumePlaying: () => dispatch(resumePlayer()),
 		playNewSong: () => dispatch(playNewSong()),
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
-		playRandomSong: (MASASuser, timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
+		playRandomSong: (timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
 		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
+		setIsPlayerBuffering: (value) => dispatch(setIsPlayerBuffering(value))
 	}
 }
 

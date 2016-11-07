@@ -72,9 +72,9 @@ var ArtworkLine = React.createClass({
 						style={{
 							visibility: !renderForUITip && isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>	
-						<div className="artwork-playing">	
-							<div 
-								onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)}
+						<div className="artwork-playing">
+							<div
+								onClick={ () => this.props.playRandomSong(this.props.discoverNumber) }
 								className="player-button"
 								style={{ display: 'flex' }}>
 								<img src="/static/img/MASAS_player_play.svg" alt="play"/>
@@ -172,7 +172,7 @@ var ArtworkLine = React.createClass({
 							visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 						}}>
 						<img
-							onClick={ this.props.playRandomSong.bind(this, this.props.MASASuser, this.props.discoverNumber)} 
+							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
 							className="next-song"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />

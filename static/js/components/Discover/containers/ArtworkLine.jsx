@@ -6,6 +6,10 @@ import {
 	playRandomSong,
 } from "../../../reducers/actions/Player.js"
 
+import {
+	toogleIsFooterOpened,
+} from "../../../reducers/actions/Footer.js"
+
 var ArtworkLine = {}
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -31,9 +35,9 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 	return {
 		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
 		playAndSaveHistory: (songToPlay) => dispatch(playSong(songToPlay)),
-		playRandomSong: (MASASuser, timeInterval) => dispatch(playRandomSong(MASASuser, timeInterval)),
+		playRandomSong: (timeInterval) => dispatch(playRandomSong(timeInterval)),
 		pause: () => dispatch(pausePlayer()),
-		toggleIsFooterOpened: () => dispatch({ type: "TOOGLE_IS_FOOTER_OPENED" }) 
+		toggleIsFooterOpened: () => dispatch(toogleIsFooterOpened()) 
 	}
 }
 

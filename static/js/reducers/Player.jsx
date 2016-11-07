@@ -10,6 +10,8 @@ import {
 	PLAY,
 	PLAY_NEW_SONG,
 	PLAY_NEW_SONG_FROM_PLAYLIST,
+	SET_IS_BUFFERING_FALSE,
+	SET_IS_BUFFERING_TRUE
 } from "./actions/Player.js"
 
 let exportVar = {}
@@ -39,12 +41,12 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				artistInfo: action.artistInfo
 			}
-		case 'SET_IS_BUFFERING_TRUE':
+		case SET_IS_BUFFERING_TRUE:
 			return {
 				...state,
 				isBuffering: true
 			}
-		case 'SET_IS_BUFFERING_FALSE':
+		case SET_IS_BUFFERING_FALSE:
 			return {
 				...state,
 				isBuffering: false
