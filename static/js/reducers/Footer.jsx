@@ -1,3 +1,7 @@
+import {
+	TOOGLE_IS_FOOTER_OPENED,
+} from "./actions/Footer.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -15,7 +19,7 @@ exportVar.footerReducer = function(state = defaultState, action) {
 				...state,
 				progressBar: action.progress
 			}
-		case 'TOOGLE_IS_FOOTER_OPENED': // not tested
+		case TOOGLE_IS_FOOTER_OPENED: // not tested
 			return {
 				...state,
 				isOpened: !state.isOpened
