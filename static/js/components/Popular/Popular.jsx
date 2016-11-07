@@ -55,6 +55,7 @@ var Popular = React.createClass({
 							progress={ this.state.spinnerProgress }
 							size={ 150 }
 							triggerStart={ 1 }
+							showMASASLogo={ true }
 							/>
 					</div>
 					<div className="button--wrapper">

@@ -73,6 +73,7 @@ var App = React.createClass({
 			document.getElementById('mobile-safari-bug-fix--wrapper').style.height = window.innerHeight + 'px'
 		})
 
+		// only show splashscreen on site root
 		if(this.props.location.pathname === '/')
 			this.showSplashScreen()
 	},

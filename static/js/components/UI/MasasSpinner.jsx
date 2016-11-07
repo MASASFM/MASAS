@@ -4,10 +4,14 @@ var MasasSpinner = React.createClass({
 	propTypes: {
 		progress: React.PropTypes.number,
 		size: React.PropTypes.number,
-		triggerStart: React.PropTypes.number
+		triggerStart: React.PropTypes.number,
+		showMASASLogo: React.PropTypes.bool,			// should gif logo after infinity be MASAS (true) or check sign (false)
 	},
  
-	componentWillMount() {
+	getDefaultProps: function() {
+		return {
+			showMASASLogo: false,
+		}
 	},
 
 	getInitialState: function() {
@@ -20,9 +24,11 @@ var MasasSpinner = React.createClass({
 		this.init()
 	},
 
-	componentWillReceiveProps: function( newProps ) {
+	componentWillReceiveProps: function( newProps, newState ) {
 		if( newProps.triggerStart != this.props.triggerStart && newProps.triggerStart === 1 )
 			this.restartLoader()
+		if(this.props.progress > newProps.progress)
+			console.log(this.props.progress, newProps.progress)
 	},
 
 	init() {
@@ -37,7 +43,10 @@ var MasasSpinner = React.createClass({
 	restartLoader: function() {
 		// PRELOAD GIF
 		var checkGif = new Image()
-		checkGif.src = "/static/img/infini_transparant.gif"+"?a="+Math.random()	 // randomize source (needed for gif restart)
+		if(this.props.showMASASLogo)
+			checkGif.src = "/static/img/infini_masas.gif"+"?a="+Math.random()
+		else
+			checkGif.src = "/static/img/infini_check.gif"+"?a="+Math.random()	 // randomize source (needed for gif restart)
 
 		// RESET startPt
 		this.setState({'startPt':  0})
