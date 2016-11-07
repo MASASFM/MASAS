@@ -1,9 +1,8 @@
-var { toggleSongLike } = require("../../../MASAS_functions.jsx")
-
 import {
 	playSong,
 	pausePlayer,
 	playRandomSong,
+	toggleSongLike
 } from "../../../reducers/actions/Player.js"
 
 import {

@@ -11,7 +11,9 @@ import {
 	PLAY_NEW_SONG,
 	PLAY_NEW_SONG_FROM_PLAYLIST,
 	SET_IS_BUFFERING_FALSE,
-	SET_IS_BUFFERING_TRUE
+	SET_IS_BUFFERING_TRUE,
+	TOOGLE_SONG_LIKE,
+	PAUSE,
 } from "./actions/Player.js"
 
 let exportVar = {}
@@ -56,7 +58,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				isPaused: false
 			}
-		case 'PAUSE':
+		case PAUSE:
 			return {
 				...state,
 				isPaused: true,
@@ -101,7 +103,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				SC_songInfo: action.songInfo
 			}
-		case 'TOGGLE_SONG_LIKE':
+		case TOOGLE_SONG_LIKE:
 			return {
 				...state,
 				isSongPlayingLiked: !state.isSongPlayingLiked

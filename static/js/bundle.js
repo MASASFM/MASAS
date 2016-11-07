@@ -45284,10 +45284,6 @@ var _Player = require("../../../reducers/actions/Player.js");
 
 var _Footer = require("../../../reducers/actions/Footer.js");
 
-var _require = require("../../../MASAS_functions.jsx");
-
-var _toggleSongLike = _require.toggleSongLike;
-
 var ArtworkLine = {};
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -45312,7 +45308,7 @@ ArtworkLine.mapStateToProps = function (state) {
 ArtworkLine.mapDispatchToProps = function (dispatch) {
 	return {
 		toggleSongLike: function toggleSongLike(userToken, songId) {
-			return dispatch(_toggleSongLike(songId));
+			return dispatch((0, _Player.toggleSongLike)(songId));
 		},
 		playAndSaveHistory: function playAndSaveHistory(songToPlay) {
 			return dispatch((0, _Player.playSong)(songToPlay));
@@ -45331,7 +45327,7 @@ ArtworkLine.mapDispatchToProps = function (dispatch) {
 
 module.exports = ArtworkLine;
 
-},{"../../../MASAS_functions.jsx":378,"../../../reducers/actions/Footer.js":512,"../../../reducers/actions/Player.js":516}],390:[function(require,module,exports){
+},{"../../../reducers/actions/Footer.js":512,"../../../reducers/actions/Player.js":516}],390:[function(require,module,exports){
 "use strict";
 
 var _Player = require("../../../reducers/actions/Player.js");
@@ -58486,11 +58482,11 @@ exportVar.loginReducer = function () {
 module.exports = exportVar;
 
 },{}],506:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _Player = require('./actions/Player.js');
+var _Player = require("./actions/Player.js");
 
 var exportVar = {};
 
@@ -58532,7 +58528,7 @@ exportVar.playerReducer = function () {
 			return _extends({}, state, {
 				isPaused: false
 			});
-		case 'PAUSE':
+		case _Player.PAUSE:
 			return _extends({}, state, {
 				isPaused: true,
 				playerAtTime: action.pausingAtTime
@@ -58568,7 +58564,7 @@ exportVar.playerReducer = function () {
 			return _extends({}, state, {
 				SC_songInfo: action.songInfo
 			});
-		case 'TOGGLE_SONG_LIKE':
+		case _Player.TOOGLE_SONG_LIKE:
 			return _extends({}, state, {
 				isSongPlayingLiked: !state.isSongPlayingLiked
 			});
@@ -59185,7 +59181,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.TOOGLE_SONG_LIKE = exports.SET_IS_BUFFERING_FALSE = exports.SET_IS_BUFFERING_TRUE = exports.PLAY_NEW_SONG_FROM_PLAYLIST = exports.PLAY_NEW_SONG = exports.PLAY = exports.STOP = exports.UNLIKE_SONG = exports.LIKE_SONG = exports.SET_SONG_IS_FETCHING_FALSE = exports.UPDATE_ARTIST_INFO = exports.UPDATE_SC_SONG_INFO = exports.UPDATE_MASAS_SONG_INFO = exports.SET_SONG_IS_FETCHING_TRUE = undefined;
+exports.TOOGLE_SONG_LIKE = exports.SET_IS_BUFFERING_FALSE = exports.SET_IS_BUFFERING_TRUE = exports.PLAY_NEW_SONG_FROM_PLAYLIST = exports.PLAY_NEW_SONG = exports.PAUSE = exports.PLAY = exports.STOP = exports.UNLIKE_SONG = exports.LIKE_SONG = exports.SET_SONG_IS_FETCHING_FALSE = exports.UPDATE_ARTIST_INFO = exports.UPDATE_SC_SONG_INFO = exports.UPDATE_MASAS_SONG_INFO = exports.SET_SONG_IS_FETCHING_TRUE = undefined;
 exports.toggleSongLike = toggleSongLike;
 exports.setIsPlayerBuffering = setIsPlayerBuffering;
 exports.updateLikeButton = updateLikeButton;
@@ -59234,6 +59230,7 @@ var LIKE_SONG = exports.LIKE_SONG = "LIKE_SONG";
 var UNLIKE_SONG = exports.UNLIKE_SONG = "UNLIKE_SONG";
 var STOP = exports.STOP = "STOP";
 var PLAY = exports.PLAY = "PLAY";
+var PAUSE = exports.PAUSE = "PAUSE";
 var PLAY_NEW_SONG = exports.PLAY_NEW_SONG = "PLAY_NEW_SONG";
 var PLAY_NEW_SONG_FROM_PLAYLIST = exports.PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST";
 var SET_IS_BUFFERING_TRUE = exports.SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE";
@@ -59268,6 +59265,9 @@ function toggleSongLike(songId) {
 			window.setTimeout(function () {
 				dispatch((0, _Header.updateNotificationText)(""));
 				dispatch((0, _Header.updateNotificationText)("Login to like music!"));
+
+				// remove optimistic UI
+				dispatch({ type: TOOGLE_SONG_LIKE });
 			}, 0);
 
 			return;
@@ -59310,7 +59310,9 @@ function toggleSongLike(songId) {
 
 					// update user profile data
 					dispatch((0, _Profile.updateProfileInfo)());
-				}).catch(function () {});
+				}).catch(function () {
+					return dispatch({ type: TOOGLE_SONG_LIKE });
+				});
 			} else {
 
 				// find if song liked => unlike
@@ -59332,7 +59334,9 @@ function toggleSongLike(songId) {
 
 						// update user profile data
 						dispatch((0, _Profile.updateProfileInfo)());
-					}).catch(function () {});
+					}).catch(function () {
+						return dispatch({ type: TOOGLE_SONG_LIKE });
+					});
 				}
 			}
 		}).catch(function (err) {
@@ -59430,7 +59434,7 @@ function pausePlayer() {
 
 		// get time to start playing at this time when unpausing and update app state
 		var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime);
-		dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime });
+		dispatch({ type: PAUSE, pausingAtTime: pausingAtTime });
 	};
 }
 

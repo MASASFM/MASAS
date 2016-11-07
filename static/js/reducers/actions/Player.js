@@ -40,6 +40,7 @@ export const LIKE_SONG = "LIKE_SONG"
 export const UNLIKE_SONG = "UNLIKE_SONG"
 export const STOP = "STOP"
 export const PLAY = "PLAY"
+export const PAUSE = "PAUSE"
 export const PLAY_NEW_SONG = "PLAY_NEW_SONG"
 export const PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST"
 export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
@@ -75,6 +76,9 @@ export function toggleSongLike(songId) {
 			window.setTimeout( () => {
 				dispatch(updateNotificationText(""))
 				dispatch(updateNotificationText("Login to like music!"))
+
+				// remove optimistic UI
+				dispatch({ type: TOOGLE_SONG_LIKE })
 			}, 0)
 
 			return 
@@ -118,7 +122,7 @@ export function toggleSongLike(songId) {
 
 					// update user profile data
 					dispatch(updateProfileInfo())
-				}).catch( () => { } )
+				}).catch( () => dispatch({ type: TOOGLE_SONG_LIKE }) )
 			} else {
 
 				// find if song liked => unlike
@@ -138,7 +142,7 @@ export function toggleSongLike(songId) {
 
 						// update user profile data
 						dispatch(updateProfileInfo())
-					}).catch( () => { } )
+					}).catch( () => dispatch({ type: TOOGLE_SONG_LIKE }) )
 				}
 				
 			}
@@ -247,7 +251,7 @@ export function pausePlayer() {
 		
 		// get time to start playing at this time when unpausing and update app state
 		var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
-		dispatch({ type: "PAUSE", pausingAtTime: pausingAtTime })
+		dispatch({ type: PAUSE, pausingAtTime: pausingAtTime })
 	}
 }
 
