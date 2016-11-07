@@ -44431,7 +44431,9 @@ AppDumb.mapDispatchToProps = function (dispatch) {
 module.exports = AppDumb;
 
 },{"../../../reducers/actions/App.js":510}],385:[function(require,module,exports){
-'use strict';
+"use strict";
+
+var _App = require("../../../reducers/actions/App.js");
 
 var SplashScreen = {};
 
@@ -44447,10 +44449,10 @@ SplashScreen.mapStateToProps = function (state) {
 SplashScreen.mapDispatchToProps = function (dispatch) {
 	return {
 		updateSplashScreenPage: function updateSplashScreenPage(splashScreenPage) {
-			return dispatch({ type: 'CHANGE_SLASH_SCREEN_PAGE', splashScreenPage: splashScreenPage });
+			return dispatch((0, _App.changeSplashScreenPage)(splashScreenPage));
 		},
 		closeSplashScreen: function closeSplashScreen() {
-			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+			return dispatch((0, _App.closeAndEmptyMainModal)());
 		}
 
 	};
@@ -44458,7 +44460,7 @@ SplashScreen.mapDispatchToProps = function (dispatch) {
 
 module.exports = SplashScreen;
 
-},{}],386:[function(require,module,exports){
+},{"../../../reducers/actions/App.js":510}],386:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -45499,7 +45501,7 @@ var Footer = _wrapComponent("_component")(React.createClass({
 	playRandomSong: function playRandomSong() {
 		var timeInterval = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval);
 
-		this.props.playRandomSong(this.props.MASASuser, timeInterval);
+		this.props.playRandomSong(timeInterval);
 	},
 
 	toogleMenu: function toogleMenu() {
@@ -46038,15 +46040,16 @@ ajaxCalls.reportCopyright = function () {
 module.exports = ajaxCalls;
 
 },{"../../MASAS_functions.jsx":378,"../../reducers/reducers.js":519,"react-router":202}],396:[function(require,module,exports){
-'use strict';
+"use strict";
 
-var _require = require("../../../MASAS_functions.jsx");
+var _Player = require("../../../reducers/actions/Player.js");
 
-var _playRandomSong = _require.playRandomSong;
+var _Footer = require("../../../reducers/actions/Footer.js");
+
+var _App = require("../../../reducers/actions/App.js");
 
 var Footer = {};
 
-// Which part of the Redux global state does our component want to receive as props?
 Footer.mapStateToProps = function (state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
@@ -46065,36 +46068,32 @@ Footer.mapStateToProps = function (state) {
 	};
 };
 
-// Which action creators does it want to receive by props?
 Footer.mapDispatchToProps = function (dispatch) {
 	return {
-		// playRandomSong:(songId) => dispatch({ type: 'PLAY_NEW_SONG', song: songId}),
-		// playRandomSong: (songId) => playNewSong(songId, true),
-		playRandomSong: function playRandomSong(MASASuser) {
-			var timeInterval = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-			return _playRandomSong(MASASuser, timeInterval);
+		playRandomSong: function playRandomSong(timeInterval) {
+			return dispatch((0, _Player.playRandomSong)(timeInterval));
 		},
 		updateProgressBar: function updateProgressBar(progress) {
-			return dispatch({ type: 'SET_PLAYER_PROGRESS_BAR', progress: progress });
+			return dispatch((0, _Footer.setPlayerProgressBar)(progress));
 		},
 		toogleIsOpened: function toogleIsOpened() {
-			return dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' });
+			return dispatch((0, _Footer.toogleIsFooterOpened)());
 		},
 		toogleModal: function toogleModal() {
-			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+			return dispatch((0, _App.toogleIsModalOpened)());
 		},
 		updateModalContent: function updateModalContent(modalContent) {
-			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent });
+			return dispatch((0, _App.changeModalContent)(modalContent));
 		},
 		playNewSongFromPlaylist: function playNewSongFromPlaylist(playlistPosition) {
-			return dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition: playlistPosition });
+			return dispatch((0, _Player.playNewSongFromPlaylist)(playlistPosition));
 		}
 	};
 };
 
 module.exports = Footer;
 
-},{"../../../MASAS_functions.jsx":378}],397:[function(require,module,exports){
+},{"../../../reducers/actions/App.js":510,"../../../reducers/actions/Footer.js":512,"../../../reducers/actions/Player.js":516}],397:[function(require,module,exports){
 'use strict';
 
 var _require = require('../ajaxCalls.jsx');
@@ -58010,7 +58009,7 @@ exportVar.appReducer = function () {
 			return _extends({}, state, {
 				loggedOutUserStep: 0
 			});
-		case 'CHANGE_SLASH_SCREEN_PAGE':
+		case _App.CHANGE_SLASH_SCREEN_PAGE:
 			return _extends({}, state, {
 				splashScreenPage: action.splashScreenPage
 			});
@@ -58218,11 +58217,11 @@ exportVar.discoverReducer = function () {
 module.exports = exportVar;
 
 },{}],500:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _Footer = require('./actions/Footer.js');
+var _Footer = require("./actions/Footer.js");
 
 var exportVar = {};
 
@@ -58238,7 +58237,7 @@ exportVar.footerReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
-		case 'SET_PLAYER_PROGRESS_BAR':
+		case _Footer.SET_PLAYER_PROGRESS_BAR:
 			// not tested
 			return _extends({}, state, {
 				progressBar: action.progress
@@ -58780,6 +58779,7 @@ module.exports = exportVar;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.changeSplashScreenPage = changeSplashScreenPage;
 exports.setAppFetchingStateTrue = setAppFetchingStateTrue;
 exports.setAppFetchingStateFalse = setAppFetchingStateFalse;
 exports.doneProcessingAuthCookie = doneProcessingAuthCookie;
@@ -58806,6 +58806,14 @@ var MODAL_BLUR_BG = exports.MODAL_BLUR_BG = 'MODAL_BLUR_BG';
 var DONE_PROCESSING_AUTH_COOKIE = exports.DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE';
 var SET_APP_FETCHING_STATE_FALSE = exports.SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE';
 var SET_APP_FETCHING_STATE_TRUE = exports.SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE';
+var CHANGE_SLASH_SCREEN_PAGE = exports.CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE';
+
+function changeSplashScreenPage(splashScreenPage) {
+	return {
+		type: CHANGE_SLASH_SCREEN_PAGE,
+		splashScreenPage: splashScreenPage
+	};
+}
 
 function setAppFetchingStateTrue() {
 	return {
@@ -58837,7 +58845,10 @@ function resetLoggedOutUserStep() {
 	};
 }
 
-function changeModalContent(modalContent, modalType, closeModalFunc) {
+function changeModalContent(modalContent) {
+	var modalType = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+	var closeModalFunc = arguments.length <= 2 || arguments[2] === undefined ? function () {} : arguments[2];
+
 	if (closeModalFunc === undefined) closeModalFunc = function closeModalFunc() {};
 
 	return {
@@ -58971,11 +58982,20 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.toogleIsFooterOpened = toogleIsFooterOpened;
+exports.setPlayerProgressBar = setPlayerProgressBar;
 var TOOGLE_IS_FOOTER_OPENED = exports.TOOGLE_IS_FOOTER_OPENED = "TOOGLE_IS_FOOTER_OPENED";
+var SET_PLAYER_PROGRESS_BAR = exports.SET_PLAYER_PROGRESS_BAR = "SET_PLAYER_PROGRESS_BAR";
 
 function toogleIsFooterOpened() {
 	return {
 		type: TOOGLE_IS_FOOTER_OPENED
+	};
+}
+
+function setPlayerProgressBar(progress) {
+	return {
+		type: 'SET_PLAYER_PROGRESS_BAR',
+		progress: progress
 	};
 }
 

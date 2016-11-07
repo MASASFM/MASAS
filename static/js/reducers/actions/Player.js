@@ -47,8 +47,6 @@ export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
 export const SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE"
 export const TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE"
 
-
-
 export function toggleSongLike(songId) {
 	return (dispatch, getState) => {
 		const state = getState()

@@ -17,6 +17,7 @@ import {
 	DONE_PROCESSING_AUTH_COOKIE,
 	SET_APP_FETCHING_STATE_TRUE,
 	SET_APP_FETCHING_STATE_FALSE,
+	CHANGE_SLASH_SCREEN_PAGE,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -111,7 +112,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 				...state,
 				loggedOutUserStep: 0
 			}
-		case 'CHANGE_SLASH_SCREEN_PAGE':
+		case CHANGE_SLASH_SCREEN_PAGE:
 			return {
 				...state,
 				splashScreenPage: action.splashScreenPage,

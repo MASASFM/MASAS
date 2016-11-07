@@ -14,6 +14,14 @@ export const MODAL_BLUR_BG = 'MODAL_BLUR_BG'
 export const DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE'
 export const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
 export const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
+export const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
+
+export function changeSplashScreenPage(splashScreenPage) {
+	return {
+		type: CHANGE_SLASH_SCREEN_PAGE,
+		splashScreenPage
+	}
+}
 
 export function setAppFetchingStateTrue() {
 	return {
@@ -46,7 +54,7 @@ export function resetLoggedOutUserStep() {
 	}
 }
 
-export function changeModalContent(modalContent, modalType, closeModalFunc) {
+export function changeModalContent(modalContent, modalType = 1, closeModalFunc = () => {} ) {
 	if(closeModalFunc === undefined)
 		closeModalFunc = () => {}
 	
