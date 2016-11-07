@@ -1,15 +1,20 @@
 import "whatwg-fetch"
 
+import {
+	addSongToHistory
+} from "./Discover.js"
+
 export const SET_SONG_IS_FETCHING_TRUE = "SET_SONG_IS_FETCHING_TRUE"
 export const UPDATE_MASAS_SONG_INFO = "UPDATE_MASAS_SONG_INFO"
 export const UPDATE_SC_SONG_INFO = "UPDATE_SC_SONG_INFO"
 export const UPDATE_ARTIST_INFO = "UPDATE_ARTIST_INFO"
-export const ADD_SONG_TO_HISTORY = "ADD_SONG_TO_HISTORY"
 export const SET_SONG_IS_FETCHING_FALSE = "SET_SONG_IS_FETCHING_FALSE"
 export const LIKE_SONG = "LIKE_SONG"
 export const UNLIKE_SONG = "UNLIKE_SONG"
 export const STOP = "STOP"
+export const PLAY = "PLAY"
 
+// see playerReducer
 function likeSong(value = true) {
 	if(value)
 		return {
@@ -50,6 +55,7 @@ export function updateLikeButton(MASAS_songInfo) {
 	}
 }
 
+// Updates state when fetch song to play info starts / ends
 export function setIsSongFetching(value = true) {
 	if(value)
 		return {
@@ -61,12 +67,19 @@ export function setIsSongFetching(value = true) {
 		}
 }
 
+// stops jPlayer
 export function stopPlayer() {
 	return {
 		type: STOP,
 	}
 }
 
+// plays jPlayer
+export function playPlayer() {
+	return {
+		type: PLAY,
+	}
+}
 
 function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 	var streamURL = SC_songInfo.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3" 
@@ -121,6 +134,7 @@ function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 		$("#jquery_jplayer_1").jPlayer('play')
 }
 
+// resets player state
 function resetPlayer() {
 	return dispatch => {
 		// end loading state
@@ -149,15 +163,6 @@ function updateArtistInfo(artistInfo) {
 	return {
 		type: UPDATE_ARTIST_INFO,
 		artistInfo,
-	}
-}
-
-export function addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo) {
-	return {
-		type: ADD_SONG_TO_HISTORY,
-		MASAS_songInfo,
-		SC_songInfo,
-		artistInfo
 	}
 }
 

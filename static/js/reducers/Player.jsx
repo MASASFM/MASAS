@@ -1,6 +1,14 @@
 import {
-
-} from "actions/Player.js"
+	SET_SONG_IS_FETCHING_TRUE,
+	UPDATE_MASAS_SONG_INFO,
+	UPDATE_SC_SONG_INFO,
+	UPDATE_ARTIST_INFO,
+	SET_SONG_IS_FETCHING_FALSE,
+	LIKE_SONG,
+	UNLIKE_SONG,
+	STOP,
+	PLAY,
+} from "./actions/Player.js"
 
 let exportVar = {}
 
@@ -8,15 +16,15 @@ exportVar.defaultState = {
 	songPlaying: null,					// (string) currently playing song (song api url)		
 	isPaused: false,					// (bool) is player paused
 	playerAtTime: 0,					// (float) time current song playing is at
-	MASAS_songInfo: null,				// song info from MASAS db
+	MASAS_songInfo: null,					// song info from MASAS db
 	SC_songInfo: null,					// song info from soundcloud API
 	artistInfo: null,						// (object) artist info  associated with song
-	isSongPlayingLiked: false,			// (bool) is currently playing song liked
-	isFetchingSong: false,				// (bool) is song currently fetching
+	isSongPlayingLiked: false,				// (bool) is currently playing song liked
+	isFetchingSong: false,					// (bool) is song currently fetching
 	isBuffering: false,					// (bool) is song buffering
-	isPlaylistPlaying: false, 			// (bool)
+	isPlaylistPlaying: false, 					// (bool)
 	playlist: [], 						// (array) array of songs to play
-	playlistPosition: 0, 				// (int) in [0, playlist.length-1], position in playlist (used to play previous and next songs)
+	playlistPosition: 0, 					// (int) in [0, playlist.length-1], position in playlist (used to play previous and next songs)
 }
 
 const { defaultState } = exportVar
@@ -24,7 +32,7 @@ const { defaultState } = exportVar
 exportVar.playerReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
-		case 'UPDATE_ARTIST_INFO':
+		case UPDATE_ARTIST_INFO:
 			return {
 				...state,
 				artistInfo: action.artistInfo
@@ -39,7 +47,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				isBuffering: false
 			}
-		case 'PLAY':
+		case PLAY:
 			return {
 				...state,
 				isPaused: false
@@ -50,7 +58,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				isPaused: true,
 				playerAtTime: action.pausingAtTime,
 			}
-		case 'STOP':
+		case STOP:
 			return {
 				defaultState
 			}
@@ -79,12 +87,12 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				playlist: action.playlist
 			}
-		case 'UPDATE_MASAS_SONG_INFO':
+		case UPDATE_MASAS_SONG_INFO:
 			return {
 				...state,
 				MASAS_songInfo: action.songInfo
 			}
-		case 'UPDATE_SC_SONG_INFO':
+		case UPDATE_SC_SONG_INFO:
 			return {
 				...state,
 				SC_songInfo: action.songInfo
@@ -94,22 +102,22 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				...state,
 				isSongPlayingLiked: !state.isSongPlayingLiked
 			}
-		case 'LIKE_SONG':
+		case LIKE_SONG:
 			return {
 				...state,
 				isSongPlayingLiked: true
 			}
-		case 'UNLIKE_SONG':
+		case UNLIKE_SONG:
 			return {
 				...state,
 				isSongPlayingLiked: false
 			}
-		case 'SET_SONG_IS_FETCHING_TRUE': 	// not tested
+		case SET_SONG_IS_FETCHING_TRUE:
 			return {
 				...state,
 				isFetchingSong: true
 			}
-		case 'SET_SONG_IS_FETCHING_FALSE': 	// not tested
+		case SET_SONG_IS_FETCHING_FALSE:
 			return {
 				...state,
 				isFetchingSong: false
