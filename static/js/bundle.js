@@ -59621,14 +59621,14 @@ function playNewSong() {
 function playPreviousSongInHistory() {
 	return function (dispatch, getState) {
 		var state = getState();
-		var discoverHistory = state.discoverReducer.discoverHistory;
+		var history = state.discoverReducer.history;
 
 		// POP SONG FROM HISTORY
 
 		dispatch((0, _Discover.popSongFromHistory)());
 
 		// PLAY LATEST SONG IN HISTORY
-		var songURL = discoverHistory.all[discoverHistory.all.length - 1].MASAS_songInfo.url;
+		var songURL = history.all[history.all.length - 1].MASAS_songInfo.url;
 		dispatch(playSong(songURL));
 	};
 }

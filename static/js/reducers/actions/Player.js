@@ -264,13 +264,13 @@ export function playNewSong() {
 export function playPreviousSongInHistory() {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { discoverHistory } = state.discoverReducer
+		const { history } = state.discoverReducer
 
 		// POP SONG FROM HISTORY
 		dispatch(popSongFromHistory())
 
 		// PLAY LATEST SONG IN HISTORY
-		const songURL = discoverHistory.all[discoverHistory.all.length-1].MASAS_songInfo.url
+		const songURL = history.all[history.all.length-1].MASAS_songInfo.url
 		dispatch(playSong(songURL))
 	}
 }
