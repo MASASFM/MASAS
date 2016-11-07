@@ -6,7 +6,16 @@ import {
 	playPreviousSongInHistory,
 	playNewSong,
 	playRandomSong,
+	toggleSongLike,
 } from "./reducers/actions/Player.js"
+
+import {
+	closeAndEmptyMainModal,
+} from "./reducers/actions/App.js"
+
+import {
+	updateNotificationBar,
+} from "./reducers/actions/Header.js"
 
 var { browserHistory } = require("react-router")
 var Cookie = require("js-cookie")
@@ -112,27 +121,6 @@ MASAS_functions.isSubsequence = (sequence, string) => {
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = (timeIntervalURL) => {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1))
-}
-
-/////
-/////
-/////
-////		Other UI
-////
-/////
-/////
-
-MASAS_functions.closeModal = () => {
-	dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' })
-}
-
-MASAS_functions.updateNotificationBar = (notificationText) => {
-	const currentText = document.getElementById("notification-text")
-	if(currentText != notificationText) {
-		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-		dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: notificationText})
-	}
-
 }
 
 /////
@@ -282,6 +270,9 @@ MASAS_functions.updateUserInfo = (userPk, userToken) => {
 	})
 }
 
+const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
+MASAS_functions.updateProfileInfo = updateProfileInfo
+
 /////
 /////
 /////
@@ -313,145 +304,24 @@ MASAS_functions.playRandomSong = (MASASuser, timeInterval = 0) => {
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
 MASAS_functions.toggleSongLike = (userToken, songId) => {
-	// optimistic UI
-	dispatch({type: "TOGGLE_SONG_LIKE"})
-
-	// NO ACTION IF NO SONG IS PROVIDED
-	if(!songId) {
-		window.setTimeout( () => {
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!"})
-
-			// remove optimistic UI
-			dispatch({type: "TOGGLE_SONG_LIKE"})
-		}, 0)
-
-		return 
-	}
-
-	if(!userToken) {
-		window.setTimeout( () => {
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like music!"})
-
-			// remove optimistic UI
-			dispatch({type: "TOGGLE_SONG_LIKE"})
-		}, 0)
-
-		return 
-	}
-
-	// CHECK IF SONG IS LIKED FROM REST API
-		// fetch user info
-		// compare liked songs with songId
-
-
-	// server check and UI update if necessary
-	var header = "Bearer " + userToken
-	var csrftoken = MASAS_functions.getCookie("csrftoken")
-		
-	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
-	$.ajax({
-		type: "GET",
-		url: "/api/check-user/",	
-		headers: {
-			"Authorization": header,
-		},
-		success: (data) => {
-			// GET USER LIKES FROM USER.PK
-
-			$.ajax({
-				type: "GET",
-				url: "/api/users/" + data.userPk + "/",	
-				headers: {
-					"Authorization": header,
-				},
-				success: (user) => {
-					const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-
-					var likes = user.likes
-
-					var isSongLiked = user.likes.filter( (like) => {
-						return like.song.url === songId
-					})
-
-					// song not liked yet
-					if(isSongLiked.length === 0) {
-						$.ajax({
-							type: "POST",
-							url: "/api/statuses/",	
-							headers: {
-								"Authorization": header,
-								"X-CSRFToken": csrftoken,
-							},
-							data: {
-								user: user.url,
-								song: songId,
-								status: 1
-							},
-							success: (data) => {
-								// update UI
-								dispatch({type: "LIKE_SONG"})
-								dispatch({type: "REFETCH_LIKES"})
-								dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-								dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked"})
-
-								// update user profile data
-								updateProfileInfo()
-							},
-							error: (err) => {
-							},
-						})
-					} else {
-
-						// find if song liked
-						let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
-						if(songLiked.length === 1) {
-							songLiked = isSongLiked[0]
-							$.ajax({
-								type: "DELETE",
-								url: songLiked.url,	
-								headers: {
-									"Authorization": header,
-									"X-CSRFToken": csrftoken,
-								},
-								success: (data) => {
-									// update UI
-									dispatch({type: "UNLIKE_SONG"})
-									dispatch({type: "REFETCH_LIKES"})
-									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked"})
-
-									// update user profile data
-									updateProfileInfo()
-								},
-								error: (err) => {
-								},
-							})
-						}
-						
-					}
-				},
-				error: (err) => {
-					dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-					dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like songs!"})
-				
-					// unlike song (optimistic UI)
-					dispatch({type: "TOGGLE_SONG_LIKE"})
-					return 
-					},
-			})
-
-		},
-
-		error: (err) => {
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-			dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..."})
-		},
-	})
+	dispatch(toggleSongLike(songId))
 }
 
-const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-MASAS_functions.updateProfileInfo = updateProfileInfo
+/////
+/////
+/////
+////		Other UI
+////
+/////
+/////
+
+MASAS_functions.closeModal = () => {
+	dispatch(closeAndEmptyMainModal())
+}
+
+MASAS_functions.updateNotificationBar = (notificationText) => {
+	dispatch(updateNotificationBar(notificationText))
+
+}
 
 module.exports = MASAS_functions

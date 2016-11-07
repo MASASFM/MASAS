@@ -48,7 +48,7 @@ export const TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE"
 
 
 
-export function toggleSongLike(userToken, songId) {
+export function toggleSongLike(songId) {
 	return (dispatch, getState) => {
 		const state = getState()
 		const { MASASuserPk } =  state.appReducer
@@ -70,6 +70,7 @@ export function toggleSongLike(userToken, songId) {
 			return 
 		}
 
+		// NO ACTION IF USER IS NOT LOGGED IN
 		if(!userToken) {
 			window.setTimeout( () => {
 				dispatch(updateNotificationText(""))
@@ -100,57 +101,44 @@ export function toggleSongLike(userToken, songId) {
 
 			// song not liked yet
 			if(isSongLiked.length === 0) {
-				$.ajax({
-					type: "POST",
-					url: "/api/statuses/",	
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken,
-					},
-					data: {
+				fetch("/api/statuses/", {
+					method: "POST",
+					headers: { ...headers, "content-type": "application/json" },
+					body: JSON.stringify({
 						user: user.url,
 						song: songId,
 						status: 1
-					},
-					success: (data) => {
-						// update UI
-						dispatch({type: "LIKE_SONG"})
-						dispatch({type: "REFETCH_LIKES"})
-						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked"})
+					})
+				}).then( () => {
+					// update UI
+					dispatch({ type: LIKE_SONG })
+
+					dispatch(updateNotificationText(""))
+					dispatch(updateNotificationText("song liked"))
+
+					// update user profile data
+					dispatch(updateProfileInfo())
+				}).catch( () => { } )
+			} else {
+
+				// find if song liked => unlike
+				var songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
+
+				if(songLiked.length === 1) {
+					songLiked = isSongLiked[0]
+
+					fetch(songLiked.url, {
+						method: "DELETE",
+						headers
+					}).then( () => {
+						dispatch({ type: UNLIKE_SONG })
+
+						dispatch(updateNotificationText(""))
+						dispatch(updateNotificationText("song unliked"))
 
 						// update user profile data
 						dispatch(updateProfileInfo())
-					},
-					error: (err) => {
-					},
-				})
-			} else {
-
-				// find if song liked
-				let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
-				if(songLiked.length === 1) {
-					songLiked = isSongLiked[0]
-					$.ajax({
-						type: "DELETE",
-						url: songLiked.url,	
-						headers: {
-							"Authorization": header,
-							"X-CSRFToken": csrftoken,
-						},
-						success: (data) => {
-							// update UI
-							dispatch({type: "UNLIKE_SONG"})
-							dispatch({type: "REFETCH_LIKES"})
-							dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-							dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked"})
-
-							// update user profile data
-							dispatch(updateProfileInfo())
-						},
-						error: (err) => {
-						},
-					})
+					}).catch( () => { } )
 				}
 				
 			}
@@ -164,116 +152,6 @@ export function toggleSongLike(userToken, songId) {
 		})		
 	}
 }
-
-
-// 		// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
-// 		$.ajax({
-// 			type: "GET",
-// 			url: "/api/check-user/",	
-// 			headers: {
-// 				"Authorization": header,
-// 			},
-// 			success: (data) => {
-// 				// GET USER LIKES FROM USER.PK
-
-// 				$.ajax({
-// 					type: "GET",
-// 					url: "/api/users/" + data.userPk + "/",	
-// 					headers: {
-// 						"Authorization": header,
-// 					},
-// 					success: (user) => {
-// 						const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-
-// 						var likes = user.likes
-
-// 						var isSongLiked = user.likes.filter( (like) => {
-// 							return like.song.url === songId
-// 						})
-
-// 						// song not liked yet
-// 						if(isSongLiked.length === 0) {
-// 							$.ajax({
-// 								type: "POST",
-// 								url: "/api/statuses/",	
-// 								headers: {
-// 									"Authorization": header,
-// 									"X-CSRFToken": csrftoken,
-// 								},
-// 								data: {
-// 									user: user.url,
-// 									song: songId,
-// 									status: 1
-// 								},
-// 								success: (data) => {
-// 									// update UI
-// 									dispatch({type: "LIKE_SONG"})
-// 									dispatch({type: "REFETCH_LIKES"})
-// 									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked"})
-
-// 									// update user profile data
-// 									updateProfileInfo()
-// 								},
-// 								error: (err) => {
-// 								},
-// 							})
-// 						} else {
-
-// 							// find if song liked
-// 							let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
-// 							if(songLiked.length === 1) {
-// 								songLiked = isSongLiked[0]
-// 								$.ajax({
-// 									type: "DELETE",
-// 									url: songLiked.url,	
-// 									headers: {
-// 										"Authorization": header,
-// 										"X-CSRFToken": csrftoken,
-// 									},
-// 									success: (data) => {
-// 										// update UI
-// 										dispatch({type: "UNLIKE_SONG"})
-// 										dispatch({type: "REFETCH_LIKES"})
-// 										dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 										dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked"})
-
-// 										// update user profile data
-// 										updateProfileInfo()
-// 									},
-// 									error: (err) => {
-// 									},
-// 								})
-// 							}
-							
-// 						}
-// 					},
-// 					error: (err) => {
-// 						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like songs!"})
-					
-// 						// unlike song (optimistic UI)
-// 						dispatch({type: "TOGGLE_SONG_LIKE"})
-// 						return 
-// 						},
-// 				})
-
-// 			},
-
-// 			error: (err) => {
-// 				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..."})
-// 			},
-// 		})
-// 	}
-// }
-
-
-
-
-
-
-
 
 
 export function setIsPlayerBuffering(value = true) {

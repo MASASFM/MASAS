@@ -43,7 +43,7 @@ Player.mapDispatchToProps = function(dispatch) {
 		pause: () => dispatch(pausePlayer()),
 		resumePlaying: () => dispatch(resumePlayer()),	// same as this.props.play (see actions/Player.js) Not sure keeping both for historical reasons for now
 		playNewSong: () => dispatch(playNewSong()),
-		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(userToken, songId)),
+		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(songId)),
 		playRandomSong: (timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
 		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),

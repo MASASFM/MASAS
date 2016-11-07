@@ -43290,6 +43290,10 @@ var i=t.exports=n(8),r=Array.prototype.slice;i.extend({Deferred:function(t){var 
 
 var _Player = require("./reducers/actions/Player.js");
 
+var _App = require("./reducers/actions/App.js");
+
+var _Header = require("./reducers/actions/Header.js");
+
 var React = require("react");
 
 var _require = require("./reducers/reducers.js");
@@ -43404,26 +43408,6 @@ MASAS_functions.isSubsequence = function (sequence, string) {
 // returns 1-6 for timeInterval based on songId
 MASAS_functions.getTimeIntervalFromURL = function (timeIntervalURL) {
 	return parseInt(timeIntervalURL.substr(timeIntervalURL.length - 2, 1));
-};
-
-/////
-/////
-/////
-////		Other UI
-////
-/////
-/////
-
-MASAS_functions.closeModal = function () {
-	dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
-};
-
-MASAS_functions.updateNotificationBar = function (notificationText) {
-	var currentText = document.getElementById("notification-text");
-	if (currentText != notificationText) {
-		dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-		dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: notificationText });
-	}
 };
 
 /////
@@ -43572,6 +43556,12 @@ MASAS_functions.updateUserInfo = function (userPk, userToken) {
 	});
 };
 
+var _require3 = require("./components/Profile/ajaxCalls.jsx");
+
+var updateProfileInfo = _require3.updateProfileInfo;
+
+MASAS_functions.updateProfileInfo = updateProfileInfo;
+
 /////
 /////
 /////
@@ -43605,152 +43595,28 @@ MASAS_functions.playRandomSong = function (MASASuser) {
 // songId = url to django rest for this song
 // Refactor with like and dislike functions called from toogleSongLike
 MASAS_functions.toggleSongLike = function (userToken, songId) {
-	// optimistic UI
-	dispatch({ type: "TOGGLE_SONG_LIKE" });
-
-	// NO ACTION IF NO SONG IS PROVIDED
-	if (!songId) {
-		window.setTimeout(function () {
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "No song is playing!" });
-
-			// remove optimistic UI
-			dispatch({ type: "TOGGLE_SONG_LIKE" });
-		}, 0);
-
-		return;
-	}
-
-	if (!userToken) {
-		window.setTimeout(function () {
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like music!" });
-
-			// remove optimistic UI
-			dispatch({ type: "TOGGLE_SONG_LIKE" });
-		}, 0);
-
-		return;
-	}
-
-	// CHECK IF SONG IS LIKED FROM REST API
-	// fetch user info
-	// compare liked songs with songId
-
-	// server check and UI update if necessary
-	var header = "Bearer " + userToken;
-	var csrftoken = MASAS_functions.getCookie("csrftoken");
-
-	// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
-	$.ajax({
-		type: "GET",
-		url: "/api/check-user/",
-		headers: {
-			"Authorization": header
-		},
-		success: function success(data) {
-			// GET USER LIKES FROM USER.PK
-
-			$.ajax({
-				type: "GET",
-				url: "/api/users/" + data.userPk + "/",
-				headers: {
-					"Authorization": header
-				},
-				success: function success(user) {
-					var _require3 = require("./components/Profile/ajaxCalls.jsx");
-
-					var updateProfileInfo = _require3.updateProfileInfo;
-
-					var likes = user.likes;
-
-					var isSongLiked = user.likes.filter(function (like) {
-						return like.song.url === songId;
-					});
-
-					// song not liked yet
-					if (isSongLiked.length === 0) {
-						$.ajax({
-							type: "POST",
-							url: "/api/statuses/",
-							headers: {
-								"Authorization": header,
-								"X-CSRFToken": csrftoken
-							},
-							data: {
-								user: user.url,
-								song: songId,
-								status: 1
-							},
-							success: function success(data) {
-								// update UI
-								dispatch({ type: "LIKE_SONG" });
-								dispatch({ type: "REFETCH_LIKES" });
-								dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-								dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked" });
-
-								// update user profile data
-								updateProfileInfo();
-							},
-							error: function error(err) {}
-						});
-					} else {
-
-						// find if song liked
-						var songLiked = user.likes.filter(function (like) {
-							return like.song.url === songId;
-						});
-						if (songLiked.length === 1) {
-							songLiked = isSongLiked[0];
-							$.ajax({
-								type: "DELETE",
-								url: songLiked.url,
-								headers: {
-									"Authorization": header,
-									"X-CSRFToken": csrftoken
-								},
-								success: function success(data) {
-									// update UI
-									dispatch({ type: "UNLIKE_SONG" });
-									dispatch({ type: "REFETCH_LIKES" });
-									dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-									dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked" });
-
-									// update user profile data
-									updateProfileInfo();
-								},
-								error: function error(err) {}
-							});
-						}
-					}
-				},
-				error: function error(err) {
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-					dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like songs!" });
-
-					// unlike song (optimistic UI)
-					dispatch({ type: "TOGGLE_SONG_LIKE" });
-					return;
-				}
-			});
-		},
-
-		error: function error(err) {
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-			dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..." });
-		}
-	});
+	dispatch((0, _Player.toggleSongLike)(songId));
 };
 
-var _require4 = require("./components/Profile/ajaxCalls.jsx");
+/////
+/////
+/////
+////		Other UI
+////
+/////
+/////
 
-var updateProfileInfo = _require4.updateProfileInfo;
+MASAS_functions.closeModal = function () {
+	dispatch((0, _App.closeAndEmptyMainModal)());
+};
 
-MASAS_functions.updateProfileInfo = updateProfileInfo;
+MASAS_functions.updateNotificationBar = function (notificationText) {
+	dispatch((0, _Header.updateNotificationBar)(notificationText));
+};
 
 module.exports = MASAS_functions;
 
-},{"./components/Login/TermsAndCond.jsx":432,"./components/Profile/ajaxCalls.jsx":457,"./reducers/actions/Player.js":516,"./reducers/reducers.js":519,"js-cookie":32,"react":363,"react-router":202}],379:[function(require,module,exports){
+},{"./components/Login/TermsAndCond.jsx":432,"./components/Profile/ajaxCalls.jsx":457,"./reducers/actions/App.js":510,"./reducers/actions/Header.js":513,"./reducers/actions/Player.js":516,"./reducers/reducers.js":519,"js-cookie":32,"react":363,"react-router":202}],379:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -45446,7 +45312,7 @@ ArtworkLine.mapStateToProps = function (state) {
 ArtworkLine.mapDispatchToProps = function (dispatch) {
 	return {
 		toggleSongLike: function toggleSongLike(userToken, songId) {
-			return _toggleSongLike(userToken, songId);
+			return dispatch(_toggleSongLike(songId));
 		},
 		playAndSaveHistory: function playAndSaveHistory(songToPlay) {
 			return dispatch((0, _Player.playSong)(songToPlay));
@@ -52574,7 +52440,7 @@ Player.mapDispatchToProps = function (dispatch) {
 			return dispatch((0, _Player.playNewSong)());
 		},
 		toggleSongLike: function toggleSongLike(userToken, songId) {
-			return dispatch((0, _Player.toggleSongLike)(userToken, songId));
+			return dispatch((0, _Player.toggleSongLike)(songId));
 		},
 		playRandomSong: function playRandomSong() {
 			var timeInterval = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
@@ -54554,39 +54420,24 @@ var TrackItem = _wrapComponent("_component")(React.createClass({
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TrackItem);
 
 },{"../../MASAS_functions.jsx":378,"../UI/UI.jsx":482,"./ChangeMoodModal.jsx":446,"./RemoveSongModal.jsx":455,"./containers/TrackItem.jsx":465,"livereactload/babel-transform":33,"react":363,"react-redux":168}],457:[function(require,module,exports){
-'use strict';
+"use strict";
+
+var _Profile = require("../../reducers/actions/Profile.js");
 
 var _require = require('../../reducers/reducers.js');
 
 var dispatch = _require.dispatch;
-var getState = _require.getState;
 
 var ajaxCalls = {};
 
+// still here while refactoring
 ajaxCalls.updateProfileInfo = function (callback) {
-	var _getState$appReducer = getState().appReducer;
-	var MASASuser = _getState$appReducer.MASASuser;
-	var userData = _getState$appReducer.userData;
-
-	var header = "Bearer " + MASASuser;
-
-	$.ajax({
-		type: 'GET',
-		url: userData.url,
-		headers: {
-			"Authorization": header
-		},
-		success: function success(userData) {
-			dispatch({ type: 'UPDATE_USER_DATA', userData: userData });
-			if (callback) callback();
-		},
-		error: function error(e) {}
-	});
+	dispatch((0, _Profile.updateProfileInfo)(callback));
 };
 
 module.exports = ajaxCalls;
 
-},{"../../reducers/reducers.js":519}],458:[function(require,module,exports){
+},{"../../reducers/actions/Profile.js":517,"../../reducers/reducers.js":519}],458:[function(require,module,exports){
 'use strict';
 
 var ChangeMoodModal = {};
@@ -59329,6 +59180,8 @@ function fetchLikes() {
 },{"whatwg-fetch":377}],516:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
@@ -59387,7 +59240,7 @@ var SET_IS_BUFFERING_TRUE = exports.SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TR
 var SET_IS_BUFFERING_FALSE = exports.SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE";
 var TOOGLE_SONG_LIKE = exports.TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE";
 
-function toggleSongLike(userToken, songId) {
+function toggleSongLike(songId) {
 	return function (dispatch, getState) {
 		var state = getState();
 		var MASASuserPk = state.appReducer.MASASuserPk;
@@ -59410,6 +59263,7 @@ function toggleSongLike(userToken, songId) {
 			return;
 		}
 
+		// NO ACTION IF USER IS NOT LOGGED IN
 		if (!userToken) {
 			window.setTimeout(function () {
 				dispatch((0, _Header.updateNotificationText)(""));
@@ -59439,57 +59293,46 @@ function toggleSongLike(userToken, songId) {
 
 			// song not liked yet
 			if (isSongLiked.length === 0) {
-				$.ajax({
-					type: "POST",
-					url: "/api/statuses/",
-					headers: {
-						"Authorization": header,
-						"X-CSRFToken": csrftoken
-					},
-					data: {
+				fetch("/api/statuses/", {
+					method: "POST",
+					headers: _extends({}, headers, { "content-type": "application/json" }),
+					body: JSON.stringify({
 						user: user.url,
 						song: songId,
 						status: 1
-					},
-					success: function success(data) {
-						// update UI
-						dispatch({ type: "LIKE_SONG" });
-						dispatch({ type: "REFETCH_LIKES" });
-						dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-						dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked" });
+					})
+				}).then(function () {
+					// update UI
+					dispatch({ type: LIKE_SONG });
 
-						// update user profile data
-						dispatch((0, _Profile.updateProfileInfo)());
-					},
-					error: function error(err) {}
-				});
+					dispatch((0, _Header.updateNotificationText)(""));
+					dispatch((0, _Header.updateNotificationText)("song liked"));
+
+					// update user profile data
+					dispatch((0, _Profile.updateProfileInfo)());
+				}).catch(function () {});
 			} else {
 
-				// find if song liked
+				// find if song liked => unlike
 				var songLiked = user.likes.filter(function (like) {
 					return like.song.url === songId;
 				});
+
 				if (songLiked.length === 1) {
 					songLiked = isSongLiked[0];
-					$.ajax({
-						type: "DELETE",
-						url: songLiked.url,
-						headers: {
-							"Authorization": header,
-							"X-CSRFToken": csrftoken
-						},
-						success: function success(data) {
-							// update UI
-							dispatch({ type: "UNLIKE_SONG" });
-							dispatch({ type: "REFETCH_LIKES" });
-							dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "" });
-							dispatch({ type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked" });
 
-							// update user profile data
-							dispatch((0, _Profile.updateProfileInfo)());
-						},
-						error: function error(err) {}
-					});
+					fetch(songLiked.url, {
+						method: "DELETE",
+						headers: headers
+					}).then(function () {
+						dispatch({ type: UNLIKE_SONG });
+
+						dispatch((0, _Header.updateNotificationText)(""));
+						dispatch((0, _Header.updateNotificationText)("song unliked"));
+
+						// update user profile data
+						dispatch((0, _Profile.updateProfileInfo)());
+					}).catch(function () {});
 				}
 			}
 		}).catch(function (err) {
@@ -59501,108 +59344,6 @@ function toggleSongLike(userToken, songId) {
 		});
 	};
 }
-
-// 		// CHECK USER AUTHENTICATION AND RETRIEVE USER.PK
-// 		$.ajax({
-// 			type: "GET",
-// 			url: "/api/check-user/",	
-// 			headers: {
-// 				"Authorization": header,
-// 			},
-// 			success: (data) => {
-// 				// GET USER LIKES FROM USER.PK
-
-// 				$.ajax({
-// 					type: "GET",
-// 					url: "/api/users/" + data.userPk + "/",	
-// 					headers: {
-// 						"Authorization": header,
-// 					},
-// 					success: (user) => {
-// 						const { updateProfileInfo } = require("./components/Profile/ajaxCalls.jsx")
-
-// 						var likes = user.likes
-
-// 						var isSongLiked = user.likes.filter( (like) => {
-// 							return like.song.url === songId
-// 						})
-
-// 						// song not liked yet
-// 						if(isSongLiked.length === 0) {
-// 							$.ajax({
-// 								type: "POST",
-// 								url: "/api/statuses/",	
-// 								headers: {
-// 									"Authorization": header,
-// 									"X-CSRFToken": csrftoken,
-// 								},
-// 								data: {
-// 									user: user.url,
-// 									song: songId,
-// 									status: 1
-// 								},
-// 								success: (data) => {
-// 									// update UI
-// 									dispatch({type: "LIKE_SONG"})
-// 									dispatch({type: "REFETCH_LIKES"})
-// 									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 									dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song liked"})
-
-// 									// update user profile data
-// 									updateProfileInfo()
-// 								},
-// 								error: (err) => {
-// 								},
-// 							})
-// 						} else {
-
-// 							// find if song liked
-// 							let songLiked = user.likes.filter( (like) => { return like.song.url === songId } )
-// 							if(songLiked.length === 1) {
-// 								songLiked = isSongLiked[0]
-// 								$.ajax({
-// 									type: "DELETE",
-// 									url: songLiked.url,	
-// 									headers: {
-// 										"Authorization": header,
-// 										"X-CSRFToken": csrftoken,
-// 									},
-// 									success: (data) => {
-// 										// update UI
-// 										dispatch({type: "UNLIKE_SONG"})
-// 										dispatch({type: "REFETCH_LIKES"})
-// 										dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 										dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "song unliked"})
-
-// 										// update user profile data
-// 										updateProfileInfo()
-// 									},
-// 									error: (err) => {
-// 									},
-// 								})
-// 							}
-
-// 						}
-// 					},
-// 					error: (err) => {
-// 						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 						dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Login to like songs!"})
-
-// 						// unlike song (optimistic UI)
-// 						dispatch({type: "TOGGLE_SONG_LIKE"})
-// 						return
-// 						},
-// 				})
-
-// 			},
-
-// 			error: (err) => {
-// 				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: ""})
-// 				dispatch({type: "UPDATE_NOTIFICATION_TEXT", notificationText: "Log in to like songs..."})
-// 			},
-// 		})
-// 	}
-// }
 
 function setIsPlayerBuffering() {
 	var value = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];

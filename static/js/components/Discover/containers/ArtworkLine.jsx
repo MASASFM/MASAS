@@ -33,7 +33,7 @@ ArtworkLine.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 ArtworkLine.mapDispatchToProps = function(dispatch) {
 	return {
-		toggleSongLike: (userToken, songId) => toggleSongLike(userToken, songId),
+		toggleSongLike: (userToken, songId) => dispatch(toggleSongLike(songId)),
 		playAndSaveHistory: (songToPlay) => dispatch(playSong(songToPlay)),
 		playRandomSong: (timeInterval) => dispatch(playRandomSong(timeInterval)),
 		pause: () => dispatch(pausePlayer()),
