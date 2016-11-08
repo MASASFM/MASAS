@@ -3,6 +3,11 @@ import {
 	closeAndEmptyMainModal,
 } from "../../../reducers/actions/App.js"
 
+import {
+	handlePickTimeUpload,
+	updateUploadTipTimePickerValue
+} from "../../../reducers/actions/UploadSC.js"
+
 var TeachUploadModals = {}
 
 TeachUploadModals.mapStateToProps = function(state) {
@@ -18,8 +23,8 @@ TeachUploadModals.mapDispatchToProps = function(dispatch) {
 	return {
 		toogleIsModalOpened: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
-		handleTimePickerChange: newDiscover => dispatch({type:'HANDLE_PICK_TIME_UPLOAD', newDiscover}),
-		updateTipTimePickerValue: tipTimePickerValue => dispatch({ type:'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE', tipTimePickerValue}),
+		handleTimePickerChange: newDiscover => dispatch(handlePickTimeUpload(newDiscover)),
+		updateTipTimePickerValue: tipTimePickerValue => dispatch(updateUploadTipTimePickerValue(tipTimePickerValue)),
 	}
 }
 

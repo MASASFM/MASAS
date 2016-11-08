@@ -5,6 +5,8 @@ import {
 	UPDATE_MASAS_USER_TRACKS,
 	UPDATE_SC_USERNAME,
 	UPDATE_IS_CONNECTED_SC,
+	HANDLE_PICK_TIME_UPLOAD,
+	UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE,
 } from './actions/UploadSC.js'
 
 let exportVar = {}
@@ -28,7 +30,7 @@ const { defaultState } = exportVar
 exportVar.uploadSCReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
-		case 'UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE':
+		case UPDATE_UPLOAD_TIP_TIME_PICKER_VALUE:
 			var tipTimePickerValue = action.tipTimePickerValue
 
 			if(tipTimePickerValue < 0)
@@ -81,7 +83,7 @@ exportVar.uploadSCReducer = function(state = defaultState, action) {
 				...state,
 				isConnectedSoundcloud: action.isConnectedSoundcloud
 			}
-		case 'HANDLE_PICK_TIME_UPLOAD':  				// (updated TO BE TESTED
+		case HANDLE_PICK_TIME_UPLOAD:  				// (updated TO BE TESTED
 			return {
 				...state,
 				pickTimeUpload: action.newDiscover,
