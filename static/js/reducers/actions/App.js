@@ -15,6 +15,13 @@ export const DONE_PROCESSING_AUTH_COOKIE = 'DONE_PROCESSING_AUTH_COOKIE'
 export const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
 export const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
 export const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
+export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
+
+export function toogleNavSidebar() {
+	return {
+		type: 'TOOGLE_NAV_SIDEBAR'
+	}
+}
 
 export function changeSplashScreenPage(splashScreenPage) {
 	return {

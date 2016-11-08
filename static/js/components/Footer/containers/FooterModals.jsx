@@ -15,9 +15,7 @@ FooterModal.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 FooterModal.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTimeSuggestion: (newTimeInterval) => {
-			dispatch({ type: 'UPDATE_SUGGEST_NEW_TIME', newTimeInterval })
-		},
+		updateTimeSuggestion: (newTimeInterval) => dispatch({ type: 'UPDATE_SUGGEST_NEW_TIME', newTimeInterval }),
 		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
 		reportCopyright,
 		reportSpam,

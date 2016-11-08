@@ -1,5 +1,6 @@
 import {
 	CHANGE_UNSPLASH_ARTIST,
+	CHANGE_HOME_PAGE_NUMBER,
 } from './actions/Home.js'
 
 let exportVar = {}
@@ -20,7 +21,7 @@ exportVar.homeReducer = function(state = defaultState, action) {
 				...state,
 				timePickerDemo: action.timePickerDemo
 			}
-		case 'CHANGE_HOME_PAGE_NUMBER':
+		case CHANGE_HOME_PAGE_NUMBER:
 			// action.pageNumber: page to go to
 			// action.totalNumberPages: total pages on home page (passed as arg for now)
 			let pageNumber = action.pageNumber

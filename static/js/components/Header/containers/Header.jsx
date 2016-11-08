@@ -1,4 +1,15 @@
-import { closeAndEmptyMainModal } from "../../../reducers/actions/App.js"
+import {
+	closeAndEmptyMainModal,
+	toogleNavSidebar,
+} from "../../../reducers/actions/App.js"
+
+import {
+	toogleIsFooterOpened,
+} from "../../../reducers/actions/Footer.js"
+
+import {
+	changeHomePageNumber,
+} from "../../../reducers/actions/Home.js"
 
 var Header = {}
 
@@ -20,9 +31,9 @@ Header.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 Header.mapDispatchToProps = function(dispatch) {
 	return {
-		onSetNavSidebarOpen: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
-		toogleIsOpened: () => dispatch({ type: 'TOOGLE_IS_FOOTER_OPENED' }),
-		goToHomepageSlide1: () => dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber: 1, totalNumberPages: 4}),
+		onSetNavSidebarOpen: () => dispatch(toogleNavSidebar()),
+		toogleIsOpened: () => dispatch(toogleIsFooterOpened()),
+		goToHomepageSlide1: () => dispatch(changeHomePageNumber(1,4)),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 	}
 }

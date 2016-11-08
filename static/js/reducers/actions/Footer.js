@@ -9,7 +9,7 @@ export function toogleIsFooterOpened() {
 
 export function setPlayerProgressBar(progress) {
 	return {
-		type: 'SET_PLAYER_PROGRESS_BAR',
+		type: SET_PLAYER_PROGRESS_BAR,
 		progress
 	}
 }
