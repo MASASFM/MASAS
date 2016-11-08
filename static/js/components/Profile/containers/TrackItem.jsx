@@ -1,5 +1,14 @@
-var { pausePlayer } = require("../../../MASAS_functions.jsx")
+import {
+	pausePlayer,
+	playSong,
+	loadPlaylist,
+	playNewSongFromPlaylist
+} from "../../../reducers/actions/Player.js"
 
+import {
+	toogleIsModalOpened,
+	changeModalContent
+} from "../../../reducers/actions/App.js"
 
 var TrackItem = {}
 
@@ -17,12 +26,12 @@ TrackItem.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 TrackItem.mapDispatchToProps = function(dispatch) {
 	return {
-		playNewSong: (songToPlay) => dispatch({type:'PLAY_NEW_SONG', song: songToPlay}),
+		playNewSong: songToPlay => dispatch(playSong(songToPlay)),
 		pause: () => pausePlayer(dispatch),
-		loadPlaylist: (playlist) => dispatch({ type: "LOAD_PLAYLIST", playlist }),
-		playNewSongFromPlaylist: (playlistPosition) => dispatch({ type: "PLAY_NEW_SONG_FROM_PLAYLIST", playlistPosition }),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
+		loadPlaylist: playlist => dispatch(loadPlaylist(playlist)),
+		playNewSongFromPlaylist: playlistPosition => dispatch(playNewSongFromPlaylist(playlistPosition)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
 	}
 }
 
