@@ -1,3 +1,6 @@
+import {
+	updateEditProfileTextboxValues,
+} from "../../../reducers/actions/Profile.js"
 
 var ProfileEdit = {}
 
@@ -10,7 +13,7 @@ ProfileEdit.mapStateToProps = function(state) {
 
 ProfileEdit.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTextboxValues: (textboxValues) => dispatch({ type: "UPDATE_EDIT_PROFILE_TEXTBOX_VALUES", textboxValues })
+		updateTextboxValues: (textboxValues) => dispatch(updateEditProfileTextboxValues(textboxValues))
 	}
 }
 

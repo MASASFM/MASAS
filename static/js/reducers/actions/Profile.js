@@ -13,6 +13,13 @@ export const TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE'
 export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES'
 export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 
+export function updateEditProfileTextboxValues(textboxValues) {
+	return {
+		type: UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
+		textboxValues,
+	}
+}
+
 export function updateSongMoodModalValue(discoverNumber) {
 	return {
 		type: UPDATE_SONG_MOOD_MODAL_VALUE,
