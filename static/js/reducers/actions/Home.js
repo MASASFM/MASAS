@@ -3,8 +3,16 @@ import 'whatwg-fetch'
 export const CHANGE_UNSPLASH_ARTIST = 'CHANGE_UNSPLASH_ARTIST'
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const CHANGE_HOME_PAGE_NUMBER = 'CHANGE_HOME_PAGE_NUMBER'
+export const CHANGE_TIME_PICKER_DEMO = 'CHANGE_TIME_PICKER_DEMO'
 
 const unsplashClientID = "bdf3de47d066d021c1deef3d653c824d38d52e7c267e932473d475ab1ce21efa"
+
+export function changeTimePickerDemo(number) {
+	return {
+		type: CHANGE_TIME_PICKER_DEMO,
+		timePickerDemo: number
+	}
+}
 
 export function changeHomePageNumber(pageNumber, totalNumberPages) {
 	return {

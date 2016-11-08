@@ -1,3 +1,12 @@
+import {
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
+
+import{
+	changeHomePageNumber,
+	changeTimePickerDemo
+} from "../../../reducers/actions/Home.js"
+
 var { browserHistory } = require('react-router')
 
 var Home = {}
@@ -16,12 +25,12 @@ Home.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 Home.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		goToLogin: () => {
 			browserHistory.push('/login')
 		},
-		goToPage: (pageNumber, totalNumberPages) => { dispatch({type: 'CHANGE_HOME_PAGE_NUMBER', pageNumber, totalNumberPages}) },
-		updateTimePickerNumber: (number) => { dispatch({ type: "CHANGE_TIME_PICKER_DEMO", timePickerDemo: number })}
+		goToPage: (pageNumber, totalNumberPages) => dispatch(changeHomePageNumber(pageNumber, totalNumberPages)),
+		updateTimePickerNumber: (number) => dispatch(changeTimePickerDemo(number))
 	}
 }
 

@@ -1,6 +1,8 @@
 import {
 	CHANGE_UNSPLASH_ARTIST,
 	CHANGE_HOME_PAGE_NUMBER,
+	CHANGE_TIME_PICKER_DEMO,
+	CHANGE_BACKGROUND
 } from './actions/Home.js'
 
 let exportVar = {}
@@ -16,7 +18,7 @@ const{ defaultState } = exportVar
 
 exportVar.homeReducer = function(state = defaultState, action) {
 	switch(action.type) {
-		case 'CHANGE_TIME_PICKER_DEMO':
+		case CHANGE_TIME_PICKER_DEMO:
 			return {
 				...state,
 				timePickerDemo: action.timePickerDemo
@@ -39,7 +41,7 @@ exportVar.homeReducer = function(state = defaultState, action) {
 				unsplashArtistUsername: action.unsplashArtistUsername,
 				backgroundURL: action.backgroundURL
 			}
-		case 'CHANGE_BACKGROUND':
+		case CHANGE_BACKGROUND:
 			return {
 				...state,
 				backgroundURL: action.backgroundURL

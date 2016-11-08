@@ -6,8 +6,6 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Header.jsx")
 // var { goToURL } = require("../../MASAS_functions.jsx")
 var HeaderDropdown = require("./HeaderDropdown.jsx")
 var Link = require("../UI/Link.jsx")
-var { Button } = require("../UI/UI.jsx")
-var { browserHistory } = require('react-router')
 
 var Header = React.createClass({
 	propTypes: {

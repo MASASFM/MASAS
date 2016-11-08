@@ -13,7 +13,6 @@ import {
 
 var Header = {}
 
-// Which part of the Redux global state does our component want to receive as props?
 Header.mapStateToProps = function(state) {
 	return {
 		pageType: state.appReducer.pageType,
@@ -28,7 +27,6 @@ Header.mapStateToProps = function(state) {
 	}
 }
 
-// Which action creators does it want to receive by props?
 Header.mapDispatchToProps = function(dispatch) {
 	return {
 		onSetNavSidebarOpen: () => dispatch(toogleNavSidebar()),
