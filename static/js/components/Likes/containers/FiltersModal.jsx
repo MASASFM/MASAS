@@ -1,3 +1,11 @@
+import {
+	toogleIsModalOpened,
+	changeModalContent
+} from "../../../reducers/actions/App.js"
+
+import {
+	toogleHashtagFilter,
+} from "../../../reducers/actions/Likes.js"
 
 var FiltersModal = {}
 
@@ -11,9 +19,9 @@ FiltersModal.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 FiltersModal.mapDispatchToProps = function(dispatch) {
 	return {
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent }),
-		toogleHashtag: (hashtagNumber) => dispatch({ type: "TOOGLE_HASHTAG_FILTER", hashtagNumber }),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: modalContent => dispatch(changeModalContent(modalContent)),
+		toogleHashtag: hashtagNumber => dispatch(toogleHashtagFilter(hashtagNumber)),
 	}
 }
 

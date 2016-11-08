@@ -1,6 +1,13 @@
 import 'whatwg-fetch'
 
 // const apiRoot = 'http://masas.fm//'
+export const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
+export function toogleHashtagFilter(hashtagNumber) {
+	return {
+		type: TOOGLE_HASHTAG_FILTER,
+		hashtagNumber,
+	}
+}
 
 export const REQUEST_LIKES = 'REQUEST_LIKES'
 function requestLikes() {
