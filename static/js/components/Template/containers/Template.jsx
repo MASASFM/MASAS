@@ -1,3 +1,6 @@
+import {
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
 
 var Template = {}
 
@@ -8,7 +11,7 @@ Template.mapStateToProps = function(state) {
 
 Template.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 	}
 }
 
