@@ -13,6 +13,13 @@ export const TOGGLE_EDITING_PROFILE = 'TOOGLE_EDITING_PROFILE'
 export const UPDATE_EDIT_PROFILE_TEXTBOX_VALUES = 'UPDATE_EDIT_PROFILE_TEXTBOX_VALUES'
 export const UPDATE_SONG_MOOD_MODAL_VALUE = 'UPDATE_SONG_MOOD_MODAL_VALUE'
 
+export function updateSongMoodModalValue(discoverNumber) {
+	return {
+		type: UPDATE_SONG_MOOD_MODAL_VALUE,
+		discoverNumber
+	}
+}
+
 export function toggleEditingProfile() {
 	return {
 		type: TOGGLE_EDITING_PROFILE,
@@ -21,14 +28,14 @@ export function toggleEditingProfile() {
 
 export function updatePublicProfileInfo(publicProfileInfo) {
 	return {
-		type: "UPDATE_PUBLIC_PROFILE_INFO",
+		type: UPDATE_PUBLIC_PROFILE_INFO,
 		publicProfileInfo
 	}
 }
 
 export function updateUserSCSongs(userSCSongs) {
 	return {
-		type:'UPDATE_USER_SC_SONGS',
+		type:UPDATE_USER_SC_SONGS,
 		userSCSongs,
 	}
 }
