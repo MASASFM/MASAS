@@ -1,3 +1,7 @@
+import {
+	toogleIsModalOpened,
+} from "../../../reducers/actions/App.js"
+
 var TeachDiscoverModals = {}
 
 TeachDiscoverModals.mapStateToProps = function(state) {
@@ -9,7 +13,7 @@ TeachDiscoverModals.mapStateToProps = function(state) {
 
 TeachDiscoverModals.mapDispatchToProps = function(dispatch) {
 	return {
-		toogleIsModalOpened: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		toogleIsModalOpened: () => dispatch(toogleIsModalOpened()),
 	}
 }
 
