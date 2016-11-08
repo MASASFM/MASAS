@@ -1,4 +1,9 @@
-import { closeAndEmptyMainModal, toogleIsModalOpened } from "../../../reducers/actions/App.js"
+import {
+	closeAndEmptyMainModal,
+	toogleIsModalOpened,
+	toogleNavSidebar,
+	changeModalContent,
+} from "../../../reducers/actions/App.js"
 var { logout } = require("../../../MASAS_functions.jsx")
 
 var NavSidebar = {}
@@ -14,10 +19,10 @@ NavSidebar.mapStateToProps = function(state) {
 
 NavSidebar.mapDispatchToProps = function(dispatch) {
 	return {
-		toogleSidebar: () => dispatch({type:'TOOGLE_NAV_SIDEBAR'}),
+		toogleSidebar: () => dispatch(toogleNavSidebar()),
 		logout: logout.bind(null,dispatch),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
-		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 	}
 }
