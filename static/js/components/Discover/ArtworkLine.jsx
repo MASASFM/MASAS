@@ -97,6 +97,11 @@ var ArtworkLine = React.createClass({
 		else {
 			// artwork line (song history)
 			let key_ID = 0
+
+			// show only most recent songs in history
+			if(history.length > 10)
+				history = history.slice(history.length - 10, history.length)
+
 			let artworkLine =  history.map( ({ SC_songInfo, MASAS_songInfo, artistInfo }) => {
 				key_ID = key_ID + 1
 				let artworkURL = ""
