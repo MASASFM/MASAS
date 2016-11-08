@@ -1,3 +1,6 @@
+import {
+	updateEditProfileTextboxValues,
+} from "../../../reducers/actions/Profile.js"
 
 var ProfileEditLinks = {}
 
@@ -12,7 +15,7 @@ ProfileEditLinks.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 ProfileEditLinks.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTextboxValues: (textboxValues) => dispatch({ type: "UPDATE_EDIT_PROFILE_TEXTBOX_VALUES", textboxValues })
+		updateTextboxValues: textboxValues => dispatch(updateEditProfileTextboxValues(textboxValues))
 	}
 }
 

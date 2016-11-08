@@ -13,7 +13,7 @@ ProfileEdit.mapStateToProps = function(state) {
 
 ProfileEdit.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTextboxValues: (textboxValues) => dispatch(updateEditProfileTextboxValues(textboxValues))
+		updateTextboxValues: textboxValues => dispatch(updateEditProfileTextboxValues(textboxValues))
 	}
 }
 
