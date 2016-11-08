@@ -2,6 +2,10 @@ import {
 	resumePlayer
 } from "../../../reducers/actions/Player.js"
 
+import {
+	updatePageTitle,
+} from "../../../reducers/actions/App.js"
+
 var ArtworkLineItem = {}
 
 ArtworkLineItem.mapStateToProps = function(state) {
@@ -11,7 +15,7 @@ ArtworkLineItem.mapStateToProps = function(state) {
 
 ArtworkLineItem.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		resumePlayer: () => dispatch(resumePlayer()),
 	}
 }

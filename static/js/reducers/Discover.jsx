@@ -1,3 +1,9 @@
+import {
+	ADD_SONG_TO_HISTORY,
+	POP_SONG_FROM_HISTORY,
+	CHANGE_DISCOVER_NUMBER,
+} from "./actions/Discover.js"
+
 let exportVar = {}
 
 exportVar.defaultState = {
@@ -12,7 +18,6 @@ exportVar.defaultState = {
 		5: [],
 		6: [],
 	}
-
 }
 
 const { defaultState } = exportVar
@@ -20,7 +25,7 @@ const { defaultState } = exportVar
 exportVar.discoverReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
-		case 'ADD_SONG_TO_HISTORY':
+		case ADD_SONG_TO_HISTORY:
 			// action.SC_songInfo: (object)
 			// action.MASAS_songInfo: (object)
 
@@ -70,7 +75,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 
 			return resultState
 			
-		case 'POP_SONG_FROM_HISTORY':
+		case POP_SONG_FROM_HISTORY:
 			var stateBis = state
 			stateBis.history.all.pop()
 
@@ -78,7 +83,7 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 				...state,
 				history: stateBis.history
 			}
-		case 'CHANGE_DISCOVER_NUMBER':
+		case CHANGE_DISCOVER_NUMBER:
 			var discoverNumber = action.discoverNumber
 			if( !(discoverNumber <= 6 && discoverNumber >= 1) )
 				discoverNumber = 1

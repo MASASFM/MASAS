@@ -11,7 +11,9 @@ import {
 	changeUnsplashArtist,
 } from "../../../reducers/actions/Home.js"
 
-var { logInWithToken } = require("../../../MASAS_functions.jsx")
+var {
+	logInWithToken
+} = require("../../../MASAS_functions.jsx")
 
 var App = {}
 

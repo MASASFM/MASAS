@@ -1,5 +1,16 @@
 var Discover = {}
-import { incrementLoggedOutUserStep } from "../../../reducers/actions/App.js"
+import {
+	incrementLoggedOutUserStep,
+	updatePageTitle,
+	toogleIsModalOpened,
+	closeAndEmptyMainModal,
+	updateModalType,
+	changeModalContent,
+} from "../../../reducers/actions/App.js"
+
+import {
+	changeDiscoverNumber,
+} from "../../../reducers/actions/Discover.js"
 
 // Which part of the Redux global state does our component want to receive as props?
 Discover.mapStateToProps = function(state) {
@@ -24,16 +35,16 @@ Discover.mapStateToProps = function(state) {
 Discover.mapDispatchToProps = function(dispatch) {
 	return {
 		// higher level state updates
-		updateTitle: (title, pageType) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: pageType}),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
-		updateModalContent: (modalContent, modalType, closeModalFunc) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType, closeModalFunc }),
-		updateModalType: (modalType) => dispatch({ type: 'UPDATE_MODAL_TYPE', modalType }),
-		closeModal: () => dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' }),
+		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
+		updateModalContent: (modalContent, modalType, closeModalFunc) => dispatch(changeModalContent(modalContent, modalType, closeModalFunc)),
+		updateModalType: (modalType) => dispatch(updateModalType(modalType)),
+		closeModal: () => dispatch(closeAndEmptyMainModal()),
 
 		// page state updates
 
 		// other state updates 
-		handleTimePickerChange: (discoverNumber) => dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber}),
+		handleTimePickerChange: (discoverNumber) => dispatch(changeDiscoverNumber(discoverNumber)),
 		incrementLoggedOutUserStep: () => dispatch(incrementLoggedOutUserStep()),
 	}
 }

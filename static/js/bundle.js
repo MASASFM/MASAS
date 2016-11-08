@@ -45334,6 +45334,8 @@ module.exports = ArtworkLine;
 
 var _Player = require("../../../reducers/actions/Player.js");
 
+var _App = require("../../../reducers/actions/App.js");
+
 var ArtworkLineItem = {};
 
 ArtworkLineItem.mapStateToProps = function (state) {
@@ -45343,7 +45345,7 @@ ArtworkLineItem.mapStateToProps = function (state) {
 ArtworkLineItem.mapDispatchToProps = function (dispatch) {
 	return {
 		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
+			return dispatch((0, _App.updatePageTitle)(title, pageType));
 		},
 		resumePlayer: function resumePlayer() {
 			return dispatch((0, _Player.resumePlayer)());
@@ -45353,10 +45355,12 @@ ArtworkLineItem.mapDispatchToProps = function (dispatch) {
 
 module.exports = ArtworkLineItem;
 
-},{"../../../reducers/actions/Player.js":516}],391:[function(require,module,exports){
-'use strict';
+},{"../../../reducers/actions/App.js":510,"../../../reducers/actions/Player.js":516}],391:[function(require,module,exports){
+"use strict";
 
-var _App = require('../../../reducers/actions/App.js');
+var _App = require("../../../reducers/actions/App.js");
+
+var _Discover = require("../../../reducers/actions/Discover.js");
 
 var Discover = {};
 
@@ -45384,26 +45388,26 @@ Discover.mapDispatchToProps = function (dispatch) {
 	return {
 		// higher level state updates
 		updateTitle: function updateTitle(title, pageType) {
-			return dispatch({ type: 'UPDATE_PAGE_TITLE', title: title, pageType: pageType });
+			return dispatch((0, _App.updatePageTitle)(title, pageType));
 		},
 		toogleModal: function toogleModal() {
-			return dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' });
+			return dispatch((0, _App.toogleIsModalOpened)());
 		},
 		updateModalContent: function updateModalContent(modalContent, modalType, closeModalFunc) {
-			return dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent: modalContent, modalType: modalType, closeModalFunc: closeModalFunc });
+			return dispatch((0, _App.changeModalContent)(modalContent, modalType, closeModalFunc));
 		},
 		updateModalType: function updateModalType(modalType) {
-			return dispatch({ type: 'UPDATE_MODAL_TYPE', modalType: modalType });
+			return dispatch((0, _App.updateModalType)(modalType));
 		},
 		closeModal: function closeModal() {
-			return dispatch({ type: 'CLOSE_AND_EMPTY_MAIN_MODAL' });
+			return dispatch((0, _App.closeAndEmptyMainModal)());
 		},
 
 		// page state updates
 
 		// other state updates
 		handleTimePickerChange: function handleTimePickerChange(discoverNumber) {
-			return dispatch({ type: 'CHANGE_DISCOVER_NUMBER', discoverNumber: discoverNumber });
+			return dispatch((0, _Discover.changeDiscoverNumber)(discoverNumber));
 		},
 		incrementLoggedOutUserStep: function incrementLoggedOutUserStep() {
 			return dispatch((0, _App.incrementLoggedOutUserStep)());
@@ -45413,7 +45417,7 @@ Discover.mapDispatchToProps = function (dispatch) {
 
 module.exports = Discover;
 
-},{"../../../reducers/actions/App.js":510}],392:[function(require,module,exports){
+},{"../../../reducers/actions/App.js":510,"../../../reducers/actions/Discover.js":511}],392:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -58124,9 +58128,11 @@ exportVar.bodyReducer = function () {
 module.exports = exportVar;
 
 },{}],499:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _Discover = require("./actions/Discover.js");
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -58144,7 +58150,6 @@ exportVar.defaultState = {
 		5: [],
 		6: []
 	}
-
 };
 
 var defaultState = exportVar.defaultState;
@@ -58154,7 +58159,7 @@ exportVar.discoverReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
-		case 'ADD_SONG_TO_HISTORY':
+		case _Discover.ADD_SONG_TO_HISTORY:
 			// action.SC_songInfo: (object)
 			// action.MASAS_songInfo: (object)
 
@@ -58195,14 +58200,14 @@ exportVar.discoverReducer = function () {
 
 			return resultState;
 
-		case 'POP_SONG_FROM_HISTORY':
+		case _Discover.POP_SONG_FROM_HISTORY:
 			var stateBis = state;
 			stateBis.history.all.pop();
 
 			return _extends({}, state, {
 				history: stateBis.history
 			});
-		case 'CHANGE_DISCOVER_NUMBER':
+		case _Discover.CHANGE_DISCOVER_NUMBER:
 			var discoverNumber = action.discoverNumber;
 			if (!(discoverNumber <= 6 && discoverNumber >= 1)) discoverNumber = 1;
 
@@ -58216,7 +58221,7 @@ exportVar.discoverReducer = function () {
 
 module.exports = exportVar;
 
-},{}],500:[function(require,module,exports){
+},{"./actions/Discover.js":511}],500:[function(require,module,exports){
 "use strict";
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -58955,10 +58960,19 @@ changeBgState.saturateMobile = function (sat) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.changeDiscoverNumber = changeDiscoverNumber;
 exports.addSongToHistory = addSongToHistory;
 exports.popSongFromHistory = popSongFromHistory;
 var ADD_SONG_TO_HISTORY = exports.ADD_SONG_TO_HISTORY = "ADD_SONG_TO_HISTORY";
 var POP_SONG_FROM_HISTORY = exports.POP_SONG_FROM_HISTORY = "POP_SONG_FROM_HISTORY";
+var CHANGE_DISCOVER_NUMBER = exports.CHANGE_DISCOVER_NUMBER = "CHANGE_DISCOVER_NUMBER";
+
+function changeDiscoverNumber(discoverNumber) {
+	return {
+		type: CHANGE_DISCOVER_NUMBER,
+		discoverNumber: discoverNumber
+	};
+}
 
 function addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo) {
 	return {
