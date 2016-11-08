@@ -1,15 +1,13 @@
-import { closeAndEmptyMainModal } from "../../../reducers/actions/App.js"
-
-// let ReactRedux = require("react-redux")
-// let { browserHistory } = require('react-router')
-
-// const { getUsername } = require('../ajaxCalls.jsx')
+import {
+	closeAndEmptyMainModal,
+	changeModalContent,
+	toogleIsModalOpened
+} from "../../../reducers/actions/App.js"
 
 var { logout } = require("../../../MASAS_functions.jsx")
 
 var HeaderDropdown = {}
 
-// Which part of the Redux global state does our component want to receive as props?
 HeaderDropdown.mapStateToProps = function(state) {
 	return {
 		MASASuser: state.appReducer.MASASuser,
@@ -20,15 +18,13 @@ HeaderDropdown.mapStateToProps = function(state) {
 	}
 }
 
-
-// Which action creators does it want to receive by props?
 HeaderDropdown.mapDispatchToProps = function(dispatch) {
 
 	return {
 		dispatch,
 		logout: logout.bind(null, dispatch),
-		updateModalContent: (modalContent, modalType) => dispatch({ type: 'CHANGE_MODAL_CONTENT', modalContent, modalType }),
-		toogleModal: () => dispatch({ type: 'TOOGLE_IS_MODAL_OPENED' }),
+		updateModalContent: (modalContent, modalType) => dispatch(changeModalContent(modalContent, modalType)),
+		toogleModal: () => dispatch(toogleIsModalOpened()),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 	}
 }
