@@ -31,6 +31,11 @@ var LikesArtworks = React.createClass({
 	componentWillMount: function() {
 	},
 
+	componentWillUnmount: function() {
+		// hide extra like artworks when umounting
+		this.props.updateNumberLikesShown(3)
+	},
+
 	// show songs if user has any likes
 	// otherwise, let him know he hasn't liked any songs yet
 	renderLikes: function() {
