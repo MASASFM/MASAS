@@ -1,3 +1,10 @@
+import {
+	updatePageTitle
+} from "../../../reducers/actions/App.js"
+
+import {
+	toogleLegalsPageNumber
+} from "../../../reducers/actions/Legals.js"
 
 var LegalsContent = {}
 
@@ -11,8 +18,8 @@ LegalsContent.mapStateToProps = function(state) {
 // Which action creators does it want to receive by props?
 LegalsContent.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, backArrowFunc) => dispatch({type:'UPDATE_PAGE_TITLE', title: title, pageType: 1, backArrowFunc}),
-		goToHome: () => dispatch({ type: 'TOOGLE_LEGALS_PAGE_NUMBER', pageNumber: 0})
+		updateTitle: (title, backArrowFunc) => dispatch(updatePageTitle(title, 1, backArrowFunc)),
+		goToHome: () => dispatch(toogleLegalsPageNumber(0))
 	}
 }
 
