@@ -14,6 +14,7 @@ import {
 	SET_IS_BUFFERING_TRUE,
 	TOOGLE_SONG_LIKE,
 	PAUSE,
+	LOAD_PLAYLIST,
 } from "./actions/Player.js"
 
 let exportVar = {}
@@ -88,7 +89,7 @@ exportVar.playerReducer = function(state = defaultState, action) {
 				}
 			else
 				return defaultState
-		case 'LOAD_PLAYLIST':
+		case LOAD_PLAYLIST:
 			return {
 				...state,
 				playlist: action.playlist

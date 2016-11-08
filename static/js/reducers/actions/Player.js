@@ -46,6 +46,14 @@ export const PLAY_NEW_SONG_FROM_PLAYLIST = "PLAY_NEW_SONG_FROM_PLAYLIST"
 export const SET_IS_BUFFERING_TRUE = "SET_IS_BUFFERING_TRUE"
 export const SET_IS_BUFFERING_FALSE = "SET_IS_BUFFERING_FALSE"
 export const TOOGLE_SONG_LIKE = "TOGGLE_SONG_LIKE"
+export const LOAD_PLAYLIST = "LOAD_PLAYLIST"
+
+export function loadPlaylist(playlist) {
+	return {
+		type: LOAD_PLAYLIST,
+		playlist
+	}
+}
 
 export function toggleSongLike(songId) {
 	return (dispatch, getState) => {
