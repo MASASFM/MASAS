@@ -1,4 +1,10 @@
-import { changeBgState } from "../../../reducers/actions/App.js"
+import {
+	changeBgState
+} from "../../../reducers/actions/App.js"
+
+import {
+	updateNumberLikesShown
+} from "../../../reducers/actions/Likes.js"
 
 var LikesArtworks = {}
 
@@ -7,12 +13,14 @@ LikesArtworks.mapStateToProps = function(state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
 		userLikesUnfiltered: state.likesReducer.userLikes,
+		numRowLikesShown: state.likesReducer.numRowLikesShown,
 	}
 }
 
 // Which action creators does it want to receive by props?
 LikesArtworks.mapDispatchToProps = function(dispatch) {
 	return {
+		updateNumberLikesShown: number => dispatch(updateNumberLikesShown(number)),
 		blurBg: (blur) => dispatch(changeBgState.blur(blur)),
 		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
 		blurBgMobile: (blur) => dispatch(changeBgState.blurMobile(blur)),

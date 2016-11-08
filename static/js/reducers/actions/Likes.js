@@ -1,5 +1,13 @@
 import 'whatwg-fetch'
 
+export const UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN'
+export function updateNumberLikesShown(numRowLikesShown) {
+	return {
+		type: UPDATE_NUMBER_OF_LIKES_SHOWN,
+		numRowLikesShown
+	}
+}
+
 // const apiRoot = 'http://masas.fm//'
 export const TOOGLE_HASHTAG_FILTER = 'TOOGLE_HASHTAG_FILTER'
 export function toogleHashtagFilter(hashtagNumber) {

@@ -7,6 +7,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesArtwork
 var LikesItem = require("./LikesItem.jsx")
 var NoLikesComponent = require("./NoLikesComponent.jsx")
 
+var { Button } = require("../UI/UI.jsx")
+
 // DISPLAYS USER LIKES (propTypes)
 // creates invisible artworks to keep the last line aligned left using flexbox
 var LikesArtworks = React.createClass({
@@ -17,11 +19,13 @@ var LikesArtworks = React.createClass({
 		userLikes: React.PropTypes.array,
 		userLikesUnfiltered: React.PropTypes.array,
 		bgFilter: React.PropTypes.object,
+		numRowLikesShown: React.PropTypes.number,
 
 		blurBg: React.PropTypes.func,
 		saturateBg: React.PropTypes.func,
 		blurBgMobile: React.PropTypes.func,
 		saturateBgMobile: React.PropTypes.func,
+		updateNumberLikesShown: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -47,8 +51,26 @@ var LikesArtworks = React.createClass({
 						isShowingArtistInfo={ song.showProfile } />
 			})
 
+			songList = this.filterLikes(songList)
+
 			return songList
 		}
+	},
+
+	// filter number of likes shown
+	filterLikes: function(songList) {
+		var totalNumArtwork = 10
+
+		if(this.numArtworkPerLine) {
+			totalNumArtwork = this.props.numRowLikesShown * this.numArtworkPerLine
+			if(songList.length > totalNumArtwork)
+				songList = songList.slice(0, totalNumArtwork)
+		} else {
+			if(songList.length > totalNumArtwork)
+				songList = songList.slice(0, totalNumArtwork)
+		}
+
+		return songList
 	},
 
 	/**
@@ -101,6 +123,7 @@ var LikesArtworks = React.createClass({
 
 		// calculate how many artworks fit in a line
 		const n_line = Math.floor(A/B)
+		this.numArtworkPerLine = n_line
 
 		// calculate how many artworks are on the last line
 		const n_lastLine = artworkCount % n_line
@@ -117,8 +140,9 @@ var LikesArtworks = React.createClass({
 	render: function() {
 		return (
 			<div className="likes--wrapper">
-				{ this.renderLikes() }
+				{ this.renderLikes() } 	
 				{ this.alignArtworksLeft() }
+				<Button onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 4) }>Load more</Button>
 			</div>
 		)
 	}

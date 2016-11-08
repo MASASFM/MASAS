@@ -4,6 +4,7 @@ import {
 	TOGGLE_MINI_PROFILE,
 	UPDATE_MINI_PROFILE,
 	TOOGLE_HASHTAG_FILTER,
+	UPDATE_NUMBER_OF_LIKES_SHOWN
 } from "./actions/Likes.js"
 
 let exportVar = {}
@@ -15,7 +16,8 @@ exportVar.defaultState = {
 	reFetch: 0,								// rerender when new likes come in
 	searchInput: "", 							// (string) search textbox input
 	hashtagFilter: [false,false,false,false,false,false],				// (array) 1 = include in search. 1st entry = #EarlyMorning
-	loadMoreLikes: true 							// (bool) need more likes to load in infinite scrool ?
+	loadMoreLikes: true, 							// (bool) need more likes to load in infinite scrool ?
+	numRowLikesShown: 3,						// (int) how many rows of like artworks are shown max
 }
 
 const { defaultState } = exportVar
@@ -23,6 +25,16 @@ const { defaultState } = exportVar
 exportVar.likesReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case UPDATE_NUMBER_OF_LIKES_SHOWN:
+			var { numRowLikesShown } = action
+
+			if(numRowLikesShown < exportVar.defaultState)
+				numRowLikesShown = exportVar.defaultState
+
+			return {
+				...state,
+				numRowLikesShown
+			}
 		case TOGGLE_MINI_PROFILE:
 			var userLikes = state.userLikes.map( like => {
 				if(like.MASAS_songInfo.pk === action.songPk)
