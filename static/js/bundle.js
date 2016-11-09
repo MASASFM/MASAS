@@ -50186,9 +50186,14 @@ var _require2 = require("../UI/UI.jsx");
 
 var Button = _require2.Button;
 
+var _require3 = require("../../reducers/Likes.jsx");
+
+var defaultState = _require3.defaultState;
+
+var defaultNumRowLikesShown = defaultState.numRowLikesShown;
+
 // DISPLAYS USER LIKES (propTypes)
 // creates invisible artworks to keep the last line aligned left using flexbox
-
 var LikesArtworks = _wrapComponent("_component")(React.createClass({
 	displayName: "LikesArtworks",
 
@@ -50215,7 +50220,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 	componentWillUnmount: function componentWillUnmount() {
 		// hide extra like artworks when umounting
-		this.props.updateNumberLikesShown(3);
+		this.props.updateNumberLikesShown(defaultNumRowLikesShown);
 	},
 
 	// show songs if user has any likes
@@ -50348,7 +50353,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 					Button,
 					{
 						onClick: function onClick() {
-							return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + 1);
+							return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + defaultNumRowLikesShown);
 						},
 						isSecondaryAction: true,
 						isBigButton: true },
@@ -50361,7 +50366,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesArtworks);
 
-},{"../UI/UI.jsx":482,"./LikesItem.jsx":421,"./NoLikesComponent.jsx":423,"./containers/LikesArtworks.jsx":426,"livereactload/babel-transform":33,"react":363,"react-redux":168}],421:[function(require,module,exports){
+},{"../../reducers/Likes.jsx":504,"../UI/UI.jsx":482,"./LikesItem.jsx":421,"./NoLikesComponent.jsx":423,"./containers/LikesArtworks.jsx":426,"livereactload/babel-transform":33,"react":363,"react-redux":168}],421:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
@@ -58483,7 +58488,7 @@ exportVar.defaultState = {
 	searchInput: "", // (string) search textbox input
 	hashtagFilter: [false, false, false, false, false, false], // (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, // (bool) need more likes to load in infinite scrool ?
-	numRowLikesShown: 1 };
+	numRowLikesShown: 3 };
 
 // (int) how many rows of like artworks are shown max
 var defaultState = exportVar.defaultState;

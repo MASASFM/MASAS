@@ -9,6 +9,9 @@ var NoLikesComponent = require("./NoLikesComponent.jsx")
 
 var { Button } = require("../UI/UI.jsx")
 
+const { defaultState } = require("../../reducers/Likes.jsx")
+const defaultNumRowLikesShown = defaultState.numRowLikesShown
+
 // DISPLAYS USER LIKES (propTypes)
 // creates invisible artworks to keep the last line aligned left using flexbox
 var LikesArtworks = React.createClass({
@@ -36,7 +39,7 @@ var LikesArtworks = React.createClass({
 
 	componentWillUnmount: function() {
 		// hide extra like artworks when umounting
-		this.props.updateNumberLikesShown(3)
+		this.props.updateNumberLikesShown(defaultNumRowLikesShown)
 	},
 
 	// show songs if user has any likes
@@ -167,7 +170,7 @@ var LikesArtworks = React.createClass({
 					className="button-container"
 					style={{ display: (this.shouldFilterLikes() ? 'flex' : 'none') }}>
 					<Button
-						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 1) }
+						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + defaultNumRowLikesShown) }
 						isSecondaryAction={ true }
 						isBigButton={ true }>Load more</Button>
 				</div>

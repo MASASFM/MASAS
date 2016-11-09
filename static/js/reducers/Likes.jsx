@@ -17,7 +17,7 @@ exportVar.defaultState = {
 	searchInput: "", 							// (string) search textbox input
 	hashtagFilter: [false,false,false,false,false,false],				// (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, 							// (bool) need more likes to load in infinite scrool ?
-	numRowLikesShown: 1,						// (int) how many rows of like artworks are shown max
+	numRowLikesShown: 3,						// (int) how many rows of like artworks are shown max
 }
 
 const { defaultState } = exportVar
