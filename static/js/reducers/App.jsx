@@ -18,6 +18,8 @@ import {
 	SET_APP_FETCHING_STATE_TRUE,
 	SET_APP_FETCHING_STATE_FALSE,
 	CHANGE_SLASH_SCREEN_PAGE,
+	UPDATE_MINI_PROFILE_VISIBILITY,
+	UPDATE_MINI_PROFILE_CONTENT,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -45,6 +47,10 @@ exportVar.defaultState = {
 		mobileSaturated: false,			// (bool) is app bg saturated only on mobile
 		modalBlurred: false,			// (bool) is app bg blurred *because* of modal
 		modalSaturated: false,			// (bool) is app bg saturated *because* of modal
+	},
+	miniProfile: {					// (obj) containing info relative to mini profile
+		isVisible: false,				// (bool) should mini profile be shown
+		userData: {},				// (obj) mini profile content
 	}
 }
 
@@ -53,6 +59,23 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case UPDATE_MINI_PROFILE_VISIBILITY:
+			return {
+				...state,
+				miniProfile: {
+					...state.miniProfile,
+					isVisible: action.isVisible
+				}
+			}
+		case UPDATE_MINI_PROFILE_CONTENT:
+			// show mini profile when updating content
+			return {
+				...state,
+				miniProfile: {
+					isVisible: true,
+					userData: action.userData
+				}
+			}
 		case MODAL_BLUR_BG:
 			return {
 				...state,

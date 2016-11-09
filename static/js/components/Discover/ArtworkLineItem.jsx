@@ -28,6 +28,7 @@ var ArtworkLineItem = React.createClass({
 		artistInfo: React.PropTypes.object,				// artist info 
 
 		isArtworkLarge: React.PropTypes.bool,			// larger ArtworkLineItem
+		updateMiniProfileContent: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -53,7 +54,8 @@ var ArtworkLineItem = React.createClass({
 	},
 
 	toggleShowProfile: function() {
-		this.setState({ showProfile: !this.state.showProfile })
+		// this.setState({ showProfile: !this.state.showProfile })
+		this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist)
 	},
 
 	onArtworkClick: function() {

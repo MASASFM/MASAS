@@ -16,6 +16,29 @@ export const SET_APP_FETCHING_STATE_FALSE = 'SET_APP_FETCHING_STATE_FALSE'
 export const SET_APP_FETCHING_STATE_TRUE = 'SET_APP_FETCHING_STATE_TRUE'
 export const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
 export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
+export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
+export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
+
+export function updateMiniProfileContent(userApiURL) {
+	return dispatch => {
+		fetch(userApiURL)
+		.then( r => r.json() )
+		.then( userData => {
+			dispatch({
+				type: UPDATE_MINI_PROFILE_CONTENT,
+				userData
+			})
+		})
+		.catch( () => { })
+	}
+}
+
+export function updateMiniProfileVisibility(isVisible) {
+	return {
+		type: UPDATE_MINI_PROFILE_VISIBILITY,
+		isVisible
+	}
+}
 
 export function toogleNavSidebar() {
 	return {
