@@ -92,8 +92,9 @@ var LikesArtworks = React.createClass({
 		
 		var $artworkWrapper = $("<div class='likes-scroll--wrapper'><div class='likes--wrapper'><div class='likes-artworks--wrapper'><div class='likes-item--wrapper'><div class='artwork--wrapper'><img class='artwork'/></div></div></div></div></div>").hide().appendTo("body")
 		const artworkInnerWidth = $artworkWrapper.css("width").replace('px', '')
-		const artworkMargin = window.getComputedStyle(document.getElementsByClassName('likes-item--wrapper')[0]).margin.replace('px', '')
-		const artworkWidth = parseInt(artworkInnerWidth)  + 2*parseInt(artworkMargin)
+		// const artworkMargin = window.getComputedStyle(document.getElementsByClassName('likes-item--wrapper')[0]).margin.replace('px', '')
+		const artworkWidth = parseInt(artworkInnerWidth) 
+
 
 		// same for likes wrapper
 		// but now we have to get the getComputedStyle() because width is dynamically defined based on window width
