@@ -3,6 +3,8 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesItem.jsx")
 
+var { timeIntervalURLToString } = require("../../MASAS_functions.jsx")
+
 var { Marquee } = require("../UI/UI.jsx")
 
 var LikesItem = React.createClass({
@@ -35,27 +37,6 @@ var LikesItem = React.createClass({
 
 		this.props.loadPlaylist(playlist)
 		this.props.playNewSongFromPlaylist(playlistPosition)
-	},
-
-	renderRadioTime: function() {
-		var switchVar = this.props.MASASinfo.timeInterval.substr(this.props.MASASinfo.timeInterval.length - 2, 1)
-		
-		switch(switchVar) {
-			case "1":
-				return "#EarlyMorning"
-			case "2":
-				return "#LateMorning"
-			case "3":
-				return "#EarlyAfternoon"
-			case "4":
-				return "#LateAfternoon"
-			case "5":
-				return "#EarlyEvening"
-			case "6":
-				return "#LateEvening"
-			default:
-				return 
-		}
 	},
 
 	renderPlayerControlButton: function() {
@@ -104,7 +85,7 @@ var LikesItem = React.createClass({
 					</div>
 					<div className="song-stats--wrapper">
 						<div className="time">
-							{ this.renderRadioTime() }
+							{ timeIntervalURLToString(this.props.MASASinfo.timeInterval) }
 						</div>
 						<div className="plays">
 							{ this.props.MASASinfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />

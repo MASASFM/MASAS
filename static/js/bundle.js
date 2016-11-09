@@ -50557,9 +50557,13 @@ var _require = require("./containers/LikesItem.jsx");
 var mapStateToProps = _require.mapStateToProps;
 var mapDispatchToProps = _require.mapDispatchToProps;
 
-var _require2 = require("../UI/UI.jsx");
+var _require2 = require("../../MASAS_functions.jsx");
 
-var Marquee = _require2.Marquee;
+var timeIntervalURLToString = _require2.timeIntervalURLToString;
+
+var _require3 = require("../UI/UI.jsx");
+
+var Marquee = _require3.Marquee;
 
 var LikesItem = _wrapComponent("_component")(React.createClass({
 	displayName: "LikesItem",
@@ -50594,27 +50598,6 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 
 		this.props.loadPlaylist(playlist);
 		this.props.playNewSongFromPlaylist(playlistPosition);
-	},
-
-	renderRadioTime: function renderRadioTime() {
-		var switchVar = this.props.MASASinfo.timeInterval.substr(this.props.MASASinfo.timeInterval.length - 2, 1);
-
-		switch (switchVar) {
-			case "1":
-				return "#EarlyMorning";
-			case "2":
-				return "#LateMorning";
-			case "3":
-				return "#EarlyAfternoon";
-			case "4":
-				return "#LateAfternoon";
-			case "5":
-				return "#EarlyEvening";
-			case "6":
-				return "#LateEvening";
-			default:
-				return;
-		}
 	},
 
 	renderPlayerControlButton: function renderPlayerControlButton() {
@@ -50691,7 +50674,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 					React.createElement(
 						"div",
 						{ className: "time" },
-						this.renderRadioTime()
+						timeIntervalURLToString(this.props.MASASinfo.timeInterval)
 					),
 					React.createElement(
 						"div",
@@ -50708,7 +50691,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 
 module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LikesItem);
 
-},{"../UI/UI.jsx":483,"./containers/LikesItem.jsx":429,"livereactload/babel-transform":33,"react":363,"react-redux":168}],424:[function(require,module,exports){
+},{"../../MASAS_functions.jsx":378,"../UI/UI.jsx":483,"./containers/LikesItem.jsx":429,"livereactload/babel-transform":33,"react":363,"react-redux":168}],424:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");
