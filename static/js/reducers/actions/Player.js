@@ -193,13 +193,13 @@ export function updateLikeButton(MASAS_songInfo) {
 		const state = getState()
 		const {
 			MASASuser,
-			userPk
+			MASASuserPk
 		} = state.appReducer
 
 		var headers = new Headers()
 		headers.append("Authorization", "Bearer " + MASASuser)
 
-		fetch( '/api/users/' + userPk + '/', { headers })
+		fetch( '/api/users/' + MASASuserPk + '/', { headers })
 		.then( r => r.json() )
 		.then( user => {
 			var isSongLiked = user.likes.filter( (like) => {
@@ -208,9 +208,9 @@ export function updateLikeButton(MASAS_songInfo) {
 
 			// update player state
 			if (isSongLiked.length === 0)
-				dispatch(likeSong(true))
-			else
 				dispatch(likeSong(false))
+			else
+				dispatch(likeSong(true))
 		}).catch( e => { } )
 
 	}
@@ -390,7 +390,7 @@ export function playNewSong() {
 						dispatch(addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo))
 
 					// update song liked button based on server response (vs optimistic UI)
-					updateLikeButton(MASAS_songInfo)
+					dispatch(updateLikeButton(MASAS_songInfo))
 
 					// end loading state
 					dispatch(setIsSongFetching(false))

@@ -8,6 +8,7 @@ import {
 	resumePlayer,
 	setIsPlayerBuffering,
 	toggleSongLike,
+	updateLikeButton,
 } from "../../../reducers/actions/Player.js"
 
 // var { toggleSongLike } = require("../../../MASAS_functions.jsx")
@@ -47,7 +48,7 @@ Player.mapDispatchToProps = function(dispatch) {
 		playRandomSong: (timeInterval = 0) => dispatch(playRandomSong(timeInterval)),
 		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
-		setIsPlayerBuffering: (value) => dispatch(setIsPlayerBuffering(value))
+		setIsPlayerBuffering: value => dispatch(setIsPlayerBuffering(value)),
 	}
 }
 
