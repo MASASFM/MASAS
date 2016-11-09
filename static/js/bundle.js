@@ -50238,19 +50238,24 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 					isShowingArtistInfo: song.showProfile });
 			});
 
-			songList = this.filterLikes(songList);
+			// songList = this.filterLikes(songList)
+			if (this.shouldFilterLikes()) {
+				var totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine;
+				songList = songList.slice(0, totalNumArtworkShown);
+			}
 
 			return songList;
 		}
 	},
 
 	// filter number of likes shown
-	filterLikes: function filterLikes(songList) {
-		var totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine;
-		if (songList.length > totalNumArtworkShown) songList = songList.slice(0, totalNumArtworkShown);
+	// filterLikes: function(songList) {
+	// 	const totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine
+	// 	if(songList.length > totalNumArtworkShown)
+	// 		songList = songList.slice(0, totalNumArtworkShown)
 
-		return songList;
-	},
+	// 	return songList
+	// },
 
 	/**
  	** Purpose **
