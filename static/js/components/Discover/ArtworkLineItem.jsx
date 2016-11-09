@@ -4,7 +4,6 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/ArtworkLineItem.jsx")
 
 var { Marquee } = require("../UI/UI.jsx")
-var MiniProfile = require("../Profile/MiniProfile.jsx")
 
 
 var ArtworkLineItem = React.createClass({
@@ -37,13 +36,6 @@ var ArtworkLineItem = React.createClass({
 		}
 	},
 
-	getInitialState: function() {
-		return {
-			showProfile: false, 					// (bool) should mini profile be shown 
-			userInfo: null, 						// (object) object containing user info
-		};
-	},
-
 	componentWillMount: function() {
 	},
 	
@@ -54,7 +46,6 @@ var ArtworkLineItem = React.createClass({
 	},
 
 	toggleShowProfile: function() {
-		// this.setState({ showProfile: !this.state.showProfile })
 		this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist)
 	},
 
@@ -86,13 +77,6 @@ var ArtworkLineItem = React.createClass({
 				style={{
 					visibility: isModalOpened && modalType === 2 ? 'hidden' : 'visible'
 				}}>
-				<div 
-					className={ "mini-profile " + ( this.state.showProfile ? "show" : "" ) }>
-					<MiniProfile 
-						backArrowFunc={ this.toggleShowProfile } 
-						userInfo={ this.props.artistInfo } 
-						isMiniProfileBig={ isArtworkLarge }/>
-				</div>
 				<div className="artwork--wrapper2">
 					{ artworkURL ?
 							<img src={ artworkURL } alt="artwork" className="artwork"/>

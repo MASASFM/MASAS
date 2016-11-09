@@ -4,7 +4,6 @@ var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/LikesItem.jsx")
 
 var { Marquee } = require("../UI/UI.jsx")
-var MiniProfile = require("../Profile/MiniProfile.jsx")
 
 var LikesItem = React.createClass({
 	propTypes: {
@@ -18,16 +17,10 @@ var LikesItem = React.createClass({
 		userData: React.PropTypes.object,
 		songPlaying: React.PropTypes.string,
 		isShowingArtistInfo: React.PropTypes.bool,
-		toogleMiniProfile: React.PropTypes.func,
 		MASAS_songPk: React.PropTypes.number,
-		artistInfo: React.PropTypes.object,
 	},
 
 	playTrack: function() {
-		//this.props.playNewSong(this.props.MASASinfo.url)
-		// var playlist = this.props.userData.likes.map((like) => {
-		// 	return like.song.url
-		// })
 		var playlist = [].concat(this.props.userData.likes)
 		playlist.sort((a,b) => { return Date.parse(a.created) < Date.parse(b.created) })
 		playlist = playlist.map((like) => {
@@ -99,13 +92,7 @@ var LikesItem = React.createClass({
 						{ this.renderPlayerControlButton() }
 					</div>
 				</div>
-				<div className={ "likes-mini-profile--wrapper" + (isShowingArtistInfo ? " show" : "") }>
-					<MiniProfile
-						userInfo={ this.props.artistInfo }
-						backArrowFunc={ () => this.props.toogleMiniProfile(this.props.MASAS_songPk) }
-						isMiniProfileBig={ true } />
-				</div>
-				<div className="text--wrapper" onClick={ () => this.props.toogleMiniProfile(this.props.MASAS_songPk) }>
+				<div className="text--wrapper" onClick={ () => { } }>
 					<div className="song-name--wrapper">
 						<div className="title">
 							<Marquee>{ SCinfo.title }</Marquee>
