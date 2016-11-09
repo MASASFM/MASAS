@@ -7,7 +7,8 @@ import {
 	updateProfileInfo,
 	getPublicProfileInfo,
 	getSCinfo,
-	saveProfile
+	saveProfile,
+	updateProfileBackArrowFunc
 } from "../../../reducers/actions/Profile.js"
 
 import {
@@ -25,14 +26,15 @@ Profile.mapStateToProps = function(state) {
 		isEditingProfile: state.profileReducer.isEditingProfile,
 		textboxValues: state.profileReducer.textboxValues,
 		publicProfileInfo: state.profileReducer.publicProfileInfo,
-		userSCSongs: state.profileReducer.userSCSongs
+		userSCSongs: state.profileReducer.userSCSongs,
+		backArrowFunc: state.profileReducer.backArrowFunc,
 	}
 }
 
 // Which action creators does it want to receive by props?
 Profile.mapDispatchToProps = function(dispatch) {
 	return {
-		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
+		updateTitle: (title, pageType, backArrowFunc) => dispatch(updatePageTitle(title, pageType, backArrowFunc)),
 		updateProfileInfo: () => dispatch(updateProfileInfo()),
 		toggleEditingProfile: () => dispatch(toggleEditingProfile()),
 		updatePublicProfileInfo: publicProfileInfo => dispatch(updatePublicProfileInfo(publicProfileInfo)),
@@ -40,6 +42,7 @@ Profile.mapDispatchToProps = function(dispatch) {
 		getPublicProfileInfo: (userPk) => dispatch(getPublicProfileInfo(userPk)),
 		getSCinfo: () => dispatch(getSCinfo()),
 		saveProfile: (getCookie) => dispatch(saveProfile(getCookie)),
+		resetBackArrowFunc: () => dispatch(updateProfileBackArrowFunc(null))
 	}
 }
 

@@ -19,18 +19,20 @@ var Profile = React.createClass({
 		userData: React.PropTypes.object,
 		userToken: React.PropTypes.string,
 		routeParams: React.PropTypes.object,
-		
+
+		backArrowFunc: React.PropTypes.func,
+		resetBackArrowFunc: React.PropTypes.func,
 		getPublicProfileInfo: React.PropTypes.func,
 		toggleEditingProfile: React.PropTypes.func,
 		updatePublicProfileInfo: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		updateUserSCSongs: React.PropTypes.func,
 		getSCinfo: React.PropTypes.func,
-		saveProfile: React.PropTypes.func,
+		saveProfile: React.PropTypes.func
 	},
 
 	componentWillMount: function() {
-		this.props.updateTitle('My Profile', '0')		// 0 = menu icon; 1 = arrow back
+		this.updateTitle('My Profile')		// 0 = menu icon; 1 = arrow back
 
 		this.getSCinfo()
 
@@ -40,6 +42,9 @@ var Profile = React.createClass({
 	componentWillUnmount: function() {
 		if(Object.keys(this.props.publicProfileInfo).length !== 0)
 			this.props.updatePublicProfileInfo({})
+
+		// reset back arrow func
+		this.props.resetBackArrowFunc(null)
 	},
 
 	// componentWillReceiveProps: function(nextProps, nextState) {
@@ -51,6 +56,13 @@ var Profile = React.createClass({
 				this.props.updatePublicProfileInfo({})
 			window.setTimeout(() => this.getSCinfo(), 0)
 		}
+	},
+
+	updateTitle: function(title) {
+		if(this.props.backArrowFunc)
+			this.props.updateTitle(title, 1, this.props.backArrowFunc)
+		else
+			this.props.updateTitle(title, 0)
 	},
 
 	getPublicProfileInfo: function(props = null) {
@@ -65,10 +77,10 @@ var Profile = React.createClass({
 		if(this.isPublicProfile) {
 			if(!isObjectEmpty(this.props.publicProfileInfo)) {
 				var titleStr = this.props.publicProfileInfo.name ? this.props.publicProfileInfo.name : this.props.publicProfileInfo.username
-				this.props.updateTitle(titleStr + "'s Profile", "0")
+				this.updateTitle(titleStr + "'s Profile")
 			}
 		} else
-			this.props.updateTitle("My Profile", "0")
+			this.updateTitle("My Profile")
 	},
 
 	getSCinfo: function() {

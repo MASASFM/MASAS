@@ -19,7 +19,8 @@ var MiniProfileWrapper = React.createClass({
 
 		updateMiniProfileVisibility: React.PropTypes.func,
 		updateMiniProfileContent: React.PropTypes.func,
-		updateTitle: React.PropTypes.func
+		updateTitle: React.PropTypes.func,
+		updateProfileBackArrowFunc: React.PropTypes.func,
 	},
 
 	componentDidMount: function() {
@@ -44,8 +45,14 @@ var MiniProfileWrapper = React.createClass({
 	},
 
 	redirectToProfile: function() {
+		// push client to user page
 		browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url))
+
+		// hide mini profile
 		this.props.updateMiniProfileVisibility(false)
+
+		// update back arrow function on Profile page so user can come back
+		this.props.updateProfileBackArrowFunc( () => { browserHistory.goBack() } )
 	},
 
 	render: function() {

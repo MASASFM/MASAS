@@ -4,6 +4,10 @@ import {
 	updateMiniProfileVisibility
 } from "../../../reducers/actions/App.js"
 
+import {
+	updateProfileBackArrowFunc,
+} from "../../../reducers/actions/Profile.js"
+
 var MiniProfileWrapper = {}
 
 MiniProfileWrapper.mapStateToProps = function(state) {
@@ -17,7 +21,8 @@ MiniProfileWrapper.mapDispatchToProps = function(dispatch) {
 	return {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		updateMiniProfileVisibility: isVisible => dispatch(updateMiniProfileVisibility(isVisible)),
-		updateMiniProfileContent: userData => dispatch(updateMiniProfileContent(userData))
+		updateMiniProfileContent: userData => dispatch(updateMiniProfileContent(userData)),
+		updateProfileBackArrowFunc: func => dispatch(updateProfileBackArrowFunc(func))
 	}
 }
 

@@ -4,6 +4,7 @@ import {
 	UPDATE_EDIT_PROFILE_TEXTBOX_VALUES,
 	TOGGLE_EDITING_PROFILE,
 	UPDATE_SONG_MOOD_MODAL_VALUE,
+	UPDATE_BACK_ARROW_FUNC
 } from "./actions/Profile.js"
 
 let exportVar = {}
@@ -20,6 +21,7 @@ exportVar.defaultState = {
 	},		
 	publicProfileInfo: {},					// (obj) public info profile on /user/:username		
 	userSCSongs: [],
+	backArrowFunc: null,					// (func) if not null, profile shows back arrow in header on mobile and call this callback when back arrow pressed
 }
 
 const { defaultState } = exportVar
@@ -27,6 +29,15 @@ const { defaultState } = exportVar
 exportVar.profileReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case UPDATE_BACK_ARROW_FUNC:
+			var backArrowFunc = action.backArrowFunc
+			if(typeof(backArrowFunc) !== "function")
+				backArrowFunc = null
+
+			return {
+				...state,
+				backArrowFunc
+			}
 		case UPDATE_USER_SC_SONGS:
 			return {
 				...state,

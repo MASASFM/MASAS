@@ -115,11 +115,12 @@ export function toogleIsModalOpened() {
 	}
 }
 
-export function updatePageTitle(title, pageType) {
+export function updatePageTitle(title, pageType, backArrowFunc = () => {}) {
 	return {
 		type: UPDATE_PAGE_TITLE,
 		title,
-		pageType
+		pageType,
+		backArrowFunc
 	}
 }
 
