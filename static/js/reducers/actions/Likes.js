@@ -1,5 +1,13 @@
 import 'whatwg-fetch'
 
+export const UPDATE_SHOW_MORE_LIKES_BUTTON = 'UPDATE_SHOW_MORE_LIKES_BUTTON'
+export function updateShowMoreLikesButton(showMoreLikesButton) {
+	return {
+		type: UPDATE_SHOW_MORE_LIKES_BUTTON,
+		showMoreLikesButton
+	}
+}
+
 export const UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN'
 export function updateNumberLikesShown(numRowLikesShown) {
 	return {

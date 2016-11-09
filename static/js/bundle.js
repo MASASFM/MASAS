@@ -50199,15 +50199,19 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 		userLikesUnfiltered: React.PropTypes.array,
 		bgFilter: React.PropTypes.object,
 		numRowLikesShown: React.PropTypes.number,
+		showMoreLikesButton: React.PropTypes.bool,
 
 		blurBg: React.PropTypes.func,
 		saturateBg: React.PropTypes.func,
 		blurBgMobile: React.PropTypes.func,
 		saturateBgMobile: React.PropTypes.func,
-		updateNumberLikesShown: React.PropTypes.func
+		updateNumberLikesShown: React.PropTypes.func,
+		updateShowMoreLikesButton: React.PropTypes.func
 	},
 
-	componentWillMount: function componentWillMount() {},
+	componentWillMount: function componentWillMount() {
+		this.numArtworkPerLine = 10;
+	},
 
 	componentWillUnmount: function componentWillUnmount() {
 		// hide extra like artworks when umounting
@@ -50242,14 +50246,8 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 	// filter number of likes shown
 	filterLikes: function filterLikes(songList) {
-		var totalNumArtwork = 10;
-
-		if (this.numArtworkPerLine) {
-			totalNumArtwork = this.props.numRowLikesShown * this.numArtworkPerLine;
-			if (songList.length > totalNumArtwork) songList = songList.slice(0, totalNumArtwork);
-		} else {
-			if (songList.length > totalNumArtwork) songList = songList.slice(0, totalNumArtwork);
-		}
+		var totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine;
+		if (songList.length > totalNumArtworkShown) songList = songList.slice(0, totalNumArtworkShown);
 
 		return songList;
 	},
@@ -50321,6 +50319,13 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 		return divArray;
 	},
 
+	shouldFilterLikes: function shouldFilterLikes() {
+		var songList = this.props.userLikes;
+		var totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine;
+
+		if (songList.length > totalNumArtworkShown) return true;else return false;
+	},
+
 	render: function render() {
 		var _this = this;
 
@@ -50331,12 +50336,14 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			this.alignArtworksLeft(),
 			React.createElement(
 				"div",
-				{ className: "button-container" },
+				{
+					className: "button-container",
+					style: { display: this.shouldFilterLikes() ? 'flex' : 'none' } },
 				React.createElement(
 					Button,
 					{
 						onClick: function onClick() {
-							return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + 4);
+							return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + 1);
 						},
 						isSecondaryAction: true,
 						isBigButton: true },
@@ -50890,7 +50897,8 @@ LikesArtworks.mapStateToProps = function (state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
 		userLikesUnfiltered: state.likesReducer.userLikes,
-		numRowLikesShown: state.likesReducer.numRowLikesShown
+		numRowLikesShown: state.likesReducer.numRowLikesShown,
+		showMoreLikesButton: state.likesReducer.showMoreLikesButton
 	};
 };
 
@@ -50911,6 +50919,9 @@ LikesArtworks.mapDispatchToProps = function (dispatch) {
 		},
 		saturateBgMobile: function saturateBgMobile(sat) {
 			return dispatch(_App.changeBgState.saturateMobile(sat));
+		},
+		updateShowMoreLikesButton: function updateShowMoreLikesButton() {
+			return dispatch((0, _Likes.updateShowMoreLikesButton)());
 		}
 	};
 };
@@ -58471,9 +58482,10 @@ exportVar.defaultState = {
 	searchInput: "", // (string) search textbox input
 	hashtagFilter: [false, false, false, false, false, false], // (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, // (bool) need more likes to load in infinite scrool ?
-	numRowLikesShown: 3 };
+	numRowLikesShown: 1, // (int) how many rows of like artworks are shown max
+	showMoreLikesButton: false };
 
-// (int) how many rows of like artworks are shown max
+// (bool) should button to get more likes be shown
 var defaultState = exportVar.defaultState;
 
 exportVar.likesReducer = function () {
@@ -58481,6 +58493,10 @@ exportVar.likesReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case _Likes.UPDATE_SHOW_MORE_LIKES_BUTTON:
+			return _extends({}, state, {
+				showMoreLikesButton: action.showMoreLikesButton
+			});
 		case _Likes.UPDATE_NUMBER_OF_LIKES_SHOWN:
 			var numRowLikesShown = action.numRowLikesShown;
 
@@ -59243,13 +59259,22 @@ function toogleLegalsPageNumber(pageNumber) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.TOGGLE_MINI_PROFILE = exports.UPDATE_MINI_PROFILE = exports.UPDATE_LIKES = exports.REQUEST_LIKES = exports.TOOGLE_HASHTAG_FILTER = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = undefined;
+exports.TOGGLE_MINI_PROFILE = exports.UPDATE_MINI_PROFILE = exports.UPDATE_LIKES = exports.REQUEST_LIKES = exports.TOOGLE_HASHTAG_FILTER = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = exports.UPDATE_SHOW_MORE_LIKES_BUTTON = undefined;
+exports.updateShowMoreLikesButton = updateShowMoreLikesButton;
 exports.updateNumberLikesShown = updateNumberLikesShown;
 exports.toogleHashtagFilter = toogleHashtagFilter;
 exports.toogleMiniProfile = toogleMiniProfile;
 exports.fetchLikes = fetchLikes;
 
 require('whatwg-fetch');
+
+var UPDATE_SHOW_MORE_LIKES_BUTTON = exports.UPDATE_SHOW_MORE_LIKES_BUTTON = 'UPDATE_SHOW_MORE_LIKES_BUTTON';
+function updateShowMoreLikesButton(showMoreLikesButton) {
+	return {
+		type: UPDATE_SHOW_MORE_LIKES_BUTTON,
+		showMoreLikesButton: showMoreLikesButton
+	};
+}
 
 var UPDATE_NUMBER_OF_LIKES_SHOWN = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN';
 function updateNumberLikesShown(numRowLikesShown) {

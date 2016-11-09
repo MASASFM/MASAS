@@ -3,7 +3,8 @@ import {
 } from "../../../reducers/actions/App.js"
 
 import {
-	updateNumberLikesShown
+	updateNumberLikesShown,
+	updateShowMoreLikesButton
 } from "../../../reducers/actions/Likes.js"
 
 var LikesArtworks = {}
@@ -14,6 +15,7 @@ LikesArtworks.mapStateToProps = function(state) {
 		bgFilter: state.appReducer.bgFilter,
 		userLikesUnfiltered: state.likesReducer.userLikes,
 		numRowLikesShown: state.likesReducer.numRowLikesShown,
+		showMoreLikesButton: state.likesReducer.showMoreLikesButton
 	}
 }
 
@@ -25,6 +27,7 @@ LikesArtworks.mapDispatchToProps = function(dispatch) {
 		saturateBg: (sat) => dispatch(changeBgState.saturate(sat)),
 		blurBgMobile: (blur) => dispatch(changeBgState.blurMobile(blur)),
 		saturateBgMobile: (sat) => dispatch(changeBgState.saturateMobile(sat)),
+		updateShowMoreLikesButton: () => dispatch(updateShowMoreLikesButton())
 	}
 }
 

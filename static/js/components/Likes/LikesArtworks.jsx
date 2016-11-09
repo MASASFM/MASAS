@@ -20,15 +20,18 @@ var LikesArtworks = React.createClass({
 		userLikesUnfiltered: React.PropTypes.array,
 		bgFilter: React.PropTypes.object,
 		numRowLikesShown: React.PropTypes.number,
+		showMoreLikesButton: React.PropTypes.bool,
 
 		blurBg: React.PropTypes.func,
 		saturateBg: React.PropTypes.func,
 		blurBgMobile: React.PropTypes.func,
 		saturateBgMobile: React.PropTypes.func,
 		updateNumberLikesShown: React.PropTypes.func,
+		updateShowMoreLikesButton: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
+		this.numArtworkPerLine = 10
 	},
 
 	componentWillUnmount: function() {
@@ -64,16 +67,9 @@ var LikesArtworks = React.createClass({
 
 	// filter number of likes shown
 	filterLikes: function(songList) {
-		var totalNumArtwork = 10
-
-		if(this.numArtworkPerLine) {
-			totalNumArtwork = this.props.numRowLikesShown * this.numArtworkPerLine
-			if(songList.length > totalNumArtwork)
-				songList = songList.slice(0, totalNumArtwork)
-		} else {
-			if(songList.length > totalNumArtwork)
-				songList = songList.slice(0, totalNumArtwork)
-		}
+		const totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine
+		if(songList.length > totalNumArtworkShown)
+			songList = songList.slice(0, totalNumArtworkShown)
 
 		return songList
 	},
@@ -148,14 +144,26 @@ var LikesArtworks = React.createClass({
 		return divArray
 	},
 
+	shouldFilterLikes: function() {
+		const songList = this.props.userLikes
+		const totalNumArtworkShown = this.props.numRowLikesShown * this.numArtworkPerLine
+
+		if(songList.length > totalNumArtworkShown)
+			return true
+		else
+			return false
+	},
+
 	render: function() {
 		return (
 			<div className="likes-artworks--wrapper">
 				{ this.renderLikes() } 	
 				{ this.alignArtworksLeft() }
-				<div className="button-container">
-					<Button 
-						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 4) }
+				<div 
+					className="button-container"
+					style={{ display: (this.shouldFilterLikes() ? 'flex' : 'none') }}>
+					<Button
+						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 1) }
 						isSecondaryAction={ true }
 						isBigButton={ true }>Load more</Button>
 				</div>

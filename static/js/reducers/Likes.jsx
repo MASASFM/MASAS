@@ -4,7 +4,8 @@ import {
 	TOGGLE_MINI_PROFILE,
 	UPDATE_MINI_PROFILE,
 	TOOGLE_HASHTAG_FILTER,
-	UPDATE_NUMBER_OF_LIKES_SHOWN
+	UPDATE_NUMBER_OF_LIKES_SHOWN,
+	UPDATE_SHOW_MORE_LIKES_BUTTON
 } from "./actions/Likes.js"
 
 let exportVar = {}
@@ -17,7 +18,8 @@ exportVar.defaultState = {
 	searchInput: "", 							// (string) search textbox input
 	hashtagFilter: [false,false,false,false,false,false],				// (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, 							// (bool) need more likes to load in infinite scrool ?
-	numRowLikesShown: 3,						// (int) how many rows of like artworks are shown max
+	numRowLikesShown: 1,						// (int) how many rows of like artworks are shown max
+	showMoreLikesButton: false,						// (bool) should button to get more likes be shown
 }
 
 const { defaultState } = exportVar
@@ -25,6 +27,11 @@ const { defaultState } = exportVar
 exportVar.likesReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case UPDATE_SHOW_MORE_LIKES_BUTTON:
+			return {
+				...state,
+				showMoreLikesButton: action.showMoreLikesButton
+			}
 		case UPDATE_NUMBER_OF_LIKES_SHOWN:
 			var { numRowLikesShown } = action
 
