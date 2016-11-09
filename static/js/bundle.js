@@ -50324,7 +50324,6 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			"div",
 			{ className: "likes-artworks--wrapper" },
 			this.renderLikes(),
-			this.alignArtworksLeft(),
 			React.createElement(
 				"div",
 				{ className: "button-container" },

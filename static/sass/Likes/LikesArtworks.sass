@@ -9,6 +9,16 @@
 	align-content: flex-start
 	animation: fadein-menu 1s linear
 
+	.button-container
+		min-height: 5rem
+		display: flex
+		justify-content: center
+		align-items: center
+
+
 @media screen and (min-width: $desktop-min-width)
 	.likes-artworks--wrapper
 		flex-direction: row
+		flex-wrap: wrap
+		justify-content: space-between
+		background-color: transparent

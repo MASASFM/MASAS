@@ -146,7 +146,7 @@ var LikesArtworks = React.createClass({
 		return (
 			<div className="likes-artworks--wrapper">
 				{ this.renderLikes() } 	
-				{ this.alignArtworksLeft() }
+				
 				<div className="button-container">
 					<Button 
 						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 4) }
