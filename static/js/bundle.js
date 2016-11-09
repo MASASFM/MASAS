@@ -50264,7 +50264,8 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 	getElementsWidth: function getElementsWidth() {
 		// insert artwork wrapper in body to get its width
 		// for the artwork, we can just get the hardcoded width from css
-		var $artworkWrapper = $("<div class='likes-item--wrapper'><div class='artwork--wrapper'><img class='artwork'/></div></div>").hide().appendTo("body");
+
+		var $artworkWrapper = $("<div class='likes-scroll--wrapper'><div class='likes--wrapper'><div class='likes-artworks--wrapper'><div class='likes-item--wrapper'><div class='artwork--wrapper'><img class='artwork'/></div></div></div></div></div>").hide().appendTo("body");
 		var artworkInnerWidth = $artworkWrapper.css("width").replace('px', '');
 		var artworkMargin = window.getComputedStyle(document.getElementsByClassName('likes-item--wrapper')[0]).margin.replace('px', '');
 		var artworkWidth = parseInt(artworkInnerWidth) + 2 * parseInt(artworkMargin);
@@ -50298,6 +50299,9 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 		var A = likesWrapperWidth;
 		var B = artworkWidth;
+
+		if (B === 0) return;
+
 		var artworkCount = 0;
 		if (this.props.SCinfo) artworkCount = this.props.SCinfo.length; // artwork count
 
@@ -50324,6 +50328,7 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 			"div",
 			{ className: "likes-artworks--wrapper" },
 			this.renderLikes(),
+			this.alignArtworksLeft(),
 			React.createElement(
 				"div",
 				{ className: "button-container" },
