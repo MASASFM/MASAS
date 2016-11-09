@@ -109,8 +109,10 @@ var ArtworkLineItem = React.createClass({
 							<Marquee className="artist">{ SC_songInfo.user.username }</Marquee>
 						</div>
 					:
-						<div className="song-info--wrapper">
-							<div 
+						<div 
+							className="song-info--wrapper"
+							onClick={ this.toggleShowProfile }>
+							<div
 								className="like-icon" 
 								style={{ display: (this.props.songPlaying === MASAS_songInfo.url ? 'flex' : 'none') }}
 								onClick={ this.props.toggleSongLike.bind(this, this.props.userToken, this.props.songPlaying) }>
@@ -122,8 +124,7 @@ var ArtworkLineItem = React.createClass({
 								}
 							</div>
 							<div 
-								className="song-info"
-								onClick={ this.toggleShowProfile }>
+								className="song-info">
 								<div className="title"><Marquee>{ SC_songInfo.title }</Marquee></div>
 								<div className="artist"><Marquee>{ SC_songInfo.user.username }</Marquee></div>
 							</div>
