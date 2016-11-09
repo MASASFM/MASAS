@@ -50322,15 +50322,22 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 
 		return React.createElement(
 			"div",
-			{ className: "likes--wrapper" },
+			{ className: "likes-artworks--wrapper" },
 			this.renderLikes(),
 			this.alignArtworksLeft(),
 			React.createElement(
-				Button,
-				{ onClick: function onClick() {
-						return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + 4);
-					} },
-				"Load more"
+				"div",
+				{ className: "button-container" },
+				React.createElement(
+					Button,
+					{
+						onClick: function onClick() {
+							return _this.props.updateNumberLikesShown(_this.props.numRowLikesShown + 4);
+						},
+						isSecondaryAction: true,
+						isBigButton: true },
+					"Load more"
+				)
 			)
 		);
 	}

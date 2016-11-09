@@ -144,10 +144,15 @@ var LikesArtworks = React.createClass({
 
 	render: function() {
 		return (
-			<div className="likes--wrapper">
+			<div className="likes-artworks--wrapper">
 				{ this.renderLikes() } 	
 				{ this.alignArtworksLeft() }
-				<Button onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 4) }>Load more</Button>
+				<div className="button-container">
+					<Button 
+						onClick={ () => this.props.updateNumberLikesShown(this.props.numRowLikesShown + 4) }
+						isSecondaryAction={ true }
+						isBigButton={ true }>Load more</Button>
+				</div>
 			</div>
 		)
 	}
