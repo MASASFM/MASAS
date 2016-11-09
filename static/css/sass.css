@@ -3530,6 +3530,242 @@ input[type=range].MASAS-slider {
     flex-wrap: nowrap;
     align-content: flex-start;
     animation: fadein-menu 1s linear; }
+    .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding-left: 2rem;
+      justify-content: center; }
+      .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper h1 {
+        font-size: 2.5rem;
+        font-family: Lato-Semibold;
+        margin: 3rem 0; }
+      .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper .filter {
+        font-size: 1.5rem;
+        padding: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        height: 2rem; }
+      .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper .filter.active::after {
+        background-image: url("/static/img/MASAS_icon_check_round.svg");
+        width: 2rem;
+        height: 2rem;
+        content: "";
+        background-size: cover; }
+      .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper .filter.active {
+        display: flex;
+        justify-content: space-between; }
+      .likes-scroll--wrapper .likes--wrapper .filters-modal--wrapper .filter:hover {
+        cursor: pointer; }
+    .likes-scroll--wrapper .likes--wrapper .likes-searchbar--wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%; }
+    .likes-scroll--wrapper .likes--wrapper .likes-searchbar--wrapper .MASAS-text-input {
+      margin: 0.7rem; }
+    .likes-scroll--wrapper .likes--wrapper .likes-searchbar--wrapper img {
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0 1rem; }
+    .likes-scroll--wrapper .likes--wrapper .filters--wrapper {
+      display: none;
+      justify-content: space-between;
+      width: 100%;
+      height: 2rem; }
+    .likes-scroll--wrapper .likes--wrapper .tag-filter {
+      opacity: 0.5;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center; }
+    .likes-scroll--wrapper .likes--wrapper .tag-filter:hover {
+      cursor: pointer; }
+    .likes-scroll--wrapper .likes--wrapper .tag-filter.enable {
+      font-face: bold;
+      opacity: 1; }
+    .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      width: 100%;
+      flex-wrap: nowrap;
+      align-content: flex-start;
+      animation: fadein-menu 1s linear; }
+      .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper {
+        display: flex;
+        min-height: 8rem;
+        max-height: 8rem; }
+      .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.2); }
+      .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper {
+        position: relative; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper.show {
+          z-index: 10;
+          animation: fadein-profile 0.25s linear;
+          opacity: 1; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper {
+          z-index: -1;
+          position: absolute;
+          background-color: black;
+          top: 0;
+          left: 8rem;
+          right: 0;
+          height: 8rem;
+          opacity: 0;
+          animation: fadeout-modal 0.25s linear; }
+          .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .back-arrow {
+            margin: 0.5rem;
+            height: 1rem;
+            width: 1rem; }
+          .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 {
+            flex-direction: row;
+            height: 8rem; }
+            .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
+              display: none; }
+            .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info {
+              padding: 0 1rem;
+              width: 100%; }
+              .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .username {
+                max-width: inherit;
+                text-align: center;
+                font-size: 1rem; }
+              .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons {
+                justify-content: center; }
+                .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon {
+                  width: 2.5rem; }
+                  .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon img {
+                    width: 1rem;
+                    height: 1rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper {
+          position: relative;
+          cursor: pointer; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork-div {
+          width: 8rem;
+          height: 8rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork {
+          object-fit: cover;
+          width: 8rem;
+          z-index: 0; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork-overlay {
+          align-items: center;
+          justify-content: center;
+          display: none;
+          background-color: rgba(0, 0, 0, 0.5);
+          position: absolute;
+          height: 10rem;
+          width: 10rem;
+          z-index: 1;
+          top: 0; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork-overlay img {
+          height: 5rem;
+          width: 5rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          justify-content: space-between;
+          padding: 1.5rem 0.9rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper {
+          display: flex;
+          flex-direction: column; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+          position: relative;
+          height: 1.2rem;
+          width: 100%; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
+          font-family: Lato-Semibold;
+          font-size: 1.2rem;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .dash {
+          display: none; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+          overflow: hidden;
+          text-overflow: ellipsis; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper {
+          display: flex;
+          justify-content: space-between; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper .title {
+          opacity: 0.5;
+          font-size: 0.7rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper .time {
+          display: flex;
+          align-self: flex-end; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
+          width: 1.2rem; }
+      @media screen and (min-width: 992px) {
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper {
+          min-height: 13rem;
+          width: 10rem;
+          flex-direction: column;
+          margin: 0.5rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper:nth-of-type(odd) {
+          background-color: transparent; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper {
+          left: 0;
+          height: 10rem; }
+          .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper {
+            padding-top: 0.5rem; }
+          .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 {
+            flex-direction: column;
+            justify-content: space-around; }
+            .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
+              display: block;
+              height: 4rem;
+              width: 4rem; }
+            .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info {
+              padding: 0;
+              width: 8rem;
+              align-self: center;
+              height: 2.5rem; }
+              .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .username {
+                max-width: 10rem;
+                font-size: 0.8rem; }
+              .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon img {
+                width: 0.9rem;
+                height: 0.9rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper:hover .artwork-overlay {
+          display: flex; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork-div {
+          width: 10rem;
+          height: 10rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .artwork--wrapper .artwork {
+          width: 10rem;
+          height: 10rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper {
+          background-color: black;
+          padding: 0.5rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+          height: 0.6rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
+          font-size: 0.6rem;
+          white-space: nowrap; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .dash {
+          display: block;
+          margin: 0.2rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
+          font-size: 0.6rem;
+          white-space: nowrap;
+          max-width: 50%; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper {
+          font-size: 0.5rem; }
+        .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
+          width: 0.8rem; } }
+    @media screen and (min-width: 992px) {
+      .likes-scroll--wrapper .likes--wrapper .likes-artworks--wrapper {
+        flex-direction: row; } }
+    @media screen and (min-width: 992px) {
+      .likes-scroll--wrapper .likes--wrapper .likes-searchbar--wrapper img {
+        padding: 0;
+        padding-left: 1rem;
+        padding-right: 0.5rem; }
+      .likes-scroll--wrapper .likes--wrapper .likes-searchbar--wrapper .filter-icon {
+        display: none; }
+      .likes-scroll--wrapper .likes--wrapper .filters--wrapper {
+        display: flex; } }
 
 @media screen and (min-width: 992px) {
   .likes-scroll--wrapper {
@@ -3540,238 +3776,6 @@ input[type=range].MASAS-slider {
       background-color: transparent; }
     .likes-scroll--wrapper .likes--wrapper > .likes--wrapper {
       flex-direction: row; } }
-.likes-item--wrapper {
-  display: flex;
-  min-height: 8rem;
-  max-height: 8rem; }
-
-.likes-item--wrapper:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.2); }
-
-.likes-item--wrapper {
-  position: relative; }
-  .likes-item--wrapper .likes-mini-profile--wrapper.show {
-    z-index: 10;
-    animation: fadein-profile 0.25s linear;
-    opacity: 1; }
-  .likes-item--wrapper .likes-mini-profile--wrapper {
-    z-index: -1;
-    position: absolute;
-    background-color: black;
-    top: 0;
-    left: 8rem;
-    right: 0;
-    height: 8rem;
-    opacity: 0;
-    animation: fadeout-modal 0.25s linear; }
-    .likes-item--wrapper .likes-mini-profile--wrapper .back-arrow {
-      margin: 0.5rem;
-      height: 1rem;
-      width: 1rem; }
-    .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 {
-      flex-direction: row;
-      height: 8rem; }
-      .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
-        display: none; }
-      .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info {
-        padding: 0 1rem;
-        width: 100%; }
-        .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .username {
-          max-width: inherit;
-          text-align: center;
-          font-size: 1rem; }
-        .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons {
-          justify-content: center; }
-          .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon {
-            width: 2.5rem; }
-            .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon img {
-              width: 1rem;
-              height: 1rem; }
-  .likes-item--wrapper .artwork--wrapper {
-    position: relative;
-    cursor: pointer; }
-  .likes-item--wrapper .artwork--wrapper .artwork-div {
-    width: 8rem;
-    height: 8rem; }
-  .likes-item--wrapper .artwork--wrapper .artwork {
-    object-fit: cover;
-    width: 8rem;
-    z-index: 0; }
-  .likes-item--wrapper .artwork--wrapper .artwork-overlay {
-    align-items: center;
-    justify-content: center;
-    display: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    height: 10rem;
-    width: 10rem;
-    z-index: 1;
-    top: 0; }
-  .likes-item--wrapper .artwork--wrapper .artwork-overlay img {
-    height: 5rem;
-    width: 5rem; }
-  .likes-item--wrapper .text--wrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: space-between;
-    padding: 1.5rem 0.9rem; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper {
-    display: flex;
-    flex-direction: column; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
-    position: relative;
-    height: 1.2rem;
-    width: 100%; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
-    font-family: Lato-Semibold;
-    font-size: 1.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .dash {
-    display: none; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
-    overflow: hidden;
-    text-overflow: ellipsis; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper {
-    display: flex;
-    justify-content: space-between; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper .title {
-    opacity: 0.5;
-    font-size: 0.7rem; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper .time {
-    display: flex;
-    align-self: flex-end; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
-    width: 1.2rem; }
-
-@media screen and (min-width: 992px) {
-  .likes-item--wrapper {
-    min-height: 13rem;
-    width: 10rem;
-    flex-direction: column;
-    margin: 0.5rem; }
-
-  .likes-item--wrapper:nth-of-type(odd) {
-    background-color: transparent; }
-
-  .likes-item--wrapper .likes-mini-profile--wrapper {
-    left: 0;
-    height: 10rem; }
-    .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper {
-      padding-top: 0.5rem; }
-    .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 {
-      flex-direction: column;
-      justify-content: space-around; }
-      .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
-        display: block;
-        height: 4rem;
-        width: 4rem; }
-      .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info {
-        padding: 0;
-        width: 8rem;
-        align-self: center;
-        height: 2.5rem; }
-        .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .username {
-          max-width: 10rem;
-          font-size: 0.8rem; }
-        .likes-item--wrapper .likes-mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon img {
-          width: 0.9rem;
-          height: 0.9rem; }
-  .likes-item--wrapper .artwork--wrapper:hover .artwork-overlay {
-    display: flex; }
-  .likes-item--wrapper .artwork--wrapper .artwork-div {
-    width: 10rem;
-    height: 10rem; }
-  .likes-item--wrapper .artwork--wrapper .artwork {
-    width: 10rem;
-    height: 10rem; }
-  .likes-item--wrapper .text--wrapper {
-    background-color: black;
-    padding: 0.5rem; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .artist, .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
-    height: 0.6rem; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .artist {
-    font-size: 0.6rem;
-    white-space: nowrap; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .dash {
-    display: block;
-    margin: 0.2rem; }
-  .likes-item--wrapper .text--wrapper .song-name--wrapper .title {
-    font-size: 0.6rem;
-    white-space: nowrap;
-    max-width: 50%; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper {
-    font-size: 0.5rem; }
-  .likes-item--wrapper .text--wrapper .song-stats--wrapper .plays .play-count-icon {
-    width: 0.8rem; } }
-.filters-modal--wrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding-left: 2rem;
-  justify-content: center; }
-  .filters-modal--wrapper h1 {
-    font-size: 2.5rem;
-    font-family: Lato-Semibold;
-    margin: 3rem 0; }
-  .filters-modal--wrapper .filter {
-    font-size: 1.5rem;
-    padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    height: 2rem; }
-  .filters-modal--wrapper .filter.active::after {
-    background-image: url("/static/img/MASAS_icon_check_round.svg");
-    width: 2rem;
-    height: 2rem;
-    content: "";
-    background-size: cover; }
-  .filters-modal--wrapper .filter.active {
-    display: flex;
-    justify-content: space-between; }
-  .filters-modal--wrapper .filter:hover {
-    cursor: pointer; }
-
-.likes--wrapper .likes-searchbar--wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; }
-.likes--wrapper .likes-searchbar--wrapper .MASAS-text-input {
-  margin: 0.7rem; }
-.likes--wrapper .likes-searchbar--wrapper img {
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0 1rem; }
-.likes--wrapper .filters--wrapper {
-  display: none;
-  justify-content: space-between;
-  width: 100%;
-  height: 2rem; }
-.likes--wrapper .tag-filter {
-  opacity: 0.5;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center; }
-.likes--wrapper .tag-filter:hover {
-  cursor: pointer; }
-.likes--wrapper .tag-filter.enable {
-  font-face: bold;
-  opacity: 1; }
-
-@media screen and (min-width: 992px) {
-  .likes--wrapper .likes-searchbar--wrapper img {
-    padding: 0;
-    padding-left: 1rem;
-    padding-right: 0.5rem; }
-  .likes--wrapper .likes-searchbar--wrapper .filter-icon {
-    display: none; }
-  .likes--wrapper .filters--wrapper {
-    display: flex; } }
 .teach-modal--wrapper {
   display: flex;
   flex-direction: column;
@@ -4236,7 +4240,7 @@ html {
   font-family: Lato-Regular; }
 
 h1 {
-  margin: .5rem;
+  margin: 0.5rem;
   color: white; }
 
 #content {
@@ -4270,7 +4274,7 @@ h1 {
     color: white;
     font-family: Lato-Light;
     padding-left: 1rem;
-    margin-top: .5rem; } }
+    margin-top: 0.5rem; } }
 
 .txt-align-center {
   text-align: center; }

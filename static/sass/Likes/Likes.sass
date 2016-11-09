@@ -1,53 +1,56 @@
-@import "./LikesWrapper"
-@import "./LikesItem"
-@import "./FiltersModal.sass"
-
-.likes--wrapper
-	.likes-searchbar--wrapper
-		display: flex 
-		align-items: center
-		justify-content: space-between
-		width: 100%
-
-	.likes-searchbar--wrapper
-		.MASAS-text-input		
-			margin: 0.7rem
-
-		img
-			width: 1.5rem
-			height: 1.5rem
-			padding: 0 1rem
-			
-		.filter-icon
-
-	.filters--wrapper
-		display: none
-		justify-content: space-between
-		width: 100%
-		height: 2rem
-
-	.tag-filter
-		opacity: 0.5
-		font-size: 0.8rem
-		display: flex
-		align-items: center
-
-	.tag-filter:hover
-		cursor: pointer
+// @import "./LikesWrapper"
+// @import "./LikesItem"
+@import "./FiltersModal"
 
 
-	.tag-filter.enable
-		font-face: bold
-		opacity: 1
+// .likes--wrapper
+.likes-searchbar--wrapper
+	display: flex 
+	align-items: center
+	justify-content: space-between
+	width: 100%
+
+.likes-searchbar--wrapper
+	.MASAS-text-input		
+		margin: 0.7rem
+
+	img
+		width: 1.5rem
+		height: 1.5rem
+		padding: 0 1rem
+		
+	.filter-icon
+
+.filters--wrapper
+	display: none
+	justify-content: space-between
+	width: 100%
+	height: 2rem
+
+.tag-filter
+	opacity: 0.5
+	font-size: 0.8rem
+	display: flex
+	align-items: center
+
+.tag-filter:hover
+	cursor: pointer
+
+
+.tag-filter.enable
+	font-face: bold
+	opacity: 1
+
+@import "./LikesArtworks"
 
 @media screen and (min-width: $desktop-min-width)
-	.likes--wrapper
-		.likes-searchbar--wrapper
-			img
-				padding: 0
-				padding-left: 1rem
-				padding-right: 0.5rem
-			.filter-icon
-				display: none 
-		.filters--wrapper
-			display: flex 
+	// .likes--wrapper
+	.likes-searchbar--wrapper
+		img
+			padding: 0
+			padding-left: 1rem
+			padding-right: 0.5rem
+		.filter-icon
+			display: none 
+	.filters--wrapper
+		display: flex 

@@ -1,0 +1,14 @@
+.likes-artworks--wrapper
+	@import "./LikesItem"
+	
+	display: flex
+	flex: 1
+	flex-direction: column
+	width: 100%
+	flex-wrap: nowrap
+	align-content: flex-start
+	animation: fadein-menu 1s linear
+
+@media screen and (min-width: $desktop-min-width)
+	.likes-artworks--wrapper
+		flex-direction: row
