@@ -30,8 +30,16 @@ var MASAS_functions = {}
 /////
 /////
 
-MASAS_functions.isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
-MASAS_functions.isObjectNotEmpty = (obj) => Object.keys(obj).length !== 0 && obj.constructor === Object
+MASAS_functions.getUserPkFromURL = url => {
+	var str = url
+	str = str.slice(0, str.length-1)
+	str = str.substring(str.lastIndexOf("/")+1,str.length)
+
+	return str
+}
+
+MASAS_functions.isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
+MASAS_functions.isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
 
 MASAS_functions.background = {
 	blur: () => {

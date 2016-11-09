@@ -1,15 +1,16 @@
+// NOTE !!
+// this component behaves differently on mobile and desktop
+
 var React = require("react")
 
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/MiniProfileWrapper.jsx")
 
-// var {goToURL} = require("../../MASAS_functions.jsx")
+var { browserHistory } = require('react-router')
+
+var { getUserPkFromURL } = require("../../MASAS_functions.jsx")
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
-
-// var Template = (props) => {
-
-// }
 
 var MiniProfileWrapper = React.createClass({
 	propTypes: {
@@ -21,8 +22,30 @@ var MiniProfileWrapper = React.createClass({
 		updateTitle: React.PropTypes.func
 	},
 
-	componentWillReceiveProps: function(newProps) {
+	componentDidMount: function() {
+		window.addEventListener("resize", () => {
+			if(this.props.miniProfile.isVisible && window.innerWidth < 993)
+				this.redirectToProfile()
+		})
+	},
 
+	componentWillUnmount: function() {
+		window.removeEventListener("resize")
+	},
+
+	componentWillReceiveProps: function(nextProps) {
+		if(
+			this.props.miniProfile.isVisible !== nextProps.miniProfile.isVisible
+			&& nextProps.miniProfile.isVisible === true
+			&& window.innerWidth < 993
+		) {	
+			this.redirectToProfile()
+		}
+	},
+
+	redirectToProfile: function() {
+		browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url))
+		this.props.updateMiniProfileVisibility(false)
 	},
 
 	render: function() {
