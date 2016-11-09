@@ -7,7 +7,7 @@ var React = require("react")
 
 var $ = require("jquery")
 
-var { makePromiseCancelable } = require("../../MASAS_functions.jsx")
+var { makePromiseCancelable, discoverHashtagNames } = require("../../MASAS_functions.jsx")
 
 var pixelRatio = () => {
 	return 1 // paper.view.pixelRatio
@@ -176,18 +176,20 @@ var TimePicker = React.createClass({
 		if(value > 100)
 			value = 100
 
+		const hastagNames = discoverHashtagNames()
+
 		if(value >= 0 && value < 100/6)
-			return "#EarlyMorning"
+			return hastagNames[0]
 		else if(value >= 100/6 && value < 2*100/6)
-			return "#LateMorning"
+			return hastagNames[1]
 		else if(value >= 2*100/6 && value < 3*100/6)
-			return "#EarlyAfternoon"
+			return hastagNames[2]
 		else if(value >= 3*100/6 && value < 4*100/6)
-			return "#LateAfternoon"
+			return hastagNames[3]
 		else if(value >= 4*100/6 && value < 5*100/6)
-			return "#EarlyEvening"
+			return hastagNames[4]
 		else if(value >= 5*100/6 && value <= 100)
-			return "#LateEvening"
+			return hastagNames[5]
 	},
 
 	componentDidUpdate: function() {

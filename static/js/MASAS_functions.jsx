@@ -50,22 +50,34 @@ MASAS_functions.background = {
 	}
 }
 
+MASAS_functions.discoverHashtagNames = () => {
+	return [
+		"#EarlyMorning",
+		"#LateMorning",
+		"#EarlyAfternoon",
+		"#LateAfternoon",
+		"#EarlyEvening",
+		"#LateEvening"
+	]
+}
+
 MASAS_functions.timeIntervalURLToString = (timeIntervalURL) => {
 	var switchVar = timeIntervalURL.substr(timeIntervalURL.length - 2, 1)
+	const hastagNames = MASAS_functions.discoverHashtagNames()
 
 	switch(switchVar) {
 		case "1":
-			return "#EarlyMorning"
+			return hastagNames[0]
 		case "2":
-			return "#LateMorning"
+			return hastagNames[1]
 		case "3":
-			return "#EarlyAfternoon"
+			return hastagNames[2]
 		case "4":
-			return "#LateAfternoon"
+			return hastagNames[3]
 		case "5":
-			return "#EarlyEvening"
+			return hastagNames[4]
 		case "6":
-			return "#LateEvening"
+			return hastagNames[5]
 		default:
 			return ""
 	}

@@ -6,7 +6,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/TrackItem.js
 var { Marquee, RankingInfoIcon } = require("../UI/UI.jsx")
 var ChangeMoodModal = require("./ChangeMoodModal.jsx")
 var RemoveSongModal = require("./RemoveSongModal.jsx")
-var { isObjectEmpty } = require("../../MASAS_functions.jsx")
+var { isObjectEmpty, timeIntervalURLToString } = require("../../MASAS_functions.jsx")
 
 var TrackItem = React.createClass({
 	propTypes: {
@@ -50,27 +50,6 @@ var TrackItem = React.createClass({
 
 		this.props.loadPlaylist(playlist)
 		this.props.playNewSongFromPlaylist(playlistPosition)
-	},
-
-	renderRadioTime: function() {
-		var switchVar = this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1)
-		
-		switch(switchVar) {
-			case "1":
-				return "#EarlyMorning"
-			case "2":
-				return "#LateMorning"
-			case "3":
-				return "#EarlyAfternoon"
-			case "4":
-				return "#LateAfternoon"
-			case "5":
-				return "#EarlyEvening"
-			case "6":
-				return "#LateEvening"
-			default:
-				return 
-		}
 	},
 
 	renderPlayerControlButton: function() {
@@ -130,7 +109,7 @@ var TrackItem = React.createClass({
 						</div>
 						<div className="song-stats-2">
 							<div className="time">
-								{ this.renderRadioTime() }
+								{ timeIntervalURLToString(this.props.MASAS_songInfo.timeInterval) }
 							</div>
 							<div className="plays">
 								{ this.props.MASAS_songInfo.play_count } <img src="/static/img/MASAS_icon_play_count.svg" alt="play count" className="play-count-icon" />

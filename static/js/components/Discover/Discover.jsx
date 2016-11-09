@@ -3,7 +3,7 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty, isObjectEmpty } = require("../../MASAS_functions.jsx")
+var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty, isObjectEmpty, discoverHashtagNames } = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
@@ -155,7 +155,7 @@ var Discover = React.createClass({
 					}}>
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
 						<h1>
-							#EarlyMorning
+							{ discoverHashtagNames()[0] }
 						</h1>
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
@@ -163,7 +163,7 @@ var Discover = React.createClass({
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
 						<h1>
-							#LateMorning
+							{ discoverHashtagNames()[1] }
 						</h1>
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
@@ -171,7 +171,7 @@ var Discover = React.createClass({
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
 						<h1>
-							#EarlyAfternoon
+							{ discoverHashtagNames()[2] }
 						</h1>
 						<ArtworkLine
 							renderForUITip={ showArtwork }
@@ -179,7 +179,7 @@ var Discover = React.createClass({
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
 						<h1>
-							#LateAfternoon
+							{ discoverHashtagNames()[3] }
 						</h1>
 						<ArtworkLine
 							renderForUITip={ showArtwork }
@@ -187,7 +187,7 @@ var Discover = React.createClass({
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
 						<h1>
-							#EarlyEvening
+							{ discoverHashtagNames()[4] }
 						</h1>
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
@@ -195,7 +195,7 @@ var Discover = React.createClass({
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
 						<h1>
-							#LateEvening
+							{ discoverHashtagNames()[5] }
 						</h1>
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
