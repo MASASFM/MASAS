@@ -5,8 +5,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/Footer.jsx")
 
 var FooterModal = require("./FooterModals.jsx")
 var UnsplashControls = require("./UnsplashControls.jsx")
-var MiniProfileWrapper = require("./MiniProfileWrapper.jsx")
-
+var MiniProfileWrapper = require("../Profile/MiniProfileWrapper.jsx")
 var Player = require("../Player/PlayerBar.jsx")
 var { getTimeIntervalFromURL } = require("../../MASAS_functions.jsx")
 

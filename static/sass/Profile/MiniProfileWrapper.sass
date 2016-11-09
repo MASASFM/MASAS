@@ -1,0 +1,28 @@
+.footer--wrapper
+	.main-mini-profile--wrapper
+		position: absolute
+		bottom: 100%
+		min-height: 10rem
+		background-color: rgba(0,0,0,0.7)
+		display: flex
+		flex: 1
+		width: 100%
+		opacity: 1
+		transition: opacity 0.2s linear
+
+		&.hidden
+			opacity: 0
+			pointer-events: none
+
+		.main-mini-profile--wrapper2
+			display: flex
+			position: relative
+			flex: 1
+
+			.close-mini-profile-icon
+				position: absolute
+				height: 1rem
+				padding: 1rem
+				top: 0
+				right: 0
+				cursor: pointer
