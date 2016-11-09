@@ -50897,8 +50897,7 @@ LikesArtworks.mapStateToProps = function (state) {
 	return {
 		bgFilter: state.appReducer.bgFilter,
 		userLikesUnfiltered: state.likesReducer.userLikes,
-		numRowLikesShown: state.likesReducer.numRowLikesShown,
-		showMoreLikesButton: state.likesReducer.showMoreLikesButton
+		numRowLikesShown: state.likesReducer.numRowLikesShown
 	};
 };
 
@@ -50919,9 +50918,6 @@ LikesArtworks.mapDispatchToProps = function (dispatch) {
 		},
 		saturateBgMobile: function saturateBgMobile(sat) {
 			return dispatch(_App.changeBgState.saturateMobile(sat));
-		},
-		updateShowMoreLikesButton: function updateShowMoreLikesButton() {
-			return dispatch((0, _Likes.updateShowMoreLikesButton)());
 		}
 	};
 };
@@ -58482,10 +58478,9 @@ exportVar.defaultState = {
 	searchInput: "", // (string) search textbox input
 	hashtagFilter: [false, false, false, false, false, false], // (array) 1 = include in search. 1st entry = #EarlyMorning
 	loadMoreLikes: true, // (bool) need more likes to load in infinite scrool ?
-	numRowLikesShown: 1, // (int) how many rows of like artworks are shown max
-	showMoreLikesButton: false };
+	numRowLikesShown: 1 };
 
-// (bool) should button to get more likes be shown
+// (int) how many rows of like artworks are shown max
 var defaultState = exportVar.defaultState;
 
 exportVar.likesReducer = function () {
@@ -58493,10 +58488,6 @@ exportVar.likesReducer = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
-		case _Likes.UPDATE_SHOW_MORE_LIKES_BUTTON:
-			return _extends({}, state, {
-				showMoreLikesButton: action.showMoreLikesButton
-			});
 		case _Likes.UPDATE_NUMBER_OF_LIKES_SHOWN:
 			var numRowLikesShown = action.numRowLikesShown;
 
@@ -59259,22 +59250,13 @@ function toogleLegalsPageNumber(pageNumber) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.TOGGLE_MINI_PROFILE = exports.UPDATE_MINI_PROFILE = exports.UPDATE_LIKES = exports.REQUEST_LIKES = exports.TOOGLE_HASHTAG_FILTER = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = exports.UPDATE_SHOW_MORE_LIKES_BUTTON = undefined;
-exports.updateShowMoreLikesButton = updateShowMoreLikesButton;
+exports.TOGGLE_MINI_PROFILE = exports.UPDATE_MINI_PROFILE = exports.UPDATE_LIKES = exports.REQUEST_LIKES = exports.TOOGLE_HASHTAG_FILTER = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = undefined;
 exports.updateNumberLikesShown = updateNumberLikesShown;
 exports.toogleHashtagFilter = toogleHashtagFilter;
 exports.toogleMiniProfile = toogleMiniProfile;
 exports.fetchLikes = fetchLikes;
 
 require('whatwg-fetch');
-
-var UPDATE_SHOW_MORE_LIKES_BUTTON = exports.UPDATE_SHOW_MORE_LIKES_BUTTON = 'UPDATE_SHOW_MORE_LIKES_BUTTON';
-function updateShowMoreLikesButton(showMoreLikesButton) {
-	return {
-		type: UPDATE_SHOW_MORE_LIKES_BUTTON,
-		showMoreLikesButton: showMoreLikesButton
-	};
-}
 
 var UPDATE_NUMBER_OF_LIKES_SHOWN = exports.UPDATE_NUMBER_OF_LIKES_SHOWN = 'UPDATE_NUMBER_OF_LIKES_SHOWN';
 function updateNumberLikesShown(numRowLikesShown) {
