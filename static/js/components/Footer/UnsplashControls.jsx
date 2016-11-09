@@ -34,7 +34,7 @@ var UnsplashControls = React.createClass({
 					<a onClick={ this.props.updateUnsplashArtist }>
 						<img src="/static/img/MASAS_icon_change_photograph.svg" alt="random-artist"/>
 					</a>
-					<a href={ "https://unsplash.com/" + this.props.unsplashArtistUsername } target="_blank">{ this.props.unsplashArtistName }</a>
+					<a href={ "https://unsplash.com/" + this.props.unsplashArtistName } target="_blank">{ this.props.unsplashArtistName }</a>
 				</div>
 				<div className="background-controls">
 					<a onClick={ this.props.updateBackgroundURL }>

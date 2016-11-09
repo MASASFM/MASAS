@@ -25,7 +25,7 @@ export function changeHomePageNumber(pageNumber, totalNumberPages) {
 // update background unsplash artist and picture
 function updateUnsplashArtist (username, name, url) {
 	return {
-		type: 'CHANGE_UNSPLASH_ARTIST',
+		type: CHANGE_UNSPLASH_ARTIST,
 		unsplashArtistUsername: username,
 		unsplashArtistName: name,
 		backgroundURL: url
@@ -41,7 +41,8 @@ export function changeUnsplashArtist () {
 				client_id: unsplashClientID,
 				per_page: 30
 			},
-		}).then( r => {
+		}).then( r => r.json() )
+		.then( r => {
 			const likeNumber = Math.floor(Math.random() * r.length) - 1
 
 			if(likeNumber > -1 && likeNumber < r.length) {
@@ -66,9 +67,10 @@ function changeBackground(url) {
 export function getNewBackground() {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { unsplashArtistUsername } = state.homeReducer
+		const { unsplashArtistName } = state.homeReducer
 
-		fetch("https://api.unsplash.com/users/masas/likes/?username=" + unsplashArtistUsername + "&client_id=" + unsplashClientID)
+		fetch("https://api.unsplash.com/photos/random/?username=" + unsplashArtistName + "&client_id=" + unsplashClientID)
+		.then( r => r.json() )
 		.then( r => {
 			dispatch(changeBackground(r.urls.regular))
 		}).catch( e => {
