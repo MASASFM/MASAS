@@ -54505,7 +54505,9 @@ var TrackItem = _wrapComponent("_component")(React.createClass({
 	playTrack: function playTrack() {
 		var songs = {};
 
-		if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
+		if (this.props.isMiniProfile) songs = this.props.userData.songs;else {
+			if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
+		}
 
 		var playlist = songs.map(function (song) {
 			return song.url;

@@ -40,10 +40,14 @@ var TrackItem = React.createClass({
 	playTrack: function() {
 		var songs = {}
 
-		if(isObjectEmpty(this.props.publicProfileInfo))
+		if(this.props.isMiniProfile)
 			songs = this.props.userData.songs
-		else
-			songs = this.props.publicProfileInfo.songs
+		else {
+			if(isObjectEmpty(this.props.publicProfileInfo))
+				songs = this.props.userData.songs
+			else
+				songs = this.props.publicProfileInfo.songs
+		}
 
 		var playlist = songs.map((song) => {
 			return song.url
