@@ -15,7 +15,7 @@ $trackWrapperHeight: 8rem
 .track--wrapper:nth-of-type(odd)
 	background-color: rgba(0,0,0, 0.4)
 
-.track--wrapper
+.track--wrapper	
 	.visible-info
 		display: flex
 		flex-direction: row
@@ -132,10 +132,16 @@ $trackWrapperHeight: 8rem
 		background-color: rgba(255,255,255, 0.16)
 
 	$trackWrapperHeight: 6rem
-	.track--wrapper.open
-		min-height: $trackWrapperHeight * 2
-
 	.track--wrapper
+		&.open
+			min-height: $trackWrapperHeight * 2
+
+		&.mini-profile
+			.visible-info
+				width: $trackWrapperHeight
+				.song-info--wrapper
+					display: none
+
 		min-height: $trackWrapperHeight
 		height: $trackWrapperHeight
 		max-height: $trackWrapperHeight

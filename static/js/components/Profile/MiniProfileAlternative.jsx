@@ -48,6 +48,26 @@ var MiniProfile = (props) => {
 					<img onClick={ () => browserHistory.push('/user/' + userPk)  } src={ props.userInfo.avatar_url + "?width=300" } alt="artist avatar" className="artist-avatar" />
 					<div className="profile-info">
 						<span onClick={ () => browserHistory.push('/user/' + userPk)  } className="username">{ props.userInfo.name ? props.userInfo.name : props.userInfo.username }</span>
+
+						<div className="occupation">
+							{ 
+								props.userInfo.occupation ?
+									<div>{ props.userInfo.occupation }</div>
+								:
+									""
+							}
+						</div>
+						<div className="location">
+							<span className="city">
+								{ 
+									props.userInfo.city ?
+										<div>{ props.userInfo.city.display_name.substring(0, props.userInfo.city.display_name.indexOf(',')) + " - " + props.userInfo.city.display_name.substring(props.userInfo.city.display_name.lastIndexOf(',') + 1, props.userInfo.city.display_name.length) }</div>
+									:
+										""
+								}
+							</span>
+						</div>
+
 						<div className="social-icons">
 						{ 
 							linkSet	
@@ -60,10 +80,6 @@ var MiniProfile = (props) => {
 
 	return (
 		<div className={ "mini-profile--wrapper" + ( props.isMiniProfileBig ? " large" : "") }>
-			<div className="back-arrow">
-				<img src="/static/img/MASAS_arrow_left.svg" alt="back button"  onClick={ props.backArrowFunc } />
-			</div>
-
 			{ viewContent }
 		</div>
 	)

@@ -20,11 +20,13 @@ var ProfileTrackList = React.createClass({
 		isPublicProfile: React.PropTypes.bool,			// is profile shown public or private
 		userData: React.PropTypes.object,			// object containing user data
 		userSCSongs: React.PropTypes.array,			// song info from SC
+		isMiniProfile: React.PropTypes.bool,			// is tracklist in miniprofile mode
 	},
 
 	getDefaultProps: function() {
 		return {
 			isPublicProfile: false,
+			isMiniProfile: false,
 		}
 	},
 
@@ -78,13 +80,19 @@ var ProfileTrackList = React.createClass({
 				if(SC_songInfo === undefined)
 					return
 
-				return <TrackItem key={song.SC_ID} track={ SC_songInfo } MASAS_songInfo={song} allowOpen={ !this.props.isPublicProfile }/>
+				return <TrackItem 
+						key={song.SC_ID} 
+						track={ SC_songInfo } 
+						MASAS_songInfo={song} 
+						allowOpen={ !this.props.isPublicProfile }
+						isMiniProfile={ this.props.isMiniProfile ? true : false } />
 			})
 
+			console.log(this.props.isMiniProfile)
 			return (
 				<div>
-					<div className="track-table--wrapper">
-						{songList}
+					<div className={ "track-table--wrapper" + (this.props.isMiniProfile ? " mini-profile" : " aa") }>
+						{ songList }
 					</div>
 				</div>
 				)

@@ -21,17 +21,19 @@
 
 	.mini-profile--wrapper2
 		display: flex
-		flex-direction: column
 		align-items: center
 		max-height: $ratio * 14rem
 		height: 11rem
 		justify-content: space-between
 		overflow: hidden
+		flex-direction: row
 
 		.artist-avatar
 			height: $ratio * 6rem
 			width: $ratio * 6rem
 			cursor: pointer
+			border: 1px solid white
+			margin-right: 2rem
 
 		.profile-info
 			display: flex
@@ -55,7 +57,7 @@
 				.link-icon
 					width: $ratio * 2rem
 					display: flex
-					justify-content: center
+					justify-content: flex-start
 
 					img
 						height: $ratio * 1.3rem

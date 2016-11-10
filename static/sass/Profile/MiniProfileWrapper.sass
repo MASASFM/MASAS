@@ -1,5 +1,6 @@
 .footer--wrapper
 	.main-mini-profile--wrapper
+		@import "./MiniProfileAlternative"
 		@import "./ProfileTrackList"
 		
 		position: absolute
@@ -22,6 +23,7 @@
 			display: flex
 			position: relative
 			flex: 1
+			padding: 1rem
 
 			.close-mini-profile-icon
 				position: absolute
@@ -30,3 +32,15 @@
 				top: 0
 				right: 0
 				cursor: pointer
+
+			.user-songs--wrapper
+				width: 20rem
+				display: flex
+				overflow-y: scroll
+				margin-right: 2rem
+
+			.user-info--wrapper
+				display: flex
+				flex: 1
+				align-items: center
+				justify-content: flex-start

@@ -9,7 +9,7 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/MiniProfileW
 var { browserHistory } = require('react-router')
 
 var { getUserPkFromURL } = require("../../MASAS_functions.jsx")
-var MiniProfile = require("./MiniProfile.jsx")
+var MiniProfile = require("./MiniProfileAlternative.jsx")
 var ProfileTrackList = require("./ProfileTrackList.jsx")
 
 // import { BlurBackground } from "../MASAS_mixins.jsx"
@@ -73,20 +73,26 @@ var MiniProfileWrapper = React.createClass({
 						alt="close profile"
 						onClick={ () => this.props.updateMiniProfileVisibility(false) } />
 
-					<div>
-						{ this.props.miniProfile.userData.username }
+						<div className="user-info--wrapper">
+							<MiniProfile 
+								userInfo={ this.props.miniProfile.userData }
+								isMiniProfileBig={ true }
+								/>
+						</div>
 
-						{
-							this.props.miniProfile.SC_songInfo.length > 0 ?
-								<ProfileTrackList 
-									songs={ this.props.miniProfile.userData.songs }
-									isPublicProfile={ true }
-									userData={ this.props.miniProfile.userData }
-									userSCSongs={ this.props.miniProfile.SC_songInfo }/>
-							:
-								"No Songs"
-						}
-					</div>
+						<div className="user-songs--wrapper">
+							{
+								this.props.miniProfile.SC_songInfo.length > 0 ?
+									<ProfileTrackList 
+										songs={ this.props.miniProfile.userData.songs }
+										isPublicProfile={ true }
+										userData={ this.props.miniProfile.userData }
+										userSCSongs={ this.props.miniProfile.SC_songInfo }
+										isMiniProfile={ true } />
+								:
+									"No Song comp goes here"
+							}
+						</div>
 				</div>
 			)
 		}

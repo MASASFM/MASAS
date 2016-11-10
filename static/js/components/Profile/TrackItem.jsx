@@ -22,6 +22,13 @@ var TrackItem = React.createClass({
 		pause: React.PropTypes.func,
 		songPlaying: React.PropTypes.string,
 		isPaused: React.PropTypes.bool,
+		isMiniProfile: React.PropTypes.bool,			// is track item shown in mini profile mode
+	},
+
+	getDefaultProps: function() {
+		return {
+			isMiniProfile: false
+		}
 	},
 
 	componentWillMount: function() {
@@ -81,7 +88,9 @@ var TrackItem = React.createClass({
 
 	render: function() {
 		return (
-			<div className="track--wrapper" ref="trackWrapper">
+			<div 
+				className={ "track--wrapper"  + (this.props.isMiniProfile ? " mini-profile" : "") } 
+				ref="trackWrapper">
 				<div className="visible-info">
 					<div className="artwork--wrapper">
 						<div className="artwork-div">
