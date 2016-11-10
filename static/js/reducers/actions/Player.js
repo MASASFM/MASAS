@@ -3,6 +3,7 @@ import "whatwg-fetch"
 import {
 	addSongToHistory,
 	popSongFromHistory,
+	removeSongFromHistory
 } from "./Discover.js"
 
 import {
@@ -13,6 +14,10 @@ import {
 import {
 	updateProfileInfo,
 } from "./Profile.js"
+
+var {
+	getTimeIntervalNumberFromUrl
+} = require("./MASAS_functions.js")
 
 ///// TO DELETE
 const getCookie = (name) => {
@@ -415,6 +420,42 @@ export function playPreviousSongInHistory() {
 		// PLAY LATEST SONG IN HISTORY
 		const songURL = history.all[history.all.length-1].MASAS_songInfo.url
 		dispatch(playSong(songURL))
+	}
+}
+
+// returns last song in history for a given discover number
+// history: array ; discoverNum: int \in [0,5]
+function lastSongInDiscoverHistory(history, discoverNum) {
+	// go through history array 
+	var i = 0
+
+	for(i = history.length-2; i > -1; i--) {
+		if(getTimeIntervalNumberFromUrl(history[i].MASAS_songInfo.timeInterval) === discoverNum) {
+			return i
+		}
+	}
+
+	return -1
+}
+
+// play previous song in discover
+export function playPreviousSongInDiscover(discoverNum) {
+	return (dispatch, getState) => {
+		const state = getState()
+		const history = [].concat(state.discoverReducer.history.all)
+
+		// find array index of latest song in history if it exists
+		const indexToRemove = lastSongInDiscoverHistory(history, discoverNum)
+
+		// remove it if it exists
+		if(indexToRemove > -1) {
+			dispatch(removeSongFromHistory(indexToRemove))
+
+			// play it
+			const removedSong = history.splice(indexToRemove,1)
+			const url = removedSong[0].MASAS_songInfo.url
+			dispatch(playSong(url))
+		}
 	}
 }
 

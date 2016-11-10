@@ -38,6 +38,10 @@ MASAS_functions.getUserPkFromURL = url => {
 	return str
 }
 
+MASAS_functions.getTimeIntervalNumberFromUrl = url => {
+	return MASAS_functions.getUserPkFromURL(url)
+}
+
 MASAS_functions.isObjectEmpty = obj => Object.keys(obj).length === 0 && obj.constructor === Object
 MASAS_functions.isObjectNotEmpty = obj => Object.keys(obj).length !== 0 && obj.constructor === Object
 

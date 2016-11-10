@@ -2,6 +2,7 @@ import {
 	ADD_SONG_TO_HISTORY,
 	POP_SONG_FROM_HISTORY,
 	CHANGE_DISCOVER_NUMBER,
+	REMOVE_SONG_FROM_HISTORY,
 } from "./actions/Discover.js"
 
 let exportVar = {}
@@ -82,6 +83,17 @@ exportVar.discoverReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				history: stateBis.history
+			}
+		case REMOVE_SONG_FROM_HISTORY:
+			const history = [].concat(state.history.all)
+			history.splice(action.indexToRemove, 1)
+
+			return {
+				...state,
+				history: {
+					...state.history,
+					all: history,
+				}
 			}
 		case CHANGE_DISCOVER_NUMBER:
 			var discoverNumber = action.discoverNumber

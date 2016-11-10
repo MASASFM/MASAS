@@ -25,6 +25,8 @@ var ArtworkLine = React.createClass({
 		isSongPlayingLiked: React.PropTypes.bool,
 		userToken: React.PropTypes.string,
 		songPlayingArtistInfo: React.PropTypes.object,
+
+		playPreviousSongInDiscover: React.PropTypes.func,	
 	},
 
 	getDefaultProps: function() {
@@ -154,7 +156,7 @@ var ArtworkLine = React.createClass({
 						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
 
 						<img
-							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
+							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber)} 
 							className="pervious-song-button"
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
