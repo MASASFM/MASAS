@@ -153,6 +153,11 @@ var ArtworkLine = React.createClass({
 					<div 
 						className={ "artwork-playing--wrapper " + (renderForUITip && isModalOpened && modalType === 2 ? 'hide-on-mobile' : '') + (!renderForUITip && isModalOpened && modalType === 2 ? 'hide-content' : '') }>
 
+						<img
+							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
+							className="pervious-song-button"
+							src="/static/img/MASAS_next.svg"
+							alt="next" />
 						<ArtworkLineItem 
 							isModalOpened={ isModalOpened }
 							modalType={ modalType }
@@ -170,6 +175,11 @@ var ArtworkLine = React.createClass({
 							userToken={ this.props.userToken }
 							artistInfo={ this.props.songPlayingArtistInfo }
 							/>
+						<img
+							onClick={ () => this.props.playRandomSong(this.props.discoverNumber)} 
+							className="next-song-button"
+							src="/static/img/MASAS_next.svg"
+							alt="next" />
 					</div>
 					<div 
 						className={ "button " + (this.props.songPlaying === MASAS_songPlayingInfo.url ? ' show ' : '') }

@@ -4160,6 +4160,18 @@ input[type=range].MASAS-slider {
       transform: translate(-50%, -50%);
       box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
       z-index: 4; }
+      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
+        position: absolute;
+        height: 2rem;
+        top: 50%;
+        right: -20%;
+        transform: translate(50%, -50%); }
+      .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
+        position: absolute;
+        height: 2rem;
+        top: 50%;
+        left: -20%;
+        transform: translate(-50%, -50%) rotate(180deg); }
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
         background-color: rgba(0, 0, 0, 0.5);
         height: 13rem;
@@ -4199,7 +4211,7 @@ input[type=range].MASAS-slider {
         display: flex; }
         .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
           position: absolute;
-          display: flex;
+          display: none;
           width: min-content;
           min-width: 100%;
           justify-content: flex-end;
@@ -4225,7 +4237,7 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork-line--wrapper .button img.small {
           width: 1.5rem;
           height: 1.5rem;
-          margin-right: 0.5rem; }
+          margin-right: .5rem; }
       .discover--wrapper .artwork-line--wrapper .button.show {
         display: flex;
         flex-direction: row-reverse;
@@ -4234,6 +4246,10 @@ input[type=range].MASAS-slider {
         visibility: visible; }
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper {
         max-width: 16rem; }
+        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
+          display: none; }
+        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
+          display: none; }
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
           background-color: rgba(0, 0, 0, 0.4);
           height: 16rem;
@@ -4264,6 +4280,8 @@ input[type=range].MASAS-slider {
               width: 11.5rem; }
       .discover--wrapper .artwork-line--wrapper .left-side {
         width: calc(50% - 11.2rem / 2.2); }
+        .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
+          display: flex; }
         .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
           width: 0; } }
   .discover--wrapper .multi-page--wrapper {

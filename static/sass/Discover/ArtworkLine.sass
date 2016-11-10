@@ -22,6 +22,20 @@
 		box-shadow: 0 12px 34px 0 rgba(0, 0, 0, 0.89), 0 12px 40px 0 rgba(0, 0, 0, 0.4)
 		z-index: 4		// to be over artwork-line--wapper
 
+		.next-song-button
+			position: absolute
+			height: 2rem
+			top: 50%
+			right: -20%
+			transform: translate(50%, -50%)
+
+		.pervious-song-button
+			position: absolute
+			height: 2rem
+			top: 50%
+			left: -20%
+			transform: translate(-50%, -50%)rotate(180deg)
+
 		.artwork-playing
 			background-color: rgba(0,0,0,0.5)
 			$artworkWidth: 13rem
@@ -76,7 +90,7 @@
 			$artworkWidth: 12rem
 			.artwork-line2
 				position: absolute
-				display: flex
+				display: none
 				width: min-content
 				min-width: 100%
 				justify-content: flex-end
@@ -131,6 +145,12 @@
 		.artwork-playing--wrapper
 			max-width: $artworkWidth
 
+			.next-song-button
+				display: none
+
+			.pervious-song-button
+				display: none
+
 			.artwork-playing
 				background-color: rgba(0,0,0,0.4)
 				height: $artworkWidth
@@ -178,6 +198,9 @@
 			width: calc(50% - #{$artworkWidth} / 2.2)
 
 			.artwork-line
+
+				.artwork-line2
+					display: flex
 
 				.empty-artwork
 					// height: $artworkWidth
