@@ -3694,7 +3694,9 @@ input[type=range].MASAS-slider {
     position: absolute;
     right: 0rem;
     transition: 0.3s linear;
-    transform: translateX(0); }
+    transform: translateX(0);
+    height: 4rem;
+    top: 0; }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
       transform: rotate(180deg);
       height: 1.5rem;
@@ -3735,7 +3737,9 @@ input[type=range].MASAS-slider {
     height: 1rem; }
   .navbar-player--wrapper .player-controls--wrapper {
     transition: none;
-    position: relative; }
+    position: relative;
+    height: inherit;
+    top: inherit; }
     .navbar-player--wrapper .player-controls--wrapper .player-button {
       height: 2rem;
       transition: none;
