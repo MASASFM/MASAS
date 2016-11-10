@@ -232,17 +232,17 @@ var Player = React.createClass({
 						<div className="song-info--wrapper2">
 							<div className="text-info">
 								<div className="radio-info">
-									<Marquee>
+									<div>
 										Playing from <span className="time">{ this.renderRadioTime() }</span>
-									</Marquee>
+									</div>
 								</div>
 								<div className="song-name" onClick={ () => this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist) }>
-									<Marquee className="song-title">
+									<div className="song-title">
 										{ this.props.SC_songInfo.title+ " - " }
-									</Marquee>
-									<Marquee className="song-artist">
+									</div>
+									<div className="song-artist">
 										{ this.props.SC_songInfo.user.username }
-									</Marquee>
+									</div>
 								</div> 
 							</div>
 							<div className="sc-icon">

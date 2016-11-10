@@ -53,7 +53,8 @@ var MiniProfileWrapper = React.createClass({
 
 	redirectToProfile: function() {
 		// push client to user page
-		browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url))
+		if(this.props.miniProfile.userData.url)
+			browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url))
 
 		// hide mini profile
 		this.props.updateMiniProfileVisibility(false)

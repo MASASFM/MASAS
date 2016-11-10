@@ -52398,7 +52398,7 @@ var Player = _wrapComponent("_component")(React.createClass({
 							"div",
 							{ className: "radio-info" },
 							React.createElement(
-								Marquee,
+								"div",
 								null,
 								"Playing from ",
 								React.createElement(
@@ -52414,12 +52414,12 @@ var Player = _wrapComponent("_component")(React.createClass({
 									return _this5.props.updateMiniProfileContent(_this5.props.MASAS_songInfo.trackArtist);
 								} },
 							React.createElement(
-								Marquee,
+								"div",
 								{ className: "song-title" },
 								this.props.SC_songInfo.title + " - "
 							),
 							React.createElement(
-								Marquee,
+								"div",
 								{ className: "song-artist" },
 								this.props.SC_songInfo.user.username
 							)
@@ -53235,7 +53235,7 @@ var MiniProfileWrapper = _wrapComponent("_component")(React.createClass({
 
 	redirectToProfile: function redirectToProfile() {
 		// push client to user page
-		browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url));
+		if (this.props.miniProfile.userData.url) browserHistory.push('/user/' + getUserPkFromURL(this.props.miniProfile.userData.url));
 
 		// hide mini profile
 		this.props.updateMiniProfileVisibility(false);
