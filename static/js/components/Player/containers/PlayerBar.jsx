@@ -8,7 +8,6 @@ import {
 	resumePlayer,
 	setIsPlayerBuffering,
 	toggleSongLike,
-	updateLikeButton,
 } from "../../../reducers/actions/Player.js"
 
 import {

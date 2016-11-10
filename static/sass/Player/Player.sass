@@ -3,22 +3,25 @@
 		.player-controls--wrapper
 			position: absolute
 			right: 50%
-			transform: translate(50%, 0%)
+			transform: translateX(50%)
 
 		#player-play-button
 			padding-left: 0.8rem
 			padding-right: 0.8rem
 			
 		.song-info--wrapper2
-			animation: fadeout 0.5s linear
+			// animation: fadeout 0.5s linear
 			opacity: 0
-			z-index: -1
+			// z-index: -1
+			pointer-events: none
 
 		.previous-song-icon
 			opacity: 1
+			pointer-events: inherit
 
 		.next-song-icon
 			opacity: 1
+			pointer-events: inherit
 
 .navbar-player--wrapper
 	display: flex
@@ -47,7 +50,10 @@
 			display: flex
 			align-content: flex-start
 			flex: 1
-			animation: fadein-menu 0.5s linear
+			// animation: fadein-menu 0.5s linear
+			pointer-events: inherit
+			opacity: 1
+			transition: opacity 0.3s linear
 
 			.text-info
 				display: flex
@@ -100,13 +106,14 @@
 		position: absolute
 		right: 0rem
 		transition: 0.3s linear 
-		transform: translate(0, 0%)
+		transform: translateX(0)
 
 		.previous-song-icon
 			transform: rotate(180deg)
 			height: 1rem
 			opacity: 0
 			transition: opacity 0.3s linear
+			pointer-events: none
 
 		.player-button
 			height: 2.5rem
@@ -115,6 +122,7 @@
 			height: 1rem
 			opacity: 0
 			transition: opacity 0.3s linear
+			pointer-events: none
 
 
 
@@ -124,28 +132,26 @@
 		.slider--wrapper.opened
 			#player-play-button
 				position: relative
-				transform: translate(0,0)
+				transform: translateX(0)
 				right: 0
 				margin-right: 0rem
 				padding-right: 0
 
 			.song-info--wrapper2
-				animation-name: none
 				opacity: 1
 				z-index: 1
+				pointer-events: inherit
 
 			.player-controls--wrapper
-				animation-name: none
 				position: relative
 				right: 0
-				transform: translate(0%, 0%)
+				transform: translateX(0%)
 
 	.navbar-player--wrapper
 		padding: 0
 
 	.navbar-player--wrapper
 		.song-info--wrapper
-			animation-name: none
 			.song-name
 				.song-title
 					// width: 20rem

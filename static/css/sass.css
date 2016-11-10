@@ -3614,18 +3614,19 @@ input[type=range].MASAS-slider {
 .footer--wrapper .slider--wrapper.opened .player-controls--wrapper {
   position: absolute;
   right: 50%;
-  transform: translate(50%, 0%); }
+  transform: translateX(50%); }
 .footer--wrapper .slider--wrapper.opened #player-play-button {
   padding-left: .8rem;
   padding-right: .8rem; }
 .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
-  animation: fadeout .5s linear;
   opacity: 0;
-  z-index: -1; }
+  pointer-events: none; }
 .footer--wrapper .slider--wrapper.opened .previous-song-icon {
-  opacity: 1; }
+  opacity: 1;
+  pointer-events: inherit; }
 .footer--wrapper .slider--wrapper.opened .next-song-icon {
-  opacity: 1; }
+  opacity: 1;
+  pointer-events: inherit; }
 
 .navbar-player--wrapper {
   display: flex;
@@ -3650,7 +3651,9 @@ input[type=range].MASAS-slider {
       display: flex;
       align-content: flex-start;
       flex: 1;
-      animation: fadein-menu .5s linear; }
+      pointer-events: inherit;
+      opacity: 1;
+      transition: opacity .3s linear; }
       .navbar-player--wrapper .song-info--wrapper1 .song-info--wrapper2 .text-info {
         display: flex;
         flex: 1;
@@ -3694,41 +3697,40 @@ input[type=range].MASAS-slider {
     position: absolute;
     right: 0rem;
     transition: .3s linear;
-    transform: translate(0, 0%); }
+    transform: translateX(0); }
     .navbar-player--wrapper .player-controls--wrapper .previous-song-icon {
       transform: rotate(180deg);
       height: 1rem;
       opacity: 0;
-      transition: opacity .3s linear; }
+      transition: opacity .3s linear;
+      pointer-events: none; }
     .navbar-player--wrapper .player-controls--wrapper .player-button {
       height: 2.5rem; }
     .navbar-player--wrapper .player-controls--wrapper .next-song-icon {
       height: 1rem;
       opacity: 0;
-      transition: opacity .3s linear; }
+      transition: opacity .3s linear;
+      pointer-events: none; }
 
 @media screen and (min-width: 992px) {
   .footer--wrapper .slider--wrapper.opened #player-play-button {
     position: relative;
-    transform: translate(0, 0);
+    transform: translateX(0);
     right: 0;
     margin-right: 0rem;
     padding-right: 0; }
   .footer--wrapper .slider--wrapper.opened .song-info--wrapper2 {
-    animation-name: none;
     opacity: 1;
-    z-index: 1; }
+    z-index: 1;
+    pointer-events: inherit; }
   .footer--wrapper .slider--wrapper.opened .player-controls--wrapper {
-    animation-name: none;
     position: relative;
     right: 0;
-    transform: translate(0%, 0%); }
+    transform: translateX(0%); }
 
   .navbar-player--wrapper {
     padding: 0; }
 
-  .navbar-player--wrapper .song-info--wrapper {
-    animation-name: none; }
   .navbar-player--wrapper .tray-icon {
     height: .6rem;
     width: .6rem; }
