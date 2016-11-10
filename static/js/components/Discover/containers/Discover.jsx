@@ -38,13 +38,13 @@ Discover.mapDispatchToProps = function(dispatch) {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		toogleModal: () => dispatch(toogleIsModalOpened()),
 		updateModalContent: (modalContent, modalType, closeModalFunc) => dispatch(changeModalContent(modalContent, modalType, closeModalFunc)),
-		updateModalType: (modalType) => dispatch(updateModalType(modalType)),
+		updateModalType: modalType => dispatch(updateModalType(modalType)),
 		closeModal: () => dispatch(closeAndEmptyMainModal()),
 
 		// page state updates
 
 		// other state updates 
-		handleTimePickerChange: (discoverNumber) => dispatch(changeDiscoverNumber(discoverNumber)),
+		handleTimePickerChange: discoverNumber => dispatch(changeDiscoverNumber(discoverNumber)),
 		incrementLoggedOutUserStep: () => dispatch(incrementLoggedOutUserStep()),
 	}
 }
