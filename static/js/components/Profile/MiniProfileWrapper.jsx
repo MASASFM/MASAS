@@ -9,6 +9,8 @@ var { mapStateToProps, mapDispatchToProps } = require("./containers/MiniProfileW
 var { browserHistory } = require('react-router')
 
 var { getUserPkFromURL } = require("../../MASAS_functions.jsx")
+var MiniProfile = require("./MiniProfile.jsx")
+
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
 
@@ -70,7 +72,7 @@ var MiniProfileWrapper = React.createClass({
 						alt="close profile"
 						onClick={ () => this.props.updateMiniProfileVisibility(false) } />
 
-					{ this.props.miniProfile.userData.name }
+					<MiniProfile userData={ this.props.miniProfile.userData } />
 				</div>
 			</div>
 		)
