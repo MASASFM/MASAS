@@ -1,7 +1,8 @@
 import {
 	updatePageTitle,
 	updateMiniProfileContent,
-	updateMiniProfileVisibility
+	updateMiniProfileVisibility,
+	updateMiniProfileSCsongInfo
 } from "../../../reducers/actions/App.js"
 
 import {
@@ -22,7 +23,8 @@ MiniProfileWrapper.mapDispatchToProps = function(dispatch) {
 		updateTitle: (title, pageType) => dispatch(updatePageTitle(title, pageType)),
 		updateMiniProfileVisibility: isVisible => dispatch(updateMiniProfileVisibility(isVisible)),
 		updateMiniProfileContent: userData => dispatch(updateMiniProfileContent(userData)),
-		updateProfileBackArrowFunc: func => dispatch(updateProfileBackArrowFunc(func))
+		updateProfileBackArrowFunc: func => dispatch(updateProfileBackArrowFunc(func)),
+		updateSCsongInfo: () => dispatch(updateMiniProfileSCsongInfo()),
 	}
 }
 

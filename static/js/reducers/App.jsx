@@ -20,6 +20,7 @@ import {
 	CHANGE_SLASH_SCREEN_PAGE,
 	UPDATE_MINI_PROFILE_VISIBILITY,
 	UPDATE_MINI_PROFILE_CONTENT,
+	UPDATE_SC_SONG_INFO,
 } from './actions/App.js'
 
 let exportVar = {} 
@@ -51,6 +52,7 @@ exportVar.defaultState = {
 	miniProfile: {					// (obj) containing info relative to mini profile
 		isVisible: false,				// (bool) should mini profile be shown
 		userData: {},				// (obj) mini profile content
+		SC_songInfo: [],			// (obj) array containing SC info for songs in userData
 	}
 }
 
@@ -59,6 +61,14 @@ const { defaultState } = exportVar
 exportVar.appReducer = function(state = defaultState, action) {
 	
 	switch(action.type) {
+		case UPDATE_SC_SONG_INFO:
+			return {
+				...state,
+				miniProfile: {
+					...state.miniProfile,
+					SC_songInfo: action.SC_songInfo
+				}
+			}
 		case UPDATE_MINI_PROFILE_VISIBILITY:
 			return {
 				...state,
@@ -72,6 +82,7 @@ exportVar.appReducer = function(state = defaultState, action) {
 			return {
 				...state,
 				miniProfile: {
+					...state.miniProfile,
 					isVisible: true,
 					userData: action.userData
 				}

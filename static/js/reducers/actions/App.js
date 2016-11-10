@@ -1,3 +1,7 @@
+
+// to refactor
+const isObjectEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
+
 export const INCREMENT_LOGGED_OUT_USER_STEP = 'INCREMENT_LOGGED_OUT_USER_STEP'
 export const RESET_LOGGED_OUT_USER_STEP = 'RESET_LOGGED_OUT_USER_STEP'
 export const CHANGE_MODAL_CONTENT = 'CHANGE_MODAL_CONTENT'
@@ -18,6 +22,24 @@ export const CHANGE_SLASH_SCREEN_PAGE = 'CHANGE_SLASH_SCREEN_PAGE'
 export const TOOGLE_NAV_SIDEBAR = 'TOOGLE_NAV_SIDEBAR'
 export const UPDATE_MINI_PROFILE_VISIBILITY = 'UPDATE_MINI_PROFILE_VISIBILITY'
 export const UPDATE_MINI_PROFILE_CONTENT = 'UPDATE_MINI_PROFILE_CONTENT'
+export const UPDATE_SC_SONG_INFO = 'UPDATE_MINI_PROFILE_SC_SONG_INFO'
+
+export function updateMiniProfileSCsongInfo() {
+	return (dispatch, getState) => {
+		const state = getState()
+		const { miniProfile } = state.appReducer
+
+
+		var idString = miniProfile.userData.songs.map( song => song.SC_ID ).join()
+
+		SC.get('tracks', {limit: 200, ids: idString}).then( SC_songInfo => {
+			dispatch({
+				type: UPDATE_SC_SONG_INFO,
+				SC_songInfo
+			})
+		})
+	}
+}
 
 export function updateMiniProfileContent(userApiURL) {
 	return dispatch => {

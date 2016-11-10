@@ -1,197 +1,196 @@
-.profile--wrapper
-	$trackWrapperHeight: 8rem
-	.track--wrapper
-		display: flex
-		width: 100%
-		min-height: $trackWrapperHeight
-		flex-direction: column
-		overflow: hidden
-		transition: linear 0.3s min-height
-		max-height: $trackWrapperHeight
 
+$trackWrapperHeight: 8rem
+.track--wrapper
+	display: flex
+	width: 100%
+	min-height: $trackWrapperHeight
+	flex-direction: column
+	overflow: hidden
+	transition: linear 0.3s min-height
+	max-height: $trackWrapperHeight
+
+.track--wrapper.open
+	min-height: $trackWrapperHeight * 2
+
+.track--wrapper:nth-of-type(odd)
+	background-color: rgba(0,0,0, 0.4)
+
+.track--wrapper
+	.visible-info
+		display: flex
+		flex-direction: row
+		flex: 1
+		min-height: $trackWrapperHeight
+
+		.artwork--wrapper
+			position: relative
+			cursor: pointer
+			background-color: black
+			height: $trackWrapperHeight
+			width: $trackWrapperHeight
+
+		.artwork--wrapper
+			.artwork
+				width: $trackWrapperHeight
+				object-fit: cover
+				z-index: 0
+
+			.artwork-overlay
+				align-items: center
+				justify-content: center
+				display: none
+				background-color: rgba(0,0,0,0.5)
+				position: absolute
+				height: $trackWrapperHeight
+				width: $trackWrapperHeight
+				z-index: 1
+				top: 0
+
+			.artwork-overlay
+				img
+					height: 3rem
+					width: 3rem
+
+		.song-info--wrapper
+			display: flex
+			flex-direction: column
+			flex: 1
+			padding: 1.5rem 0.9rem
+			cursor: pointer
+
+		.song-info--wrapper
+			.song-stats-1
+				display: flex
+				flex: 1
+				justify-content: space-between
+
+			.song-stats-1
+				.song-name
+					display: flex
+					flex-direction: column
+					width: 100%
+
+					.title, .username
+						position: relative  		// needed for <Marquee>
+						height: 1rem
+
+				.lives-left
+					img
+						width: 1.2rem
+			.song-stats-2
+				display: flex
+				flex: 1
+				justify-content: space-between
+				align-items: flex-end
+
+			.song-stats-2
+				font-size: 0.9rem
+				color: rgba(255,255,255,1)
+
+				.title
+					font-size: 0.7rem
+					color: rgba(255,255,255,0.5)
+
+				.plays
+					display: flex
+					align-items: center
+
+					.play-count-icon
+						width: 1.2rem
+						padding-left: 0.3rem
+	.hidden-info
+		min-height: $trackWrapperHeight
+		transition: linear 2s height
+		display: flex
+		// padding: 1.5rem 0.9rem
+		padding: 0 0.9rem
+		align-items: center
+		justify-content: space-between
+
+		.RankingInfoIcon--wrapper
+			width: 15rem
+
+		.icon--wrapper
+			display: flex
+			flex-direction: row
+
+			img
+				height: 1.2rem
+				width: 1.2rem
+				padding-left: 1.5rem
+				cursor: pointer
+
+			.like-icon
+				padding-left: 0.3rem
+				cursor: default
+
+			.hidden-mobile
+				display: none
+
+@media screen and (min-width: $desktop-min-width)
+	.track--wrapper:nth-of-type(odd)
+		background-color: rgba(255,255,255, 0.16)
+
+	$trackWrapperHeight: 6rem
 	.track--wrapper.open
 		min-height: $trackWrapperHeight * 2
 
-	.track--wrapper:nth-of-type(odd)
-		background-color: rgba(0,0,0, 0.4)
-
 	.track--wrapper
+		min-height: $trackWrapperHeight
+		height: $trackWrapperHeight
+		max-height: $trackWrapperHeight
+
 		.visible-info
-			display: flex
-			flex-direction: row
-			flex: 1
 			min-height: $trackWrapperHeight
 
 			.artwork--wrapper
-				position: relative
-				cursor: pointer
-				background-color: black
 				height: $trackWrapperHeight
 				width: $trackWrapperHeight
 
-			.artwork--wrapper
 				.artwork
 					width: $trackWrapperHeight
-					object-fit: cover
-					z-index: 0
 
 				.artwork-overlay
-					align-items: center
-					justify-content: center
-					display: none
-					background-color: rgba(0,0,0,0.5)
-					position: absolute
 					height: $trackWrapperHeight
 					width: $trackWrapperHeight
-					z-index: 1
-					top: 0
 
+			.artwork--wrapper:hover
 				.artwork-overlay
-					img
-						height: 3rem
-						width: 3rem
+					display: flex
 
 			.song-info--wrapper
-				display: flex
-				flex-direction: column
-				flex: 1
-				padding: 1.5rem 0.9rem
-				cursor: pointer
-
-			.song-info--wrapper
-				.song-stats-1
-					display: flex
-					flex: 1
-					justify-content: space-between
-
-				.song-stats-1
-					.song-name
-						display: flex
-						flex-direction: column
-						width: 100%
-
-						.title, .username
-							position: relative  		// needed for <Marquee>
-							height: 1rem
-
-					.lives-left
-						img
-							width: 1.2rem
-				.song-stats-2
-					display: flex
-					flex: 1
-					justify-content: space-between
-					align-items: flex-end
-
-				.song-stats-2
-					font-size: 0.9rem
-					color: rgba(255,255,255,1)
-
-					.title
-						font-size: 0.7rem
-						color: rgba(255,255,255,0.5)
-
-					.plays
-						display: flex
-						align-items: center
-
-						.play-count-icon
-							width: 1.2rem
-							padding-left: 0.3rem
-		.hidden-info
-			min-height: $trackWrapperHeight
-			transition: linear 2s height
-			display: flex
-			// padding: 1.5rem 0.9rem
-			padding: 0 0.9rem
-			align-items: center
-			justify-content: space-between
-
-			.RankingInfoIcon--wrapper
-				width: 15rem
-
-			.icon--wrapper
-				display: flex
 				flex-direction: row
 
-				img
-					height: 1.2rem
-					width: 1.2rem
-					padding-left: 1.5rem
-					cursor: pointer
-
-				.like-icon
-					padding-left: 0.3rem
-					cursor: default
-
-				.hidden-mobile
-					display: none
-
-@media screen and (min-width: $desktop-min-width)
-	.profile--wrapper
-		.track--wrapper:nth-of-type(odd)
-			background-color: rgba(255,255,255, 0.16)
-
-		$trackWrapperHeight: 6rem
-		.track--wrapper.open
-			min-height: $trackWrapperHeight * 2
-
-		.track--wrapper
-			min-height: $trackWrapperHeight
-			height: $trackWrapperHeight
-			max-height: $trackWrapperHeight
-
-			.visible-info
-				min-height: $trackWrapperHeight
-
-				.artwork--wrapper
-					height: $trackWrapperHeight
-					width: $trackWrapperHeight
-
-					.artwork
-						width: $trackWrapperHeight
-
-					.artwork-overlay
-						height: $trackWrapperHeight
-						width: $trackWrapperHeight
-
-				.artwork--wrapper:hover
-					.artwork-overlay
-						display: flex
-
-				.song-info--wrapper
-					flex-direction: row
-
-				.song-info--wrapper
-					padding-right: 2rem
-				
-					.song-stats-1
-						align-items: center
-						justify-content: space-around
-						flex-direction: row-reverse
-
-					.song-stats-1
-						.lives-left
-							min-width: 5rem
-							display: flex
-							align-items: center
-							justify-content: center
-
-						.song-name
-							flex: 1
-
-					.song-stats-2
-						align-items: center					
-						justify-content: flex-end
-
-						.plays
-							margin-left: 3rem
-
-			.hidden-info
-				padding-left: $trackWrapperHeight
-				min-height: $trackWrapperHeight
+			.song-info--wrapper
 				padding-right: 2rem
+			
+				.song-stats-1
+					align-items: center
+					justify-content: space-around
+					flex-direction: row-reverse
 
-				.icon--wrapper
-					.hidden-mobile
-						display: block
+				.song-stats-1
+					.lives-left
+						min-width: 5rem
+						display: flex
+						align-items: center
+						justify-content: center
+
+					.song-name
+						flex: 1
+
+				.song-stats-2
+					align-items: center					
+					justify-content: flex-end
+
+					.plays
+						margin-left: 3rem
+
+		.hidden-info
+			padding-left: $trackWrapperHeight
+			min-height: $trackWrapperHeight
+			padding-right: 2rem
+
+			.icon--wrapper
+				.hidden-mobile
+					display: block

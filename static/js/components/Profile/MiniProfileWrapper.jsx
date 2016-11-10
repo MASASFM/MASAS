@@ -10,6 +10,7 @@ var { browserHistory } = require('react-router')
 
 var { getUserPkFromURL } = require("../../MASAS_functions.jsx")
 var MiniProfile = require("./MiniProfile.jsx")
+var ProfileTrackList = require("./ProfileTrackList.jsx")
 
 // import { BlurBackground } from "../MASAS_mixins.jsx"
 // var { Link } = require("../UI/UI.jsx")
@@ -23,6 +24,7 @@ var MiniProfileWrapper = React.createClass({
 		updateMiniProfileContent: React.PropTypes.func,
 		updateTitle: React.PropTypes.func,
 		updateProfileBackArrowFunc: React.PropTypes.func,
+		updateSCsongInfo: React.PropTypes.func,
 	},
 
 	componentDidMount: function() {
@@ -44,6 +46,9 @@ var MiniProfileWrapper = React.createClass({
 		) {	
 			this.redirectToProfile()
 		}
+
+		if(this.props.miniProfile.userData.username !== nextProps.miniProfile.userData.username)
+			this.props.updateSCsongInfo()
 	},
 
 	redirectToProfile: function() {
@@ -58,13 +63,9 @@ var MiniProfileWrapper = React.createClass({
 	},
 
 	render: function() {
-		return (
-			<div 
-				className={ 
-					"main-mini-profile--wrapper" 
-					+
-					(!this.props.miniProfile.isVisible || this.props.isModalOpened ? " hidden" : "")
-				}>
+		var pageContent = "loading"
+		if(this.props.miniProfile.userData.username) {
+			pageContent = (
 				<div className="main-mini-profile--wrapper2">
 					<img 
 						src="/static/img/MASAS_close_icon.svg"
@@ -72,8 +73,32 @@ var MiniProfileWrapper = React.createClass({
 						alt="close profile"
 						onClick={ () => this.props.updateMiniProfileVisibility(false) } />
 
-					<MiniProfile userData={ this.props.miniProfile.userData } />
+					<div>
+						{ this.props.miniProfile.userData.username }
+
+						{
+							this.props.miniProfile.SC_songInfo.length > 0 ?
+								<ProfileTrackList 
+									songs={ this.props.miniProfile.userData.songs }
+									isPublicProfile={ true }
+									userData={ this.props.miniProfile.userData }
+									userSCSongs={ this.props.miniProfile.SC_songInfo }/>
+							:
+								"No Songs"
+						}
+					</div>
 				</div>
+			)
+		}
+		
+		return (
+			<div 
+				className={ 
+					"main-mini-profile--wrapper" 
+					+
+					(!this.props.miniProfile.isVisible || this.props.isModalOpened ? " hidden" : "")
+				}>
+				{ pageContent }
 			</div>
 		)
 	}

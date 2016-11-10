@@ -38,14 +38,16 @@
 			display: flex
 			justify-content: space-between
 
-	.track-table--wrapper
-		display: flex
-		flex: 1
-		flex-direction: column
-		left: 0
-		height: 100%
-		right: 0
-		animation: fadein-menu 1s linear
+.track-table--wrapper
+	@import "./TrackItem"
+	
+	display: flex
+	flex: 1
+	flex-direction: column
+	left: 0
+	height: 100%
+	right: 0
+	animation: fadein-menu 1s linear
 
 @media screen and (min-width: $desktop-min-width)
 	.no-songs--wrapper
