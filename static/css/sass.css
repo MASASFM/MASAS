@@ -2877,7 +2877,7 @@ input[type=range].MASAS-slider {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-top: 0.5rem;
+      padding-top: .5rem;
       padding: 0 1rem; }
       .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p {
         text-align: center;
@@ -2907,7 +2907,7 @@ input[type=range].MASAS-slider {
       min-height: 8rem;
       flex-direction: column;
       overflow: hidden;
-      transition: linear 0.3s min-height;
+      transition: linear .3s min-height;
       max-height: 8rem; }
     .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper.open {
       min-height: 16rem; }
@@ -2945,7 +2945,7 @@ input[type=range].MASAS-slider {
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 1.5rem 0.9rem;
+        padding: 1.5rem .9rem;
         cursor: pointer; }
       .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-1 {
         display: flex;
@@ -2966,22 +2966,22 @@ input[type=range].MASAS-slider {
         justify-content: space-between;
         align-items: flex-end; }
       .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 {
-        font-size: 0.9rem;
+        font-size: .9rem;
         color: white; }
         .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .title {
-          font-size: 0.7rem;
+          font-size: .7rem;
           color: rgba(255, 255, 255, 0.5); }
         .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .plays {
           display: flex;
           align-items: center; }
           .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .plays .play-count-icon {
             width: 1.2rem;
-            padding-left: 0.3rem; }
+            padding-left: .3rem; }
     .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .hidden-info {
       min-height: 8rem;
       transition: linear 2s height;
       display: flex;
-      padding: 0 0.9rem;
+      padding: 0 .9rem;
       align-items: center;
       justify-content: space-between; }
       .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .hidden-info .RankingInfoIcon--wrapper {
@@ -2995,7 +2995,7 @@ input[type=range].MASAS-slider {
           padding-left: 1.5rem;
           cursor: pointer; }
         .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .hidden-info .icon--wrapper .like-icon {
-          padding-left: 0.3rem;
+          padding-left: .3rem;
           cursor: default; }
         .footer--wrapper .main-mini-profile--wrapper .track-table--wrapper .track--wrapper .hidden-info .icon--wrapper .hidden-mobile {
           display: none; }
@@ -3298,7 +3298,7 @@ input[type=range].MASAS-slider {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 0.5rem;
+        padding-top: .5rem;
         padding: 0 1rem; }
         .profile--wrapper .song-list--wrapper .no-songs--wrapper .no-songs--wrapper .upload-button p {
           text-align: center;
@@ -3328,7 +3328,7 @@ input[type=range].MASAS-slider {
         min-height: 8rem;
         flex-direction: column;
         overflow: hidden;
-        transition: linear 0.3s min-height;
+        transition: linear .3s min-height;
         max-height: 8rem; }
       .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper.open {
         min-height: 16rem; }
@@ -3366,7 +3366,7 @@ input[type=range].MASAS-slider {
           display: flex;
           flex-direction: column;
           flex: 1;
-          padding: 1.5rem 0.9rem;
+          padding: 1.5rem .9rem;
           cursor: pointer; }
         .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-1 {
           display: flex;
@@ -3387,22 +3387,22 @@ input[type=range].MASAS-slider {
           justify-content: space-between;
           align-items: flex-end; }
         .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 {
-          font-size: 0.9rem;
+          font-size: .9rem;
           color: white; }
           .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .title {
-            font-size: 0.7rem;
+            font-size: .7rem;
             color: rgba(255, 255, 255, 0.5); }
           .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .plays {
             display: flex;
             align-items: center; }
             .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .visible-info .song-info--wrapper .song-stats-2 .plays .play-count-icon {
               width: 1.2rem;
-              padding-left: 0.3rem; }
+              padding-left: .3rem; }
       .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .hidden-info {
         min-height: 8rem;
         transition: linear 2s height;
         display: flex;
-        padding: 0 0.9rem;
+        padding: 0 .9rem;
         align-items: center;
         justify-content: space-between; }
         .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .hidden-info .RankingInfoIcon--wrapper {
@@ -3416,7 +3416,7 @@ input[type=range].MASAS-slider {
             padding-left: 1.5rem;
             cursor: pointer; }
           .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .hidden-info .icon--wrapper .like-icon {
-            padding-left: 0.3rem;
+            padding-left: .3rem;
             cursor: default; }
           .profile--wrapper .song-list--wrapper .track-table--wrapper .track--wrapper .hidden-info .icon--wrapper .hidden-mobile {
             display: none; }
