@@ -19,6 +19,7 @@ TrackItem.mapStateToProps = function(state) {
 		isPaused: state.playerReducer.isPaused,
 		userData: state.appReducer.userData,
 		publicProfileInfo: state.profileReducer.publicProfileInfo,
+		miniProfile: state.appReducer.miniProfile,
 	}
 }
 
@@ -27,7 +28,7 @@ TrackItem.mapStateToProps = function(state) {
 TrackItem.mapDispatchToProps = function(dispatch) {
 	return {
 		playNewSong: songToPlay => dispatch(playSong(songToPlay)),
-		pause: () => pausePlayer(dispatch),
+		pause: () => dispatch(pausePlayer()),
 		loadPlaylist: playlist => dispatch(loadPlaylist(playlist)),
 		playNewSongFromPlaylist: playlistPosition => dispatch(playNewSongFromPlaylist(playlistPosition)),
 		toogleModal: () => dispatch(toogleIsModalOpened()),

@@ -23,6 +23,7 @@ var TrackItem = React.createClass({
 		songPlaying: React.PropTypes.string,
 		isPaused: React.PropTypes.bool,
 		isMiniProfile: React.PropTypes.bool,			// is track item shown in mini profile mode
+		miniProfile: React.PropTypes.object,
 	},
 
 	getDefaultProps: function() {
@@ -41,7 +42,7 @@ var TrackItem = React.createClass({
 		var songs = {}
 
 		if(this.props.isMiniProfile)
-			songs = this.props.userData.songs
+			songs = this.props.miniProfile.userData.songs
 		else {
 			if(isObjectEmpty(this.props.publicProfileInfo))
 				songs = this.props.userData.songs

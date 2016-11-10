@@ -54489,9 +54489,10 @@ var TrackItem = _wrapComponent("_component")(React.createClass({
 		pause: React.PropTypes.func,
 		songPlaying: React.PropTypes.string,
 		isPaused: React.PropTypes.bool,
-		isMiniProfile: React.PropTypes.bool },
+		isMiniProfile: React.PropTypes.bool, // is track item shown in mini profile mode
+		miniProfile: React.PropTypes.object
+	},
 
-	// is track item shown in mini profile mode
 	getDefaultProps: function getDefaultProps() {
 		return {
 			isMiniProfile: false
@@ -54505,7 +54506,7 @@ var TrackItem = _wrapComponent("_component")(React.createClass({
 	playTrack: function playTrack() {
 		var songs = {};
 
-		if (this.props.isMiniProfile) songs = this.props.userData.songs;else {
+		if (this.props.isMiniProfile) songs = this.props.miniProfile.userData.songs;else {
 			if (isObjectEmpty(this.props.publicProfileInfo)) songs = this.props.userData.songs;else songs = this.props.publicProfileInfo.songs;
 		}
 
@@ -54902,7 +54903,8 @@ TrackItem.mapStateToProps = function (state) {
 		songPlaying: state.playerReducer.songPlaying,
 		isPaused: state.playerReducer.isPaused,
 		userData: state.appReducer.userData,
-		publicProfileInfo: state.profileReducer.publicProfileInfo
+		publicProfileInfo: state.profileReducer.publicProfileInfo,
+		miniProfile: state.appReducer.miniProfile
 	};
 };
 
@@ -54913,7 +54915,7 @@ TrackItem.mapDispatchToProps = function (dispatch) {
 			return dispatch((0, _Player.playSong)(songToPlay));
 		},
 		pause: function pause() {
-			return (0, _Player.pausePlayer)(dispatch);
+			return dispatch((0, _Player.pausePlayer)());
 		},
 		loadPlaylist: function loadPlaylist(playlist) {
 			return dispatch((0, _Player.loadPlaylist)(playlist));
