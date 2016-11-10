@@ -59421,7 +59421,7 @@ function addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo) {
 		type: ADD_SONG_TO_HISTORY,
 		MASAS_songInfo: MASAS_songInfo,
 		SC_songInfo: SC_songInfo,
-		artistInfo: artistInfo
+		artistInfo: null
 	};
 }
 
