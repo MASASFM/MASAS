@@ -59661,7 +59661,7 @@ function updateLikes(dispatch, SCinfo, MASASinfo) {
 		});
 
 		if (MASAS_songInfo.length === 1) {
-			dispatch(fetchMiniProfile(MASAS_songInfo[0]));
+			// dispatch(fetchMiniProfile(MASAS_songInfo[0]))
 			return {
 				SC_songInfo: song,
 				MASAS_songInfo: MASAS_songInfo[0],

@@ -53,7 +53,7 @@ function updateLikes(dispatch, SCinfo, MASASinfo) {
 		var MASAS_songInfo = MASASinfo.filter( like => like.song.SC_ID === song.id )
 
 		if(MASAS_songInfo.length === 1) {
-			dispatch(fetchMiniProfile(MASAS_songInfo[0]))
+			// dispatch(fetchMiniProfile(MASAS_songInfo[0]))
 			return {
 				SC_songInfo: song,
 				MASAS_songInfo: MASAS_songInfo[0],
