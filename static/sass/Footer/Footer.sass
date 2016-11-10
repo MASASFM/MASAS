@@ -25,8 +25,9 @@ $footerHeight: $phone-footer-height
 		width: 100%
 
 	.slider--wrapper.opened
-		top: -17rem
-		bottom: 0rem
+		// top: -17rem
+		transform: translateY(-17rem)
+		// bottom: 0rem
 
 		.copyright
 			animation: fadein-menu 1s linear
@@ -46,10 +47,12 @@ $footerHeight: $phone-footer-height
 		top: 0
 		left: 0
 		right: 0
-		bottom: -15rem
-		transition-property: top, bottom
-		transition-duration: 0.3s
-		transition-timing-function: ease-in
+		// bottom: -15rem
+		transition: 0.3s linear
+		height: calc(17rem + #{$footerHeight})
+		// transition-property: top, bottom
+		// transition-duration: 0.3s
+		// transition-timing-function: ease-in
 
 		.toogle-open-tray-icon
 			display: none
@@ -223,10 +226,10 @@ $footerHeight: $phone-footer-height
 			background-color: rgba($R, $G, $B, $opacity)
 
 		.slider--wrapper.opened
-			top: -3rem
+			transform: translateY(-3rem)
 
 		.slider--wrapper
-			bottom: -3rem
+			height: calc(3rem + #{$footerHeight})
 
 			.toogle-open-tray-icon
 				display: block
