@@ -38,7 +38,8 @@ var MiniProfile = (props) => {
 
 		// indexes are used as keys because links don't expect to be reordered
 		// this prevents keys from overlapping if for some reason link repeat in link_set
-		var linkSet = props.userInfo.link_set.map( (link_set, index) => <LinkIcon url={ link_set.link } key={ index } /> )
+		var linkSet = props.userInfo.link_set.slice(0,4)	// limit to 4 social icons even if user somehow manages to have more (bugs, malicious, etc)
+		linkSet = linkSet.map( (link_set, index) => <LinkIcon url={ link_set.link } key={ index } /> )
 
 		const str = props.userInfo.url
 		const userPk = str.slice(str.slice(0,str.lastIndexOf('/')).lastIndexOf('/')+1,str.lastIndexOf('/'))

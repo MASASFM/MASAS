@@ -2804,7 +2804,7 @@ input[type=range].MASAS-slider {
   flex: 1;
   width: 100%;
   opacity: 1;
-  transition: opacity 0.2s linear; }
+  transition: opacity .2s linear; }
   .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper:hover {
     cursor: default; }
   .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper {
@@ -2813,25 +2813,25 @@ input[type=range].MASAS-slider {
     align-items: center;
     height: 100%; }
     .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .back-arrow {
-      height: 1.05rem;
-      width: 1.05rem;
+      height: 1.5rem;
+      width: 1.5rem;
       position: absolute;
       top: 0rem;
       left: 0rem;
-      margin: 0.7rem; }
+      margin: 1rem; }
     .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .back-arrow:hover {
       cursor: pointer; }
     .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 {
       display: flex;
       align-items: center;
-      max-height: 9.8rem;
+      max-height: 14rem;
       height: 11rem;
       justify-content: space-between;
       overflow: hidden;
       flex-direction: row; }
       .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .artist-avatar {
-        height: 4.2rem;
-        width: 4.2rem;
+        height: 6rem;
+        width: 6rem;
         cursor: pointer;
         border: 1px solid white;
         margin-right: 2rem; }
@@ -2839,44 +2839,29 @@ input[type=range].MASAS-slider {
         display: flex;
         justify-content: space-around;
         flex-direction: column;
-        height: 4rem; }
+        height: 6rem; }
         .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .username {
-          max-width: 7rem;
+          max-width: 20rem;
           overflow-x: hidden;
           text-overflow: ellipsis;
-          font-size: 0.91rem;
-          letter-spacing: 0.14rem;
+          font-size: 1.3rem;
+          letter-spacing: 0.2rem;
           font-family: Lato-Light;
           white-space: nowrap;
           cursor: pointer; }
+        .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .location, .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .occupation {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: .8rem; }
         .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons {
           display: flex; }
           .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon {
-            width: 1.4rem;
+            width: 2rem;
             display: flex;
             justify-content: flex-start; }
             .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper .mini-profile--wrapper2 .profile-info .social-icons .link-icon img {
-              height: 0.91rem;
-              width: 0.91rem;
+              height: 1rem;
+              width: 1rem;
               cursor: pointer; }
-  .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .back-arrow {
-    height: 1.5rem;
-    width: 1.5rem;
-    margin: 1rem; }
-  .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .mini-profile--wrapper2 {
-    max-height: 14rem; }
-    .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .mini-profile--wrapper2 .artist-avatar {
-      height: 6rem;
-      width: 6rem; }
-    .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .mini-profile--wrapper2 .username {
-      max-width: 10rem;
-      font-size: 1.3rem;
-      letter-spacing: 0.2rem; }
-    .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .mini-profile--wrapper2 .social-icons .link-icon {
-      width: 2rem; }
-      .footer--wrapper .main-mini-profile--wrapper .mini-profile--wrapper.large .mini-profile--wrapper2 .social-icons .link-icon img {
-        height: 1.3rem;
-        width: 1.3rem; }
   .footer--wrapper .main-mini-profile--wrapper .no-songs--wrapper {
     display: flex;
     flex: 1;
@@ -3092,7 +3077,7 @@ input[type=range].MASAS-slider {
       right: 0;
       cursor: pointer; }
     .footer--wrapper .main-mini-profile--wrapper .main-mini-profile--wrapper2 .user-songs--wrapper {
-      width: 20rem;
+      flex: 1;
       display: flex;
       overflow-y: scroll;
       margin-right: 2rem; }
