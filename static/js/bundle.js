@@ -45201,7 +45201,10 @@ var Discover = _wrapComponent("_component")(React.createClass({
 			{ className: "discover--wrapper" },
 			React.createElement(
 				"h1",
-				null,
+				{
+					style: {
+						visibility: this.props.modalType === 2 && this.props.isModalOpened ? 'hidden' : 'visible'
+					} },
 				discoverHashtagNames()[this.props.discoverNumber - 1]
 			),
 			React.createElement(

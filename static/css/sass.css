@@ -4295,7 +4295,7 @@ input[type=range].MASAS-slider {
     letter-spacing: .35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
-    margin: 0;
+    margin-bottom: 1rem;
     padding: 0;
     border: none;
     z-index: 1;
@@ -4306,8 +4306,7 @@ input[type=range].MASAS-slider {
     display: flex;
     flex: 1;
     width: 100%;
-    position: relative;
-    margin-bottom: .5rem; }
+    position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
       transition: opacity .3s ease-in;
       position: absolute;
@@ -4335,7 +4334,7 @@ input[type=range].MASAS-slider {
     display: flex;
     flex-grow: .25;
     align-items: center;
-    height: 15vh; }
+    height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
       height: 7rem;
       width: 15rem; }
