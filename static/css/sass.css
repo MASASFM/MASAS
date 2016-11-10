@@ -4172,6 +4172,8 @@ input[type=range].MASAS-slider {
         top: 50%;
         left: -20%;
         transform: translate(-50%, -50%) rotate(180deg); }
+        .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button.hidden {
+          display: none; }
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
         background-color: rgba(0, 0, 0, 0.5);
         height: 13rem;
@@ -4237,7 +4239,7 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork-line--wrapper .button img.small {
           width: 1.5rem;
           height: 1.5rem;
-          margin-right: .5rem; }
+          margin-right: 0.5rem; }
       .discover--wrapper .artwork-line--wrapper .button.show {
         display: flex;
         flex-direction: row-reverse;

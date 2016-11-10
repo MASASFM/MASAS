@@ -26,7 +26,8 @@ var ArtworkLine = React.createClass({
 		userToken: React.PropTypes.string,
 		songPlayingArtistInfo: React.PropTypes.object,
 
-		playPreviousSongInDiscover: React.PropTypes.func,	
+		playPreviousSongInDiscover: React.PropTypes.func,
+		lastSongInDiscoverHistory: React.PropTypes.func,
 	},
 
 	getDefaultProps: function() {
@@ -157,7 +158,7 @@ var ArtworkLine = React.createClass({
 
 						<img
 							onClick={ () => this.props.playPreviousSongInDiscover(this.props.discoverNumber)} 
-							className="pervious-song-button"
+							className={ "pervious-song-button" + (this.props.lastSongInDiscoverHistory(this.props.history.all, this.props.discoverNumber) === -1 ? " hidden" : "") }
 							src="/static/img/MASAS_next.svg"
 							alt="next" />
 						<ArtworkLineItem 

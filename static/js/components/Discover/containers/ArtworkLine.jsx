@@ -3,7 +3,8 @@ import {
 	pausePlayer,
 	playRandomSong,
 	toggleSongLike,
-	playPreviousSongInDiscover
+	playPreviousSongInDiscover,
+	lastSongInDiscoverHistory
 } from "../../../reducers/actions/Player.js"
 
 import {
@@ -38,7 +39,10 @@ ArtworkLine.mapDispatchToProps = function(dispatch) {
 		playRandomSong: (timeInterval) => dispatch(playRandomSong(timeInterval)),
 		pause: () => dispatch(pausePlayer()),
 		toggleIsFooterOpened: () => dispatch(toogleIsFooterOpened()),
-		playPreviousSongInDiscover: discoverNum => dispatch(playPreviousSongInDiscover(discoverNum))
+		playPreviousSongInDiscover: discoverNum => dispatch(playPreviousSongInDiscover(discoverNum)),
+
+		// not dispatch functions
+		lastSongInDiscoverHistory: (history, discoverNum) => lastSongInDiscoverHistory(history, discoverNum)
 	}
 }
 

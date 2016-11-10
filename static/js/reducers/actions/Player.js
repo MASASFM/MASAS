@@ -425,10 +425,12 @@ export function playPreviousSongInHistory() {
 
 // returns last song in history for a given discover number
 // history: array ; discoverNum: int \in [0,5]
-function lastSongInDiscoverHistory(history, discoverNum) {
+export function lastSongInDiscoverHistory(history, discoverNum) {
 	// go through history array 
 	var i = 0
 
+	// looping from most recent song to oldest to converge quicker.
+	// history.length 2
 	for(i = history.length-2; i > -1; i--) {
 		if(getTimeIntervalNumberFromUrl(history[i].MASAS_songInfo.timeInterval) === discoverNum) {
 			return i
@@ -450,6 +452,9 @@ export function playPreviousSongInDiscover(discoverNum) {
 		// remove it if it exists
 		if(indexToRemove > -1) {
 			dispatch(removeSongFromHistory(indexToRemove))
+
+			// remove song that is currently playing
+			dispatch(popSongFromHistory())
 
 			// play it
 			const removedSong = history.splice(indexToRemove,1)

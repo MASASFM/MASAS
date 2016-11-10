@@ -44543,7 +44543,8 @@ var ArtworkLine = _wrapComponent("_component")(React.createClass({
 		userToken: React.PropTypes.string,
 		songPlayingArtistInfo: React.PropTypes.object,
 
-		playPreviousSongInDiscover: React.PropTypes.func
+		playPreviousSongInDiscover: React.PropTypes.func,
+		lastSongInDiscoverHistory: React.PropTypes.func
 	},
 
 	getDefaultProps: function getDefaultProps() {
@@ -44710,7 +44711,7 @@ var ArtworkLine = _wrapComponent("_component")(React.createClass({
 								onClick: function onClick() {
 									return _this.props.playPreviousSongInDiscover(_this.props.discoverNumber);
 								},
-								className: "pervious-song-button",
+								className: "pervious-song-button" + (_this.props.lastSongInDiscoverHistory(_this.props.history.all, _this.props.discoverNumber) === -1 ? " hidden" : ""),
 								src: "/static/img/MASAS_next.svg",
 								alt: "next" }),
 							React.createElement(ArtworkLineItem, {
@@ -45348,6 +45349,11 @@ ArtworkLine.mapDispatchToProps = function (dispatch) {
 		},
 		playPreviousSongInDiscover: function playPreviousSongInDiscover(discoverNum) {
 			return dispatch((0, _Player.playPreviousSongInDiscover)(discoverNum));
+		},
+
+		// not dispatch functions
+		lastSongInDiscoverHistory: function lastSongInDiscoverHistory(history, discoverNum) {
+			return (0, _Player.lastSongInDiscoverHistory)(history, discoverNum);
 		}
 	};
 };
@@ -59844,6 +59850,7 @@ exports.pausePlayer = pausePlayer;
 exports.playSong = playSong;
 exports.playNewSong = playNewSong;
 exports.playPreviousSongInHistory = playPreviousSongInHistory;
+exports.lastSongInDiscoverHistory = lastSongInDiscoverHistory;
 exports.playPreviousSongInDiscover = playPreviousSongInDiscover;
 exports.playRandomSong = playRandomSong;
 exports.playNewSongFromPlaylist = playNewSongFromPlaylist;
@@ -60265,6 +60272,8 @@ function lastSongInDiscoverHistory(history, discoverNum) {
 	// go through history array
 	var i = 0;
 
+	// looping from most recent song to oldest to converge quicker.
+	// history.length 2
 	for (i = history.length - 2; i > -1; i--) {
 		if (getTimeIntervalNumberFromUrl(history[i].MASAS_songInfo.timeInterval) === discoverNum) {
 			return i;
@@ -60286,6 +60295,9 @@ function playPreviousSongInDiscover(discoverNum) {
 		// remove it if it exists
 		if (indexToRemove > -1) {
 			dispatch((0, _Discover.removeSongFromHistory)(indexToRemove));
+
+			// remove song that is currently playing
+			dispatch((0, _Discover.popSongFromHistory)());
 
 			// play it
 			var removedSong = history.splice(indexToRemove, 1);
