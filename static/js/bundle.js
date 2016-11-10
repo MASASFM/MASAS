@@ -53039,7 +53039,7 @@ var MiniProfile = function MiniProfile(props) {
 				"div",
 				{ className: "mini-profile--wrapper2" },
 				React.createElement("img", { onClick: function onClick() {
-						return browserHistory.push('/user/' + userPk);
+						browserHistory.push('/user/' + userPk);props.callback();
 					}, src: props.userInfo.avatar_url + "?width=300", alt: "artist avatar", className: "artist-avatar" }),
 				React.createElement(
 					"div",
@@ -53047,7 +53047,7 @@ var MiniProfile = function MiniProfile(props) {
 					React.createElement(
 						"span",
 						{ onClick: function onClick() {
-								return browserHistory.push('/user/' + userPk);
+								browserHistory.push('/user/' + userPk);props.callback();
 							}, className: "username" },
 						props.userInfo.name ? props.userInfo.name : props.userInfo.username
 					),
@@ -53093,11 +53093,13 @@ var MiniProfile = function MiniProfile(props) {
 MiniProfile.propTypes = {
 	userInfo: React.PropTypes.object,
 	backArrowFunc: React.PropTypes.func,
-	isMiniProfileBig: React.PropTypes.bool
+	isMiniProfileBig: React.PropTypes.bool,
+	callback: React.PropTypes.func
 };
 
 MiniProfile.defaultProps = {
-	isMiniProfileBig: false
+	isMiniProfileBig: false,
+	callback: function callback() {}
 };
 
 module.exports = MiniProfile;
@@ -53225,7 +53227,10 @@ var MiniProfileWrapper = _wrapComponent("_component")(React.createClass({
 					{ className: "user-info--wrapper" },
 					React.createElement(MiniProfile, {
 						userInfo: this.props.miniProfile.userData,
-						isMiniProfileBig: false
+						isMiniProfileBig: false,
+						callback: function callback() {
+							return _this2.props.updateMiniProfileVisibility(false);
+						}
 					})
 				),
 				React.createElement(
@@ -54142,7 +54147,6 @@ var ProfileTrackList = _wrapComponent("_component")(React.createClass({
 					isMiniProfile: _this.props.isMiniProfile ? true : false });
 			});
 
-			console.log(this.props.isMiniProfile);
 			return React.createElement(
 				"div",
 				null,

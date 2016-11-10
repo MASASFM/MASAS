@@ -77,6 +77,7 @@ var MiniProfileWrapper = React.createClass({
 							<MiniProfile 
 								userInfo={ this.props.miniProfile.userData }
 								isMiniProfileBig={ false }
+								callback={ () => this.props.updateMiniProfileVisibility(false) }
 								/>
 						</div>
 

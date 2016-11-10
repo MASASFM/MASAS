@@ -88,7 +88,6 @@ var ProfileTrackList = React.createClass({
 						isMiniProfile={ this.props.isMiniProfile ? true : false } />
 			})
 
-			console.log(this.props.isMiniProfile)
 			return (
 				<div>
 					<div className={ "track-table--wrapper" + (this.props.isMiniProfile ? " mini-profile" : " aa") }>
