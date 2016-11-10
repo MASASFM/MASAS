@@ -45200,6 +45200,11 @@ var Discover = _wrapComponent("_component")(React.createClass({
 			"div",
 			{ className: "discover--wrapper" },
 			React.createElement(
+				"h1",
+				null,
+				discoverHashtagNames()[this.props.discoverNumber - 1]
+			),
+			React.createElement(
 				"div",
 				{
 					className: "multi-page--wrapper",
@@ -45209,11 +45214,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 1 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[0]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 1 })
@@ -45221,11 +45221,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 2 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[1]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 2 })
@@ -45233,11 +45228,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 3 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[2]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 3 })
@@ -45245,11 +45235,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 4 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[3]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 4 })
@@ -45257,11 +45242,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 5 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[4]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 5 })
@@ -45269,11 +45249,6 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				React.createElement(
 					"div",
 					{ className: this.props.discoverNumber === 6 ? "page1" : "page2" },
-					React.createElement(
-						"h1",
-						null,
-						discoverHashtagNames()[5]
-					),
 					React.createElement(ArtworkLine, {
 						renderForUITip: showArtwork,
 						discoverNumber: 6 })

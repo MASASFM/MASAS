@@ -148,55 +148,47 @@ var Discover = React.createClass({
 
 		return (
 			<div className="discover--wrapper">
+				<h1>
+					{ discoverHashtagNames()[this.props.discoverNumber - 1] }
+				</h1>
+					
 				<div 
 					className="multi-page--wrapper" 
 					style={{ 
 						visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible'
 					}}>
 					<div className={ this.props.discoverNumber === 1 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[0] }
-						</h1>
+						
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
 							discoverNumber={1} />
 					</div>
 					<div className={ this.props.discoverNumber === 2 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[1] }
-						</h1>
+					
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
 							discoverNumber={2} />
 					</div>
 					<div className={ this.props.discoverNumber === 3 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[2] }
-						</h1>
+						
 						<ArtworkLine
 							renderForUITip={ showArtwork }
 							discoverNumber={3} />
 					</div>
 					<div className={ this.props.discoverNumber === 4 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[3] }
-						</h1>
+					
 						<ArtworkLine
 							renderForUITip={ showArtwork }
 							discoverNumber={4} />
 					</div>
 					<div className={ this.props.discoverNumber === 5 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[4] }
-						</h1>
+					
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
 							discoverNumber={5} />
 					</div>
 					<div className={ this.props.discoverNumber === 6 ? "page1" : "page2" }>
-						<h1>
-							{ discoverHashtagNames()[5] }
-						</h1>
+						
 						<ArtworkLine 
 							renderForUITip={ showArtwork }
 							discoverNumber={6} />
