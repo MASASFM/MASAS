@@ -35,6 +35,7 @@ var Player = React.createClass({
 		playPreviousSong: React.PropTypes.func,
 		playNewSongFromPlaylist: React.PropTypes.func,
 		setIsPlayerBuffering: React.PropTypes.func,
+		updateMiniProfileContent: React.PropTypes.func,
 	},
 
 	componentWillMount: function() {
@@ -235,7 +236,7 @@ var Player = React.createClass({
 										Playing from <span className="time">{ this.renderRadioTime() }</span>
 									</Marquee>
 								</div>
-								<div className="song-name">
+								<div className="song-name" onClick={ () => this.props.updateMiniProfileContent(this.props.MASAS_songInfo.trackArtist) }>
 									<Marquee className="song-title">
 										{ this.props.SC_songInfo.title+ " - " }
 									</Marquee>

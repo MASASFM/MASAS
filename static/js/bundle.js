@@ -52165,7 +52165,8 @@ var Player = _wrapComponent("_component")(React.createClass({
 		playRandomSong: React.PropTypes.func,
 		playPreviousSong: React.PropTypes.func,
 		playNewSongFromPlaylist: React.PropTypes.func,
-		setIsPlayerBuffering: React.PropTypes.func
+		setIsPlayerBuffering: React.PropTypes.func,
+		updateMiniProfileContent: React.PropTypes.func
 	},
 
 	componentWillMount: function componentWillMount() {},
@@ -52346,6 +52347,8 @@ var Player = _wrapComponent("_component")(React.createClass({
 	},
 
 	render: function render() {
+		var _this5 = this;
+
 		// store discover number for previous icon
 		var discoverNumber = 0;
 		if (this.props.MASAS_songInfo) discoverNumber = parseInt(this.props.MASAS_songInfo.timeInterval.substr(this.props.MASAS_songInfo.timeInterval.length - 2, 1));
@@ -52378,7 +52381,9 @@ var Player = _wrapComponent("_component")(React.createClass({
 						),
 						React.createElement(
 							"div",
-							{ className: "song-name" },
+							{ className: "song-name", onClick: function onClick() {
+									return _this5.props.updateMiniProfileContent(_this5.props.MASAS_songInfo.trackArtist);
+								} },
 							React.createElement(
 								Marquee,
 								{ className: "song-title" },
@@ -52434,6 +52439,8 @@ PlayerAudioTag.exports = PlayerAudioTag;
 "use strict";
 
 var _Player = require("../../../reducers/actions/Player.js");
+
+var _App = require("../../../reducers/actions/App.js");
 
 // var { toggleSongLike } = require("../../../MASAS_functions.jsx")
 
@@ -52491,13 +52498,16 @@ Player.mapDispatchToProps = function (dispatch) {
 		},
 		setIsPlayerBuffering: function setIsPlayerBuffering(value) {
 			return dispatch((0, _Player.setIsPlayerBuffering)(value));
+		},
+		updateMiniProfileContent: function updateMiniProfileContent(userApiURL) {
+			return dispatch((0, _App.updateMiniProfileContent)(userApiURL));
 		}
 	};
 };
 
 module.exports = Player;
 
-},{"../../../reducers/actions/Player.js":519}],444:[function(require,module,exports){
+},{"../../../reducers/actions/App.js":512,"../../../reducers/actions/Player.js":519}],444:[function(require,module,exports){
 "use strict";
 
 var _react2 = require("react");

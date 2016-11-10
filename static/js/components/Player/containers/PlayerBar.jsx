@@ -11,6 +11,10 @@ import {
 	updateLikeButton,
 } from "../../../reducers/actions/Player.js"
 
+import {
+	updateMiniProfileContent,
+} from "../../../reducers/actions/App.js"
+
 // var { toggleSongLike } = require("../../../MASAS_functions.jsx")
 
 var Player = {}
@@ -49,6 +53,7 @@ Player.mapDispatchToProps = function(dispatch) {
 		playPreviousSong: () => dispatch(playPreviousSongInHistory()),
 		playNewSongFromPlaylist: (playlistPosition) => dispatch(playNewSongFromPlaylist(playlistPosition)),
 		setIsPlayerBuffering: value => dispatch(setIsPlayerBuffering(value)),
+		updateMiniProfileContent: userApiURL => dispatch(updateMiniProfileContent(userApiURL))
 	}
 }
 
