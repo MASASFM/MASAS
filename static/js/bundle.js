@@ -52398,7 +52398,7 @@ var Player = _wrapComponent("_component")(React.createClass({
 							"div",
 							{ className: "radio-info" },
 							React.createElement(
-								"div",
+								Marquee,
 								null,
 								"Playing from ",
 								React.createElement(
@@ -52414,12 +52414,12 @@ var Player = _wrapComponent("_component")(React.createClass({
 									return _this5.props.updateMiniProfileContent(_this5.props.MASAS_songInfo.trackArtist);
 								} },
 							React.createElement(
-								"div",
+								Marquee,
 								{ className: "song-title" },
 								this.props.SC_songInfo.title + " - "
 							),
 							React.createElement(
-								"div",
+								Marquee,
 								{ className: "song-artist" },
 								this.props.SC_songInfo.user.username
 							)
