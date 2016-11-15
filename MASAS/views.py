@@ -202,12 +202,15 @@ class PlayView(APIView):
         return song
 
     def get_song(self, request):
-        song = self._get_song(request)
-
-        tries = 10
-        while song is None and tries > 0:
+        if 'song_id' in request.GET:
+            song = Song.objects.get(pk=song_id)
+        else:
             song = self._get_song(request)
-            tries -= 1
+
+            tries = 10
+            while song is None and tries > 0:
+                song = self._get_song(request)
+                tries -= 1
 
         if request.user.is_authenticated():
             Play.objects.create(
