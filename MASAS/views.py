@@ -209,16 +209,14 @@ class PlayView(APIView):
             song = self._get_song(request)
             tries -= 1
 
-        return song
-
-    def post(self, request, format=None):
-        song = self.get_song(request)
-
         if request.user.is_authenticated():
             Play.objects.create(
                 user=request.user,
                 song=song,
             )
+
+        song.play_count += 1
+        song.save()
 
         serializer = self.serializer_class(
             instance=song,
@@ -229,6 +227,12 @@ class PlayView(APIView):
             ),
         )
         return Response(serializer.data)
+
+    def get(self, request, format=None):
+        return self.get_song(request)
+
+    def post(self, request, format=None):
+        return self.get_song(request)
 
 
 class CheckUserViewSet(BaseModelViewSetMixin, APIView):
