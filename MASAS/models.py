@@ -31,14 +31,6 @@ class SongManager(models.Manager):
         qs = super(SongManager, self).get_queryset()
         qs = qs.extra(
             select={
-                'play_count': '''
-                    SELECT
-                        count(id)
-                    FROM
-                        "MASAS_play"
-                    WHERE
-                        "MASAS_play"."song_id" = "MASAS_song"."id"
-                ''',
                 'like_count': '''
                     SELECT
                         count(id)
@@ -66,6 +58,7 @@ class Song(models.Model):
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
     deleted = models.DateTimeField(null=True, blank=True, default=None)
+    play_count = models.IntegerField(db_index=True)
 
     # Cached here by get_song during soundcloud remote check
     metadata = None
