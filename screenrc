@@ -1,0 +1,21 @@
+bind ^c quit
+scrollback 10000
+
+screen -t sass 1 sass --watch static/sass/main.sass:static/css/sass.css
+screen -t watchify 2 node_modules/.bin/watchify static/js/index.jsx -t babelify -o static/js/bundle.js
+screen -t browserify 3 bash -c 'while true; do node_modules/.bin/browserify static/js/index.jsx -t babelify static/js/index.jsx | node_modules/.bin/uglifyjs -c > static/js/bundle.min.js; sleep 10; done'
+screen -t browserify 3 bash -eux
+screen -t minimize 4 sass --watch static/sass/main.sass:static/css/sass.min.css --style compressed
+
+split
+focus down
+select 2
+
+split -v
+focus right
+select 3
+
+focus up
+split -v
+focus right
+select 1
