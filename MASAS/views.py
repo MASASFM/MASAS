@@ -233,10 +233,7 @@ class PlayView(APIView):
         )
         return Response(serializer.data)
 
-    def get(self, request, format=None):
-        return self.get_song(request)
-
-    def post(self, request, format=None):
+    def get(self, request):
         return self.get_song(request)
 
 

@@ -79,7 +79,7 @@ export function toggleSongLike(songId) {
 				dispatch({ type: TOOGLE_SONG_LIKE })
 			}, 0)
 
-			return 
+			return
 		}
 
 		// NO ACTION IF USER IS NOT LOGGED IN
@@ -92,7 +92,7 @@ export function toggleSongLike(songId) {
 				dispatch({ type: TOOGLE_SONG_LIKE })
 			}, 0)
 
-			return 
+			return
 		}
 
 
@@ -155,7 +155,7 @@ export function toggleSongLike(songId) {
 						dispatch(updateProfileInfo())
 					}).catch( () => dispatch({ type: TOOGLE_SONG_LIKE }) )
 				}
-				
+
 			}
 		})
 		.catch( err => {
@@ -164,7 +164,7 @@ export function toggleSongLike(songId) {
 
 			// remove optimistic UI
 			dispatch({ type: TOOGLE_SONG_LIKE })
-		})		
+		})
 	}
 }
 
@@ -259,7 +259,7 @@ export function pausePlayer() {
 	return dispatch => {
 		// pause player
 		$("#jquery_jplayer_1").jPlayer("pause")
-		
+
 		// get time to start playing at this time when unpausing and update app state
 		var pausingAtTime = Math.round($("#jquery_jplayer_1").data("jPlayer").status.currentTime)
 		dispatch({ type: PAUSE, pausingAtTime: pausingAtTime })
@@ -267,7 +267,7 @@ export function pausePlayer() {
 }
 
 function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
-	var streamURL = SC_songInfo.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3" 
+	var streamURL = SC_songInfo.stream_url + "?client_id=e5d965905a85b11e108d064bc04430a3"
 
 	// If jPlayer hasn't being instanciated yet, instanciate it with song URL to play
 	if($("#jquery_jplayer_1").data("jPlayer") === undefined) {
@@ -307,7 +307,7 @@ function updateJPlayerState(SC_songInfo, playAfterUpdateState = true) {
 	// if jPlayer has already been instanciated, update the URL to play
 	} else {
 		$("#jquery_jplayer_1").jPlayer( "clearMedia" )
-		$("#jquery_jplayer_1").jPlayer("setMedia", { 
+		$("#jquery_jplayer_1").jPlayer("setMedia", {
 			mp3: streamURL,
 			m4a: streamURL,
 			oga: streamURL
@@ -367,7 +367,7 @@ export function playSong(songURL) {
 export function playNewSong() {
 	return (dispatch, getState) => {
 		const state = getState()
-		const { 
+		const {
 			songPlaying,
 			isPlaylistPlaying,
 		} = state.playerReducer
@@ -426,7 +426,7 @@ export function playPreviousSongInHistory() {
 // returns last song in history for a given discover number
 // history: array ; discoverNum: int \in [0,5]
 export function lastSongInDiscoverHistory(history, discoverNum) {
-	// go through history array 
+	// go through history array
 	var i = 0
 
 	// looping from most recent song to oldest to converge quicker.
@@ -481,15 +481,15 @@ export function playRandomSong(timeInterval = 0) {
 		if(MASASuser !== "") {
 			const header = "Bearer " + MASASuser
 			const csrftoken = getCookie("csrftoken")
-			method = "POST"
+			// method = "POST"
 
 			headers = {
 				"Authorization": header,
-				"X-CSRFToken": csrftoken
+				// "X-CSRFToken": csrftoken
 			}
 		}
 
-		fetch(URL, { 
+		fetch(URL, {
 			headers,
 			method
 		}).then( r => r.json() )
@@ -503,7 +503,7 @@ export function playRandomSong(timeInterval = 0) {
 
 export function playNewSongFromPlaylist(playlistPosition) {
 	return {
-		type: PLAY_NEW_SONG_FROM_PLAYLIST, 
+		type: PLAY_NEW_SONG_FROM_PLAYLIST,
 		playlistPosition
 	}
 }
