@@ -228,7 +228,6 @@ class PlayView(APIView):
             instance=song,
             context=dict(
                 request=request,
-                format=format,
                 view=self,
             ),
         )
