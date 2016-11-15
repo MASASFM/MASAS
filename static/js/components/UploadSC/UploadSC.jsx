@@ -100,14 +100,14 @@ var UploadSC = React.createClass({
 
 	tracksTable: function() {
 		if (this.props.soundcloudUserTracks)
-			return this.props.soundcloudUserTracks.map((track) => { 
+			return this.props.soundcloudUserTracks.map((track) => {
 				var synced = false
 				if(this.props.masasUserTracks.filter(function(song) { return song.SC_ID === track.id }).length)
 					synced = true
-				
-				return <UploadSCItem 
-						key={ track.id } 
-						track={ track } 
+
+				return <UploadSCItem
+						key={ track.id }
+						track={ track }
 						synced={ synced }
 						streamable={ track.streamable }
 						public={ track.sharing === "public" ? true : false } />
@@ -132,13 +132,13 @@ var UploadSC = React.createClass({
 	render: function() {
 		if(this.props.choosingTime) {
 			return (
-				<div style={{ 
+				<div style={{
 					visibility: (this.props.modalType === 2 && this.props.isModalOpened) ? 'hidden' : 'visible',
 					display: 'flex',
 					flex: '1',
 				}}>
 					<Body>
-						<PickTimeUpload 
+						<PickTimeUpload
 							visible={ !(this.props.modalType === 2 && this.props.isModalOpened) }/>
 					</Body>
 				</div>
@@ -183,7 +183,7 @@ var UploadSC = React.createClass({
 							All the music shared on MASAS starts out in one of the Discover moods
 						</div>
 						<div className="demo-time-picker--wrapper">
-							<TimePicker 
+							<TimePicker
 								initialDiscover={ 1 }
 								currentDiscover={ 1 }
 								/>
@@ -191,20 +191,19 @@ var UploadSC = React.createClass({
 						<div className="connect-sc--text">
 							if the community really <strong>Likes</strong> your songs, it will get featured on <strong>Popular</strong>!
 						</div>
-						
-						{ 
+
+						{
 							this.props.MASASuser !== "" ?
 								<div className="connect-button">
-									<Button 
-										onClick={ this.connectToSC } 
+									<Button
+										onClick={ this.connectToSC }
 										isBigButton={ true }
 										soundcloud={ true }>Connect to SoundCloud</Button>
 								</div>
 							:
 								<div className="connect-button">
-									<Button 
-										onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } } 
-										isSecondaryAction={ true }
+									<Button
+										onClick={ () => { this.props.toogleModal(); this.props.updateModalContent(<SplashScreen startPage={ 1 } />, 3) } }
 										isBigButton={ true }>Log-in to Upload</Button>
 									<div className="button-subtitle">It's free!</div>
 								</div>
