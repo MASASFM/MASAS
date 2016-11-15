@@ -212,6 +212,9 @@ class PlayView(APIView):
                 song = self._get_song(request)
                 tries -= 1
 
+            if song is None:
+                raise Exception('Failed to find song')
+
         if request.user.is_authenticated():
             Play.objects.create(
                 user=request.user,
