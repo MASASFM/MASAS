@@ -186,7 +186,7 @@ class PlayView(APIView):
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
         try:
-            s.get('/tracks/%s' % song.SC_ID)
+            metadata = s.get('/tracks/%s' % song.SC_ID)
         except requests.HTTPError as e:
             # Let's not blacklist the song if it's not a 404, because there
             # might be just a network issue between the server and soundcloud's
@@ -195,7 +195,9 @@ class PlayView(APIView):
             if e.response.status_code == 404:
                 song.deleted = datetime.datetime.now()
                 song.save()
-                return None
+                return
+        else:
+            song.metadata = metadata.obj
 
         return song
 

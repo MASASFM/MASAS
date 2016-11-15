@@ -26,6 +26,9 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
     play_count = serializers.IntegerField(read_only=True)
     like_count = serializers.SerializerMethodField()
 
+    # Cache for SoundCloud data downloaded OOAO by the PlayView
+    metadata = serializers.JSONField()
+
     def get_like_count(self, obj):
         return getattr(obj, 'like_count', None)
 
@@ -55,6 +58,7 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
             'dateUploaded',
             'play_count',
             'like_count',
+            'metadata',
         )
 
 

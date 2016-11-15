@@ -67,6 +67,9 @@ class Song(models.Model):
     timeInterval = models.ForeignKey('TimeInterval')
     deleted = models.DateTimeField(null=True, blank=True, default=None)
 
+    # Cached here by get_song during soundcloud remote check
+    metadata = None
+
     objects = SongManager()
 
     def __unicode__(self):
