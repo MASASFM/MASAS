@@ -211,55 +211,14 @@ class PlayView(APIView):
 
         return song
 
-    def get(self, request):
-        song = self.get_song(request)
-
-        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
-        try:
-            s.get('/tracks/%s' % song.SC_ID)
-        except requests.HTTPError:
-            song.deleted = datetime.datetime.now()
-            song.save()
-            return None
-
-        serializer = self.serializer_class(
-            instance=song,
-            context=dict(
-                request=request,
-                format=None,
-                view=self,
-            ),
-        )
-        return Response(serializer.data)
-
     def post(self, request, format=None):
         song = self.get_song(request)
 
-        s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
-        try:
-            s.get('/tracks/%s' % song.SC_ID)
-        except requests.HTTPError:
-            song.deleted = datetime.datetime.now()
-            song.save()
-            return None
-
-        return song
-
-    def get_song(self, request):
-        song = self._get_song(request)
-
-        while song is None:
-            song = self._get_song(request)
-
-        return song
-
-    def post(self, request, format=None):
-        song = self.get_song(request)
-
-        Play.objects.create(
-            user=request.user,
-            song=song,
-        )
+        if request.user.is_authenticated():
+            Play.objects.create(
+                user=request.user,
+                song=song,
+            )
 
         serializer = self.serializer_class(
             instance=song,
