@@ -3,13 +3,19 @@ var React = require("react")
 var ReactRedux = require("react-redux")
 var { mapStateToProps, mapDispatchToProps } = require("./containers/Discover.jsx")
 
-var { getTimeIntervalFromURL, updateProfileInfo, isObjectNotEmpty, isObjectEmpty, discoverHashtagNames } = require("../../MASAS_functions.jsx")
+var { 
+	getTimeIntervalFromURL,
+	updateProfileInfo,
+	isObjectNotEmpty,
+	getDiscoverNumberFromCurrentTime,
+	discoverHashtagNames
+} = require("../../MASAS_functions.jsx")
 
 var ArtworkLine = require("./ArtworkLine.jsx")
 var { TimePicker } = require("../UI/UI.jsx")
 var { TeachDiscoverModal2 } = require("./../TipModals/TeachDiscoverModals.jsx")
 var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx")
-var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
+// var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 var Discover = React.createClass({
 	showArtwork: false,
@@ -138,8 +144,10 @@ var Discover = React.createClass({
 
 	render: function() {
 		var sliderInitDiscover = null
-		if(this.props.MASAS_songInfo)
+		if(this.props.MASAS_songInfo && this.props.songPlaying)
 			sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval)
+		else
+			sliderInitDiscover = getDiscoverNumberFromCurrentTime()
 
 		const { showArtwork } = this
 		const { showSlider } = this

@@ -43316,6 +43316,12 @@ var MASAS_functions = {};
 /////
 /////
 
+MASAS_functions.getDiscoverNumberFromCurrentTime = function () {
+	var hours = new Date().getHours();
+
+	if (hours > 4 && hours < 8) return 1;else if (hours > 8 && hours < 12) return 2;else if (hours > 12 && hours < 15) return 3;else if (hours > 15 && hours < 18) return 4;else if (hours > 18 && hours < 22) return 5;else if (hours > 22 && hours < 4) return 6;
+};
+
 MASAS_functions.getUserPkFromURL = function (url) {
 	var str = url;
 	str = str.slice(0, str.length - 1);
@@ -45004,7 +45010,7 @@ var _require2 = require("../../MASAS_functions.jsx");
 var getTimeIntervalFromURL = _require2.getTimeIntervalFromURL;
 var updateProfileInfo = _require2.updateProfileInfo;
 var isObjectNotEmpty = _require2.isObjectNotEmpty;
-var isObjectEmpty = _require2.isObjectEmpty;
+var getDiscoverNumberFromCurrentTime = _require2.getDiscoverNumberFromCurrentTime;
 var discoverHashtagNames = _require2.discoverHashtagNames;
 
 var ArtworkLine = require("./ArtworkLine.jsx");
@@ -45018,7 +45024,7 @@ var _require4 = require("./../TipModals/TeachDiscoverModals.jsx");
 var TeachDiscoverModal2 = _require4.TeachDiscoverModal2;
 
 var TeachSliderModals = require("./../TipModals/TeachSliderModals.jsx");
-var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1;
+// var TeachSliderModal1 = TeachSliderModals.TeachSliderModal1
 
 var Discover = _wrapComponent("_component")(React.createClass({
 	displayName: "Discover",
@@ -45165,7 +45171,7 @@ var Discover = _wrapComponent("_component")(React.createClass({
 		var _this3 = this;
 
 		var sliderInitDiscover = null;
-		if (this.props.MASAS_songInfo) sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval);
+		if (this.props.MASAS_songInfo && this.props.songPlaying) sliderInitDiscover = getTimeIntervalFromURL(this.props.MASAS_songInfo.timeInterval);else sliderInitDiscover = getDiscoverNumberFromCurrentTime();
 
 		var showArtwork = this.showArtwork;
 		var showSlider = this.showSlider;
