@@ -17,12 +17,12 @@ export function changeDiscoverNumber(discoverNumber) {
 	}
 }
 
-export function addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo) {
+export function addSongToHistory(MASAS_songInfo, SC_songInfo) {
 	return {
 		type: ADD_SONG_TO_HISTORY,
 		MASAS_songInfo,
 		SC_songInfo,
-		artistInfo: null
+		artistInfo: null,
 	}
 }
 
