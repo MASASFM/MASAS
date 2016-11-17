@@ -50,7 +50,6 @@ var LikesArtworks = React.createClass({
 		else {
 			// // sort by uploaded time
 			const songs = this.props.userLikes
-			songs.sort( (a, b) => Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created) )
 
 			var songList =  songs.map((song) => { 
 				return <LikesItem 

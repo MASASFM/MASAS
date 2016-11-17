@@ -50043,7 +50043,7 @@ var Likes = _wrapComponent("_component")(React.createClass({
 
 			// sort by liked time
 			songList.sort(function (a, b) {
-				return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created);
+				return Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created);
 			});
 
 			var radioTimeString = timeIntervalURLToString;
@@ -50238,9 +50238,6 @@ var LikesArtworks = _wrapComponent("_component")(React.createClass({
 		if (!this.props.userLikesUnfiltered.length) return React.createElement(NoLikesComponent, null);else {
 			// // sort by uploaded time
 			var songs = this.props.userLikes;
-			songs.sort(function (a, b) {
-				return Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created);
-			});
 
 			var songList = songs.map(function (song) {
 				return React.createElement(LikesItem, {

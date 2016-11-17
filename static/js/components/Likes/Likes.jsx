@@ -60,7 +60,7 @@ var Likes = React.createClass({
 			var songList = this.props.userLikes
 
 			// sort by liked time
-			songList.sort((a,b) => { return Date.parse(a.MASAS_songInfo.created) < Date.parse(b.MASAS_songInfo.created) })
+			songList.sort((a,b) => { return Date.parse(b.MASAS_songInfo.created) - Date.parse(a.MASAS_songInfo.created) })
 
 			var radioTimeString = timeIntervalURLToString
 
