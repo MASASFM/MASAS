@@ -376,24 +376,27 @@ export function playNewSong() {
 		dispatch(setIsSongFetching(true))
 		// dispatch(playSong(songPlaying))
 
+		// if state.appReducer.MASAS_songInfo.SC_ID === state.appReducer.SC_songInfo.id
 		fetch(songPlaying)
 		.then( r => r.json() )
 		.then( MASAS_songInfo => {
-			SC.get('/tracks/' + MASAS_songInfo.SC_ID)
-			.then( SC_songInfo => {
-				updateJPlayerState(SC_songInfo)
+			// protect against empty array
+			let state_SC_songInfo = {}
+			if(state.playerReducer.SC_songInfo)
+				state_SC_songInfo = state.playerReducer.SC_songInfo
 
-				fetch(MASAS_songInfo.trackArtist)
-				.then( r => r.json() )
-				.then( artistInfo => {
+			if(MASAS_songInfo.SC_ID !== state_SC_songInfo.id || !state_SC_songInfo.id) {
+				SC.get('/tracks/' + MASAS_songInfo.SC_ID)
+				.then( SC_songInfo => {
+					updateJPlayerState(SC_songInfo)
+
 					// update currently playing song state
 					dispatch(updateMASAS_songInfo(MASAS_songInfo))
 					dispatch(updateSC_songInfo(SC_songInfo))
-					dispatch(updateArtistInfo(artistInfo))
 
 					// add song to discover history if not playing from playlist
 					if(!isPlaylistPlaying)
-						dispatch(addSongToHistory(MASAS_songInfo, SC_songInfo, artistInfo))
+						dispatch(addSongToHistory(MASAS_songInfo, SC_songInfo))
 
 					// update song liked button based on server response (vs optimistic UI)
 					dispatch(updateLikeButton(MASAS_songInfo))
@@ -401,10 +404,14 @@ export function playNewSong() {
 					// end loading state
 					dispatch(setIsSongFetching(false))
 				})
-				.catch( e => { } )
-			})
-			.catch( e => resetPlayer() )
+				.catch( e => resetPlayer() )
+			} else {
+				// update song liked button based on server response (vs optimistic UI)
+				dispatch(updateLikeButton(MASAS_songInfo))
 
+				// end loading state
+				dispatch(setIsSongFetching(false))
+			}
 		}).catch( e => resetPlayer() )
 	}
 }
@@ -490,12 +497,22 @@ export function playRandomSong(timeInterval = 0) {
 			}
 		}
 
+		dispatch(setIsSongFetching(true))
 		fetch(URL, {
 			headers,
 			method
 		}).then( r => r.json() )
-		.then( data => dispatch(playSong(data.url)) )
+		.then( data => {
+			// dispatch all necessary info and start playing
+			dispatch(updateMASAS_songInfo(data))
+			dispatch(addSongToHistory(data, data.metadata))
+			updateJPlayerState(data.metadata)
+			dispatch(updateSC_songInfo(data.metadata))
+			dispatch(playSong(data.url))
+		})
 		.catch( e => {
+			resetPlayer()
+			
 			if(e.status === 401)
 				dispatch(updateNotificationBar("Login to play music !"))
 		})

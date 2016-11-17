@@ -60195,32 +60195,40 @@ function playNewSong() {
 		dispatch(setIsSongFetching(true));
 		// dispatch(playSong(songPlaying))
 
+		// if state.appReducer.MASAS_songInfo.SC_ID === state.appReducer.SC_songInfo.id
 		fetch(songPlaying).then(function (r) {
 			return r.json();
 		}).then(function (MASAS_songInfo) {
-			SC.get('/tracks/' + MASAS_songInfo.SC_ID).then(function (SC_songInfo) {
-				updateJPlayerState(SC_songInfo);
+			// protect against empty array
+			var state_SC_songInfo = {};
+			if (state.playerReducer.SC_songInfo) state_SC_songInfo = state.playerReducer.SC_songInfo;
 
-				fetch(MASAS_songInfo.trackArtist).then(function (r) {
-					return r.json();
-				}).then(function (artistInfo) {
+			if (MASAS_songInfo.SC_ID !== state_SC_songInfo.id || !state_SC_songInfo.id) {
+				SC.get('/tracks/' + MASAS_songInfo.SC_ID).then(function (SC_songInfo) {
+					updateJPlayerState(SC_songInfo);
+
 					// update currently playing song state
 					dispatch(updateMASAS_songInfo(MASAS_songInfo));
 					dispatch(updateSC_songInfo(SC_songInfo));
-					dispatch(updateArtistInfo(artistInfo));
 
 					// add song to discover history if not playing from playlist
-					if (!isPlaylistPlaying) dispatch((0, _Discover.addSongToHistory)(MASAS_songInfo, SC_songInfo, artistInfo));
+					if (!isPlaylistPlaying) dispatch((0, _Discover.addSongToHistory)(MASAS_songInfo, SC_songInfo));
 
 					// update song liked button based on server response (vs optimistic UI)
 					dispatch(updateLikeButton(MASAS_songInfo));
 
 					// end loading state
 					dispatch(setIsSongFetching(false));
-				}).catch(function (e) {});
-			}).catch(function (e) {
-				return resetPlayer();
-			});
+				}).catch(function (e) {
+					return resetPlayer();
+				});
+			} else {
+				// update song liked button based on server response (vs optimistic UI)
+				dispatch(updateLikeButton(MASAS_songInfo));
+
+				// end loading state
+				dispatch(setIsSongFetching(false));
+			}
 		}).catch(function (e) {
 			return resetPlayer();
 		});
@@ -60309,14 +60317,22 @@ function playRandomSong() {
 		}
 
 		// "X-CSRFToken": csrftoken
+		dispatch(setIsSongFetching(true));
 		fetch(URL, {
 			headers: headers,
 			method: method
 		}).then(function (r) {
 			return r.json();
 		}).then(function (data) {
-			return dispatch(playSong(data.url));
+			// dispatch all necessary info and start playing
+			dispatch(updateMASAS_songInfo(data));
+			dispatch((0, _Discover.addSongToHistory)(data, data.metadata));
+			updateJPlayerState(data.metadata);
+			dispatch(updateSC_songInfo(data.metadata));
+			dispatch(playSong(data.url));
 		}).catch(function (e) {
+			resetPlayer();
+
 			if (e.status === 401) dispatch((0, _Header.updateNotificationBar)("Login to play music !"));
 		});
 	};
