@@ -50439,7 +50439,7 @@ var LikesItem = _wrapComponent("_component")(React.createClass({
 	playTrack: function playTrack() {
 		var playlist = [].concat(this.props.userData.likes);
 		playlist.sort(function (a, b) {
-			return Date.parse(a.created) < Date.parse(b.created);
+			return Date.parse(b.created) - Date.parse(a.created);
 		});
 		playlist = playlist.map(function (like) {
 			return like.song.url;
