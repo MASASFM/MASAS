@@ -152,7 +152,7 @@ var Player = React.createClass({
 			}
 		}
 
-		if(this.props.isSongPlayingLiked)
+		if(this.props.isSongPlayingLiked && this.props.MASASuser !== "")
 			return <img src="/static/img/MASAS_liked.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)}/>
 		else
 			return <img src="/static/img/MASAS_like_shadow.svg" alt="like icon" className="like-icon" onClick={this.props.toggleSongLike.bind(this, this.props.MASASuser, this.props.songPlaying)} />

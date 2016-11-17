@@ -204,19 +204,20 @@ export function updateLikeButton(MASAS_songInfo) {
 		var headers = new Headers()
 		headers.append("Authorization", "Bearer " + MASASuser)
 
-		fetch( '/api/users/' + MASASuserPk + '/', { headers })
-		.then( r => r.json() )
-		.then( user => {
-			var isSongLiked = user.likes.filter( (like) => {
-				return like.song.url === MASAS_songInfo.url
-			})
+		if(MASASuserPk)
+			fetch( '/api/users/' + MASASuserPk + '/', { headers })
+			.then( r => r.json() )
+			.then( user => {
+				var isSongLiked = user.likes.filter( (like) => {
+					return like.song.url === MASAS_songInfo.url
+				})
 
-			// update player state
-			if (isSongLiked.length === 0)
-				dispatch(likeSong(false))
-			else
-				dispatch(likeSong(true))
-		}).catch( e => { } )
+				// update player state
+				if (isSongLiked.length === 0)
+					dispatch(likeSong(false))
+				else
+					dispatch(likeSong(true))
+			}).catch( e => { } )
 
 	}
 }
