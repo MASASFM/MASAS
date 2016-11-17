@@ -4087,7 +4087,8 @@ input[type=range].MASAS-slider {
       animation: fadein-profile .25s linear; }
     .discover--wrapper .artwork--wrapper .artwork--wrapper2 {
       position: relative;
-      cursor: pointer; }
+      cursor: pointer;
+      display: flex; }
     .discover--wrapper .artwork--wrapper .artwork {
       height: 35vh;
       width: 35vh;
@@ -4112,8 +4113,8 @@ input[type=range].MASAS-slider {
     display: flex; }
   @media screen and (min-width: 992px) {
     .discover--wrapper .artwork--wrapper.artwork-playing .artwork {
-      height: 16rem;
-      width: 16rem; }
+      height: 35vh;
+      width: 35vh; }
     .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper {
       font-size: 0.7rem;
       height: 3rem;
@@ -4129,10 +4130,10 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .title, .discover--wrapper .artwork--wrapper.artwork-playing .song-info--wrapper .song-info .artist {
           position: relative;
           height: 0.7rem;
-          width: 14rem; }
+          width: calc($artworkWidth - 2 * 1rem); }
     .discover--wrapper .artwork--wrapper .artwork {
-      height: 11.2rem;
-      width: 11.2rem; }
+      height: 24.5vh;
+      width: 24.5vh; }
     .discover--wrapper .artwork--wrapper .song-info--wrapper {
       font-size: 0.49rem;
       height: 2.1rem;
@@ -4145,7 +4146,7 @@ input[type=range].MASAS-slider {
       .discover--wrapper .artwork--wrapper .song-info--wrapper .title, .discover--wrapper .artwork--wrapper .song-info--wrapper .artist {
         position: relative;
         height: 0.49rem;
-        width: 9.2rem; } }
+        width: calc(24.5vh - 2 * 1rem); } }
   .discover--wrapper .artwork-line--wrapper {
     display: flex;
     align-self: flex-start;
@@ -4227,14 +4228,14 @@ input[type=range].MASAS-slider {
           width: 0; }
   @media screen and (min-width: 992px) {
     .discover--wrapper .artwork-line--wrapper {
-      height: 13.3rem; }
+      height: calc(24.5vh + 2.1rem); }
       .discover--wrapper .artwork-line--wrapper .button {
         z-index: 2;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding-left: 32rem;
+        padding-left: 70vh;
         cursor: pointer; }
         .discover--wrapper .artwork-line--wrapper .button img {
           width: 2rem;
@@ -4243,7 +4244,7 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork-line--wrapper .button img.small {
           width: 1.5rem;
           height: 1.5rem;
-          margin-right: .5rem; }
+          margin-right: 0.5rem; }
       .discover--wrapper .artwork-line--wrapper .button.show {
         display: flex;
         flex-direction: row-reverse;
@@ -4251,18 +4252,19 @@ input[type=range].MASAS-slider {
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper.hide-on-mobile {
         visibility: visible; }
       .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper {
-        max-width: 16rem; }
+        max-width: 35vh;
+        height: calc(35vh + 3rem); }
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .next-song-button {
           display: none; }
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .pervious-song-button {
           display: none; }
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing {
           background-color: rgba(0, 0, 0, 0.4);
-          height: 16rem;
-          width: 16rem; }
+          height: 35vh;
+          width: 35vh; }
           .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .artwork-playing .artwork {
-            height: 16rem;
-            width: 16rem; }
+            height: 35vh;
+            width: 35vh; }
         .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper {
           height: 3rem;
           display: flex;
@@ -4283,16 +4285,16 @@ input[type=range].MASAS-slider {
             .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .title, .discover--wrapper .artwork-line--wrapper .artwork-playing--wrapper .song-info--wrapper .song-info .artist {
               position: relative;
               height: 0.7rem;
-              width: 11.5rem; }
+              width: calc(35vh - 3 * (1rem + 1.5rem)); }
       .discover--wrapper .artwork-line--wrapper .left-side {
-        width: calc(50% - 11.2rem / 2.2); }
+        width: calc(50% - 24.5vh / 2.2); }
         .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .artwork-line2 {
           display: flex; }
         .discover--wrapper .artwork-line--wrapper .left-side .artwork-line .empty-artwork {
           width: 0; } }
   .discover--wrapper h1 {
     font-size: 1.5rem;
-    letter-spacing: .35rem;
+    letter-spacing: 0.35rem;
     width: min-content;
     font-family: Lato-Light, sans-serif;
     margin-bottom: 1rem;
@@ -4300,7 +4302,7 @@ input[type=range].MASAS-slider {
     border: none;
     z-index: 1;
     display: flex;
-    flex: .2;
+    flex: 0.2;
     align-items: center; }
   .discover--wrapper .multi-page--wrapper {
     display: flex;
@@ -4308,7 +4310,7 @@ input[type=range].MASAS-slider {
     width: 100%;
     position: relative; }
     .discover--wrapper .multi-page--wrapper .page1, .discover--wrapper .multi-page--wrapper .page2 {
-      transition: opacity .3s ease-in;
+      transition: opacity 0.3s ease-in;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -4332,7 +4334,7 @@ input[type=range].MASAS-slider {
       z-index: 0; }
   .discover--wrapper .time-picker--wrapper {
     display: flex;
-    flex-grow: .25;
+    flex-grow: 0.25;
     align-items: center;
     height: 17vh; }
     .discover--wrapper .time-picker--wrapper .timePicker--wrapper {
@@ -4345,15 +4347,12 @@ input[type=range].MASAS-slider {
         bottom: 0; }
 
 @media screen and (min-width: 992px) {
-  .discover--wrapper h1 {
-    font-size: 1.3rem;
-    border-bottom: 1px solid white;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2.5rem; }
   .discover--wrapper .multi-page--wrapper .page1 .play-discover--wrapper, .discover--wrapper .multi-page--wrapper .page2 .play-discover--wrapper {
     height: 12rem; }
   .discover--wrapper .time-picker--wrapper {
-    height: inherit; } }
+    height: inherit;
+    height: 12.5vh;
+    padding-top: 1.5rem; } }
 .legals-content--wrapper {
   display: flex;
   flex-direction: column;

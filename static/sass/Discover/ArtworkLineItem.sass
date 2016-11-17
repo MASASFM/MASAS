@@ -21,6 +21,7 @@
 	.artwork--wrapper2
 		position: relative
 		cursor: pointer
+		display: flex
 
 	$artworkWidth: 12rem
 	.artwork
@@ -52,7 +53,7 @@
 		display: flex
 
 @media screen and (min-width: $desktop-min-width)
-	$artworkWidth: 16rem
+	$artworkWidth: 35vh
 	$song-info-height: 3rem 
 	$font-size: 0.7rem
 	$sidePadding: 1rem
@@ -85,7 +86,7 @@
 				.title, .artist
 					position: relative
 					height: $font-size
-					width: $artworkWidth - 2*$sidePadding
+					width: calc($artworkWidth - 2 * #{$sidePadding})
 
 
 	.artwork--wrapper
@@ -112,4 +113,4 @@
 			.title, .artist
 				position: relative
 				height: $font-size
-				width: $artworkWidth - 2*$sidePadding
+				width: calc(#{$artworkWidth} - 2 * #{$sidePadding})

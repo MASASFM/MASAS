@@ -109,7 +109,7 @@
 
 @media screen and (min-width: $desktop-min-width)
 	.artwork-line--wrapper
-		$artworkWidth: 16rem
+		$artworkWidth: 35vh
 		$song-info-height: 3rem 
 		$font-size: 0.7rem
 		$ratio: $artworkWidth / $song-info-height
@@ -147,6 +147,7 @@
 
 		.artwork-playing--wrapper
 			max-width: $artworkWidth
+			height: calc(#{$artworkWidth} + #{$song-info-height})
 
 			.next-song-button
 				display: none
@@ -158,6 +159,7 @@
 				background-color: rgba(0,0,0,0.4)
 				height: $artworkWidth
 				width: $artworkWidth
+
 				.artwork
 					height: $artworkWidth
 					width: $artworkWidth
@@ -186,7 +188,7 @@
 					.title, .artist
 						position: relative
 						height: $font-size
-						width: $artworkWidth - (3*$sidePadding + $like-icon-width)
+						width: calc(#{$artworkWidth} - 3 * (#{$sidePadding} + #{$like-icon-width}))
 
 		.left-side, .right-side
 
@@ -196,7 +198,7 @@
 		$song-info-height: $song-info-height * $ratio
 		$font-size: $font-size * $ratio
 		$sidePadding: $sidePadding * 1
-		height: $artworkWidth + $song-info-height
+		height: calc(#{$artworkWidth} + #{$song-info-height})
 		.left-side
 			width: calc(50% - #{$artworkWidth} / 2.2)
 
