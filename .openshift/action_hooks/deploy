@@ -17,3 +17,10 @@ python ${OPENSHIFT_REPO_DIR}manage.py migrate --noinput
 mkdir -p $OPENSHIFT_REPO_DIR/wsgi/static/collected
 
 python ${OPENSHIFT_REPO_DIR}manage.py collectstatic --noinput
+
+
+curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+     -H "X-Auth-Email: $CLOUDFLARE_API_EMAIL" \
+     -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+     -H "Content-Type: application/json" \
+     --data '{"files":["http://www.masas.fm/static/js/bundle.js"]}'
