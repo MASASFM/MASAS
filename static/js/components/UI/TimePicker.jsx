@@ -22,6 +22,7 @@ var TimePickerWrapper = React.createClass({
 		canvasId: React.PropTypes.string,					// canvas id used for drawing
 		showHashtag: React.PropTypes.bool,					// should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
+		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
 	},
 
 	getDefaultProps: function() {
@@ -61,7 +62,8 @@ var TimePickerWrapper = React.createClass({
 				<TimePickerInside 
 					{ ...this.props }
 					ref="canvas"
-					rangePercent={ startValue } />
+					rangePercent={ startValue }
+					/>
 			</div>
 		)
 	}

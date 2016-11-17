@@ -86,28 +86,30 @@ var Discover = React.createClass({
 			// if user has not dismissed tips yet
 			let usersteps = [ ...this.props.userData.usersteps ]
 			const didUserDismissTips = usersteps.filter(({ step }) => step === 4).length ? true : false
-			const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
 			const didUserSeeSecondTip = usersteps.filter(({ step }) => step === 6).length ? true : false
 
-			if(!didUserDismissTips && !didUserSeeFirstTip) {
-				this.props.updateModalContent(
-					<TeachSliderModal1 
-						title=""
-						paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
-				, 2, () => this.updateUserStep(5) )
-				this.props.toogleModal()
-			} else if(!didUserDismissTips && !didUserSeeSecondTip) {
+			// const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
+			// if(!didUserDismissTips && !didUserSeeFirstTip) {
+			// 	this.props.updateModalContent(
+			// 		<TeachSliderModal1 
+			// 			title=""
+			// 			paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
+			// 	, 2, () => this.updateUserStep(5) )
+			// 	this.props.toogleModal()
+			// } else 
+			if(!didUserDismissTips && !didUserSeeSecondTip) {
 				this.props.updateModalContent(<TeachDiscoverModal2 />, 2, () => this.updateUserStep(6))
 				this.props.toogleModal()
 			}
-		} else if(isObjectEmpty(this.props.userData) && this.props.loggedOutUserStep === 0 && !this.props.isModalOpened){		// user is not logged in, show slider tip if session anonymous user hasn't seen it yet
-			this.props.updateModalContent(
-				<TeachSliderModal1 
-					title=""
-					paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
-			, 2, () => this.props.incrementLoggedOutUserStep() )
-			this.props.toogleModal()
-		}
+		} 
+		// else if(isObjectEmpty(this.props.userData) && this.props.loggedOutUserStep === 0 && !this.props.isModalOpened){		// user is not logged in, show slider tip if session anonymous user hasn't seen it yet
+		// 	this.props.updateModalContent(
+		// 		<TeachSliderModal1 
+		// 			title=""
+		// 			paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
+		// 	, 2, () => this.props.incrementLoggedOutUserStep() )
+		// 	this.props.toogleModal()
+		// }
 	},
 
 	componentWillReceiveProps: function() {
@@ -210,6 +212,7 @@ var Discover = React.createClass({
 						currentDiscover={ this.props.discoverNumber }
 						showHashtag={ true } 
 						sliderValue={ this.state.sliderValue }
+						initText="Drag the sun around!"
 						/>
 				</div>
 			</div>

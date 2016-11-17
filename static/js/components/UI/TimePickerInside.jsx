@@ -28,6 +28,7 @@ var TimePicker = React.createClass({
 		sliderValue: React.PropTypes.number,					// slider value affecting sun position
 		renderForUITip: React.PropTypes.bool,				// slider controlled by mouse.onMove
 		rangePercent: React.PropTypes.number,				// slider value
+		initText: React.PropTypes.string,					// string instead of hashtag until slider is moved
 	},
 
 	getInitialState: function() {
@@ -35,12 +36,13 @@ var TimePicker = React.createClass({
 		// const rangePercent = this.props.rangePercent
 		return {
 			rangePercent: this.props.rangePercent,		// (number) 0-100, slider value
-			sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
+			// sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0,					// (number) sun arc path center
 			canvasWidth: 0,					// (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 },				// (object) center of arc circle coord
 			arcRadius: 0,						// (number) sun arc path radius
 			currentDiscover: this.props.currentDiscover,		// (number) current discover
+			hasSunMoved: false,					// (bool) show props.initText until state.hasSunMoved === true
 		}
 	},
 
@@ -142,15 +144,15 @@ var TimePicker = React.createClass({
 		}
 	},
 
-	handleSliderChange: function(e) {
-		// check if need to update redux state
-		const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
-		if(newDiscover !== 0)
-			this.props.onSliderChange(newDiscover)
+	// handleSliderChange: function(e) {
+	// 	// check if need to update redux state
+	// 	const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
+	// 	if(newDiscover !== 0)
+	// 		this.props.onSliderChange(newDiscover)
 
-		// update local state
-		// this.setState({ rangePercent: parseFloat(e), sunCoords })
-	},
+	// 	// update local state
+	// 	// this.setState({ rangePercent: parseFloat(e), sunCoords })
+	// },
 
 	getSunCoords: function(sliderValue) {
 		var { sqrt, pow } = Math
@@ -169,6 +171,8 @@ var TimePicker = React.createClass({
 	},
 
 	getHashtag: function(value) {
+		if(this.props.initText && !this.state.hasSunMoved)
+			return this.props.initText
 
 		if(value < 0)
 			value = 0
@@ -196,6 +200,12 @@ var TimePicker = React.createClass({
 		var canvas = this.refs.canvas
 		if(canvas)
 			this.renderSunArcPath()
+	},
+
+	componentWillUpdate(nextProps, nextState) {
+		// if sun has not moved and sun isn't at init coord, update has sun moved state
+		if(!this.state.hasSunMoved && this.getSunCoords(nextState.rangePercent).x !== this.getSunCoords(this.state.rangePercent).x)
+			this.setState({ hasSunMoved: true })
 	},
 
 	render: function() {

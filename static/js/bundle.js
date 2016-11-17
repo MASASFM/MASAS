@@ -45100,55 +45100,35 @@ var Discover = _wrapComponent("_component")(React.createClass({
 				var step = _ref.step;
 				return step === 4;
 			}).length ? true : false;
-			var didUserSeeFirstTip = usersteps.filter(function (_ref2) {
+			var didUserSeeSecondTip = usersteps.filter(function (_ref2) {
 				var step = _ref2.step;
-				return step === 5;
-			}).length ? true : false;
-			var didUserSeeSecondTip = usersteps.filter(function (_ref3) {
-				var step = _ref3.step;
 				return step === 6;
 			}).length ? true : false;
 
-			if (!didUserDismissTips && !didUserSeeFirstTip) {
-				this.props.updateModalContent(React.createElement(TeachSliderModal1, {
-					title: "",
-					paragraph: React.createElement(
-						"span",
-						null,
-						"all the music shared on MASAS starts out in one of the discover ",
-						React.createElement(
-							"strong",
-							null,
-							"moods"
-						)
-					) }), 2, function () {
-					return _this2.updateUserStep(5);
-				});
-				this.props.toogleModal();
-			} else if (!didUserDismissTips && !didUserSeeSecondTip) {
+			// const didUserSeeFirstTip = usersteps.filter(({ step }) => step === 5).length ? true : false
+			// if(!didUserDismissTips && !didUserSeeFirstTip) {
+			// 	this.props.updateModalContent(
+			// 		<TeachSliderModal1
+			// 			title=""
+			// 			paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
+			// 	, 2, () => this.updateUserStep(5) )
+			// 	this.props.toogleModal()
+			// } else
+			if (!didUserDismissTips && !didUserSeeSecondTip) {
 				this.props.updateModalContent(React.createElement(TeachDiscoverModal2, null), 2, function () {
 					return _this2.updateUserStep(6);
 				});
 				this.props.toogleModal();
 			}
-		} else if (isObjectEmpty(this.props.userData) && this.props.loggedOutUserStep === 0 && !this.props.isModalOpened) {
-			// user is not logged in, show slider tip if session anonymous user hasn't seen it yet
-			this.props.updateModalContent(React.createElement(TeachSliderModal1, {
-				title: "",
-				paragraph: React.createElement(
-					"span",
-					null,
-					"all the music shared on MASAS starts out in one of the discover ",
-					React.createElement(
-						"strong",
-						null,
-						"moods"
-					)
-				) }), 2, function () {
-				return _this2.props.incrementLoggedOutUserStep();
-			});
-			this.props.toogleModal();
 		}
+		// else if(isObjectEmpty(this.props.userData) && this.props.loggedOutUserStep === 0 && !this.props.isModalOpened){		// user is not logged in, show slider tip if session anonymous user hasn't seen it yet
+		// 	this.props.updateModalContent(
+		// 		<TeachSliderModal1
+		// 			title=""
+		// 			paragraph={ (<span>all the music shared on MASAS starts out in one of the discover <strong>moods</strong></span>) } />
+		// 	, 2, () => this.props.incrementLoggedOutUserStep() )
+		// 	this.props.toogleModal()
+		// }
 	},
 
 	componentWillReceiveProps: function componentWillReceiveProps() {},
@@ -45158,16 +45138,16 @@ var Discover = _wrapComponent("_component")(React.createClass({
 		if (isObjectNotEmpty(this.props.userData) && !this.props.isModalOpened) {
 			// if user has not dismissed tips yet
 			var usersteps = [].concat(_toConsumableArray(this.props.userData.usersteps));
-			var didUserDismissTips = usersteps.filter(function (_ref4) {
-				var step = _ref4.step;
+			var didUserDismissTips = usersteps.filter(function (_ref3) {
+				var step = _ref3.step;
 				return step === 4;
 			}).length ? true : false;
-			var didUserSeeFirstTip = usersteps.filter(function (_ref5) {
-				var step = _ref5.step;
+			var didUserSeeFirstTip = usersteps.filter(function (_ref4) {
+				var step = _ref4.step;
 				return step === 5;
 			}).length ? true : false;
-			var didUserSeeSecondTip = usersteps.filter(function (_ref6) {
-				var step = _ref6.step;
+			var didUserSeeSecondTip = usersteps.filter(function (_ref5) {
+				var step = _ref5.step;
 				return step === 6;
 			}).length ? true : false;
 
@@ -45271,7 +45251,8 @@ var Discover = _wrapComponent("_component")(React.createClass({
 					initialDiscover: sliderInitDiscover ? sliderInitDiscover : 1,
 					currentDiscover: this.props.discoverNumber,
 					showHashtag: true,
-					sliderValue: this.state.sliderValue
+					sliderValue: this.state.sliderValue,
+					initText: "Drag the sun around!"
 				})
 			)
 		);
@@ -56631,9 +56612,10 @@ var TimePickerWrapper = _wrapComponent("_component")(React.createClass({
 		wrapperClassName: React.PropTypes.string, // class used to size TimePicker
 		canvasId: React.PropTypes.string, // canvas id used for drawing
 		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
-		sliderValue: React.PropTypes.number },
+		sliderValue: React.PropTypes.number, // slider value affecting sun position
+		initText: React.PropTypes.string },
 
-	// slider value affecting sun position
+	// string instead of hashtag until slider is moved
 	getDefaultProps: function getDefaultProps() {
 		return {
 			initialDiscover: 1,
@@ -56668,7 +56650,8 @@ var TimePickerWrapper = _wrapComponent("_component")(React.createClass({
 			}),
 			React.createElement(TimePickerInside, _extends({}, this.props, {
 				ref: "canvas",
-				rangePercent: startValue }))
+				rangePercent: startValue
+			}))
 		);
 	}
 }));
@@ -56739,23 +56722,25 @@ var TimePicker = _wrapComponent("_component")(React.createClass({
 		showHashtag: React.PropTypes.bool, // should hashtag be shown for current slider position
 		sliderValue: React.PropTypes.number, // slider value affecting sun position
 		renderForUITip: React.PropTypes.bool, // slider controlled by mouse.onMove
-		rangePercent: React.PropTypes.number },
+		rangePercent: React.PropTypes.number, // slider value
+		initText: React.PropTypes.string },
 
-	// slider value
+	// string instead of hashtag until slider is moved
 	getInitialState: function getInitialState() {
 		// const rangePercent = (this.props.initialDiscover-0.5)*100/6
 		// const rangePercent = this.props.rangePercent
 		return {
 			rangePercent: this.props.rangePercent, // (number) 0-100, slider value
-			sunCoords: { x: 0, y: 0 }, // (obj) sun coordinates
+			// sunCoords: { x: 0, y: 0 },				// (obj) sun coordinates
 			canvasHeight: 0, // (number) sun arc path center
 			canvasWidth: 0, // (number) sun arc path radius
 			arcCenterCoords: { x: 0, y: 0 }, // (object) center of arc circle coord
 			arcRadius: 0, // (number) sun arc path radius
-			currentDiscover: this.props.currentDiscover };
+			currentDiscover: this.props.currentDiscover, // (number) current discover
+			hasSunMoved: false };
 	},
 
-	// (number) current discover
+	// (bool) show props.initText until state.hasSunMoved === true
 	getDefaultProps: function getDefaultProps() {
 		return {
 			showHashtag: true,
@@ -56854,14 +56839,15 @@ var TimePicker = _wrapComponent("_component")(React.createClass({
 		}
 	},
 
-	handleSliderChange: function handleSliderChange(e) {
-		// check if need to update redux state
-		var newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover);
-		if (newDiscover !== 0) this.props.onSliderChange(newDiscover);
+	// handleSliderChange: function(e) {
+	// 	// check if need to update redux state
+	// 	const newDiscover = this.handleTimePickerChange(parseFloat(e), this.state.currentDiscover)
+	// 	if(newDiscover !== 0)
+	// 		this.props.onSliderChange(newDiscover)
 
-		// update local state
-		// this.setState({ rangePercent: parseFloat(e), sunCoords })
-	},
+	// 	// update local state
+	// 	// this.setState({ rangePercent: parseFloat(e), sunCoords })
+	// },
 
 	getSunCoords: function getSunCoords(sliderValue) {
 		var _Math = Math;
@@ -56879,6 +56865,7 @@ var TimePicker = _wrapComponent("_component")(React.createClass({
 	},
 
 	getHashtag: function getHashtag(value) {
+		if (this.props.initText && !this.state.hasSunMoved) return this.props.initText;
 
 		if (value < 0) value = 0;
 
@@ -56892,6 +56879,11 @@ var TimePicker = _wrapComponent("_component")(React.createClass({
 	componentDidUpdate: function componentDidUpdate() {
 		var canvas = this.refs.canvas;
 		if (canvas) this.renderSunArcPath();
+	},
+
+	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+		// if sun has not moved and sun isn't at init coord, update has sun moved state
+		if (!this.state.hasSunMoved && this.getSunCoords(nextState.rangePercent).x !== this.getSunCoords(this.state.rangePercent).x) this.setState({ hasSunMoved: true });
 	},
 
 	render: function render() {
