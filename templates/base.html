@@ -10,7 +10,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-
     <!-- styles -->
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/flexboxgrid.css' %}" />
@@ -24,51 +23,58 @@
     <input type="hidden" name="next" value="{{ next }}" />
     {% block content %}{% endblock %}
 
-    <script src="//cdn.ravenjs.com/1.1.19/jquery,native/raven.min.js"></script>
+    <script src="{% static "js/raven.min.js" %}"></script>
 
     <script type="text/javascript">
-{% if settings.RAVEN_JS_DSN %}
-Raven.config('{{ settings.RAVEN_JS_DSN }}', {
-    // pass along the version of your application
-    // release: '1.0.0',
+        {% if settings.RAVEN_JS_DSN %}
+        Raven.config('{{ settings.RAVEN_JS_DSN }}', {
+            // pass along the version of your application
+            // release: '1.0.0',
 
-    // we highly recommend restricting exceptions to a domain in order to filter out clutter
-        whitelistUrls: [
-            {% for host in settings.ALLOWED_HOSTS %}
-            '{{ host }}'{% if not forloop.last %},{% endif %}
-            {% endfor %}
-        ]
-}).install();
+            // we highly recommend restricting exceptions to a domain in order to filter out clutter
+                whitelistUrls: [
+                    {% for host in settings.ALLOWED_HOSTS %}
+                    '{{ host }}'{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ]
+        }).install();
 
-{%  if request.user.is_authenticated %}
-Raven.setUserContext({
-    email: '{{ request.user.email }}',
-    id: '{{ request.user.pk }}',
-});
-{%  endif %}
-{% endif %}
+        {%  if request.user.is_authenticated %}
+        Raven.setUserContext({
+            email: '{{ request.user.email }}',
+            id: '{{ request.user.pk }}',
+        });
+        {%  endif %}
+        {% endif %}
 
-document.MASAS = {
-    SC: {
-        client_id: '{{ settings.SOUNDCLOUD.CLIENT_ID }}',
-        redirect_uri: '{{ settings.SOUNDCLOUD.REDIRECT_URI }}',
-        tracks_uri: '{{ settings.SOUNDCLOUD.FETCH_URI }}',
-    },
-    FB: {
-        appId: '{{ settings.FB.KEY }}',
-    },
-}
+        document.MASAS = {
+            SC: {
+                client_id: '{{ settings.SOUNDCLOUD.CLIENT_ID }}',
+                redirect_uri: '{{ settings.SOUNDCLOUD.REDIRECT_URI }}',
+                tracks_uri: '{{ settings.SOUNDCLOUD.FETCH_URI }}',
+            },
+            FB: {
+                appId: '{{ settings.FB.KEY }}',
+            },
+        }
     </script>
 
     <script type="text/javascript" src="{% static "js/facebookSDK.js" %}"></script>
 
     <!-- JavaScript scripts -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
+
+    {% if settings.RAVEN_JS_DSN %}
+    <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.jplayer.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/swiper.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/bundle.min.js" %}"></script>
+    {% else %}
     <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "js/jquery.jplayer.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/paper-full.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/swiper.min.js" %}"></script>
+    
     <script type="text/javascript" src="{% static "js/bundle.js" %}"></script>
+    {% endif %}
 
     {% if settings.RAVEN_JS_DSN %}
     <script>
