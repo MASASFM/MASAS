@@ -43319,7 +43319,7 @@ var MASAS_functions = {};
 MASAS_functions.getDiscoverNumberFromCurrentTime = function () {
 	var hours = new Date().getHours();
 
-	if (hours > 4 && hours < 8) return 1;else if (hours > 8 && hours < 12) return 2;else if (hours > 12 && hours < 15) return 3;else if (hours > 15 && hours < 18) return 4;else if (hours > 18 && hours < 22) return 5;else if (hours > 22 && hours < 4) return 6;
+	if (hours >= 4 && hours < 8) return 1;else if (hours >= 8 && hours < 12) return 2;else if (hours >= 12 && hours < 15) return 3;else if (hours >= 15 && hours < 18) return 4;else if (hours >= 18 && hours < 22) return 5;else if (hours >= 22 && hours < 4) return 6;
 };
 
 MASAS_functions.getUserPkFromURL = function (url) {

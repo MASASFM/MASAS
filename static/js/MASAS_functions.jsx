@@ -33,17 +33,17 @@ var MASAS_functions = {}
 MASAS_functions.getDiscoverNumberFromCurrentTime = () => {
 	const hours = new Date().getHours()
 
-	if(hours > 4 && hours < 8)
+	if(hours >= 4 && hours < 8)
 		return 1
-	else if(hours > 8 && hours < 12)
+	else if(hours >= 8 && hours < 12)
 		return 2
-	else if(hours > 12 && hours < 15)
+	else if(hours >= 12 && hours < 15)
 		return 3
-	else if(hours > 15 && hours < 18)
+	else if(hours >= 15 && hours < 18)
 		return 4
-	else if(hours > 18 && hours < 22)
+	else if(hours >= 18 && hours < 22)
 		return 5
-	else if(hours > 22 && hours < 4)
+	else if(hours >= 22 && hours < 4)
 		return 6
 }
 

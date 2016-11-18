@@ -4244,7 +4244,7 @@ input[type=range].MASAS-slider {
         .discover--wrapper .artwork-line--wrapper .button img.small {
           width: 1.5rem;
           height: 1.5rem;
-          margin-right: 0.5rem; }
+          margin-right: .5rem; }
       .discover--wrapper .artwork-line--wrapper .button.show {
         display: flex;
         flex-direction: row-reverse;
