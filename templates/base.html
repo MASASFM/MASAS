@@ -18,6 +18,12 @@
     <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" />
 
+  </head>
+  <body>
+
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% block content %}{% endblock %}
+
     <script src="//cdn.ravenjs.com/1.1.19/jquery,native/raven.min.js"></script>
 
     <script type="text/javascript">
@@ -55,12 +61,6 @@ document.MASAS = {
     </script>
 
     <script type="text/javascript" src="{% static "js/facebookSDK.js" %}"></script>
-
-  </head>
-  <body>
-    
-    <input type="hidden" name="next" value="{{ next }}" />
-    {% block content %}{% endblock %}
 
     <!-- JavaScript scripts -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
