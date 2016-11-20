@@ -58,7 +58,7 @@ class Song(models.Model):
     SC_ID = models.IntegerField(unique=True)
     timeInterval = models.ForeignKey('TimeInterval')
     deleted = models.DateTimeField(null=True, blank=True, default=None)
-    play_count = models.IntegerField(db_index=True)
+    play_count = models.IntegerField(db_index=True, default=0)
 
     # Cached here by get_song during soundcloud remote check
     metadata = None
