@@ -3,7 +3,7 @@ import soundcloud
 import requests
 
 from django.conf import settings
-from django.db.models import Prefetch
+from django.db.models import Count, Prefetch
 from django.shortcuts import render
 from django.views import generic
 
@@ -135,54 +135,34 @@ class PlayView(APIView):
     serializer_class = SongSerializer
 
     def _get_song(self, request):
-        time_interval_id = None
-        if 'time_interval_id' in request.GET:
-            time_interval_id = int(request.GET['time_interval_id'])
-
         songs = Song.objects.filter(deleted=None)
 
+        time_interval_id = request.GET.get('time_interval_id', None)
         if time_interval_id:
             songs = songs.filter(
                 timeInterval_id=time_interval_id,
             )
 
-        unplayed = songs.order_by('?').first()
-        #import ipdb; ipdb.set_trace()
-        if request.user.__dict__ != {}:
-            unplayed = songs.exclude(
-                play__user=request.user
-            ).order_by('?').first()
+        radio = request.GET.get('radio', 'discover')
+        if radio == 'discover':
+            songs = songs.order_by('-dateUploaded')
+        elif radio == 'popular':
+            songs = songs.filter(
+                status__status=1,  # like
+            ).annotate(
+                likes_count=Count('status')
+            ).order_by('-likes_count', '-pk')
 
-        if unplayed:
-            song = unplayed
-        else:
-            query = ['''
-                select
-                    s.*
-                from
-                    "MASAS_song" s
-                where
-                    s.deleted is NULL
-            ''']
-            query_vars = []
+        key = 'radio_%s' % radio
+        previous = request.session.get(key, None)
+        song = None
+        if previous > 0:
+            song = songs.filter(pk__lt=previous).first()
 
-            if time_interval_id:
-                query.append('''
-                and s."timeInterval_id" = %s
-                ''')
-                query_vars.append(time_interval_id)
+        if not song or song.pk == previous:
+            song = songs.first()
 
-            query.append('''
-                group by
-                    s.id
-                order by
-                    random()
-                limit 1
-            ''')
-            sql = '\n'.join(query)
-
-            song = Song.objects.raw(sql, query_vars)[0]
-
+        request.session[key] = song.pk
         s = soundcloud.Client(client_id=settings.SOUNDCLOUD['CLIENT_ID'])
 
         try:
