@@ -105,7 +105,13 @@ export function toggleSongLike(songId) {
 			"X-CSRFToken": csrftoken
 		}
 
-		fetch("/api/users/" + MASASuserPk + "/", { headers })
+		fetch(
+            "/api/users/" + MASASuserPk + "/",
+            {
+                credentials: "include",
+                headers
+            }
+        )
 		.then( r => r.json() )
 		.then( user => {
 			// var likes = user.likes
@@ -500,7 +506,8 @@ export function playRandomSong(timeInterval = 0) {
 		dispatch(setIsSongFetching(true))
 		fetch(URL, {
 			headers,
-			method
+			method,
+            credentials: 'include'
 		}).then( r => r.json() )
 		.then( data => {
 			// dispatch all necessary info and start playing

@@ -16,6 +16,8 @@ SITE_NAME = basename(DJANGO_ROOT)
 DEBUG = os.environ.get('DEBUG', False)
 LOG_LEVEL = os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG' if DEBUG else 'INFO')
 
+SESSION_COOKIE_HTTPONLY = False
+
 LOG_DIR = os.environ.get(
     'OPENSHIFT_LOG_DIR',
     os.path.join(BASE_DIR, 'log'),
